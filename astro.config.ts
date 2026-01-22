@@ -7,6 +7,7 @@ export default defineConfig({
   base: "/SteelDocs/",
   integrations: [
     starlight({
+      customCss: ["./src/styles/global.css"],
       favicon: "favicon.png",
       title: {
         en: "Steel-Docs",

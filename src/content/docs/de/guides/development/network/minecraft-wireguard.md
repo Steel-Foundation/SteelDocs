@@ -3,7 +3,9 @@ title: Minecraft-Netzwerkverkehr debuggen
 description: Wie man Minecraft-Netzwerkverkehr mit Wireshark debuggt
 ---
 
-Dieses Dokument beschreibt, wie man Minecraft-Netzwerkverkehr debuggt, um zu überprüfen, wie Pakete gesendet werden.
+Dieses Dokument beschreibt, wie man Minecraft-Netzwerkverkehr debuggt, um zu überprüfen, wie Pakete gesendet werden mit Wireguard.
+
+Wenn man nicht wireguard nutzen möchtest, dann gibt es noch dieses Projekt: [https://github.com/adepierre/SniffCraft](https://github.com/adepierre/SniffCraft)
 
 ## Voraussetzungen
 

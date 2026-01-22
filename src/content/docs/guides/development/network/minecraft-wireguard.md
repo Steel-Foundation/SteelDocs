@@ -3,7 +3,9 @@ title: Debugging Minecraft Network Traffic
 description: How to debug minecraft network traffic with wireguard
 ---
 
-This document describes how to debug Minecraft network traffic to inspect how packets are sent.
+This document describes how to debug Minecraft network traffic to inspect how packets are sent with wireguard.
+
+If you don't want to use wireguard then this project can come in handy for you: [https://github.com/adepierre/SniffCraft](https://github.com/adepierre/SniffCraft)
 
 ## Prerequisites
 

@@ -7,3 +7,7 @@
 @theme {
     --font-sans: 'Space Mono';
 }
+
+:root {
+    --sl-content-width: 75rem;
+}
