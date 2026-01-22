@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "SteelDocs",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.37.3",
+    "@astrojs/starlight-tailwind": "^4.0.2",
     "astro": "^5.6.1",
     "sharp": "^0.34.2"
   }
