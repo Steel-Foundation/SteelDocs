@@ -7,27 +7,38 @@ export default defineConfig({
   base: "/SteelDocs/",
   integrations: [
     starlight({
-      title: "My Docs",
+      favicon: "favicon.png",
+      title: "Steel",
       social: [
         {
           icon: "github",
           label: "GitHub",
-          href: "https://github.com/Steel-Foundation",
+          href: "https://github.com/Steel-Foundation/SteelMC",
         },
       ],
       sidebar: [
         {
-          label: "Guides",
+          label: "Getting Started",
           items: [
-            // Each item here is one entry in the navigation menu.
-            { label: "Example Guide", slug: "guides/example" },
+            { label: "Introduction", slug: "getting-started/introduction" },
+            { label: "Installation", slug: "getting-started/installation" },
+            { label: "Configuration", slug: "getting-started/configuration" },
+            { label: "Running the Server", slug: "getting-started/running" },
           ],
+        },
+        {
+          label: "Guides",
+          autogenerate: { directory: "guides" },
         },
         {
           label: "Reference",
           autogenerate: { directory: "reference" },
         },
       ],
+      editLink: {
+        baseUrl: "https://github.com/Steel-Foundation/SteelDocs/edit/main/",
+      },
+      lastUpdated: true,
     }),
   ],
 });
