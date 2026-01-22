@@ -24,7 +24,6 @@ This is the main repository for the [SteelMC](https://github.com/Steel-Foundatio
   - [Commit](#commit)
   - [Internationalization](#internationalization)
 - [How to use](#how-to-use)
-  - [Commands](#commands)
 - [Project structure](#project-structure)
 
 ---
