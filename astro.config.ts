@@ -8,8 +8,17 @@ export default defineConfig({
   integrations: [
     starlight({
       favicon: "favicon.png",
-      title: "Steel",
+      title: {
+        en: "Steel-Docs",
+        de: "Steel-Doku",
+        es: "Documentacion de Steel",
+      },
       social: [
+        {
+          icon: "discord",
+          label: "Discord",
+          href: "https://discord.gg/MwChEHnAbh",
+        },
         {
           icon: "github",
           label: "GitHub",
@@ -18,20 +27,53 @@ export default defineConfig({
       ],
       sidebar: [
         {
-          label: "Getting Started",
+          label: "Getting started",
+          translations: {
+            es: "Primeros pasos",
+            de: "Erste Schritte",
+          },
+          autogenerate: { directory: "guides/getting-started" },
+        },
+        {
+          label: "Configuration",
+          translations: {
+            es: "Configuración",
+            de: "Konfiguration",
+          },
+          autogenerate: { directory: "guides/configuration" },
+        },
+        {
+          label: "Development",
+          translations: {
+            es: "Desarrollo",
+            de: "Entwicklung",
+          },
           items: [
-            { label: "Introduction", slug: "getting-started/introduction" },
-            { label: "Installation", slug: "getting-started/installation" },
-            { label: "Configuration", slug: "getting-started/configuration" },
-            { label: "Running the Server", slug: "getting-started/running" },
+            "guides/development/decompile-minecraft",
+            {
+              label: "Blocks",
+              translations: {
+                es: "Bloques",
+                de: "Blöcke",
+              },
+              autogenerate: { directory: "guides/development/blocks" },
+            },
+            {
+              label: "Network",
+              translations: {
+                es: "Red",
+                de: "Netzwerk",
+              },
+              autogenerate: { directory: "guides/development/network" },
+            },
           ],
         },
         {
-          label: "Guides",
-          autogenerate: { directory: "guides" },
-        },
-        {
           label: "Reference",
+          translations: {
+            es: "Referencias",
+            de: "Referenz",
+          },
           autogenerate: { directory: "reference" },
         },
       ],
@@ -39,6 +81,24 @@ export default defineConfig({
         baseUrl: "https://github.com/Steel-Foundation/SteelDocs/edit/main/",
       },
       lastUpdated: true,
+      defaultLocale: "root",
+      locales: {
+        // English docs in `src/content/docs/`
+        root: {
+          label: "English",
+          lang: "en",
+        },
+        // Sprich Deutsch, du Hurensohn :O) `src/content/docs/de/`
+        de: {
+          label: "Deutsch",
+          lang: "de",
+        },
+        // Documentacion en Español en `src/content/docs/es`
+        es: {
+          label: "Español",
+          lang: "es",
+        },
+      },
     }),
   ],
 });
