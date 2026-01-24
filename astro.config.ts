@@ -1,10 +1,12 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://steel-foundation.github.io/SteelDocs/",
   base: "/SteelDocs/",
+
   integrations: [
     starlight({
       customCss: ["./src/styles/global.css"],
@@ -102,4 +104,8 @@ export default defineConfig({
       },
     }),
   ],
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

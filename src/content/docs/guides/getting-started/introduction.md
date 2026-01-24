@@ -1,6 +1,8 @@
 ---
 title: Introduction
 description: Learn what Steel is and why you might want to use it.
+sidebar:
+  order: 0
 ---
 
 Steel is a Minecraft Java Edition server implementation written in Rust, targeting Minecraft **1.21.1**. It's designed for performance, reliability, and a clean developer experience.
