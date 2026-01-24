@@ -43,25 +43,25 @@ Static assets, like favicons, can be placed in the `public/` directory.
 
 ## Fork
 
-... the `master` branch of this repository, so you can prepare your changes on there locally. Clone it to your system by running the command
+... the `master` branch of this repository, so you can prepare your changes locally. Clone it to your system by running the command
 
 ```gitattributes
 git clone https://github.com/{your-name}/SteelDocs
 ```
 
-in your directory of choice. And don't forget to set this repository as it's upstream by running the following command
+in your directory of choice. Don't forget to set this repository as its upstream by running the following command in said directory;
 
 ```gitattributes
 git remote add upstream https://github.com/Steel-Foundation/SteelDocs.git
 ```
 
-in said directory. To test if it has succeeded, type
+To test if it has succeeded, enter:
 
 ```gitattributes
 git remote -v
 ```
 
-which should yield the following.
+Which should yield the following.
 
 ```gitattributes
 origin   https://github.com/{your-name}/SteelDocs.git (fetch)
@@ -88,7 +88,7 @@ bun install
 
 ## Commit
 
-... your changes to your fork and use the following commands in its directory:
+... your changes to your fork by using the following commands in its directory:
 
 ```gitattributes
 git add .
@@ -96,18 +96,18 @@ git commit -m "{your-message}"
 git push origin {your-branch}
 ```
 
-Then you may open a pull-request by comparing on the github website.
+Then you may open a pull-request by comparing the changes on the github website.
 
 > [!NOTE]
 > This project strictly enforces the use of the [conventional commits standard](https://www.conventionalcommits.org/en/v1.0.0/) in the commit messages.
-> Also please remember to stricktly use **relative paths**!
+> Also please remember to strictly use **relative paths**!
 
 ## Internationalization
 
 Starlight uses a particular folder structure to automatically fetch and correctly link translated markdown files.
 For this reason, if you want to add a new language, you should create a new folder
-with the correct international prefix into to `docs` folder, where both the german and spanish translations already reside. The english originals are also stored in the `docs` folder, but don't require another wrapper folder,
-such that it can be used as fallback. Otherwise, the only thing you should look out for are:
+with the correct international prefix in the `docs` folder, where both the german and spanish translations already reside. The english originals are also stored in the `docs` folder, but don't require another wrapper folder,
+such that it can be used as fallback. Otherwise, the only things you should look out for are:
 
 Articles are written in `.md` (markdown) files and contain a front-matter like this:
 
@@ -122,7 +122,7 @@ sidebar:
 
 Here, useful information about the article is stored.
 
-Furthermore, side-bar slugs are translated by adding an entry to the `translations` array inside the `sidebar` object, which can be found at `astro.config.mjs`, like this:
+Furthermore, side-bar slugs are translated by adding an entry to the `translations` array inside the `sidebar` object, which can be found inside `astro.config.mjs`, like this:
 
 ```mjs
 label: 'Getting started',
@@ -136,7 +136,7 @@ For further guidance, feel free to consult the [documentation](https://starlight
 
 ## How to use
 
-Inside the project folder run `bun dev` for hosting it locally. Keep in mind that this will sometimes mask errors, which will only be present when hosted somewhere like gh pages (fuck js).
+Inside the project folder run `bun dev` for hosting it locally. Keep in mind that this will sometimes mask errors, which will only be exprimated when hosted somewhere like gh pages.
 The rest should be handled by the `deploy` workflow.
 
 ## Project structure
