@@ -3,30 +3,30 @@ title: Code Konvention
 description: Die Konvention für den Aufbau des Projektes für den Source Code
 ---
 
-# Code-Standard
+- # Code-Standard
 
-## Allgemein
+  ## Allgemein
 
-- Vanilla ist normalerweise gut darin, Dinge zu benennen, daher erleichtert das Beibehalten derselben Namen das Lesen für die nächste Person. Manchmal möchten wir jedoch davon abweichen, wenn Namen schlecht oder nicht beschreibend sind, oder wir eine völlig andere Lösung für das betreffende System wollen. In diesem Fall sollten wir einen Dokumentationskommentar über der Struct, Methode oder dem Modul hinzufügen, der die Unterschiede klar beschreibt, damit jemand Neues beim nächsten Mal leicht dein System verstehen kann.
-- Wir sollten versuchen, Code-Duplizierung zu minimieren, aber ein paar Zeilen sind normalerweise in Ordnung.
-- Bei der Arbeit an Grundlagen müssen wir besonders sicher sein, dass wir keine Abkürzungen nehmen oder Dinge auslassen. Dies kann später Probleme verursachen, wenn ein grundlegendes System komplett neu gestaltet werden muss. Grundlegender Code ist Code wie ein System oder eine Schnittstelle, von dem anderer Code abhängt – zum Beispiel der Block-Behavior-Trait. Wenn dieser von Anfang an schlecht gestaltet ist und wir 100 Block-Implementierungen darauf aufbauen, viel Glück beim Ändern. Aber das schließt zukünftige grundlegende Änderungen nicht aus, wenn das erste System mit Langlebigkeit im Sinn entworfen wurde. Ein Beispiel für diese Art von Grundlage ist unser Chunk-Scheduler, bei dem die Chunk-Stufen und Regeln für ihre Ausführung bereits entworfen sind. Das bedeutet, dass das Austauschen des Schedulers den Generierungscode nicht bricht.
-- Keine Workarounds. Sei nicht faul und überspringe nicht das Erstellen einer Hilfsfunktion, nur weil du sie nur einmal für deinen Anwendungsfall gebraucht hast.
-- Versuche, nicht tief in Einrückungen zu gehen. Guard Clauses sind dafür nützlich, und Rust hat einige wirklich nette `if let` und `let Some() = x else {return}`
-- Verwende keine Panics, es sei denn, der Fall tritt nie ein oder ist fatal für das Programm. Versuche andernfalls, Results zu verwenden.
-- Verwende kein Multithreading, es sei denn, du kannst erklären, warum es Multithreading braucht, und kannst mit Benchmarks beweisen, dass es besser ist.
-- Verwende kein Async, es sei denn, du brauchst Festplatten- oder Netzwerk-I/O oder massiven Einsatz von rechenarmen Aufgaben, die Awaiting benötigen (Chunk-Abhängigkeiten, aber die Generierung läuft auf Rayon). Stelle immer sicher, dass du niemals rechenintensiven Code in einer Async-Runtime ausführst. Überbrücke die Lücke mit spawn_blocking oder dem Spawnen einer Rayon-Aufgabe.
-- Verwende [samply](https://github.com/mstange/samply) oder [jaeger](https://www.jaegertracing.io/docs/latest/getting-started/) für Profiling. Jaeger ist am besten für Timing mit Tracing-Spans und das Erfassen von Kontext und Durchschnittswerten. Samply ist am besten, wenn du ein einfaches Flame-Graph willst, um zu sehen, welche interne Funktion zum Beispiel bei der Weltgenerierung die meisten Ressourcen verbraucht.
-- Füge keine unnötigen Dependencies hinzu. Wir sind nicht JavaScript, wir brauchen kein is-even und left-pad.
-- Wenn du ein Feature nicht vollständig implementiert hast, stelle sicher, dass du einen // TODO: Kommentar hinzufügst.
+  - Normalerweise ist Vanilla bei der Benennung von Dingen recht gut, daher macht es das Lesen für die nächste Person einfacher, wenn man sich an dieselben Namen hält. Manchmal muss jedoch davon abweichen, wenn Namen schlecht oder nicht aussagekräftig sind, oder wenn eine völlig andere Lösung für das betreffende System gewünscht wird. In diesem Fall sollte ein Dokumentationskommentar über der Struct, Methode oder dem Modul hinzugefügt werden, der die Unterschiede klar beschreibt, damit jemand Neues beim nächsten Mal das System leicht verstehen kann.
+  - Code-Duplizierung sollte minimiert werden, aber ein paar Zeilen sind normalerweise in Ordnung.
+  - Bei der Arbeit an Fundamenten muss besonders sichergestellt werden, dass keine Abkürzungen genommen oder Dinge ausgelassen werden. Dies kann später Probleme verursachen, wenn ein grundlegendes System komplett neu gestaltet werden muss. Fundamentaler Code ist Code wie ein System oder Interface, von dem anderer Code abhängt. Ein Beispiel ist das Block-Behavior-Trait – wenn das von Anfang an schlecht designed ist und 100 Block-Implementierungen darauf aufbauen, viel Glück dabei, es zu ändern. Das schließt aber zukünftige fundamentale Änderungen nicht aus, wenn das erste System mit Langlebigkeit im Sinn designed wurde. Ein Beispiel für diese Art von Fundament ist unser Chunk-Scheduler, bei dem die Chunk-Stufen und Regeln für deren Ausführung bereits designed sind. Das bedeutet, dass das Austauschen des Schedulers den Generierungscode nicht kaputt macht.
+  - Keine Workarounds. Nicht faul sein und das Erstellen einer Hilfsfunktion überspringen, nur weil sie für den eigenen Anwendungsfall nur einmal gebraucht wurde.
+  - Versuchen, nicht tief in der Einrückung zu gehen. Guard-Clauses sind dafür nützlich und Rust hat einige wirklich schöne `if let` und `let Some() = x else {return}`
+  - Panics nur verwenden, wenn der Fall niemals eintritt oder fatal für das Programm ist. Ansonsten Results verwenden.
+  - Multithreading sollte nicht genutzt werden, es sei denn, es kann erklärt werden, warum Multithreading benötigt wird, und mit Benchmarks bewiesen werden kann, dass es besser ist.
+  - Async nur verwenden, wenn Festplatten- oder Netzwerk-I/O benötigt wird, oder Massennutzung von rechenarmen Tasks, die Awaiting benötigen (Chunk-Abhängigkeiten, aber die Generierung läuft auf Rayon). Immer sicherstellen, dass rechenintensiver Code niemals in einer Async-Runtime ausgeführt wird – die Lücke mit spawn_blocking oder dem Spawnen eines Rayon-Tasks überbrücken.
+  - [samply](https://github.com/mstange/samply) oder [jaeger](https://www.jaegertracing.io/docs/latest/getting-started/) für Profiling verwenden. Jaeger ist am besten für Timing mit Tracing-Spans und das Erfassen von Kontext und Durchschnittswerten. Samply ist am besten, wenn ein einfacher Flamegraph gewünscht wird, um zu sehen, welche interne Funktion die meisten Ressourcen verbraucht, zum Beispiel für Weltgenerierung.
+  - Keine unnötigen Dependencies hinzufügen. Das hier ist nicht JavaScript, is-even und left-pad werden nicht gebraucht.
+  - Wenn ein Feature nicht vollständig implementiert wurde, sicherstellen, dass ein // TODO: Kommentar hinzugefügt wird.
 
-## Registries
+  ## Registries
 
-- Wir sollten nur generieren, was benötigt wird. Verwendet Minecraft eine hartcodierte Kollisions-Transformation für Entities in verschiedenen Zuständen? Dann sollten wir das auch tun, anstatt sie zu extrahieren.
-- Wir sollten Registries mit komplexer Logik von Hand schreiben, es sei denn, sie haben viele Einträge (30+). Etwas wie Data Components und Entity-Serializer erfordert viel manuelle Arbeit, um die Serializer richtig zu bekommen, und sie haben nur wenige Einträge, also kein Grund, es zusätzlich mit Generierung zu verkomplizieren.
-- Wir sollten die Extraktionsdaten aus dem Minecraft-Datenpaket verwenden, anstatt ein benutzerdefiniertes Format zu generieren, wenn es dort existiert. Das gilt normalerweise für das, was Mojang reloadable Registries nennt, einschließlich Tags, Worldgen-Daten und ähnlichem. Vanilla-BuiltIn-Registries müssen extrahiert werden.
-- Wir sollten alles mit Blick auf Modding und ABI-Kompatibilität für die Zukunft entwerfen. Keine Anforderung, einen Other-Enum-Attributtyp hinzuzufügen, aber wir müssen sicherstellen, dass es so gestaltet ist, dass es das in Zukunft handhaben kann. Wir sollten die gleichen Standards wie NeoForge beim Modding einhalten, also sollten sogar Block-Registries (Vanilla-Built-In-Registries) dies im Sinn haben.
+  - Nur das generieren, was benötigt wird. Verwendet Minecraft eine hardcodierte Kollisions-Transformation für Entities in verschiedenen Zuständen? Dann sollte das hier auch so sein, anstatt sie zu extrahieren.
+  - Registries mit komplexer Logik sollten von Hand geschrieben werden, es sei denn, sie haben viele Einträge (30+). Etwas wie Data-Components und Entity-Serializer beinhalten viel manuelle Arbeit, um die Serializer richtig hinzubekommen, und sie haben nur wenige Einträge, also kein Grund, es mit Generierung zusätzlich zu verkomplizieren.
+  - Die Extraktionsdaten aus dem Minecraft-Datapack sollten verwendet werden, anstatt ein benutzerdefiniertes Format zu generieren, wenn sie dort existieren. Das gilt normalerweise für das, was Mojang Reloadable Registries nennt, einschließlich Tags, Worldgen-Daten und solche Sachen. Vanilla BuiltIn-Registries müssen extrahiert werden.
+  - Alles sollte mit Modding und ABI-Kompatibilität für die Zukunft im Hinterkopf designed werden. Keine Anforderung, ein Other-Enum-Attribut hinzuzufügen, aber es muss sichergestellt werden, dass es designed ist, dies in Zukunft zu handhaben. Dieselben Standards wie NeoForge sollten beim Modding eingehalten werden, also sollten sogar Block-Registries (Vanilla BuiltIn-Registries) dies im Hinterkopf behalten.
 
-## Testing
+  ## Testing
 
-- Füge Tests für fortgeschrittene Systeme hinzu, Code der Unsafe verwendet (immer // SAFETY Kommentare verwenden) oder Code, der mit Vanillas Determinismus übereinstimmen muss (ItemComponent-Hashing oder Worldgen).
-- Erlaube Clippy-Lints nur mit einem Begründungskommentar per #[allow], es sei denn, es ist offensichtlich. Falsch-Positive und absichtliche Abweichungen (z.B. Funktionslänge für Lesbarkeit) sind akzeptabel, wenn erklärt.
+  - Tests für fortgeschrittene Systeme hinzufügen, Code der unsafe verwendet (immer // SAFETY Kommentare verwenden) oder Code, der mit Vanilla-Determinismus übereinstimmen muss (ItemComponent-Hashing oder Worldgen).
+  - Clippy-Lints nur mit einem Begründungskommentar #[allow]en, es sei denn, es ist offensichtlich. Falsch-Positive und absichtliche Abweichungen (z.B. Funktionslänge für bessere Lesbarkeit) sind akzeptabel, wenn sie erklärt werden.
