@@ -54,11 +54,11 @@ Klone das Protokolldaten-Repository:
 
 ## Wireshark-Konfiguration
 
-Starte Wireshark (für Loopback-Erfassung muss dein Benutzer in der `wireshark`-Gruppe sein).
+Starte Wireshark als nicht root Benutzer (für Loopback-Erfassung muss dein Benutzer in der `wireshark`-Gruppe sein).
 
 Navigiere dann zu:
 
-**Preferences → Protocols → MCJE**
+**Preferences → Protocols → Minecraft**
 
 Wähle das Protokoll aus und setze den Pfad zum geklonten `MC_Protocol_Data`-Repository.
 Danach **starte Wireshark neu**.
@@ -68,7 +68,7 @@ Danach **starte Wireshark neu**.
 Um eine bessere Übersicht über den Minecraft-Traffic zu erhalten, verwende diesen Filter:
 
 ```
-tcp.port == 25565 || udp.port == 25565
+mcje
 ```
 
 ## Ergebnis

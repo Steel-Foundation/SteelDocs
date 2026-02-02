@@ -11,4 +11,4 @@ Herramientas y técnicas para depurar y analizar el tráfico de red en Minecraft
 
 ## Guías disponibles
 
-- [**Depurando con Wireshark**](../minecraft-wireguard) - Captura y analiza los paquetes de red de Minecraft
+- [**Depurando con Wireshark**](../minecraft-wireshark) - Captura y analiza los paquetes de red de Minecraft

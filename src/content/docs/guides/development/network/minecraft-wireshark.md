@@ -1,6 +1,6 @@
 ---
 title: Debugging Minecraft Network Traffic
-description: How to debug minecraft network traffic with wireguard
+description: How to debug minecraft network traffic with wireshark
 ---
 
 This document describes how to debug Minecraft network traffic to inspect how packets are sent with wireguard.
@@ -63,11 +63,11 @@ Clone the protocol data repository:
 
 ## Wireshark Configuration
 
-Start Wireshark (on Linux, for loopback capture, your user must be in the `wireshark` group).
+Start Wireshark as a non root user! (on Linux, for loopback capture, your user must be in the `wireshark` group).
 
 Then navigate to:
 
-**Preferences → Protocols → MCJE**
+**Preferences → Protocols → Minecraft**
 
 Select the protocol and set the path to the cloned `MC_Protocol_Data` repository.
 After that, **restart Wireshark**.
@@ -77,7 +77,7 @@ After that, **restart Wireshark**.
 To get a better overview of Minecraft traffic, use this filter:
 
 ```
-tcp.port == 25565 || udp.port == 25565
+mcje
 ```
 
 ## Result
