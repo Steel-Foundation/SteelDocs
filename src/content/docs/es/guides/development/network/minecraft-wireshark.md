@@ -64,7 +64,7 @@ Inicia Wireshark (en Linux, para la captura de tu mismo dispositivo, tu usuario 
 
 Ahora navega hasta:
 
-**Preferencias → Protocols → MCJE**
+**Preferencias → Protocols → Minecraft**
 
 Selecciona el protocolo y configura la ruta al clon de `MC_Protocol_Data`.
 Tras ello, **reinicia Wireshark**.
@@ -74,7 +74,7 @@ Tras ello, **reinicia Wireshark**.
 Para poder ver de forma correcta el tráfico de Minecraft, usa este filtro:
 
 ```
-tcp.port == 25565 || udp.port == 25565
+mcje
 ```
 
 ## Resultado

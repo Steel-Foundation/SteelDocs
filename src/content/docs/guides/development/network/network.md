@@ -11,4 +11,4 @@ Tools and techniques for debugging and analyzing Minecraft network traffic.
 
 ## Available Guides
 
-- [**Debugging with Wireshark**](../minecraft-wireguard) - Capture and analyze Minecraft network packets
+- [**Debugging with Wireshark**](../minecraft-wireshark) - Capture and analyze Minecraft network packets

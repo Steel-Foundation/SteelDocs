@@ -11,4 +11,4 @@ Werkzeuge und Techniken zum Debuggen und Analysieren von Minecraft-Netzwerkverke
 
 ## Verfügbare Anleitungen
 
-- [**Debuggen mit Wireshark**](../minecraft-wireguard) - Erfasse und analysiere Minecraft-Netzwerkpakete
+- [**Debuggen mit Wireshark**](../minecraft-wireshark) - Erfasse und analysiere Minecraft-Netzwerkpakete
