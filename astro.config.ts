@@ -69,6 +69,14 @@ export default defineConfig({
               },
               autogenerate: { directory: "guides/development/network" },
             },
+            {
+              label: "Tools",
+              translations: {
+                es: "Herramientas",
+                de: "Werkzeuge",
+              },
+              autogenerate: { directory: "guides/development/tools" },
+            },
           ],
         },
         {
