@@ -1,3 +1,47 @@
 ---
 import "../styles/global.css";
+import PixelBlast from "@/components/homepage/PixelBlast";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "SteelDocs - The Steel documentation" } =
+  Astro.props;
 ---
+
+<html lang="en" class="bg-teal-950">
+  <head>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body class="bg-transparent">
+    <div class="fixed inset-0 w-full h-full -z-10">
+      <PixelBlast
+        client:only="react"
+        variant="square"
+        pixelSize={4}
+        color="#022120"
+        patternScale={2}
+        patternDensity={1}
+        pixelSizeJitter={0}
+        enableRipples
+        rippleSpeed={0.4}
+        rippleThickness={0.12}
+        rippleIntensityScale={1.5}
+        liquid={false}
+        liquidStrength={0.12}
+        liquidRadius={1.2}
+        liquidWobbleSpeed={5}
+        speed={3}
+        edgeFade={0.25}
+        transparent
+      />
+    </div>
+    <slot />
+  </body>
+</html>
