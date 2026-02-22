@@ -66,13 +66,13 @@ const BackgroundContent = ({
 }: HeaderProps) => {
 
   return (
-    <div className="select-none relative w-full h-full overflow-hidden">
+    <div className="relative w-full h-full overflow-hidden">
 
-      <div className="absolute top-0 left-0 flex flex-col items-center justify-center w-full h-full z-1 pointer-events-none">
+      <div className="absolute top-0 left-0 flex flex-col items-center justify-center w-full h-full z-1">
         <Pill text={pillText} />
         <Headline subtitle={subtitle} />
         <Actions mainCtaText={mainCtaText} secondCtaText={secondCtaText} />
-        <ArrowDown className="w-10 h-10 p-2 mt-16 text-black dark:text-white animate-bounce bg-black/20 dark:bg-white/30 rounded-full" />
+        <a href="#arrow" id="arrow"><ArrowDown className="w-10 h-10 p-2 mt-16 text-black dark:text-white animate-bounce bg-black/20 dark:bg-white/30 rounded-full" /></a>
       </div>
     </div>
   );
