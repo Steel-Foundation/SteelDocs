@@ -1,5 +1,37 @@
 ---
 import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
+
+interface Props {
+  logoText: string;
+  logoHighlight: string;
+  searchPlaceholder: string;
+  noResultsText: string;
+  devWarningText: string;
+  langLabel: string;
+  langChangeLabel: string;
+  languages: { href: string; flag: string; label: string }[];
+  themeToggleLabel: string;
+  discordLabel: string;
+  discordHref: string;
+  githubLabel: string;
+  githubHref: string;
+}
+
+const {
+  logoText,
+  logoHighlight,
+  searchPlaceholder,
+  noResultsText,
+  devWarningText,
+  langLabel,
+  langChangeLabel,
+  languages,
+  themeToggleLabel,
+  discordLabel,
+  discordHref,
+  githubLabel,
+  githubHref,
+} = Astro.props;
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 px-2 pt-2 max-w-280 mx-auto">
@@ -11,7 +43,9 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
       href="/SteelDocs/"
       class="font-minecraft font-bold text-xl text-teal-950 dark:text-white shrink-0 mr-2"
     >
-      Steel<span class="text-emerald-600 dark:text-emerald-400">MC</span>
+      {logoText}<span class="text-emerald-600 dark:text-emerald-400"
+        >{logoHighlight}</span
+      >
     </a>
 
     <!-- Search Bar -->
@@ -26,7 +60,7 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
       <input
         id="navbar-search"
         type="search"
-        placeholder="Search docs..."
+        placeholder={searchPlaceholder}
         autocomplete="off"
         class="w-full pl-8 pr-3 py-1.5 text-sm bg-teal-100 dark:bg-white/8 border border-teal-300 dark:border-white/15 rounded-full text-teal-950 dark:text-white placeholder:text-teal-400 dark:placeholder:text-white/35 focus:outline-none focus:border-emerald-500/60 dark:focus:border-emerald-400/50 transition-all"
       />
@@ -41,13 +75,13 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
           id="search-no-results"
           class="hidden px-4 py-3 text-sm text-teal-500 dark:text-white/50"
         >
-          No results found
+          {noResultsText}
         </p>
         <p
           id="search-dev-warning"
           class="hidden px-4 py-3 text-sm text-teal-500 dark:text-white/50"
         >
-          Search is only available in production builds
+          {devWarningText}
         </p>
       </div>
     </form>
@@ -62,12 +96,12 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
         <button
           id="lang-btn"
           class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-sm text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all cursor-pointer"
-          aria-label="Change language"
+          aria-label={langChangeLabel}
           aria-expanded="false"
           aria-haspopup="true"
         >
           <Globe class="size-3.5 shrink-0" />
-          <span class="hidden sm:inline" id="lang-label">EN</span>
+          <span class="hidden sm:inline" id="lang-label">{langLabel}</span>
           <ChevronDown class="size-3 transition-transform" id="lang-chevron" />
         </button>
         <div
@@ -75,27 +109,21 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
           role="menu"
           class="absolute right-0 top-full mt-1.5 w-36 rounded-xl bg-white dark:bg-teal-900/95 backdrop-blur-md border border-teal-200 dark:border-white/10 shadow-2xl hidden"
         >
-          <a
-            href="/SteelDocs/"
-            role="menuitem"
-            class="flex items-center gap-2.5 px-3 py-2 text-sm text-teal-700 dark:text-white/70 hover:text-teal-950 dark:hover:text-white hover:bg-teal-50 dark:hover:bg-white/10 rounded-t-xl transition-colors"
-          >
-            <span aria-hidden="true">🇬🇧</span> English
-          </a>
-          <a
-            href="/SteelDocs/de/"
-            role="menuitem"
-            class="flex items-center gap-2.5 px-3 py-2 text-sm text-teal-700 dark:text-white/70 hover:text-teal-950 dark:hover:text-white hover:bg-teal-50 dark:hover:bg-white/10 transition-colors"
-          >
-            <span aria-hidden="true">🇩🇪</span> Deutsch
-          </a>
-          <a
-            href="/SteelDocs/es/"
-            role="menuitem"
-            class="flex items-center gap-2.5 px-3 py-2 text-sm text-teal-700 dark:text-white/70 hover:text-teal-950 dark:hover:text-white hover:bg-teal-50 dark:hover:bg-white/10 rounded-b-xl transition-colors"
-          >
-            <span aria-hidden="true">🇪🇸</span> Español
-          </a>
+          {
+            languages.map((lang, i) => (
+              <a
+                href={lang.href}
+                role="menuitem"
+                class:list={[
+                  "flex items-center gap-2.5 px-3 py-2 text-sm text-teal-700 dark:text-white/70 hover:text-teal-950 dark:hover:text-white hover:bg-teal-50 dark:hover:bg-white/10 transition-colors",
+                  i === 0 && "rounded-t-xl",
+                  i === languages.length - 1 && "rounded-b-xl",
+                ]}
+              >
+                <span aria-hidden="true">{lang.flag}</span> {lang.label}
+              </a>
+            ))
+          }
         </div>
       </div>
 
@@ -103,7 +131,7 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
       <button
         id="theme-toggle"
         class="p-1.5 rounded-xl text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all cursor-pointer"
-        aria-label="Toggle theme"
+        aria-label={themeToggleLabel}
       >
         <Sun class="size-4" id="sun-icon" />
         <Moon class="size-4 hidden" id="moon-icon" />
@@ -111,11 +139,11 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
 
       <!-- Discord -->
       <a
-        href="https://discord.gg/MwChEHnAbh"
+        href={discordHref}
         target="_blank"
         rel="noopener noreferrer"
         class="p-1.5 rounded-xl text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
-        aria-label="Join our Discord"
+        aria-label={discordLabel}
       >
         <svg
           class="size-4"
@@ -132,11 +160,11 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
 
       <!-- GitHub -->
       <a
-        href="https://github.com/Steel-Foundation/SteelMC"
+        href={githubHref}
         target="_blank"
         rel="noopener noreferrer"
         class="p-1.5 rounded-xl text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
-        aria-label="GitHub repository"
+        aria-label={githubLabel}
       >
         <Github class="size-4" />
       </a>

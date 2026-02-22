@@ -1,6 +1,28 @@
 ---
 import { Github } from "@lucide/astro";
 
+interface Props {
+  heading: string;
+  headingHighlight: string;
+  descriptionBold1: string;
+  descriptionMiddle: string;
+  descriptionBold2: string;
+  descriptionAfter: string;
+  discordHref: string;
+  githubHref: string;
+}
+
+const {
+  heading,
+  headingHighlight,
+  descriptionBold1,
+  descriptionMiddle,
+  descriptionBold2,
+  descriptionAfter,
+  discordHref,
+  githubHref,
+} = Astro.props;
+
 const glassStyle = {
   backdropFilter: "blur(2px)",
   WebkitBackdropFilter: "blur(2px)",
@@ -12,26 +34,27 @@ const glassStyle = {
   <h2
     class="md:text-6xl text-5xl text-center text-teal-950 dark:text-white mb-4 font-minecraft font-bold"
   >
-    Interested? <span
-      class="text-amber-500 dark:text-amber-400 font-bold italic">Join us!</span
+    {heading}
+    <span class="text-amber-500 dark:text-amber-400 font-bold italic"
+      >{headingHighlight}</span
     >
   </h2>
   <p
     class="text-lg text-center max-w-180 mx-auto text-teal-700 dark:text-gray-300"
   >
     <span class="text-teal-950 dark:text-white font-bold"
-      >Steel is a place where people gather</span
-    > to code, chat and have fun. From talented developers to biggest yappers,
+      >{descriptionBold1}</span
+    >{descriptionMiddle}
     <span class="text-teal-950 dark:text-white font-bold"
-      >everyone is welcome!</span
-    > We're just a bunch of people trying to make a cool Minecraft server.
+      >{descriptionBold2}</span
+    >{descriptionAfter}
   </p>
   <div class="mt-4 flex gap-4">
     <div
       class="h-12 w-12 p-2 hover:scale-110 transition-all duration-300 rounded-full border hover:opacity-100 bg-teal-600/20 dark:bg-white/30 border-teal-400 dark:border-white/40"
       style={glassStyle}
     >
-      <a href="https://discord.com/invite/MwChEHnAbh">
+      <a href={discordHref}>
         <svg
           class="w-full h-full text-teal-700 dark:text-teal-100 size-4"
           viewBox="0 0 24 24"
@@ -50,7 +73,7 @@ const glassStyle = {
       class="h-12 w-12 p-2 hover:scale-110 transition-all duration-300 rounded-full border hover:opacity-100 bg-teal-600/20 dark:bg-white/30 border-teal-400 dark:border-white/40"
       style={glassStyle}
     >
-      <a href="https://github.com/Steel-Foundation/SteelMC">
+      <a href={githubHref}>
         <Github class="w-full h-full text-teal-700 dark:text-teal-100" />
       </a>
     </div>

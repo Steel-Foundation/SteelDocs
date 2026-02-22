@@ -1,5 +1,33 @@
 ---
 import { ExternalLink } from "@lucide/astro";
+
+interface Props {
+  sectionLabel: string;
+  sectionTitle: string;
+  sectionDescription: string;
+  adminHref: string;
+  adminImage: string;
+  adminImageAlt: string;
+  adminLabel: string;
+  devHref: string;
+  devImage: string;
+  devImageAlt: string;
+  devLabel: string;
+}
+
+const {
+  sectionLabel,
+  sectionTitle,
+  sectionDescription,
+  adminHref,
+  adminImage,
+  adminImageAlt,
+  adminLabel,
+  devHref,
+  devImage,
+  devImageAlt,
+  devLabel,
+} = Astro.props;
 ---
 
 <section>
@@ -8,16 +36,15 @@ import { ExternalLink } from "@lucide/astro";
       <h2
         class="text-1xl text-teal-600 dark:text-white/40 font-minecraft font-bold"
       >
-        CHOOSE YOUR DOCUMENTATION !
+        {sectionLabel}
       </h2>
       <h2
         class="text-3xl mb-4 font-minecraft font-bold text-teal-950 dark:text-white"
       >
-        Bro, what do you want to do ?
+        {sectionTitle}
       </h2>
       <p class="text-lg text-teal-700 dark:text-gray-300">
-        Steel is carefully designed for everyone. Developers, administrators ?
-        No matter what you wanna do, there's some docs for you !
+        {sectionDescription}
       </p>
     </div>
     <div
@@ -26,21 +53,18 @@ import { ExternalLink } from "@lucide/astro";
       <div
         class="relative flex-1 lg:flex-1 flex justify-center -rotate-6 lg:rotate-0 -mr-6 lg:mr-0 z-10"
       >
-        <a
-          href="/SteelDocs/guides/getting-started/for-users/"
-          class="relative group cursor-pointer w-fit block"
-        >
+        <a href={adminHref} class="relative group cursor-pointer w-fit block">
           <div class="overflow-hidden rounded-2xl">
             <img
-              src="/SteelDocs/admin.png"
-              alt="Admin documentation"
+              src={adminImage}
+              alt={adminImageAlt}
               class="max-w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
           </div>
           <div
             class="absolute text-sm flex items-center bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white text-black px-4 py-2 rounded-full whitespace-nowrap shadow-lg transition-all duration-300"
           >
-            Administrator
+            {adminLabel}
             <div
               class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-2 transition-all duration-300 flex items-center"
             >
@@ -52,21 +76,18 @@ import { ExternalLink } from "@lucide/astro";
       <div
         class="relative flex-1 lg:flex-1 flex justify-center rotate-6 lg:rotate-0"
       >
-        <a
-          href="https://steel-foundation.github.io/SteelDocs/guides/getting-started/for-devs/"
-          class="relative group cursor-pointer w-fit block"
-        >
+        <a href={devHref} class="relative group cursor-pointer w-fit block">
           <div class="overflow-hidden rounded-2xl">
             <img
-              src="/SteelDocs/contributor.png"
-              alt="Contributor documentation"
+              src={devImage}
+              alt={devImageAlt}
               class="max-w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
           </div>
           <div
             class="absolute text-sm flex items-center bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white text-black px-4 py-2 rounded-full whitespace-nowrap shadow-lg transition-all duration-300"
           >
-            Developer
+            {devLabel}
             <div
               class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-2 transition-all duration-300 flex items-center"
             >

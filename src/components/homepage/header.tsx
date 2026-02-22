@@ -16,12 +16,12 @@ const Pill = ({ text }: { text: string }) => (
   </div>
 );
 
-const Headline = ({ subtitle }: { subtitle: string }) => (
+const Headline = ({ heroTitle, heroTitleHighlight, subtitle }: { heroTitle: string; heroTitleHighlight: string; subtitle: string }) => (
   <>
     <h1
       className="mt-4 text-black dark:text-white text-center leading-[1.2] -tracking-[2px] max-w-[16ch] font-minecraft text-7xl"
     >
-      Steel<span className="text-teal-600 dark:text-teal-400 font-bold italic">MC</span>
+      {heroTitle}<span className="text-teal-600 dark:text-teal-400 font-bold italic">{heroTitleHighlight}</span>
     </h1>
 
     <h2 className='text-gray-700 dark:text-white max-w-150 text-center'>
@@ -53,6 +53,8 @@ const Actions = ({ mainCtaText, secondCtaText }: { mainCtaText: string; secondCt
 
 interface HeaderProps {
   pillText: string;
+  heroTitle: string;
+  heroTitleHighlight: string;
   subtitle: string;
   mainCtaText: string;
   secondCtaText: string;
@@ -60,6 +62,8 @@ interface HeaderProps {
 
 const BackgroundContent = ({
   pillText,
+  heroTitle,
+  heroTitleHighlight,
   subtitle,
   mainCtaText,
   secondCtaText
@@ -70,7 +74,7 @@ const BackgroundContent = ({
 
       <div className="absolute top-0 left-0 flex flex-col items-center justify-center w-full h-full z-1">
         <Pill text={pillText} />
-        <Headline subtitle={subtitle} />
+        <Headline heroTitle={heroTitle} heroTitleHighlight={heroTitleHighlight} subtitle={subtitle} />
         <Actions mainCtaText={mainCtaText} secondCtaText={secondCtaText} />
         <a href="#arrow" id="arrow"><ArrowDown className="w-10 h-10 p-2 mt-16 text-black dark:text-white animate-bounce bg-black/20 dark:bg-white/30 rounded-full" /></a>
       </div>

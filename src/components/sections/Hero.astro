@@ -1,6 +1,24 @@
 ---
 import Beams from "@/components/homepage/background";
 import BackgroundContent from "@/components/homepage/header";
+
+interface Props {
+  pillText: string;
+  heroTitle: string;
+  heroTitleHighlight: string;
+  subtitle: string;
+  mainCtaText: string;
+  secondCtaText: string;
+}
+
+const {
+  pillText,
+  heroTitle,
+  heroTitleHighlight,
+  subtitle,
+  mainCtaText,
+  secondCtaText,
+} = Astro.props;
 ---
 
 <div class="relative h-150 m-2">
@@ -32,10 +50,12 @@ import BackgroundContent from "@/components/homepage/header";
   </div>
   <div class="absolute top-0 left-0 w-full h-full z-20">
     <BackgroundContent
-      pillText="Still cooking"
-      subtitle="Minecraft implemented the right way. Built in Rust, with multithreading in mind. We aim for vanilla parity, performance and customization."
-      mainCtaText="Join us!"
-      secondCtaText="Documentation"
+      pillText={pillText}
+      heroTitle={heroTitle}
+      heroTitleHighlight={heroTitleHighlight}
+      subtitle={subtitle}
+      mainCtaText={mainCtaText}
+      secondCtaText={secondCtaText}
     />
   </div>
 </div>
