@@ -11,18 +11,18 @@ import FooterStatus from "@/components/sections/FooterStatus.astro";
   <Navbar
     logoText="Steel"
     logoHighlight="MC"
-    searchPlaceholder="Search docs..."
-    noResultsText="No results found"
-    devWarningText="Search is only available in production builds"
-    langLabel="EN"
-    langChangeLabel="Change language"
+    searchPlaceholder="Dokumentation durchsuchen..."
+    noResultsText="Keine Ergebnisse gefunden"
+    devWarningText="Die Suche ist nur in produktiv verfügbar"
+    langLabel="DE"
+    langChangeLabel="Sprache ändern"
     languages={[
       { href: "/SteelDocs/", flag: "🇬🇧", label: "English" },
       { href: "/SteelDocs/de/", flag: "🇩🇪", label: "Deutsch" },
       { href: "/SteelDocs/es/", flag: "🇪🇸", label: "Español" },
     ]}
-    themeToggleLabel="Toggle theme"
-    discordLabel="Join our Discord"
+    themeToggleLabel="Light/Dark mode"
+    discordLabel="Tritt unserem Discord bei"
     discordHref="https://discord.gg/MwChEHnAbh"
     githubLabel="GitHub repository"
     githubHref="https://github.com/Steel-Foundation/SteelMC"
@@ -31,33 +31,35 @@ import FooterStatus from "@/components/sections/FooterStatus.astro";
     pillText="Still cooking"
     heroTitle="Steel"
     heroTitleHighlight="MC"
-    subtitle="Minecraft implemented the right way. Built in Rust, with multithreading in mind. We aim for vanilla parity, performance and customization."
-    mainCtaText="Join us!"
-    secondCtaText="Documentation"
+    subtitle="Minecraft in einem neuen Gewand, gebaut in Rust und mit Multithreading geplant. Wir setzen auf Vanilla like, Performance und Erweiterbarkeit"
+    mainCtaText="Tritt uns bei!"
+    secondCtaText="Dokumentation"
   />
   <main
     class="container mx-4 w-auto lg:mx-auto max-w-280 px-4 mt-16 lg:-mt-12 text-white relative z-10"
   >
     <ChooseDocs
-      sectionLabel="CHOOSE YOUR DOCUMENTATION !"
-      sectionTitle="Bro, what do you want to do ?"
+      sectionLabel="WÄHLE DEINE DOKUMENATION !"
+      sectionTitle="Bro, was möchtest du gerne machen ?"
       sectionDescription="Steel is carefully designed for everyone. Developers, administrators ? No matter what you wanna do, there's some docs for you !"
-      adminHref="/SteelDocs/guides/getting-started/for-users/"
+      sectionDescription="Steel ist für jeden gedacht. Bist du Entwickler oder Admin ? Egal was du machen möchten, oder nur mal reinschauen, hier sind die docs !"
+      adminHref="/SteelDocs/de/guides/getting-started/for-users/"
       adminImage="/SteelDocs/admin.png"
-      adminImageAlt="Admin documentation"
-      adminLabel="Administrator"
-      devHref="https://steel-foundation.github.io/SteelDocs/guides/getting-started/for-devs/"
+      adminImageAlt="Admindokumenation"
+      adminLabel="Admin"
+      devHref="/SteelDocs/de/guides/getting-started/for-devs/"
       devImage="/SteelDocs/contributor.png"
-      devImageAlt="Contributor documentation"
-      devLabel="Developer"
+      devImageAlt="Contributor Dokumentation "
+      devLabel="Entwickler"
     />
     <Community
-      heading="Interested?"
-      headingHighlight="Join us!"
-      descriptionBold1="Steel is a place where people gather"
+      heading="Interessiert?"
+      headingHighlight="Tritt uns bei!"
+      descriptionBold1="Steel ist ein Ort, wo die Communtiy zusammen kommt"
       descriptionMiddle=" to code, chat and have fun. From talented developers to biggest yappers, "
-      descriptionBold2="everyone is welcome!"
-      descriptionAfter=" We're just a bunch of people trying to make a cool Minecraft server."
+      descriptionMiddle=" zum entwicklen, chatten und zusammen Spaß zu haben. Von den besten Entwickler bis zu den größten Labertaschen "
+      descriptionBold2="jeder ist willkommen!"
+      descriptionAfter=" Wir sind nur eine Community, welche versucht einen geilen Minecraft server zu erstellen. Poggers "
       discordHref="https://discord.com/invite/MwChEHnAbh"
       githubHref="https://github.com/Steel-Foundation/SteelMC"
     />
