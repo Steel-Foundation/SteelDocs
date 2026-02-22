@@ -3,10 +3,8 @@ import { ExternalLink } from "@lucide/astro";
 ---
 
 <section>
-  <div
-    class="flex flex-row gap-8 items-center pb-16 overflow-x-auto sm:overflow-visible"
-  >
-    <div class="shrink-0 w-2/3 sm:flex-1 sm:w-auto">
+  <div class="flex flex-col lg:flex-row gap-8 items-center pb-16">
+    <div class="w-full lg:flex-1">
       <h2 class="text-1xl text-white/40 font-minecraft font-bold">
         CHOOSE YOUR DOCUMENTATION !
       </h2>
@@ -18,53 +16,59 @@ import { ExternalLink } from "@lucide/astro";
         No matter what you wanna do, there's some docs for you !
       </p>
     </div>
-    <div class="shrink-0 w-2/3 flex justify-center sm:flex-1 sm:w-auto">
-      <a
-        href="/SteelDocs/guides/getting-started/for-users/"
-        class="relative group cursor-pointer w-fit block"
+    <div class="flex flex-row items-center justify-center w-full mx-8 lg:mx-0 lg:contents">
+      <div
+        class="relative flex-1 lg:flex-1 flex justify-center -rotate-6 lg:rotate-0 -mr-6 lg:mr-0 z-10"
       >
-        <div class="overflow-hidden rounded-2xl">
-          <img
-            src="/SteelDocs/admin.png"
-            alt="Admin documentation"
-            class="max-w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
-          />
-        </div>
-        <div
-          class="absolute text-sm flex items-center bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white text-black px-4 py-2 rounded-full whitespace-nowrap shadow-lg transition-all duration-300"
+        <a
+          href="/SteelDocs/guides/getting-started/for-users/"
+          class="relative group cursor-pointer w-fit block"
         >
-          Administrator
-          <div
-            class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-2 transition-all duration-300 flex items-center"
-          >
-            <ExternalLink class="size-4" />
+          <div class="overflow-hidden rounded-2xl">
+            <img
+              src="/SteelDocs/admin.png"
+              alt="Admin documentation"
+              class="max-w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            />
           </div>
-        </div>
-      </a>
-    </div>
-    <div class="shrink-0 w-2/3 flex justify-center sm:flex-1 sm:w-auto">
-      <a
-        href="https://steel-foundation.github.io/SteelDocs/guides/getting-started/for-devs/"
-        class="relative group cursor-pointer w-fit block"
+          <div
+            class="absolute text-sm flex items-center bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white text-black px-4 py-2 rounded-full whitespace-nowrap shadow-lg transition-all duration-300"
+          >
+            Administrator
+            <div
+              class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-2 transition-all duration-300 flex items-center"
+            >
+              <ExternalLink class="size-4" />
+            </div>
+          </div>
+        </a>
+      </div>
+      <div
+        class="relative flex-1 lg:flex-1 flex justify-center rotate-6 lg:rotate-0"
       >
-        <div class="overflow-hidden rounded-2xl">
-          <img
-            src="/SteelDocs/contributor.png"
-            alt="Contributor documentation"
-            class="max-w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
-          />
-        </div>
-        <div
-          class="absolute text-sm flex items-center bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white text-black px-4 py-2 rounded-full whitespace-nowrap shadow-lg transition-all duration-300"
+        <a
+          href="https://steel-foundation.github.io/SteelDocs/guides/getting-started/for-devs/"
+          class="relative group cursor-pointer w-fit block"
         >
-          Developer
-          <div
-            class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-2 transition-all duration-300 flex items-center"
-          >
-            <ExternalLink class="size-4" />
+          <div class="overflow-hidden rounded-2xl">
+            <img
+              src="/SteelDocs/contributor.png"
+              alt="Contributor documentation"
+              class="max-w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            />
           </div>
-        </div>
-      </a>
+          <div
+            class="absolute text-sm flex items-center bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white text-black px-4 py-2 rounded-full whitespace-nowrap shadow-lg transition-all duration-300"
+          >
+            Developer
+            <div
+              class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-2 transition-all duration-300 flex items-center"
+            >
+              <ExternalLink class="size-4" />
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </section>
