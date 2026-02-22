@@ -33,19 +33,21 @@ const Headline = ({ subtitle }: { subtitle: string }) => (
 const Actions = ({ mainCtaText, secondCtaText }: { mainCtaText: string; secondCtaText: string }) => (
   <div className="flex gap-4 mt-8 items-center pointer-events-auto">
     {/* Main CTA */}
-    <button
+    <a
       className="px-6 md:px-8 py-2 font-minecraft font-bold bg-white text-black rounded-[50px] text-xs md:text-sm border-none cursor-pointer hover:bg-gray-100 hover:-translate-y-px transition-all duration-200 ease-out"
+      href="#join-us"
     >
       {mainCtaText}
-    </button>
+    </a>
 
     {/* Second CTA */}
-    <button
+    <a
       className="px-6 md:px-8 py-2 font-minecraft font-bold rounded-[50px] text-xs md:text-sm bg-white/5 border border-white/10 text-white/85 cursor-pointer hover:bg-white/10 hover:-translate-y-px transition-all duration-200 ease-out"
       style={glassStyle}
+      href="/SteelDocs/guides/getting-started/introduction/"
     >
       {secondCtaText}
-    </button>
+    </a>
   </div>
 );
 

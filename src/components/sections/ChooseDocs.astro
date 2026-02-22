@@ -17,7 +17,10 @@ import { ExternalLink } from "@lucide/astro";
       </p>
     </div>
     <div class="flex-1 flex justify-center">
-      <div class="relative group cursor-pointer w-fit">
+      <a
+        href="/SteelDocs/guides/getting-started/for-users/"
+        class="relative group cursor-pointer w-fit block"
+      >
         <div class="overflow-hidden rounded-2xl">
           <img
             src="/SteelDocs/admin.png"
@@ -35,10 +38,13 @@ import { ExternalLink } from "@lucide/astro";
             <ExternalLink class="size-4" />
           </div>
         </div>
-      </div>
+      </a>
     </div>
     <div class="flex-1 flex justify-center">
-      <div class="relative group cursor-pointer w-fit">
+      <a
+        href="https://steel-foundation.github.io/SteelDocs/guides/getting-started/for-devs/"
+        class="relative group cursor-pointer w-fit block"
+      >
         <div class="overflow-hidden rounded-2xl">
           <img
             src="/SteelDocs/contributor.png"
@@ -49,14 +55,14 @@ import { ExternalLink } from "@lucide/astro";
         <div
           class="absolute text-sm flex items-center bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white text-black px-4 py-2 rounded-full whitespace-nowrap shadow-lg transition-all duration-300"
         >
-          Contributor
+          Developer
           <div
             class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-2 transition-all duration-300 flex items-center"
           >
             <ExternalLink class="size-4" />
           </div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
