@@ -4,14 +4,14 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
 
 <header class="fixed top-0 left-0 right-0 z-50 px-2 pt-2 max-w-280 mx-auto">
   <nav
-    class="flex items-center gap-3 px-4 py-2.5 rounded-2xl backdrop-blur-md bg-teal-950/70 border border-white/10 shadow-xl"
+    class="flex items-center gap-3 px-4 py-2.5 rounded-2xl backdrop-blur-md bg-white/80 dark:bg-teal-950/70 border border-teal-200/60 dark:border-white/10 shadow-xl"
   >
     <!-- Logo -->
     <a
       href="/SteelDocs/"
-      class="font-minecraft font-bold text-xl text-white shrink-0 mr-2"
+      class="font-minecraft font-bold text-xl text-teal-950 dark:text-white shrink-0 mr-2"
     >
-      Steel<span class="text-emerald-400">MC</span>
+      Steel<span class="text-emerald-600 dark:text-emerald-400">MC</span>
     </a>
 
     <!-- Search Bar -->
@@ -21,31 +21,31 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
       onsubmit="event.preventDefault();"
     >
       <Search
-        class="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-white/40 pointer-events-none z-10"
+        class="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-teal-500 dark:text-white/40 pointer-events-none z-10"
       />
       <input
         id="navbar-search"
         type="search"
         placeholder="Search docs..."
         autocomplete="off"
-        class="w-full pl-8 pr-3 py-1.5 text-sm bg-white/8 border border-white/15 rounded-full text-white placeholder:text-white/35 focus:outline-none focus:border-emerald-400/50 transition-all"
+        class="w-full pl-8 pr-3 py-1.5 text-sm bg-teal-100 dark:bg-white/8 border border-teal-300 dark:border-white/15 rounded-full text-teal-950 dark:text-white placeholder:text-teal-400 dark:placeholder:text-white/35 focus:outline-none focus:border-emerald-500/60 dark:focus:border-emerald-400/50 transition-all"
       />
       <!-- Results dropdown -->
       <div
         id="search-results"
-        class="absolute top-full left-0 right-0 mt-1.5 rounded-xl bg-teal-900/95 backdrop-blur-md border border-white/10 shadow-2xl hidden overflow-hidden"
+        class="absolute top-full left-0 right-0 mt-1.5 rounded-xl bg-white dark:bg-teal-900/95 backdrop-blur-md border border-teal-200 dark:border-white/10 shadow-2xl hidden overflow-hidden"
         role="listbox"
       >
         <div id="search-results-list"></div>
         <p
           id="search-no-results"
-          class="hidden px-4 py-3 text-sm text-white/50"
+          class="hidden px-4 py-3 text-sm text-teal-500 dark:text-white/50"
         >
           No results found
         </p>
         <p
           id="search-dev-warning"
-          class="hidden px-4 py-3 text-sm text-white/50"
+          class="hidden px-4 py-3 text-sm text-teal-500 dark:text-white/50"
         >
           Search is only available in production builds
         </p>
@@ -61,7 +61,7 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
       <div class="relative" id="lang-dropdown">
         <button
           id="lang-btn"
-          class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-sm text-white/60 hover:text-white hover:bg-white/10 transition-all cursor-pointer"
+          class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-sm text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all cursor-pointer"
           aria-label="Change language"
           aria-expanded="false"
           aria-haspopup="true"
@@ -73,26 +73,26 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
         <div
           id="lang-menu"
           role="menu"
-          class="absolute right-0 top-full mt-1.5 w-36 rounded-xl bg-teal-900/95 backdrop-blur-md border border-white/10 shadow-2xl hidden"
+          class="absolute right-0 top-full mt-1.5 w-36 rounded-xl bg-white dark:bg-teal-900/95 backdrop-blur-md border border-teal-200 dark:border-white/10 shadow-2xl hidden"
         >
           <a
             href="/SteelDocs/"
             role="menuitem"
-            class="flex items-center gap-2.5 px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/10 rounded-t-xl transition-colors"
+            class="flex items-center gap-2.5 px-3 py-2 text-sm text-teal-700 dark:text-white/70 hover:text-teal-950 dark:hover:text-white hover:bg-teal-50 dark:hover:bg-white/10 rounded-t-xl transition-colors"
           >
             <span aria-hidden="true">🇬🇧</span> English
           </a>
           <a
             href="/SteelDocs/de/"
             role="menuitem"
-            class="flex items-center gap-2.5 px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+            class="flex items-center gap-2.5 px-3 py-2 text-sm text-teal-700 dark:text-white/70 hover:text-teal-950 dark:hover:text-white hover:bg-teal-50 dark:hover:bg-white/10 transition-colors"
           >
             <span aria-hidden="true">🇩🇪</span> Deutsch
           </a>
           <a
             href="/SteelDocs/es/"
             role="menuitem"
-            class="flex items-center gap-2.5 px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/10 rounded-b-xl transition-colors"
+            class="flex items-center gap-2.5 px-3 py-2 text-sm text-teal-700 dark:text-white/70 hover:text-teal-950 dark:hover:text-white hover:bg-teal-50 dark:hover:bg-white/10 rounded-b-xl transition-colors"
           >
             <span aria-hidden="true">🇪🇸</span> Español
           </a>
@@ -102,7 +102,7 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
       <!-- Theme Toggle -->
       <button
         id="theme-toggle"
-        class="p-1.5 rounded-xl text-white/60 hover:text-white hover:bg-white/10 transition-all cursor-pointer"
+        class="p-1.5 rounded-xl text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all cursor-pointer"
         aria-label="Toggle theme"
       >
         <Sun class="size-4" id="sun-icon" />
@@ -114,7 +114,7 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
         href="https://discord.gg/MwChEHnAbh"
         target="_blank"
         rel="noopener noreferrer"
-        class="p-1.5 rounded-xl text-white/60 hover:text-white hover:bg-white/10 transition-all"
+        class="p-1.5 rounded-xl text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
         aria-label="Join our Discord"
       >
         <svg
@@ -135,7 +135,7 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
         href="https://github.com/Steel-Foundation/SteelMC"
         target="_blank"
         rel="noopener noreferrer"
-        class="p-1.5 rounded-xl text-white/60 hover:text-white hover:bg-white/10 transition-all"
+        class="p-1.5 rounded-xl text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
         aria-label="GitHub repository"
       >
         <Github class="size-4" />
@@ -216,6 +216,8 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
   const closeResults = () => searchResults?.classList.add("hidden");
   const showResults = () => searchResults?.classList.remove("hidden");
 
+  const isDark = () => document.documentElement.classList.contains("dark");
+
   if (import.meta.env.DEV) {
     searchInput?.addEventListener("focus", () => {
       searchNoResults?.classList.add("hidden");
@@ -274,12 +276,14 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
           fragments.forEach((fragment: any) => {
             const a = document.createElement("a");
             a.href = fragment.url;
-            a.className =
-              "block px-4 py-2.5 hover:bg-white/10 transition-colors border-b border-white/5 last:border-0";
-            a.innerHTML = `
-              <div class="text-sm font-medium text-white truncate">${fragment.meta?.title ?? fragment.title}</div>
-              <div class="text-xs text-white/50 mt-0.5 line-clamp-1">${fragment.excerpt}</div>
-            `;
+            a.className = isDark()
+              ? "block px-4 py-2.5 hover:bg-white/10 transition-colors border-b border-white/5 last:border-0"
+              : "block px-4 py-2.5 hover:bg-teal-50 transition-colors border-b border-teal-100 last:border-0";
+            a.innerHTML = isDark()
+              ? `<div class="text-sm font-medium text-white truncate">${fragment.meta?.title ?? fragment.title}</div>
+                 <div class="text-xs text-white/50 mt-0.5 line-clamp-1">${fragment.excerpt}</div>`
+              : `<div class="text-sm font-medium text-teal-950 truncate">${fragment.meta?.title ?? fragment.title}</div>
+                 <div class="text-xs text-teal-500 mt-0.5 line-clamp-1">${fragment.excerpt}</div>`;
             a.addEventListener("click", closeResults);
             searchResultsList?.appendChild(a);
           });

@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import PixelBlast from "@/components/homepage/PixelBlast";
+import ThemedPixelBlast from "@/components/homepage/ThemedPixelBlast";
 
 interface Props {
   title: string;
@@ -11,21 +11,26 @@ const { title, description = "SteelDocs - The Steel documentation" } =
   Astro.props;
 ---
 
-<html lang="en" class="bg-teal-950 scroll-smooth">
+<html lang="en" class="scroll-smooth">
   <head>
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <script is:inline>
+      // Apply theme before paint to avoid flash
+      if ((localStorage.getItem("theme") ?? "dark") === "dark") {
+        document.documentElement.classList.add("dark");
+      }
+    </script>
   </head>
-  <body class="bg-transparent">
+  <body class="bg-teal-100 dark:bg-teal-950">
     <div class="fixed inset-0 w-full h-full -z-10">
-      <PixelBlast
+      <ThemedPixelBlast
         client:only="react"
         variant="square"
         pixelSize={4}
-        color="#022120"
         patternScale={2}
         patternDensity={1}
         pixelSizeJitter={0}
