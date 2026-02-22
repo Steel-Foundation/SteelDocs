@@ -10,11 +10,6 @@ type PixelBlastVariant = 'square' | 'circle' | 'triangle' | 'diamond';
 
 
 
-interface ReinitConfig {
-  antialias: boolean;
-  liquid: boolean;
-  noiseAmount: number;
-}
 
 type PixelBlastProps = {
   variant?: PixelBlastVariant;
@@ -252,173 +247,153 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
     timeOffset?: number;
     composer?: EffectComposer;
   } | null>(null);
-  const prevConfigRef = useRef<ReinitConfig | null>(null);
+  useEffect(() => {
+    speedRef.current = speed;
+  }, [speed]);
+
+  // Reinit effect — only runs when props that require full renderer recreation change
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
-    speedRef.current = speed;
-    const needsReinitKeys: (keyof ReinitConfig)[] = ['antialias', 'liquid', 'noiseAmount'];
-    const cfg: ReinitConfig = { antialias, liquid, noiseAmount };
-    let mustReinit = false;
-    if (!threeRef.current) mustReinit = true;
-    else if (prevConfigRef.current) {
-      for (const k of needsReinitKeys)
-        if (prevConfigRef.current[k] !== cfg[k]) {
-          mustReinit = true;
-          break;
-        }
+
+    if (threeRef.current) {
+      const t = threeRef.current;
+      t.resizeObserver?.disconnect();
+      cancelAnimationFrame(t.raf!);
+      t.quad?.geometry.dispose();
+      t.material.dispose();
+      t.composer?.dispose();
+      t.renderer.dispose();
+      if (t.renderer.domElement.parentElement === container) container.removeChild(t.renderer.domElement);
+      threeRef.current = null;
     }
-    if (mustReinit) {
-      if (threeRef.current) {
-        const t = threeRef.current;
-        t.resizeObserver?.disconnect();
-        cancelAnimationFrame(t.raf!);
-        t.quad?.geometry.dispose();
-        t.material.dispose();
-        t.composer?.dispose();
-        t.renderer.dispose();
-        if (t.renderer.domElement.parentElement === container) container.removeChild(t.renderer.domElement);
-        threeRef.current = null;
-      }
-      const canvas = document.createElement('canvas');
-      const renderer = new THREE.WebGLRenderer({
-        canvas,
-        antialias,
-        alpha: true,
-        powerPreference: 'high-performance'
-      });
-      renderer.domElement.style.width = '100%';
-      renderer.domElement.style.height = '100%';
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-      container.appendChild(renderer.domElement);
-      if (transparent) renderer.setClearAlpha(0);
-      else renderer.setClearColor(0x000000, 1);
-      const uniforms = {
-        uResolution: { value: new THREE.Vector2(0, 0) },
-        uTime: { value: 0 },
-        uColor: { value: new THREE.Color(color) },
-        uShapeType: { value: SHAPE_MAP[variant] ?? 0 },
-        uPixelSize: { value: pixelSize * renderer.getPixelRatio() },
-        uScale: { value: patternScale },
-        uDensity: { value: patternDensity },
-        uPixelJitter: { value: pixelSizeJitter },
-        uEdgeFade: { value: edgeFade }
-      };
-      const scene = new THREE.Scene();
-      const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-      const material = new THREE.ShaderMaterial({
-        vertexShader: VERTEX_SRC,
-        fragmentShader: FRAGMENT_SRC,
-        uniforms,
-        transparent: true,
-        depthTest: false,
-        depthWrite: false,
-        glslVersion: THREE.GLSL3
-      });
-      const quadGeom = new THREE.PlaneGeometry(2, 2);
-      const quad = new THREE.Mesh(quadGeom, material);
-      scene.add(quad);
-      const clock = new THREE.Clock();
-      const setSize = () => {
-        const w = container.clientWidth || 1;
-        const h = container.clientHeight || 1;
-        renderer.setSize(w, h, false);
-        uniforms.uResolution.value.set(renderer.domElement.width, renderer.domElement.height);
-        if (threeRef.current?.composer)
-          threeRef.current.composer.setSize(renderer.domElement.width, renderer.domElement.height);
-        uniforms.uPixelSize.value = pixelSize * renderer.getPixelRatio();
-      };
-      setSize();
-      const ro = new ResizeObserver(setSize);
-      ro.observe(container);
-      const randomFloat = (): number => {
-        if (typeof window !== 'undefined' && window.crypto?.getRandomValues) {
-          const u32 = new Uint32Array(1);
-          window.crypto.getRandomValues(u32);
-          return u32[0] / 0xffffffff;
-        }
-        return Math.random();
-      };
-      let composer: EffectComposer | undefined;
-      const timeOffset = randomFloat() * 1000;
 
-      if (noiseAmount > 0) {
-        if (!composer) {
-          composer = new EffectComposer(renderer);
-          composer.addPass(new RenderPass(scene, camera));
-        }
-        const noiseEffect = new Effect(
-          'NoiseEffect',
-          `uniform float uTime; uniform float uAmount; float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7))) * 43758.5453);} void mainUv(inout vec2 uv){} void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){ float n=hash(floor(uv*vec2(1920.0,1080.0))+floor(uTime*60.0)); float g=(n-0.5)*uAmount; outputColor=inputColor+vec4(vec3(g),0.0);} `,
-          {
-            uniforms: new Map<string, THREE.Uniform>([
-              ['uTime', new THREE.Uniform(0)],
-              ['uAmount', new THREE.Uniform(noiseAmount)]
-            ])
-          }
-        );
-        const noisePass = new EffectPass(camera, noiseEffect);
-        noisePass.renderToScreen = true;
-        if (composer && composer.passes.length > 0) {
-          composer.passes.forEach(p => {
-            const pass = p as { renderToScreen?: boolean };
-            pass.renderToScreen = false;
-          });
-        }
-        composer.addPass(noisePass);
+    const canvas = document.createElement('canvas');
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias,
+      alpha: true,
+      powerPreference: 'high-performance'
+    });
+    renderer.domElement.style.width = '100%';
+    renderer.domElement.style.height = '100%';
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    container.appendChild(renderer.domElement);
+    if (transparent) renderer.setClearAlpha(0);
+    else renderer.setClearColor(0x000000, 1);
+    const uniforms = {
+      uResolution: { value: new THREE.Vector2(0, 0) },
+      uTime: { value: 0 },
+      uColor: { value: new THREE.Color(color) },
+      uShapeType: { value: SHAPE_MAP[variant] ?? 0 },
+      uPixelSize: { value: pixelSize * renderer.getPixelRatio() },
+      uScale: { value: patternScale },
+      uDensity: { value: patternDensity },
+      uPixelJitter: { value: pixelSizeJitter },
+      uEdgeFade: { value: edgeFade }
+    };
+    const scene = new THREE.Scene();
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    const material = new THREE.ShaderMaterial({
+      vertexShader: VERTEX_SRC,
+      fragmentShader: FRAGMENT_SRC,
+      uniforms,
+      transparent: true,
+      depthTest: false,
+      depthWrite: false,
+      glslVersion: THREE.GLSL3
+    });
+    const quadGeom = new THREE.PlaneGeometry(2, 2);
+    const quad = new THREE.Mesh(quadGeom, material);
+    scene.add(quad);
+    const clock = new THREE.Clock();
+    const setSize = () => {
+      const w = container.clientWidth || 1;
+      const h = container.clientHeight || 1;
+      renderer.setSize(w, h, false);
+      uniforms.uResolution.value.set(renderer.domElement.width, renderer.domElement.height);
+      if (threeRef.current?.composer)
+        threeRef.current.composer.setSize(renderer.domElement.width, renderer.domElement.height);
+      uniforms.uPixelSize.value = pixelSize * renderer.getPixelRatio();
+    };
+    setSize();
+    const ro = new ResizeObserver(setSize);
+    ro.observe(container);
+    const randomFloat = (): number => {
+      if (typeof window !== 'undefined' && window.crypto?.getRandomValues) {
+        const u32 = new Uint32Array(1);
+        window.crypto.getRandomValues(u32);
+        return u32[0] / 0xffffffff;
       }
-      if (composer) composer.setSize(renderer.domElement.width, renderer.domElement.height);
+      return Math.random();
+    };
+    let composer: EffectComposer | undefined;
+    const timeOffset = randomFloat() * 1000;
 
-      let raf = 0;
-      const animate = () => {
-        if (autoPauseOffscreen && !visibilityRef.current.visible) {
-          raf = requestAnimationFrame(animate);
-          return;
+    if (noiseAmount > 0) {
+      if (!composer) {
+        composer = new EffectComposer(renderer);
+        composer.addPass(new RenderPass(scene, camera));
+      }
+      const noiseEffect = new Effect(
+        'NoiseEffect',
+        `uniform float uTime; uniform float uAmount; float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7))) * 43758.5453);} void mainUv(inout vec2 uv){} void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){ float n=hash(floor(uv*vec2(1920.0,1080.0))+floor(uTime*60.0)); float g=(n-0.5)*uAmount; outputColor=inputColor+vec4(vec3(g),0.0);} `,
+        {
+          uniforms: new Map<string, THREE.Uniform>([
+            ['uTime', new THREE.Uniform(0)],
+            ['uAmount', new THREE.Uniform(noiseAmount)]
+          ])
         }
-        uniforms.uTime.value = timeOffset + clock.getElapsedTime() * speedRef.current;
-        if (composer) {
-          composer.passes.forEach(p => {
-            const pass = p as { effects?: Array<Effect & { uniforms: Map<string, THREE.Uniform> }> };
-            if (pass.effects) {
-              pass.effects.forEach(eff => {
-                const timeUniform = eff.uniforms?.get('uTime');
-                if (timeUniform) timeUniform.value = uniforms.uTime.value;
-              });
-            }
-          });
-          composer.render();
-        } else renderer.render(scene, camera);
+      );
+      const noisePass = new EffectPass(camera, noiseEffect);
+      noisePass.renderToScreen = true;
+      if (composer && composer.passes.length > 0) {
+        composer.passes.forEach(p => {
+          const pass = p as { renderToScreen?: boolean };
+          pass.renderToScreen = false;
+        });
+      }
+      composer.addPass(noisePass);
+    }
+    if (composer) composer.setSize(renderer.domElement.width, renderer.domElement.height);
+
+    let raf = 0;
+    const animate = () => {
+      if (autoPauseOffscreen && !visibilityRef.current.visible) {
         raf = requestAnimationFrame(animate);
-      };
+        return;
+      }
+      uniforms.uTime.value = timeOffset + clock.getElapsedTime() * speedRef.current;
+      if (composer) {
+        composer.passes.forEach(p => {
+          const pass = p as { effects?: Array<Effect & { uniforms: Map<string, THREE.Uniform> }> };
+          if (pass.effects) {
+            pass.effects.forEach(eff => {
+              const timeUniform = eff.uniforms?.get('uTime');
+              if (timeUniform) timeUniform.value = uniforms.uTime.value;
+            });
+          }
+        });
+        composer.render();
+      } else renderer.render(scene, camera);
       raf = requestAnimationFrame(animate);
-      threeRef.current = {
-        renderer,
-        scene,
-        camera,
-        material,
-        clock,
-        uniforms,
-        resizeObserver: ro,
-        raf,
-        quad,
-        timeOffset,
-        composer,
-      };
-    } else {
-      const t = threeRef.current!;
-      t.uniforms.uShapeType.value = SHAPE_MAP[variant] ?? 0;
-      t.uniforms.uPixelSize.value = pixelSize * t.renderer.getPixelRatio();
-      t.uniforms.uColor.value.set(color);
-      t.uniforms.uScale.value = patternScale;
-      t.uniforms.uDensity.value = patternDensity;
-      t.uniforms.uPixelJitter.value = pixelSizeJitter;
-      t.uniforms.uEdgeFade.value = edgeFade;
-      if (transparent) t.renderer.setClearAlpha(0);
-      else t.renderer.setClearColor(0x000000, 1);
-    }
-    prevConfigRef.current = cfg;
+    };
+    raf = requestAnimationFrame(animate);
+    threeRef.current = {
+      renderer,
+      scene,
+      camera,
+      material,
+      clock,
+      uniforms,
+      resizeObserver: ro,
+      raf,
+      quad,
+      timeOffset,
+      composer,
+    };
+
     return () => {
-      if (threeRef.current && mustReinit) return;
       if (!threeRef.current) return;
       const t = threeRef.current;
       t.resizeObserver?.disconnect();
@@ -430,28 +405,23 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
       if (t.renderer.domElement.parentElement === container) container.removeChild(t.renderer.domElement);
       threeRef.current = null;
     };
-  }, [
-    antialias,
-    liquid,
-    noiseAmount,
-    pixelSize,
-    patternScale,
-    patternDensity,
-    enableRipples,
-    rippleIntensityScale,
-    rippleThickness,
-    rippleSpeed,
-    pixelSizeJitter,
-    edgeFade,
-    transparent,
-    liquidStrength,
-    liquidRadius,
-    liquidWobbleSpeed,
-    autoPauseOffscreen,
-    variant,
-    color,
-    speed
-  ]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [antialias, liquid, noiseAmount]);
+
+  // Uniforms effect — updates shader uniforms without recreating the renderer
+  useEffect(() => {
+    if (!threeRef.current) return;
+    const t = threeRef.current;
+    t.uniforms.uShapeType.value = SHAPE_MAP[variant] ?? 0;
+    t.uniforms.uPixelSize.value = pixelSize * t.renderer.getPixelRatio();
+    t.uniforms.uColor.value.set(color);
+    t.uniforms.uScale.value = patternScale;
+    t.uniforms.uDensity.value = patternDensity;
+    t.uniforms.uPixelJitter.value = pixelSizeJitter;
+    t.uniforms.uEdgeFade.value = edgeFade;
+    if (transparent) t.renderer.setClearAlpha(0);
+    else t.renderer.setClearColor(0x000000, 1);
+  }, [variant, pixelSize, color, patternScale, patternDensity, pixelSizeJitter, edgeFade, transparent]);
 
   return (
     <div

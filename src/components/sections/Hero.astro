@@ -9,6 +9,7 @@ import BackgroundContent from "@/components/homepage/header";
   >
     <Beams
       client:only="react"
+      className="invert hue-rotate-180 dark:invert-0 dark:hue-rotate-0"
       beamWidth={3}
       beamHeight={30}
       beamNumber={20}
@@ -25,7 +26,7 @@ import BackgroundContent from "@/components/homepage/header";
     </div>
     <!-- Light mode gradient -->
     <div
-      class="block dark:hidden absolute inset-0 bg-[linear-gradient(to_top,--theme(--color-teal-100/0),--theme(--color-teal-100/0),--theme(--color-teal-100/0),--theme(--color-teal-100/0),--theme(--color-teal-100))] pointer-events-none"
+      class="block dark:hidden absolute inset-0 bg-teal-300/30 pointer-events-none"
     >
     </div>
   </div>

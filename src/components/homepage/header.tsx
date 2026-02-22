@@ -8,7 +8,7 @@ const glassStyle = {
 
 const Pill = ({ text }: { text: string }) => (
   <div
-    className="text-white w-auto px-4 h-8.5 flex justify-center items-center rounded-[50px] font-medium text-xs md:text-sm bg-white/5 border border-white/10"
+    className="text-black dark:text-white w-auto px-4 h-8.5 flex justify-center items-center rounded-[50px] font-medium text-xs md:text-sm bg-black/5 border border-black/10 dark:bg-white/5 dark:border-white/10"
     style={glassStyle}
   >
     <CookingPot className="w-4 h-4" />
@@ -19,12 +19,12 @@ const Pill = ({ text }: { text: string }) => (
 const Headline = ({ subtitle }: { subtitle: string }) => (
   <>
     <h1
-      className="mt-4 text-white text-center leading-[1.2] -tracking-[2px] max-w-[16ch] font-minecraft text-7xl"
+      className="mt-4 text-black dark:text-white text-center leading-[1.2] -tracking-[2px] max-w-[16ch] font-minecraft text-7xl"
     >
-      Steel<span className="text-emerald-500 font-bold italic">MC</span>
+      Steel<span className="text-teal-600 dark:text-teal-400 font-bold italic">MC</span>
     </h1>
 
-    <h2 className='text-white max-w-150 text-center'>
+    <h2 className='text-gray-700 dark:text-white max-w-150 text-center'>
       {subtitle}
     </h2>
   </>
@@ -34,7 +34,7 @@ const Actions = ({ mainCtaText, secondCtaText }: { mainCtaText: string; secondCt
   <div className="flex gap-4 mt-8 items-center pointer-events-auto">
     {/* Main CTA */}
     <a
-      className="px-6 md:px-8 py-2 font-minecraft font-bold bg-white text-black rounded-[50px] text-xs md:text-sm border-none cursor-pointer hover:bg-gray-100 hover:-translate-y-px transition-all duration-200 ease-out"
+      className="px-6 md:px-8 py-2 font-minecraft font-bold bg-black text-white dark:bg-white dark:text-black rounded-[50px] text-xs md:text-sm border-none cursor-pointer hover:bg-gray-800 dark:hover:bg-gray-100 hover:-translate-y-px transition-all duration-200 ease-out"
       href="#join-us"
     >
       {mainCtaText}
@@ -42,7 +42,7 @@ const Actions = ({ mainCtaText, secondCtaText }: { mainCtaText: string; secondCt
 
     {/* Second CTA */}
     <a
-      className="px-6 md:px-8 py-2 font-minecraft font-bold rounded-[50px] text-xs md:text-sm bg-white/5 border border-white/10 text-white/85 cursor-pointer hover:bg-white/10 hover:-translate-y-px transition-all duration-200 ease-out"
+      className="px-6 md:px-8 py-2 font-minecraft font-bold rounded-[50px] text-xs md:text-sm bg-black/5 border border-black/10 text-black/80 dark:bg-white/5 dark:border-white/10 dark:text-white/85 cursor-pointer hover:bg-black/10 dark:hover:bg-white/10 hover:-translate-y-px transition-all duration-200 ease-out"
       style={glassStyle}
       href="/SteelDocs/guides/getting-started/introduction/"
     >
@@ -72,7 +72,7 @@ const BackgroundContent = ({
         <Pill text={pillText} />
         <Headline subtitle={subtitle} />
         <Actions mainCtaText={mainCtaText} secondCtaText={secondCtaText} />
-        <ArrowDown className="w-10 h-10 p-2 mt-16 text-white animate-bounce  bg-white/30 rounded-full" />
+        <ArrowDown className="w-10 h-10 p-2 mt-16 text-black dark:text-white animate-bounce bg-black/20 dark:bg-white/30 rounded-full" />
       </div>
     </div>
   );
