@@ -2,14 +2,14 @@
 import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 px-2 pt-2">
+<header class="fixed top-0 left-0 right-0 z-50 px-2 pt-2 max-w-280 mx-auto">
   <nav
     class="flex items-center gap-3 px-4 py-2.5 rounded-2xl backdrop-blur-md bg-teal-950/70 border border-white/10 shadow-xl"
   >
     <!-- Logo -->
     <a
       href="/SteelDocs/"
-      class="font-minecraft font-bold text-xl text-white flex-shrink-0 mr-2"
+      class="font-minecraft font-bold text-xl text-white shrink-0 mr-2"
     >
       Steel<span class="text-emerald-400">MC</span>
     </a>
@@ -37,10 +37,16 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
         role="listbox"
       >
         <div id="search-results-list"></div>
-        <p id="search-no-results" class="hidden px-4 py-3 text-sm text-white/50">
+        <p
+          id="search-no-results"
+          class="hidden px-4 py-3 text-sm text-white/50"
+        >
           No results found
         </p>
-        <p id="search-dev-warning" class="hidden px-4 py-3 text-sm text-white/50">
+        <p
+          id="search-dev-warning"
+          class="hidden px-4 py-3 text-sm text-white/50"
+        >
           Search is only available in production builds
         </p>
       </div>
@@ -60,7 +66,7 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
           aria-expanded="false"
           aria-haspopup="true"
         >
-          <Globe class="size-3.5 flex-shrink-0" />
+          <Globe class="size-3.5 shrink-0" />
           <span class="hidden sm:inline" id="lang-label">EN</span>
           <ChevronDown class="size-3 transition-transform" id="lang-chevron" />
         </button>
@@ -263,9 +269,7 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
 
           searchNoResults?.classList.add("hidden");
 
-          const fragments = await Promise.all(
-            top.map((r: any) => r.data()),
-          );
+          const fragments = await Promise.all(top.map((r: any) => r.data()));
 
           fragments.forEach((fragment: any) => {
             const a = document.createElement("a");
@@ -273,7 +277,7 @@ import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
             a.className =
               "block px-4 py-2.5 hover:bg-white/10 transition-colors border-b border-white/5 last:border-0";
             a.innerHTML = `
-              <div class="text-sm font-medium text-white truncate">${fragment.title}</div>
+              <div class="text-sm font-medium text-white truncate">${fragment.meta?.title ?? fragment.title}</div>
               <div class="text-xs text-white/50 mt-0.5 line-clamp-1">${fragment.excerpt}</div>
             `;
             a.addEventListener("click", closeResults);
