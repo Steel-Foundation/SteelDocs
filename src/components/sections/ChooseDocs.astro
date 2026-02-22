@@ -3,8 +3,10 @@ import { ExternalLink } from "@lucide/astro";
 ---
 
 <section>
-  <div class="flex flex-col md:flex-row gap-8 items-center pb-16">
-    <div class="flex-1">
+  <div
+    class="flex flex-row gap-8 items-center pb-16 overflow-x-auto sm:overflow-visible"
+  >
+    <div class="shrink-0 w-2/3 sm:flex-1 sm:w-auto">
       <h2 class="text-1xl text-white/40 font-minecraft font-bold">
         CHOOSE YOUR DOCUMENTATION !
       </h2>
@@ -16,7 +18,7 @@ import { ExternalLink } from "@lucide/astro";
         No matter what you wanna do, there's some docs for you !
       </p>
     </div>
-    <div class="flex-1 flex justify-center">
+    <div class="shrink-0 w-2/3 flex justify-center sm:flex-1 sm:w-auto">
       <a
         href="/SteelDocs/guides/getting-started/for-users/"
         class="relative group cursor-pointer w-fit block"
@@ -40,7 +42,7 @@ import { ExternalLink } from "@lucide/astro";
         </div>
       </a>
     </div>
-    <div class="flex-1 flex justify-center">
+    <div class="shrink-0 w-2/3 flex justify-center sm:flex-1 sm:w-auto">
       <a
         href="https://steel-foundation.github.io/SteelDocs/guides/getting-started/for-devs/"
         class="relative group cursor-pointer w-fit block"

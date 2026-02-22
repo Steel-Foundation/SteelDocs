@@ -1,0 +1,319 @@
+---
+import { Github, Search, Sun, Moon, ChevronDown, Globe } from "@lucide/astro";
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 px-2 pt-2">
+  <nav
+    class="flex items-center gap-3 px-4 py-2.5 rounded-2xl backdrop-blur-md bg-teal-950/70 border border-white/10 shadow-xl"
+  >
+    <!-- Logo -->
+    <a
+      href="/SteelDocs/"
+      class="font-minecraft font-bold text-xl text-white flex-shrink-0 mr-2"
+    >
+      Steel<span class="text-emerald-400">MC</span>
+    </a>
+
+    <!-- Search Bar -->
+    <form
+      id="search-form"
+      class="relative flex-1 max-w-60 hidden md:flex"
+      onsubmit="event.preventDefault();"
+    >
+      <Search
+        class="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-white/40 pointer-events-none z-10"
+      />
+      <input
+        id="navbar-search"
+        type="search"
+        placeholder="Search docs..."
+        autocomplete="off"
+        class="w-full pl-8 pr-3 py-1.5 text-sm bg-white/8 border border-white/15 rounded-full text-white placeholder:text-white/35 focus:outline-none focus:border-emerald-400/50 transition-all"
+      />
+      <!-- Results dropdown -->
+      <div
+        id="search-results"
+        class="absolute top-full left-0 right-0 mt-1.5 rounded-xl bg-teal-900/95 backdrop-blur-md border border-white/10 shadow-2xl hidden overflow-hidden"
+        role="listbox"
+      >
+        <div id="search-results-list"></div>
+        <p id="search-no-results" class="hidden px-4 py-3 text-sm text-white/50">
+          No results found
+        </p>
+        <p id="search-dev-warning" class="hidden px-4 py-3 text-sm text-white/50">
+          Search is only available in production builds
+        </p>
+      </div>
+    </form>
+
+    <!-- Spacer -->
+    <div class="flex-1"></div>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-1">
+      <!-- Language Switcher -->
+      <div class="relative" id="lang-dropdown">
+        <button
+          id="lang-btn"
+          class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-sm text-white/60 hover:text-white hover:bg-white/10 transition-all cursor-pointer"
+          aria-label="Change language"
+          aria-expanded="false"
+          aria-haspopup="true"
+        >
+          <Globe class="size-3.5 flex-shrink-0" />
+          <span class="hidden sm:inline" id="lang-label">EN</span>
+          <ChevronDown class="size-3 transition-transform" id="lang-chevron" />
+        </button>
+        <div
+          id="lang-menu"
+          role="menu"
+          class="absolute right-0 top-full mt-1.5 w-36 rounded-xl bg-teal-900/95 backdrop-blur-md border border-white/10 shadow-2xl hidden"
+        >
+          <a
+            href="/SteelDocs/"
+            role="menuitem"
+            class="flex items-center gap-2.5 px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/10 rounded-t-xl transition-colors"
+          >
+            <span aria-hidden="true">🇬🇧</span> English
+          </a>
+          <a
+            href="/SteelDocs/de/"
+            role="menuitem"
+            class="flex items-center gap-2.5 px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+          >
+            <span aria-hidden="true">🇩🇪</span> Deutsch
+          </a>
+          <a
+            href="/SteelDocs/es/"
+            role="menuitem"
+            class="flex items-center gap-2.5 px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/10 rounded-b-xl transition-colors"
+          >
+            <span aria-hidden="true">🇪🇸</span> Español
+          </a>
+        </div>
+      </div>
+
+      <!-- Theme Toggle -->
+      <button
+        id="theme-toggle"
+        class="p-1.5 rounded-xl text-white/60 hover:text-white hover:bg-white/10 transition-all cursor-pointer"
+        aria-label="Toggle theme"
+      >
+        <Sun class="size-4" id="sun-icon" />
+        <Moon class="size-4 hidden" id="moon-icon" />
+      </button>
+
+      <!-- Discord -->
+      <a
+        href="https://discord.gg/MwChEHnAbh"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="p-1.5 rounded-xl text-white/60 hover:text-white hover:bg-white/10 transition-all"
+        aria-label="Join our Discord"
+      >
+        <svg
+          class="size-4"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.04.02.082.042.104a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"
+          ></path>
+        </svg>
+      </a>
+
+      <!-- GitHub -->
+      <a
+        href="https://github.com/Steel-Foundation/SteelMC"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="p-1.5 rounded-xl text-white/60 hover:text-white hover:bg-white/10 transition-all"
+        aria-label="GitHub repository"
+      >
+        <Github class="size-4" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // --- Language dropdown ---
+  const langBtn = document.getElementById("lang-btn");
+  const langMenu = document.getElementById("lang-menu");
+  const langChevron = document.getElementById("lang-chevron");
+
+  function closeLang() {
+    langMenu?.classList.add("hidden");
+    langChevron?.classList.remove("rotate-180");
+    langBtn?.setAttribute("aria-expanded", "false");
+  }
+
+  langBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = !langMenu?.classList.contains("hidden");
+    if (isOpen) {
+      closeLang();
+    } else {
+      langMenu?.classList.remove("hidden");
+      langChevron?.classList.add("rotate-180");
+      langBtn?.setAttribute("aria-expanded", "true");
+    }
+  });
+
+  document.addEventListener("click", closeLang);
+
+  // --- Theme toggle ---
+  const themeToggle = document.getElementById("theme-toggle");
+  const sunIcon = document.getElementById("sun-icon");
+  const moonIcon = document.getElementById("moon-icon");
+
+  function applyTheme(theme: string) {
+    if (theme === "light") {
+      document.documentElement.setAttribute("data-theme", "light");
+      document.documentElement.classList.remove("dark");
+      sunIcon?.classList.add("hidden");
+      moonIcon?.classList.remove("hidden");
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+      document.documentElement.classList.add("dark");
+      sunIcon?.classList.remove("hidden");
+      moonIcon?.classList.add("hidden");
+    }
+  }
+
+  const saved = localStorage.getItem("theme") ?? "dark";
+  applyTheme(saved);
+
+  themeToggle?.addEventListener("click", () => {
+    const current =
+      document.documentElement.getAttribute("data-theme") === "light"
+        ? "dark"
+        : "light";
+    applyTheme(current);
+    localStorage.setItem("theme", current);
+  });
+
+  // --- Pagefind search ---
+  const searchInput = document.getElementById(
+    "navbar-search",
+  ) as HTMLInputElement | null;
+  const searchResults = document.getElementById("search-results");
+  const searchResultsList = document.getElementById("search-results-list");
+  const searchNoResults = document.getElementById("search-no-results");
+  const searchDevWarning = document.getElementById("search-dev-warning");
+
+  let pagefind: any = null;
+  let debounceTimer: ReturnType<typeof setTimeout>;
+
+  const closeResults = () => searchResults?.classList.add("hidden");
+  const showResults = () => searchResults?.classList.remove("hidden");
+
+  if (import.meta.env.DEV) {
+    searchInput?.addEventListener("focus", () => {
+      searchNoResults?.classList.add("hidden");
+      searchDevWarning?.classList.remove("hidden");
+      showResults();
+    });
+  } else {
+    // Lazy-load pagefind on first interaction
+    let pagefindLoading: Promise<void> | null = null;
+
+    const loadPagefind = () => {
+      if (pagefindLoading) return pagefindLoading;
+      const bundlePath =
+        import.meta.env.BASE_URL.replace(/\/$/, "") + "/pagefind/pagefind.js";
+      pagefindLoading = import(/* @vite-ignore */ bundlePath)
+        .then((mod) => {
+          pagefind = mod;
+        })
+        .catch(() => {
+          console.warn("Pagefind could not be loaded.");
+        });
+      return pagefindLoading;
+    };
+
+    searchInput?.addEventListener("focus", loadPagefind);
+
+    searchInput?.addEventListener("input", async (e) => {
+      const term = (e.target as HTMLInputElement).value.trim();
+      clearTimeout(debounceTimer);
+
+      if (!term) {
+        closeResults();
+        return;
+      }
+
+      debounceTimer = setTimeout(async () => {
+        await loadPagefind();
+        if (!pagefind) return;
+
+        try {
+          const res = await pagefind.search(term);
+          const top = res.results.slice(0, 7);
+
+          if (searchResultsList) searchResultsList.innerHTML = "";
+
+          if (top.length === 0) {
+            searchNoResults?.classList.remove("hidden");
+            showResults();
+            return;
+          }
+
+          searchNoResults?.classList.add("hidden");
+
+          const fragments = await Promise.all(
+            top.map((r: any) => r.data()),
+          );
+
+          fragments.forEach((fragment: any) => {
+            const a = document.createElement("a");
+            a.href = fragment.url;
+            a.className =
+              "block px-4 py-2.5 hover:bg-white/10 transition-colors border-b border-white/5 last:border-0";
+            a.innerHTML = `
+              <div class="text-sm font-medium text-white truncate">${fragment.title}</div>
+              <div class="text-xs text-white/50 mt-0.5 line-clamp-1">${fragment.excerpt}</div>
+            `;
+            a.addEventListener("click", closeResults);
+            searchResultsList?.appendChild(a);
+          });
+
+          showResults();
+        } catch {
+          // silently fail
+        }
+      }, 250);
+    });
+
+    searchInput?.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeResults();
+        searchInput.blur();
+      } else if (e.key === "Enter") {
+        const first = searchResultsList?.querySelector(
+          "a",
+        ) as HTMLAnchorElement | null;
+        if (first) {
+          window.location.href = first.href;
+          closeResults();
+        }
+      }
+    });
+  }
+
+  document.addEventListener("click", (e) => {
+    if (!document.getElementById("search-form")?.contains(e.target as Node)) {
+      closeResults();
+    }
+  });
+</script>
+
+<style>
+  #search-results mark {
+    background: transparent;
+    color: rgb(52 211 153); /* emerald-400 */
+    font-weight: 600;
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import Navbar from "@/components/sections/Navbar.astro";
 import Hero from "@/components/sections/Hero.astro";
 import ChooseDocs from "@/components/sections/ChooseDocs.astro";
 import Community from "@/components/sections/Community.astro";
@@ -7,9 +8,10 @@ import FooterStatus from "@/components/sections/FooterStatus.astro";
 ---
 
 <Layout title="SteelDocs">
+  <Navbar />
   <Hero />
   <main
-    class="container mx-auto max-w-280 px-4 -mt-12 text-white relative z-10"
+    class="container mx-auto max-w-280 px-4 mt-16 md:-mt-12 text-white relative z-10"
   >
     <ChooseDocs />
     <Community />
