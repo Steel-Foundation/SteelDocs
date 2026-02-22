@@ -76,7 +76,7 @@ const BackgroundContent = ({
         <Pill text={pillText} />
         <Headline heroTitle={heroTitle} heroTitleHighlight={heroTitleHighlight} subtitle={subtitle} />
         <Actions mainCtaText={mainCtaText} secondCtaText={secondCtaText} />
-        <a href="#arrow" id="arrow"><ArrowDown className="w-10 h-10 p-2 mt-16 text-black dark:text-white animate-bounce bg-black/20 dark:bg-white/30 rounded-full" /></a>
+        <a href="#arrow" id="arrow" aria-label="Scroll down"><ArrowDown aria-hidden="true" className="w-10 h-10 p-2 mt-16 text-black dark:text-white animate-bounce bg-black/20 dark:bg-white/30 rounded-full" /></a>
       </div>
     </div>
   );

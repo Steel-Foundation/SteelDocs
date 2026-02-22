@@ -1,5 +1,6 @@
 ---
 import { ExternalLink } from "@lucide/astro";
+import { Image } from "astro:assets";
 
 interface Props {
   sectionLabel: string;
@@ -55,9 +56,12 @@ const {
       >
         <a href={adminHref} class="relative group cursor-pointer w-fit block">
           <div class="overflow-hidden rounded-2xl">
-            <img
+            <Image
+              height={500}
+              width={500}
               src={adminImage}
               alt={adminImageAlt}
+              loading="eager"
               class="max-w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
           </div>
@@ -78,9 +82,12 @@ const {
       >
         <a href={devHref} class="relative group cursor-pointer w-fit block">
           <div class="overflow-hidden rounded-2xl">
-            <img
+            <Image
+              height={500}
+              width={500}
               src={devImage}
               alt={devImageAlt}
+              loading="eager"
               class="max-w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
           </div>
