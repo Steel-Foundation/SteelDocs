@@ -122,9 +122,9 @@
     --sl-text-base: 1.5rem;
   }
 
-  p {
+  /* p {
     font-size: var(--sl-text-base);
-  }
+  } */
 }
 
 @theme inline {
