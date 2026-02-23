@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import tailwindcss from "@tailwindcss/vite";
+import node from "@astrojs/node";
 
 import react from "@astrojs/react";
 
@@ -8,6 +9,8 @@ import react from "@astrojs/react";
 export default defineConfig({
   site: "https://steel-foundation.github.io/SteelDocs/",
   base: "/SteelDocs/",
+  output: "server",
+  adapter: node({ mode: "middleware" }),
 
   integrations: [starlight({
     customCss: ["./src/styles/global.css"],

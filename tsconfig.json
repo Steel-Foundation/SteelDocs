@@ -5,7 +5,9 @@
     "**/*"
   ],
   "exclude": [
-    "dist"
+    "dist",
+    "website",
+    "convex"
   ],
   "compilerOptions": {
     "jsx": "react-jsx",
@@ -13,6 +15,9 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "@convex/*": [
+        "./convex/*"
       ]
     }
   }
