@@ -1,0 +1,108 @@
+---
+import { ExternalLink } from "@lucide/astro";
+import { Image } from "astro:assets";
+
+interface Props {
+  sectionLabel: string;
+  sectionTitle: string;
+  sectionDescription: string;
+  adminHref: string;
+  adminImage: string;
+  adminImageAlt: string;
+  adminLabel: string;
+  devHref: string;
+  devImage: string;
+  devImageAlt: string;
+  devLabel: string;
+}
+
+const {
+  sectionLabel,
+  sectionTitle,
+  sectionDescription,
+  adminHref,
+  adminImage,
+  adminImageAlt,
+  adminLabel,
+  devHref,
+  devImage,
+  devImageAlt,
+  devLabel,
+} = Astro.props;
+---
+
+<section>
+  <div class="flex flex-col lg:flex-row gap-8 items-center pb-16">
+    <div class="w-full lg:flex-1">
+      <h2
+        class="text-1xl text-teal-600 dark:text-white/40 font-minecraft font-bold"
+      >
+        {sectionLabel}
+      </h2>
+      <h2
+        class="text-3xl mb-4 font-minecraft font-bold text-teal-950 dark:text-white"
+      >
+        {sectionTitle}
+      </h2>
+      <p class="text-lg text-teal-700 dark:text-gray-300">
+        {sectionDescription}
+      </p>
+    </div>
+    <div
+      class="flex flex-row items-center justify-center w-full mx-8 lg:mx-0 lg:contents"
+    >
+      <div
+        class="relative flex-1 lg:flex-1 flex justify-center -rotate-6 lg:rotate-0 -mr-6 lg:mr-0 z-10"
+      >
+        <a href={adminHref} class="relative group cursor-pointer w-fit block">
+          <div class="overflow-hidden rounded-2xl">
+            <Image
+              height={500}
+              width={500}
+              src={adminImage}
+              alt={adminImageAlt}
+              loading="eager"
+              class="max-w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
+          <div
+            class="absolute text-sm flex items-center bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white text-black px-4 py-2 rounded-full whitespace-nowrap shadow-lg transition-all duration-300"
+          >
+            {adminLabel}
+            <div
+              class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-2 transition-all duration-300 flex items-center"
+            >
+              <ExternalLink class="size-4" />
+            </div>
+          </div>
+        </a>
+      </div>
+      <div
+        class="relative flex-1 lg:flex-1 flex justify-center rotate-6 lg:rotate-0"
+      >
+        <a href={devHref} class="relative group cursor-pointer w-fit block">
+          <div class="overflow-hidden rounded-2xl">
+            <Image
+              height={500}
+              width={500}
+              src={devImage}
+              alt={devImageAlt}
+              loading="eager"
+              class="max-w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
+          <div
+            class="absolute text-sm flex items-center bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white text-black px-4 py-2 rounded-full whitespace-nowrap shadow-lg transition-all duration-300"
+          >
+            {devLabel}
+            <div
+              class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-2 transition-all duration-300 flex items-center"
+            >
+              <ExternalLink class="size-4" />
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,3 +1,53 @@
 ---
 import "../styles/global.css";
+import ThemedPixelBlast from "@/components/homepage/ThemedPixelBlast";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "SteelDocs - The Steel documentation" } =
+  Astro.props;
 ---
+
+<html lang="en" class="scroll-smooth">
+  <head>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href="/SteelDocs/favicon.png" type="image/png" />
+    <script is:inline>
+      // Apply theme before paint to avoid flash
+      if ((localStorage.getItem("theme") ?? "dark") === "dark") {
+        document.documentElement.classList.add("dark");
+      }
+    </script>
+  </head>
+  <body class="bg-teal-100 dark:bg-teal-950">
+    <div class="fixed inset-0 w-full h-full -z-10">
+      <ThemedPixelBlast
+        client:only="react"
+        variant="square"
+        pixelSize={4}
+        patternScale={2}
+        patternDensity={1}
+        pixelSizeJitter={0}
+        enableRipples
+        rippleSpeed={0.4}
+        rippleThickness={0.12}
+        rippleIntensityScale={1.5}
+        liquid={false}
+        liquidStrength={0.12}
+        liquidRadius={1.2}
+        liquidWobbleSpeed={5}
+        speed={3}
+        edgeFade={0.25}
+        transparent
+      />
+    </div>
+    <slot />
+  </body>
+</html>
