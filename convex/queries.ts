@@ -26,20 +26,22 @@ export const latestRun = query({
 // Lightweight listing for the table — no methods array transferred
 export const classesOverview = query({
   args: {
-    run_id: v.id("runs"),
+    run_id: v.optional(v.id("runs")),
     class_type: v.optional(classTypeValidator),
   },
   handler: async (ctx, args) => {
+    if (!args.run_id) return [];
+    const run_id = args.run_id;
     const rows = args.class_type !== undefined
       ? await ctx.db
           .query("class_snapshots")
           .withIndex("by_run_and_type", (q) =>
-            q.eq("run_id", args.run_id).eq("class_type", args.class_type!)
+            q.eq("run_id", run_id).eq("class_type", args.class_type!)
           )
           .collect()
       : await ctx.db
           .query("class_snapshots")
-          .withIndex("by_run", (q) => q.eq("run_id", args.run_id))
+          .withIndex("by_run", (q) => q.eq("run_id", run_id))
           .collect();
 
     return rows.map(({ _id, _creationTime, run_id, class_name, class_type, percentage_implemented }) => ({
