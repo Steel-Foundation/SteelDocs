@@ -2,9 +2,35 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+@font-face {
+  font-family: 'Minecraft';
+  src: local('Minecraft Regular'), url('/SteelDocs/fonts/1_MinecraftRegular1.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Minecraft';
+  src: local('Minecraft Italic'), url('/SteelDocs/fonts/2_MinecraftItalic1.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Minecraft';
+  src: local('Minecraft Bold'), url('/SteelDocs/fonts/3_MinecraftBold1.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Minecraft';
+  src: local('Minecraft Bold Italic'), url('/SteelDocs/fonts/4_MinecraftBoldItalic1.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-minecraft: 'Minecraft', 'Inter';
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

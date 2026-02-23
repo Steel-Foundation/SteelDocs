@@ -61,13 +61,13 @@ export function SectionCards() {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-4 @xl/main:grid-cols-4 *:data-[slot=card]:bg-linear-to-b *:data-[slot=card]:from-emerald-900 *:data-[slot=card]:to-emerald-950 *:data-[slot=card]:shadow-none *:data-[slot=card]:border-0">
+    <div className="grid grid-cols-1 gap-4 @xl/main:grid-cols-4 *:data-[slot=card]:bg-linear-to-b *:data-[slot=card]:from-emerald-50 *:data-[slot=card]:to-emerald-100 *:data-[slot=card]:shadow-none *:data-[slot=card]:border *:data-[slot=card]:border-emerald-200 dark:*:data-[slot=card]:from-emerald-900 dark:*:data-[slot=card]:to-emerald-950 dark:*:data-[slot=card]:border-0">
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription className="text-white/80">Blocks</CardDescription>
+          <CardDescription className="text-emerald-700/90 dark:text-white/80">Blocks</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             {blocks.implemented}{" "}
-            <span className="text-base font-normal text-white/80">/ {blocks.total}</span>
+            <span className="text-base font-normal text-emerald-700/90 dark:text-white/80">/ {blocks.total}</span>
           </CardTitle>
           <CardAction>
             <Badge variant="outline">
@@ -80,16 +80,16 @@ export function SectionCards() {
           <div className="line-clamp-1 flex gap-2 font-medium">
             {blocks.partial} partially implemented
           </div>
-          <div className="text-white/80">Core building blocks</div>
+          <div className="text-emerald-700/90 dark:text-white/80">Core building blocks</div>
         </CardFooter>
       </Card>
 
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription className="text-white/80">Entities</CardDescription>
+          <CardDescription className="text-emerald-700/90 dark:text-white/80">Entities</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             {entities.implemented}{" "}
-            <span className="text-base font-normal text-white/80">/ {entities.total}</span>
+            <span className="text-base font-normal text-emerald-700/90 dark:text-white/80">/ {entities.total}</span>
           </CardTitle>
           <CardAction>
             <Badge variant="outline">
@@ -102,16 +102,16 @@ export function SectionCards() {
           <div className="line-clamp-1 flex gap-2 font-medium">
             {entities.partial} partially implemented
           </div>
-          <div className="text-white/80">Mobs and players</div>
+          <div className="text-emerald-700/90 dark:text-white/80">Mobs and players</div>
         </CardFooter>
       </Card>
 
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription className="text-white/80">Items</CardDescription>
+          <CardDescription className="text-emerald-700/90 dark:text-white/80">Items</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             {items.implemented}{" "}
-            <span className="text-base font-normal text-white/80">/ {items.total}</span>
+            <span className="text-base font-normal text-emerald-700/90 dark:text-white/80">/ {items.total}</span>
           </CardTitle>
           <CardAction>
             <Badge variant="outline">
@@ -124,16 +124,16 @@ export function SectionCards() {
           <div className="line-clamp-1 flex gap-2 font-medium">
             {items.partial} partially implemented
           </div>
-          <div className="text-white/80">Tools and inventory</div>
+          <div className="text-emerald-700/90 dark:text-white/80">Tools and inventory</div>
         </CardFooter>
       </Card>
 
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription className="text-white/80">AI & Other</CardDescription>
+          <CardDescription className="text-emerald-700/90 dark:text-white/80">AI & Other</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             {aiAll.implemented}{" "}
-            <span className="text-base font-normal text-white/80">/ {aiAll.total}</span>
+            <span className="text-base font-normal text-emerald-700/90 dark:text-white/80">/ {aiAll.total}</span>
           </CardTitle>
           <CardAction>
             <Badge variant="outline">
@@ -146,7 +146,7 @@ export function SectionCards() {
           <div className="line-clamp-1 flex gap-2 font-medium">
             {aiAll.partial} partially implemented
           </div>
-          <div className="text-white/80">Goals, brain, pathing</div>
+          <div className="text-emerald-700/90 dark:text-white/80">Goals, brain, pathing</div>
         </CardFooter>
       </Card>
     </div>

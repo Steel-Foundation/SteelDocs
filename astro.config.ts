@@ -10,7 +10,7 @@ export default defineConfig({
   site: "https://steel-foundation.github.io/SteelDocs/",
   base: "/SteelDocs/",
   output: "server",
-  adapter: node({ mode: "middleware" }),
+  adapter: node({ mode: "standalone" }),
 
   integrations: [starlight({
     customCss: ["./src/styles/global.css"],
