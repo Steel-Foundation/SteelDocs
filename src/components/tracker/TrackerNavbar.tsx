@@ -193,7 +193,7 @@ export function TrackerNavbar() {
       <nav className="flex items-center gap-3 px-4 py-2.5 rounded-2xl backdrop-blur-md bg-white/80 dark:bg-teal-950/70 border border-teal-200/60 dark:border-white/10 shadow-md max-w-7xl mx-auto">
         {/* Logo */}
         <a
-          href={`${BASE}/tracker`}
+          href={`${BASE}/`}
           className="flex items-center gap-2 font-bold text-xl text-teal-950 dark:text-white shrink-0 mr-2"
         >
           <img src={`${BASE}/steel_logo.png`} alt="Steel" className="size-6" />
