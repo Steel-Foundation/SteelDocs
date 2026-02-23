@@ -1,27 +1,17 @@
 "use client"
 
 import { useRef, useState, useEffect, useCallback } from "react"
-import { Search, Sun, Moon, HatGlasses, LogOut, LogIn, UserPlus, Github } from "lucide-react"
+import { Search, Sun, Moon, HatGlasses, Github } from "lucide-react"
 import { useTheme } from "next-themes"
-import { authClient } from "@/lib/auth-client"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
 const BASE = "/SteelDocs"
 const IS_DEV = import.meta.env.DEV
-
-function getInitials(name: string | undefined) {
-  if (!name) return "?"
-  return name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
-}
 
 // ─── Search ───────────────────────────────────────────────────────────────────
 
@@ -165,79 +155,28 @@ function NavSearch() {
 // ─── User button ──────────────────────────────────────────────────────────────
 
 function UserButton() {
-  const { data: session } = authClient.useSession()
-
-  if (!session?.user) {
-    return (
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <button
-            className="flex items-center justify-center size-8 rounded-full bg-teal-100 dark:bg-white/10 text-teal-600 dark:text-white/60 hover:bg-teal-200 dark:hover:bg-white/20 transition-all cursor-pointer"
-            aria-label="User menu"
-          >
-            <HatGlasses className="size-4" />
-          </button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="min-w-48 rounded-xl" align="end" sideOffset={8}>
-          <DropdownMenuLabel className="p-0 font-normal">
-            <div className="flex items-center gap-2 px-2 py-2">
-              <div className="flex size-8 items-center justify-center rounded-full bg-muted">
-                <HatGlasses className="size-4" />
-              </div>
-              <div className="flex flex-col text-sm leading-tight">
-                <span className="font-medium">Guest</span>
-                <span className="text-xs text-muted-foreground">Not signed in</span>
-              </div>
-            </div>
-          </DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuGroup>
-            <DropdownMenuItem asChild>
-              <a href={`${BASE}/tracker/login`}>
-                <LogIn className="mr-2 size-4" />
-                Sign in
-              </a>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <a href={`${BASE}/tracker/signup`}>
-                <UserPlus className="mr-2 size-4" />
-                Create an account
-              </a>
-            </DropdownMenuItem>
-          </DropdownMenuGroup>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    )
-  }
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="rounded-full focus:outline-none focus:ring-2 focus:ring-emerald-500/50 cursor-pointer" aria-label="User menu">
-          <Avatar className="size-8">
-            <AvatarImage src={session.user.image ?? undefined} alt={session.user.name} />
-            <AvatarFallback>{getInitials(session.user.name)}</AvatarFallback>
-          </Avatar>
+        <button
+          className="flex items-center justify-center size-8 rounded-full bg-teal-100 dark:bg-white/10 text-teal-600 dark:text-white/60 hover:bg-teal-200 dark:hover:bg-white/20 transition-all cursor-pointer"
+          aria-label="User menu"
+        >
+          <HatGlasses className="size-4" />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="min-w-52 rounded-xl" align="end" sideOffset={8}>
+      <DropdownMenuContent className="min-w-48 rounded-xl" align="end" sideOffset={8}>
         <DropdownMenuLabel className="p-0 font-normal">
           <div className="flex items-center gap-2 px-2 py-2">
-            <Avatar className="size-8">
-              <AvatarImage src={session.user.image ?? undefined} alt={session.user.name} />
-              <AvatarFallback>{getInitials(session.user.name)}</AvatarFallback>
-            </Avatar>
+            <div className="flex size-8 items-center justify-center rounded-full bg-muted">
+              <HatGlasses className="size-4" />
+            </div>
             <div className="flex flex-col text-sm leading-tight">
-              <span className="truncate font-medium">{session.user.name}</span>
-              <span className="truncate text-xs text-muted-foreground">{session.user.email}</span>
+              <span className="font-medium">Guest</span>
+              <span className="text-xs text-muted-foreground">Auth disabled</span>
             </div>
           </div>
         </DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => authClient.signOut()}>
-          <LogOut className="mr-2 size-4" />
-          Sign out
-        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
