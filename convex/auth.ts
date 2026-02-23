@@ -18,10 +18,6 @@ export const createAuth = (ctx: GenericCtx<DataModel>) => {
     basePath: "/SteelDocs/api/auth",
     secret: "w9VInG2IM0PuTBXsabOpG5Gm+/GN6u//RUj0dRKo9r0=",
     database: authComponent.adapter(ctx),
-    emailAndPassword: {
-      enabled: true,
-      requireEmailVerification: false,
-    },
     socialProviders: {
       github: {
         clientId: process.env.GITHUB_CLIENT_ID!,
