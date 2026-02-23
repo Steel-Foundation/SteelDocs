@@ -15,6 +15,8 @@ export const authComponent = createClient<DataModel>(components.betterAuth);
 export const createAuth = (ctx: GenericCtx<DataModel>) => {
   return betterAuth({
     baseURL: siteUrl,
+    basePath: "/SteelDocs/api/auth",
+    secret: "w9VInG2IM0PuTBXsabOpG5Gm+/GN6u//RUj0dRKo9r0=",
     database: authComponent.adapter(ctx),
     emailAndPassword: {
       enabled: true,
@@ -27,7 +29,7 @@ export const createAuth = (ctx: GenericCtx<DataModel>) => {
       },
     },
     plugins: [
-      convex({ authConfig }),
+      convex({ authConfig, options: { basePath: "/SteelDocs/api/auth" } }),
     ],
   });
 };
