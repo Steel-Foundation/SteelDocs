@@ -14,7 +14,7 @@ export function TrackerApp({ pathname }: { pathname: string }) {
         <TrackerNavbar />
         <main className="flex flex-col pt-16 min-h-screen">
           <div className="@container/main flex flex-1 flex-col gap-2">
-            <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6 max-w-7xl mx-auto w-full">
+            <div className="flex flex-col gap-4 py-4 px-3 sm:px-4 md:gap-6 md:py-6 md:px-6 max-w-7xl mx-auto w-full">
               <SectionCards />
               <FeaturesTable />
             </div>

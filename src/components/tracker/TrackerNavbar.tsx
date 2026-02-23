@@ -95,7 +95,7 @@ function NavSearch() {
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Escape") {
       setOpen(false)
-      ;(e.target as HTMLInputElement).blur()
+        ; (e.target as HTMLInputElement).blur()
     } else if (e.key === "Enter" && results.length > 0) {
       window.location.href = results[0].url
       setOpen(false)

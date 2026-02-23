@@ -61,7 +61,7 @@ export function SectionCards() {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-4 @xl/main:grid-cols-4 *:data-[slot=card]:bg-linear-to-b *:data-[slot=card]:from-emerald-50 *:data-[slot=card]:to-emerald-100 *:data-[slot=card]:shadow-none *:data-[slot=card]:border *:data-[slot=card]:border-emerald-200 dark:*:data-[slot=card]:from-emerald-900 dark:*:data-[slot=card]:to-emerald-950 dark:*:data-[slot=card]:border-0">
+    <div className="grid grid-cols-2 gap-4 @xl/main:grid-cols-4 *:data-[slot=card]:bg-linear-to-b *:data-[slot=card]:from-emerald-50 *:data-[slot=card]:to-emerald-100 *:data-[slot=card]:shadow-none *:data-[slot=card]:border *:data-[slot=card]:border-emerald-200 dark:*:data-[slot=card]:from-emerald-900 dark:*:data-[slot=card]:to-emerald-950 dark:*:data-[slot=card]:border-0">
       <Card className="@container/card">
         <CardHeader>
           <CardDescription className="text-emerald-700/90 dark:text-white/80">Blocks</CardDescription>
@@ -155,7 +155,7 @@ export function SectionCards() {
 
 function SectionCardsSkeleton() {
   return (
-    <div className="grid grid-cols-1 gap-4 @xl/main:grid-cols-4">
+    <div className="grid grid-cols-2 gap-4 @xl/main:grid-cols-4">
       {Array.from({ length: 4 }).map((_, i) => (
         <Skeleton key={i} className="h-40 rounded-xl" />
       ))}

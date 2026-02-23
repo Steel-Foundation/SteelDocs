@@ -25,7 +25,6 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet"
 import { Skeleton } from "@/components/ui/skeleton"
-import { Checkbox } from "@/components/ui/checkbox"
 import {
   IconCircleCheckFilled,
   IconCircleX,
@@ -50,6 +49,40 @@ const TYPE_STYLES: Record<ClassType, string> = {
   ai_control: "bg-teal-500/10 text-teal-700 dark:text-teal-400 border-teal-500/20",
   ai_pathing: "bg-teal-500/10 text-teal-700 dark:text-teal-400 border-teal-500/20",
   other: "bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 border-zinc-500/20",
+}
+
+const TYPE_FILTER_COLORS: Record<ClassType, string> = {
+  block:      "border-blue-500 text-blue-700 dark:text-blue-400",
+  entity:     "border-purple-500 text-purple-700 dark:text-purple-400",
+  item:       "border-pink-500 text-pink-700 dark:text-pink-400",
+  ai_goal:    "border-teal-500 text-teal-700 dark:text-teal-400",
+  ai_brain:   "border-teal-500 text-teal-700 dark:text-teal-400",
+  ai_control: "border-teal-500 text-teal-700 dark:text-teal-400",
+  ai_pathing: "border-teal-500 text-teal-700 dark:text-teal-400",
+  other:      "border-zinc-500 text-zinc-600 dark:text-zinc-400",
+}
+
+const TYPE_FILTER_SELECTED: Record<ClassType, string> = {
+  block:      "bg-blue-500 border-blue-500 text-white",
+  entity:     "bg-purple-500 border-purple-500 text-white",
+  item:       "bg-pink-500 border-pink-500 text-white",
+  ai_goal:    "bg-teal-500 border-teal-500 text-white",
+  ai_brain:   "bg-teal-500 border-teal-500 text-white",
+  ai_control: "bg-teal-500 border-teal-500 text-white",
+  ai_pathing: "bg-teal-500 border-teal-500 text-white",
+  other:      "bg-zinc-500 border-zinc-500 text-white",
+}
+
+const PROGRESS_FILTER_COLORS: Record<ProgressFilter, string> = {
+  not_started: "border-zinc-400 text-zinc-500 dark:text-zinc-400",
+  wip:         "border-amber-500 text-amber-600 dark:text-amber-400",
+  implemented: "border-green-500 text-green-600 dark:text-green-400",
+}
+
+const PROGRESS_FILTER_SELECTED: Record<ProgressFilter, string> = {
+  not_started: "bg-zinc-500 border-zinc-500 text-white",
+  wip:         "bg-amber-500 border-amber-500 text-white",
+  implemented: "bg-green-500 border-green-500 text-white",
 }
 
 function TypeBadge({ type }: { type: ClassType }) {
@@ -192,9 +225,9 @@ export function FeaturesTable() {
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row gap-6 items-start">
+      <div className="flex flex-col md:flex-row gap-6 md:items-start">
         {/* Left: filters panel */}
-        <div className="w-full lg:w-48 shrink-0 flex flex-col gap-4 lg:sticky lg:top-4">
+        <div className="w-full md:w-48 shrink-0 flex flex-col gap-4 md:sticky md:top-20">
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-medium text-muted-foreground">Search</label>
             <input
@@ -215,29 +248,53 @@ export function FeaturesTable() {
               className="h-9 w-full px-3 rounded-md border border-input bg-background text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
             />
           </div>
-          <div className="flex flex-col gap-1">
-            <label className="text-xs font-medium text-muted-foreground mb-0.5">Type</label>
-            {TYPE_OPTIONS.map((opt) => (
-              <label key={opt.value} className="flex items-center gap-1.5 cursor-pointer">
-                <Checkbox
-                  checked={typeFilter.has(opt.value)}
-                  onCheckedChange={() => toggleType(opt.value)}
-                />
-                <span className={`text-xs ${opt.color}`}>{opt.label}</span>
-              </label>
-            ))}
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-medium text-muted-foreground">
+              Type <span className="font-normal opacity-60">(click to select)</span>
+            </label>
+            <div className="flex flex-wrap gap-1.5">
+              {TYPE_OPTIONS.map((opt) => {
+                const active = typeFilter.has(opt.value)
+                return (
+                  <button
+                    key={opt.value}
+                    onClick={() => toggleType(opt.value)}
+                    className={[
+                      "rounded-full px-2.5 py-0.5 text-xs font-medium border-2 transition-all cursor-pointer select-none",
+                      active
+                        ? TYPE_FILTER_SELECTED[opt.value]
+                        : `bg-transparent opacity-60 ${TYPE_FILTER_COLORS[opt.value]}`,
+                    ].join(" ")}
+                  >
+                    {opt.label}
+                  </button>
+                )
+              })}
+            </div>
           </div>
-          <div className="flex flex-col gap-1">
-            <label className="text-xs font-medium text-muted-foreground mb-0.5">Progress</label>
-            {PROGRESS_OPTIONS.map((opt) => (
-              <label key={opt.value} className="flex items-center gap-1.5 cursor-pointer">
-                <Checkbox
-                  checked={progressFilter.has(opt.value)}
-                  onCheckedChange={() => toggleProgress(opt.value)}
-                />
-                <span className={`text-xs ${opt.color}`}>{opt.label}</span>
-              </label>
-            ))}
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-medium text-muted-foreground">
+              Progress <span className="font-normal opacity-60">(click to select)</span>
+            </label>
+            <div className="flex flex-wrap gap-1.5">
+              {PROGRESS_OPTIONS.map((opt) => {
+                const active = progressFilter.has(opt.value)
+                return (
+                  <button
+                    key={opt.value}
+                    onClick={() => toggleProgress(opt.value)}
+                    className={[
+                      "rounded-full px-2.5 py-0.5 text-xs font-medium border-2 transition-all cursor-pointer select-none",
+                      active
+                        ? PROGRESS_FILTER_SELECTED[opt.value]
+                        : `bg-transparent opacity-60 ${PROGRESS_FILTER_COLORS[opt.value]}`,
+                    ].join(" ")}
+                  >
+                    {opt.label}
+                  </button>
+                )
+              })}
+            </div>
           </div>
         </div>
 
