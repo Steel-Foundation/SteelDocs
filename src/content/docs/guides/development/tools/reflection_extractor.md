@@ -2,7 +2,7 @@
 title: Reflection in Extractors
 description: How to use Java reflection to access private Minecraft internals in Steel Extractor.
 sidebar:
-  order: 1
+  order: 2
 ---
 
 Many Minecraft internals (fields, methods) are `private` or `protected` and cannot be accessed directly. The Steel Extractor uses **Java Reflection** to read these values at runtime.

@@ -11,6 +11,15 @@ The mod hooks into the server startup lifecycle and automatically runs all extra
 
 ---
 
+## How to use
+
+At first you need to create the run directory
+It is really easy, build it, or in intellij directly click on run.
+Then minecraft starts create a new world and join it.
+
+This will create a folder calls steel-extractor there you find all json files, which steel needs!
+Not all json files are located in the same dir in steel. So please check the mapping first before you move something!
+
 ## How It Works
 
 The extractor registers a `SERVER_STARTED` event. When the server finishes loading, it iterates through all registered extractors, calls their `extract()` method, and writes the result to a JSON file.
@@ -25,28 +34,6 @@ interface Extractor {
     fun extract(server: MinecraftServer): JsonElement
 }
 ```
-
----
-
-## Changing the Minecraft Version
-
-The Minecraft version and all related dependency versions are configured in `gradle.properties`:
-
-```properties
-minecraft_version=1.21.11
-loader_version=0.18.2
-fabric_version=0.139.4+1.21.11
-fabric_kotlin_version=1.13.7+kotlin.2.2.21
-```
-
-To update to a new Minecraft version:
-
-1. Change `minecraft_version` to the target version
-2. Update `fabric_version` to a compatible Fabric API version for that Minecraft version
-3. Update `loader_version` and `fabric_kotlin_version` if needed
-4. If applicable, update the Parchment mapping version in `build.gradle`
-
-You can find the correct versions on [https://fabricmc.net/develop](https://fabricmc.net/develop).
 
 ---
 
