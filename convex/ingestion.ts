@@ -1,5 +1,5 @@
 import { v } from "convex/values";
-import { mutation } from "./_generated/server";
+import { internalMutation } from "./_generated/server";
 import { classTypeValidator, methodStatusValidator } from "./schema";
 
 const classInputValidator = v.object({
@@ -14,9 +14,8 @@ const classInputValidator = v.object({
   ),
 });
 
-export const ingestRun = mutation({
+export const ingestRun = internalMutation({
   args: {
-    password: v.string(),
     commit_sha: v.string(),
     branch: v.string(),
     pr_number: v.optional(v.number()),
@@ -25,9 +24,6 @@ export const ingestRun = mutation({
     classes: v.array(classInputValidator),
   },
   handler: async (ctx, args) => {
-    if (args.password !== process.env.INGEST_PASSWORD) {
-      throw new Error("Unauthorized");
-    }
     // Check for duplicate via content_hash
     const existing = await ctx.db
       .query("runs")

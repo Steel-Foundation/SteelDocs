@@ -1,5 +1,5 @@
 import { v } from "convex/values";
-import { query } from "./_generated/server";
+import { internalQuery, query } from "./_generated/server";
 import { classTypeValidator } from "./schema";
 
 export const latestRun = query({
@@ -23,6 +23,51 @@ export const latestRun = query({
   },
 });
 
+export const latestRunHash = internalQuery({
+  args: {
+    branch: v.optional(v.string()),
+    pr_number: v.optional(v.number()),
+  },
+  handler: async (ctx, args) => {
+    let q = ctx.db
+      .query("runs")
+      .filter((q) => q.eq(q.field("is_duplicate"), false));
+
+    if (args.branch) {
+      // Use the index for branch filtering
+      const run = await ctx.db
+        .query("runs")
+        .withIndex("by_branch", (q) => q.eq("branch", args.branch!))
+        .filter((q) => q.eq(q.field("is_duplicate"), false))
+        .filter((q) =>
+          args.pr_number !== undefined
+            ? q.eq(q.field("pr_number"), args.pr_number)
+            : q.eq(q.field("pr_number"), q.field("pr_number")) // no-op, always true
+        )
+        .order("desc")
+        .first();
+      return run ? { content_hash: run.content_hash } : null;
+    }
+
+    if (args.pr_number !== undefined) {
+      const run = await ctx.db
+        .query("runs")
+        .filter((q) => q.eq(q.field("is_duplicate"), false))
+        .filter((q) => q.eq(q.field("pr_number"), args.pr_number))
+        .order("desc")
+        .first();
+      return run ? { content_hash: run.content_hash } : null;
+    }
+
+    const run = await ctx.db
+      .query("runs")
+      .filter((q) => q.eq(q.field("is_duplicate"), false))
+      .order("desc")
+      .first();
+    return run ? { content_hash: run.content_hash } : null;
+  },
+});
+
 // Lightweight listing for the table — no methods array transferred
 export const classesOverview = query({
   args: {
@@ -34,15 +79,15 @@ export const classesOverview = query({
     const run_id = args.run_id;
     const rows = args.class_type !== undefined
       ? await ctx.db
-          .query("class_snapshots")
-          .withIndex("by_run_and_type", (q) =>
-            q.eq("run_id", run_id).eq("class_type", args.class_type!)
-          )
-          .collect()
+        .query("class_snapshots")
+        .withIndex("by_run_and_type", (q) =>
+          q.eq("run_id", run_id).eq("class_type", args.class_type!)
+        )
+        .collect()
       : await ctx.db
-          .query("class_snapshots")
-          .withIndex("by_run", (q) => q.eq("run_id", run_id))
-          .collect();
+        .query("class_snapshots")
+        .withIndex("by_run", (q) => q.eq("run_id", run_id))
+        .collect();
 
     return rows.map(({ _id, _creationTime, run_id, class_name, class_type, percentage_implemented }) => ({
       _id,
@@ -96,16 +141,16 @@ export const classHistory = query({
   handler: async (ctx, args) => {
     const runs = args.branch
       ? await ctx.db
-          .query("runs")
-          .withIndex("by_branch", (q) => q.eq("branch", args.branch!))
-          .filter((q) => q.eq(q.field("is_duplicate"), false))
-          .order("asc")
-          .collect()
+        .query("runs")
+        .withIndex("by_branch", (q) => q.eq("branch", args.branch!))
+        .filter((q) => q.eq(q.field("is_duplicate"), false))
+        .order("asc")
+        .collect()
       : await ctx.db
-          .query("runs")
-          .filter((q) => q.eq(q.field("is_duplicate"), false))
-          .order("asc")
-          .collect();
+        .query("runs")
+        .filter((q) => q.eq(q.field("is_duplicate"), false))
+        .order("asc")
+        .collect();
 
     const runIds = new Set(runs.map((r) => r._id));
     const runMap = new Map(runs.map((r) => [r._id, r]));

@@ -52,36 +52,36 @@ const TYPE_STYLES: Record<ClassType, string> = {
 }
 
 const TYPE_FILTER_COLORS: Record<ClassType, string> = {
-  block:      "border-blue-500 text-blue-700 dark:text-blue-400",
-  entity:     "border-purple-500 text-purple-700 dark:text-purple-400",
-  item:       "border-pink-500 text-pink-700 dark:text-pink-400",
-  ai_goal:    "border-teal-500 text-teal-700 dark:text-teal-400",
-  ai_brain:   "border-teal-500 text-teal-700 dark:text-teal-400",
+  block: "border-blue-500 text-blue-700 dark:text-blue-400",
+  entity: "border-purple-500 text-purple-700 dark:text-purple-400",
+  item: "border-pink-500 text-pink-700 dark:text-pink-400",
+  ai_goal: "border-teal-500 text-teal-700 dark:text-teal-400",
+  ai_brain: "border-teal-500 text-teal-700 dark:text-teal-400",
   ai_control: "border-teal-500 text-teal-700 dark:text-teal-400",
   ai_pathing: "border-teal-500 text-teal-700 dark:text-teal-400",
-  other:      "border-zinc-500 text-zinc-600 dark:text-zinc-400",
+  other: "border-zinc-500 text-zinc-600 dark:text-zinc-400",
 }
 
 const TYPE_FILTER_SELECTED: Record<ClassType, string> = {
-  block:      "bg-blue-500 border-blue-500 text-white",
-  entity:     "bg-purple-500 border-purple-500 text-white",
-  item:       "bg-pink-500 border-pink-500 text-white",
-  ai_goal:    "bg-teal-500 border-teal-500 text-white",
-  ai_brain:   "bg-teal-500 border-teal-500 text-white",
+  block: "bg-blue-500 border-blue-500 text-white",
+  entity: "bg-purple-500 border-purple-500 text-white",
+  item: "bg-pink-500 border-pink-500 text-white",
+  ai_goal: "bg-teal-500 border-teal-500 text-white",
+  ai_brain: "bg-teal-500 border-teal-500 text-white",
   ai_control: "bg-teal-500 border-teal-500 text-white",
   ai_pathing: "bg-teal-500 border-teal-500 text-white",
-  other:      "bg-zinc-500 border-zinc-500 text-white",
+  other: "bg-zinc-500 border-zinc-500 text-white",
 }
 
 const PROGRESS_FILTER_COLORS: Record<ProgressFilter, string> = {
   not_started: "border-zinc-400 text-zinc-500 dark:text-zinc-400",
-  wip:         "border-amber-500 text-amber-600 dark:text-amber-400",
+  wip: "border-amber-500 text-amber-600 dark:text-amber-400",
   implemented: "border-green-500 text-green-600 dark:text-green-400",
 }
 
 const PROGRESS_FILTER_SELECTED: Record<ProgressFilter, string> = {
   not_started: "bg-zinc-500 border-zinc-500 text-white",
-  wip:         "bg-amber-500 border-amber-500 text-white",
+  wip: "bg-amber-500 border-amber-500 text-white",
   implemented: "bg-green-500 border-green-500 text-white",
 }
 
@@ -149,7 +149,7 @@ export function FeaturesTable() {
     new Set(TYPE_OPTIONS.map((o) => o.value))
   )
   const [progressFilter, setProgressFilter] = React.useState<Set<ProgressFilter>>(
-    new Set(["not_started", "wip", "implemented"])
+    new Set()
   )
   const [selectedId, setSelectedId] = React.useState<Id<"class_snapshots"> | null>(null)
   const [sheetOpen, setSheetOpen] = React.useState(false)
@@ -203,7 +203,7 @@ export function FeaturesTable() {
     if (typeFilter.size < TYPE_OPTIONS.length) {
       result = result.filter((c) => typeFilter.has(c.class_type))
     }
-    if (progressFilter.size < 3) {
+    if (progressFilter.size > 0) {
       result = result.filter((c) => {
         const pct = c.percentage_implemented
         if (progressFilter.has("not_started") && pct === 0) return true
@@ -407,10 +407,9 @@ function ClassSheet({ id, branch }: { id: Id<"class_snapshots">; branch: string 
   const { data: cls, isPending: clsPending } = useQuery(
     convexQuery(api.queries.classById, { id })
   )
-  const { data: run } = useQuery({
-    ...convexQuery(api.queries.runById, { id: cls?.run_id as Id<"runs"> }),
-    enabled: !!cls?.run_id,
-  })
+  const { data: run } = useQuery(
+    convexQuery(api.queries.runById, cls?.run_id ? { id: cls.run_id } : "skip")
+  )
   const { data: history } = useQuery({
     ...convexQuery(
       api.queries.classHistory,
