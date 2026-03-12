@@ -1,0 +1,18 @@
+---
+import "../../styles/tracker.css";
+import { TrackerApp } from "@/components/tracker/TrackerApp";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Steel Tracker</title>
+    <meta name="description" content="Track implementation status of Steel server features" />
+    <link rel="icon" href="/SteelDocs/favicon.png" />
+  </head>
+  <body>
+    <TrackerApp pathname={Astro.url.pathname} client:load />
+  </body>
+</html>
