@@ -194,13 +194,13 @@ export function FeaturesTable({ mode, mcVersion }: { mode: RunMode; mcVersion: s
   React.useEffect(() => { setCurrentPage(0) }, [mode, mcVersion])
 
   // Fetch classes depending on mode
-  const { data: branchClasses, isPending: branchPending } = useQuery(
+  const { data: branchClasses, isPending: branchPending, isError: branchError } = useQuery(
     convexQuery(
       api.queries.classesByBranch,
       mode.type !== "all" ? { branch: mode.branch, mc_version: mcVersion } : "skip"
     )
   )
-  const { data: allClasses, isPending: allPending } = useQuery(
+  const { data: allClasses, isPending: allPending, isError: allError } = useQuery(
     convexQuery(
       api.queries.bestClasses,
       mode.type === "all" ? { mc_version: mcVersion } : "skip"
@@ -209,6 +209,7 @@ export function FeaturesTable({ mode, mcVersion }: { mode: RunMode; mcVersion: s
 
   const rawClasses = (mode.type === "all" ? allClasses : branchClasses) as ClassRow[] | undefined
   const isLoading = mode.type === "all" ? allPending : branchPending
+  const isError = mode.type === "all" ? allError : branchError
 
   const filtered = React.useMemo(() => {
     let result = rawClasses ?? []
@@ -236,6 +237,12 @@ export function FeaturesTable({ mode, mcVersion }: { mode: RunMode; mcVersion: s
   const paginated = filtered.slice(currentPage * ITEMS_PER_PAGE, (currentPage + 1) * ITEMS_PER_PAGE)
 
   if (isLoading) return <FeaturesTableSkeleton />
+
+  if (isError) return (
+    <div className="flex flex-col items-center justify-center border rounded-lg py-24 text-center bg-muted/20">
+      <p className="text-muted-foreground">Unable to fetch classes. Please try again later.</p>
+    </div>
+  )
 
   return (
     <>

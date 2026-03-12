@@ -50,18 +50,19 @@ export const classesByBranch = query({
     class_type: v.optional(classTypeValidator),
   },
   handler: async (ctx, args) => {
-    const rows = await ctx.db
+    let q = ctx.db
       .query("class_current")
-      .withIndex("by_branch_mc", (q) =>
+      .withIndex("by_branch_mc_type", (q) =>
         q.eq("branch", args.branch).eq("mc_version", args.mc_version)
-      )
-      .collect();
+      );
 
-    const filtered = args.class_type
-      ? rows.filter((r) => r.class_type === args.class_type)
-      : rows;
+    if (args.class_type) {
+      q = q.filter((qObj) => qObj.eq(qObj.field("class_type"), args.class_type));
+    }
 
-    return filtered.map(
+    const rows = await q.collect();
+
+    return rows.map(
       ({ _id, _creationTime, class_name, class_type, run_id, percentage_implemented }) => ({
         _id,
         _creationTime,
@@ -81,16 +82,17 @@ export const bestClasses = query({
     class_type: v.optional(classTypeValidator),
   },
   handler: async (ctx, args) => {
-    const rows = await ctx.db
+    let q = ctx.db
       .query("class_best")
-      .withIndex("by_mc_version", (q) => q.eq("mc_version", args.mc_version))
-      .collect();
+      .withIndex("by_mc_type", (q) => q.eq("mc_version", args.mc_version));
 
-    const filtered = args.class_type
-      ? rows.filter((r) => r.class_type === args.class_type)
-      : rows;
+    if (args.class_type) {
+      q = q.filter((qObj) => qObj.eq(qObj.field("class_type"), args.class_type));
+    }
 
-    return filtered.map(
+    const rows = await q.collect();
+
+    return rows.map(
       ({ _id, _creationTime, class_name, class_type, run_id, percentage_implemented }) => ({
         _id,
         _creationTime,
@@ -189,7 +191,7 @@ export const latestRunHash = internalQuery({
         .filter((q) =>
           args.pr_number !== undefined
             ? q.eq(q.field("pr_number"), args.pr_number)
-            : q.eq(q.field("pr_number"), q.field("pr_number"))
+            : q.neq(q.field("pr_number"), undefined) // Ensure we don't accidentally get another PR's run on standard branches
         )
         .order("desc")
         .first();

@@ -3,7 +3,8 @@ import {
   customMutation,
   customCtx,
 } from "convex-helpers/server/customFunctions";
-import { query, mutation, QueryCtx, MutationCtx } from "./_generated/server";
+import { query, mutation } from "./_generated/server";
+import type { QueryCtx, MutationCtx } from "./_generated/server";
 import { authComponent } from "./auth";
 
 // Get authenticated user or null if not logged in

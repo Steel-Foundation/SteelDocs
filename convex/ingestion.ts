@@ -89,29 +89,40 @@ export const ingestRun = internalMutation({
       });
     }
 
-    // ── 5. Build previous state map: class_name → methods hash ───────────────
-    const prevSnapshots = prevRun
-      ? await ctx.db
-        .query("class_current")
-        .withIndex("by_branch_mc", (q) =>
-          q.eq("branch", args.branch).eq("mc_version", args.mc_version)
-        )
-        .collect()
-      : [];
-
-    const prevHashMap = new Map(
-      prevSnapshots.map((s) => [s.class_name, methodsHash(s.methods)])
-    );
-    const prevCurrentMap = new Map(prevSnapshots.map((s) => [s.class_name, s]));
-
-    // ── 6. Process classes in batches ────────────────────────────────────────
+    // ── 5. Process classes in batches ────────────────────────────────────────
     for (let i = 0; i < args.classes.length; i += 50) {
       const batch = args.classes.slice(i, i + 50);
+
+      // Fetch the previous state just for this batch of 50 classes to cap memory
+      const batchClassNames = batch.map((c) => c.class_name);
+      const batchPrevDocs = prevRun
+        ? await Promise.all(
+          batchClassNames.map((className) =>
+            ctx.db
+              .query("class_current")
+              .withIndex("by_branch_mc_class", (q) =>
+                q
+                  .eq("branch", args.branch)
+                  .eq("mc_version", args.mc_version)
+                  .eq("class_name", className)
+              )
+              .first()
+          )
+        )
+        : [];
+
+      // Clean out nulls and build a fast map for this specific batch
+      const prevCurrentMap = new Map(
+        batchPrevDocs
+          .filter((doc): doc is NonNullable<typeof doc> => doc !== null)
+          .map((doc) => [doc.class_name, doc])
+      );
 
       await Promise.all(
         batch.map(async (cls) => {
           const newHash = methodsHash(cls.methods);
           const prevDoc = prevCurrentMap.get(cls.class_name);
+          const prevHash = prevDoc ? methodsHash(prevDoc.methods) : undefined;
 
           // Always upsert class_current (materialized current state per branch)
           if (prevDoc) {
@@ -134,7 +145,7 @@ export const ingestRun = internalMutation({
           }
 
           // Delta: only insert class_changes if methods actually changed
-          const methodsChanged = newHash !== prevHashMap.get(cls.class_name);
+          const methodsChanged = newHash !== prevHash;
           if (methodsChanged) {
             await ctx.db.insert("class_changes", {
               run_id,

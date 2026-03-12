@@ -78,7 +78,7 @@ export default defineSchema({
     percentage_implemented: v.number(),
     methods: v.array(methodValidator),
   })
-    .index("by_branch_mc", ["branch", "mc_version"])
+    .index("by_branch_mc_type", ["branch", "mc_version", "class_type"])
     .index("by_branch_mc_class", ["branch", "mc_version", "class_name"]),
 
   /**
@@ -109,6 +109,6 @@ export default defineSchema({
     percentage_implemented: v.number(),
     methods: v.array(methodValidator),
   })
-    .index("by_mc_version", ["mc_version"])
+    .index("by_mc_type", ["mc_version", "class_type"])
     .index("by_mc_class", ["mc_version", "class_name"]),
 });

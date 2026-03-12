@@ -23,24 +23,31 @@ http.route({
       return new Response("Invalid JSON body", { status: 400 });
     }
 
-    const result = await ctx.runMutation(internal.ingestion.ingestRun, {
-      commit_sha: body.commit_sha as string,
-      branch: body.branch as string,
-      pr_number: body.pr_number as number | undefined,
-      mc_version: body.mc_version as string,
-      content_hash: body.content_hash as string,
-      classes: body.classes as Array<{
-        class_name: string;
-        class_type: "block" | "item" | "entity" | "ai_goal" | "ai_brain" | "ai_control" | "ai_pathing" | "other";
-        percentage_implemented: number;
-        methods: Array<{ method_name: string; status: "Implemented" | "NotImplemented" }>;
-      }>,
-    });
+    try {
+      const result = await ctx.runMutation(internal.ingestion.ingestRun, {
+        commit_sha: body.commit_sha as string,
+        branch: body.branch as string,
+        pr_number: body.pr_number as number | undefined,
+        mc_version: body.mc_version as string,
+        content_hash: body.content_hash as string,
+        classes: body.classes as Array<{
+          class_name: string;
+          class_type: "block" | "item" | "entity" | "ai_goal" | "ai_brain" | "ai_control" | "ai_pathing" | "other";
+          percentage_implemented: number;
+          methods: Array<{ method_name: string; status: "Implemented" | "NotImplemented" }>;
+        }>,
+      });
 
-    return new Response(JSON.stringify(result), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+      return new Response(JSON.stringify(result), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch (e: any) {
+      return new Response(JSON.stringify({ error: "Validation or processing failed", details: e.message }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
   }),
 });
 

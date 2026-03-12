@@ -111,7 +111,7 @@ function TrackerAppInner({ pathname }: { pathname: string }) {
   const [mode, setMode] = React.useState<RunMode>({ type: "all" })
 
   // Auto-select latest MC version when data loads
-  const { data: versions } = useQuery(convexQuery(api.queries.listMcVersions, {}))
+  const { data: versions, isError } = useQuery(convexQuery(api.queries.listMcVersions, {}))
   React.useEffect(() => {
     if (versions && versions.length > 0 && !mcVersion) {
       setMcVersion(versions[versions.length - 1])
@@ -130,12 +130,22 @@ function TrackerAppInner({ pathname }: { pathname: string }) {
               <SourceSelector mode={mode} onModeChange={setMode} />
             </div>
 
-            {mcVersion && (
+            {isError ? (
+              <div className="flex flex-col items-center justify-center py-24 text-center mt-8">
+                <div className="rounded-full bg-red-100 dark:bg-red-900/40 p-3 mb-4">
+                  <svg className="size-6 text-red-600 dark:text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold mb-1">Unable to load data</h3>
+                <p className="text-muted-foreground">Please check your connection or try again later.</p>
+              </div>
+            ) : mcVersion ? (
               <>
                 <SectionCards mode={mode} mcVersion={mcVersion} />
                 <FeaturesTable mode={mode} mcVersion={mcVersion} />
               </>
-            )}
+            ) : null}
           </div>
         </div>
       </main>

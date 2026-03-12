@@ -19,18 +19,6 @@ import type { RunMode } from "@/components/tracker/TrackerApp"
 
 type ClassType = "block" | "item" | "entity" | "ai_goal" | "ai_brain" | "ai_control" | "ai_pathing" | "other"
 
-function computeStats(
-  classes: { class_type: ClassType; percentage_implemented: number }[],
-  type: ClassType
-) {
-  const subset = classes.filter((c) => c.class_type === type)
-  return {
-    total: subset.length,
-    implemented: subset.filter((c) => c.percentage_implemented === 100).length,
-    partial: subset.filter((c) => c.percentage_implemented > 0 && c.percentage_implemented < 100).length,
-  }
-}
-
 const pct = (implemented: number, total: number) =>
   total > 0 ? Math.round((implemented / total) * 100) : 0
 
@@ -52,25 +40,40 @@ export function SectionCards({ mode, mcVersion }: { mode: RunMode; mcVersion: st
     mode.type === "all" ? { mc_version: mcVersion } : "skip"
   )
 
-  const { data: branchClasses, isPending: branchPending } = useQuery(branchQuery)
-  const { data: allClasses, isPending: allPending } = useQuery(allQuery)
+  const { data: branchClasses, isPending: branchPending, isError: branchError } = useQuery(branchQuery)
+  const { data: allClasses, isPending: allPending, isError: allError } = useQuery(allQuery)
 
   const classes = mode.type === "all" ? allClasses : branchClasses
   const isPending = totalPending || (mode.type === "all" ? allPending : branchPending)
+  const isError = mode.type === "all" ? allError : branchError
 
   if (isPending) return <SectionCardsSkeleton />
+  if (isError) return null // Hide on error
   if (!classes || !mcVersion) return null
 
-  const blocks = computeStats(classes as { class_type: ClassType; percentage_implemented: number }[], "block")
-  const entities = computeStats(classes as { class_type: ClassType; percentage_implemented: number }[], "entity")
-  const items = computeStats(classes as { class_type: ClassType; percentage_implemented: number }[], "item")
+  const stats = (classes as { class_type: ClassType; percentage_implemented: number }[]).reduce(
+    (acc, curr) => {
+      const type = curr.class_type;
+      const isAI = type === "ai_goal" || type === "ai_brain" || type === "ai_control" || type === "ai_pathing" || type === "other";
+      const key = type === "block" || type === "entity" || type === "item" ? type : isAI ? "aiAll" : null;
 
-  const aiTypes: ClassType[] = ["ai_goal", "ai_brain", "ai_control", "ai_pathing", "other"]
-  const aiAll = {
-    total: aiTypes.reduce((s, t) => s + computeStats(classes as { class_type: ClassType; percentage_implemented: number }[], t).total, 0),
-    implemented: aiTypes.reduce((s, t) => s + computeStats(classes as { class_type: ClassType; percentage_implemented: number }[], t).implemented, 0),
-    partial: aiTypes.reduce((s, t) => s + computeStats(classes as { class_type: ClassType; percentage_implemented: number }[], t).partial, 0),
-  }
+      if (key) {
+        acc[key].total++;
+        if (curr.percentage_implemented === 100) acc[key].implemented++;
+        else if (curr.percentage_implemented > 0 && curr.percentage_implemented < 100) acc[key].partial++;
+      }
+
+      return acc;
+    },
+    {
+      block: { total: 0, implemented: 0, partial: 0 },
+      entity: { total: 0, implemented: 0, partial: 0 },
+      item: { total: 0, implemented: 0, partial: 0 },
+      aiAll: { total: 0, implemented: 0, partial: 0 },
+    }
+  );
+
+  const { block: blocks, entity: entities, item: items, aiAll } = stats;
 
   const totalVal = total ?? classes.length
 
