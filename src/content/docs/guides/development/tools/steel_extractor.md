@@ -13,7 +13,7 @@ The mod hooks into the server startup lifecycle and automatically runs all extra
 
 ## How to use
 
-At first you need to create the run directory
+At first you need to create the run directory.
 It is really easy, build it, or in intellij directly click on run.
 Then minecraft starts create a new world and join it.
 
