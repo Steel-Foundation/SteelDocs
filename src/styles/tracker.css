@@ -7,24 +7,28 @@
   src: local('Minecraft Regular'), url('/SteelDocs/fonts/1_MinecraftRegular1.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: 'Minecraft';
   src: local('Minecraft Italic'), url('/SteelDocs/fonts/2_MinecraftItalic1.woff') format('woff');
   font-weight: normal;
   font-style: italic;
+  font-display: swap;
 }
 @font-face {
   font-family: 'Minecraft';
   src: local('Minecraft Bold'), url('/SteelDocs/fonts/3_MinecraftBold1.woff') format('woff');
   font-weight: bold;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: 'Minecraft';
   src: local('Minecraft Bold Italic'), url('/SteelDocs/fonts/4_MinecraftBoldItalic1.woff') format('woff');
   font-weight: bold;
   font-style: italic;
+  font-display: swap;
 }
 
 @custom-variant dark (&:is(.dark *));
