@@ -47,6 +47,8 @@
 @theme {
   --font-sans: 'Inter', 'Space Mono', ui-sans-serif, system-ui, sans-serif;
   --font-minecraft: 'Minecraft', 'Inter';
+  --font-size-tiny: 0.8125rem;
+  --font-size-tiny--line-height: 1.25rem;
 }
 
 :root {

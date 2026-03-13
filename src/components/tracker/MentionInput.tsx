@@ -374,9 +374,9 @@ function MentionInput({
             return (
               <span
                 key={seg.id}
-                className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-sm leading-none bg-teal-500/10 border border-teal-500/25 text-teal-600 dark:text-teal-400"
+                className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-sm leading-none bg-teal-500/10 border border-teal-500/25 text-teal-600 dark:text-teal-400 text-sm"
               >
-                <span className="select-none opacity-50 text-xs leading-none">#</span>
+                <span className="select-none opacity-50 text-sm leading-none">#</span>
                 <input
                   ref={(el) => { el ? inputRefs.current.set(seg.id, el) : inputRefs.current.delete(seg.id) }}
                   value={seg.query}
@@ -448,14 +448,14 @@ export function MentionChip({ name, onRemove, className }: {
       "bg-teal-500/15 text-teal-600 dark:text-teal-400 text-sm font-medium select-none",
       className,
     )}>
-      <span className="opacity-50 text-xs">#</span>
+      <span className="opacity-50 text-sm">#</span>
       {name}
       {onRemove && (
         <button
           type="button"
           onMouseDown={(e) => { e.preventDefault(); onRemove() }}
           tabIndex={-1}
-          className="ml-0.5 opacity-40 hover:opacity-100 transition-opacity text-xs leading-none"
+          className="ml-0.5 opacity-40 hover:opacity-100 transition-opacity text-sm leading-none"
           aria-label={`Remove mention of ${name}`}
         >
           ×
