@@ -322,7 +322,7 @@ export function MentionInput({
             return (
               <span
                 key={seg.id}
-                className="inline-flex items-center gap-0.5 p-1 rounded-sm bg-teal-500/10 border border-teal-500/25 text-teal-600 dark:text-teal-400"
+                className="inline-flex items-center gap-1 px-1.5 py-1 rounded-sm bg-teal-500/10 border border-teal-500/25 text-teal-600 dark:text-teal-400"
               >
                 <span className="select-none opacity-50 text-xs leading-none">#</span>
                 <input
@@ -393,7 +393,7 @@ export function MentionChip({ name, onRemove, className }: {
 }) {
   return (
     <span className={cn(
-      "inline-flex items-center gap-0.5 p-1 rounded-sm",
+      "inline-flex items-center gap-1 px-1.5 py-1 rounded-sm",
       "bg-teal-500/15 text-teal-600 dark:text-teal-400 text-sm font-medium select-none",
       className,
     )}>

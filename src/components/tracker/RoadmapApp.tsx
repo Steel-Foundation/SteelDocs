@@ -153,15 +153,16 @@ function renderMentionedName(
   const nodes: React.ReactNode[] = []
   let last = 0
   let m: RegExpExecArray | null
+  const textClass = faded ? "line-through" : undefined
   while ((m = regex.exec(name)) !== null) {
-    if (m.index > last) nodes.push(name.slice(last, m.index))
+    if (m.index > last) nodes.push(<span key={`t${m.index}`} className={textClass}>{name.slice(last, m.index)}</span>)
     const feature = featuresMap.get(m[1])
-    nodes.push(<MentionChip key={m.index} name={feature?.name ?? m[1]} className="mx-0.5" />)
+    nodes.push(<MentionChip key={m.index} name={feature?.name ?? m[1]} className="mx-1" />)
     last = m.index + m[0].length
   }
-  if (last < name.length) nodes.push(name.slice(last))
+  if (last < name.length) nodes.push(<span key="t-end" className={textClass}>{name.slice(last)}</span>)
   return (
-    <span className={cn("text-sm flex-1 flex flex-wrap items-center gap-x-0.5 gap-y-0.5", faded && "line-through text-muted-foreground")}>
+    <span className={cn("text-sm flex-1 flex flex-wrap items-center gap-x-0.5 gap-y-0.5", faded && "text-muted-foreground")}>
       {nodes}
     </span>
   )
