@@ -19,6 +19,20 @@ const { title, description = "SteelDocs - The Steel documentation" } =
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" href="/SteelDocs/favicon.png" type="image/png" />
+    <link
+      rel="preload"
+      href="/SteelDocs/fonts/1_MinecraftRegular1.woff"
+      as="font"
+      type="font/woff"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/SteelDocs/fonts/3_MinecraftBold1.woff"
+      as="font"
+      type="font/woff"
+      crossorigin="anonymous"
+    />
     <script is:inline>
       // Apply theme before paint to avoid flash
       if ((localStorage.getItem("theme") ?? "dark") === "dark") {
