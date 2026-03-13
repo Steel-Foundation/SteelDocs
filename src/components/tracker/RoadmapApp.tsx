@@ -15,12 +15,11 @@ import { authClient } from "@/lib/auth-client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Separator } from "@/components/ui/separator"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { IconPlus, IconTrash, IconMap, IconListCheck, IconX } from "@tabler/icons-react"
 import { cn } from "@/lib/utils"
+import { MentionInput, MentionChip, type MentionFeature } from "@/components/tracker/MentionInput"
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -91,18 +90,11 @@ function NewRoadmapForm({ onDone }: { onDone: () => void }) {
 // ─── New Item Form ────────────────────────────────────────────────────────────
 
 function NewItemForm({ roadmapId, onDone }: { roadmapId: Id<"roadmaps">; onDone: () => void }) {
-  const [name, setName] = React.useState("")
-  const [featureId, setFeatureId] = React.useState<string>("__none__")
   const { data: features } = useQuery(convexQuery(api.roadmap.getAllFeatures, {}))
-
   const createItem = useMutation(api.roadmap.createRoadmapItem).withOptimisticUpdate(
     (localStore, args) => {
       const items = localStore.getQuery(api.roadmap.getRoadmapItems, { roadmapId: args.roadmap_id })
       if (items === undefined) return
-      const allFeatures = localStore.getQuery(api.roadmap.getAllFeatures, {})
-      const feature = args.feature_id
-        ? (allFeatures?.find((f) => f._id === args.feature_id) ?? null)
-        : null
       localStore.setQuery(api.roadmap.getRoadmapItems, { roadmapId: args.roadmap_id }, [
         ...items,
         {
@@ -110,57 +102,70 @@ function NewItemForm({ roadmapId, onDone }: { roadmapId: Id<"roadmaps">; onDone:
           _creationTime: Date.now(),
           name: args.name,
           completeStatus: false,
-          feature_id: args.feature_id,
+          feature_id: undefined,
           roadmap_id: args.roadmap_id,
           order: (items[items.length - 1]?.order ?? -1) + 1,
-          feature: feature ?? null,
+          feature: null,
         } as RoadmapItem,
       ])
     }
   )
+  const createFeature = useMutation(api.roadmap.createFeature)
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    if (!name.trim()) return
+  async function handleSubmit(serialized: string) {
     try {
-      await createItem({
-        roadmap_id: roadmapId,
-        name: name.trim(),
-        feature_id: featureId !== "__none__" ? (featureId as Id<"features">) : undefined,
-      })
-      setName("")
-      setFeatureId("__none__")
+      await createItem({ roadmap_id: roadmapId, name: serialized })
       onDone()
     } catch {
       toast.error("Failed to create item")
     }
   }
 
+  async function handleCreateFeature(name: string): Promise<Id<"features">> {
+    return await createFeature({ name })
+  }
+
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2 p-3 border rounded-lg bg-muted/30">
-      <Input autoFocus value={name} onChange={(e) => setName(e.target.value)} placeholder="Item name…" className="h-8 text-sm" />
-      <div className="flex gap-2">
-        <Select value={featureId} onValueChange={setFeatureId}>
-          <SelectTrigger className="h-8 text-sm flex-1">
-            <SelectValue placeholder="Link a feature (optional)…" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="__none__">No feature</SelectItem>
-            {(features ?? []).map((f) => (
-              <SelectItem key={f._id} value={f._id}>{f.name}</SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        <Button type="submit" size="sm" className="h-8 shrink-0">Add</Button>
-        <Button type="button" variant="ghost" size="sm" className="h-8 shrink-0" onClick={onDone}>
-          <IconX className="size-4" />
-        </Button>
-      </div>
-    </form>
+    <div className="flex items-start gap-2 p-3 border rounded-lg bg-muted/30">
+      <MentionInput
+        features={(features ?? []) as MentionFeature[]}
+        onCreateFeature={handleCreateFeature}
+        onSubmit={handleSubmit}
+        placeholder="Item name… (type # to mention a feature)"
+        autoFocus
+        className="flex-1"
+      />
+      <Button type="button" variant="ghost" size="sm" className="h-9 shrink-0" onClick={onDone}>
+        <IconX className="size-4" />
+      </Button>
+    </div>
   )
 }
 
 // ─── Roadmap Items Panel ──────────────────────────────────────────────────────
+
+function renderMentionedName(
+  name: string,
+  featuresMap: Map<string, MentionFeature>,
+  faded: boolean,
+): React.ReactNode {
+  const regex = /<#([^>]+)>/g
+  const nodes: React.ReactNode[] = []
+  let last = 0
+  let m: RegExpExecArray | null
+  while ((m = regex.exec(name)) !== null) {
+    if (m.index > last) nodes.push(name.slice(last, m.index))
+    const feature = featuresMap.get(m[1])
+    nodes.push(<MentionChip key={m.index} name={feature?.name ?? m[1]} className="mx-0.5" />)
+    last = m.index + m[0].length
+  }
+  if (last < name.length) nodes.push(name.slice(last))
+  return (
+    <span className={cn("text-sm flex-1 flex flex-wrap items-center gap-x-0.5 gap-y-0.5", faded && "line-through text-muted-foreground")}>
+      {nodes}
+    </span>
+  )
+}
 
 function RoadmapItemsPanel({ roadmap, isOwner, onRoadmapDeleted }: {
   roadmap: Roadmap
@@ -169,6 +174,11 @@ function RoadmapItemsPanel({ roadmap, isOwner, onRoadmapDeleted }: {
 }) {
   const [addingItem, setAddingItem] = React.useState(false)
   const { data: items, isLoading } = useQuery(convexQuery(api.roadmap.getRoadmapItems, { roadmapId: roadmap._id }))
+  const { data: allFeatures } = useQuery(convexQuery(api.roadmap.getAllFeatures, {}))
+  const featuresMap = React.useMemo(
+    () => new Map((allFeatures ?? []).map((f) => [f._id, f as MentionFeature])),
+    [allFeatures],
+  )
 
   const toggleItem = useMutation(api.roadmap.toggleRoadmapItem).withOptimisticUpdate(
     (localStore, { id }) => {
@@ -257,14 +267,7 @@ function RoadmapItemsPanel({ roadmap, isOwner, onRoadmapDeleted }: {
               disabled={!isOwner}
               className="shrink-0"
             />
-            <span className={cn("text-sm flex-1", item.completeStatus && "line-through text-muted-foreground")}>
-              {item.name}
-            </span>
-            {item.feature && (
-              <Badge variant={item.feature.completeStatus ? "default" : "secondary"} className="text-xs shrink-0">
-                {item.feature.name}
-              </Badge>
-            )}
+            {renderMentionedName(item.name, featuresMap, item.completeStatus)}
             {isOwner && (
               <button
                 className="opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-destructive"
