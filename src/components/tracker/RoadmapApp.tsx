@@ -121,6 +121,7 @@ function RoadmapItemsPanel({ roadmap, isOwner, onRoadmapDeleted }: {
 }) {
   const [activeId, setActiveId] = React.useState<Id<"roadmap_items"> | "new">("new")
   const [isCreatingFeature, setIsCreatingFeature] = React.useState(false)
+  const [savingIds, setSavingIds] = React.useState<Set<string>>(new Set())
   const activeMentionRef = React.useRef<MentionInputHandle>(null)
 
   const { data: items, isLoading } = useQuery(convexQuery(api.roadmap.getRoadmapItems, { roadmapId: roadmap._id }))
@@ -197,14 +198,25 @@ function RoadmapItemsPanel({ roadmap, isOwner, onRoadmapDeleted }: {
     return await createFeature({ name })
   }
 
+  async function saveItem(id: Id<"roadmap_items">, name: string) {
+    setSavingIds((prev) => new Set([...prev, id]))
+    try {
+      await updateItem({ id, name })
+    } catch {
+      toast.error("Failed to update item")
+    } finally {
+      setSavingIds((prev) => { const next = new Set(prev); next.delete(id); return next })
+    }
+  }
+
   function navigateTo(idx: number) {
     if (idx < 0) return
-    // Auto-save if leaving an existing item
+    // Auto-save if leaving an existing item that changed
     if (activeId !== "new") {
       const currentValue = activeMentionRef.current?.getValue()
       const current = list.find((i) => i._id === activeId)
       if (current && currentValue !== undefined && currentValue !== current.name) {
-        updateItem({ id: current._id, name: currentValue }).catch(() => toast.error("Failed to update item"))
+        void saveItem(current._id, currentValue)
       }
     }
     const newId = idx >= list.length ? "new" : list[idx]._id
@@ -267,7 +279,7 @@ function RoadmapItemsPanel({ roadmap, isOwner, onRoadmapDeleted }: {
                 onPendingStateChange={setIsCreatingFeature}
                 defaultValue={item.name}
                 onSubmit={(name) => {
-                  updateItem({ id: item._id, name }).catch(() => toast.error("Failed to update item"))
+                  void saveItem(item._id, name)
                   navigateTo(itemIdx + 1)
                 }}
                 onNavigateUp={() => navigateTo(itemIdx - 1)}
@@ -283,12 +295,16 @@ function RoadmapItemsPanel({ roadmap, isOwner, onRoadmapDeleted }: {
               </div>
             )}
             {isOwner && (
-              <button
-                className="opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-destructive shrink-0"
-                onClick={() => deleteItem({ id: item._id }).catch(() => toast.error("Failed to delete item"))}
-              >
-                <IconX className="size-3.5" />
-              </button>
+              savingIds.has(item._id) ? (
+                <span className="shrink-0 size-3.5 block animate-spin rounded-full border-2 border-muted-foreground/25 border-t-muted-foreground/70" />
+              ) : (
+                <button
+                  className="opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-destructive shrink-0"
+                  onClick={() => deleteItem({ id: item._id }).catch(() => toast.error("Failed to delete item"))}
+                >
+                  <IconX className="size-3.5" />
+                </button>
+              )
             )}
           </div>
         ))}
