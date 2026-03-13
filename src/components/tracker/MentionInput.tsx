@@ -157,9 +157,7 @@ export function MentionInput({
         type: "text",
         value: (leftSeg?.value ?? "") + insertText + (rightSeg?.value ?? ""),
       }
-      const start = leftSeg ? idx - 1 : idx
-      const count = (leftSeg ? 1 : 0) + 1 + (rightSeg ? 1 : 0)
-      next.splice(start, count, merged)
+      next.splice(leftSeg ? idx - 1 : idx, (leftSeg ? 1 : 0) + 1 + (rightSeg ? 1 : 0), merged)
       return next
     })
     const tid = mergedId
@@ -184,9 +182,7 @@ export function MentionInput({
       const rightSeg = idx < next.length - 1 && next[idx + 1].type === "text" ? next[idx + 1] as TextSeg : null
       mergedId = leftSeg?.id ?? uid()
       const merged: TextSeg = { id: mergedId, type: "text", value: (leftSeg?.value ?? "") + (rightSeg?.value ?? "") }
-      const start = leftSeg ? idx - 1 : idx
-      const count = (leftSeg ? 1 : 0) + 1 + (rightSeg ? 1 : 0)
-      next.splice(start, count, merged)
+      next.splice(leftSeg ? idx - 1 : idx, (leftSeg ? 1 : 0) + 1 + (rightSeg ? 1 : 0), merged)
       return next
     })
     if (mergedId) focusSeg(mergedId, "end")
@@ -213,7 +209,6 @@ export function MentionInput({
   // ─── Text segment handlers ────────────────────────────────────────────────────
 
   function onTextChange(seg: TextSeg, segIdx: number, raw: string) {
-    // Strip tabs
     const clean = raw.replace(/\t/g, "")
     const hashIdx = clean.indexOf("#")
     if (hashIdx !== -1) {
@@ -229,49 +224,25 @@ export function MentionInput({
 
     const input = e.currentTarget
     const atStart = input.selectionStart === 0 && input.selectionEnd === 0
-    const atEnd = input.selectionStart === input.value.length && input.selectionEnd === input.value.length
+    const atEnd   = input.selectionStart === input.value.length && input.selectionEnd === input.value.length
 
-    // Navigate left past a mention chip
     if (e.key === "ArrowLeft" && atStart && segIdx > 0) {
       e.preventDefault()
-      let target = segIdx - 1
-      if (segs[target].type === "mention" && target > 0) target--
-      if (segs[target]?.type === "text") focusSeg(segs[target].id, "end")
+      let t = segIdx - 1
+      if (segs[t].type === "mention" && t > 0) t--
+      if (segs[t]?.type === "text") focusSeg(segs[t].id, "end")
     }
 
-    // Navigate right past a mention chip
     if (e.key === "ArrowRight" && atEnd && segIdx < segs.length - 1) {
       e.preventDefault()
-      let target = segIdx + 1
-      if (segs[target].type === "mention" && target < segs.length - 1) target++
-      if (segs[target]?.type === "text") focusSeg(segs[target].id, "start")
+      let t = segIdx + 1
+      if (segs[t].type === "mention" && t < segs.length - 1) t++
+      if (segs[t]?.type === "text") focusSeg(segs[t].id, "start")
     }
 
-    // Backspace at start — delete the mention chip to the left
     if (e.key === "Backspace" && atStart && segIdx > 0 && segs[segIdx - 1].type === "mention") {
       e.preventDefault()
-      const mentionIdx = segIdx - 1
-      let mergedId: string | undefined
-      setSegs((prev) => {
-        const next = [...prev]
-        const leftSeg  = mentionIdx > 0 && next[mentionIdx - 1].type === "text" ? next[mentionIdx - 1] as TextSeg : null
-        const rightSeg = next[mentionIdx + 1] as TextSeg
-        mergedId = leftSeg?.id ?? uid()
-        const merged: TextSeg = { id: mergedId, type: "text", value: (leftSeg?.value ?? "") + rightSeg.value }
-        const start = leftSeg ? mentionIdx - 1 : mentionIdx
-        const count = (leftSeg ? 1 : 0) + 2
-        next.splice(start, count, merged)
-        return next
-      })
-      if (mergedId) {
-        requestAnimationFrame(() => {
-          const el = inputRefs.current.get(mergedId!)
-          if (!el) return
-          const pos = el.value.length - seg.value.length
-          el.focus()
-          el.setSelectionRange(pos, pos)
-        })
-      }
+      removeMention(segs[segIdx - 1].id)
     }
   }
 
@@ -293,23 +264,23 @@ export function MentionInput({
       const item = ddItems[ddIdx]
       if (item) selectItem(item)
       else if (pending?.query.trim()) selectItem({ kind: "create", name: pending.query.trim() })
-      return
     }
   }
 
   // ─── Render ───────────────────────────────────────────────────────────────────
 
-  const hasContent = segs.some((s) =>
-    (s.type === "text" && s.value) ||
-    s.type === "mention" ||
-    (s.type === "pending" && s.query)
-  )
+  // Only the very first input (single empty state) gets the outer placeholder
+  const isInitialEmpty = segs.length === 1 && segs[0].type === "text" && segs[0].value === ""
 
   return (
     <div className={cn("relative", className)}>
+      {/*
+        No explicit gap — inputs use field-sizing:content to be exactly as wide as
+        their text, so spacing between text and chips is purely what the user types.
+      */}
       <div
         className={cn(
-          "relative flex flex-wrap items-center gap-y-1 min-h-9 px-3 py-1.5 cursor-text",
+          "flex flex-wrap items-center min-h-9 px-3 py-1.5 cursor-text",
           "border border-input rounded-md bg-background text-sm ring-offset-background",
           "focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
         )}
@@ -320,26 +291,19 @@ export function MentionInput({
           }
         }}
       >
-        {!hasContent && (
-          <span className="pointer-events-none select-none text-muted-foreground">
-            {placeholder}
-          </span>
-        )}
-
         {segs.map((seg, segIdx) => {
           if (seg.type === "text") {
             return (
-              <SizingInput
+              <input
                 key={seg.id}
-                inputRef={(el) => {
-                  if (el) inputRefs.current.set(seg.id, el)
-                  else inputRefs.current.delete(seg.id)
-                }}
+                ref={(el) => { el ? inputRefs.current.set(seg.id, el) : inputRefs.current.delete(seg.id) }}
                 autoFocus={autoFocus && segIdx === 0}
                 value={seg.value}
+                placeholder={isInitialEmpty && segIdx === 0 ? placeholder : undefined}
                 onChange={(e) => onTextChange(seg, segIdx, e.target.value)}
                 onKeyDown={(e) => onTextKeyDown(e, seg, segIdx)}
-                className="outline-none bg-transparent"
+                // field-sizing:content makes the input exactly as wide as its text, no extra space
+                className="outline-none bg-transparent min-w-px [field-sizing:content] placeholder:text-muted-foreground"
               />
             )
           }
@@ -361,17 +325,14 @@ export function MentionInput({
                 className="inline-flex items-center gap-0.5 p-1 rounded-sm bg-teal-500/10 border border-teal-500/25 text-teal-600 dark:text-teal-400"
               >
                 <span className="select-none opacity-50 text-xs leading-none">#</span>
-                <SizingInput
-                  inputRef={(el) => {
-                    if (el) inputRefs.current.set(seg.id, el)
-                    else inputRefs.current.delete(seg.id)
-                  }}
+                <input
+                  ref={(el) => { el ? inputRefs.current.set(seg.id, el) : inputRefs.current.delete(seg.id) }}
                   value={seg.query}
+                  placeholder="feature…"
                   onChange={(e) => onPendingChange(seg.id, e.target.value)}
                   onKeyDown={onPendingKeyDown}
-                  placeholder="feature…"
-                  minWidth={8}
-                  className="outline-none bg-transparent placeholder:text-teal-600/40 dark:placeholder:text-teal-400/40"
+                  // min-w ensures a comfortable tap target when empty, grows with content
+                  className="outline-none bg-transparent [field-sizing:content] min-w-[8ch] placeholder:text-teal-600/40 dark:placeholder:text-teal-400/40"
                 />
               </span>
             )
@@ -423,7 +384,7 @@ export function MentionInput({
 }
 
 // ─── MentionChip ─────────────────────────────────────────────────────────────
-// onRemove: present in the input (to delete the mention), absent in display mode
+// onRemove: present in the input editor, absent in read-only display
 
 export function MentionChip({ name, onRemove, className }: {
   name: string
@@ -443,33 +404,12 @@ export function MentionChip({ name, onRemove, className }: {
           type="button"
           onMouseDown={(e) => { e.preventDefault(); onRemove() }}
           tabIndex={-1}
-          className="ml-0.5 opacity-40 hover:opacity-100 transition-opacity leading-none text-xs"
+          className="ml-0.5 opacity-40 hover:opacity-100 transition-opacity text-xs leading-none"
           aria-label={`Remove mention of ${name}`}
         >
           ×
         </button>
       )}
     </span>
-  )
-}
-
-// ─── SizingInput — auto-width input ──────────────────────────────────────────
-
-interface SizingInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "ref"> {
-  inputRef?: (el: HTMLInputElement | null) => void
-  minWidth?: number
-}
-
-function SizingInput({ inputRef, value, placeholder, minWidth = 2, style, ...props }: SizingInputProps) {
-  // Width is driven by the actual value only, not the placeholder
-  const width = Math.max(minWidth, String(value ?? "").length + 1)
-  return (
-    <input
-      ref={inputRef}
-      value={value}
-      placeholder={placeholder}
-      style={{ width: `${width}ch`, ...style }}
-      {...props}
-    />
   )
 }
