@@ -17,9 +17,9 @@ import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Separator } from "@/components/ui/separator"
-import { IconPlus, IconTrash, IconMap, IconListCheck, IconX } from "@tabler/icons-react"
+import { IconPlus, IconTrash, IconMap, IconListCheck, IconX, IconSend } from "@tabler/icons-react"
 import { cn } from "@/lib/utils"
-import { MentionInput, MentionChip, type MentionFeature } from "@/components/tracker/MentionInput"
+import { MentionInput, MentionChip, type MentionFeature, type MentionInputHandle } from "@/components/tracker/MentionInput"
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -90,6 +90,8 @@ function NewRoadmapForm({ onDone }: { onDone: () => void }) {
 // ─── New Item Form ────────────────────────────────────────────────────────────
 
 function NewItemForm({ roadmapId, onDone }: { roadmapId: Id<"roadmaps">; onDone: () => void }) {
+  const mentionRef = React.useRef<MentionInputHandle>(null)
+  const [isCreating, setIsCreating] = React.useState(false)
   const { data: features } = useQuery(convexQuery(api.roadmap.getAllFeatures, {}))
   const createItem = useMutation(api.roadmap.createRoadmapItem).withOptimisticUpdate(
     (localStore, args) => {
@@ -110,7 +112,22 @@ function NewItemForm({ roadmapId, onDone }: { roadmapId: Id<"roadmaps">; onDone:
       ])
     }
   )
-  const createFeature = useMutation(api.roadmap.createFeature)
+  const createFeature = useMutation(api.roadmap.createFeature).withOptimisticUpdate(
+    (localStore, args) => {
+      const features = localStore.getQuery(api.roadmap.getAllFeatures, {})
+      if (features === undefined) return
+      localStore.setQuery(api.roadmap.getAllFeatures, {}, [
+        ...features,
+        {
+          _id: `opt-${Date.now()}` as Id<"features">,
+          _creationTime: Date.now(),
+          name: args.name,
+          completeStatus: false,
+          parentId: undefined,
+        },
+      ])
+    }
+  )
 
   async function handleSubmit(serialized: string) {
     try {
@@ -126,15 +143,29 @@ function NewItemForm({ roadmapId, onDone }: { roadmapId: Id<"roadmaps">; onDone:
   }
 
   return (
-    <div className="flex items-start gap-2 p-3 border rounded-lg bg-muted/30">
+    <div className="flex items-center gap-1">
       <MentionInput
+        ref={mentionRef}
         features={(features ?? []) as MentionFeature[]}
         onCreateFeature={handleCreateFeature}
         onSubmit={handleSubmit}
+        onPendingStateChange={setIsCreating}
         placeholder="Item name… (type # to mention a feature)"
         autoFocus
         className="flex-1"
       />
+      <Button
+        type="button"
+        variant="ghost"
+        size="sm"
+        className="h-9 shrink-0 text-muted-foreground"
+        disabled={isCreating}
+        onClick={() => mentionRef.current?.submit()}
+      >
+        {isCreating
+          ? <span className="block size-4 animate-spin rounded-full border-2 border-muted-foreground/25 border-t-muted-foreground/70" />
+          : <IconSend className="size-4" />}
+      </Button>
       <Button type="button" variant="ghost" size="sm" className="h-9 shrink-0" onClick={onDone}>
         <IconX className="size-4" />
       </Button>

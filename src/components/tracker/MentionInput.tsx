@@ -52,25 +52,33 @@ export function parseMentions(raw: string, featureMap: Map<string, MentionFeatur
 
 // ─── MentionInput ─────────────────────────────────────────────────────────────
 
+export interface MentionInputHandle {
+  submit: () => void
+}
+
 export interface MentionInputProps {
   features: MentionFeature[]
   onCreateFeature: (name: string) => Promise<Id<"features">>
   onSubmit: (serialized: string) => void
+  onPendingStateChange?: (isPending: boolean) => void
   placeholder?: string
   autoFocus?: boolean
   className?: string
 }
 
-export function MentionInput({
+export const MentionInput = React.forwardRef<MentionInputHandle, MentionInputProps>(
+function MentionInput({
   features,
   onCreateFeature,
   onSubmit,
+  onPendingStateChange,
   placeholder,
   autoFocus,
   className,
-}: MentionInputProps) {
+}, ref) {
   const [segs, setSegs] = React.useState<Seg[]>([textSeg()])
   const [ddIdx, setDdIdx] = React.useState(0)
+  const [isPending, setIsPending] = React.useState(false)
   const inputRefs = React.useRef<Map<string, HTMLInputElement>>(new Map())
 
   const pending = segs.find((s): s is PendingSeg => s.type === "pending") ?? null
@@ -89,6 +97,7 @@ export function MentionInput({
   }, [pending, features])
 
   React.useEffect(() => { setDdIdx(0) }, [pending?.query])
+  React.useEffect(() => { onPendingStateChange?.(isPending) }, [isPending, onPendingStateChange])
 
   // ─── Focus helpers ────────────────────────────────────────────────────────────
 
@@ -191,20 +200,49 @@ export function MentionInput({
   async function selectItem(item: typeof ddItems[0]) {
     if (item.kind === "existing") {
       commitMention(item.feature._id, item.feature.name)
-    } else {
-      const newId = await onCreateFeature(item.name)
-      commitMention(newId, item.name)
+      return
+    }
+    // Optimistic: commit immediately with a temp ID so user can keep typing
+    const tempId = `opt-${uid()}` as Id<"features">
+    commitMention(tempId, item.name)
+    setIsPending(true)
+    try {
+      const realId = await onCreateFeature(item.name)
+      setSegs((prev) => prev.map((s) =>
+        s.type === "mention" && s.featureId === tempId ? { ...s, featureId: realId } : s
+      ))
+    } catch {
+      // Creation failed — convert the optimistic chip back to text
+      setSegs((prev) => {
+        const idx = prev.findIndex((s) => s.type === "mention" && s.featureId === tempId)
+        if (idx === -1) return prev
+        const next = [...prev]
+        const leftSeg  = idx > 0 && next[idx - 1].type === "text"              ? next[idx - 1] as TextSeg : null
+        const rightSeg = idx < next.length - 1 && next[idx + 1].type === "text" ? next[idx + 1] as TextSeg : null
+        const merged: TextSeg = {
+          id: leftSeg?.id ?? uid(),
+          type: "text",
+          value: (leftSeg?.value ?? "") + `#${item.name}` + (rightSeg?.value ?? ""),
+        }
+        next.splice(leftSeg ? idx - 1 : idx, (leftSeg ? 1 : 0) + 1 + (rightSeg ? 1 : 0), merged)
+        return next
+      })
+    } finally {
+      setIsPending(false)
     }
   }
 
   // ─── Submit ───────────────────────────────────────────────────────────────────
 
-  function doSubmit() {
+  const doSubmit = React.useCallback(() => {
+    if (isPending) return
     const value = serializeMentions(segs)
     if (!value.trim()) return
     onSubmit(value)
     setSegs([textSeg()])
-  }
+  }, [isPending, segs, onSubmit])
+
+  React.useImperativeHandle(ref, () => ({ submit: doSubmit }), [doSubmit])
 
   // ─── Text segment handlers ────────────────────────────────────────────────────
 
@@ -274,23 +312,17 @@ export function MentionInput({
 
   return (
     <div className={cn("relative", className)}>
-      {/*
-        No explicit gap — inputs use field-sizing:content to be exactly as wide as
-        their text, so spacing between text and chips is purely what the user types.
-      */}
-      <div
-        className={cn(
-          "flex flex-wrap items-center min-h-9 px-3 py-1.5 cursor-text",
-          "border border-input rounded-md bg-background text-sm ring-offset-background",
-          "focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
-        )}
-        onClick={(e) => {
-          if (e.target === e.currentTarget) {
-            const last = [...segs].reverse().find((s) => s.type === "text" || s.type === "pending")
-            if (last) focusSeg(last.id, "end")
-          }
-        }}
-      >
+      <div className="min-h-9 px-3 py-1.5 rounded-md text-sm hover:bg-muted/50 transition-colors">
+          {/* Content area: text inputs + chips, wraps freely */}
+          <div
+            className="flex flex-wrap items-center gap-y-1 cursor-text"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) {
+                const last = [...segs].reverse().find((s) => s.type === "text" || s.type === "pending")
+                if (last) focusSeg(last.id, "end")
+              }
+            }}
+          >
         {segs.map((seg, segIdx) => {
           if (seg.type === "text") {
             return (
@@ -340,6 +372,7 @@ export function MentionInput({
 
           return null
         })}
+          </div>
       </div>
 
       {/* Autocomplete dropdown */}
@@ -381,7 +414,7 @@ export function MentionInput({
       )}
     </div>
   )
-}
+})
 
 // ─── MentionChip ─────────────────────────────────────────────────────────────
 // onRemove: present in the input editor, absent in read-only display
