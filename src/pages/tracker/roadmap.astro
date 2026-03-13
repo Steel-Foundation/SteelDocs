@@ -1,0 +1,35 @@
+---
+import "../../styles/tracker.css";
+import { RoadmapApp } from "@/components/tracker/RoadmapApp";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Steel Tracker — Roadmap</title>
+    <meta
+      name="description"
+      content="Roadmap and feature tracking for Steel server"
+    />
+    <link rel="icon" href="/SteelDocs/favicon.png" />
+    <link
+      rel="preload"
+      href="/SteelDocs/fonts/1_MinecraftRegular1.woff"
+      as="font"
+      type="font/woff"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/SteelDocs/fonts/3_MinecraftBold1.woff"
+      as="font"
+      type="font/woff"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <RoadmapApp pathname={Astro.url.pathname} client:load />
+  </body>
+</html>

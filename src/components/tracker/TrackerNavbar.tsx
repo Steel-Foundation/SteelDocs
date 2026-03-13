@@ -241,7 +241,7 @@ function UserButton() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem
-          className="cursor-pointer text-red-600 focus:text-red-500 focus:bg-red-100/50 dark:focus:bg-red-950/50"
+          className="cursor-pointer text-destructive focus:text-red-500 focus:bg-red-100/50 dark:focus:bg-red-950/50"
           onClick={async () => {
             await authClient.signOut({
               fetchOptions: {

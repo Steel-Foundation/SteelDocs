@@ -111,4 +111,52 @@ export default defineSchema({
   })
     .index("by_mc_type", ["mc_version", "class_type"])
     .index("by_mc_class", ["mc_version", "class_name"]),
+
+  // ─── Github Sync ─────────────────────────────────────────────────────────────
+
+  /**
+   * Table synchronisée via Webhooks GitHub.
+   * Représente une Issue ou une PR.
+   */
+  github_entities: defineTable({
+    github_id: v.number(),
+    type: v.union(v.literal("issue"), v.literal("pr")),
+    title: v.string(),
+    status: v.union(v.literal("open"), v.literal("closed"), v.literal("merged")),
+    url: v.string(),
+  }).index("by_github_id", ["github_id"]),
+
+  // ─── Roadmap ────────────────────────────────────────────────────────────────
+
+  /**
+   * Représente une fonctionnalité globale de l'application.
+   * completeStatus est géré exclusivement par le webhook GitHub.
+   */
+  features: defineTable({
+    name: v.string(),
+    completeStatus: v.boolean(),
+    parentId: v.optional(v.id("features")),
+    github_entity_id: v.optional(v.id("github_entities")),
+  }).index("by_parent", ["parentId"]),
+
+  /**
+   * Une Roadmap appartenant à un utilisateur (publique en lecture).
+   */
+  roadmaps: defineTable({
+    name: v.string(),
+    userId: v.string(),
+  }).index("by_user", ["userId"]),
+
+  /**
+   * Un élément de la todo-list d'une Roadmap.
+   */
+  roadmap_items: defineTable({
+    name: v.string(),
+    completeStatus: v.boolean(),
+    feature_id: v.optional(v.id("features")),
+    roadmap_id: v.id("roadmaps"),
+    order: v.number(),
+  })
+    .index("by_roadmap_and_order", ["roadmap_id", "order"])
+    .index("by_roadmap", ["roadmap_id"]),
 });
