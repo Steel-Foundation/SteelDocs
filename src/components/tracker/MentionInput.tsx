@@ -54,6 +54,8 @@ export function parseMentions(raw: string, featureMap: Map<string, MentionFeatur
 
 export interface MentionInputHandle {
   submit: () => void
+  focus: () => void
+  getValue: () => string
 }
 
 export interface MentionInputProps {
@@ -61,6 +63,9 @@ export interface MentionInputProps {
   onCreateFeature: (name: string) => Promise<Id<"features">>
   onSubmit: (serialized: string) => void
   onPendingStateChange?: (isPending: boolean) => void
+  defaultValue?: string
+  onNavigateUp?: () => void
+  onNavigateDown?: () => void
   placeholder?: string
   autoFocus?: boolean
   className?: string
@@ -72,11 +77,21 @@ function MentionInput({
   onCreateFeature,
   onSubmit,
   onPendingStateChange,
+  defaultValue,
+  onNavigateUp,
+  onNavigateDown,
   placeholder,
   autoFocus,
   className,
 }, ref) {
-  const [segs, setSegs] = React.useState<Seg[]>([textSeg()])
+  const containerRef = React.useRef<HTMLDivElement>(null)
+  const [segs, setSegs] = React.useState<Seg[]>(() => {
+    if (defaultValue) {
+      const featureMap = new Map(features.map((f) => [f._id, f]))
+      return parseMentions(defaultValue, featureMap)
+    }
+    return [textSeg()]
+  })
   const [ddIdx, setDdIdx] = React.useState(0)
   const [isPending, setIsPending] = React.useState(false)
   const inputRefs = React.useRef<Map<string, HTMLInputElement>>(new Map())
@@ -242,7 +257,11 @@ function MentionInput({
     setSegs([textSeg()])
   }, [isPending, segs, onSubmit])
 
-  React.useImperativeHandle(ref, () => ({ submit: doSubmit }), [doSubmit])
+  React.useImperativeHandle(ref, () => ({
+    submit: doSubmit,
+    focus: () => containerRef.current?.querySelector<HTMLInputElement>("input")?.focus(),
+    getValue: () => serializeMentions(segs),
+  }), [doSubmit, segs])
 
   // ─── Text segment handlers ────────────────────────────────────────────────────
 
@@ -257,8 +276,10 @@ function MentionInput({
   }
 
   function onTextKeyDown(e: React.KeyboardEvent<HTMLInputElement>, seg: TextSeg, segIdx: number) {
-    if (e.key === "Tab")   { e.preventDefault(); return }
-    if (e.key === "Enter") { e.preventDefault(); doSubmit(); return }
+    if (e.key === "Tab")       { e.preventDefault(); return }
+    if (e.key === "Enter")     { e.preventDefault(); doSubmit(); return }
+    if (e.key === "ArrowUp")   { e.preventDefault(); onNavigateUp?.(); return }
+    if (e.key === "ArrowDown") { e.preventDefault(); onNavigateDown?.(); return }
 
     const input = e.currentTarget
     const atStart = input.selectionStart === 0 && input.selectionEnd === 0
@@ -311,18 +332,17 @@ function MentionInput({
   const isInitialEmpty = segs.length === 1 && segs[0].type === "text" && segs[0].value === ""
 
   return (
-    <div className={cn("relative", className)}>
-      <div className="min-h-9 px-3 py-1.5 rounded-md text-sm hover:bg-muted/50 transition-colors">
-          {/* Content area: text inputs + chips, wraps freely */}
-          <div
-            className="flex flex-wrap items-center gap-y-1 cursor-text"
-            onClick={(e) => {
-              if (e.target === e.currentTarget) {
-                const last = [...segs].reverse().find((s) => s.type === "text" || s.type === "pending")
-                if (last) focusSeg(last.id, "end")
-              }
-            }}
-          >
+    // One div: relative (for dropdown) + layout classes from parent + click-to-focus
+    <div
+      ref={containerRef}
+      className={cn("relative", className)}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          const last = [...segs].reverse().find((s) => s.type === "text" || s.type === "pending")
+          if (last) focusSeg(last.id, "end")
+        }
+      }}
+    >
         {segs.map((seg, segIdx) => {
           if (seg.type === "text") {
             return (
@@ -335,7 +355,7 @@ function MentionInput({
                 onChange={(e) => onTextChange(seg, segIdx, e.target.value)}
                 onKeyDown={(e) => onTextKeyDown(e, seg, segIdx)}
                 // field-sizing:content makes the input exactly as wide as its text, no extra space
-                className="outline-none bg-transparent min-w-px [field-sizing:content] placeholder:text-muted-foreground"
+                className="outline-none bg-transparent m-0 p-0 text-sm leading-none h-[1em] min-w-px [field-sizing:content] placeholder:text-muted-foreground"
               />
             )
           }
@@ -354,7 +374,7 @@ function MentionInput({
             return (
               <span
                 key={seg.id}
-                className="inline-flex items-center gap-1 px-1.5 py-1 rounded-sm bg-teal-500/10 border border-teal-500/25 text-teal-600 dark:text-teal-400"
+                className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-sm leading-none bg-teal-500/10 border border-teal-500/25 text-teal-600 dark:text-teal-400"
               >
                 <span className="select-none opacity-50 text-xs leading-none">#</span>
                 <input
@@ -364,7 +384,7 @@ function MentionInput({
                   onChange={(e) => onPendingChange(seg.id, e.target.value)}
                   onKeyDown={onPendingKeyDown}
                   // min-w ensures a comfortable tap target when empty, grows with content
-                  className="outline-none bg-transparent [field-sizing:content] min-w-[8ch] placeholder:text-teal-600/40 dark:placeholder:text-teal-400/40"
+                  className="outline-none bg-transparent m-0 p-0 text-sm leading-none h-[1em] [field-sizing:content] min-w-[8ch] placeholder:text-teal-600/40 dark:placeholder:text-teal-400/40"
                 />
               </span>
             )
@@ -372,8 +392,6 @@ function MentionInput({
 
           return null
         })}
-          </div>
-      </div>
 
       {/* Autocomplete dropdown */}
       {pending && (
@@ -426,7 +444,7 @@ export function MentionChip({ name, onRemove, className }: {
 }) {
   return (
     <span className={cn(
-      "inline-flex items-center gap-1 px-1.5 py-1 rounded-sm",
+      "inline-flex items-center gap-1 px-1.5 py-0.5 rounded-sm leading-none",
       "bg-teal-500/15 text-teal-600 dark:text-teal-400 text-sm font-medium select-none",
       className,
     )}>

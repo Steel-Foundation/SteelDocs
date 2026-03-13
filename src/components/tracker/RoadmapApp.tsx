@@ -87,116 +87,27 @@ function NewRoadmapForm({ onDone }: { onDone: () => void }) {
   )
 }
 
-// ─── New Item Form ────────────────────────────────────────────────────────────
-
-function NewItemForm({ roadmapId, onDone }: { roadmapId: Id<"roadmaps">; onDone: () => void }) {
-  const mentionRef = React.useRef<MentionInputHandle>(null)
-  const [isCreating, setIsCreating] = React.useState(false)
-  const { data: features } = useQuery(convexQuery(api.roadmap.getAllFeatures, {}))
-  const createItem = useMutation(api.roadmap.createRoadmapItem).withOptimisticUpdate(
-    (localStore, args) => {
-      const items = localStore.getQuery(api.roadmap.getRoadmapItems, { roadmapId: args.roadmap_id })
-      if (items === undefined) return
-      localStore.setQuery(api.roadmap.getRoadmapItems, { roadmapId: args.roadmap_id }, [
-        ...items,
-        {
-          _id: `opt-${Date.now()}` as Id<"roadmap_items">,
-          _creationTime: Date.now(),
-          name: args.name,
-          completeStatus: false,
-          feature_id: undefined,
-          roadmap_id: args.roadmap_id,
-          order: (items[items.length - 1]?.order ?? -1) + 1,
-          feature: null,
-        } as RoadmapItem,
-      ])
-    }
-  )
-  const createFeature = useMutation(api.roadmap.createFeature).withOptimisticUpdate(
-    (localStore, args) => {
-      const features = localStore.getQuery(api.roadmap.getAllFeatures, {})
-      if (features === undefined) return
-      localStore.setQuery(api.roadmap.getAllFeatures, {}, [
-        ...features,
-        {
-          _id: `opt-${Date.now()}` as Id<"features">,
-          _creationTime: Date.now(),
-          name: args.name,
-          completeStatus: false,
-          parentId: undefined,
-        },
-      ])
-    }
-  )
-
-  async function handleSubmit(serialized: string) {
-    try {
-      await createItem({ roadmap_id: roadmapId, name: serialized })
-      onDone()
-    } catch {
-      toast.error("Failed to create item")
-    }
-  }
-
-  async function handleCreateFeature(name: string): Promise<Id<"features">> {
-    return await createFeature({ name })
-  }
-
-  return (
-    <div className="flex items-center gap-1">
-      <MentionInput
-        ref={mentionRef}
-        features={(features ?? []) as MentionFeature[]}
-        onCreateFeature={handleCreateFeature}
-        onSubmit={handleSubmit}
-        onPendingStateChange={setIsCreating}
-        placeholder="Item name… (type # to mention a feature)"
-        autoFocus
-        className="flex-1"
-      />
-      <Button
-        type="button"
-        variant="ghost"
-        size="sm"
-        className="h-9 shrink-0 text-muted-foreground"
-        disabled={isCreating}
-        onClick={() => mentionRef.current?.submit()}
-      >
-        {isCreating
-          ? <span className="block size-4 animate-spin rounded-full border-2 border-muted-foreground/25 border-t-muted-foreground/70" />
-          : <IconSend className="size-4" />}
-      </Button>
-      <Button type="button" variant="ghost" size="sm" className="h-9 shrink-0" onClick={onDone}>
-        <IconX className="size-4" />
-      </Button>
-    </div>
-  )
-}
 
 // ─── Roadmap Items Panel ──────────────────────────────────────────────────────
 
-function renderMentionedName(
+// Returns raw nodes — the parent div owns layout and sizing
+function mentionNodes(
   name: string,
   featuresMap: Map<string, MentionFeature>,
   faded: boolean,
-): React.ReactNode {
+): React.ReactNode[] {
   const regex = /<#([^>]+)>/g
   const nodes: React.ReactNode[] = []
   let last = 0
   let m: RegExpExecArray | null
-  const textClass = faded ? "line-through" : undefined
+  const textClass = cn("whitespace-pre", faded && "line-through")
   while ((m = regex.exec(name)) !== null) {
     if (m.index > last) nodes.push(<span key={`t${m.index}`} className={textClass}>{name.slice(last, m.index)}</span>)
-    const feature = featuresMap.get(m[1])
-    nodes.push(<MentionChip key={m.index} name={feature?.name ?? m[1]} className="mx-1" />)
+    nodes.push(<MentionChip key={m.index} name={featuresMap.get(m[1])?.name ?? m[1]} />)
     last = m.index + m[0].length
   }
   if (last < name.length) nodes.push(<span key="t-end" className={textClass}>{name.slice(last)}</span>)
-  return (
-    <span className={cn("text-sm flex-1 flex flex-wrap items-center gap-x-0.5 gap-y-0.5", faded && "text-muted-foreground")}>
-      {nodes}
-    </span>
-  )
+  return nodes
 }
 
 function RoadmapItemsPanel({ roadmap, isOwner, onRoadmapDeleted }: {
@@ -204,7 +115,10 @@ function RoadmapItemsPanel({ roadmap, isOwner, onRoadmapDeleted }: {
   isOwner: boolean
   onRoadmapDeleted: () => void
 }) {
-  const [addingItem, setAddingItem] = React.useState(false)
+  const [activeId, setActiveId] = React.useState<Id<"roadmap_items"> | "new">("new")
+  const [isCreatingFeature, setIsCreatingFeature] = React.useState(false)
+  const activeMentionRef = React.useRef<MentionInputHandle>(null)
+
   const { data: items, isLoading } = useQuery(convexQuery(api.roadmap.getRoadmapItems, { roadmapId: roadmap._id }))
   const { data: allFeatures } = useQuery(convexQuery(api.roadmap.getAllFeatures, {}))
   const featuresMap = React.useMemo(
@@ -214,38 +128,85 @@ function RoadmapItemsPanel({ roadmap, isOwner, onRoadmapDeleted }: {
 
   const toggleItem = useMutation(api.roadmap.toggleRoadmapItem).withOptimisticUpdate(
     (localStore, { id }) => {
-      const items = localStore.getQuery(api.roadmap.getRoadmapItems, { roadmapId: roadmap._id })
-      if (items === undefined) return
-      localStore.setQuery(
-        api.roadmap.getRoadmapItems,
-        { roadmapId: roadmap._id },
-        items.map((item) => item._id === id ? { ...item, completeStatus: !item.completeStatus } : item)
-      )
+      const cur = localStore.getQuery(api.roadmap.getRoadmapItems, { roadmapId: roadmap._id })
+      if (!cur) return
+      localStore.setQuery(api.roadmap.getRoadmapItems, { roadmapId: roadmap._id },
+        cur.map((item) => item._id === id ? { ...item, completeStatus: !item.completeStatus } : item))
     }
   )
 
   const deleteItem = useMutation(api.roadmap.deleteRoadmapItem).withOptimisticUpdate(
     (localStore, { id }) => {
-      const items = localStore.getQuery(api.roadmap.getRoadmapItems, { roadmapId: roadmap._id })
-      if (items === undefined) return
-      localStore.setQuery(
-        api.roadmap.getRoadmapItems,
-        { roadmapId: roadmap._id },
-        items.filter((item) => item._id !== id)
-      )
+      const cur = localStore.getQuery(api.roadmap.getRoadmapItems, { roadmapId: roadmap._id })
+      if (!cur) return
+      localStore.setQuery(api.roadmap.getRoadmapItems, { roadmapId: roadmap._id }, cur.filter((i) => i._id !== id))
+    }
+  )
+
+  const updateItem = useMutation(api.roadmap.updateRoadmapItem).withOptimisticUpdate(
+    (localStore, args) => {
+      const cur = localStore.getQuery(api.roadmap.getRoadmapItems, { roadmapId: roadmap._id })
+      if (!cur) return
+      localStore.setQuery(api.roadmap.getRoadmapItems, { roadmapId: roadmap._id },
+        cur.map((item) => item._id === args.id ? { ...item, name: args.name ?? item.name } : item))
+    }
+  )
+
+  const createItem = useMutation(api.roadmap.createRoadmapItem).withOptimisticUpdate(
+    (localStore, args) => {
+      const cur = localStore.getQuery(api.roadmap.getRoadmapItems, { roadmapId: args.roadmap_id })
+      if (!cur) return
+      localStore.setQuery(api.roadmap.getRoadmapItems, { roadmapId: args.roadmap_id }, [
+        ...cur,
+        { _id: `opt-${Date.now()}` as Id<"roadmap_items">, _creationTime: Date.now(), name: args.name,
+          completeStatus: false, feature_id: undefined, roadmap_id: args.roadmap_id,
+          order: (cur[cur.length - 1]?.order ?? -1) + 1, feature: null } as RoadmapItem,
+      ])
+    }
+  )
+
+  const createFeature = useMutation(api.roadmap.createFeature).withOptimisticUpdate(
+    (localStore, args) => {
+      const cur = localStore.getQuery(api.roadmap.getAllFeatures, {})
+      if (!cur) return
+      localStore.setQuery(api.roadmap.getAllFeatures, {}, [
+        ...cur,
+        { _id: `opt-${Date.now()}` as Id<"features">, _creationTime: Date.now(),
+          name: args.name, completeStatus: false, parentId: undefined },
+      ])
     }
   )
 
   const deleteRoadmap = useMutation(api.roadmap.deleteRoadmap).withOptimisticUpdate(
     (localStore, { id }) => {
-      const roadmaps = localStore.getQuery(api.roadmap.getRoadmaps, {})
-      if (roadmaps === undefined) return
-      localStore.setQuery(api.roadmap.getRoadmaps, {}, roadmaps.filter((r) => r._id !== id))
+      const cur = localStore.getQuery(api.roadmap.getRoadmaps, {})
+      if (!cur) return
+      localStore.setQuery(api.roadmap.getRoadmaps, {}, cur.filter((r) => r._id !== id))
     }
   )
 
-  const completed = (items ?? []).filter((i) => i.completeStatus).length
-  const total = (items ?? []).length
+  const list = (items ?? []) as RoadmapItem[]
+  const completed = list.filter((i) => i.completeStatus).length
+  const total = list.length
+
+  async function handleCreateFeature(name: string): Promise<Id<"features">> {
+    return await createFeature({ name })
+  }
+
+  function navigateTo(idx: number) {
+    if (idx < 0) return
+    // Auto-save if leaving an existing item
+    if (activeId !== "new") {
+      const currentValue = activeMentionRef.current?.getValue()
+      const current = list.find((i) => i._id === activeId)
+      if (current && currentValue !== undefined && currentValue !== current.name) {
+        updateItem({ id: current._id, name: currentValue }).catch(() => toast.error("Failed to update item"))
+      }
+    }
+    const newId = idx >= list.length ? "new" : list[idx]._id
+    setActiveId(newId)
+    requestAnimationFrame(() => activeMentionRef.current?.focus())
+  }
 
   async function handleDeleteRoadmap() {
     if (!confirm(`Delete roadmap "${roadmap.name}" and all its items?`)) return
@@ -257,6 +218,11 @@ function RoadmapItemsPanel({ roadmap, isOwner, onRoadmapDeleted }: {
     }
   }
 
+  // Shared classes — all three states (unchecked / checked / editing) use this exact row
+  const ROW = "flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-muted/50"
+  // Content area inside the row — same for display and edit so text never shifts
+  const CONTENT = "flex-1 flex flex-wrap items-center gap-x-0.5 gap-y-0.5 text-sm leading-none"
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
@@ -265,15 +231,9 @@ function RoadmapItemsPanel({ roadmap, isOwner, onRoadmapDeleted }: {
           {total > 0 && <p className="text-xs text-muted-foreground mt-0.5">{completed}/{total} completed</p>}
         </div>
         {isOwner && (
-          <div className="flex items-center gap-2">
-            <Button variant="outline" size="sm" className="h-8 gap-1.5 text-xs" onClick={() => setAddingItem(true)}>
-              <IconPlus className="size-3.5" />
-              Add item
-            </Button>
-            <Button variant="ghost" size="sm" className="h-8 text-destructive hover:text-destructive" onClick={handleDeleteRoadmap}>
-              <IconTrash className="size-4" />
-            </Button>
-          </div>
+          <Button variant="ghost" size="sm" className="h-8 text-destructive hover:text-destructive" onClick={handleDeleteRoadmap}>
+            <IconTrash className="size-4" />
+          </Button>
         )}
       </div>
 
@@ -284,25 +244,43 @@ function RoadmapItemsPanel({ roadmap, isOwner, onRoadmapDeleted }: {
       )}
 
       {isLoading && <div className="text-sm text-muted-foreground py-6 text-center">Loading…</div>}
-      {!isLoading && total === 0 && !addingItem && (
-        <div className="text-sm text-muted-foreground py-8 text-center border border-dashed rounded-lg">
-          No items yet.{isOwner ? " Add the first one." : ""}
-        </div>
-      )}
 
       <div className="flex flex-col gap-1">
-        {(items as RoadmapItem[] | undefined ?? []).map((item) => (
-          <div key={item._id} className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-muted/50 group">
+        {list.map((item, itemIdx) => (
+          <div key={item._id} className={cn(ROW, "group")}>
             <Checkbox
               checked={item.completeStatus}
               onCheckedChange={() => isOwner && toggleItem({ id: item._id }).catch(() => toast.error("Failed to update item"))}
               disabled={!isOwner}
               className="shrink-0"
             />
-            {renderMentionedName(item.name, featuresMap, item.completeStatus)}
+            {isOwner && activeId === item._id ? (
+              <MentionInput
+                key={item._id}
+                ref={activeMentionRef}
+                features={(allFeatures ?? []) as MentionFeature[]}
+                onCreateFeature={handleCreateFeature}
+                onPendingStateChange={setIsCreatingFeature}
+                defaultValue={item.name}
+                onSubmit={(name) => {
+                  updateItem({ id: item._id, name }).catch(() => toast.error("Failed to update item"))
+                  navigateTo(itemIdx + 1)
+                }}
+                onNavigateUp={() => navigateTo(itemIdx - 1)}
+                onNavigateDown={() => navigateTo(itemIdx + 1)}
+                className={CONTENT}
+              />
+            ) : (
+              <div
+                className={cn(CONTENT, "cursor-text", item.completeStatus && "text-muted-foreground")}
+                onClick={() => isOwner && setActiveId(item._id)}
+              >
+                {mentionNodes(item.name, featuresMap, item.completeStatus)}
+              </div>
+            )}
             {isOwner && (
               <button
-                className="opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-destructive"
+                className="opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-destructive shrink-0"
                 onClick={() => deleteItem({ id: item._id }).catch(() => toast.error("Failed to delete item"))}
               >
                 <IconX className="size-3.5" />
@@ -310,9 +288,39 @@ function RoadmapItemsPanel({ roadmap, isOwner, onRoadmapDeleted }: {
             )}
           </div>
         ))}
-      </div>
 
-      {addingItem && <NewItemForm roadmapId={roadmap._id} onDone={() => setAddingItem(false)} />}
+        {/* New item row — always visible for owners */}
+        {isOwner && (
+          <div className={ROW} onFocus={() => setActiveId("new")}>
+            <Checkbox disabled className="shrink-0 opacity-30" />
+            <MentionInput
+              key="new"
+              ref={activeId === "new" ? activeMentionRef : undefined}
+              features={(allFeatures ?? []) as MentionFeature[]}
+              onCreateFeature={handleCreateFeature}
+              onPendingStateChange={setIsCreatingFeature}
+              onSubmit={async (name) => {
+                try { await createItem({ roadmap_id: roadmap._id, name }) }
+                catch { toast.error("Failed to create item") }
+              }}
+              onNavigateUp={() => navigateTo(list.length - 1)}
+              placeholder="New item…"
+              autoFocus={activeId === "new"}
+              className={CONTENT}
+            />
+            <button
+              type="button"
+              disabled={isCreatingFeature}
+              onClick={() => activeMentionRef.current?.submit()}
+              className="shrink-0 text-muted-foreground hover:text-foreground transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              {isCreatingFeature
+                ? <span className="block size-3.5 animate-spin rounded-full border-2 border-muted-foreground/25 border-t-muted-foreground/70" />
+                : <IconSend className="size-3.5" />}
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   )
 }
