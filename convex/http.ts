@@ -2,9 +2,9 @@ import { httpRouter } from "convex/server";
 import { httpAction } from "./_generated/server";
 import { internal } from "./_generated/api";
 
-// import { authComponent, createAuth } from "./auth";
+import { authComponent, createAuth } from "./auth";
 const http = httpRouter();
-// authComponent.registerRoutes(http, createAuth);
+authComponent.registerRoutes(http, createAuth);
 
 http.route({
   path: "/ingest",

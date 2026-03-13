@@ -1,17 +1,26 @@
 "use client"
 
 import { useRef, useState, useEffect, useCallback } from "react"
-import { Search, Sun, Moon, HatGlasses, Github } from "lucide-react"
+import { Search, Sun, Moon, HatGlasses, Github, LogIn, UserPlus, LogOut } from "lucide-react"
 import { useTheme } from "next-themes"
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { authClient } from "@/lib/auth-client"
 
 const BASE = "/SteelDocs"
 const IS_DEV = import.meta.env.DEV
+
+function getInitials(name: string | undefined): string {
+  if (!name) return "?"
+  return name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
+}
 
 // ─── Search ───────────────────────────────────────────────────────────────────
 
@@ -155,28 +164,97 @@ function NavSearch() {
 // ─── User button ──────────────────────────────────────────────────────────────
 
 function UserButton() {
+  const { data: session } = authClient.useSession()
+
+  if (!session?.user) {
+    return (
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <button
+            className="flex items-center justify-center size-8 rounded-full bg-teal-100 dark:bg-white/10 text-teal-600 dark:text-white/60 hover:bg-teal-200 dark:hover:bg-white/20 transition-all cursor-pointer"
+            aria-label="User menu"
+          >
+            <HatGlasses className="size-4" />
+          </button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="min-w-48 rounded-xl" align="end" sideOffset={8}>
+          <DropdownMenuLabel className="p-0 font-normal">
+            <div className="flex items-center gap-2 px-2 py-2">
+              <div className="flex size-8 items-center justify-center rounded-full bg-muted">
+                <HatGlasses className="size-4" />
+              </div>
+              <div className="flex flex-col text-sm leading-tight">
+                <span className="font-medium">Guest</span>
+                <span className="text-xs text-muted-foreground">Not signed in</span>
+              </div>
+            </div>
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <DropdownMenuItem asChild>
+              <a href={`${BASE}/tracker/login`} className="cursor-pointer">
+                <LogIn className="mr-2 size-4" />
+                Sign in
+              </a>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <a href={`${BASE}/tracker/signup`} className="cursor-pointer">
+                <UserPlus className="mr-2 size-4" />
+                Create an account
+              </a>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    )
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button
-          className="flex items-center justify-center size-8 rounded-full bg-teal-100 dark:bg-white/10 text-teal-600 dark:text-white/60 hover:bg-teal-200 dark:hover:bg-white/20 transition-all cursor-pointer"
+          className="flex items-center justify-center size-8 rounded-full bg-teal-100 dark:bg-white/10 text-teal-600 dark:text-white/60 hover:bg-teal-200 dark:hover:bg-white/20 transition-all cursor-pointer overflow-hidden"
           aria-label="User menu"
         >
-          <HatGlasses className="size-4" />
+          {session.user.image ? (
+            <img src={session.user.image} alt={session.user.name} className="size-full object-cover" />
+          ) : (
+            <span className="text-xs font-semibold">{getInitials(session.user.name)}</span>
+          )}
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="min-w-48 rounded-xl" align="end" sideOffset={8}>
         <DropdownMenuLabel className="p-0 font-normal">
           <div className="flex items-center gap-2 px-2 py-2">
-            <div className="flex size-8 items-center justify-center rounded-full bg-muted">
-              <HatGlasses className="size-4" />
+            <div className="flex size-8 items-center justify-center rounded-full bg-muted overflow-hidden">
+              {session.user.image ? (
+                <img src={session.user.image} alt={session.user.name} className="size-full object-cover" />
+              ) : (
+                <span className="text-xs font-semibold">{getInitials(session.user.name)}</span>
+              )}
             </div>
             <div className="flex flex-col text-sm leading-tight">
-              <span className="font-medium">Guest</span>
-              <span className="text-xs text-muted-foreground">Auth disabled</span>
+              <span className="font-medium">{session.user.name}</span>
+              <span className="text-xs text-muted-foreground">{session.user.email}</span>
             </div>
           </div>
         </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem
+          className="cursor-pointer text-red-600 focus:text-red-500 focus:bg-red-100/50 dark:focus:bg-red-950/50"
+          onClick={async () => {
+            await authClient.signOut({
+              fetchOptions: {
+                onSuccess: () => {
+                  window.location.reload();
+                },
+              },
+            });
+          }}
+        >
+          <LogOut className="mr-2 size-4" />
+          Sign out
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
