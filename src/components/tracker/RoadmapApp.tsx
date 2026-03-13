@@ -90,7 +90,8 @@ function NewRoadmapForm({ onDone }: { onDone: () => void }) {
 
 // ─── Roadmap Items Panel ──────────────────────────────────────────────────────
 
-// Returns raw nodes — the parent div owns layout and sizing
+// Returns raw nodes — the parent div owns layout and sizing.
+// Uses readOnly inputs (same element as edit mode) so text renders identically in both states.
 function mentionNodes(
   name: string,
   featuresMap: Map<string, MentionFeature>,
@@ -100,13 +101,16 @@ function mentionNodes(
   const nodes: React.ReactNode[] = []
   let last = 0
   let m: RegExpExecArray | null
-  const textClass = cn("whitespace-pre", faded && "line-through")
+  const inputClass = cn(
+    "outline-none bg-transparent m-0 p-0 text-sm leading-none h-[1em] min-w-px [field-sizing:content] pointer-events-none",
+    faded && "line-through text-muted-foreground",
+  )
   while ((m = regex.exec(name)) !== null) {
-    if (m.index > last) nodes.push(<span key={`t${m.index}`} className={textClass}>{name.slice(last, m.index)}</span>)
+    if (m.index > last) nodes.push(<input key={`t${m.index}`} readOnly tabIndex={-1} value={name.slice(last, m.index)} className={inputClass} />)
     nodes.push(<MentionChip key={m.index} name={featuresMap.get(m[1])?.name ?? m[1]} />)
     last = m.index + m[0].length
   }
-  if (last < name.length) nodes.push(<span key="t-end" className={textClass}>{name.slice(last)}</span>)
+  if (last < name.length) nodes.push(<input key="t-end" readOnly tabIndex={-1} value={name.slice(last)} className={inputClass} />)
   return nodes
 }
 
@@ -221,7 +225,7 @@ function RoadmapItemsPanel({ roadmap, isOwner, onRoadmapDeleted }: {
   // Shared classes — all three states (unchecked / checked / editing) use this exact row
   const ROW = "flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-muted/50"
   // Content area inside the row — same for display and edit so text never shifts
-  const CONTENT = "flex-1 flex flex-wrap items-center gap-x-0.5 gap-y-0.5 text-sm leading-none"
+  const CONTENT = "flex-1 flex flex-wrap items-baseline gap-x-0.5 gap-y-0.5 text-sm leading-none"
 
   return (
     <div className="flex flex-col gap-4">
