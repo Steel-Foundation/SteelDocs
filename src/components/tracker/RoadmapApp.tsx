@@ -634,7 +634,7 @@ function RoadmapsTab({ userId, isAuthenticated }: { userId: string | null; isAut
 
       {/* Desktop : side-by-side */}
       <div className="hidden md:flex gap-6 items-start">
-        <div className="w-[420px] shrink-0">
+        <div className="w-105 shrink-0">
           <AllRoadmapsGrid
             roadmaps={allRoadmaps}
             selectedId={selectedId}
@@ -711,7 +711,7 @@ function RoadmapAppInner({ pathname }: { pathname: string }) {
         <main className="h-screen pt-16 flex flex-col overflow-hidden">
           <div className="flex-1 flex justify-center overflow-hidden">
             <div className="w-full max-w-7xl mx-auto flex flex-col overflow-hidden">
-              <ResizablePanelGroup direction="horizontal" className="flex-1">
+              <ResizablePanelGroup className="flex-1">
                 <ResizablePanel defaultSize={75} minSize="40%">
                   <div className="h-full overflow-y-auto py-6 px-6">
                     <div className="flex items-center gap-3 mb-6">

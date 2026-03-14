@@ -132,6 +132,17 @@ export const updateFeature = authedMutation({
   },
 });
 
+export const moveFeature = authedMutation({
+  args: {
+    id: v.id("features"),
+    parentId: v.optional(v.id("features")),
+  },
+  handler: async (ctx, args) => {
+    requireUserId(ctx.user);
+    await ctx.db.patch(args.id, { parentId: args.parentId });
+  },
+});
+
 export const deleteFeature = authedMutation({
   args: { id: v.id("features") },
   handler: async (_ctx, _args) => {
