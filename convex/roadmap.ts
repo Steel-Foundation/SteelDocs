@@ -1,6 +1,7 @@
 import { v } from "convex/values";
 import { query } from "./_generated/server";
 import { authedMutation } from "./functions";
+import { authComponent } from "./auth";
 import type { Id } from "./_generated/dataModel";
 import type { MutationCtx } from "./_generated/server";
 import type { AuthUser } from "./auth";
@@ -32,6 +33,34 @@ export const getRoadmaps = query({
   },
 });
 
+export const getAllRoadmapPreviews = query({
+  args: {},
+  handler: async (ctx) => {
+    const roadmaps = await ctx.db.query("roadmaps").collect();
+
+    const previewItems = await Promise.all(
+      roadmaps.map((r) =>
+        ctx.db
+          .query("roadmap_items")
+          .withIndex("by_roadmap_and_order", (q) => q.eq("roadmap_id", r._id))
+          .take(3)
+      )
+    );
+
+    const uniqueUserIds = [...new Set(roadmaps.map((r) => r.userId))];
+    const users = await Promise.all(
+      uniqueUserIds.map((id) => authComponent.getAnyUserById(ctx, id))
+    );
+    const usersMap = new Map(uniqueUserIds.map((id, i) => [id, users[i] ?? null]));
+
+    return roadmaps.map((r, i) => ({
+      ...r,
+      previewItems: previewItems[i],
+      user: usersMap.get(r.userId) ?? null,
+    }));
+  },
+});
+
 export const getRoadmapItems = query({
   args: { roadmapId: v.id("roadmaps") },
   handler: async (ctx, args) => {
@@ -40,12 +69,11 @@ export const getRoadmapItems = query({
       .withIndex("by_roadmap_and_order", (q) => q.eq("roadmap_id", args.roadmapId))
       .collect();
 
-    return await Promise.all(
-      items.map(async (item) => {
-        const feature = item.feature_id ? await ctx.db.get(item.feature_id) : null;
-        return { ...item, feature };
-      })
-    );
+    const featureIds = [...new Set(items.map((i) => i.feature_id).filter((id) => id != null))];
+    const features = await Promise.all(featureIds.map((id) => ctx.db.get(id)));
+    const featureMap = new Map(features.filter((f) => f != null).map((f) => [f!._id, f]));
+
+    return items.map((item) => ({ ...item, feature: item.feature_id ? (featureMap.get(item.feature_id) ?? null) : null }));
   },
 });
 

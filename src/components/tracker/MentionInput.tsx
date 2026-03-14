@@ -316,7 +316,7 @@ function MentionInput({
     if (e.key === "Tab")       { e.preventDefault(); return }
     if (e.key === "Escape")    { e.preventDefault(); cancelPending(); return }
     if (e.key === "ArrowUp")   { e.preventDefault(); setDdIdx((i) => Math.max(0, i - 1)); return }
-    if (e.key === "ArrowDown") { e.preventDefault(); setDdIdx((i) => Math.min(ddItems.length - 1, i + 1)); return }
+    if (e.key === "ArrowDown") { e.preventDefault(); setDdIdx((i) => ddItems.length > 0 ? Math.min(ddItems.length - 1, i + 1) : 0); return }
     if (e.key === "ArrowLeft" && e.currentTarget.selectionStart === 0) { e.preventDefault(); cancelPending(); return }
     if (e.key === "Enter") {
       e.preventDefault()
