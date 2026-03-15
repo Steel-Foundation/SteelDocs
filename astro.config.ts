@@ -54,6 +54,8 @@ export default defineConfig({
         },
         items: [
           "guides/development/decompile-minecraft",
+          "guides/development/upgrade-minecraft",
+          "guides/development/code-standard",
           {
             label: "Blocks",
             translations: {
