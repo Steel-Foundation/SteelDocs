@@ -14,11 +14,11 @@ The mod hooks into the server startup lifecycle and automatically runs all extra
 ## How to use
 
 At first you need to create the run directory.
-It is really easy, build it, or in intellij directly click on run.
-Then minecraft starts create a new world and join it.
+It's very easy: build it from the command line, or simply click the Run button in your IDE of choice (e.g., IntelliJ).
+Minecraft will start, create a new world, and you can join it.
 
-This will create a folder calls steel-extractor there you find all json files, which steel needs!
-Not all json files are located in the same dir in steel. So please check the mapping first before you move something!
+This will create a folder called `steel-extractor`. There, you'll find all the generated json files, which steel needs as a reference to vanilla.
+Not all json files are located in the same directory in steel. So please check the mapping first before you move something!
 
 ## How It Works
 
@@ -41,24 +41,24 @@ interface Extractor {
 
 The following table lists all extractors and what data they produce:
 
-| Extractor | Output File | Description |
-|-----------|-------------|-------------|
-| `Blocks` | `blocks.json` | All blocks with behavior properties, block states, default values, collision and outline shapes |
-| `BlockEntities` | `block_entities.json` | Registry keys of all block entity types |
-| `Items` | `items.json` | All items with components, block references, and class names |
-| `Packets` | `packets.json` | All serverbound and clientbound packets grouped by protocol phase |
-| `MenuTypes` | `menutypes.json` | All menu/GUI types (e.g. crafting table, furnace) |
-| `Entities` | `entities.json` | Entities with dimensions, synched data, attributes, and behavior flags |
-| `Fluids` | `fluids.json` | All fluids with behavior properties and state data |
-| `GameRulesExtractor` | `game_rules.json` | All game rules with types, defaults, and bounds |
-| `Classes` | `classes.json` | Java class names for all blocks and items |
-| `Attributes` | `attributes.json` | Entity attributes with defaults, ranges, and sync info |
-| `MobEffects` | `mob_effects.json` | Status effects with categories and colors |
-| `Potions` | `potions.json` | Potions with their effects, durations, and amplifiers |
-| `SoundTypes` | `sound_types.json` | Block sound types with volume, pitch, and sound event references |
-| `SoundEvents` | `sound_events.json` | Mapping of all sound event paths to registry IDs |
-| `LevelEvents` | `level_events.json` | All level event constants (particles, sounds) |
-| `Tags` | `tags.json` | Block and item tags (excluding the `minecraft` namespace) |
+| Extractor            | Output File           | Description                                                                                     |
+| -------------------- | --------------------- | ----------------------------------------------------------------------------------------------- |
+| `Blocks`             | `blocks.json`         | All blocks with behavior properties, block states, default values, collision and outline shapes |
+| `BlockEntities`      | `block_entities.json` | Registry keys of all block entity types                                                         |
+| `Items`              | `items.json`          | All items with components, block references, and class names                                    |
+| `Packets`            | `packets.json`        | All serverbound and clientbound packets grouped by protocol phase                               |
+| `MenuTypes`          | `menutypes.json`      | All menu/GUI types (e.g. crafting table, furnace)                                               |
+| `Entities`           | `entities.json`       | Entities with dimensions, synched data, attributes, and behavior flags                          |
+| `Fluids`             | `fluids.json`         | All fluids with behavior properties and state data                                              |
+| `GameRulesExtractor` | `game_rules.json`     | All game rules with types, defaults, and bounds                                                 |
+| `Classes`            | `classes.json`        | Java class names for all blocks and items                                                       |
+| `Attributes`         | `attributes.json`     | Entity attributes with defaults, ranges, and sync info                                          |
+| `MobEffects`         | `mob_effects.json`    | Status effects with categories and colors                                                       |
+| `Potions`            | `potions.json`        | Potions with their effects, durations, and amplifiers                                           |
+| `SoundTypes`         | `sound_types.json`    | Block sound types with volume, pitch, and sound event references                                |
+| `SoundEvents`        | `sound_events.json`   | Mapping of all sound event paths to registry IDs                                                |
+| `LevelEvents`        | `level_events.json`   | All level event constants (particles, sounds)                                                   |
+| `Tags`               | `tags.json`           | Block and item tags (excluding the `minecraft` namespace)                                       |
 
 ---
 
