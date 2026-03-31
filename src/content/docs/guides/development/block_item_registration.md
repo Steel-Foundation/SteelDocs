@@ -1,11 +1,11 @@
 ---
 title: Block/Item registration
-description: Gives a full guidance of how to register a new item or block behavior to steel.
+description: A full guide on how to register a new item or block behavior in Steel.
 ---
 
 ## Registration
 
-To register a block you need to add to that struct the attribute `block_behavior` and for items `item_behavior`.
+To register a block you need to add to that struct the attribute `block_behavior` and for items `item_behavior`,
 like this:
 ```rust
 #[block_behavior]
@@ -16,9 +16,9 @@ pub struct CactusBlock {
 
 > ⚠️ The generation script expects the block property for the block behavior. For item behavior this is not needed!
 
-If the written block or item name is different then in `classes.json` then the class type needs to be used in `block_behavior` and `item_behavior`. where you add the class name from `classes.json`.
+If the written block or item name is different than in `classes.json`, the class type needs to be used in `block_behavior` and `item_behavior`, where you add the class name from `classes.json`.
 
-As an example here:
+Here is an example:
 ```rust
 #[item_behavior(class = "ShovelItem")]
 pub struct ShovelBehavior;
@@ -42,8 +42,8 @@ pub struct ButtonBlock {
 }
 ```
 
-there are now three more properties: `ticks_to_stay_pressed`, `sound_click_on`, `sound_click_off`
-Now check all information which we have in `classes.json`
+There are now three more properties: `ticks_to_stay_pressed`, `sound_click_on`, `sound_click_off`.
+Now check all the information we have in `classes.json`:
 
 ```json
     {
@@ -66,13 +66,13 @@ Now check all information which we have in `classes.json`
     }
 ```
 
-> ⚠️ All types order needs to be the same in the new function as the order in the properties!
+> ⚠️ The order of all types in the new function needs to be the same as the order of the properties!
 
-so we need different types now, so starting with the first one
+So we need different types now, starting with the first one:
 ### value
 
-it looks like this: `#[json_arg(value)]`
-so the name of the property in the struct will be searched in the json and then the found value will be added in the new function! The type will be also correct selected from the data type of the json.
+It looks like this: `#[json_arg(value)]`
+So the name of the property in the struct will be searched in the JSON and the found value will be added in the new function. The type will also be correctly selected from the data type of the JSON.
 
 This is the code from the example above:
 
@@ -87,8 +87,8 @@ pub struct ButtonBlock {
 }
 ```
 
-For the case the property name is not equal the name of the json attribute the json argument can be used.
-Displayed in this example:
+If the property name does not equal the name of the JSON attribute, the `json` argument can be used.
+As shown in this example:
 ```rust
 #[block_behavior]
 pub struct ButtonBlock {
@@ -101,7 +101,7 @@ pub struct ButtonBlock {
 ```
 
 ### Registry
-From the example the values are in the registry so it needs to be defined in which registry it will be found:
+From the example, the values are in the registry, so it needs to be defined in which registry they will be found:
 
 ```rust
 #[block_behavior]
@@ -116,13 +116,13 @@ pub struct ButtonBlock {
 }
 ```
 
-The registry has no name like value, so every other arguement without a name is registry entry execpt for value!
-This can be also other values, more to that in the ref part.
+The registry has no name like value, so every other argument without a name is a registry entry except for value!
+This can also be other values; more on that in the ref section.
 
 
 ### enum
 
-for enums it get's a bit more complicated so here an example code with CopperBlock
+For enums it gets a bit more complicated, so here is an example with CopperBlock:
 
 ```rust
 pub enum WeatherState {
@@ -154,7 +154,7 @@ impl WeatheringCopperFullBlock {
 }
 ```
 
-As shown the new has the parameter which consumes an enum, which comes from the json file.
+As shown, the `new` function has a parameter that consumes an enum, which comes from the JSON file.
 ```json
     {
       "name": "copper_block",
@@ -163,7 +163,7 @@ As shown the new has the parameter which consumes an enum, which comes from the 
     },
 ```
 
-To pass now the enum in the new function of the CopperBlock the code needs to look like this:
+To now pass the enum into the `new` function of CopperBlock, the code needs to look like this:
 ```rust
 #[block_behavior]
 pub struct WeatheringCopperFullBlock {
@@ -173,7 +173,7 @@ pub struct WeatheringCopperFullBlock {
 }
 ```
 
-the new argument `r#enum` was added which defines the enum name. This will work in that case because the enum is in the same file then WeatheringCopperFullBlock and is public. Otherwise a module would be needed.
+The new argument `r#enum` was added, which defines the enum name. This will work in that case because the enum is in the same file as `WeatheringCopperFullBlock` and is public. Otherwise a module would be needed.
 
 Here is the example with a module:
 ```rust
@@ -185,10 +185,43 @@ pub struct WeatheringCopperFullBlock {
 }
 ```
 
-The module argument, is the path to the enum, so it will be combined with the enum name to form the `use` definition.
+The module argument is the path to the enum, so it will be combined with the enum name to form the `use` definition.
 
-### optinal
+### optional
 
-If for the same class different properties are needed.
+If for the same class different properties are needed, a field can be made optional with `optional = "sentinel"`. When the JSON value equals the sentinel string the field becomes `None`, otherwise it is wrapped in `Some(...)`.
+
+```rust
+#[item_behavior]
+pub struct BucketItem {
+    #[json_arg(vanilla_blocks, json = "content", optional = "empty")]
+    fluid_block: Option<BlockRef>,
+}
+```
+
+```json
+{ "name": "bucket",       "class": "BucketItem", "content": "empty" },
+{ "name": "water_bucket", "class": "BucketItem", "content": "water" }
+```
+
+`bucket` gets `None` because `"empty"` matches the sentinel. `water_bucket` gets `Some(vanilla_blocks::WATER)`.
 
 ### ref
+
+Adding `ref` to a registry argument generates a reference (`&T`) to the entry instead of an owned value. This is needed when the constructor expects a reference.
+
+```rust
+#[block_behavior]
+pub struct LiquidBlock {
+    block: BlockRef,
+    #[json_arg(vanilla_fluids, ref)]
+    fluid: FluidRef,
+}
+```
+
+```json
+{ "name": "water", "class": "LiquidBlock", "fluid": "water" },
+{ "name": "lava",  "class": "LiquidBlock", "fluid": "lava"  }
+```
+
+Without `ref` the build script would generate `vanilla_fluids::WATER`. With `ref` it generates `&vanilla_fluids::WATER`.
