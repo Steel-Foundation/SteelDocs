@@ -2,6 +2,7 @@
   "blocks": {
     "AirBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "air",
         "void_air",
@@ -10,6 +11,7 @@
     },
     "Block": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "stone",
         "granite",
@@ -188,18 +190,21 @@
     },
     "GrassBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "grass_block"
       ]
     },
     "SnowyBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "podzol"
       ]
     },
     "RotatedPillarBlock": {
       "implemented": true,
+      "todos": [],
       "entries": [
         "pale_oak_wood",
         "oak_log",
@@ -261,6 +266,7 @@
     },
     "SaplingBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "oak_sapling",
         "spruce_sapling",
@@ -274,12 +280,16 @@
     },
     "MangrovePropaguleBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "mangrove_propagule"
       ]
     },
     "LiquidBlock": {
       "implemented": true,
+      "todos": [
+        "Add support for cached fluid states when FluidState caching is implemented"
+      ],
       "entries": [
         "water",
         "lava"
@@ -287,6 +297,7 @@
     },
     "SandBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "sand",
         "red_sand"
@@ -294,6 +305,7 @@
     },
     "BrushableBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "suspicious_sand",
         "suspicious_gravel"
@@ -301,12 +313,14 @@
     },
     "ColoredFallingBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "gravel"
       ]
     },
     "DropExperienceBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "gold_ore",
         "deepslate_gold_ore",
@@ -328,12 +342,14 @@
     },
     "MangroveRootsBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "mangrove_roots"
       ]
     },
     "TintedParticleLeavesBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "oak_leaves",
         "spruce_leaves",
@@ -345,6 +361,7 @@
     },
     "UntintedParticleLeavesBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "cherry_leaves",
         "pale_oak_leaves",
@@ -354,42 +371,49 @@
     },
     "MangroveLeavesBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "mangrove_leaves"
       ]
     },
     "SpongeBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "sponge"
       ]
     },
     "WetSpongeBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "wet_sponge"
       ]
     },
     "TransparentBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "glass"
       ]
     },
     "DispenserBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "dispenser"
       ]
     },
     "NoteBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "note_block"
       ]
     },
     "BedBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "white_bed",
         "orange_bed",
@@ -411,6 +435,7 @@
     },
     "PoweredRailBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "powered_rail",
         "activator_rail"
@@ -418,12 +443,14 @@
     },
     "DetectorRailBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "detector_rail"
       ]
     },
     "PistonBaseBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "sticky_piston",
         "piston"
@@ -431,12 +458,14 @@
     },
     "WebBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "cobweb"
       ]
     },
     "TallGrassBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "short_grass",
         "fern"
@@ -444,54 +473,63 @@
     },
     "DryVegetationBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "dead_bush"
       ]
     },
     "BushBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "bush"
       ]
     },
     "ShortDryGrassBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "short_dry_grass"
       ]
     },
     "TallDryGrassBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "tall_dry_grass"
       ]
     },
     "SeagrassBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "seagrass"
       ]
     },
     "TallSeagrassBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "tall_seagrass"
       ]
     },
     "PistonHeadBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "piston_head"
       ]
     },
     "MovingPistonBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "moving_piston"
       ]
     },
     "FlowerBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "dandelion",
         "golden_dandelion",
@@ -511,12 +549,14 @@
     },
     "WitherRoseBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "wither_rose"
       ]
     },
     "MushroomBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "brown_mushroom",
         "red_mushroom"
@@ -524,18 +564,21 @@
     },
     "TntBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "tnt"
       ]
     },
     "ChiseledBookShelfBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "chiseled_bookshelf"
       ]
     },
     "ShelfBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "acacia_shelf",
         "bamboo_shelf",
@@ -553,6 +596,7 @@
     },
     "TorchBlock": {
       "implemented": true,
+      "todos": [],
       "entries": [
         "torch",
         "soul_torch",
@@ -561,6 +605,7 @@
     },
     "WallTorchBlock": {
       "implemented": true,
+      "todos": [],
       "entries": [
         "wall_torch",
         "soul_wall_torch",
@@ -569,30 +614,37 @@
     },
     "FireBlock": {
       "implemented": true,
+      "todos": [
+        "|| is_valid_fire_location (check adjacent flammable blocks once flammability exists)"
+      ],
       "entries": [
         "fire"
       ]
     },
     "SoulFireBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "soul_fire"
       ]
     },
     "SpawnerBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "spawner"
       ]
     },
     "CreakingHeartBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "creaking_heart"
       ]
     },
     "StairBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "oak_stairs",
         "cobblestone_stairs",
@@ -652,42 +704,59 @@
     },
     "ChestBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "chest"
       ]
     },
     "RedStoneWireBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "redstone_wire"
       ]
     },
     "CraftingTableBlock": {
       "implemented": true,
+      "todos": [
+        "Award stat INTERACT_WITH_CRAFTING_TABLE"
+      ],
       "entries": [
         "crafting_table"
       ]
     },
     "CropBlock": {
       "implemented": true,
+      "todos": [
+        "Check light level >= 9 when light engine is implemented"
+      ],
       "entries": [
         "wheat"
       ]
     },
     "FarmlandBlock": {
       "implemented": true,
+      "todos": [
+        "Check for rain when weather is implemented"
+      ],
       "entries": [
         "farmland"
       ]
     },
     "FurnaceBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "furnace"
       ]
     },
     "StandingSignBlock": {
       "implemented": true,
+      "todos": [
+        "Implement sign applicators (use_with_item):",
+        "Play waxed sign interaction fail sound",
+        "Implement may_build check properly"
+      ],
       "entries": [
         "oak_sign",
         "spruce_sign",
@@ -705,6 +774,7 @@
     },
     "DoorBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "oak_door",
         "iron_door",
@@ -727,18 +797,21 @@
     },
     "LadderBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "ladder"
       ]
     },
     "RailBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "rail"
       ]
     },
     "WallSignBlock": {
       "implemented": true,
+      "todos": [],
       "entries": [
         "oak_wall_sign",
         "spruce_wall_sign",
@@ -756,6 +829,7 @@
     },
     "CeilingHangingSignBlock": {
       "implemented": true,
+      "todos": [],
       "entries": [
         "oak_hanging_sign",
         "spruce_hanging_sign",
@@ -773,6 +847,7 @@
     },
     "WallHangingSignBlock": {
       "implemented": true,
+      "todos": [],
       "entries": [
         "oak_wall_hanging_sign",
         "spruce_wall_hanging_sign",
@@ -790,12 +865,14 @@
     },
     "LeverBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "lever"
       ]
     },
     "PressurePlateBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "stone_pressure_plate",
         "oak_pressure_plate",
@@ -815,6 +892,7 @@
     },
     "RedStoneOreBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "redstone_ore",
         "deepslate_redstone_ore"
@@ -822,18 +900,31 @@
     },
     "RedstoneTorchBlock": {
       "implemented": true,
+      "todos": [
+        "Redstone functionality (signal output, neighbor notifications,",
+        "implement redstone signal source behavior, neighbor updates, and burnout.",
+        "Redstone functionality (signal output by facing, neighbor notifications,"
+      ],
       "entries": [
         "redstone_torch"
       ]
     },
     "RedstoneWallTorchBlock": {
       "implemented": true,
+      "todos": [
+        "implement redstone signal source behavior, neighbor updates, and burnout."
+      ],
       "entries": [
         "redstone_wall_torch"
       ]
     },
     "ButtonBlock": {
       "implemented": true,
+      "todos": [
+        "GameEvent.BLOCK_ACTIVATE when game event system exists",
+        "Check for arrows via checkPressed() — wooden buttons should stay",
+        "GameEvent.BLOCK_DEACTIVATE when game event system exists"
+      ],
       "entries": [
         "stone_button",
         "oak_button",
@@ -853,42 +944,51 @@
     },
     "SnowLayerBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "snow"
       ]
     },
     "IceBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "ice"
       ]
     },
     "CactusBlock": {
       "implemented": true,
+      "todos": [
+        "Implement when pathfinding is supported"
+      ],
       "entries": [
         "cactus"
       ]
     },
     "CactusFlowerBlock": {
       "implemented": true,
+      "todos": [],
       "entries": [
         "cactus_flower"
       ]
     },
     "SugarCaneBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "sugar_cane"
       ]
     },
     "JukeboxBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "jukebox"
       ]
     },
     "FenceBlock": {
       "implemented": true,
+      "todos": [],
       "entries": [
         "oak_fence",
         "nether_brick_fence",
@@ -907,24 +1007,30 @@
     },
     "NetherrackBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "netherrack"
       ]
     },
     "SoulSandBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "soul_sand"
       ]
     },
     "NetherPortalBlock": {
       "implemented": true,
+      "todos": [
+        "add this functionality but has low priority"
+      ],
       "entries": [
         "nether_portal"
       ]
     },
     "CarvedPumpkinBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "carved_pumpkin",
         "jack_o_lantern"
@@ -932,18 +1038,21 @@
     },
     "CakeBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "cake"
       ]
     },
     "RepeaterBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "repeater"
       ]
     },
     "StainedGlassBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "white_stained_glass",
         "orange_stained_glass",
@@ -965,6 +1074,7 @@
     },
     "TrapDoorBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "oak_trapdoor",
         "spruce_trapdoor",
@@ -987,6 +1097,7 @@
     },
     "InfestedBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "infested_stone",
         "infested_cobblestone",
@@ -998,6 +1109,7 @@
     },
     "HugeMushroomBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "brown_mushroom_block",
         "red_mushroom_block",
@@ -1006,6 +1118,7 @@
     },
     "IronBarsBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "iron_bars",
         "waxed_copper_bars",
@@ -1017,6 +1130,7 @@
     },
     "WeatheringCopperBarsBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "copper_bars",
         "exposed_copper_bars",
@@ -1026,6 +1140,7 @@
     },
     "ChainBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "iron_chain",
         "waxed_copper_chain",
@@ -1036,6 +1151,7 @@
     },
     "WeatheringCopperChainBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "copper_chain",
         "exposed_copper_chain",
@@ -1045,12 +1161,14 @@
     },
     "PumpkinBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "pumpkin"
       ]
     },
     "AttachedStemBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "attached_pumpkin_stem",
         "attached_melon_stem"
@@ -1058,6 +1176,7 @@
     },
     "StemBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "pumpkin_stem",
         "melon_stem"
@@ -1065,24 +1184,28 @@
     },
     "VineBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "vine"
       ]
     },
     "GlowLichenBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "glow_lichen"
       ]
     },
     "MultifaceBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "resin_clump"
       ]
     },
     "FenceGateBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "oak_fence_gate",
         "spruce_fence_gate",
@@ -1100,18 +1223,21 @@
     },
     "MyceliumBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "mycelium"
       ]
     },
     "LilyPadBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "lily_pad"
       ]
     },
     "SlabBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "resin_brick_slab",
         "prismarine_slab",
@@ -1175,6 +1301,7 @@
     },
     "WallBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "resin_brick_wall",
         "cobblestone_wall",
@@ -1206,30 +1333,35 @@
     },
     "NetherWartBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "nether_wart"
       ]
     },
     "EnchantingTableBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "enchanting_table"
       ]
     },
     "BrewingStandBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "brewing_stand"
       ]
     },
     "CauldronBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "cauldron"
       ]
     },
     "LayeredCauldronBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "water_cauldron",
         "powder_snow_cauldron"
@@ -1237,60 +1369,70 @@
     },
     "LavaCauldronBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "lava_cauldron"
       ]
     },
     "EndPortalBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "end_portal"
       ]
     },
     "EndPortalFrameBlock": {
       "implemented": true,
+      "todos": [],
       "entries": [
         "end_portal_frame"
       ]
     },
     "DragonEggBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "dragon_egg"
       ]
     },
     "RedstoneLampBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "redstone_lamp"
       ]
     },
     "CocoaBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "cocoa"
       ]
     },
     "EnderChestBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "ender_chest"
       ]
     },
     "TripWireHookBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "tripwire_hook"
       ]
     },
     "TripWireBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "tripwire"
       ]
     },
     "CommandBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "command_block",
         "repeating_command_block",
@@ -1299,12 +1441,14 @@
     },
     "BeaconBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "beacon"
       ]
     },
     "FlowerPotBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "flower_pot",
         "potted_torchflower",
@@ -1349,18 +1493,21 @@
     },
     "CarrotBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "carrots"
       ]
     },
     "PotatoBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "potatoes"
       ]
     },
     "SkullBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "skeleton_skull",
         "zombie_head",
@@ -1371,6 +1518,7 @@
     },
     "WallSkullBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "skeleton_wall_skull",
         "zombie_wall_head",
@@ -1380,36 +1528,42 @@
     },
     "WitherSkullBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "wither_skeleton_skull"
       ]
     },
     "WitherWallSkullBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "wither_skeleton_wall_skull"
       ]
     },
     "PlayerHeadBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "player_head"
       ]
     },
     "PlayerWallHeadBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "player_wall_head"
       ]
     },
     "PiglinWallSkullBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "piglin_wall_head"
       ]
     },
     "AnvilBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "anvil",
         "chipped_anvil",
@@ -1418,12 +1572,14 @@
     },
     "TrappedChestBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "trapped_chest"
       ]
     },
     "WeightedPressurePlateBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "light_weighted_pressure_plate",
         "heavy_weighted_pressure_plate"
@@ -1431,36 +1587,42 @@
     },
     "ComparatorBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "comparator"
       ]
     },
     "DaylightDetectorBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "daylight_detector"
       ]
     },
     "PoweredBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "redstone_block"
       ]
     },
     "HopperBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "hopper"
       ]
     },
     "DropperBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "dropper"
       ]
     },
     "StainedGlassPaneBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "white_stained_glass_pane",
         "orange_stained_glass_pane",
@@ -1482,30 +1644,35 @@
     },
     "SlimeBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "slime_block"
       ]
     },
     "BarrierBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "barrier"
       ]
     },
     "LightBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "light"
       ]
     },
     "HayBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "hay_block"
       ]
     },
     "WoolCarpetBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "white_carpet",
         "orange_carpet",
@@ -1527,6 +1694,7 @@
     },
     "TallFlowerBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "sunflower",
         "lilac",
@@ -1536,6 +1704,7 @@
     },
     "DoublePlantBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "tall_grass",
         "large_fern",
@@ -1544,6 +1713,7 @@
     },
     "BannerBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "white_banner",
         "orange_banner",
@@ -1565,6 +1735,7 @@
     },
     "WallBannerBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "white_wall_banner",
         "orange_wall_banner",
@@ -1586,78 +1757,91 @@
     },
     "EndRodBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "end_rod"
       ]
     },
     "ChorusPlantBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "chorus_plant"
       ]
     },
     "ChorusFlowerBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "chorus_flower"
       ]
     },
     "TorchflowerCropBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "torchflower_crop"
       ]
     },
     "PitcherCropBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "pitcher_crop"
       ]
     },
     "BeetrootBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "beetroots"
       ]
     },
     "DirtPathBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "dirt_path"
       ]
     },
     "EndGatewayBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "end_gateway"
       ]
     },
     "FrostedIceBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "frosted_ice"
       ]
     },
     "MagmaBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "magma_block"
       ]
     },
     "StructureVoidBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "structure_void"
       ]
     },
     "ObserverBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "observer"
       ]
     },
     "ShulkerBoxBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "shulker_box",
         "white_shulker_box",
@@ -1680,6 +1864,7 @@
     },
     "GlazedTerracottaBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "white_glazed_terracotta",
         "orange_glazed_terracotta",
@@ -1701,6 +1886,7 @@
     },
     "ConcretePowderBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "white_concrete_powder",
         "orange_concrete_powder",
@@ -1722,36 +1908,42 @@
     },
     "KelpBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "kelp"
       ]
     },
     "KelpPlantBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "kelp_plant"
       ]
     },
     "TurtleEggBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "turtle_egg"
       ]
     },
     "SnifferEggBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "sniffer_egg"
       ]
     },
     "DriedGhastBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "dried_ghast"
       ]
     },
     "CoralBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "tube_coral_block",
         "brain_coral_block",
@@ -1762,6 +1954,7 @@
     },
     "BaseCoralPlantBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "dead_tube_coral",
         "dead_brain_coral",
@@ -1772,6 +1965,7 @@
     },
     "CoralPlantBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "tube_coral",
         "brain_coral",
@@ -1782,6 +1976,7 @@
     },
     "BaseCoralFanBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "dead_tube_coral_fan",
         "dead_brain_coral_fan",
@@ -1792,6 +1987,7 @@
     },
     "CoralFanBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "tube_coral_fan",
         "brain_coral_fan",
@@ -1802,6 +1998,7 @@
     },
     "BaseCoralWallFanBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "dead_tube_coral_wall_fan",
         "dead_brain_coral_wall_fan",
@@ -1812,6 +2009,7 @@
     },
     "CoralWallFanBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "tube_coral_wall_fan",
         "brain_coral_wall_fan",
@@ -1822,108 +2020,130 @@
     },
     "SeaPickleBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "sea_pickle"
       ]
     },
     "HalfTransparentBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "blue_ice"
       ]
     },
     "ConduitBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "conduit"
       ]
     },
     "BambooSaplingBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "bamboo_sapling"
       ]
     },
     "BambooStalkBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "bamboo"
       ]
     },
     "BubbleColumnBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "bubble_column"
       ]
     },
     "ScaffoldingBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "scaffolding"
       ]
     },
     "LoomBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "loom"
       ]
     },
     "BarrelBlock": {
       "implemented": true,
+      "todos": [
+        "Award stat OPEN_BARREL",
+        "Anger nearby piglins (PiglinAi.angerNearbyPiglins)",
+        "Implement ContainerOpenersCounter to track open state, play sounds, and update OPEN block property. Requires scheduled block ticks (scheduleTick) for recheck functionality. See vanilla BarrelBlockEntity and ContainerOpenersCounter."
+      ],
       "entries": [
         "barrel"
       ]
     },
     "SmokerBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "smoker"
       ]
     },
     "BlastFurnaceBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "blast_furnace"
       ]
     },
     "CartographyTableBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "cartography_table"
       ]
     },
     "GrindstoneBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "grindstone"
       ]
     },
     "LecternBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "lectern"
       ]
     },
     "SmithingTableBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "smithing_table"
       ]
     },
     "StonecutterBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "stonecutter"
       ]
     },
     "BellBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "bell"
       ]
     },
     "LanternBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "lantern",
         "soul_lantern",
@@ -1935,6 +2155,7 @@
     },
     "WeatheringLanternBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "copper_lantern",
         "exposed_copper_lantern",
@@ -1944,6 +2165,7 @@
     },
     "CampfireBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "campfire",
         "soul_campfire"
@@ -1951,12 +2173,14 @@
     },
     "SweetBerryBushBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "sweet_berry_bush"
       ]
     },
     "NyliumBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "warped_nylium",
         "crimson_nylium"
@@ -1964,6 +2188,7 @@
     },
     "NetherFungusBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "warped_fungus",
         "crimson_fungus"
@@ -1971,6 +2196,7 @@
     },
     "NetherRootsBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "warped_roots",
         "crimson_roots"
@@ -1978,72 +2204,84 @@
     },
     "NetherSproutsBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "nether_sprouts"
       ]
     },
     "WeepingVinesBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "weeping_vines"
       ]
     },
     "WeepingVinesPlantBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "weeping_vines_plant"
       ]
     },
     "TwistingVinesBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "twisting_vines"
       ]
     },
     "TwistingVinesPlantBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "twisting_vines_plant"
       ]
     },
     "StructureBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "structure_block"
       ]
     },
     "JigsawBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "jigsaw"
       ]
     },
     "TestBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "test_block"
       ]
     },
     "TestInstanceBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "test_instance_block"
       ]
     },
     "ComposterBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "composter"
       ]
     },
     "TargetBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "target"
       ]
     },
     "BeehiveBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "bee_nest",
         "beehive"
@@ -2051,24 +2289,30 @@
     },
     "HoneyBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "honey_block"
       ]
     },
     "CryingObsidianBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "crying_obsidian"
       ]
     },
     "RespawnAnchorBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "respawn_anchor"
       ]
     },
     "CandleBlock": {
       "implemented": true,
+      "todos": [
+        "is_water_source()"
+      ],
       "entries": [
         "candle",
         "white_candle",
@@ -2091,6 +2335,7 @@
     },
     "CandleCakeBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "candle_cake",
         "white_candle_cake",
@@ -2113,18 +2358,21 @@
     },
     "AmethystBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "amethyst_block"
       ]
     },
     "BuddingAmethystBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "budding_amethyst"
       ]
     },
     "AmethystClusterBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "amethyst_cluster",
         "large_amethyst_bud",
@@ -2134,54 +2382,65 @@
     },
     "TintedGlassBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "tinted_glass"
       ]
     },
     "PowderSnowBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "powder_snow"
       ]
     },
     "SculkSensorBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "sculk_sensor"
       ]
     },
     "CalibratedSculkSensorBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "calibrated_sculk_sensor"
       ]
     },
     "SculkBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "sculk"
       ]
     },
     "SculkVeinBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "sculk_vein"
       ]
     },
     "SculkCatalystBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "sculk_catalyst"
       ]
     },
     "SculkShriekerBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "sculk_shrieker"
       ]
     },
     "WeatheringCopperFullBlock": {
       "implemented": true,
+      "todos": [
+        "Add weathering support for slabs, stairs, doors, trapdoors, grates, bars, bulbs, lanterns, chains, chests, and golem statues"
+      ],
       "entries": [
         "copper_block",
         "exposed_copper",
@@ -2199,6 +2458,7 @@
     },
     "WeatheringCopperStairBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "oxidized_cut_copper_stairs",
         "weathered_cut_copper_stairs",
@@ -2208,6 +2468,7 @@
     },
     "WeatheringCopperSlabBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "oxidized_cut_copper_slab",
         "weathered_cut_copper_slab",
@@ -2217,6 +2478,7 @@
     },
     "WeatheringCopperDoorBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "copper_door",
         "exposed_copper_door",
@@ -2226,6 +2488,7 @@
     },
     "WeatheringCopperTrapDoorBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "copper_trapdoor",
         "exposed_copper_trapdoor",
@@ -2235,6 +2498,7 @@
     },
     "WeatheringCopperGrateBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "copper_grate",
         "exposed_copper_grate",
@@ -2244,6 +2508,7 @@
     },
     "WaterloggedTransparentBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "waxed_copper_grate",
         "waxed_exposed_copper_grate",
@@ -2253,6 +2518,7 @@
     },
     "WeatheringCopperBulbBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "copper_bulb",
         "exposed_copper_bulb",
@@ -2262,6 +2528,7 @@
     },
     "CopperBulbBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "waxed_copper_bulb",
         "waxed_exposed_copper_bulb",
@@ -2271,6 +2538,7 @@
     },
     "WeatheringCopperChestBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "copper_chest",
         "exposed_copper_chest",
@@ -2280,6 +2548,7 @@
     },
     "CopperChestBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "waxed_copper_chest",
         "waxed_exposed_copper_chest",
@@ -2289,6 +2558,7 @@
     },
     "WeatheringCopperGolemStatueBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "copper_golem_statue",
         "exposed_copper_golem_statue",
@@ -2298,6 +2568,7 @@
     },
     "CopperGolemStatueBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "waxed_copper_golem_statue",
         "waxed_exposed_copper_golem_statue",
@@ -2307,6 +2578,7 @@
     },
     "WeatheringLightningRodBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "lightning_rod",
         "exposed_lightning_rod",
@@ -2316,6 +2588,7 @@
     },
     "LightningRodBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "waxed_lightning_rod",
         "waxed_exposed_lightning_rod",
@@ -2325,30 +2598,35 @@
     },
     "PointedDripstoneBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "pointed_dripstone"
       ]
     },
     "CaveVinesBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "cave_vines"
       ]
     },
     "CaveVinesPlantBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "cave_vines_plant"
       ]
     },
     "SporeBlossomBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "spore_blossom"
       ]
     },
     "AzaleaBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "azalea",
         "flowering_azalea"
@@ -2356,12 +2634,14 @@
     },
     "CarpetBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "moss_carpet"
       ]
     },
     "FlowerBedBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "pink_petals",
         "wildflowers"
@@ -2369,12 +2649,14 @@
     },
     "LeafLitterBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "leaf_litter"
       ]
     },
     "BonemealableFeaturePlacerBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "moss_block",
         "pale_moss_block"
@@ -2382,96 +2664,112 @@
     },
     "BigDripleafBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "big_dripleaf"
       ]
     },
     "BigDripleafStemBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "big_dripleaf_stem"
       ]
     },
     "SmallDripleafBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "small_dripleaf"
       ]
     },
     "HangingRootsBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "hanging_roots"
       ]
     },
     "RootedDirtBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "rooted_dirt"
       ]
     },
     "MudBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "mud"
       ]
     },
     "InfestedRotatedPillarBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "infested_deepslate"
       ]
     },
     "FrogspawnBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "frogspawn"
       ]
     },
     "DecoratedPotBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "decorated_pot"
       ]
     },
     "CrafterBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "crafter"
       ]
     },
     "TrialSpawnerBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "trial_spawner"
       ]
     },
     "VaultBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "vault"
       ]
     },
     "HeavyCoreBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "heavy_core"
       ]
     },
     "MossyCarpetBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "pale_moss_carpet"
       ]
     },
     "HangingMossBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "pale_hanging_moss"
       ]
     },
     "EyeblossomBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "open_eyeblossom",
         "closed_eyeblossom"
@@ -2479,6 +2777,7 @@
     },
     "FireflyBushBlock": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "firefly_bush"
       ]
@@ -2487,12 +2786,16 @@
   "items": {
     "AirItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "air"
       ]
     },
     "BlockItem": {
       "implemented": true,
+      "todos": [
+        "Call behavior.on_place() — triggers neighbor updates (redstone, etc.)"
+      ],
       "entries": [
         "stone",
         "granite",
@@ -3408,6 +3711,9 @@
     },
     "DoubleHighBlockItem": {
       "implemented": true,
+      "todos": [
+        "Implement vanilla's double-high placement (place upper half block above)"
+      ],
       "entries": [
         "small_dripleaf",
         "sunflower",
@@ -3441,6 +3747,7 @@
     },
     "StandingAndWallBlockItem": {
       "implemented": true,
+      "todos": [],
       "entries": [
         "torch",
         "soul_torch",
@@ -3466,6 +3773,7 @@
     },
     "PlaceOnWaterBlockItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "lily_pad",
         "frogspawn"
@@ -3473,6 +3781,7 @@
     },
     "GameMasterBlockItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "command_block",
         "repeating_command_block",
@@ -3485,12 +3794,14 @@
     },
     "ScaffoldingBlockItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "scaffolding"
       ]
     },
     "Item": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "saddle",
         "white_harness",
@@ -3731,6 +4042,7 @@
     },
     "MinecartItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "minecart",
         "chest_minecart",
@@ -3742,6 +4054,7 @@
     },
     "FoodOnAStickItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "carrot_on_a_stick",
         "warped_fungus_on_a_stick"
@@ -3749,6 +4062,7 @@
     },
     "BoatItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "oak_boat",
         "oak_chest_boat",
@@ -3774,24 +4088,38 @@
     },
     "FlintAndSteelItem": {
       "implemented": true,
+      "todos": [
+        "light campfires, candles, and candle cakes (set LIT=true) before fire placement",
+        "use BaseFireBlock.getState() equivalent to select soul fire vs regular fire"
+      ],
       "entries": [
         "flint_and_steel"
       ]
     },
     "BowItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "bow"
       ]
     },
     "ArrowItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "arrow"
       ]
     },
     "ShovelItem": {
       "implemented": true,
+      "todos": [
+        "Play SoundEvents.SHOVEL_FLATTEN",
+        "Emit GameEvent::BLOCK_CHANGE",
+        "level_event(1009, pos, 0) — extinguish particle/sound",
+        "CampfireBlock::dowse() — eject cooking items",
+        "hurt_and_break(1, ...) — shovels take durability damage",
+        "Emit GameEvent::BLOCK_CHANGE"
+      ],
       "entries": [
         "wooden_shovel",
         "copper_shovel",
@@ -3804,6 +4132,9 @@
     },
     "AxeItem": {
       "implemented": true,
+      "todos": [
+        "Fire GameEvent::BLOCK_CHANGE for sculk sensors"
+      ],
       "entries": [
         "wooden_axe",
         "copper_axe",
@@ -3816,6 +4147,9 @@
     },
     "HoeItem": {
       "implemented": true,
+      "todos": [
+        "Emit GameEvent::BLOCK_CHANGE"
+      ],
       "entries": [
         "wooden_hoe",
         "copper_hoe",
@@ -3828,12 +4162,14 @@
     },
     "HangingEntityItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "painting"
       ]
     },
     "SignItem": {
       "implemented": true,
+      "todos": [],
       "entries": [
         "oak_sign",
         "spruce_sign",
@@ -3851,6 +4187,7 @@
     },
     "HangingSignItem": {
       "implemented": true,
+      "todos": [],
       "entries": [
         "oak_hanging_sign",
         "spruce_hanging_sign",
@@ -3868,6 +4205,12 @@
     },
     "BucketItem": {
       "implemented": true,
+      "todos": [
+        "Spawn particles",
+        "Remove fallback once all waterloggable blocks implement pickup_block",
+        "Refactor into smaller helpers once all bucket types are implemented",
+        "Nether water evaporation (vanilla uses EnvironmentAttributes.WATER_EVAPORATES)"
+      ],
       "entries": [
         "bucket",
         "water_bucket",
@@ -3876,18 +4219,21 @@
     },
     "SolidBucketItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "powder_snow_bucket"
       ]
     },
     "SnowballItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "snowball"
       ]
     },
     "MobBucketItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "pufferfish_bucket",
         "salmon_bucket",
@@ -3899,6 +4245,7 @@
     },
     "EggItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "egg",
         "blue_egg",
@@ -3907,12 +4254,14 @@
     },
     "CompassItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "compass"
       ]
     },
     "BundleItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "bundle",
         "white_bundle",
@@ -3935,30 +4284,35 @@
     },
     "FishingRodItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "fishing_rod"
       ]
     },
     "SpyglassItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "spyglass"
       ]
     },
     "InkSacItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "ink_sac"
       ]
     },
     "GlowInkSacItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "glow_ink_sac"
       ]
     },
     "DyeItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "white_dye",
         "orange_dye",
@@ -3980,12 +4334,14 @@
     },
     "BoneMealItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "bone_meal"
       ]
     },
     "BedItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "white_bed",
         "orange_bed",
@@ -4007,42 +4363,51 @@
     },
     "MapItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "filled_map"
       ]
     },
     "ShearsItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "shears"
       ]
     },
     "EnderpearlItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "ender_pearl"
       ]
     },
     "BottleItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "glass_bottle"
       ]
     },
     "PotionItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "potion"
       ]
     },
     "EnderEyeItem": {
       "implemented": true,
+      "todos": [
+        "updateNeighborForOutputSignal, portal completion check"
+      ],
       "entries": [
         "ender_eye"
       ]
     },
     "SpawnEggItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "chicken_spawn_egg",
         "cow_spawn_egg",
@@ -4135,42 +4500,49 @@
     },
     "ExperienceBottleItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "experience_bottle"
       ]
     },
     "FireChargeItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "fire_charge"
       ]
     },
     "WindChargeItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "wind_charge"
       ]
     },
     "WritableBookItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "writable_book"
       ]
     },
     "WrittenBookItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "written_book"
       ]
     },
     "MaceItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "mace"
       ]
     },
     "ItemFrameItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "item_frame",
         "glow_item_frame"
@@ -4178,42 +4550,49 @@
     },
     "EmptyMapItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "map"
       ]
     },
     "PlayerHeadItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "player_head"
       ]
     },
     "FireworkRocketItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "firework_rocket"
       ]
     },
     "ArmorStandItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "armor_stand"
       ]
     },
     "LeadItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "lead"
       ]
     },
     "NameTagItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "name_tag"
       ]
     },
     "BannerItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "white_banner",
         "orange_banner",
@@ -4235,90 +4614,108 @@
     },
     "EndCrystalItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "end_crystal"
       ]
     },
     "SplashPotionItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "splash_potion"
       ]
     },
     "SpectralArrowItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "spectral_arrow"
       ]
     },
     "TippedArrowItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "tipped_arrow"
       ]
     },
     "LingeringPotionItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "lingering_potion"
       ]
     },
     "ShieldItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "shield"
       ]
     },
     "KnowledgeBookItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "knowledge_book"
       ]
     },
     "DebugStickItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "debug_stick"
       ]
     },
     "DiscFragmentItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "disc_fragment_5"
       ]
     },
     "TridentItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "trident"
       ]
     },
     "CrossbowItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "crossbow"
       ]
     },
     "InstrumentItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "goat_horn"
       ]
     },
     "HoneycombItem": {
       "implemented": true,
+      "todos": [
+        "trigger CriteriaTriggers.ITEM_USED_ON_BLOCK advancement",
+        "dispatch GameEvent::BLOCK_CHANGE"
+      ],
       "entries": [
         "honeycomb"
       ]
     },
     "BrushItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "brush"
       ]
     },
     "SmithingTemplateItem": {
       "implemented": false,
+      "todos": [],
       "entries": [
         "netherite_upgrade_smithing_template",
         "sentry_armor_trim_smithing_template",

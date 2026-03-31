@@ -3,7 +3,15 @@ import { Search, ChevronDown, Blocks, Sword, Filter } from "lucide-react";
 
 interface ClassGroup {
   implemented: boolean;
+  todos: string[];
   entries: string[];
+}
+
+type Status = "complete" | "partial" | "unimplemented";
+
+function getStatus(group: ClassGroup): Status {
+  if (!group.implemented) return "unimplemented";
+  return group.todos.length > 0 ? "partial" : "complete";
 }
 
 interface ImplementationData {
@@ -12,7 +20,7 @@ interface ImplementationData {
 }
 
 type Tab = "blocks" | "items";
-type StatusFilter = "all" | "implemented" | "not-implemented";
+type StatusFilter = "all" | "complete" | "partial" | "unimplemented";
 
 export default function ImplementationTracker() {
   const [data, setData] = useState<ImplementationData | null>(null);
@@ -30,31 +38,33 @@ export default function ImplementationTracker() {
   const currentData = data?.[tab];
 
   const stats = useMemo(() => {
-    if (!currentData) return { total: 0, implemented: 0, totalClasses: 0, implementedClasses: 0 };
+    if (!currentData) return { total: 0, complete: 0, partial: 0, unimplemented: 0 };
     const classes = Object.entries(currentData);
-    const implementedClasses = classes.filter(([, g]) => g.implemented);
+    const byStatus = { complete: 0, partial: 0, unimplemented: 0 };
+    for (const [, g] of classes) {
+      byStatus[getStatus(g)] += g.entries.length;
+    }
     return {
       total: classes.reduce((sum, [, g]) => sum + g.entries.length, 0),
-      implemented: implementedClasses.reduce((sum, [, g]) => sum + g.entries.length, 0),
-      totalClasses: classes.length,
-      implementedClasses: implementedClasses.length,
+      ...byStatus,
     };
   }, [currentData]);
 
   const filtered = useMemo(() => {
     if (!currentData) return [];
     const lowerSearch = search.toLowerCase();
+    const statusOrder: Record<Status, number> = { complete: 0, partial: 1, unimplemented: 2 };
     return Object.entries(currentData)
       .filter(([className, group]) => {
-        if (statusFilter === "implemented" && !group.implemented) return false;
-        if (statusFilter === "not-implemented" && group.implemented) return false;
+        if (statusFilter !== "all" && getStatus(group) !== statusFilter) return false;
         if (!search) return true;
         if (className.toLowerCase().includes(lowerSearch)) return true;
         return group.entries.some((e) => e.toLowerCase().includes(lowerSearch));
       })
       .sort((a, b) => {
-        // Implemented first, then alphabetical
-        if (a[1].implemented !== b[1].implemented) return a[1].implemented ? -1 : 1;
+        const sa = statusOrder[getStatus(a[1])];
+        const sb = statusOrder[getStatus(b[1])];
+        if (sa !== sb) return sa - sb;
         return a[0].localeCompare(b[0]);
       });
   }, [currentData, search, statusFilter]);
@@ -76,16 +86,17 @@ export default function ImplementationTracker() {
     );
   }
 
-  const pct = stats.total > 0 ? Math.round((stats.implemented / stats.total) * 100) : 0;
+  const pctComplete = stats.total > 0 ? Math.round((stats.complete / stats.total) * 100) : 0;
+  const pctPartial = stats.total > 0 ? Math.round((stats.partial / stats.total) * 100) : 0;
 
   return (
     <div className="w-full">
       {/* Stats overview */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
         <StatCard label="Total entries" value={stats.total} />
-        <StatCard label="Implemented" value={stats.implemented} accent />
-        <StatCard label="Classes" value={stats.totalClasses} />
-        <StatCard label="Impl. classes" value={stats.implementedClasses} accent />
+        <StatCard label="Complete" value={stats.complete} color="emerald" />
+        <StatCard label="Partial" value={stats.partial} color="amber" />
+        <StatCard label="Unimplemented" value={stats.unimplemented} />
       </div>
 
       {/* Progress bar */}
@@ -94,14 +105,25 @@ export default function ImplementationTracker() {
           <span className="text-sm font-medium text-teal-700 dark:text-white/70">
             Implementation progress
           </span>
-          <span className="text-sm font-minecraft text-teal-950 dark:text-white">
-            {pct}%
-          </span>
+          <div className="flex items-center gap-3 text-xs">
+            <span className="flex items-center gap-1">
+              <span className="inline-block size-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
+              <span className="text-teal-700 dark:text-white/60">{pctComplete}%</span>
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="inline-block size-2 rounded-full bg-amber-500 dark:bg-amber-400" />
+              <span className="text-teal-700 dark:text-white/60">{pctPartial}%</span>
+            </span>
+          </div>
         </div>
-        <div className="h-3 rounded-full bg-teal-100 dark:bg-white/10 overflow-hidden">
+        <div className="h-3 rounded-full bg-teal-100 dark:bg-white/10 overflow-hidden flex">
           <div
-            className="h-full rounded-full bg-emerald-500 dark:bg-emerald-400 transition-all duration-500"
-            style={{ width: `${pct}%` }}
+            className="h-full bg-emerald-500 dark:bg-emerald-400 transition-all duration-500"
+            style={{ width: `${pctComplete}%` }}
+          />
+          <div
+            className="h-full bg-amber-500 dark:bg-amber-400 transition-all duration-500"
+            style={{ width: `${pctPartial}%` }}
           />
         </div>
       </div>
@@ -138,10 +160,13 @@ export default function ImplementationTracker() {
             <Filter className="size-3.5" />
             All
           </TabButton>
-          <TabButton active={statusFilter === "implemented"} onClick={() => setStatusFilter("implemented")}>
-            Done
+          <TabButton active={statusFilter === "complete"} onClick={() => setStatusFilter("complete")}>
+            Complete
           </TabButton>
-          <TabButton active={statusFilter === "not-implemented"} onClick={() => setStatusFilter("not-implemented")}>
+          <TabButton active={statusFilter === "partial"} onClick={() => setStatusFilter("partial")}>
+            Partial
+          </TabButton>
+          <TabButton active={statusFilter === "unimplemented"} onClick={() => setStatusFilter("unimplemented")}>
             Todo
           </TabButton>
         </div>
@@ -172,9 +197,11 @@ export default function ImplementationTracker() {
                 {/* Status indicator */}
                 <div
                   className={`size-2.5 rounded-full shrink-0 ${
-                    group.implemented
-                      ? "bg-emerald-500 dark:bg-emerald-400"
-                      : "bg-teal-300 dark:bg-white/20"
+                    {
+                      complete: "bg-emerald-500 dark:bg-emerald-400",
+                      partial: "bg-amber-500 dark:bg-amber-400",
+                      unimplemented: "bg-teal-300 dark:bg-white/20",
+                    }[getStatus(group)]
                   }`}
                 />
 
@@ -188,10 +215,15 @@ export default function ImplementationTracker() {
                   {group.entries.length}
                 </span>
 
-                {/* Implemented badge */}
-                {group.implemented && (
+                {/* Status badge */}
+                {getStatus(group) === "complete" && (
                   <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-400/15 text-emerald-700 dark:text-emerald-400">
-                    Implemented
+                    Complete
+                  </span>
+                )}
+                {getStatus(group) === "partial" && (
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-400/15 text-amber-700 dark:text-amber-400">
+                    Partial ({group.todos.length} TODO{group.todos.length !== 1 ? "s" : ""})
                   </span>
                 )}
 
@@ -205,10 +237,26 @@ export default function ImplementationTracker() {
                 />
               </button>
 
-              {/* Expanded entries */}
+              {/* Expanded content */}
               {isOpen && (
                 <div className="px-4 pb-3 pt-0">
-                  <div className="flex flex-wrap gap-1.5 pt-2 border-t border-teal-100 dark:border-white/5">
+                  {/* TODOs */}
+                  {group.todos.length > 0 && (
+                    <div className="flex flex-col gap-1.5 pt-2 border-t border-teal-100 dark:border-white/5 mb-3">
+                      {group.todos.map((todo, i) => (
+                        <div
+                          key={i}
+                          className="flex items-start gap-2 text-xs px-2.5 py-1.5 rounded-lg bg-amber-50 dark:bg-amber-400/5 border border-amber-200/50 dark:border-amber-400/10"
+                        >
+                          <span className="text-amber-500 dark:text-amber-400 shrink-0 mt-px font-bold">TODO</span>
+                          <span className="text-amber-800 dark:text-amber-200/70">{todo}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Entries */}
+                  <div className={`flex flex-wrap gap-1.5 ${group.todos.length === 0 ? "pt-2 border-t border-teal-100 dark:border-white/5" : ""}`}>
                     {(search ? matchingEntries : group.entries).map((entry) => (
                       <span
                         key={entry}
@@ -240,15 +288,17 @@ export default function ImplementationTracker() {
   );
 }
 
-function StatCard({ label, value, accent }: { label: string; value: number; accent?: boolean }) {
+const colorClasses = {
+  default: "text-teal-950 dark:text-white",
+  emerald: "text-emerald-600 dark:text-emerald-400",
+  amber: "text-amber-600 dark:text-amber-400",
+};
+
+function StatCard({ label, value, color = "default" }: { label: string; value: number; color?: keyof typeof colorClasses }) {
   return (
     <div className="p-3 rounded-xl bg-white/60 dark:bg-white/[0.03] border border-teal-200/30 dark:border-white/10">
       <p className="text-xs text-teal-600 dark:text-white/40">{label}</p>
-      <p
-        className={`text-2xl font-minecraft mt-0.5 ${
-          accent ? "text-emerald-600 dark:text-emerald-400" : "text-teal-950 dark:text-white"
-        }`}
-      >
+      <p className={`text-2xl font-minecraft mt-0.5 ${colorClasses[color]}`}>
         {value}
       </p>
     </div>

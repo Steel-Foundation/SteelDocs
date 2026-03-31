@@ -38,28 +38,76 @@ async function collectRsFiles(dir: string): Promise<string[]> {
   return files;
 }
 
-/**
- * Scans Rust source files for `#[block_behavior]` or `#[item_behavior]` annotations
- * and extracts the struct name (which is used as the class name).
- */
-async function scanImplementedClasses(folder: string, annotation: string): Promise<Set<string>> {
-  const dir = join(behaviorDir, folder);
-  const classes = new Set<string>();
+interface ClassInfo {
+  todos: string[];
+}
 
-  // Match: #[block_behavior] (with optional whitespace/attributes between) pub struct Name
-  const pattern = new RegExp(
-    `#\\[${annotation}\\]` +   // the annotation
-    `[\\s\\S]*?` +              // anything between (other attributes, comments, etc.)
-    `pub\\s+struct\\s+(\\w+)`,  // pub struct StructName
+/**
+ * Scans Rust source files for `#[block_behavior]` or `#[item_behavior]` annotations.
+ * Returns a map of class name -> { todos } where todos is the count of TODO/FIXME
+ * comments attributed to that struct (based on proximity in the source file).
+ */
+async function scanImplementedClasses(folder: string, annotation: string): Promise<Map<string, ClassInfo>> {
+  const dir = join(behaviorDir, folder);
+  const classes = new Map<string, ClassInfo>();
+
+  const structPattern = new RegExp(
+    `#\\[${annotation}\\]` +
+    `[\\s\\S]*?` +
+    `pub\\s+struct\\s+(\\w+)`,
     "g"
   );
 
   const files = await collectRsFiles(dir);
   for (const file of files) {
     const content = await readFile(file, "utf-8");
+    const lines = content.split("\n");
+
+    // Find all annotated structs and their positions
+    const structs: { name: string; pos: number }[] = [];
     let match;
-    while ((match = pattern.exec(content)) !== null) {
-      classes.add(match[1]);
+    while ((match = structPattern.exec(content)) !== null) {
+      structs.push({ name: match[1], pos: match.index });
+    }
+    if (structs.length === 0) continue;
+
+    // Extract TODO/FIXME comments with their text and position
+    const todoEntries: { pos: number; text: string }[] = [];
+    const todoLinePattern = /\b(TODO|FIXME):?\s*(.*)/;
+    for (let i = 0; i < lines.length; i++) {
+      const lineMatch = lines[i].match(todoLinePattern);
+      if (!lineMatch) continue;
+
+      // Get the initial TODO text
+      let text = lineMatch[2].trim();
+
+      // Collect continuation lines (comment lines that follow without a gap)
+      for (let j = i + 1; j < lines.length; j++) {
+        const cont = lines[j].match(/^\s*\/\/\s{2,}(.*)/);
+        if (!cont) break;
+        text += " " + cont[1].trim();
+      }
+
+      // Calculate byte offset for attribution
+      const bytePos = lines.slice(0, i).reduce((sum, l) => sum + l.length + 1, 0);
+      todoEntries.push({ pos: bytePos, text });
+    }
+
+    // Attribute each TODO to the nearest preceding struct
+    const todoLists = new Map<string, string[]>();
+    for (const struct of structs) todoLists.set(struct.name, []);
+
+    for (const todo of todoEntries) {
+      let closest: string | null = null;
+      for (const struct of structs) {
+        if (struct.pos <= todo.pos) closest = struct.name;
+      }
+      if (!closest) closest = structs[0].name;
+      todoLists.get(closest)!.push(todo.text);
+    }
+
+    for (const struct of structs) {
+      classes.set(struct.name, { todos: todoLists.get(struct.name) ?? [] });
     }
   }
 
@@ -89,13 +137,15 @@ const [classesRaw, implementedBlockClasses, implementedItemClasses] = await Prom
 
 function groupByClass(
   entries: ClassEntry[],
-  implementedClasses: Set<string>,
-): Record<string, { implemented: boolean; entries: string[] }> {
-  const groups: Record<string, { implemented: boolean; entries: string[] }> = {};
+  implementedClasses: Map<string, ClassInfo>,
+): Record<string, { implemented: boolean; todos: string[]; entries: string[] }> {
+  const groups: Record<string, { implemented: boolean; todos: string[]; entries: string[] }> = {};
   for (const entry of entries) {
     if (!groups[entry.class]) {
+      const info = implementedClasses.get(entry.class);
       groups[entry.class] = {
-        implemented: implementedClasses.has(entry.class),
+        implemented: info !== undefined,
+        todos: info?.todos ?? [],
         entries: [],
       };
     }
@@ -118,7 +168,9 @@ const totalBlocks = classesRaw.blocks.length;
 const implBlocks = classesRaw.blocks.filter((b) => implementedBlockClasses.has(b.class)).length;
 const totalItems = classesRaw.items.length;
 const implItems = classesRaw.items.filter((i) => implementedItemClasses.has(i.class)).length;
+const partialBlocks = Object.values(blocks).filter((g) => g.implemented && g.todos.length > 0).length;
+const partialItems = Object.values(items).filter((g) => g.implemented && g.todos.length > 0).length;
 
 console.log(`Wrote ${outPath}`);
-console.log(`Blocks: ${implBlocks}/${totalBlocks} implemented`);
-console.log(`Items:  ${implItems}/${totalItems} implemented`);
+console.log(`Blocks: ${implBlocks}/${totalBlocks} implemented (${partialBlocks} partial)`);
+console.log(`Items:  ${implItems}/${totalItems} implemented (${partialItems} partial)`);
