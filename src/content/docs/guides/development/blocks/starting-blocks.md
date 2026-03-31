@@ -73,145 +73,31 @@ impl BlockBehaviour for IronBarsBlock {}
 ---
 
 ## 5. Register the Block Module
-
-Add your block module to:
-
-```
-steel-core/src/behavior/blocks/mod.rs
-```
-
-It should look like this:
-
+To register the block, there needs to be the attribute block_behavior added!
 ```rust
-// /steel-core/src/behavior/blocks/mod.rs
-mod iron_bars_block;
-pub use iron_bars_block::IronBarsBlock;
-```
+// /steel-core/src/behavior/blocks/iron_bars_block.rs
+#[block_behavior]
+pub struct IronBarsBlock {
+    block: BlockRef,
+}
 
----
-
-## 6. Verify the Struct Name
-
-Now it would be **a good time to check** if your struct name is really correct!
-
-Double-check that your **struct name** matches what you found in `classes.json`.
-
----
-
-## 7. Add the Struct to the Generated Blocks
-
-Now we need to add the struct to the generated block list.
-This happens in:
-
-```
-steel-core/build/blocks.rs
-```
-
-If you want to understand what is happening internally, the function
-`generate_registrations` can be interesting — but **it is not required** to get your block working.
-
----
-
-## 8. Focus on the Build Function
-
-We will now focus on the `build` function in the opened file.
-
-⚠️ **Important:**
-Only **add** new code.
-Do **not remove or modify existing code**, as this could break blocks from other contributors.
-
----
-
-## 9. Create a Mutable Vector
-
-First, create a mutable vector with a descriptive name:
-
-```rust
-// /steel-core/build/blocks.rs
-let mut iron_bar_blocks = Vec::new();
-```
-
----
-
-## 10. Extend the Match Statement
-
-Add your block struct name to the `match` statement.
-Again: **only add your line**, do not remove others.
-
-```rust
-// /steel-core/build/blocks.rs
-for block in blocks {
-    let const_ident = to_const_ident(&block.name);
-    match block.class.as_str() {
-        ...
-        "IronBarsBlock" => iron_bar_blocks.push(const_ident),
-        _ => {}
+impl IronBarsBlock {
+    /// Creates a new bar block behavior for the given block.
+    #[must_use]
+    pub const fn new(block: BlockRef) -> Self {
+        Self { block }
     }
 }
+
+impl BlockBehaviour for IronBarsBlock {}
 ```
+
+> ⚠️ More complex senarious then the block also has properties, you find [here](../block_item_registration) more information!
+
 
 ---
 
-## 11. Define the Block Type
-
-Now define the block type identifier:
-
-```rust
-// /steel-core/build/blocks.rs
-let iron_bar_type = Ident::new("IronBarsBlock", Span::call_site());
-```
-
----
-
-## 12. Generate Registrations
-
-Next, generate the registrations:
-
-```rust
-// /steel-core/build/blocks.rs
-let iron_bar_registrations =
-    generate_registrations(iron_bar_blocks.iter(), &iron_bar_type);
-```
-
----
-
-## 13. Add the Registrations to the Output
-
-⚠️ **Be very careful here!**
-
-* The `#` before the registration name is **required**
-* It prevents name collisions with Rust keywords
-* Do **not** add a trailing comma — this code is generated into another file
-
-Example:
-
-```rust
-// /steel-core/build/blocks.rs
-let output = quote! {
-    //! Generated block behavior assignments.
-
-    use steel_registry::vanilla_blocks;
-    use crate::behavior::BlockBehaviorRegistry;
-    use crate::behavior::blocks::{
-        CraftingTableBlock,
-        CropBlock,
-        EndPortalFrameBlock,
-        FarmlandBlock,
-        FenceBlock,
-        RotatedPillarBlock,
-        BarBlock
-    };
-
-    pub fn register_block_behaviors(registry: &mut BlockBehaviorRegistry) {
-        ...
-        #iron_bar_registrations
-    }
-};
-```
-
----
-
-## 14. Compile the Project
+## 6. Compile the Project
 
 Now press **compile** and let Rust (and our configuration) do some magic!
 
