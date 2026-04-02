@@ -116,15 +116,34 @@ export default function ImplementationTracker() {
             </span>
           </div>
         </div>
-        <div className="h-3 rounded-full bg-teal-100 dark:bg-white/10 overflow-hidden flex">
+        <div className="relative h-3 rounded-full bg-teal-100 dark:bg-white/10 overflow-visible flex group cursor-default">
           <div
-            className="h-full bg-emerald-500 dark:bg-emerald-400 transition-all duration-500"
+            className="h-full bg-emerald-500 dark:bg-emerald-400 transition-all duration-500 rounded-l-full"
             style={{ width: `${pctComplete}%` }}
           />
           <div
             className="h-full bg-amber-500 dark:bg-amber-400 transition-all duration-500"
             style={{ width: `${pctPartial}%` }}
           />
+
+          {/* Tooltip */}
+          <div className="absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full
+            px-3 py-2 rounded-lg text-xs bg-gray-900 text-white
+            opacity-0 group-hover:opacity-100 transition-opacity duration-150
+            pointer-events-none z-10 flex flex-col gap-1 whitespace-nowrap shadow-lg">
+            <span className="flex items-center gap-2">
+              <span className="inline-block size-2 rounded-full bg-emerald-400" />
+              Complete — {pctComplete}%
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="inline-block size-2 rounded-full bg-amber-400" />
+              Partial — {pctPartial}%
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="inline-block size-2 rounded-full bg-white/20" />
+              Not started — {100 - pctComplete - pctPartial}%
+            </span>
+          </div>
         </div>
       </div>
 
