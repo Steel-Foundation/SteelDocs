@@ -20,6 +20,8 @@ The package has 3 subfolders:
 
 ## Folder structure
 
+This gives a short overview about all important folders in the steel-registry package.
+
 ### build_assets
 
 This folder are only json and nbt data, which are extracted via the extractor or from the minecraft jar.
@@ -37,6 +39,10 @@ Because this guide only concentrates how the registries work, it doesn't cover t
 
 Here are all registries saved and content of this guide.
 
+## src/generated
+
+This contains all generated rust files from the build scripts, so all rust files should't be edited manually there!
+
 ## Workflow
 
 At built time:
@@ -53,6 +59,14 @@ At runtime:
 5. sync specific registries to the client
 
 ## Structure of the registries
+
+In the registry file is also the data struct declared which the registry contains and a public ref type of this struct.
+It will look like this:
+```rust
+struct Element;
+
+pub type ElementRef = &'static Element;
+```
 
 ## Create own registry
 
