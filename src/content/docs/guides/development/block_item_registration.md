@@ -5,8 +5,7 @@ description: A full guide on how to register a new item or block behavior in Ste
 
 ## Registration
 
-To register a block you need to add to that struct the attribute `block_behavior` and for items `item_behavior`,
-like this:
+To register a block, add the attribute `block_behaviour`. In order to register an item instead, add the attribute `item_behaviour`, like this:
 ```rust
 #[block_behavior]
 pub struct CactusBlock {
@@ -28,7 +27,7 @@ pub struct ShovelBehavior;
 
 ## json_arg: Attributes for the registration
 
-Not all blocks and items are simple to implement, so some of them need information.
+Not all blocks and items are straightforward to implement, so some of them need information.
 
 For example the button:
 
@@ -87,7 +86,7 @@ pub struct ButtonBlock {
 }
 ```
 
-If the property name does not equal the name of the JSON attribute, the `json` argument can be used.
+If the property name does not equal the name of the JSON attribute, the `json` argument can be used here.
 As shown in this example:
 ```rust
 #[block_behavior]
@@ -101,7 +100,7 @@ pub struct ButtonBlock {
 ```
 
 ### Registry
-From the example, the values are in the registry, so it needs to be defined in which registry they will be found:
+As seen in the example, the values are in the registry, so it needs to be defined in which registry they will be found:
 
 ```rust
 #[block_behavior]
@@ -116,8 +115,8 @@ pub struct ButtonBlock {
 }
 ```
 
-The registry has no name like value, so every other argument without a name is a registry entry except for value!
-This can also be other values; more on that in the ref section.
+The registry has no name like value, so every other argument without a name is a registry entry!
+These can also be other values; more on that in the ref section.
 
 
 ### enum
@@ -204,7 +203,7 @@ pub struct BucketItem {
 { "name": "water_bucket", "class": "BucketItem", "content": "water" }
 ```
 
-`bucket` gets `None` because `"empty"` matches the sentinel. `water_bucket` gets `Some(vanilla_blocks::WATER)`.
+`bucket` becomes `None` because `"empty"` matches the sentinel. `water_bucket` gets `Some(vanilla_blocks::WATER)`.
 
 ### ref
 
@@ -224,4 +223,4 @@ pub struct LiquidBlock {
 { "name": "lava",  "class": "LiquidBlock", "fluid": "lava"  }
 ```
 
-Without `ref` the build script would generate `vanilla_fluids::WATER`. With `ref` it generates `&vanilla_fluids::WATER`.
+Without `ref`, the build script would generate `vanilla_fluids::WATER`. With `ref` it generates `&vanilla_fluids::WATER`.

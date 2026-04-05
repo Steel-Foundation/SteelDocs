@@ -11,7 +11,7 @@ description: Gives a basic guidance of how to add a new item without a behaviour
 
 At first, select which item you want to add to the project.
 
-**Example:** In this guide, we want to add **Shouvel**.
+**Example:** In this guide, we want to add the `Shouvel` item.
 
 ---
 
@@ -25,7 +25,7 @@ Go to the file:
 steel-core/build/classes.json
 ```
 
-Search for your item in this file. In our example:
+Search for strings similar to the name of the Item you want to implement in this file. In our example:
 - We find `ShovelItem`
 
 This means we need **two different structs** to manage both items.
@@ -39,7 +39,7 @@ Now create your class in:
 ```
 steel-core/src/behavior/items/
 ```
-
+TODO: If you read it please read in #termonology if there is something fixed
 Be **as descriptive as possible** with the file name. For our example:
 - `shovel.rs
 
@@ -61,7 +61,7 @@ impl ItemBehavior for ShovelBehavior {}
 ---
 
 ## 5. Register the Item Module
-To register the item, there needs to be the attribute item_behavior added!
+To register the item, there needs to be the attribute `item_behavior added!
 
 ```rust
 // /steel-core/src/behavior/items/shovel.rs
@@ -71,7 +71,7 @@ pub struct ShovelBehavior;
 impl ItemBehavior for ShovelBehavior {}
 ```
 
-> ⚠️ More complex senarious then the item also has properties, you find [here](../block_item_registration) more information!
+> ⚠️ More complex items than the shovel have properties, which are not covered here, you find [here](../block_item_registration) more information!
 
 
 ---
@@ -112,9 +112,7 @@ To add behavior, you need to implement the necessary methods in `ItemBehavior` i
 
 👉 **I would recommend** looking at other item implementations to check which have similar item functionality as your item.
 
-For that, here is some information to give you a better understanding:
-
 ---
 
 ## Other useful resources
-Currently no available
+- using properties for blocks and items, you can find information [here](../block_item_registration)
