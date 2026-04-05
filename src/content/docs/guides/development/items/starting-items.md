@@ -11,7 +11,7 @@ description: Gives a basic guidance of how to add a new item without a behaviour
 
 At first, select which item you want to add to the project.
 
-**Example:** In this guide, we want to add the `Shouvel` item.
+**Example:** In this guide, we want to add the `Shovel` item.
 
 ---
 
@@ -71,7 +71,7 @@ pub struct ShovelBehavior;
 impl ItemBehavior for ShovelBehavior {}
 ```
 
-> ⚠️ More complex items than the shovel have properties, which are not covered here, you find [here](../block_item_registration) more information!
+> ⚠️ More complex items than the shovel have properties, you can find more information [here](../block_item_registration) more information!
 
 
 ---

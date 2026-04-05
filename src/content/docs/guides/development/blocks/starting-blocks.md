@@ -92,7 +92,7 @@ impl IronBarsBlock {
 impl BlockBehaviour for IronBarsBlock {}
 ```
 
-> ⚠️ More complex blocks than the iron bar block have properties, which are not covered here, you find [here](../block_item_registration) more information!
+> ⚠️ More complex blocks than the iron bar block have properties, you can find more information  [here](../block_item_registration) more information!
 
 
 ---
