@@ -117,8 +117,13 @@ supports these new elements. So server-side modding is currently possible with S
 
 ## How to use a registry
 
+TODO
 
 ## Create own registry
 
+TODO
+
 ## Create own build script for registry
+
+TODO
 
