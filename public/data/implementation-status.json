@@ -2310,9 +2310,7 @@
     },
     "CandleBlock": {
       "implemented": true,
-      "todos": [
-        "is_water_source()"
-      ],
+      "todos": [],
       "entries": [
         "candle",
         "white_candle",
