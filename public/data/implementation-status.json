@@ -4204,10 +4204,9 @@
     "BucketItem": {
       "implemented": true,
       "todos": [
-        "Spawn particles",
         "Remove fallback once all waterloggable blocks implement pickup_block",
         "Refactor into smaller helpers once all bucket types are implemented",
-        "Nether water evaporation (vanilla uses EnvironmentAttributes.WATER_EVAPORATES)"
+        "Per-position environment attributes (vanilla uses EnvironmentAttributes.WATER_EVAPORATES per-pos)"
       ],
       "entries": [
         "bucket",
