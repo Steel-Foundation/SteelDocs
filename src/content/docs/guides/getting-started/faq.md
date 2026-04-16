@@ -6,7 +6,7 @@ description: Answer commen questions
 Here you will find answers to most of questions!
 
 ## How to install Steel?
-You find the full guide [here] Todo!
+You find the full guide [here](../running)
 
 ## Is there an Egg?
 Currently there is no egg for provider, to host steel somewhere. Also steel is currently in pre alpha, so shouldn't be used on a server.
