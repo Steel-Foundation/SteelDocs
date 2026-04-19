@@ -5,7 +5,7 @@ description: Deep dive into learning how to use and write a registry
 
 # What is a registry?
 
-A registry is a place to store all default values of things. Means each block variation but not the block which will be generated or placed in a chunk! So the registry, will help to initilize all block or other things and get specific values, which will be created at the start of the server.
+A registry is a place to store all default values of things — for example, each block variation, but not the block that will be generated or placed in a chunk. The registry helps to initialize all blocks (or other things) and to get specific values, which are created at the start of the server.
 
 # How do registries work?
 
@@ -121,47 +121,70 @@ supports these new elements. So server-side modding is currently possible with S
 
 ## How to use a registry
 
-This section should help you to get more confident with steels registries and use it in your next PR!
+This section should help you get more confident with Steel's registries and use them in your next PR!
 
 ### Access the registries
 
-The registries will be access via `REGISTRY`.
-but this needs to be imported:
+The registries are accessed via `REGISTRY`, but this needs to be imported first:
 ```rust
 use steel_registry::{RegistryEntry, REGISTRY, RegistryExt};
 ```
 
 ### Get id from element {#get_id}
 
-To understand it better the long and short solution will be showed, but please USE the short solution!
+To better illustrate the concept, both the long and short solutions will be shown, but please USE the short solution!
 
-This is the long version, which shows directly more the way how to use the registry in general.
+This is the long version, which more directly demonstrates how to use the registry in general.
 ```rust
 REGISTRY.chat_types.id_from_key(vanilla_chat_types::CHAT.key()).unwrap_or(0);
 ```
-To explain this example at first the target registry will be selected here it is `chat_types` and now get the id from the key. The key is an identifier which persists out of a namespace and a path. The namespace is default `minecraft` and the path for example `stone`.
+To explain this example: first, the target registry is selected — here it is `chat_types` — and then the id is retrieved from the key. The key is an identifier consisting of a namespace and a path. The namespace defaults to `minecraft`, and the path is, for example, `stone`.
 
-The key will be extracted from the definition from `CHAT` there you find the key() function, which gives you the identifier, of that element. The return value is an option. So when nothing is in the registry for that Identifier it returns None.
+The key is extracted from the definition of `CHAT`, where you find the `key()` function that gives you the identifier of that element. The return value is an `Option`, so when nothing is in the registry for that identifier it returns `None`.
 
-Maybe you saw already the function `id()` at the element, which does the long version already for you. So the same functionality can be achieved like this:
+You may have already noticed the `id()` function on the element, which performs the long version for you. So the same functionality can be achieved like this:
 ```rust
 let registry_id = vanilla_chat_types::CHAT.id() as i32;
 ```
-It will panics, then this element will not be registred!
+It will panic if this element is not registered!
 
-The example here is from the player (`steel-core/src/player/mod.rs`) the method `handle_chat`.
+The example here comes from the player (`steel-core/src/player/mod.rs`), in the `handle_chat` method.
 
 ### Get element from registry
 
-For that the steel registries gives you 2 functions: `by_id` and `by_key` both return an option.
-The id, is an usize, which you can get via the `id` function or `id_from` more information you can find [here](#get_id)
-The key, can be accessed via `key()` function on the element.
+For this, the Steel registries provide 2 functions: `by_id` and `by_key`. Both return an `Option`.
+The id is a `usize`, which you can get via the `id` function or `id_from` — more information can be found [here](#get_id).
+The key can be accessed via the `key()` function on the element.
 
-## Create own registry
+### Check if an element is in a tag
+
+First, the registry needs to be a tagged registry, which gives you access to many more functions. The function that is important for this task is `is_in_tag()`.
+
+Here is an example:
+```rust
+let block = state.get_block();
+REGISTRY.blocks.is_in_tag(block, &vanilla_block_tags::FIRE_TAG)
+```
+This example checks whether a block is in the `FIRE_TAG`. The first parameter is the element you want to check, and the second parameter is the tag to check against.
+
+Another example is checking whether the neighbor block is a specific block. Instead of checking for each wood variant of the fence gate, you can use the tag, and all wood variants are included in that check.
+
+```rust
+if REGISTRY.blocks.is_in_tag(neighbor_block, &FENCE_GATES_TAG){
+    // The neighbor block is a fence gate of any specific wood type
+}
+else
+{
+    // The neighbor block is not a fence gate
+}
+```
+
+
+## Create your own registry
 
 TODO (Junky)
 
-## Create own build script for registry
+## Create your own build script for a registry
 
 TODO (Junky)
 
