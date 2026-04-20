@@ -333,6 +333,45 @@ Now we are finished and have a working registry! But don't be surprised that you
 
 ### Extend to tagged registry
 
+This is much easier than writing a new registry!
+
+It's only 3 steps!
+
+#### 1. Adding tags
+
+Add a `tag` field to the registry like this:
+```rust
+pub struct BeerTypeRegistry {
+    banner_patterns_by_id: Vec<BannerPatternRef>,
+    banner_patterns_by_key: FxHashMap<Identifier, usize>,
+    tags: FxHashMap<Identifier, Vec<Identifier>>,
+    allows_registering: bool,
+}
+```
+
+#### 2. Initialize
+Initialize it in the `new` function.
+```rust
+pub fn new() -> Self {
+    Self {
+        tags: FxHashMap::default(),
+        ...
+    }
+}
+```
+
+#### 3. Add macro
+Now add this macro:
+```rust
+crate::impl_tagged_registry!(
+    BeerTypeRegistry,
+    beer_type_by_key,
+    "beer type"
+);
+```
+The first parameter is the registry, the second one is the `key` field, and the last parameter is a string where you can provide information about which registry it is for error messages!
+This macro depends on the `tags` field in your registry; if you named it differently, you will need to write all the functions on your own!
+
 ## Create your own build script for a registry
 
 TODO (Junky)
