@@ -181,6 +181,53 @@ else
 
 ## Registry Macros
 
+The macros are:
+- `impl_tagged_registry`
+- `impl_registry`
+- `impl_registry_ext`
+- `impl_registry_entry`
+- `impl_standard_methods`
+
+You can find also some information [here](https://steel-foundation.github.io/SteelMC/steel_registry/index.html#macros)
+
+### impl_registry
+
+This macro only implements the macros `impl_registry_ext` and `impl_registry_entry`.
+
+### impl_standard_methods
+
+This macro generates the code for the functions:
+- `register`
+- `iter`
+- `default` from the Default trait
+
+This macro can be used if no special logic is needed for the registration. The iter function only enumerates over the `id` field and the `default` function uses the new function of the registry.
+
+### impl_registry_entry
+
+Only two functions will be generated:
+- `key`
+- `try_id`
+
+from the `RegistryEntry` trait, more information can be found to that [here](https://steel-foundation.github.io/SteelMC/steel_registry/trait.RegistryEntry.html)
+
+### impl_registry_ext
+
+This implements the `RegistryExt` trait with all functions:
+- `freeze`
+- `by_id`
+- `by_key`
+- `id_from_key`
+- `len`
+- `is_empty`
+
+More information to each function can be found [here](https://steel-foundation.github.io/SteelMC/steel_registry/trait.RegistryExt.html)
+
+### impl_tagged_registry
+
+Implemetns the `TaggedRegistryExt` trait, and all functions, the `TaggedRegistryExt` requires the `RegistryExt` so if this macro is used, the macro `impl_registry_ext` should be also considered or written by hand!
+More information about the `TaggedRegistryExt` trait can be found [here](https://steel-foundation.github.io/SteelMC/steel_registry/trait.TaggedRegistryExt.html)
+
 ## Create your own registry
 
 Registries come in different versions; some need more logic, like the block registry, but this guide only gives you a basic understanding of how to write a registry.
