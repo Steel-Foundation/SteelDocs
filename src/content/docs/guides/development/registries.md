@@ -179,10 +179,159 @@ else
 }
 ```
 
+## Registry Macros
 
 ## Create your own registry
 
-TODO (Junky)
+Registries are coming in different versions, some need more logic like the block registry, but this guide only gives you a basic understanding how to write a registry.
+
+### Create a simple registry
+
+**DISCLAIMER: importing of types are not covered!** 
+
+For our example, our registry which we develop together, will store beer types (guide written by an bavarian person)
+So at first create a file in `steel-registry/src`.
+
+In the beginning, we define our struct with all the data which we want to store
+```rust
+#[derive(Debug)]
+pub struct BeerType {
+    pub key: Identifier,
+    pub beer_type: &'static str,
+    pub min_l: u32, //minimal liter of drink size
+    pub max_l: u32, //maximum liter of drink size
+}
+```
+The only relevant file here is key, all other are dummies and not relevant from now on!
+
+It is always recommended to implement the ToNbtTag for the reference of the struct, because that is needed for the sync. This can look like this:
+```rust
+impl ToNbtTag for &BannerPattern {
+    fn to_nbt_tag(self) -> NbtTag {
+        use simdnbt::owned::{NbtCompound, NbtTag};
+        let mut compound = NbtCompound::new();
+        let beer_type = self.asset_id.to_string();
+        compound.insert("beer_type", beer_type.as_str());
+        let min_l = self.min_l.to_string();
+        compound.insert("min_l", min_l.as_str());
+        let max_l = self.max_l.to_string();
+        compound.insert("max_l", max_l.as_str());
+        NbtTag::Compound(compound)
+    }
+}
+```
+
+Now we need to define a type with requires a static reference, that is needed for your type of registry. More information about that is above!
+
+```rust
+pub type BeerTypeRef = &'static BeerType;
+```
+
+Now the prerequirements of the type is finished and we start with the registry itself.
+
+For the registry there are three fields required, one field, to store the data itself (`beer_type_by_id`). One field to connect the Identifier from the element to the element in the registry (`beer_type_by_key`). And the last element, is to make the registry freezable (`allows_registering`). This will look like this:
+
+```rust
+pub struct BeerTypeRegistry {
+    beer_type_by_id: Vec<BeerTypeRef>,
+    beer_type_by_key: FxHashMap<Identifier, usize>,
+    allows_registering: bool,
+}
+```
+
+No worries, we are already half way through! So the next point is to define the new function of the registry, which will look like this:
+```rust
+impl BeerTypeRegistry {
+    #[must_use]
+    pub fn new() -> Self {
+        Self {
+            beer_type_by_id: Vec::new(),
+            beer_type_by_key: FxHashMap::default(),
+            allows_registering: true,
+        }
+    }
+}
+```
+
+Before we finish this we need to add our registry, to some other places. So in the file `steel-registry/src/lib.rs` is the struct: `Registry`
+
+And we add our registry to it:
+```rust
+pub struct Registry {
+    pub attributes: AttributeRegistry,
+    pub blocks: BlockRegistry,
+    pub items: ItemRegistry,
+    pub data_components: DataComponentRegistry,
+    pub beer_types: BeerTypeRegistry,
+    ...
+}
+```
+
+Then add in the function `freeze` of the implementation `Registry`. This will look like this:
+```rust
+pub fn freeze(&mut self) {
+        self.attributes.freeze();
+        self.blocks.freeze();
+        self.data_components.freeze();
+        self.entity_data_serializers.freeze();
+        self.items.freeze();
+        self.biomes.freeze();
+        self.beer_types.freeze();
+        ...
+}
+```
+No worries, this function will be added in some seconds also the new function, trust the process!
+So add this to the new_empty function!
+```rust
+#[must_use]
+pub fn new_empty() -> Self {
+    Self {
+        attributes: AttributeRegistry::new(),
+        blocks: BlockRegistry::new(),
+        data_components: DataComponentRegistry::new(),
+        entity_data_serializers: EntityDataSerializerRegistry::new(),
+        items: ItemRegistry::new(),
+        beer_types: BeerTypeRegistry::new(),
+        ...
+    }
+}
+```
+
+As the last step in the `stee-registry/src/lib.rs` file we ned to add an identifier for our registry:
+```rust
+pub const BEER_TYPE_REGISTRY: Identifier = Identifier::vanilla_static("beer_type");
+```
+
+Now, we finished the self written code! So only macros are only needed. For more information you can fine more information about what each macro does [here](registry-macros).
+Switch back to your registry file.
+
+So the first macro:
+```rust
+crate::impl_standard_methods!(
+    BeerTypeRegistry,
+    BeerTypeRef,
+    beer_type_by_id,
+    beer_type_by_key,
+    allows_registering
+);
+```
+The first parameter is the registry, which we currently writing, the second parameter, the defined type from earlier, then the three fields of our registry, in the order: id, key, allow;
+
+and the second macro:
+```rust
+crate::impl_registry!(
+    BeerTypeRegistry,
+    BeerType,
+    beer_type_by_id,
+    beer_type_by_key,
+    beer_types
+);
+```
+Here the first 4 parameter are the same, as before, but the last parameter is the field name of this registry in the `Registry` struct.
+
+Now we are finished and have a working registry! But don't wonder your registry will be empty, for that the guide [for build scripts](create-your-own-build-script-for-a-registry) was written.
+
+### Extend to tagged registry
 
 ## Create your own build script for a registry
 
