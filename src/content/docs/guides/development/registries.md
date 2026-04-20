@@ -130,7 +130,7 @@ The registries are accessed via `REGISTRY`, but this needs to be imported first:
 use steel_registry::{RegistryEntry, REGISTRY, RegistryExt};
 ```
 
-### Get id from element {#get_id}
+### Get id from element
 
 To better illustrate the concept, both the long and short solutions will be shown, but please USE the short solution!
 
@@ -153,7 +153,7 @@ The example here comes from the player (`steel-core/src/player/mod.rs`), in the 
 ### Get element from registry
 
 For this, the Steel registries provide 2 functions: `by_id` and `by_key`. Both return an `Option`.
-The id is a `usize`, which you can get via the `id` function or `id_from` — more information can be found [here](#get_id).
+The id is a `usize`, which you can get via the `id` function or `id_from` — more information can be found [here](#get-id-from-element).
 The key can be accessed via the `key()` function on the element.
 
 ### Check if an element is in a tag
