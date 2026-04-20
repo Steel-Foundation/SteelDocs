@@ -12,3 +12,4 @@ Blocks are implemented in Rust with a flexible behavior system for custom logic 
 ## Available Guides
 
 - [**Adding a New Block (Basic Setup)**](starting-blocks) - Learn how to register and create blocks
+- [**Adding a block to the registry**](../../registries) - Learn how to register a new block type
