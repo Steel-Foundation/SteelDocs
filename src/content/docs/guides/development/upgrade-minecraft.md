@@ -46,8 +46,7 @@ All files which were touched for this snapshot can be found here: https://github
 
 ## 2. Coping the SteelExtractor jsons
 
-move all json files to their correct location.
-The mapping can be found [here](../tools/mappings)
+move all json files to their correct location. In the newest version it in the run directory you find already the folders which are one to one the same folders in steel.
 
 ## 3. Extract data from minecraft
 

@@ -1,0 +1,38 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Navbar from "@/components/sections/Navbar.astro";
+import ImplementationTracker from "@/components/tracker/ImplementationTracker";
+---
+
+<Layout title="Implementation Tracker - SteelDocs">
+  <Navbar
+    logoText="Steel"
+    logoHighlight="MC"
+    searchPlaceholder="Search docs..."
+    noResultsText="No results found"
+    devWarningText="Search is only available in production builds"
+    langLabel="EN"
+    langChangeLabel="Change language"
+    languages={[
+      { href: "/SteelDocs/", flag: "🇬🇧", label: "English" },
+      { href: "/SteelDocs/de/", flag: "🇩🇪", label: "Deutsch" },
+      { href: "/SteelDocs/es/", flag: "🇪🇸", label: "Español" },
+    ]}
+    themeToggleLabel="Toggle theme"
+    discordLabel="Join our Discord"
+    discordHref="https://discord.gg/MwChEHnAbh"
+    githubLabel="GitHub repository"
+    githubHref="https://github.com/Steel-Foundation/SteelMC"
+  />
+  <main class="container mx-4 w-auto lg:mx-auto max-w-280 px-4 pt-20 pb-16 relative z-10">
+    <div class="mb-8">
+      <h1 class="text-3xl md:text-5xl font-minecraft font-bold text-teal-950 dark:text-white">
+        Implementation <span class="text-emerald-600 dark:text-emerald-400">Tracker</span>
+      </h1>
+      <p class="text-lg text-teal-700 dark:text-gray-300 mt-2">
+        Track which Minecraft blocks and items have behavior implementations in Steel.
+      </p>
+    </div>
+    <ImplementationTracker client:only="react" />
+  </main>
+</Layout>
