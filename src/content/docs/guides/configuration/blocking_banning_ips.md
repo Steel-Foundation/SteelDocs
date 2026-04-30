@@ -24,7 +24,13 @@ This is the same feature Minecraft has, but with a few extras. Unlike a blacklis
 The whitelist takes precedence over both the blacklist and the ban list. As soon as the whitelist contains at least one entry, Steel only checks the whitelist: an IP that is on the whitelist is allowed in even if it is also blacklisted or banned, and an IP that is not on the whitelist is rejected even if it is not blacklisted or banned. With an empty whitelist, the blacklist and ban list both apply normally.
 
 ## Configuration/Usage
-The whitelist is located in the `config.toml` with the property `whitelist` which is a simple array of strings with all IP addresses. It can be only edited via the config file so there is only a list command available.
+The whitelist is located in the `config.toml` with the property `whitelisted_ips` which is a simple array of strings with all IP addresses. It can be only edited via the config file so there is only a list command available.
+It will look like this:
+```toml
+[server]
+# IP addresses allowed to connect to the server. If empty, no whitelist is applied.
+whitelisted_ips = ["127.0.0.1"]
+```
 
 The second file is `ip-bans.toml` which holds the blacklist and the banned IP data. The blacklist is, like the whitelist, a property `blacklisted` and an array of strings which represent IPs; it can be edited via file or commands.
 
