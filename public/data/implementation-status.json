@@ -1,0 +1,4739 @@
+{
+  "blocks": {
+    "AirBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "air",
+        "void_air",
+        "cave_air"
+      ]
+    },
+    "Block": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "stone",
+        "granite",
+        "polished_granite",
+        "diorite",
+        "polished_diorite",
+        "andesite",
+        "polished_andesite",
+        "dirt",
+        "coarse_dirt",
+        "cobblestone",
+        "oak_planks",
+        "spruce_planks",
+        "birch_planks",
+        "jungle_planks",
+        "acacia_planks",
+        "cherry_planks",
+        "dark_oak_planks",
+        "pale_oak_planks",
+        "mangrove_planks",
+        "bamboo_planks",
+        "bamboo_mosaic",
+        "bedrock",
+        "lapis_block",
+        "sandstone",
+        "chiseled_sandstone",
+        "cut_sandstone",
+        "white_wool",
+        "orange_wool",
+        "magenta_wool",
+        "light_blue_wool",
+        "yellow_wool",
+        "lime_wool",
+        "pink_wool",
+        "gray_wool",
+        "light_gray_wool",
+        "cyan_wool",
+        "purple_wool",
+        "blue_wool",
+        "brown_wool",
+        "green_wool",
+        "red_wool",
+        "black_wool",
+        "gold_block",
+        "iron_block",
+        "bricks",
+        "bookshelf",
+        "mossy_cobblestone",
+        "obsidian",
+        "diamond_block",
+        "snow_block",
+        "clay",
+        "soul_soil",
+        "glowstone",
+        "stone_bricks",
+        "mossy_stone_bricks",
+        "cracked_stone_bricks",
+        "chiseled_stone_bricks",
+        "packed_mud",
+        "mud_bricks",
+        "melon",
+        "resin_block",
+        "resin_bricks",
+        "chiseled_resin_bricks",
+        "nether_bricks",
+        "end_stone",
+        "emerald_block",
+        "quartz_block",
+        "chiseled_quartz_block",
+        "white_terracotta",
+        "orange_terracotta",
+        "magenta_terracotta",
+        "light_blue_terracotta",
+        "yellow_terracotta",
+        "lime_terracotta",
+        "pink_terracotta",
+        "gray_terracotta",
+        "light_gray_terracotta",
+        "cyan_terracotta",
+        "purple_terracotta",
+        "blue_terracotta",
+        "brown_terracotta",
+        "green_terracotta",
+        "red_terracotta",
+        "black_terracotta",
+        "prismarine",
+        "prismarine_bricks",
+        "dark_prismarine",
+        "sea_lantern",
+        "terracotta",
+        "coal_block",
+        "packed_ice",
+        "red_sandstone",
+        "chiseled_red_sandstone",
+        "cut_red_sandstone",
+        "smooth_stone",
+        "smooth_sandstone",
+        "smooth_quartz",
+        "smooth_red_sandstone",
+        "purpur_block",
+        "end_stone_bricks",
+        "nether_wart_block",
+        "red_nether_bricks",
+        "white_concrete",
+        "orange_concrete",
+        "magenta_concrete",
+        "light_blue_concrete",
+        "yellow_concrete",
+        "lime_concrete",
+        "pink_concrete",
+        "gray_concrete",
+        "light_gray_concrete",
+        "cyan_concrete",
+        "purple_concrete",
+        "blue_concrete",
+        "brown_concrete",
+        "green_concrete",
+        "red_concrete",
+        "black_concrete",
+        "dried_kelp_block",
+        "dead_tube_coral_block",
+        "dead_brain_coral_block",
+        "dead_bubble_coral_block",
+        "dead_fire_coral_block",
+        "dead_horn_coral_block",
+        "fletching_table",
+        "warped_wart_block",
+        "shroomlight",
+        "crimson_planks",
+        "warped_planks",
+        "honeycomb_block",
+        "netherite_block",
+        "ancient_debris",
+        "lodestone",
+        "blackstone",
+        "polished_blackstone",
+        "polished_blackstone_bricks",
+        "cracked_polished_blackstone_bricks",
+        "chiseled_polished_blackstone",
+        "gilded_blackstone",
+        "chiseled_nether_bricks",
+        "cracked_nether_bricks",
+        "quartz_bricks",
+        "tuff",
+        "polished_tuff",
+        "chiseled_tuff",
+        "tuff_bricks",
+        "chiseled_tuff_bricks",
+        "calcite",
+        "waxed_oxidized_chiseled_copper",
+        "waxed_weathered_chiseled_copper",
+        "waxed_exposed_chiseled_copper",
+        "waxed_chiseled_copper",
+        "waxed_copper_block",
+        "waxed_weathered_copper",
+        "waxed_exposed_copper",
+        "waxed_oxidized_copper",
+        "waxed_oxidized_cut_copper",
+        "waxed_weathered_cut_copper",
+        "waxed_exposed_cut_copper",
+        "waxed_cut_copper",
+        "dripstone_block",
+        "cobbled_deepslate",
+        "polished_deepslate",
+        "deepslate_tiles",
+        "deepslate_bricks",
+        "chiseled_deepslate",
+        "cracked_deepslate_bricks",
+        "cracked_deepslate_tiles",
+        "smooth_basalt",
+        "raw_iron_block",
+        "raw_copper_block",
+        "raw_gold_block",
+        "reinforced_deepslate"
+      ]
+    },
+    "GrassBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "grass_block"
+      ]
+    },
+    "SnowyBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "podzol"
+      ]
+    },
+    "RotatedPillarBlock": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "pale_oak_wood",
+        "oak_log",
+        "spruce_log",
+        "birch_log",
+        "jungle_log",
+        "acacia_log",
+        "cherry_log",
+        "dark_oak_log",
+        "pale_oak_log",
+        "mangrove_log",
+        "muddy_mangrove_roots",
+        "bamboo_block",
+        "stripped_spruce_log",
+        "stripped_birch_log",
+        "stripped_jungle_log",
+        "stripped_acacia_log",
+        "stripped_cherry_log",
+        "stripped_dark_oak_log",
+        "stripped_pale_oak_log",
+        "stripped_oak_log",
+        "stripped_mangrove_log",
+        "stripped_bamboo_block",
+        "oak_wood",
+        "spruce_wood",
+        "birch_wood",
+        "jungle_wood",
+        "acacia_wood",
+        "cherry_wood",
+        "dark_oak_wood",
+        "mangrove_wood",
+        "stripped_oak_wood",
+        "stripped_spruce_wood",
+        "stripped_birch_wood",
+        "stripped_jungle_wood",
+        "stripped_acacia_wood",
+        "stripped_cherry_wood",
+        "stripped_dark_oak_wood",
+        "stripped_pale_oak_wood",
+        "stripped_mangrove_wood",
+        "basalt",
+        "polished_basalt",
+        "quartz_pillar",
+        "purpur_pillar",
+        "bone_block",
+        "warped_stem",
+        "stripped_warped_stem",
+        "warped_hyphae",
+        "stripped_warped_hyphae",
+        "crimson_stem",
+        "stripped_crimson_stem",
+        "crimson_hyphae",
+        "stripped_crimson_hyphae",
+        "deepslate",
+        "ochre_froglight",
+        "verdant_froglight",
+        "pearlescent_froglight"
+      ]
+    },
+    "SaplingBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "oak_sapling",
+        "spruce_sapling",
+        "birch_sapling",
+        "jungle_sapling",
+        "acacia_sapling",
+        "cherry_sapling",
+        "dark_oak_sapling",
+        "pale_oak_sapling"
+      ]
+    },
+    "MangrovePropaguleBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "mangrove_propagule"
+      ]
+    },
+    "LiquidBlock": {
+      "implemented": true,
+      "todos": [
+        "Add support for cached fluid states when FluidState caching is implemented"
+      ],
+      "entries": [
+        "water",
+        "lava"
+      ]
+    },
+    "SandBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "sand",
+        "red_sand"
+      ]
+    },
+    "BrushableBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "suspicious_sand",
+        "suspicious_gravel"
+      ]
+    },
+    "ColoredFallingBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "gravel"
+      ]
+    },
+    "DropExperienceBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "gold_ore",
+        "deepslate_gold_ore",
+        "iron_ore",
+        "deepslate_iron_ore",
+        "coal_ore",
+        "deepslate_coal_ore",
+        "nether_gold_ore",
+        "lapis_ore",
+        "deepslate_lapis_ore",
+        "diamond_ore",
+        "deepslate_diamond_ore",
+        "emerald_ore",
+        "deepslate_emerald_ore",
+        "nether_quartz_ore",
+        "copper_ore",
+        "deepslate_copper_ore"
+      ]
+    },
+    "MangroveRootsBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "mangrove_roots"
+      ]
+    },
+    "TintedParticleLeavesBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "oak_leaves",
+        "spruce_leaves",
+        "birch_leaves",
+        "jungle_leaves",
+        "acacia_leaves",
+        "dark_oak_leaves"
+      ]
+    },
+    "UntintedParticleLeavesBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "cherry_leaves",
+        "pale_oak_leaves",
+        "azalea_leaves",
+        "flowering_azalea_leaves"
+      ]
+    },
+    "MangroveLeavesBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "mangrove_leaves"
+      ]
+    },
+    "SpongeBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "sponge"
+      ]
+    },
+    "WetSpongeBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "wet_sponge"
+      ]
+    },
+    "TransparentBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "glass"
+      ]
+    },
+    "DispenserBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "dispenser"
+      ]
+    },
+    "NoteBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "note_block"
+      ]
+    },
+    "BedBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "white_bed",
+        "orange_bed",
+        "magenta_bed",
+        "light_blue_bed",
+        "yellow_bed",
+        "lime_bed",
+        "pink_bed",
+        "gray_bed",
+        "light_gray_bed",
+        "cyan_bed",
+        "purple_bed",
+        "blue_bed",
+        "brown_bed",
+        "green_bed",
+        "red_bed",
+        "black_bed"
+      ]
+    },
+    "PoweredRailBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "powered_rail",
+        "activator_rail"
+      ]
+    },
+    "DetectorRailBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "detector_rail"
+      ]
+    },
+    "PistonBaseBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "sticky_piston",
+        "piston"
+      ]
+    },
+    "WebBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "cobweb"
+      ]
+    },
+    "TallGrassBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "short_grass",
+        "fern"
+      ]
+    },
+    "DryVegetationBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "dead_bush"
+      ]
+    },
+    "BushBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "bush"
+      ]
+    },
+    "ShortDryGrassBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "short_dry_grass"
+      ]
+    },
+    "TallDryGrassBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "tall_dry_grass"
+      ]
+    },
+    "SeagrassBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "seagrass"
+      ]
+    },
+    "TallSeagrassBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "tall_seagrass"
+      ]
+    },
+    "PistonHeadBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "piston_head"
+      ]
+    },
+    "MovingPistonBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "moving_piston"
+      ]
+    },
+    "FlowerBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "dandelion",
+        "golden_dandelion",
+        "torchflower",
+        "poppy",
+        "blue_orchid",
+        "allium",
+        "azure_bluet",
+        "red_tulip",
+        "orange_tulip",
+        "white_tulip",
+        "pink_tulip",
+        "oxeye_daisy",
+        "cornflower",
+        "lily_of_the_valley"
+      ]
+    },
+    "WitherRoseBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "wither_rose"
+      ]
+    },
+    "MushroomBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "brown_mushroom",
+        "red_mushroom"
+      ]
+    },
+    "TntBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "tnt"
+      ]
+    },
+    "ChiseledBookShelfBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "chiseled_bookshelf"
+      ]
+    },
+    "ShelfBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "acacia_shelf",
+        "bamboo_shelf",
+        "birch_shelf",
+        "cherry_shelf",
+        "crimson_shelf",
+        "dark_oak_shelf",
+        "jungle_shelf",
+        "mangrove_shelf",
+        "oak_shelf",
+        "pale_oak_shelf",
+        "spruce_shelf",
+        "warped_shelf"
+      ]
+    },
+    "TorchBlock": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "torch",
+        "soul_torch",
+        "copper_torch"
+      ]
+    },
+    "WallTorchBlock": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "wall_torch",
+        "soul_wall_torch",
+        "copper_wall_torch"
+      ]
+    },
+    "FireBlock": {
+      "implemented": true,
+      "todos": [
+        "|| is_valid_fire_location (check adjacent flammable blocks once flammability exists)"
+      ],
+      "entries": [
+        "fire"
+      ]
+    },
+    "SoulFireBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "soul_fire"
+      ]
+    },
+    "SpawnerBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "spawner"
+      ]
+    },
+    "CreakingHeartBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "creaking_heart"
+      ]
+    },
+    "StairBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "oak_stairs",
+        "cobblestone_stairs",
+        "brick_stairs",
+        "stone_brick_stairs",
+        "mud_brick_stairs",
+        "resin_brick_stairs",
+        "nether_brick_stairs",
+        "sandstone_stairs",
+        "spruce_stairs",
+        "birch_stairs",
+        "jungle_stairs",
+        "quartz_stairs",
+        "acacia_stairs",
+        "cherry_stairs",
+        "dark_oak_stairs",
+        "pale_oak_stairs",
+        "mangrove_stairs",
+        "bamboo_stairs",
+        "bamboo_mosaic_stairs",
+        "prismarine_stairs",
+        "prismarine_brick_stairs",
+        "dark_prismarine_stairs",
+        "red_sandstone_stairs",
+        "purpur_stairs",
+        "polished_granite_stairs",
+        "smooth_red_sandstone_stairs",
+        "mossy_stone_brick_stairs",
+        "polished_diorite_stairs",
+        "mossy_cobblestone_stairs",
+        "end_stone_brick_stairs",
+        "stone_stairs",
+        "smooth_sandstone_stairs",
+        "smooth_quartz_stairs",
+        "granite_stairs",
+        "andesite_stairs",
+        "red_nether_brick_stairs",
+        "polished_andesite_stairs",
+        "diorite_stairs",
+        "crimson_stairs",
+        "warped_stairs",
+        "blackstone_stairs",
+        "polished_blackstone_brick_stairs",
+        "polished_blackstone_stairs",
+        "tuff_stairs",
+        "polished_tuff_stairs",
+        "tuff_brick_stairs",
+        "waxed_oxidized_cut_copper_stairs",
+        "waxed_weathered_cut_copper_stairs",
+        "waxed_exposed_cut_copper_stairs",
+        "waxed_cut_copper_stairs",
+        "cobbled_deepslate_stairs",
+        "polished_deepslate_stairs",
+        "deepslate_tile_stairs",
+        "deepslate_brick_stairs"
+      ]
+    },
+    "ChestBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "chest"
+      ]
+    },
+    "RedStoneWireBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "redstone_wire"
+      ]
+    },
+    "CraftingTableBlock": {
+      "implemented": true,
+      "todos": [
+        "Award stat INTERACT_WITH_CRAFTING_TABLE"
+      ],
+      "entries": [
+        "crafting_table"
+      ]
+    },
+    "CropBlock": {
+      "implemented": true,
+      "todos": [
+        "Check light level >= 9 when light engine is implemented"
+      ],
+      "entries": [
+        "wheat"
+      ]
+    },
+    "FarmlandBlock": {
+      "implemented": true,
+      "todos": [
+        "Check for rain when weather is implemented"
+      ],
+      "entries": [
+        "farmland"
+      ]
+    },
+    "FurnaceBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "furnace"
+      ]
+    },
+    "StandingSignBlock": {
+      "implemented": true,
+      "todos": [
+        "Implement sign applicators (use_with_item):",
+        "Play waxed sign interaction fail sound",
+        "Implement may_build check properly"
+      ],
+      "entries": [
+        "oak_sign",
+        "spruce_sign",
+        "birch_sign",
+        "acacia_sign",
+        "cherry_sign",
+        "jungle_sign",
+        "dark_oak_sign",
+        "pale_oak_sign",
+        "mangrove_sign",
+        "bamboo_sign",
+        "crimson_sign",
+        "warped_sign"
+      ]
+    },
+    "DoorBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "oak_door",
+        "iron_door",
+        "spruce_door",
+        "birch_door",
+        "jungle_door",
+        "acacia_door",
+        "cherry_door",
+        "dark_oak_door",
+        "pale_oak_door",
+        "mangrove_door",
+        "bamboo_door",
+        "crimson_door",
+        "warped_door",
+        "waxed_copper_door",
+        "waxed_exposed_copper_door",
+        "waxed_oxidized_copper_door",
+        "waxed_weathered_copper_door"
+      ]
+    },
+    "LadderBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "ladder"
+      ]
+    },
+    "RailBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "rail"
+      ]
+    },
+    "WallSignBlock": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "oak_wall_sign",
+        "spruce_wall_sign",
+        "birch_wall_sign",
+        "acacia_wall_sign",
+        "cherry_wall_sign",
+        "jungle_wall_sign",
+        "dark_oak_wall_sign",
+        "pale_oak_wall_sign",
+        "mangrove_wall_sign",
+        "bamboo_wall_sign",
+        "crimson_wall_sign",
+        "warped_wall_sign"
+      ]
+    },
+    "CeilingHangingSignBlock": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "oak_hanging_sign",
+        "spruce_hanging_sign",
+        "birch_hanging_sign",
+        "acacia_hanging_sign",
+        "cherry_hanging_sign",
+        "jungle_hanging_sign",
+        "dark_oak_hanging_sign",
+        "pale_oak_hanging_sign",
+        "crimson_hanging_sign",
+        "warped_hanging_sign",
+        "mangrove_hanging_sign",
+        "bamboo_hanging_sign"
+      ]
+    },
+    "WallHangingSignBlock": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "oak_wall_hanging_sign",
+        "spruce_wall_hanging_sign",
+        "birch_wall_hanging_sign",
+        "acacia_wall_hanging_sign",
+        "cherry_wall_hanging_sign",
+        "jungle_wall_hanging_sign",
+        "dark_oak_wall_hanging_sign",
+        "pale_oak_wall_hanging_sign",
+        "mangrove_wall_hanging_sign",
+        "crimson_wall_hanging_sign",
+        "warped_wall_hanging_sign",
+        "bamboo_wall_hanging_sign"
+      ]
+    },
+    "LeverBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "lever"
+      ]
+    },
+    "PressurePlateBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "stone_pressure_plate",
+        "oak_pressure_plate",
+        "spruce_pressure_plate",
+        "birch_pressure_plate",
+        "jungle_pressure_plate",
+        "acacia_pressure_plate",
+        "cherry_pressure_plate",
+        "dark_oak_pressure_plate",
+        "pale_oak_pressure_plate",
+        "mangrove_pressure_plate",
+        "bamboo_pressure_plate",
+        "crimson_pressure_plate",
+        "warped_pressure_plate",
+        "polished_blackstone_pressure_plate"
+      ]
+    },
+    "RedStoneOreBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "redstone_ore",
+        "deepslate_redstone_ore"
+      ]
+    },
+    "RedstoneTorchBlock": {
+      "implemented": true,
+      "todos": [
+        "Redstone functionality (signal output, neighbor notifications,",
+        "implement redstone signal source behavior, neighbor updates, and burnout.",
+        "Redstone functionality (signal output by facing, neighbor notifications,"
+      ],
+      "entries": [
+        "redstone_torch"
+      ]
+    },
+    "RedstoneWallTorchBlock": {
+      "implemented": true,
+      "todos": [
+        "implement redstone signal source behavior, neighbor updates, and burnout."
+      ],
+      "entries": [
+        "redstone_wall_torch"
+      ]
+    },
+    "ButtonBlock": {
+      "implemented": true,
+      "todos": [
+        "GameEvent.BLOCK_ACTIVATE when game event system exists",
+        "Check for arrows via checkPressed() — wooden buttons should stay",
+        "GameEvent.BLOCK_DEACTIVATE when game event system exists"
+      ],
+      "entries": [
+        "stone_button",
+        "oak_button",
+        "spruce_button",
+        "birch_button",
+        "jungle_button",
+        "acacia_button",
+        "cherry_button",
+        "dark_oak_button",
+        "pale_oak_button",
+        "mangrove_button",
+        "bamboo_button",
+        "crimson_button",
+        "warped_button",
+        "polished_blackstone_button"
+      ]
+    },
+    "SnowLayerBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "snow"
+      ]
+    },
+    "IceBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "ice"
+      ]
+    },
+    "CactusBlock": {
+      "implemented": true,
+      "todos": [
+        "Implement when pathfinding is supported"
+      ],
+      "entries": [
+        "cactus"
+      ]
+    },
+    "CactusFlowerBlock": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "cactus_flower"
+      ]
+    },
+    "SugarCaneBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "sugar_cane"
+      ]
+    },
+    "JukeboxBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "jukebox"
+      ]
+    },
+    "FenceBlock": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "oak_fence",
+        "nether_brick_fence",
+        "spruce_fence",
+        "birch_fence",
+        "jungle_fence",
+        "acacia_fence",
+        "cherry_fence",
+        "dark_oak_fence",
+        "pale_oak_fence",
+        "mangrove_fence",
+        "bamboo_fence",
+        "crimson_fence",
+        "warped_fence"
+      ]
+    },
+    "NetherrackBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "netherrack"
+      ]
+    },
+    "SoulSandBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "soul_sand"
+      ]
+    },
+    "NetherPortalBlock": {
+      "implemented": true,
+      "todos": [
+        "add this functionality but has low priority"
+      ],
+      "entries": [
+        "nether_portal"
+      ]
+    },
+    "CarvedPumpkinBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "carved_pumpkin",
+        "jack_o_lantern"
+      ]
+    },
+    "CakeBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "cake"
+      ]
+    },
+    "RepeaterBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "repeater"
+      ]
+    },
+    "StainedGlassBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "white_stained_glass",
+        "orange_stained_glass",
+        "magenta_stained_glass",
+        "light_blue_stained_glass",
+        "yellow_stained_glass",
+        "lime_stained_glass",
+        "pink_stained_glass",
+        "gray_stained_glass",
+        "light_gray_stained_glass",
+        "cyan_stained_glass",
+        "purple_stained_glass",
+        "blue_stained_glass",
+        "brown_stained_glass",
+        "green_stained_glass",
+        "red_stained_glass",
+        "black_stained_glass"
+      ]
+    },
+    "TrapDoorBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "oak_trapdoor",
+        "spruce_trapdoor",
+        "birch_trapdoor",
+        "jungle_trapdoor",
+        "acacia_trapdoor",
+        "cherry_trapdoor",
+        "dark_oak_trapdoor",
+        "pale_oak_trapdoor",
+        "mangrove_trapdoor",
+        "bamboo_trapdoor",
+        "iron_trapdoor",
+        "crimson_trapdoor",
+        "warped_trapdoor",
+        "waxed_copper_trapdoor",
+        "waxed_exposed_copper_trapdoor",
+        "waxed_oxidized_copper_trapdoor",
+        "waxed_weathered_copper_trapdoor"
+      ]
+    },
+    "InfestedBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "infested_stone",
+        "infested_cobblestone",
+        "infested_stone_bricks",
+        "infested_mossy_stone_bricks",
+        "infested_cracked_stone_bricks",
+        "infested_chiseled_stone_bricks"
+      ]
+    },
+    "HugeMushroomBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "brown_mushroom_block",
+        "red_mushroom_block",
+        "mushroom_stem"
+      ]
+    },
+    "IronBarsBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "iron_bars",
+        "waxed_copper_bars",
+        "waxed_exposed_copper_bars",
+        "waxed_weathered_copper_bars",
+        "waxed_oxidized_copper_bars",
+        "glass_pane"
+      ]
+    },
+    "WeatheringCopperBarsBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "copper_bars",
+        "exposed_copper_bars",
+        "weathered_copper_bars",
+        "oxidized_copper_bars"
+      ]
+    },
+    "ChainBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "iron_chain",
+        "waxed_copper_chain",
+        "waxed_exposed_copper_chain",
+        "waxed_weathered_copper_chain",
+        "waxed_oxidized_copper_chain"
+      ]
+    },
+    "WeatheringCopperChainBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "copper_chain",
+        "exposed_copper_chain",
+        "weathered_copper_chain",
+        "oxidized_copper_chain"
+      ]
+    },
+    "PumpkinBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "pumpkin"
+      ]
+    },
+    "AttachedStemBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "attached_pumpkin_stem",
+        "attached_melon_stem"
+      ]
+    },
+    "StemBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "pumpkin_stem",
+        "melon_stem"
+      ]
+    },
+    "VineBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "vine"
+      ]
+    },
+    "GlowLichenBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "glow_lichen"
+      ]
+    },
+    "MultifaceBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "resin_clump"
+      ]
+    },
+    "FenceGateBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "oak_fence_gate",
+        "spruce_fence_gate",
+        "birch_fence_gate",
+        "jungle_fence_gate",
+        "acacia_fence_gate",
+        "cherry_fence_gate",
+        "dark_oak_fence_gate",
+        "pale_oak_fence_gate",
+        "mangrove_fence_gate",
+        "bamboo_fence_gate",
+        "crimson_fence_gate",
+        "warped_fence_gate"
+      ]
+    },
+    "MyceliumBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "mycelium"
+      ]
+    },
+    "LilyPadBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "lily_pad"
+      ]
+    },
+    "SlabBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "resin_brick_slab",
+        "prismarine_slab",
+        "prismarine_brick_slab",
+        "dark_prismarine_slab",
+        "oak_slab",
+        "spruce_slab",
+        "birch_slab",
+        "jungle_slab",
+        "acacia_slab",
+        "cherry_slab",
+        "dark_oak_slab",
+        "pale_oak_slab",
+        "mangrove_slab",
+        "bamboo_slab",
+        "bamboo_mosaic_slab",
+        "stone_slab",
+        "smooth_stone_slab",
+        "sandstone_slab",
+        "cut_sandstone_slab",
+        "petrified_oak_slab",
+        "cobblestone_slab",
+        "brick_slab",
+        "stone_brick_slab",
+        "mud_brick_slab",
+        "nether_brick_slab",
+        "quartz_slab",
+        "red_sandstone_slab",
+        "cut_red_sandstone_slab",
+        "purpur_slab",
+        "polished_granite_slab",
+        "smooth_red_sandstone_slab",
+        "mossy_stone_brick_slab",
+        "polished_diorite_slab",
+        "mossy_cobblestone_slab",
+        "end_stone_brick_slab",
+        "smooth_sandstone_slab",
+        "smooth_quartz_slab",
+        "granite_slab",
+        "andesite_slab",
+        "red_nether_brick_slab",
+        "polished_andesite_slab",
+        "diorite_slab",
+        "crimson_slab",
+        "warped_slab",
+        "blackstone_slab",
+        "polished_blackstone_brick_slab",
+        "polished_blackstone_slab",
+        "tuff_slab",
+        "polished_tuff_slab",
+        "tuff_brick_slab",
+        "waxed_oxidized_cut_copper_slab",
+        "waxed_weathered_cut_copper_slab",
+        "waxed_exposed_cut_copper_slab",
+        "waxed_cut_copper_slab",
+        "cobbled_deepslate_slab",
+        "polished_deepslate_slab",
+        "deepslate_tile_slab",
+        "deepslate_brick_slab"
+      ]
+    },
+    "WallBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "resin_brick_wall",
+        "cobblestone_wall",
+        "mossy_cobblestone_wall",
+        "brick_wall",
+        "prismarine_wall",
+        "red_sandstone_wall",
+        "mossy_stone_brick_wall",
+        "granite_wall",
+        "stone_brick_wall",
+        "mud_brick_wall",
+        "nether_brick_wall",
+        "andesite_wall",
+        "red_nether_brick_wall",
+        "sandstone_wall",
+        "end_stone_brick_wall",
+        "diorite_wall",
+        "blackstone_wall",
+        "polished_blackstone_brick_wall",
+        "polished_blackstone_wall",
+        "tuff_wall",
+        "polished_tuff_wall",
+        "tuff_brick_wall",
+        "cobbled_deepslate_wall",
+        "polished_deepslate_wall",
+        "deepslate_tile_wall",
+        "deepslate_brick_wall"
+      ]
+    },
+    "NetherWartBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "nether_wart"
+      ]
+    },
+    "EnchantingTableBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "enchanting_table"
+      ]
+    },
+    "BrewingStandBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "brewing_stand"
+      ]
+    },
+    "CauldronBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "cauldron"
+      ]
+    },
+    "LayeredCauldronBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "water_cauldron",
+        "powder_snow_cauldron"
+      ]
+    },
+    "LavaCauldronBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "lava_cauldron"
+      ]
+    },
+    "EndPortalBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "end_portal"
+      ]
+    },
+    "EndPortalFrameBlock": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "end_portal_frame"
+      ]
+    },
+    "DragonEggBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "dragon_egg"
+      ]
+    },
+    "RedstoneLampBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "redstone_lamp"
+      ]
+    },
+    "CocoaBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "cocoa"
+      ]
+    },
+    "EnderChestBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "ender_chest"
+      ]
+    },
+    "TripWireHookBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "tripwire_hook"
+      ]
+    },
+    "TripWireBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "tripwire"
+      ]
+    },
+    "CommandBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "command_block",
+        "repeating_command_block",
+        "chain_command_block"
+      ]
+    },
+    "BeaconBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "beacon"
+      ]
+    },
+    "FlowerPotBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "flower_pot",
+        "potted_torchflower",
+        "potted_oak_sapling",
+        "potted_spruce_sapling",
+        "potted_birch_sapling",
+        "potted_jungle_sapling",
+        "potted_acacia_sapling",
+        "potted_cherry_sapling",
+        "potted_dark_oak_sapling",
+        "potted_pale_oak_sapling",
+        "potted_mangrove_propagule",
+        "potted_fern",
+        "potted_dandelion",
+        "potted_golden_dandelion",
+        "potted_poppy",
+        "potted_blue_orchid",
+        "potted_allium",
+        "potted_azure_bluet",
+        "potted_red_tulip",
+        "potted_orange_tulip",
+        "potted_white_tulip",
+        "potted_pink_tulip",
+        "potted_oxeye_daisy",
+        "potted_cornflower",
+        "potted_lily_of_the_valley",
+        "potted_wither_rose",
+        "potted_red_mushroom",
+        "potted_brown_mushroom",
+        "potted_dead_bush",
+        "potted_cactus",
+        "potted_bamboo",
+        "potted_crimson_fungus",
+        "potted_warped_fungus",
+        "potted_crimson_roots",
+        "potted_warped_roots",
+        "potted_azalea_bush",
+        "potted_flowering_azalea_bush",
+        "potted_open_eyeblossom",
+        "potted_closed_eyeblossom"
+      ]
+    },
+    "CarrotBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "carrots"
+      ]
+    },
+    "PotatoBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "potatoes"
+      ]
+    },
+    "SkullBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "skeleton_skull",
+        "zombie_head",
+        "creeper_head",
+        "dragon_head",
+        "piglin_head"
+      ]
+    },
+    "WallSkullBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "skeleton_wall_skull",
+        "zombie_wall_head",
+        "creeper_wall_head",
+        "dragon_wall_head"
+      ]
+    },
+    "WitherSkullBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "wither_skeleton_skull"
+      ]
+    },
+    "WitherWallSkullBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "wither_skeleton_wall_skull"
+      ]
+    },
+    "PlayerHeadBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "player_head"
+      ]
+    },
+    "PlayerWallHeadBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "player_wall_head"
+      ]
+    },
+    "PiglinWallSkullBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "piglin_wall_head"
+      ]
+    },
+    "AnvilBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "anvil",
+        "chipped_anvil",
+        "damaged_anvil"
+      ]
+    },
+    "TrappedChestBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "trapped_chest"
+      ]
+    },
+    "WeightedPressurePlateBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "light_weighted_pressure_plate",
+        "heavy_weighted_pressure_plate"
+      ]
+    },
+    "ComparatorBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "comparator"
+      ]
+    },
+    "DaylightDetectorBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "daylight_detector"
+      ]
+    },
+    "PoweredBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "redstone_block"
+      ]
+    },
+    "HopperBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "hopper"
+      ]
+    },
+    "DropperBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "dropper"
+      ]
+    },
+    "StainedGlassPaneBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "white_stained_glass_pane",
+        "orange_stained_glass_pane",
+        "magenta_stained_glass_pane",
+        "light_blue_stained_glass_pane",
+        "yellow_stained_glass_pane",
+        "lime_stained_glass_pane",
+        "pink_stained_glass_pane",
+        "gray_stained_glass_pane",
+        "light_gray_stained_glass_pane",
+        "cyan_stained_glass_pane",
+        "purple_stained_glass_pane",
+        "blue_stained_glass_pane",
+        "brown_stained_glass_pane",
+        "green_stained_glass_pane",
+        "red_stained_glass_pane",
+        "black_stained_glass_pane"
+      ]
+    },
+    "SlimeBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "slime_block"
+      ]
+    },
+    "BarrierBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "barrier"
+      ]
+    },
+    "LightBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "light"
+      ]
+    },
+    "HayBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "hay_block"
+      ]
+    },
+    "WoolCarpetBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "white_carpet",
+        "orange_carpet",
+        "magenta_carpet",
+        "light_blue_carpet",
+        "yellow_carpet",
+        "lime_carpet",
+        "pink_carpet",
+        "gray_carpet",
+        "light_gray_carpet",
+        "cyan_carpet",
+        "purple_carpet",
+        "blue_carpet",
+        "brown_carpet",
+        "green_carpet",
+        "red_carpet",
+        "black_carpet"
+      ]
+    },
+    "TallFlowerBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "sunflower",
+        "lilac",
+        "rose_bush",
+        "peony"
+      ]
+    },
+    "DoublePlantBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "tall_grass",
+        "large_fern",
+        "pitcher_plant"
+      ]
+    },
+    "BannerBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "white_banner",
+        "orange_banner",
+        "magenta_banner",
+        "light_blue_banner",
+        "yellow_banner",
+        "lime_banner",
+        "pink_banner",
+        "gray_banner",
+        "light_gray_banner",
+        "cyan_banner",
+        "purple_banner",
+        "blue_banner",
+        "brown_banner",
+        "green_banner",
+        "red_banner",
+        "black_banner"
+      ]
+    },
+    "WallBannerBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "white_wall_banner",
+        "orange_wall_banner",
+        "magenta_wall_banner",
+        "light_blue_wall_banner",
+        "yellow_wall_banner",
+        "lime_wall_banner",
+        "pink_wall_banner",
+        "gray_wall_banner",
+        "light_gray_wall_banner",
+        "cyan_wall_banner",
+        "purple_wall_banner",
+        "blue_wall_banner",
+        "brown_wall_banner",
+        "green_wall_banner",
+        "red_wall_banner",
+        "black_wall_banner"
+      ]
+    },
+    "EndRodBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "end_rod"
+      ]
+    },
+    "ChorusPlantBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "chorus_plant"
+      ]
+    },
+    "ChorusFlowerBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "chorus_flower"
+      ]
+    },
+    "TorchflowerCropBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "torchflower_crop"
+      ]
+    },
+    "PitcherCropBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "pitcher_crop"
+      ]
+    },
+    "BeetrootBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "beetroots"
+      ]
+    },
+    "DirtPathBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "dirt_path"
+      ]
+    },
+    "EndGatewayBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "end_gateway"
+      ]
+    },
+    "FrostedIceBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "frosted_ice"
+      ]
+    },
+    "MagmaBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "magma_block"
+      ]
+    },
+    "StructureVoidBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "structure_void"
+      ]
+    },
+    "ObserverBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "observer"
+      ]
+    },
+    "ShulkerBoxBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "shulker_box",
+        "white_shulker_box",
+        "orange_shulker_box",
+        "magenta_shulker_box",
+        "light_blue_shulker_box",
+        "yellow_shulker_box",
+        "lime_shulker_box",
+        "pink_shulker_box",
+        "gray_shulker_box",
+        "light_gray_shulker_box",
+        "cyan_shulker_box",
+        "purple_shulker_box",
+        "blue_shulker_box",
+        "brown_shulker_box",
+        "green_shulker_box",
+        "red_shulker_box",
+        "black_shulker_box"
+      ]
+    },
+    "GlazedTerracottaBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "white_glazed_terracotta",
+        "orange_glazed_terracotta",
+        "magenta_glazed_terracotta",
+        "light_blue_glazed_terracotta",
+        "yellow_glazed_terracotta",
+        "lime_glazed_terracotta",
+        "pink_glazed_terracotta",
+        "gray_glazed_terracotta",
+        "light_gray_glazed_terracotta",
+        "cyan_glazed_terracotta",
+        "purple_glazed_terracotta",
+        "blue_glazed_terracotta",
+        "brown_glazed_terracotta",
+        "green_glazed_terracotta",
+        "red_glazed_terracotta",
+        "black_glazed_terracotta"
+      ]
+    },
+    "ConcretePowderBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "white_concrete_powder",
+        "orange_concrete_powder",
+        "magenta_concrete_powder",
+        "light_blue_concrete_powder",
+        "yellow_concrete_powder",
+        "lime_concrete_powder",
+        "pink_concrete_powder",
+        "gray_concrete_powder",
+        "light_gray_concrete_powder",
+        "cyan_concrete_powder",
+        "purple_concrete_powder",
+        "blue_concrete_powder",
+        "brown_concrete_powder",
+        "green_concrete_powder",
+        "red_concrete_powder",
+        "black_concrete_powder"
+      ]
+    },
+    "KelpBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "kelp"
+      ]
+    },
+    "KelpPlantBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "kelp_plant"
+      ]
+    },
+    "TurtleEggBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "turtle_egg"
+      ]
+    },
+    "SnifferEggBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "sniffer_egg"
+      ]
+    },
+    "DriedGhastBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "dried_ghast"
+      ]
+    },
+    "CoralBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "tube_coral_block",
+        "brain_coral_block",
+        "bubble_coral_block",
+        "fire_coral_block",
+        "horn_coral_block"
+      ]
+    },
+    "BaseCoralPlantBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "dead_tube_coral",
+        "dead_brain_coral",
+        "dead_bubble_coral",
+        "dead_fire_coral",
+        "dead_horn_coral"
+      ]
+    },
+    "CoralPlantBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "tube_coral",
+        "brain_coral",
+        "bubble_coral",
+        "fire_coral",
+        "horn_coral"
+      ]
+    },
+    "BaseCoralFanBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "dead_tube_coral_fan",
+        "dead_brain_coral_fan",
+        "dead_bubble_coral_fan",
+        "dead_fire_coral_fan",
+        "dead_horn_coral_fan"
+      ]
+    },
+    "CoralFanBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "tube_coral_fan",
+        "brain_coral_fan",
+        "bubble_coral_fan",
+        "fire_coral_fan",
+        "horn_coral_fan"
+      ]
+    },
+    "BaseCoralWallFanBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "dead_tube_coral_wall_fan",
+        "dead_brain_coral_wall_fan",
+        "dead_bubble_coral_wall_fan",
+        "dead_fire_coral_wall_fan",
+        "dead_horn_coral_wall_fan"
+      ]
+    },
+    "CoralWallFanBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "tube_coral_wall_fan",
+        "brain_coral_wall_fan",
+        "bubble_coral_wall_fan",
+        "fire_coral_wall_fan",
+        "horn_coral_wall_fan"
+      ]
+    },
+    "SeaPickleBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "sea_pickle"
+      ]
+    },
+    "HalfTransparentBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "blue_ice"
+      ]
+    },
+    "ConduitBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "conduit"
+      ]
+    },
+    "BambooSaplingBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "bamboo_sapling"
+      ]
+    },
+    "BambooStalkBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "bamboo"
+      ]
+    },
+    "BubbleColumnBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "bubble_column"
+      ]
+    },
+    "ScaffoldingBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "scaffolding"
+      ]
+    },
+    "LoomBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "loom"
+      ]
+    },
+    "BarrelBlock": {
+      "implemented": true,
+      "todos": [
+        "Award stat OPEN_BARREL",
+        "Anger nearby piglins (PiglinAi.angerNearbyPiglins)",
+        "Implement ContainerOpenersCounter to track open state, play sounds, and update OPEN block property. Requires scheduled block ticks (scheduleTick) for recheck functionality. See vanilla BarrelBlockEntity and ContainerOpenersCounter."
+      ],
+      "entries": [
+        "barrel"
+      ]
+    },
+    "SmokerBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "smoker"
+      ]
+    },
+    "BlastFurnaceBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "blast_furnace"
+      ]
+    },
+    "CartographyTableBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "cartography_table"
+      ]
+    },
+    "GrindstoneBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "grindstone"
+      ]
+    },
+    "LecternBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "lectern"
+      ]
+    },
+    "SmithingTableBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "smithing_table"
+      ]
+    },
+    "StonecutterBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "stonecutter"
+      ]
+    },
+    "BellBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "bell"
+      ]
+    },
+    "LanternBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "lantern",
+        "soul_lantern",
+        "waxed_copper_lantern",
+        "waxed_exposed_copper_lantern",
+        "waxed_weathered_copper_lantern",
+        "waxed_oxidized_copper_lantern"
+      ]
+    },
+    "WeatheringLanternBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "copper_lantern",
+        "exposed_copper_lantern",
+        "weathered_copper_lantern",
+        "oxidized_copper_lantern"
+      ]
+    },
+    "CampfireBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "campfire",
+        "soul_campfire"
+      ]
+    },
+    "SweetBerryBushBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "sweet_berry_bush"
+      ]
+    },
+    "NyliumBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "warped_nylium",
+        "crimson_nylium"
+      ]
+    },
+    "NetherFungusBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "warped_fungus",
+        "crimson_fungus"
+      ]
+    },
+    "NetherRootsBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "warped_roots",
+        "crimson_roots"
+      ]
+    },
+    "NetherSproutsBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "nether_sprouts"
+      ]
+    },
+    "WeepingVinesBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "weeping_vines"
+      ]
+    },
+    "WeepingVinesPlantBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "weeping_vines_plant"
+      ]
+    },
+    "TwistingVinesBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "twisting_vines"
+      ]
+    },
+    "TwistingVinesPlantBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "twisting_vines_plant"
+      ]
+    },
+    "StructureBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "structure_block"
+      ]
+    },
+    "JigsawBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "jigsaw"
+      ]
+    },
+    "TestBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "test_block"
+      ]
+    },
+    "TestInstanceBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "test_instance_block"
+      ]
+    },
+    "ComposterBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "composter"
+      ]
+    },
+    "TargetBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "target"
+      ]
+    },
+    "BeehiveBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "bee_nest",
+        "beehive"
+      ]
+    },
+    "HoneyBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "honey_block"
+      ]
+    },
+    "CryingObsidianBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "crying_obsidian"
+      ]
+    },
+    "RespawnAnchorBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "respawn_anchor"
+      ]
+    },
+    "CandleBlock": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "candle",
+        "white_candle",
+        "orange_candle",
+        "magenta_candle",
+        "light_blue_candle",
+        "yellow_candle",
+        "lime_candle",
+        "pink_candle",
+        "gray_candle",
+        "light_gray_candle",
+        "cyan_candle",
+        "purple_candle",
+        "blue_candle",
+        "brown_candle",
+        "green_candle",
+        "red_candle",
+        "black_candle"
+      ]
+    },
+    "CandleCakeBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "candle_cake",
+        "white_candle_cake",
+        "orange_candle_cake",
+        "magenta_candle_cake",
+        "light_blue_candle_cake",
+        "yellow_candle_cake",
+        "lime_candle_cake",
+        "pink_candle_cake",
+        "gray_candle_cake",
+        "light_gray_candle_cake",
+        "cyan_candle_cake",
+        "purple_candle_cake",
+        "blue_candle_cake",
+        "brown_candle_cake",
+        "green_candle_cake",
+        "red_candle_cake",
+        "black_candle_cake"
+      ]
+    },
+    "AmethystBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "amethyst_block"
+      ]
+    },
+    "BuddingAmethystBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "budding_amethyst"
+      ]
+    },
+    "AmethystClusterBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "amethyst_cluster",
+        "large_amethyst_bud",
+        "medium_amethyst_bud",
+        "small_amethyst_bud"
+      ]
+    },
+    "TintedGlassBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "tinted_glass"
+      ]
+    },
+    "PowderSnowBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "powder_snow"
+      ]
+    },
+    "SculkSensorBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "sculk_sensor"
+      ]
+    },
+    "CalibratedSculkSensorBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "calibrated_sculk_sensor"
+      ]
+    },
+    "SculkBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "sculk"
+      ]
+    },
+    "SculkVeinBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "sculk_vein"
+      ]
+    },
+    "SculkCatalystBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "sculk_catalyst"
+      ]
+    },
+    "SculkShriekerBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "sculk_shrieker"
+      ]
+    },
+    "WeatheringCopperFullBlock": {
+      "implemented": true,
+      "todos": [
+        "Add weathering support for slabs, stairs, doors, trapdoors, grates, bars, bulbs, lanterns, chains, chests, and golem statues"
+      ],
+      "entries": [
+        "copper_block",
+        "exposed_copper",
+        "weathered_copper",
+        "oxidized_copper",
+        "oxidized_cut_copper",
+        "weathered_cut_copper",
+        "exposed_cut_copper",
+        "cut_copper",
+        "oxidized_chiseled_copper",
+        "weathered_chiseled_copper",
+        "exposed_chiseled_copper",
+        "chiseled_copper"
+      ]
+    },
+    "WeatheringCopperStairBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "oxidized_cut_copper_stairs",
+        "weathered_cut_copper_stairs",
+        "exposed_cut_copper_stairs",
+        "cut_copper_stairs"
+      ]
+    },
+    "WeatheringCopperSlabBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "oxidized_cut_copper_slab",
+        "weathered_cut_copper_slab",
+        "exposed_cut_copper_slab",
+        "cut_copper_slab"
+      ]
+    },
+    "WeatheringCopperDoorBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "copper_door",
+        "exposed_copper_door",
+        "oxidized_copper_door",
+        "weathered_copper_door"
+      ]
+    },
+    "WeatheringCopperTrapDoorBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "copper_trapdoor",
+        "exposed_copper_trapdoor",
+        "oxidized_copper_trapdoor",
+        "weathered_copper_trapdoor"
+      ]
+    },
+    "WeatheringCopperGrateBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "copper_grate",
+        "exposed_copper_grate",
+        "weathered_copper_grate",
+        "oxidized_copper_grate"
+      ]
+    },
+    "WaterloggedTransparentBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "waxed_copper_grate",
+        "waxed_exposed_copper_grate",
+        "waxed_weathered_copper_grate",
+        "waxed_oxidized_copper_grate"
+      ]
+    },
+    "WeatheringCopperBulbBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "copper_bulb",
+        "exposed_copper_bulb",
+        "weathered_copper_bulb",
+        "oxidized_copper_bulb"
+      ]
+    },
+    "CopperBulbBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "waxed_copper_bulb",
+        "waxed_exposed_copper_bulb",
+        "waxed_weathered_copper_bulb",
+        "waxed_oxidized_copper_bulb"
+      ]
+    },
+    "WeatheringCopperChestBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "copper_chest",
+        "exposed_copper_chest",
+        "weathered_copper_chest",
+        "oxidized_copper_chest"
+      ]
+    },
+    "CopperChestBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "waxed_copper_chest",
+        "waxed_exposed_copper_chest",
+        "waxed_weathered_copper_chest",
+        "waxed_oxidized_copper_chest"
+      ]
+    },
+    "WeatheringCopperGolemStatueBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "copper_golem_statue",
+        "exposed_copper_golem_statue",
+        "weathered_copper_golem_statue",
+        "oxidized_copper_golem_statue"
+      ]
+    },
+    "CopperGolemStatueBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "waxed_copper_golem_statue",
+        "waxed_exposed_copper_golem_statue",
+        "waxed_weathered_copper_golem_statue",
+        "waxed_oxidized_copper_golem_statue"
+      ]
+    },
+    "WeatheringLightningRodBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "lightning_rod",
+        "exposed_lightning_rod",
+        "weathered_lightning_rod",
+        "oxidized_lightning_rod"
+      ]
+    },
+    "LightningRodBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "waxed_lightning_rod",
+        "waxed_exposed_lightning_rod",
+        "waxed_weathered_lightning_rod",
+        "waxed_oxidized_lightning_rod"
+      ]
+    },
+    "PointedDripstoneBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "pointed_dripstone"
+      ]
+    },
+    "CaveVinesBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "cave_vines"
+      ]
+    },
+    "CaveVinesPlantBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "cave_vines_plant"
+      ]
+    },
+    "SporeBlossomBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "spore_blossom"
+      ]
+    },
+    "AzaleaBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "azalea",
+        "flowering_azalea"
+      ]
+    },
+    "CarpetBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "moss_carpet"
+      ]
+    },
+    "FlowerBedBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "pink_petals",
+        "wildflowers"
+      ]
+    },
+    "LeafLitterBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "leaf_litter"
+      ]
+    },
+    "BonemealableFeaturePlacerBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "moss_block",
+        "pale_moss_block"
+      ]
+    },
+    "BigDripleafBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "big_dripleaf"
+      ]
+    },
+    "BigDripleafStemBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "big_dripleaf_stem"
+      ]
+    },
+    "SmallDripleafBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "small_dripleaf"
+      ]
+    },
+    "HangingRootsBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "hanging_roots"
+      ]
+    },
+    "RootedDirtBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "rooted_dirt"
+      ]
+    },
+    "MudBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "mud"
+      ]
+    },
+    "InfestedRotatedPillarBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "infested_deepslate"
+      ]
+    },
+    "FrogspawnBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "frogspawn"
+      ]
+    },
+    "DecoratedPotBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "decorated_pot"
+      ]
+    },
+    "CrafterBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "crafter"
+      ]
+    },
+    "TrialSpawnerBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "trial_spawner"
+      ]
+    },
+    "VaultBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "vault"
+      ]
+    },
+    "HeavyCoreBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "heavy_core"
+      ]
+    },
+    "MossyCarpetBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "pale_moss_carpet"
+      ]
+    },
+    "HangingMossBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "pale_hanging_moss"
+      ]
+    },
+    "EyeblossomBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "open_eyeblossom",
+        "closed_eyeblossom"
+      ]
+    },
+    "FireflyBushBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "firefly_bush"
+      ]
+    }
+  },
+  "items": {
+    "AirItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "air"
+      ]
+    },
+    "BlockItem": {
+      "implemented": true,
+      "todos": [
+        "Call behavior.on_place() — triggers neighbor updates (redstone, etc.)"
+      ],
+      "entries": [
+        "stone",
+        "granite",
+        "polished_granite",
+        "diorite",
+        "polished_diorite",
+        "andesite",
+        "polished_andesite",
+        "deepslate",
+        "cobbled_deepslate",
+        "polished_deepslate",
+        "calcite",
+        "tuff",
+        "tuff_slab",
+        "tuff_stairs",
+        "tuff_wall",
+        "chiseled_tuff",
+        "polished_tuff",
+        "polished_tuff_slab",
+        "polished_tuff_stairs",
+        "polished_tuff_wall",
+        "tuff_bricks",
+        "tuff_brick_slab",
+        "tuff_brick_stairs",
+        "tuff_brick_wall",
+        "chiseled_tuff_bricks",
+        "dripstone_block",
+        "grass_block",
+        "dirt",
+        "coarse_dirt",
+        "podzol",
+        "rooted_dirt",
+        "mud",
+        "crimson_nylium",
+        "warped_nylium",
+        "cobblestone",
+        "oak_planks",
+        "spruce_planks",
+        "birch_planks",
+        "jungle_planks",
+        "acacia_planks",
+        "cherry_planks",
+        "dark_oak_planks",
+        "pale_oak_planks",
+        "mangrove_planks",
+        "bamboo_planks",
+        "crimson_planks",
+        "warped_planks",
+        "bamboo_mosaic",
+        "oak_sapling",
+        "spruce_sapling",
+        "birch_sapling",
+        "jungle_sapling",
+        "acacia_sapling",
+        "cherry_sapling",
+        "dark_oak_sapling",
+        "pale_oak_sapling",
+        "mangrove_propagule",
+        "bedrock",
+        "sand",
+        "suspicious_sand",
+        "suspicious_gravel",
+        "red_sand",
+        "gravel",
+        "coal_ore",
+        "deepslate_coal_ore",
+        "iron_ore",
+        "deepslate_iron_ore",
+        "copper_ore",
+        "deepslate_copper_ore",
+        "gold_ore",
+        "deepslate_gold_ore",
+        "redstone_ore",
+        "deepslate_redstone_ore",
+        "emerald_ore",
+        "deepslate_emerald_ore",
+        "lapis_ore",
+        "deepslate_lapis_ore",
+        "diamond_ore",
+        "deepslate_diamond_ore",
+        "nether_gold_ore",
+        "nether_quartz_ore",
+        "ancient_debris",
+        "coal_block",
+        "raw_iron_block",
+        "raw_copper_block",
+        "raw_gold_block",
+        "heavy_core",
+        "amethyst_block",
+        "budding_amethyst",
+        "iron_block",
+        "copper_block",
+        "gold_block",
+        "diamond_block",
+        "netherite_block",
+        "exposed_copper",
+        "weathered_copper",
+        "oxidized_copper",
+        "chiseled_copper",
+        "exposed_chiseled_copper",
+        "weathered_chiseled_copper",
+        "oxidized_chiseled_copper",
+        "cut_copper",
+        "exposed_cut_copper",
+        "weathered_cut_copper",
+        "oxidized_cut_copper",
+        "cut_copper_stairs",
+        "exposed_cut_copper_stairs",
+        "weathered_cut_copper_stairs",
+        "oxidized_cut_copper_stairs",
+        "cut_copper_slab",
+        "exposed_cut_copper_slab",
+        "weathered_cut_copper_slab",
+        "oxidized_cut_copper_slab",
+        "waxed_copper_block",
+        "waxed_exposed_copper",
+        "waxed_weathered_copper",
+        "waxed_oxidized_copper",
+        "waxed_chiseled_copper",
+        "waxed_exposed_chiseled_copper",
+        "waxed_weathered_chiseled_copper",
+        "waxed_oxidized_chiseled_copper",
+        "waxed_cut_copper",
+        "waxed_exposed_cut_copper",
+        "waxed_weathered_cut_copper",
+        "waxed_oxidized_cut_copper",
+        "waxed_cut_copper_stairs",
+        "waxed_exposed_cut_copper_stairs",
+        "waxed_weathered_cut_copper_stairs",
+        "waxed_oxidized_cut_copper_stairs",
+        "waxed_cut_copper_slab",
+        "waxed_exposed_cut_copper_slab",
+        "waxed_weathered_cut_copper_slab",
+        "waxed_oxidized_cut_copper_slab",
+        "oak_log",
+        "spruce_log",
+        "birch_log",
+        "jungle_log",
+        "acacia_log",
+        "cherry_log",
+        "pale_oak_log",
+        "dark_oak_log",
+        "mangrove_log",
+        "mangrove_roots",
+        "muddy_mangrove_roots",
+        "crimson_stem",
+        "warped_stem",
+        "bamboo_block",
+        "stripped_oak_log",
+        "stripped_spruce_log",
+        "stripped_birch_log",
+        "stripped_jungle_log",
+        "stripped_acacia_log",
+        "stripped_cherry_log",
+        "stripped_dark_oak_log",
+        "stripped_pale_oak_log",
+        "stripped_mangrove_log",
+        "stripped_crimson_stem",
+        "stripped_warped_stem",
+        "stripped_oak_wood",
+        "stripped_spruce_wood",
+        "stripped_birch_wood",
+        "stripped_jungle_wood",
+        "stripped_acacia_wood",
+        "stripped_cherry_wood",
+        "stripped_dark_oak_wood",
+        "stripped_pale_oak_wood",
+        "stripped_mangrove_wood",
+        "stripped_crimson_hyphae",
+        "stripped_warped_hyphae",
+        "stripped_bamboo_block",
+        "oak_wood",
+        "spruce_wood",
+        "birch_wood",
+        "jungle_wood",
+        "acacia_wood",
+        "cherry_wood",
+        "pale_oak_wood",
+        "dark_oak_wood",
+        "mangrove_wood",
+        "crimson_hyphae",
+        "warped_hyphae",
+        "oak_leaves",
+        "spruce_leaves",
+        "birch_leaves",
+        "jungle_leaves",
+        "acacia_leaves",
+        "cherry_leaves",
+        "dark_oak_leaves",
+        "pale_oak_leaves",
+        "mangrove_leaves",
+        "azalea_leaves",
+        "flowering_azalea_leaves",
+        "sponge",
+        "wet_sponge",
+        "glass",
+        "tinted_glass",
+        "lapis_block",
+        "sandstone",
+        "chiseled_sandstone",
+        "cut_sandstone",
+        "cobweb",
+        "short_grass",
+        "fern",
+        "bush",
+        "azalea",
+        "flowering_azalea",
+        "dead_bush",
+        "firefly_bush",
+        "short_dry_grass",
+        "tall_dry_grass",
+        "seagrass",
+        "sea_pickle",
+        "white_wool",
+        "orange_wool",
+        "magenta_wool",
+        "light_blue_wool",
+        "yellow_wool",
+        "lime_wool",
+        "pink_wool",
+        "gray_wool",
+        "light_gray_wool",
+        "cyan_wool",
+        "purple_wool",
+        "blue_wool",
+        "brown_wool",
+        "green_wool",
+        "red_wool",
+        "black_wool",
+        "dandelion",
+        "golden_dandelion",
+        "open_eyeblossom",
+        "closed_eyeblossom",
+        "poppy",
+        "blue_orchid",
+        "allium",
+        "azure_bluet",
+        "red_tulip",
+        "orange_tulip",
+        "white_tulip",
+        "pink_tulip",
+        "oxeye_daisy",
+        "cornflower",
+        "lily_of_the_valley",
+        "wither_rose",
+        "torchflower",
+        "pitcher_plant",
+        "spore_blossom",
+        "brown_mushroom",
+        "red_mushroom",
+        "crimson_fungus",
+        "warped_fungus",
+        "crimson_roots",
+        "warped_roots",
+        "nether_sprouts",
+        "weeping_vines",
+        "twisting_vines",
+        "sugar_cane",
+        "kelp",
+        "pink_petals",
+        "wildflowers",
+        "leaf_litter",
+        "moss_carpet",
+        "moss_block",
+        "pale_moss_carpet",
+        "pale_hanging_moss",
+        "pale_moss_block",
+        "hanging_roots",
+        "big_dripleaf",
+        "bamboo",
+        "oak_slab",
+        "spruce_slab",
+        "birch_slab",
+        "jungle_slab",
+        "acacia_slab",
+        "cherry_slab",
+        "dark_oak_slab",
+        "pale_oak_slab",
+        "mangrove_slab",
+        "bamboo_slab",
+        "bamboo_mosaic_slab",
+        "crimson_slab",
+        "warped_slab",
+        "stone_slab",
+        "smooth_stone_slab",
+        "sandstone_slab",
+        "cut_sandstone_slab",
+        "petrified_oak_slab",
+        "cobblestone_slab",
+        "brick_slab",
+        "stone_brick_slab",
+        "mud_brick_slab",
+        "nether_brick_slab",
+        "quartz_slab",
+        "red_sandstone_slab",
+        "cut_red_sandstone_slab",
+        "purpur_slab",
+        "prismarine_slab",
+        "prismarine_brick_slab",
+        "dark_prismarine_slab",
+        "smooth_quartz",
+        "smooth_red_sandstone",
+        "smooth_sandstone",
+        "smooth_stone",
+        "bricks",
+        "acacia_shelf",
+        "bamboo_shelf",
+        "birch_shelf",
+        "cherry_shelf",
+        "crimson_shelf",
+        "dark_oak_shelf",
+        "jungle_shelf",
+        "mangrove_shelf",
+        "oak_shelf",
+        "pale_oak_shelf",
+        "spruce_shelf",
+        "warped_shelf",
+        "bookshelf",
+        "chiseled_bookshelf",
+        "decorated_pot",
+        "mossy_cobblestone",
+        "obsidian",
+        "end_rod",
+        "chorus_plant",
+        "chorus_flower",
+        "purpur_block",
+        "purpur_pillar",
+        "purpur_stairs",
+        "spawner",
+        "creaking_heart",
+        "chest",
+        "crafting_table",
+        "farmland",
+        "furnace",
+        "ladder",
+        "cobblestone_stairs",
+        "snow",
+        "ice",
+        "snow_block",
+        "cactus",
+        "cactus_flower",
+        "clay",
+        "jukebox",
+        "oak_fence",
+        "spruce_fence",
+        "birch_fence",
+        "jungle_fence",
+        "acacia_fence",
+        "cherry_fence",
+        "dark_oak_fence",
+        "pale_oak_fence",
+        "mangrove_fence",
+        "bamboo_fence",
+        "crimson_fence",
+        "warped_fence",
+        "pumpkin",
+        "carved_pumpkin",
+        "jack_o_lantern",
+        "netherrack",
+        "soul_sand",
+        "soul_soil",
+        "basalt",
+        "polished_basalt",
+        "smooth_basalt",
+        "glowstone",
+        "infested_stone",
+        "infested_cobblestone",
+        "infested_stone_bricks",
+        "infested_mossy_stone_bricks",
+        "infested_cracked_stone_bricks",
+        "infested_chiseled_stone_bricks",
+        "infested_deepslate",
+        "stone_bricks",
+        "mossy_stone_bricks",
+        "cracked_stone_bricks",
+        "chiseled_stone_bricks",
+        "packed_mud",
+        "mud_bricks",
+        "deepslate_bricks",
+        "cracked_deepslate_bricks",
+        "deepslate_tiles",
+        "cracked_deepslate_tiles",
+        "chiseled_deepslate",
+        "reinforced_deepslate",
+        "brown_mushroom_block",
+        "red_mushroom_block",
+        "mushroom_stem",
+        "iron_bars",
+        "copper_bars",
+        "exposed_copper_bars",
+        "weathered_copper_bars",
+        "oxidized_copper_bars",
+        "waxed_copper_bars",
+        "waxed_exposed_copper_bars",
+        "waxed_weathered_copper_bars",
+        "waxed_oxidized_copper_bars",
+        "iron_chain",
+        "copper_chain",
+        "exposed_copper_chain",
+        "weathered_copper_chain",
+        "oxidized_copper_chain",
+        "waxed_copper_chain",
+        "waxed_exposed_copper_chain",
+        "waxed_weathered_copper_chain",
+        "waxed_oxidized_copper_chain",
+        "glass_pane",
+        "melon",
+        "vine",
+        "glow_lichen",
+        "resin_clump",
+        "resin_block",
+        "resin_bricks",
+        "resin_brick_stairs",
+        "resin_brick_slab",
+        "resin_brick_wall",
+        "chiseled_resin_bricks",
+        "brick_stairs",
+        "stone_brick_stairs",
+        "mud_brick_stairs",
+        "mycelium",
+        "nether_bricks",
+        "cracked_nether_bricks",
+        "chiseled_nether_bricks",
+        "nether_brick_fence",
+        "nether_brick_stairs",
+        "sculk",
+        "sculk_vein",
+        "sculk_catalyst",
+        "sculk_shrieker",
+        "enchanting_table",
+        "end_portal_frame",
+        "end_stone",
+        "end_stone_bricks",
+        "dragon_egg",
+        "sandstone_stairs",
+        "ender_chest",
+        "emerald_block",
+        "oak_stairs",
+        "spruce_stairs",
+        "birch_stairs",
+        "jungle_stairs",
+        "acacia_stairs",
+        "cherry_stairs",
+        "dark_oak_stairs",
+        "pale_oak_stairs",
+        "mangrove_stairs",
+        "bamboo_stairs",
+        "bamboo_mosaic_stairs",
+        "crimson_stairs",
+        "warped_stairs",
+        "beacon",
+        "cobblestone_wall",
+        "mossy_cobblestone_wall",
+        "brick_wall",
+        "prismarine_wall",
+        "red_sandstone_wall",
+        "mossy_stone_brick_wall",
+        "granite_wall",
+        "stone_brick_wall",
+        "mud_brick_wall",
+        "nether_brick_wall",
+        "andesite_wall",
+        "red_nether_brick_wall",
+        "sandstone_wall",
+        "end_stone_brick_wall",
+        "diorite_wall",
+        "blackstone_wall",
+        "polished_blackstone_wall",
+        "polished_blackstone_brick_wall",
+        "cobbled_deepslate_wall",
+        "polished_deepslate_wall",
+        "deepslate_brick_wall",
+        "deepslate_tile_wall",
+        "anvil",
+        "chipped_anvil",
+        "damaged_anvil",
+        "chiseled_quartz_block",
+        "quartz_block",
+        "quartz_bricks",
+        "quartz_pillar",
+        "quartz_stairs",
+        "white_terracotta",
+        "orange_terracotta",
+        "magenta_terracotta",
+        "light_blue_terracotta",
+        "yellow_terracotta",
+        "lime_terracotta",
+        "pink_terracotta",
+        "gray_terracotta",
+        "light_gray_terracotta",
+        "cyan_terracotta",
+        "purple_terracotta",
+        "blue_terracotta",
+        "brown_terracotta",
+        "green_terracotta",
+        "red_terracotta",
+        "black_terracotta",
+        "barrier",
+        "light",
+        "hay_block",
+        "white_carpet",
+        "orange_carpet",
+        "magenta_carpet",
+        "light_blue_carpet",
+        "yellow_carpet",
+        "lime_carpet",
+        "pink_carpet",
+        "gray_carpet",
+        "light_gray_carpet",
+        "cyan_carpet",
+        "purple_carpet",
+        "blue_carpet",
+        "brown_carpet",
+        "green_carpet",
+        "red_carpet",
+        "black_carpet",
+        "terracotta",
+        "packed_ice",
+        "dirt_path",
+        "white_stained_glass",
+        "orange_stained_glass",
+        "magenta_stained_glass",
+        "light_blue_stained_glass",
+        "yellow_stained_glass",
+        "lime_stained_glass",
+        "pink_stained_glass",
+        "gray_stained_glass",
+        "light_gray_stained_glass",
+        "cyan_stained_glass",
+        "purple_stained_glass",
+        "blue_stained_glass",
+        "brown_stained_glass",
+        "green_stained_glass",
+        "red_stained_glass",
+        "black_stained_glass",
+        "white_stained_glass_pane",
+        "orange_stained_glass_pane",
+        "magenta_stained_glass_pane",
+        "light_blue_stained_glass_pane",
+        "yellow_stained_glass_pane",
+        "lime_stained_glass_pane",
+        "pink_stained_glass_pane",
+        "gray_stained_glass_pane",
+        "light_gray_stained_glass_pane",
+        "cyan_stained_glass_pane",
+        "purple_stained_glass_pane",
+        "blue_stained_glass_pane",
+        "brown_stained_glass_pane",
+        "green_stained_glass_pane",
+        "red_stained_glass_pane",
+        "black_stained_glass_pane",
+        "prismarine",
+        "prismarine_bricks",
+        "dark_prismarine",
+        "prismarine_stairs",
+        "prismarine_brick_stairs",
+        "dark_prismarine_stairs",
+        "sea_lantern",
+        "red_sandstone",
+        "chiseled_red_sandstone",
+        "cut_red_sandstone",
+        "red_sandstone_stairs",
+        "magma_block",
+        "nether_wart_block",
+        "warped_wart_block",
+        "red_nether_bricks",
+        "bone_block",
+        "structure_void",
+        "shulker_box",
+        "white_shulker_box",
+        "orange_shulker_box",
+        "magenta_shulker_box",
+        "light_blue_shulker_box",
+        "yellow_shulker_box",
+        "lime_shulker_box",
+        "pink_shulker_box",
+        "gray_shulker_box",
+        "light_gray_shulker_box",
+        "cyan_shulker_box",
+        "purple_shulker_box",
+        "blue_shulker_box",
+        "brown_shulker_box",
+        "green_shulker_box",
+        "red_shulker_box",
+        "black_shulker_box",
+        "white_glazed_terracotta",
+        "orange_glazed_terracotta",
+        "magenta_glazed_terracotta",
+        "light_blue_glazed_terracotta",
+        "yellow_glazed_terracotta",
+        "lime_glazed_terracotta",
+        "pink_glazed_terracotta",
+        "gray_glazed_terracotta",
+        "light_gray_glazed_terracotta",
+        "cyan_glazed_terracotta",
+        "purple_glazed_terracotta",
+        "blue_glazed_terracotta",
+        "brown_glazed_terracotta",
+        "green_glazed_terracotta",
+        "red_glazed_terracotta",
+        "black_glazed_terracotta",
+        "white_concrete",
+        "orange_concrete",
+        "magenta_concrete",
+        "light_blue_concrete",
+        "yellow_concrete",
+        "lime_concrete",
+        "pink_concrete",
+        "gray_concrete",
+        "light_gray_concrete",
+        "cyan_concrete",
+        "purple_concrete",
+        "blue_concrete",
+        "brown_concrete",
+        "green_concrete",
+        "red_concrete",
+        "black_concrete",
+        "white_concrete_powder",
+        "orange_concrete_powder",
+        "magenta_concrete_powder",
+        "light_blue_concrete_powder",
+        "yellow_concrete_powder",
+        "lime_concrete_powder",
+        "pink_concrete_powder",
+        "gray_concrete_powder",
+        "light_gray_concrete_powder",
+        "cyan_concrete_powder",
+        "purple_concrete_powder",
+        "blue_concrete_powder",
+        "brown_concrete_powder",
+        "green_concrete_powder",
+        "red_concrete_powder",
+        "black_concrete_powder",
+        "turtle_egg",
+        "sniffer_egg",
+        "dried_ghast",
+        "dead_tube_coral_block",
+        "dead_brain_coral_block",
+        "dead_bubble_coral_block",
+        "dead_fire_coral_block",
+        "dead_horn_coral_block",
+        "tube_coral_block",
+        "brain_coral_block",
+        "bubble_coral_block",
+        "fire_coral_block",
+        "horn_coral_block",
+        "tube_coral",
+        "brain_coral",
+        "bubble_coral",
+        "fire_coral",
+        "horn_coral",
+        "dead_brain_coral",
+        "dead_bubble_coral",
+        "dead_fire_coral",
+        "dead_horn_coral",
+        "dead_tube_coral",
+        "blue_ice",
+        "conduit",
+        "polished_granite_stairs",
+        "smooth_red_sandstone_stairs",
+        "mossy_stone_brick_stairs",
+        "polished_diorite_stairs",
+        "mossy_cobblestone_stairs",
+        "end_stone_brick_stairs",
+        "stone_stairs",
+        "smooth_sandstone_stairs",
+        "smooth_quartz_stairs",
+        "granite_stairs",
+        "andesite_stairs",
+        "red_nether_brick_stairs",
+        "polished_andesite_stairs",
+        "diorite_stairs",
+        "cobbled_deepslate_stairs",
+        "polished_deepslate_stairs",
+        "deepslate_brick_stairs",
+        "deepslate_tile_stairs",
+        "polished_granite_slab",
+        "smooth_red_sandstone_slab",
+        "mossy_stone_brick_slab",
+        "polished_diorite_slab",
+        "mossy_cobblestone_slab",
+        "end_stone_brick_slab",
+        "smooth_sandstone_slab",
+        "smooth_quartz_slab",
+        "granite_slab",
+        "andesite_slab",
+        "red_nether_brick_slab",
+        "polished_andesite_slab",
+        "diorite_slab",
+        "cobbled_deepslate_slab",
+        "polished_deepslate_slab",
+        "deepslate_brick_slab",
+        "deepslate_tile_slab",
+        "redstone",
+        "redstone_block",
+        "repeater",
+        "comparator",
+        "piston",
+        "sticky_piston",
+        "slime_block",
+        "honey_block",
+        "observer",
+        "hopper",
+        "dispenser",
+        "dropper",
+        "lectern",
+        "target",
+        "lever",
+        "lightning_rod",
+        "exposed_lightning_rod",
+        "weathered_lightning_rod",
+        "oxidized_lightning_rod",
+        "waxed_lightning_rod",
+        "waxed_exposed_lightning_rod",
+        "waxed_weathered_lightning_rod",
+        "waxed_oxidized_lightning_rod",
+        "daylight_detector",
+        "sculk_sensor",
+        "calibrated_sculk_sensor",
+        "tripwire_hook",
+        "trapped_chest",
+        "tnt",
+        "redstone_lamp",
+        "note_block",
+        "stone_button",
+        "polished_blackstone_button",
+        "oak_button",
+        "spruce_button",
+        "birch_button",
+        "jungle_button",
+        "acacia_button",
+        "cherry_button",
+        "dark_oak_button",
+        "pale_oak_button",
+        "mangrove_button",
+        "bamboo_button",
+        "crimson_button",
+        "warped_button",
+        "stone_pressure_plate",
+        "polished_blackstone_pressure_plate",
+        "light_weighted_pressure_plate",
+        "heavy_weighted_pressure_plate",
+        "oak_pressure_plate",
+        "spruce_pressure_plate",
+        "birch_pressure_plate",
+        "jungle_pressure_plate",
+        "acacia_pressure_plate",
+        "cherry_pressure_plate",
+        "dark_oak_pressure_plate",
+        "pale_oak_pressure_plate",
+        "mangrove_pressure_plate",
+        "bamboo_pressure_plate",
+        "crimson_pressure_plate",
+        "warped_pressure_plate",
+        "iron_trapdoor",
+        "oak_trapdoor",
+        "spruce_trapdoor",
+        "birch_trapdoor",
+        "jungle_trapdoor",
+        "acacia_trapdoor",
+        "cherry_trapdoor",
+        "dark_oak_trapdoor",
+        "pale_oak_trapdoor",
+        "mangrove_trapdoor",
+        "bamboo_trapdoor",
+        "crimson_trapdoor",
+        "warped_trapdoor",
+        "copper_trapdoor",
+        "exposed_copper_trapdoor",
+        "weathered_copper_trapdoor",
+        "oxidized_copper_trapdoor",
+        "waxed_copper_trapdoor",
+        "waxed_exposed_copper_trapdoor",
+        "waxed_weathered_copper_trapdoor",
+        "waxed_oxidized_copper_trapdoor",
+        "oak_fence_gate",
+        "spruce_fence_gate",
+        "birch_fence_gate",
+        "jungle_fence_gate",
+        "acacia_fence_gate",
+        "cherry_fence_gate",
+        "dark_oak_fence_gate",
+        "pale_oak_fence_gate",
+        "mangrove_fence_gate",
+        "bamboo_fence_gate",
+        "crimson_fence_gate",
+        "warped_fence_gate",
+        "powered_rail",
+        "detector_rail",
+        "rail",
+        "activator_rail",
+        "string",
+        "wheat_seeds",
+        "dried_kelp_block",
+        "cocoa_beans",
+        "cake",
+        "crafter",
+        "pumpkin_seeds",
+        "melon_seeds",
+        "nether_wart",
+        "brewing_stand",
+        "cauldron",
+        "flower_pot",
+        "carrot",
+        "potato",
+        "torchflower_seeds",
+        "pitcher_pod",
+        "beetroot_seeds",
+        "loom",
+        "composter",
+        "barrel",
+        "smoker",
+        "blast_furnace",
+        "cartography_table",
+        "fletching_table",
+        "grindstone",
+        "smithing_table",
+        "stonecutter",
+        "bell",
+        "lantern",
+        "soul_lantern",
+        "copper_lantern",
+        "exposed_copper_lantern",
+        "weathered_copper_lantern",
+        "oxidized_copper_lantern",
+        "waxed_copper_lantern",
+        "waxed_exposed_copper_lantern",
+        "waxed_weathered_copper_lantern",
+        "waxed_oxidized_copper_lantern",
+        "sweet_berries",
+        "glow_berries",
+        "campfire",
+        "soul_campfire",
+        "shroomlight",
+        "bee_nest",
+        "beehive",
+        "honeycomb_block",
+        "lodestone",
+        "crying_obsidian",
+        "blackstone",
+        "blackstone_slab",
+        "blackstone_stairs",
+        "gilded_blackstone",
+        "polished_blackstone",
+        "polished_blackstone_slab",
+        "polished_blackstone_stairs",
+        "chiseled_polished_blackstone",
+        "polished_blackstone_bricks",
+        "polished_blackstone_brick_slab",
+        "polished_blackstone_brick_stairs",
+        "cracked_polished_blackstone_bricks",
+        "respawn_anchor",
+        "candle",
+        "white_candle",
+        "orange_candle",
+        "magenta_candle",
+        "light_blue_candle",
+        "yellow_candle",
+        "lime_candle",
+        "pink_candle",
+        "gray_candle",
+        "light_gray_candle",
+        "cyan_candle",
+        "purple_candle",
+        "blue_candle",
+        "brown_candle",
+        "green_candle",
+        "red_candle",
+        "black_candle",
+        "small_amethyst_bud",
+        "medium_amethyst_bud",
+        "large_amethyst_bud",
+        "amethyst_cluster",
+        "pointed_dripstone",
+        "ochre_froglight",
+        "verdant_froglight",
+        "pearlescent_froglight",
+        "copper_grate",
+        "exposed_copper_grate",
+        "weathered_copper_grate",
+        "oxidized_copper_grate",
+        "waxed_copper_grate",
+        "waxed_exposed_copper_grate",
+        "waxed_weathered_copper_grate",
+        "waxed_oxidized_copper_grate",
+        "copper_bulb",
+        "exposed_copper_bulb",
+        "weathered_copper_bulb",
+        "oxidized_copper_bulb",
+        "waxed_copper_bulb",
+        "waxed_exposed_copper_bulb",
+        "waxed_weathered_copper_bulb",
+        "waxed_oxidized_copper_bulb",
+        "copper_chest",
+        "exposed_copper_chest",
+        "weathered_copper_chest",
+        "oxidized_copper_chest",
+        "waxed_copper_chest",
+        "waxed_exposed_copper_chest",
+        "waxed_weathered_copper_chest",
+        "waxed_oxidized_copper_chest",
+        "copper_golem_statue",
+        "exposed_copper_golem_statue",
+        "weathered_copper_golem_statue",
+        "oxidized_copper_golem_statue",
+        "waxed_copper_golem_statue",
+        "waxed_exposed_copper_golem_statue",
+        "waxed_weathered_copper_golem_statue",
+        "waxed_oxidized_copper_golem_statue",
+        "trial_spawner",
+        "vault"
+      ]
+    },
+    "DoubleHighBlockItem": {
+      "implemented": true,
+      "todos": [
+        "Implement vanilla's double-high placement (place upper half block above)"
+      ],
+      "entries": [
+        "small_dripleaf",
+        "sunflower",
+        "lilac",
+        "rose_bush",
+        "peony",
+        "tall_grass",
+        "large_fern",
+        "iron_door",
+        "oak_door",
+        "spruce_door",
+        "birch_door",
+        "jungle_door",
+        "acacia_door",
+        "cherry_door",
+        "dark_oak_door",
+        "pale_oak_door",
+        "mangrove_door",
+        "bamboo_door",
+        "crimson_door",
+        "warped_door",
+        "copper_door",
+        "exposed_copper_door",
+        "weathered_copper_door",
+        "oxidized_copper_door",
+        "waxed_copper_door",
+        "waxed_exposed_copper_door",
+        "waxed_weathered_copper_door",
+        "waxed_oxidized_copper_door"
+      ]
+    },
+    "StandingAndWallBlockItem": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "torch",
+        "soul_torch",
+        "copper_torch",
+        "tube_coral_fan",
+        "brain_coral_fan",
+        "bubble_coral_fan",
+        "fire_coral_fan",
+        "horn_coral_fan",
+        "dead_tube_coral_fan",
+        "dead_brain_coral_fan",
+        "dead_bubble_coral_fan",
+        "dead_fire_coral_fan",
+        "dead_horn_coral_fan",
+        "redstone_torch",
+        "skeleton_skull",
+        "wither_skeleton_skull",
+        "zombie_head",
+        "creeper_head",
+        "dragon_head",
+        "piglin_head"
+      ]
+    },
+    "PlaceOnWaterBlockItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "lily_pad",
+        "frogspawn"
+      ]
+    },
+    "GameMasterBlockItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "command_block",
+        "repeating_command_block",
+        "chain_command_block",
+        "structure_block",
+        "jigsaw",
+        "test_block",
+        "test_instance_block"
+      ]
+    },
+    "ScaffoldingBlockItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "scaffolding"
+      ]
+    },
+    "Item": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "saddle",
+        "white_harness",
+        "orange_harness",
+        "magenta_harness",
+        "light_blue_harness",
+        "yellow_harness",
+        "lime_harness",
+        "pink_harness",
+        "gray_harness",
+        "light_gray_harness",
+        "cyan_harness",
+        "purple_harness",
+        "blue_harness",
+        "brown_harness",
+        "green_harness",
+        "red_harness",
+        "black_harness",
+        "phantom_membrane",
+        "elytra",
+        "turtle_helmet",
+        "turtle_scute",
+        "armadillo_scute",
+        "wolf_armor",
+        "bowl",
+        "apple",
+        "coal",
+        "charcoal",
+        "diamond",
+        "emerald",
+        "lapis_lazuli",
+        "quartz",
+        "amethyst_shard",
+        "raw_iron",
+        "iron_ingot",
+        "raw_copper",
+        "copper_ingot",
+        "raw_gold",
+        "gold_ingot",
+        "netherite_ingot",
+        "netherite_scrap",
+        "wooden_sword",
+        "wooden_pickaxe",
+        "copper_sword",
+        "copper_pickaxe",
+        "stone_sword",
+        "stone_pickaxe",
+        "golden_sword",
+        "golden_pickaxe",
+        "iron_sword",
+        "iron_pickaxe",
+        "diamond_sword",
+        "diamond_pickaxe",
+        "netherite_sword",
+        "netherite_pickaxe",
+        "stick",
+        "mushroom_stew",
+        "feather",
+        "gunpowder",
+        "wheat",
+        "bread",
+        "leather_helmet",
+        "leather_chestplate",
+        "leather_leggings",
+        "leather_boots",
+        "copper_helmet",
+        "copper_chestplate",
+        "copper_leggings",
+        "copper_boots",
+        "chainmail_helmet",
+        "chainmail_chestplate",
+        "chainmail_leggings",
+        "chainmail_boots",
+        "iron_helmet",
+        "iron_chestplate",
+        "iron_leggings",
+        "iron_boots",
+        "diamond_helmet",
+        "diamond_chestplate",
+        "diamond_leggings",
+        "diamond_boots",
+        "golden_helmet",
+        "golden_chestplate",
+        "golden_leggings",
+        "golden_boots",
+        "netherite_helmet",
+        "netherite_chestplate",
+        "netherite_leggings",
+        "netherite_boots",
+        "flint",
+        "porkchop",
+        "cooked_porkchop",
+        "golden_apple",
+        "enchanted_golden_apple",
+        "leather",
+        "milk_bucket",
+        "brick",
+        "clay_ball",
+        "paper",
+        "book",
+        "slime_ball",
+        "recovery_compass",
+        "clock",
+        "glowstone_dust",
+        "cod",
+        "salmon",
+        "tropical_fish",
+        "pufferfish",
+        "cooked_cod",
+        "cooked_salmon",
+        "bone",
+        "sugar",
+        "cookie",
+        "melon_slice",
+        "dried_kelp",
+        "beef",
+        "cooked_beef",
+        "chicken",
+        "cooked_chicken",
+        "rotten_flesh",
+        "blaze_rod",
+        "ghast_tear",
+        "gold_nugget",
+        "spider_eye",
+        "fermented_spider_eye",
+        "blaze_powder",
+        "magma_cream",
+        "glistering_melon_slice",
+        "breeze_rod",
+        "baked_potato",
+        "poisonous_potato",
+        "golden_carrot",
+        "nether_star",
+        "pumpkin_pie",
+        "firework_star",
+        "enchanted_book",
+        "nether_brick",
+        "resin_brick",
+        "prismarine_shard",
+        "prismarine_crystals",
+        "rabbit",
+        "cooked_rabbit",
+        "rabbit_stew",
+        "rabbit_foot",
+        "rabbit_hide",
+        "copper_horse_armor",
+        "iron_horse_armor",
+        "golden_horse_armor",
+        "diamond_horse_armor",
+        "netherite_horse_armor",
+        "leather_horse_armor",
+        "mutton",
+        "cooked_mutton",
+        "chorus_fruit",
+        "popped_chorus_fruit",
+        "beetroot",
+        "beetroot_soup",
+        "dragon_breath",
+        "wooden_spear",
+        "stone_spear",
+        "copper_spear",
+        "iron_spear",
+        "golden_spear",
+        "diamond_spear",
+        "netherite_spear",
+        "totem_of_undying",
+        "shulker_shell",
+        "iron_nugget",
+        "copper_nugget",
+        "music_disc_13",
+        "music_disc_cat",
+        "music_disc_blocks",
+        "music_disc_chirp",
+        "music_disc_creator",
+        "music_disc_creator_music_box",
+        "music_disc_far",
+        "music_disc_lava_chicken",
+        "music_disc_mall",
+        "music_disc_mellohi",
+        "music_disc_stal",
+        "music_disc_strad",
+        "music_disc_ward",
+        "music_disc_11",
+        "music_disc_wait",
+        "music_disc_otherside",
+        "music_disc_relic",
+        "music_disc_5",
+        "music_disc_pigstep",
+        "music_disc_precipice",
+        "music_disc_tears",
+        "nautilus_shell",
+        "iron_nautilus_armor",
+        "golden_nautilus_armor",
+        "diamond_nautilus_armor",
+        "netherite_nautilus_armor",
+        "copper_nautilus_armor",
+        "heart_of_the_sea",
+        "suspicious_stew",
+        "flower_banner_pattern",
+        "creeper_banner_pattern",
+        "skull_banner_pattern",
+        "mojang_banner_pattern",
+        "globe_banner_pattern",
+        "piglin_banner_pattern",
+        "flow_banner_pattern",
+        "guster_banner_pattern",
+        "field_masoned_banner_pattern",
+        "bordure_indented_banner_pattern",
+        "honey_bottle",
+        "echo_shard",
+        "angler_pottery_sherd",
+        "archer_pottery_sherd",
+        "arms_up_pottery_sherd",
+        "blade_pottery_sherd",
+        "brewer_pottery_sherd",
+        "burn_pottery_sherd",
+        "danger_pottery_sherd",
+        "explorer_pottery_sherd",
+        "flow_pottery_sherd",
+        "friend_pottery_sherd",
+        "guster_pottery_sherd",
+        "heart_pottery_sherd",
+        "heartbreak_pottery_sherd",
+        "howl_pottery_sherd",
+        "miner_pottery_sherd",
+        "mourner_pottery_sherd",
+        "plenty_pottery_sherd",
+        "prize_pottery_sherd",
+        "scrape_pottery_sherd",
+        "sheaf_pottery_sherd",
+        "shelter_pottery_sherd",
+        "skull_pottery_sherd",
+        "snort_pottery_sherd",
+        "trial_key",
+        "ominous_trial_key",
+        "ominous_bottle"
+      ]
+    },
+    "MinecartItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "minecart",
+        "chest_minecart",
+        "furnace_minecart",
+        "tnt_minecart",
+        "hopper_minecart",
+        "command_block_minecart"
+      ]
+    },
+    "FoodOnAStickItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "carrot_on_a_stick",
+        "warped_fungus_on_a_stick"
+      ]
+    },
+    "BoatItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "oak_boat",
+        "oak_chest_boat",
+        "spruce_boat",
+        "spruce_chest_boat",
+        "birch_boat",
+        "birch_chest_boat",
+        "jungle_boat",
+        "jungle_chest_boat",
+        "acacia_boat",
+        "acacia_chest_boat",
+        "cherry_boat",
+        "cherry_chest_boat",
+        "dark_oak_boat",
+        "dark_oak_chest_boat",
+        "pale_oak_boat",
+        "pale_oak_chest_boat",
+        "mangrove_boat",
+        "mangrove_chest_boat",
+        "bamboo_raft",
+        "bamboo_chest_raft"
+      ]
+    },
+    "FlintAndSteelItem": {
+      "implemented": true,
+      "todos": [
+        "light campfires, candles, and candle cakes (set LIT=true) before fire placement",
+        "use BaseFireBlock.getState() equivalent to select soul fire vs regular fire"
+      ],
+      "entries": [
+        "flint_and_steel"
+      ]
+    },
+    "BowItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "bow"
+      ]
+    },
+    "ArrowItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "arrow"
+      ]
+    },
+    "ShovelItem": {
+      "implemented": true,
+      "todos": [
+        "Play SoundEvents.SHOVEL_FLATTEN",
+        "Emit GameEvent::BLOCK_CHANGE",
+        "level_event(1009, pos, 0) — extinguish particle/sound",
+        "CampfireBlock::dowse() — eject cooking items",
+        "hurt_and_break(1, ...) — shovels take durability damage",
+        "Emit GameEvent::BLOCK_CHANGE"
+      ],
+      "entries": [
+        "wooden_shovel",
+        "copper_shovel",
+        "stone_shovel",
+        "golden_shovel",
+        "iron_shovel",
+        "diamond_shovel",
+        "netherite_shovel"
+      ]
+    },
+    "AxeItem": {
+      "implemented": true,
+      "todos": [
+        "Fire GameEvent::BLOCK_CHANGE for sculk sensors"
+      ],
+      "entries": [
+        "wooden_axe",
+        "copper_axe",
+        "stone_axe",
+        "golden_axe",
+        "iron_axe",
+        "diamond_axe",
+        "netherite_axe"
+      ]
+    },
+    "HoeItem": {
+      "implemented": true,
+      "todos": [
+        "Emit GameEvent::BLOCK_CHANGE"
+      ],
+      "entries": [
+        "wooden_hoe",
+        "copper_hoe",
+        "stone_hoe",
+        "golden_hoe",
+        "iron_hoe",
+        "diamond_hoe",
+        "netherite_hoe"
+      ]
+    },
+    "HangingEntityItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "painting"
+      ]
+    },
+    "SignItem": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "oak_sign",
+        "spruce_sign",
+        "birch_sign",
+        "jungle_sign",
+        "acacia_sign",
+        "cherry_sign",
+        "dark_oak_sign",
+        "pale_oak_sign",
+        "mangrove_sign",
+        "bamboo_sign",
+        "crimson_sign",
+        "warped_sign"
+      ]
+    },
+    "HangingSignItem": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "oak_hanging_sign",
+        "spruce_hanging_sign",
+        "birch_hanging_sign",
+        "jungle_hanging_sign",
+        "acacia_hanging_sign",
+        "cherry_hanging_sign",
+        "dark_oak_hanging_sign",
+        "pale_oak_hanging_sign",
+        "mangrove_hanging_sign",
+        "bamboo_hanging_sign",
+        "crimson_hanging_sign",
+        "warped_hanging_sign"
+      ]
+    },
+    "BucketItem": {
+      "implemented": true,
+      "todos": [
+        "Remove fallback once all waterloggable blocks implement pickup_block",
+        "Refactor into smaller helpers once all bucket types are implemented",
+        "Per-position environment attributes (vanilla uses EnvironmentAttributes.WATER_EVAPORATES per-pos)"
+      ],
+      "entries": [
+        "bucket",
+        "water_bucket",
+        "lava_bucket"
+      ]
+    },
+    "SolidBucketItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "powder_snow_bucket"
+      ]
+    },
+    "SnowballItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "snowball"
+      ]
+    },
+    "MobBucketItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "pufferfish_bucket",
+        "salmon_bucket",
+        "cod_bucket",
+        "tropical_fish_bucket",
+        "axolotl_bucket",
+        "tadpole_bucket"
+      ]
+    },
+    "EggItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "egg",
+        "blue_egg",
+        "brown_egg"
+      ]
+    },
+    "CompassItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "compass"
+      ]
+    },
+    "BundleItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "bundle",
+        "white_bundle",
+        "orange_bundle",
+        "magenta_bundle",
+        "light_blue_bundle",
+        "yellow_bundle",
+        "lime_bundle",
+        "pink_bundle",
+        "gray_bundle",
+        "light_gray_bundle",
+        "cyan_bundle",
+        "purple_bundle",
+        "blue_bundle",
+        "brown_bundle",
+        "green_bundle",
+        "red_bundle",
+        "black_bundle"
+      ]
+    },
+    "FishingRodItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "fishing_rod"
+      ]
+    },
+    "SpyglassItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "spyglass"
+      ]
+    },
+    "InkSacItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "ink_sac"
+      ]
+    },
+    "GlowInkSacItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "glow_ink_sac"
+      ]
+    },
+    "DyeItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "white_dye",
+        "orange_dye",
+        "magenta_dye",
+        "light_blue_dye",
+        "yellow_dye",
+        "lime_dye",
+        "pink_dye",
+        "gray_dye",
+        "light_gray_dye",
+        "cyan_dye",
+        "purple_dye",
+        "blue_dye",
+        "brown_dye",
+        "green_dye",
+        "red_dye",
+        "black_dye"
+      ]
+    },
+    "BoneMealItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "bone_meal"
+      ]
+    },
+    "BedItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "white_bed",
+        "orange_bed",
+        "magenta_bed",
+        "light_blue_bed",
+        "yellow_bed",
+        "lime_bed",
+        "pink_bed",
+        "gray_bed",
+        "light_gray_bed",
+        "cyan_bed",
+        "purple_bed",
+        "blue_bed",
+        "brown_bed",
+        "green_bed",
+        "red_bed",
+        "black_bed"
+      ]
+    },
+    "MapItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "filled_map"
+      ]
+    },
+    "ShearsItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "shears"
+      ]
+    },
+    "EnderpearlItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "ender_pearl"
+      ]
+    },
+    "BottleItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "glass_bottle"
+      ]
+    },
+    "PotionItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "potion"
+      ]
+    },
+    "EnderEyeItem": {
+      "implemented": true,
+      "todos": [
+        "updateNeighborForOutputSignal, portal completion check"
+      ],
+      "entries": [
+        "ender_eye"
+      ]
+    },
+    "SpawnEggItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "chicken_spawn_egg",
+        "cow_spawn_egg",
+        "pig_spawn_egg",
+        "sheep_spawn_egg",
+        "camel_spawn_egg",
+        "donkey_spawn_egg",
+        "horse_spawn_egg",
+        "mule_spawn_egg",
+        "cat_spawn_egg",
+        "parrot_spawn_egg",
+        "wolf_spawn_egg",
+        "armadillo_spawn_egg",
+        "bat_spawn_egg",
+        "bee_spawn_egg",
+        "fox_spawn_egg",
+        "goat_spawn_egg",
+        "llama_spawn_egg",
+        "ocelot_spawn_egg",
+        "panda_spawn_egg",
+        "polar_bear_spawn_egg",
+        "rabbit_spawn_egg",
+        "axolotl_spawn_egg",
+        "cod_spawn_egg",
+        "dolphin_spawn_egg",
+        "frog_spawn_egg",
+        "glow_squid_spawn_egg",
+        "nautilus_spawn_egg",
+        "pufferfish_spawn_egg",
+        "salmon_spawn_egg",
+        "squid_spawn_egg",
+        "tadpole_spawn_egg",
+        "tropical_fish_spawn_egg",
+        "turtle_spawn_egg",
+        "allay_spawn_egg",
+        "mooshroom_spawn_egg",
+        "sniffer_spawn_egg",
+        "copper_golem_spawn_egg",
+        "iron_golem_spawn_egg",
+        "snow_golem_spawn_egg",
+        "trader_llama_spawn_egg",
+        "villager_spawn_egg",
+        "wandering_trader_spawn_egg",
+        "bogged_spawn_egg",
+        "camel_husk_spawn_egg",
+        "drowned_spawn_egg",
+        "husk_spawn_egg",
+        "parched_spawn_egg",
+        "skeleton_spawn_egg",
+        "skeleton_horse_spawn_egg",
+        "stray_spawn_egg",
+        "wither_spawn_egg",
+        "wither_skeleton_spawn_egg",
+        "zombie_spawn_egg",
+        "zombie_horse_spawn_egg",
+        "zombie_nautilus_spawn_egg",
+        "zombie_villager_spawn_egg",
+        "cave_spider_spawn_egg",
+        "spider_spawn_egg",
+        "breeze_spawn_egg",
+        "creaking_spawn_egg",
+        "creeper_spawn_egg",
+        "elder_guardian_spawn_egg",
+        "guardian_spawn_egg",
+        "phantom_spawn_egg",
+        "silverfish_spawn_egg",
+        "slime_spawn_egg",
+        "warden_spawn_egg",
+        "witch_spawn_egg",
+        "evoker_spawn_egg",
+        "pillager_spawn_egg",
+        "ravager_spawn_egg",
+        "vindicator_spawn_egg",
+        "vex_spawn_egg",
+        "blaze_spawn_egg",
+        "ghast_spawn_egg",
+        "happy_ghast_spawn_egg",
+        "hoglin_spawn_egg",
+        "magma_cube_spawn_egg",
+        "piglin_spawn_egg",
+        "piglin_brute_spawn_egg",
+        "strider_spawn_egg",
+        "zoglin_spawn_egg",
+        "zombified_piglin_spawn_egg",
+        "ender_dragon_spawn_egg",
+        "enderman_spawn_egg",
+        "endermite_spawn_egg",
+        "shulker_spawn_egg"
+      ]
+    },
+    "ExperienceBottleItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "experience_bottle"
+      ]
+    },
+    "FireChargeItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "fire_charge"
+      ]
+    },
+    "WindChargeItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "wind_charge"
+      ]
+    },
+    "WritableBookItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "writable_book"
+      ]
+    },
+    "WrittenBookItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "written_book"
+      ]
+    },
+    "MaceItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "mace"
+      ]
+    },
+    "ItemFrameItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "item_frame",
+        "glow_item_frame"
+      ]
+    },
+    "EmptyMapItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "map"
+      ]
+    },
+    "PlayerHeadItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "player_head"
+      ]
+    },
+    "FireworkRocketItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "firework_rocket"
+      ]
+    },
+    "ArmorStandItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "armor_stand"
+      ]
+    },
+    "LeadItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "lead"
+      ]
+    },
+    "NameTagItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "name_tag"
+      ]
+    },
+    "BannerItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "white_banner",
+        "orange_banner",
+        "magenta_banner",
+        "light_blue_banner",
+        "yellow_banner",
+        "lime_banner",
+        "pink_banner",
+        "gray_banner",
+        "light_gray_banner",
+        "cyan_banner",
+        "purple_banner",
+        "blue_banner",
+        "brown_banner",
+        "green_banner",
+        "red_banner",
+        "black_banner"
+      ]
+    },
+    "EndCrystalItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "end_crystal"
+      ]
+    },
+    "SplashPotionItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "splash_potion"
+      ]
+    },
+    "SpectralArrowItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "spectral_arrow"
+      ]
+    },
+    "TippedArrowItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "tipped_arrow"
+      ]
+    },
+    "LingeringPotionItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "lingering_potion"
+      ]
+    },
+    "ShieldItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "shield"
+      ]
+    },
+    "KnowledgeBookItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "knowledge_book"
+      ]
+    },
+    "DebugStickItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "debug_stick"
+      ]
+    },
+    "DiscFragmentItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "disc_fragment_5"
+      ]
+    },
+    "TridentItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "trident"
+      ]
+    },
+    "CrossbowItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "crossbow"
+      ]
+    },
+    "InstrumentItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "goat_horn"
+      ]
+    },
+    "HoneycombItem": {
+      "implemented": true,
+      "todos": [
+        "trigger CriteriaTriggers.ITEM_USED_ON_BLOCK advancement",
+        "dispatch GameEvent::BLOCK_CHANGE"
+      ],
+      "entries": [
+        "honeycomb"
+      ]
+    },
+    "BrushItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "brush"
+      ]
+    },
+    "SmithingTemplateItem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "netherite_upgrade_smithing_template",
+        "sentry_armor_trim_smithing_template",
+        "dune_armor_trim_smithing_template",
+        "coast_armor_trim_smithing_template",
+        "wild_armor_trim_smithing_template",
+        "ward_armor_trim_smithing_template",
+        "eye_armor_trim_smithing_template",
+        "vex_armor_trim_smithing_template",
+        "tide_armor_trim_smithing_template",
+        "snout_armor_trim_smithing_template",
+        "rib_armor_trim_smithing_template",
+        "spire_armor_trim_smithing_template",
+        "wayfinder_armor_trim_smithing_template",
+        "shaper_armor_trim_smithing_template",
+        "silence_armor_trim_smithing_template",
+        "raiser_armor_trim_smithing_template",
+        "host_armor_trim_smithing_template",
+        "flow_armor_trim_smithing_template",
+        "bolt_armor_trim_smithing_template"
+      ]
+    }
+  }
+}
