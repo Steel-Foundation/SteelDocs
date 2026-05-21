@@ -265,8 +265,10 @@
       ]
     },
     "SaplingBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement random ticking, bonemeal growth, and tree grower behavior."
+      ],
       "entries": [
         "oak_sapling",
         "spruce_sapling",
@@ -279,8 +281,10 @@
       ]
     },
     "MangrovePropaguleBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement growth ticking, bonemeal advance, and shape updates."
+      ],
       "entries": [
         "mangrove_propagule"
       ]
@@ -464,7 +468,7 @@
       ]
     },
     "TallGrassBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "short_grass",
@@ -472,42 +476,50 @@
       ]
     },
     "DryVegetationBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement full vanilla behavior beyond can_survive."
+      ],
       "entries": [
         "dead_bush"
       ]
     },
     "BushBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement full vanilla behavior beyond can_survive."
+      ],
       "entries": [
         "bush"
       ]
     },
     "ShortDryGrassBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement full vanilla behavior beyond can_survive."
+      ],
       "entries": [
         "short_dry_grass"
       ]
     },
     "TallDryGrassBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement full vanilla behavior beyond can_survive."
+      ],
       "entries": [
         "tall_dry_grass"
       ]
     },
     "SeagrassBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "seagrass"
       ]
     },
     "TallSeagrassBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "tall_seagrass"
@@ -528,7 +540,7 @@
       ]
     },
     "FlowerBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "dandelion",
@@ -548,15 +560,19 @@
       ]
     },
     "WitherRoseBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement full vanilla behavior beyond can_survive."
+      ],
       "entries": [
         "wither_rose"
       ]
     },
     "MushroomBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement full vanilla behavior beyond can_survive."
+      ],
       "entries": [
         "brown_mushroom",
         "red_mushroom"
@@ -615,14 +631,16 @@
     "FireBlock": {
       "implemented": true,
       "todos": [
-        "|| is_valid_fire_location (check adjacent flammable blocks once flammability exists)"
+        "|| is_valid_fire_location (check adjacent flammable blocks once flammability exists)",
+        "with the rest of fire ticking.",
+        "Implement full vanilla behavior beyond can_survive."
       ],
       "entries": [
         "fire"
       ]
     },
     "SoulFireBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "soul_fire"
@@ -643,7 +661,7 @@
       ]
     },
     "StairBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "oak_stairs",
@@ -727,9 +745,7 @@
     },
     "CropBlock": {
       "implemented": true,
-      "todos": [
-        "Check light level >= 9 when light engine is implemented"
-      ],
+      "todos": [],
       "entries": [
         "wheat"
       ]
@@ -773,8 +789,12 @@
       ]
     },
     "DoorBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Query redstone neighbor signal once Steel has redstone power propagation.",
+        "GameEvent.BLOCK_OPEN/BLOCK_CLOSE once game events exist.",
+        "GameEvent.BLOCK_OPEN/BLOCK_CLOSE once game events exist."
+      ],
       "entries": [
         "oak_door",
         "iron_door",
@@ -943,8 +963,10 @@
       ]
     },
     "SnowLayerBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement melting, layering on placement, and entity step damage."
+      ],
       "entries": [
         "snow"
       ]
@@ -973,7 +995,7 @@
       ]
     },
     "SugarCaneBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "sugar_cane"
@@ -1037,8 +1059,10 @@
       ]
     },
     "CakeBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        ""
+      ],
       "entries": [
         "cake"
       ]
@@ -1183,15 +1207,22 @@
       ]
     },
     "VineBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement placement and random tick spread.",
+        "Vanilla picks a face based on nearest looking direction and"
+      ],
       "entries": [
         "vine"
       ]
     },
     "GlowLichenBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        ".",
+        "Implement spread, bonemeal, and rotation/mirror overrides.",
+        "Vanilla picks a face from nearestLookingDirections; placeholder"
+      ],
       "entries": [
         "glow_lichen"
       ]
@@ -1229,14 +1260,16 @@
       ]
     },
     "LilyPadBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement full vanilla behavior beyond can_survive."
+      ],
       "entries": [
         "lily_pad"
       ]
     },
     "SlabBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "resin_brick_slab",
@@ -1332,7 +1365,7 @@
       ]
     },
     "NetherWartBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "nether_wart"
@@ -1492,14 +1525,14 @@
       ]
     },
     "CarrotBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "carrots"
       ]
     },
     "PotatoBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "potatoes"
@@ -1693,7 +1726,7 @@
       ]
     },
     "TallFlowerBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "sunflower",
@@ -1703,7 +1736,7 @@
       ]
     },
     "DoublePlantBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "tall_grass",
@@ -1763,35 +1796,39 @@
       ]
     },
     "ChorusPlantBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement ticking and full shape-update side effects."
+      ],
       "entries": [
         "chorus_plant"
       ]
     },
     "ChorusFlowerBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement ticking, projectile break behavior, and growth outside worldgen."
+      ],
       "entries": [
         "chorus_flower"
       ]
     },
     "TorchflowerCropBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "torchflower_crop"
       ]
     },
     "PitcherCropBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "pitcher_crop"
       ]
     },
     "BeetrootBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "beetroots"
@@ -1907,15 +1944,19 @@
       ]
     },
     "KelpBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement full vanilla behavior beyond can_survive and get_fluid_state."
+      ],
       "entries": [
         "kelp"
       ]
     },
     "KelpPlantBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement full vanilla behavior beyond can_survive and get_fluid_state."
+      ],
       "entries": [
         "kelp_plant"
       ]
@@ -1953,7 +1994,7 @@
       ]
     },
     "BaseCoralPlantBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "dead_tube_coral",
@@ -1964,8 +2005,11 @@
       ]
     },
     "CoralPlantBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        ".",
+        "Implement death tick, scheduled tick on placement, and water update."
+      ],
       "entries": [
         "tube_coral",
         "brain_coral",
@@ -1975,7 +2019,7 @@
       ]
     },
     "BaseCoralFanBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "dead_tube_coral_fan",
@@ -1986,8 +2030,11 @@
       ]
     },
     "CoralFanBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        ".",
+        "Implement death tick and scheduled tick on placement."
+      ],
       "entries": [
         "tube_coral_fan",
         "brain_coral_fan",
@@ -1997,8 +2044,10 @@
       ]
     },
     "BaseCoralWallFanBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Vanilla iterates over nearestLookingDirections; placeholder uses"
+      ],
       "entries": [
         "dead_tube_coral_wall_fan",
         "dead_brain_coral_wall_fan",
@@ -2008,8 +2057,11 @@
       ]
     },
     "CoralWallFanBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        ".",
+        "Implement death tick and scheduled tick on placement."
+      ],
       "entries": [
         "tube_coral_wall_fan",
         "brain_coral_wall_fan",
@@ -2019,8 +2071,10 @@
       ]
     },
     "SeaPickleBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement full vanilla behavior beyond can_survive."
+      ],
       "entries": [
         "sea_pickle"
       ]
@@ -2040,14 +2094,14 @@
       ]
     },
     "BambooSaplingBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "bamboo_sapling"
       ]
     },
     "BambooStalkBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "bamboo"
@@ -2172,8 +2226,10 @@
       ]
     },
     "SweetBerryBushBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "make stuck in block"
+      ],
       "entries": [
         "sweet_berry_bush"
       ]
@@ -2187,52 +2243,64 @@
       ]
     },
     "NetherFungusBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement full vanilla behavior beyond can_survive."
+      ],
       "entries": [
         "warped_fungus",
         "crimson_fungus"
       ]
     },
     "NetherRootsBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement full vanilla behavior beyond can_survive."
+      ],
       "entries": [
         "warped_roots",
         "crimson_roots"
       ]
     },
     "NetherSproutsBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "nether_sprouts"
       ]
     },
     "WeepingVinesBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement growth, bonemeal, and shape updates."
+      ],
       "entries": [
         "weeping_vines"
       ]
     },
     "WeepingVinesPlantBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement shape updates."
+      ],
       "entries": [
         "weeping_vines_plant"
       ]
     },
     "TwistingVinesBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement growth, bonemeal, and shape updates."
+      ],
       "entries": [
         "twisting_vines"
       ]
     },
     "TwistingVinesPlantBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement shape updates."
+      ],
       "entries": [
         "twisting_vines_plant"
       ]
@@ -2280,8 +2348,10 @@
       ]
     },
     "BeehiveBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement full vanilla beehive interactions, bee release, smoke/fire handling, loot/data components, and ticking."
+      ],
       "entries": [
         "bee_nest",
         "beehive"
@@ -2332,8 +2402,11 @@
       ]
     },
     "CandleCakeBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "",
+        "particles!"
+      ],
       "entries": [
         "candle_cake",
         "white_candle_cake",
@@ -2414,8 +2487,11 @@
       ]
     },
     "SculkVeinBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        ".",
+        "Implement sculk spread, charge handling, and rotation/mirror overrides."
+      ],
       "entries": [
         "sculk_vein"
       ]
@@ -2437,7 +2513,7 @@
     "WeatheringCopperFullBlock": {
       "implemented": true,
       "todos": [
-        "Add weathering support for slabs, stairs, doors, trapdoors, grates, bars, bulbs, lanterns, chains, chests, and golem statues"
+        "Add weathering support for doors, trapdoors, grates, bars, bulbs, lanterns, chains, chests, and golem statues"
       ],
       "entries": [
         "copper_block",
@@ -2455,7 +2531,7 @@
       ]
     },
     "WeatheringCopperStairBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "oxidized_cut_copper_stairs",
@@ -2465,7 +2541,7 @@
       ]
     },
     "WeatheringCopperSlabBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "oxidized_cut_copper_slab",
@@ -2475,7 +2551,7 @@
       ]
     },
     "WeatheringCopperDoorBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "copper_door",
@@ -2595,35 +2671,44 @@
       ]
     },
     "PointedDripstoneBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement thickness recalculation, scheduled-tick stalagmite breakage,",
+        "Vanilla picks tip direction from clicked-face/looking direction"
+      ],
       "entries": [
         "pointed_dripstone"
       ]
     },
     "CaveVinesBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement growth, bonemeal, berry interactions, and shape updates."
+      ],
       "entries": [
         "cave_vines"
       ]
     },
     "CaveVinesPlantBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement berry interactions and shape updates."
+      ],
       "entries": [
         "cave_vines_plant"
       ]
     },
     "SporeBlossomBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement particles and the rest of vanilla behavior."
+      ],
       "entries": [
         "spore_blossom"
       ]
     },
     "AzaleaBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "azalea",
@@ -2631,23 +2716,29 @@
       ]
     },
     "CarpetBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement full vanilla behavior beyond can_survive."
+      ],
       "entries": [
         "moss_carpet"
       ]
     },
     "FlowerBedBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement full vanilla behavior beyond can_survive."
+      ],
       "entries": [
         "pink_petals",
         "wildflowers"
       ]
     },
     "LeafLitterBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement full vanilla behavior beyond can_survive."
+      ],
       "entries": [
         "leaf_litter"
       ]
@@ -2661,29 +2752,37 @@
       ]
     },
     "BigDripleafBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement tilt-on-stand, projectile tilt, bonemeal stem growth."
+      ],
       "entries": [
         "big_dripleaf"
       ]
     },
     "BigDripleafStemBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement scheduled break on shape update and tick."
+      ],
       "entries": [
         "big_dripleaf_stem"
       ]
     },
     "SmallDripleafBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement full vanilla behavior beyond can_survive."
+      ],
       "entries": [
         "small_dripleaf"
       ]
     },
     "HangingRootsBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement scheduled water-tick handoff on shape updates."
+      ],
       "entries": [
         "hanging_roots"
       ]
@@ -2752,30 +2851,38 @@
       ]
     },
     "MossyCarpetBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement spreading, bonemeal, and the rest of vanilla behavior."
+      ],
       "entries": [
         "pale_moss_carpet"
       ]
     },
     "HangingMossBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement TIP property update on shape changes, bonemeal growth, and tick."
+      ],
       "entries": [
         "pale_hanging_moss"
       ]
     },
     "EyeblossomBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement eyeblossom day/night transforms, sounds, particles, and bee effects"
+      ],
       "entries": [
         "open_eyeblossom",
         "closed_eyeblossom"
       ]
     },
     "FireflyBushBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement particles, sounds, bonemeal, and the rest of vanilla behavior."
+      ],
       "entries": [
         "firefly_bush"
       ]
@@ -2791,9 +2898,7 @@
     },
     "BlockItem": {
       "implemented": true,
-      "todos": [
-        "Call behavior.on_place() — triggers neighbor updates (redstone, etc.)"
-      ],
+      "todos": [],
       "entries": [
         "stone",
         "granite",
@@ -3709,9 +3814,7 @@
     },
     "DoubleHighBlockItem": {
       "implemented": true,
-      "todos": [
-        "Implement vanilla's double-high placement (place upper half block above)"
-      ],
+      "todos": [],
       "entries": [
         "small_dripleaf",
         "sunflower",
@@ -4086,10 +4189,7 @@
     },
     "FlintAndSteelItem": {
       "implemented": true,
-      "todos": [
-        "light campfires, candles, and candle cakes (set LIT=true) before fire placement",
-        "use BaseFireBlock.getState() equivalent to select soul fire vs regular fire"
-      ],
+      "todos": [],
       "entries": [
         "flint_and_steel"
       ]
@@ -4204,10 +4304,9 @@
     "BucketItem": {
       "implemented": true,
       "todos": [
-        "Spawn particles",
         "Remove fallback once all waterloggable blocks implement pickup_block",
         "Refactor into smaller helpers once all bucket types are implemented",
-        "Nether water evaporation (vanilla uses EnvironmentAttributes.WATER_EVAPORATES)"
+        "Per-position environment attributes (vanilla uses EnvironmentAttributes.WATER_EVAPORATES per-pos)"
       ],
       "entries": [
         "bucket",
@@ -4331,8 +4430,11 @@
       ]
     },
     "BoneMealItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "implement coral and underwater bonemeal tag selection.",
+        "particles"
+      ],
       "entries": [
         "bone_meal"
       ]
@@ -4504,7 +4606,7 @@
       ]
     },
     "FireChargeItem": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "fire_charge"
