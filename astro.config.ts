@@ -66,6 +66,14 @@ export default defineConfig({
             autogenerate: { directory: "guides/development/blocks" },
           },
           {
+            label: "Items",
+            translations: {
+              es: "Items",
+              de: "Items",
+            },
+            autogenerate: { directory: "guides/development/items" },
+          },
+          {
             label: "Network",
             translations: {
               es: "Red",
