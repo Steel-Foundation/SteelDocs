@@ -56,6 +56,7 @@ export default defineConfig({
           "guides/development/decompile-minecraft",
           "guides/development/upgrade-minecraft",
           "guides/development/code-standard",
+          "guides/development/block_item_registration",
           {
             label: "Blocks",
             translations: {
@@ -63,6 +64,14 @@ export default defineConfig({
               de: "Blöcke",
             },
             autogenerate: { directory: "guides/development/blocks" },
+          },
+          {
+            label: "Items",
+            translations: {
+              es: "Items",
+              de: "Items",
+            },
+            autogenerate: { directory: "guides/development/items" },
           },
           {
             label: "Network",
