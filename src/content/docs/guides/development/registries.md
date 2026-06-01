@@ -524,15 +524,16 @@ This macro depends on the `tags` field in your registry; if you named it differe
 
 ## Create your own build script for a registry
 
-Every registry build script is a little different, because every vanilla data file has its own shape. The safest way to add one is to start from an existing registry with similar data. `steel-registry/build/banner_patterns.rs` is a good real example for a datapack-backed registry.
+Every registry build script is a little different, because every vanilla data file has its own shape. The safest way to add one is to start from an existing registry with similar data. The beer registry below stays as the tutorial example; `steel-registry/build/banner_patterns.rs` is the real SteelMC build script this example is modeled after.
 
 The build script starts by defining the JSON shape it expects from the datapack file:
 
 ```rust
 #[derive(Deserialize, Debug)]
-pub struct BannerPatternJson {
-    asset_id: Identifier,
-    translation_key: String,
+pub struct BeerTypeJson {
+    beer_type: String,
+    min_l: u32,
+    max_l: u32,
 }
 ```
 
@@ -540,22 +541,22 @@ Then it reads all JSON files from the vanilla datapack directory. The `cargo:rer
 
 ```rust
 pub(crate) fn build() -> TokenStream {
-    println!("cargo:rerun-if-changed=build_assets/builtin_datapacks/minecraft/banner_pattern/");
+    println!("cargo:rerun-if-changed=build_assets/builtin_datapacks/minecraft/beer_type/");
 
-    let banner_pattern_dir = "build_assets/builtin_datapacks/minecraft/banner_pattern";
-    let mut banner_patterns = Vec::new();
+    let beer_type_dir = "build_assets/builtin_datapacks/minecraft/beer_type";
+    let mut beer_types = Vec::new();
 
-    for entry in fs::read_dir(banner_pattern_dir).unwrap() {
+    for entry in fs::read_dir(beer_type_dir).unwrap() {
         let entry = entry.unwrap();
         let path = entry.path();
 
         if path.extension().and_then(|s| s.to_str()) == Some("json") {
-            let banner_pattern_name = path.file_stem().unwrap().to_str().unwrap().to_string();
+            let beer_type_name = path.file_stem().unwrap().to_str().unwrap().to_string();
             let content = fs::read_to_string(&path).unwrap();
-            let banner_pattern: BannerPatternJson = serde_json::from_str(&content)
-                .unwrap_or_else(|e| panic!("Failed to parse {}: {}", banner_pattern_name, e));
+            let beer_type: BeerTypeJson = serde_json::from_str(&content)
+                .unwrap_or_else(|e| panic!("Failed to parse {}: {}", beer_type_name, e));
 
-            banner_patterns.push((banner_pattern_name, banner_pattern));
+            beer_types.push((beer_type_name, beer_type));
         }
     }
 
@@ -569,38 +570,39 @@ The same function then emits Rust code for each static entry and for the generat
 let mut stream = TokenStream::new();
 
 stream.extend(quote! {
-    use crate::banner_pattern::{BannerPattern, BannerPatternRegistry};
+    use crate::beer_type::{BeerType, BeerTypeRegistry};
     use steel_utils::Identifier;
-    use std::borrow::Cow;
 });
 
 let mut register_stream = TokenStream::new();
-for (banner_pattern_name, banner_pattern) in &banner_patterns {
-    let banner_pattern_ident = Ident::new(
-        &banner_pattern_name.to_shouty_snake_case(),
+for (beer_type_name, beer_type) in &beer_types {
+    let beer_type_ident = Ident::new(
+        &beer_type_name.to_shouty_snake_case(),
         Span::call_site(),
     );
-    let banner_pattern_name_str = banner_pattern_name.clone();
+    let beer_type_name_str = beer_type_name.clone();
+    let beer_type_kind = beer_type.beer_type.as_str();
+    let min_l = beer_type.min_l;
+    let max_l = beer_type.max_l;
 
-    let key = quote! { Identifier::vanilla_static(#banner_pattern_name_str) };
-    let asset_id = generate_identifier(&banner_pattern.asset_id);
-    let translation_key = banner_pattern.translation_key.as_str();
+    let key = quote! { Identifier::vanilla_static(#beer_type_name_str) };
 
     stream.extend(quote! {
-        pub static #banner_pattern_ident: BannerPattern = BannerPattern {
+        pub static #beer_type_ident: BeerType = BeerType {
             key: #key,
-            asset_id: #asset_id,
-            translation_key: #translation_key,
+            beer_type: #beer_type_kind,
+            min_l: #min_l,
+            max_l: #max_l,
         };
     });
 
     register_stream.extend(quote! {
-        registry.register(&#banner_pattern_ident);
+        registry.register(&#beer_type_ident);
     });
 }
 
 stream.extend(quote! {
-    pub fn register_banner_patterns(registry: &mut BannerPatternRegistry) {
+    pub fn register_beer_types(registry: &mut BeerTypeRegistry) {
         #register_stream
     }
 });
@@ -609,7 +611,7 @@ stream.extend(quote! {
 After the build file exists, wire it into `steel-registry/build/build.rs`. The constant controls the generated filename in `steel-registry/src/generated`:
 
 ```rust
-const BANNER_PATTERNS: &str = "banner_patterns";
+const BEER_TYPES: &str = "beer_types";
 
 let vanilla_builds = [
     (attributes::build(), ATTRIBUTES),
@@ -617,7 +619,7 @@ let vanilla_builds = [
     (block_tags::build(), BLOCK_TAGS),
     (items::build(), ITEMS),
     (item_tags::build(), ITEM_TAGS),
-    (banner_patterns::build(), BANNER_PATTERNS),
+    (beer_types::build(), BEER_TYPES),
     // ...
 ];
 ```
@@ -627,18 +629,19 @@ Finally, expose the generated module and register it in `Registry::new_vanilla` 
 ```rust
 #[expect(warnings)]
 #[rustfmt::skip]
-#[path = "generated/vanilla_banner_patterns.rs"]
-pub mod vanilla_banner_patterns;
+#[path = "generated/vanilla_beer_types.rs"]
+pub mod vanilla_beer_types;
 
 pub fn new_vanilla() -> Self {
     let mut registry = Self::new_empty();
 
     // Other vanilla registries are registered here too.
-    vanilla_banner_patterns::register_banner_patterns(&mut registry.banner_patterns);
-    vanilla_banner_pattern_tags::register_banner_pattern_tags(&mut registry.banner_patterns);
+    vanilla_beer_types::register_beer_types(&mut registry.beer_types);
+    // If BeerTypeRegistry has tags:
+    // vanilla_beer_type_tags::register_beer_type_tags(&mut registry.beer_types);
 
     registry
 }
 ```
 
-For a new registry, replace the banner pattern names with your registry type, generated module name, source directory, and JSON struct. If the source data comes from the Steel extractor instead of `builtin_datapacks`, read from the matching file in `steel-registry/build_assets`; you can find more information about the Steel extractor [here](../tools/steel_extractor).
+For a new registry, replace the beer type names with your registry type, generated module name, source directory, and JSON struct. If the source data comes from the Steel extractor instead of `builtin_datapacks`, read from the matching file in `steel-registry/build_assets`; you can find more information about the Steel extractor [here](../tools/steel_extractor).
