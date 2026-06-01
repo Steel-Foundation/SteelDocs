@@ -210,8 +210,7 @@ implemented:
 add_tags!(BANNER_PATTERN_REGISTRY, banner_patterns);
 ```
 
-Both syncs happen during the login process, meaning all synced registries can be modified and the vanilla client
-supports these new elements. So server-side modding is currently possible with Steel.
+Both syncs happen during the login process, meaning all synced registries which was modified at boot and the vanilla client will support these new elements. So server-side modding is currently possible with Steel.
 
 ## How to use a registry
 
