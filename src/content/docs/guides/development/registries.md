@@ -11,6 +11,14 @@ A registry is Steel's source of truth for a category of named game data: blocks,
 
 Registries matter because Minecraft protocols and game logic need stable IDs, stable names, and shared definitions. Steel uses registries to map an `Identifier` such as `minecraft:stone` to a numeric ID, expose typed Rust references, group entries with tags, and sync the registries that the vanilla client needs during login. Most vanilla entries are generated from extracted JSON or datapack data instead of being hand-written.
 
+This guide uses these terms consistently:
+
+- **Registry entry**: one definition stored in a registry, such as a block, item, entity type, biome, or banner pattern.
+- **Entry reference type**: a registry-specific type alias for a static reference to an entry, such as `BannerPatternRef = &'static BannerPattern`.
+- **Identifier**: the stable namespaced key for an entry, such as `minecraft:stone`.
+- **Numeric ID**: the `usize` assigned when an entry is registered. Registries use it for fast lookup and protocol data.
+- **Tag**: a named group of entry identifiers, such as `minecraft:fence_gates`.
+
 ## How do registries work?
 
 At a high level, the data flows through the following stages:
@@ -22,13 +30,19 @@ build_assets/*.json
 src/generated/*.rs   ── static entries + register fn
         │   (server start)
         ▼
-REGISTRY.new_vanilla()        ── fills each registry
+Registry::new_vanilla()       ── fills each registry
         │
         ▼
-REGISTRY.freeze()             ── no further modification
+registry.freeze()             ── no further modification
         │
         ▼
-Sync to the Minecraft client  ── during login
+REGISTRY.init(registry)       ── exposes the frozen registry globally
+        │
+        ▼
+RegistryCache::new()          ── builds registry + tag packets
+        │
+        ▼
+Send cached packets           ── during login configuration
 ```
 
 All registries are in the cargo package `steel-registry`, which holds the code to generate, initialize, access, and freeze registry data.
@@ -77,9 +91,9 @@ Use this as the short checklist for how registry data moves through Steel:
 5. `Registry::freeze` locks the registries so no later code can mutate IDs or tags.
 6. The login flow syncs the registries and tags that the Minecraft client needs.
 
-### Define an element for the registry
+### Define a registry entry
 
-The registry file declares the data struct that the registry contains, along with a public ref type for entries in that registry. Here is a real example from `steel-registry/src/banner_pattern.rs`:
+The registry file declares the entry type that the registry contains, along with a public entry reference type for that registry. Here is a real example from `steel-registry/src/banner_pattern.rs`:
 
 ```rust
 pub struct BannerPattern {
@@ -91,7 +105,7 @@ pub struct BannerPattern {
 pub type BannerPatternRef = &'static BannerPattern;
 ```
 
-The ref type (`BannerPatternRef`) is what code passes around when it needs to reference a banner pattern entry. This also hints at how data is stored: every registry entry points to static data. In Steel, most vanilla statics live in `steel-registry/src/generated`.
+The entry reference type (`BannerPatternRef`) is what code passes around when it needs to reference a banner pattern entry. This also hints at how data is stored: every registry entry points to static data. In Steel, most vanilla statics live in `steel-registry/src/generated`.
 
 The generated file `steel-registry/src/generated/vanilla_banner_patterns.rs` contains entries like this:
 
@@ -106,7 +120,7 @@ pub static RHOMBUS: BannerPattern = BannerPattern {
 };
 ```
 
-The generated register function then inserts static references into the registry:
+The generated register function then inserts entry references into the registry:
 
 ```rust
 pub fn register_banner_patterns(registry: &mut BannerPatternRegistry) {
@@ -157,7 +171,7 @@ crate::impl_tagged_registry!(
 
 In `steel-registry/src/lib.rs`, a struct named `Registry` holds all of Steel's registries. It is exposed through the `REGISTRY` static in the `steel-registry` crate. More of the macros will be described later in this guide.
 
-### Register the elements in the registry
+### Register entries in the registry
 
 #### Steel
 
@@ -210,7 +224,7 @@ implemented:
 add_tags!(BANNER_PATTERN_REGISTRY, banner_patterns);
 ```
 
-Both syncs happen during the login process, meaning all synced registries which was modified at boot and the vanilla client will support these new elements. So server-side modding is currently possible with Steel.
+Both syncs are prepared after the registry is built and frozen at boot, then sent during login. The vanilla client supports the synced entries, so server-side modding is currently possible with Steel.
 
 ## How to use a registry
 
@@ -223,7 +237,7 @@ The registries are accessed via `REGISTRY`, but this needs to be imported first:
 use steel_registry::{RegistryEntry, REGISTRY, RegistryExt};
 ```
 
-### Get id from element
+### Get a numeric ID from an entry
 
 To better illustrate the concept, both the long and short solutions will be shown, but please USE the short solution!
 
@@ -233,23 +247,23 @@ REGISTRY.chat_types.id_from_key(vanilla_chat_types::CHAT.key()).unwrap_or(0);
 ```
 To explain this example: first, the target registry is selected — here it is `chat_types` — and then the id is retrieved from the key. The key is an identifier consisting of a namespace and a path. The namespace defaults to `minecraft`, and the path is, for example, `stone`.
 
-The key is extracted from the definition of `CHAT`, where you find the `key()` function that gives you the identifier of that element. The return value is an `Option`, so when nothing is in the registry for that identifier it returns `None`.
+The key is extracted from the definition of `CHAT`, where you find the `key()` function that gives you the identifier of that entry. The return value is an `Option`, so when nothing is in the registry for that identifier it returns `None`.
 
-You may have already noticed the `id()` function on the element, which performs the long version for you. So the same functionality can be achieved like this:
+You may have already noticed the `id()` function on the entry, which performs the long version for you. So the same functionality can be achieved like this:
 ```rust
 let registry_id = vanilla_chat_types::CHAT.id() as i32;
 ```
-It will panic if this element is not registered! If you need a non-panicking alternative, use `try_id()` — it is generated by `impl_registry_entry` and returns an `Option<usize>`.
+It will panic if this entry is not registered! If you need a non-panicking alternative, use `try_id()` — it is generated by `impl_registry_entry` and returns an `Option<usize>`.
 
 The example here comes from the player (`steel-core/src/player/mod.rs`), in the `handle_chat` method.
 
-### Get element from registry
+### Get an entry from a registry
 
 For this, the Steel registries provide two functions: `by_id` and `by_key`. Both return an `Option`.
-The id is a `usize`, which you can get via the `id` function or `id_from` — more information can be found [here](#get-id-from-element).
-The key can be accessed via the `key()` function on the element.
+The ID is a `usize`, which you can get via the `id` function or `id_from_key` — more information can be found [here](#get-a-numeric-id-from-an-entry).
+The key can be accessed via the `key()` function on the entry.
 
-### Check if an element is in a tag
+### Check if an entry is in a tag
 
 First, the registry needs to be a tagged registry, which gives you access to many more functions. The function that is important for this task is `is_in_tag()`.
 
@@ -258,7 +272,7 @@ Here is an example:
 let block = state.get_block();
 REGISTRY.blocks.is_in_tag(block, &vanilla_block_tags::FIRE_TAG)
 ```
-This example checks whether a block is in the `FIRE_TAG`. The first parameter is the element you want to check, and the second parameter is the tag to check against.
+This example checks whether a block is in the `FIRE_TAG`. The first parameter is the entry you want to check, and the second parameter is the tag to check against.
 
 Another example is checking whether the neighbor block is a specific block. Instead of checking for each wood variant of the fence gate, you can use the tag, and all wood variants are included in that check.
 
@@ -331,7 +345,7 @@ Registries come in different versions; some need more logic, like the block regi
 
 Before you start, here's a checklist of files you will touch:
 
-- Create `steel-registry/src/<your_registry>.rs` — the registry itself and its element type
+- Create `steel-registry/src/<your_registry>.rs` — the registry itself and its entry type
 - Edit `steel-registry/src/lib.rs` — add the field to `Registry`, wire it into `new_empty` and `freeze`, and add the registry identifier constant
 - Create `steel-registry/build/<your_registry>.rs` — the build script (covered in the next section)
 - Edit `steel-registry/build/build.rs` — register the build function
@@ -349,9 +363,9 @@ pub struct BeerType {
     pub max_l: u32, //maximum liter of drink size
 }
 ```
-The only relevant field here is `key`; all others are dummies and not relevant from now on!
+The only relevant field here is `key`; it is the entry identifier. All other fields are dummies and not relevant from now on!
 
-It is always recommended to implement `ToNbtTag` for the reference of the struct, because that is needed for the sync. This can look like this:
+It is always recommended to implement `ToNbtTag` for the entry reference, because that is needed for the sync. This can look like this:
 ```rust
 impl ToNbtTag for &BeerType {
     fn to_nbt_tag(self) -> NbtTag {
@@ -368,7 +382,7 @@ impl ToNbtTag for &BeerType {
 }
 ```
 
-Now we need to define a type which requires a static reference; that is needed for your type of registry. More information about that is above!
+Now we need to define the entry reference type, which is a static reference to the entry. More information about that is above!
 
 ```rust
 pub type BeerTypeRef = &'static BeerType;
@@ -376,7 +390,7 @@ pub type BeerTypeRef = &'static BeerType;
 
 Now the prerequisites for the type are finished and we can start with the registry itself.
 
-For the registry, three fields are required: one field to store the data itself (`beer_type_by_id`); one field to connect the Identifier of the element to the element in the registry (`beer_type_by_key`); and the last field, to make the registry freezable (`allows_registering`). This will look like this:
+For the registry, three fields are required: one field to store entries by numeric ID (`beer_type_by_id`); one field to connect an entry `Identifier` to its numeric ID (`beer_type_by_key`); and the last field, to make the registry freezable (`allows_registering`). This will look like this:
 
 ```rust
 pub struct BeerTypeRegistry {
