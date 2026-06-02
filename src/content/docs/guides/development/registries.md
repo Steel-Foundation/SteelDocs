@@ -388,7 +388,7 @@ Now we need to define the entry reference type, which is a static reference to t
 pub type BeerTypeRef = &'static BeerType;
 ```
 
-Now the prerequisites for the type are finished and we can start with the registry itself.
+Once done, the prerequisites for the type are finished and we can start with the registry itself.
 
 For the registry, three fields are required: one field to store entries by numeric ID (`beer_type_by_id`); one field to connect an entry `Identifier` to its numeric ID (`beer_type_by_key`); and the last field, to make the registry freezable (`allows_registering`). This will look like this:
 
