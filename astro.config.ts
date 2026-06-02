@@ -57,6 +57,7 @@ export default defineConfig({
           "guides/development/upgrade-minecraft",
           "guides/development/code-standard",
           "guides/development/block_item_registration",
+          "guides/development/registries",
           {
             label: "Blocks",
             translations: {
@@ -68,7 +69,7 @@ export default defineConfig({
           {
             label: "Items",
             translations: {
-              es: "Items",
+              es: "Objetos",
               de: "Items",
             },
             autogenerate: { directory: "guides/development/items" },
