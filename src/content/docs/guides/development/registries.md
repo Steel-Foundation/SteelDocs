@@ -9,7 +9,7 @@ sidebar:
 
 A registry is Steel's source of truth for a category of named game data: blocks, items, entity types, biomes, chat types, banner patterns, fluids, and many other vanilla systems. It stores the definitions for those entries, not the runtime instances. For example, the block registry stores the definition of the stone block, but not every stone block placed in a chunk.
 
-Registries matter because Minecraft protocols and game logic need stable IDs, stable names, and shared definitions. Steel uses registries to map an `Identifier` such as `minecraft:stone` to a numeric ID, expose typed Rust references, group entries with tags, and sync the registries that the vanilla client needs during login. Most vanilla entries are generated from extracted JSON or datapack data instead of being hand-written.
+Registries matter because Minecraft protocols and game logic need stable IDs, names, and shared definitions. Steel uses registries to map an `Identifier` such as `minecraft:stone` to a numeric ID, expose typed Rust references, group entries with tags, and sync the registries that the vanilla client needs during login. Most vanilla entries are generated from extracted JSON or datapack data instead of being hand-written.
 
 This guide uses these terms consistently:
 
