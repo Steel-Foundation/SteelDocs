@@ -6,4 +6,4 @@ export const collections = {
   docs: defineCollection({ loader: docsLoader(), schema: docsSchema() }),
 };
 
-export const VERSION = "1.21.11";
+export const VERSION = "26.1";
