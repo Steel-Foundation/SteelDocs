@@ -64,7 +64,7 @@ This gives a short overview of the important paths in the `steel-registry` packa
 This folder contains only JSON and NBT data, which are extracted via the extractor or from the Minecraft jar.
 The `builtin_datapacks` folder is where the data from the Minecraft jar goes, which is only required for
 upgrading Minecraft — you can find the guide [here](../upgrade-minecraft).
-All JSON files in this directory are extracted from the [SteelExtractor](../tools/steel_extractor).
+All JSON files in this directory are extracted from vanilla through the [SteelExtractor](../tools/steel_extractor).
 
 ### build
 
