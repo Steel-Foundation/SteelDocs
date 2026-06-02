@@ -524,7 +524,7 @@ pub fn new() -> Self {
 ```
 
 #### 3. Add macro
-Now add this macro:
+Now add this macro (more information for a deep dive into rust macros can be found [here](https://doc.rust-lang.org/book/ch20-05-macros.html)):
 ```rust
 crate::impl_tagged_registry!(
     BeerTypeRegistry,
