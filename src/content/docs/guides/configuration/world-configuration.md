@@ -120,6 +120,7 @@ block = "minecraft:grass_block"
 height = 3
 ```
 
+`minecraft:flat` needs at least one layer. `features = true` and `lakes = true` are not implemented yet.
 ```toml
 save_path = "saves"
 seed = ""
@@ -159,8 +160,6 @@ config.layers = [
   { block = "minecraft:end_stone", height = 3 }
 ]
 ```
-
-`minecraft:flat` needs at least one layer. `features = true` and `lakes = true` are not implemented yet.
 
 Example empty world:
 
@@ -237,7 +236,7 @@ name = "the_end"
 generator = "minecraft:the_end"
 ```
 
-### Multidomain configuration
+### Extended Multidomain configuration
 ```toml
 save_path = "saves"
 seed = ""
@@ -265,6 +264,10 @@ generator = "minecraft:the_nether"
 [[domains.minecraft.worlds]]
 name = "the_end"
 generator = "minecraft:the_end"
+
+[domains.flat]
+default_gamemode = "creative"
+storage = "steel:ram"
 
 [[domains.flat.worlds]]
 name = "overworld"
