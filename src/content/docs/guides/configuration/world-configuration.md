@@ -32,12 +32,16 @@ Unfortunatly Mojang is not even accurate to use the same terms in their code bas
 Here the definition and description of the terms: Domain, World, Dimension, World generator
 
 ### Domain
+This is a collection of worlds related to each other. For example Vanillas worlds would be of the minecraft domain. Switching domains is kind of like switching servers since your player data doesn't carry across domains.
 
 ### World
+This relates to a world like the Overworld, Nether, The End. Unlike Vanilla in steel it will be possible to alter the configuration in a way where you can have more worlds, maybe you want overworld 1 and overworld 2.
 
 ### Dimension
+You can think of this like the properties of a world. The Overworld dimension has a height of 384 blocks. The nether has nether fog. The end has an end skybox
 
 ### World Generator
+The world generator generates a world. The generator decides which dimension it targets. Like the overworld generator targets the overworld. Some generators like the void generator can be dimension agnostic and therefore the dimension can be configured
 
 ## Domains
 
@@ -95,7 +99,9 @@ Steel has these build in world generators:
 | `minecraft:flat` | Optional flat-world config |
 | `steel:empty` | Requires `config.dimension_type` |
 
-Example flat world:
+### Flat world
+
+The flat world generator can be extended with layers
 
 ```toml
 [domains.dev]
@@ -121,6 +127,7 @@ height = 3
 ```
 
 `minecraft:flat` needs at least one layer. `features = true` and `lakes = true` are not implemented yet.
+
 ```toml
 save_path = "saves"
 seed = ""
@@ -161,7 +168,9 @@ config.layers = [
 ]
 ```
 
-Example empty world:
+### Empty world
+
+Important for an empty world gen is the config, which defines the dimension_type which defines the dimension and it's properties (like y height and fog as an example).
 
 ```toml
 [domains.empty]
@@ -204,6 +213,9 @@ path = "custom/testing"
 ## Example Configuration
 
 ### Simple configuration
+
+this is the default config for `worlds.toml`, means like a normal survival world
+
 ```toml
 # /config/worlds.toml
 
@@ -237,6 +249,9 @@ generator = "minecraft:the_end"
 ```
 
 ### Extended Multidomain configuration
+
+This have many different settings, which are explained before.
+Currently the domain minecraft is on disk and the world `the_nether` from the domain `flat`. Domain `empty` and `minecraft` are gamemode survival and domain `flat` is creative.
 ```toml
 save_path = "saves"
 seed = ""
@@ -267,7 +282,7 @@ generator = "minecraft:the_end"
 
 [domains.flat]
 default_gamemode = "creative"
-storage = "steel:ram"
+storage.type = "steel:ram"
 
 [[domains.flat.worlds]]
 name = "overworld"
@@ -279,19 +294,32 @@ name = "the_nether"
 generator = "minecraft:flat"
 config.dimension_type = "minecraft:the_nether"
 config.layers = [
-  { block = "minecraft:bedrock", height = 1 },
-  { block = "minecraft:blackstone", height = 2 },
-  { block = "minecraft:netherrack", height = 1 }
+    { block = "minecraft:bedrock", height = 1 },
+    { block = "minecraft:blackstone", height = 2 },
+    { block = "minecraft:netherrack", height = 1 }
 ]
+storage.type = "steel:disk"
 
 [[domains.flat.worlds]]
 name = "the_end"
 generator = "minecraft:flat"
 config.dimension_type = "minecraft:the_end"
 config.layers = [
-  { block = "minecraft:bedrock", height = 1 },
-  { block = "minecraft:end_stone", height = 3 }
+    { block = "minecraft:bedrock", height = 1 },
+    { block = "minecraft:end_stone", height = 3 }
 ]
+
+[domains.empty]
+default = false
+storage.type = "steel:ram"
+
+[[domains.empty.worlds]]
+name = "empty"
+default = true
+generator = "steel:empty"
+
+[domains.empty.worlds.config]
+dimension_type = "minecraft:overworld"
 ```
 
 
