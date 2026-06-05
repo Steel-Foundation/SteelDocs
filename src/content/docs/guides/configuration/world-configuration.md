@@ -19,38 +19,38 @@ domain, generator and storage options.
 | `storage.type` | Identifier | `"steel:disk"` | Default world storage backend |
 | `player_storage.type` | Identifier | `"steel:file"` | Player data storage backend |
 
-`seed`, `default_gamemode`, `difficulty` and `storage` are inherited from root to domains and from domains to worlds and can be also overwritten in each of them, this setup gives the most flexibility to configure the server to the needs.
+`seed`, `default_gamemode`, `difficulty` and `storage` are inherited from root to domains and from domains to worlds. They can also be overridden in each place, which gives the server flexible configuration.
 
 Valid gamemodes are `survival`, `creative`, `adventure` and `spectator`.
 Valid difficulties are `peaceful`, `easy`, `normal` and `hard`.
 
 ## Terminology
 :::caution
-Please read this if you are not familiar with steels terminology!
+Read this section if Steel's terminology is unfamiliar.
 :::
-Unfortunatly Mojang is not even accurate to use the same terms in their code base. So World/level/map are descripe the same thing internally! Because we also add some functionality of [multiverse](https://modrinth.com/plugin/multiverse-core) nativly into steel. For describe it the best way, steel introduced a new terminology domains!
-Here the definition and description of the terms: Domain, World, Dimension, World generator
+Unfortunately, Mojang is not consistent about using the same terms in their codebase. `World`, `level` and `map` can describe the same thing internally. Steel also adds some [Multiverse](https://modrinth.com/plugin/multiverse-core) functionality natively. To describe this clearly, Steel introduced a new term: domains.
+Here are the definitions and descriptions of the terms: Domain, World, Dimension and World generator.
 
 ### Domain
-This is a collection of worlds related to each other. For example Vanillas worlds would be of the minecraft domain. Switching domains is kind of like switching servers since your player data doesn't carry across domains.
+This is a collection of worlds related to each other. For example, vanilla worlds would be part of the `minecraft` domain. Switching domains is similar to switching servers, since player data does not carry across domains.
 
 ### World
-This relates to a world like the Overworld, Nether, The End. Unlike Vanilla in steel it will be possible to alter the configuration in a way where you can have more worlds, maybe you want overworld 1 and overworld 2.
+This refers to a world like the Overworld, Nether or The End. Unlike vanilla, Steel can be configured to have more worlds. For example, a setup might use Overworld 1 and Overworld 2.
 
 ### Dimension
-You can think of this like the properties of a world. The Overworld dimension has a height of 384 blocks. The nether has nether fog. The end has an end skybox
+A dimension can be understood as the properties of a world. The Overworld dimension has a height of 384 blocks. The Nether has Nether fog. The End has an End skybox.
 
 ### World Generator
-The world generator generates a world. The generator decides which dimension it targets. Like the overworld generator targets the overworld. Some generators like the void generator can be dimension agnostic and therefore the dimension can be configured
+The world generator generates a world. The generator decides which dimension it targets. For example, the Overworld generator targets the Overworld. Some generators, like the void generator, can be dimension-agnostic, so the dimension can be configured.
 
 ## Domains
 
-At least one domain is needed and exactly one domain needs to be the default.
+At least one domain is needed, and exactly one domain needs to be the default.
 
 ```toml
 [domains.minecraft]
 default = true
-seed = "your seed"
+seed = "example seed"
 default_gamemode = "survival"
 storage.type = "steel:disk"
 ```
@@ -88,11 +88,11 @@ default = true
 | `storage` | Table | inherited | World storage override |
 | `config` | Table | `{}` | Generator-specific config |
 
-World names must be valid identifier paths and cannot contain `/` also a world name needs to be unique in the domain. The special case are the names: `overworld`, `the_nether` and `the_end`. These will be used to connect portals (netherportal, endportal). That allows to generate a single player world for each player which all 3 dimensions. To feel like vanilla.
+World names must be valid identifier paths, cannot contain `/` and must be unique within the domain. The names `overworld`, `the_nether` and `the_end` are special cases used to connect portals (Nether portals and End portals). This allows a single-player playstyle to be created for each player with all three dimensions, so it feels like vanilla single-player.
 
 ## Generators
 
-Steel has these build in world generators:
+Steel has these built-in world generators:
 
 | Generator | Config |
 |-----------|--------|
@@ -102,13 +102,13 @@ Steel has these build in world generators:
 | `minecraft:flat` | Optional flat-world config |
 | `steel:empty` | Requires `config.dimension_type` |
 
-### minecraft world generator
+### Minecraft world generator
 
-The generators `minecraft:overworld`, `minecraft:the_nether` and `minecraft:the_end` have no config they produce vanilla parity worlds from each dimension.
+The generators `minecraft:overworld`, `minecraft:the_nether` and `minecraft:the_end` have no config. They produce vanilla-parity worlds for their dimensions.
 
 ### Flat world generator
 
-The flat world generator can be extended with layers for the world. This can be done in 2 versions like toml allows.
+The flat world generator can be extended with world layers. TOML supports two equivalent forms for this.
 `minecraft:flat` needs at least one layer for a custom config. `features = true` and `lakes = true` are not implemented yet.
 
 #### First version
@@ -180,7 +180,7 @@ config.layers = [
 
 ### Empty world generator
 
-Important for an empty world gen is the config, which defines the dimension_type which defines the dimension and it's properties (like y height and fog as an example).
+The important part of an empty world generator is the config, which defines `dimension_type`. The dimension type defines the dimension and its properties, such as Y height and fog.
 
 ```toml
 [domains.empty]
@@ -197,7 +197,7 @@ dimension_type = "minecraft:overworld"
 
 ## Storage
 
-Steel has these build in world storage backends. The storage can be set for the full server, per domain and per world, so the full server can be at RAM type but one domain can be still disk and be saved on the disk and a world in that domain can be still in RAM storage. This will give maximum flexibility to configure the storage as needed.
+Steel has these built-in world storage backends. Storage can be set for the full server, per domain and per world. For example, the full server can use RAM storage, one domain can still use disk storage and be saved to disk, and a world in that domain can still use RAM storage. This gives maximum flexibility to configure storage as needed.
 
 | Storage | Config |
 |---------|--------|
@@ -221,11 +221,12 @@ path = "custom/testing"
 ```
 
 ## Example Configuration
-This section shows at first the default config which will be generated at the first start. The second config, will use all the learned knowledge and constructs a 3 domain setup with different gamemodes, storage and generator config.
+
+This section first shows the default config generated on first start. The second config uses the concepts above to construct a three-domain setup with different gamemodes, storage and generator config.
 
 ### Simple configuration
 
-this is the default config for `worlds.toml`, means like a normal survival world
+This is the default config for `worlds.toml`, which creates a normal survival world.
 
 ```toml
 # /config/worlds.toml
@@ -261,8 +262,8 @@ generator = "minecraft:the_end"
 
 ### Extended Multidomain configuration
 
-This have many different settings, which are explained before.
-Currently the domain minecraft is on disk and the world `the_nether` from the domain `flat`. Domain `empty` and `minecraft` are gamemode survival and domain `flat` is creativ. Also the gamemode is set to different types.
+This has many different settings, which are explained above.
+Currently, the `minecraft` domain is on disk, as is the world `the_nether` from the `flat` domain. The `empty` and `minecraft` domains use survival gamemode, while the `flat` domain uses creative gamemode.
 ```toml
 save_path = "saves"
 seed = ""
