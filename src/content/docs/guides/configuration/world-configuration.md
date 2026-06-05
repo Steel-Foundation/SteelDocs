@@ -108,10 +108,24 @@ The generators `minecraft:overworld`, `minecraft:the_nether` and `minecraft:the_
 
 ### Flat world generator
 
-The flat world generator can be extended with world layers. TOML supports two equivalent forms for this.
-`minecraft:flat` needs at least one layer for a custom config. `features = true` and `lakes = true` are not implemented yet.
+The `config` table is optional for `minecraft:flat`. Without it, Steel uses the Overworld dimension, a vanilla-style superflat layer stack and the default structure overrides.
 
-#### First version
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `dimension_type` | Identifier | `"minecraft:overworld"` | Dimension type used by the flat world |
+| `layers` | Array of layer tables | bedrock 1, dirt 2, grass block 1 | Blocks generated from bottom to top |
+| `layers[].block` | Identifier | required | Block used by this layer |
+| `layers[].height` | Integer | required | Height of this layer, must be greater than `0` |
+| `features` | Boolean | `false` | Whether to generate decoration features. `true` is not implemented yet |
+| `lakes` | Boolean | `false` | Whether to generate lakes. `true` is not implemented yet |
+| `structure_overrides` | Identifier array | strongholds and villages | Structures allowed in this flat world |
+
+The default layers are `minecraft:bedrock` with height `1`, `minecraft:dirt` with height `2` and `minecraft:grass_block` with height `1`.
+The default `structure_overrides` are `minecraft:strongholds` and `minecraft:villages`.
+
+Custom layers can be written with repeated layer tables or inline layer tables.
+
+#### Repeated layer tables
 
 ```toml
 [domains.dev]
@@ -136,7 +150,7 @@ block = "minecraft:grass_block"
 height = 3
 ```
 
-#### Second version
+#### Inline layer tables
 
 ```toml
 save_path = "saves"
