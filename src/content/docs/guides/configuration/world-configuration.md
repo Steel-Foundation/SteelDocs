@@ -31,17 +31,13 @@ Read this section if Steel's terminology is unfamiliar.
 Unfortunately, Mojang is not consistent about using the same terms in their codebase. `World`, `level` and `map` can describe the same thing internally. Steel also adds some [Multiverse](https://modrinth.com/plugin/multiverse-core) functionality natively. To describe this clearly, Steel introduced a new term: domains.
 Here are the definitions and descriptions of the terms: Domain, World, Dimension and World generator.
 
-### Domain
-This is a collection of worlds related to each other. For example, vanilla worlds would be part of the `minecraft` domain. Switching domains is similar to switching servers, since player data does not carry across domains.
+Domain: This is a collection of worlds related to each other. For example, vanilla worlds would be part of the `minecraft` domain. Switching domains is similar to switching servers, since player data does not carry across domains.
 
-### World
-This refers to a world like the Overworld, Nether or The End. Unlike vanilla, Steel can be configured to have more worlds. For example, a setup might use Overworld 1 and Overworld 2.
+World: This refers to a world like the Overworld, Nether or The End. Unlike vanilla, Steel can be configured to have more worlds. For example, a setup might use Overworld 1 and Overworld 2.
 
-### Dimension
-A dimension can be understood as the properties of a world. The Overworld dimension has a height of 384 blocks. The Nether has Nether fog. The End has an End skybox.
+Dimension: A dimension can be understood as the properties of a world. The Overworld dimension has a height of 384 blocks. The Nether has Nether fog. The End has an End skybox.
 
-### World Generator
-The world generator generates a world. The generator decides which dimension it targets. For example, the Overworld generator targets the Overworld. Some generators, like the void generator, can be dimension-agnostic, so the dimension can be configured.
+World Generator: The world generator generates a world. The generator decides which dimension it targets. For example, the Overworld generator targets the Overworld. Some generators, like the void generator, can be dimension-agnostic, so the dimension can be configured.
 
 ## Domains
 
