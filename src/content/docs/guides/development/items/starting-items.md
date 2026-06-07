@@ -115,4 +115,4 @@ To add behavior, you need to implement the necessary methods in `ItemBehavior` i
 ---
 
 ## Other useful resources
-- using properties for blocks and items, you can find information [here](../block_item_registration)
+- using properties for blocks and items, you can find information [here](../../block_item_registration)
