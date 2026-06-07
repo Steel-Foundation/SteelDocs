@@ -62,6 +62,7 @@ Each [domain](../../getting-started/terminology#domain) needs at least one [worl
 name = "overworld"
 generator = "minecraft:overworld"
 default = true
+storage.type = "steel:ram"
 ```
 
 | Option | Type | Default | Description |
@@ -140,17 +141,6 @@ height = 3
 #### Inline layer tables
 
 ```toml
-save_path = "saves"
-seed = ""
-default_gamemode = "survival"
-difficulty = "normal"
-
-[storage]
-type = "steel:disk"
-
-[player_storage]
-type = "steel:file"
-
 [domains.flat]
 default = true
 
@@ -186,6 +176,7 @@ The important part of an empty [world generator](../../getting-started/terminolo
 ```toml
 [domains.empty]
 default = true
+storage.type = "steel:ram"
 
 [[domains.empty.worlds]]
 name = "void"
