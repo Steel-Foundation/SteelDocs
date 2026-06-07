@@ -68,7 +68,7 @@ storage.type = "steel:ram"
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
 | `name` | String | required | Name of the world inside the domain |
-| `generator` | Identifier | required | [World generator](../../getting-started/terminology#world-generator) to use |
+| `generator` | Identifier | required | [World generator](../../getting-started/terminology#world-generator) to use, options of world generator are in the next section |
 | `default` | bool | `false` | Whether this is the default world of the domain |
 | `seed` | String | inherited | World seed override |
 | `default_gamemode` | String | inherited | World gamemode override |
