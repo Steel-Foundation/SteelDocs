@@ -13,6 +13,7 @@ Steel uses a few terms differently from vanilla Minecraft and from Mojang's inte
 | [World](#world) | A playable map inside a domain |
 | [Dimension](#dimension) | The rule set and visual properties used by a world |
 | [World Generator](#world-generator) | The system that creates terrain and chooses or accepts a dimension type |
+| [Identifier](#identifier) | A unique `namespace:path` name used for Minecraft and Steel values |
 
 ## Domain
 
@@ -44,6 +45,16 @@ A **world generator** creates the terrain for a world.
 
 Some generators always target one dimension. For example, `minecraft:overworld` targets the Overworld dimension. Other generators can accept a dimension type through config. For example, `minecraft:flat` can create a flat world using the Overworld, Nether or End dimension properties.
 
+## Identifier
+
+An **identifier** is a name made from a namespace and a path, written as `namespace:path`.
+
+Examples include `minecraft:overworld`, `minecraft:flat`, `minecraft:stone`, `minecraft:stick` and `steel:disk`.
+
+Steel uses identifiers for values such as world generators, dimension types, storage backends, blocks and items. An identifier should be unique in the registry or config context where it is used.
+
+Domain names use the namespace-style part. World names use the path-style part.
+
 ## How The Terms Fit Together
 
 | Level | Example | Notes |
@@ -55,4 +66,4 @@ Some generators always target one dimension. For example, `minecraft:overworld` 
 
 ## Related Pages
 
-- [World configuration](../configuration/world-configuration)
+- [World configuration](../../configuration/world-configuration)
