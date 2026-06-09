@@ -14,12 +14,64 @@ There are multiple ways to do that:
 - self compiled
 
 ## What to select
-If you have already a k8, docker swarn or a normal docker system running the docker container is recommended.
-Then the target platform is pelican, pterodactyl or a platform uses eggs. Steel has an egg (json/yaml) created for you.
-If you want to run steel native the prebuild binaries are the choice for you.
-If your target platform is not support currently of any other thing, you need to cross compile yourself!
 
-Overview which architecture are supported by each solution:
+Choose the installation method that matches where Steel will run.
+
+If you already use Kubernetes, Docker Swarm, or a standard Docker host, the Docker container is the recommended option.
+
+If your target platform is Pelican, Pterodactyl, or another egg-based panel, use the provided Steel egg in JSON or YAML format.
+
+If you want to run Steel directly on the host system, use the pre-built binaries.
+
+If your platform or architecture is not currently supported, build Steel from source and cross-compile it for your target system.
+
+| Method | Linux x64 | Linux arm64 | Linux armv7 | Linux armv6 | Windows x64 | Windows arm | Mac arm | Mac x64 |
+| ------ | :-------: | :---------: | :---------: | :---------: | :---------: | :---------: | :-----: | :-----: |
+| Docker | ✅ | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ |
+| Egg | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Binary | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ | ✅ |
+| Self-built | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+
+✅ Supported. ❌ Not currently supported.
+
+The sections below describe each option in more detail.
+
+## Docker
+
+Steel does not publish a `latest` Docker tag. Use a specific version tag instead, so upgrades are always planned and no container updates unexpectedly.
+
+The `nightly` tag is available for plugin testing and early testing of upcoming changes. It follows the latest commit on the `master` branch and may contain bugs that have not been fixed for a release yet. Do not use `nightly` in production.
+
+### Start the image
+
+Run the Steel container with the server port exposed and local folders mounted for configuration and saves:
+
+```bash
+docker run -d -p 25565:25565 -v ./config:/config -v ./saves:/saves ghcr.io/junkydeveloper/steelmc:<version>
+```
+
+The same setup can be written as a Docker Compose service:
+
+```yaml
+services:
+  steel:
+    image: ghcr.io/junkydeveloper/steelmc:<version>
+    ports:
+      - 25565:25565
+    volumes:
+      - ./config:/config
+      - ./saves:/saves
+```
+
+## Egg
+
+For Pelican and Pterodactyl, Steel provides an egg that can be imported directly from the panel's egg store.
+
+For other egg-based platforms, use the JSON or YAML egg files from the repository, or download the matching egg from one of the supported stores when available.
+
+Pelican: `<link>`
+
+Pterodactyl: `<link>`
 
 ## Pre-built Binaries
 
