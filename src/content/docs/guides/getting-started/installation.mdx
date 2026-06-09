@@ -5,15 +5,29 @@ description: How to install Steel on your system.
 
 import { VERSION } from '../../../../content.config.ts';
 
-This guide covers how to build and run Steel.
+This guide covers how to run Steel.
 
-## Requirements
+There are multiple ways to do that:
+- Docker
+- egg (pelican/pteterodactyl)
+- binary
+- self compiled
+
+## Pre-built Binaries
+
+Pre-built binaries are available on the [GitHub Releases](https://github.com/Steel-Foundation/SteelMC/releases) page for:
+
+- Linux (x86_64)
+- Windows (x86_64)
+- macOS (x86_64 and ARM)
+
+### Requirements
 
 - **Rust nightly toolchain** - Steel uses Rust 2024 edition features
 - **64-bit operating system** - Linux, macOS, or Windows
 - **Git** - To clone the repository
 
-## Installing Rust
+### Installing Rust
 
 If you don't have Rust installed, use [rustup](https://rustup.rs/):
 
@@ -23,7 +37,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 Steel requires the nightly toolchain. The repository includes a `rust-toolchain.toml` that automatically selects the correct version.
 
-## Building from Source
+### Building from Source
 
 ```bash
 # Clone the repository
@@ -36,7 +50,7 @@ cargo build --release
 # The binary will be at target/release/steel
 ```
 
-### Build Commands
+#### Build Commands
 
 | Command                 | Purpose                                      |
 | ----------------------- | -------------------------------------------- |
@@ -46,7 +60,7 @@ cargo build --release
 | `cargo test`            | Run the test suite                           |
 | `cargo clippy`          | Run the linter                               |
 
-### Build Features
+#### Build Features
 
 Steel supports optional build features that can be enabled with `--features`:
 
@@ -71,7 +85,7 @@ cargo build --no-default-features
 
 **Deadlock Detection** is particularly useful during development if you're experiencing hangs or suspect lock-related issues. When enabled, parking_lot will detect potential deadlocks and panic with diagnostic information.
 
-## Running the Server
+### Running the Server
 
 ```bash
 # Run directly with cargo (debug mode)
@@ -89,14 +103,6 @@ The server will:
 1. Create a `config/steel_config.json5` file if it doesn't exist
 2. Bind to `0.0.0.0:25565` by default
 3. Start accepting Minecraft {VERSION} clients
-
-## Pre-built Binaries
-
-Pre-built binaries are available on the [GitHub Releases](https://github.com/Steel-Foundation/SteelMC/releases) page for:
-
-- Linux (x86_64)
-- Windows (x86_64)
-- macOS (x86_64 and ARM)
 
 ## Next Steps
 
