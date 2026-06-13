@@ -44,7 +44,7 @@ storage.type = "steel:disk"
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `domains.<domain>.worlds` | Array |  | **[REQUIRED]** [Worlds](../../getting-started/terminology#world) inside this domain |
+| `domains.<domain>.worlds` | Array | None | **[REQUIRED]** [Worlds](../../getting-started/terminology#world) inside this domain |
 | `domains.<domain>.default` | bool | `false` | Whether this is the default domain |
 | `domains.<domain>.seed` | String | inherited | Domain seed override |
 | `domains.<domain>.default_gamemode` | String | inherited | Domain gamemode override |
@@ -67,8 +67,8 @@ storage.type = "steel:ram"
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `name` | String |  | **[REQUIRED]** Name of the world inside the domain |
-| `generator` | Identifier |  | **[REQUIRED]** [World generator](../../getting-started/terminology#world-generator) to use, options of world generator are in the next section |
+| `name` | String | None | **[REQUIRED]** Name of the world inside the domain |
+| `generator` | Identifier | None | **[REQUIRED]** [World generator](../../getting-started/terminology#world-generator) to use, options of world generator are in the next section |
 | `default` | bool | `false` | Whether this is the default world of the domain |
 | `seed` | String | inherited | World seed override |
 | `default_gamemode` | String | inherited | World gamemode override |
@@ -100,8 +100,8 @@ The [world generator](../../getting-started/terminology#world-generator) `minecr
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `layers[].block` | Identifier |  | **[REQUIRED]** Block used by this layer |
-| `layers[].height` | Integer |  | **[REQUIRED]** Height of this layer, must be greater than `0` |
+| `layers[].block` | Identifier | None | **[REQUIRED]** Block used by this layer |
+| `layers[].height` | Integer | None | **[REQUIRED]** Height of this layer, must be greater than `0` |
 | `dimension_type` | Identifier | `"minecraft:overworld"` | Dimension type used by the flat [world](../../getting-started/terminology#world) |
 | `layers` | Array of layer tables | bedrock 1, dirt 2, grass block 1 | Blocks generated from bottom to top |
 | `features` | Boolean | `false` | Whether to generate decoration features. `true` is not implemented yet |
