@@ -19,7 +19,7 @@ SteelMC [world](../../getting-started/terminology#world) configuration is done t
 | `storage.type` | Identifier | `"steel:disk"` | Default world storage backend |
 | `player_storage.type` | Identifier | `"steel:file"` | Player data storage backend |
 
-`seed`, `default_gamemode`, `difficulty` and `storage` are inherited from root to [domains](../../getting-started/terminology#domain) and from domains to worlds. They can also be overridden in each place, which gives the server flexible configuration.
+The values `seed`, `default_gamemode`, `difficulty` and `storage` are inherited from root to [domains](../../getting-started/terminology#domain) and from domains to worlds. They can also be overridden in each place, which gives the server flexible configuration.
 
 Valid gamemodes are `survival`, `creative`, `adventure` and `spectator`.
 Valid difficulties are `peaceful`, `easy`, `normal` and `hard`.
