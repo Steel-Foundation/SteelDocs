@@ -14,8 +14,7 @@ The mod hooks into the server startup lifecycle and automatically runs all extra
 ## How to use
 
 At first you need to create the run directory.
-It's very easy: build it from the command line, or simply click the Run button in your IDE of choice (e.g., IntelliJ).
-Minecraft will start, create a new world, and you can join it.
+It's very easy: build it from the command line (`./gradlew runServer`), or simply click the Run button (Minecraft server) in your IDE of choice (e.g., IntelliJ). This will start the minecraft server and the extraction will be started automatically, the extraction of the world hashes can take up to 30min.
 
 This will create a folder called `steel-extractor`. There, you'll find all the generated json files, which steel needs as a reference to vanilla.
 Not all json files are located in the same directory in steel. So please check the mapping first before you move something!
