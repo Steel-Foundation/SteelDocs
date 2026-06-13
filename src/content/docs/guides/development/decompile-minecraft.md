@@ -17,7 +17,7 @@ of the options below.
 
 - using `update-minecraft-src.sh`, our decompile script included on the repo (it uses `gitcraft` as the third way behind scenes)
 
-- you can use an online decompiled version, there you can send links to files to other people. The site is: [mcsrc.dev](https://mcsrc.dev) you can use [https://mcsrc.dev/#1/26.1.11_unobfuscated] as an alternative
+- you can use an online decompiled version, there you can send links to files to other people. The site is: [mcsrc.dev](https://mcsrc.dev) you can use [https://mcsrc.dev/1/26.1] as an alternative
 
 - view the minecraft source code you can do is clone [gitcraft](https://github.com/WinPlay02/GitCraft), and run
   `./gradlew run --args="--only-stable --min-version=1.21.11 --only-unobfuscated"` it will create
