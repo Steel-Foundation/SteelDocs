@@ -9,10 +9,6 @@ SteelMC is configured through a TOML configuration file located at `config/confi
 
 World settings are documented in [World Configuration](../world-configuration).
 
-:::caution
-Default means means 
-:::
-
 ## Basic Settings
 
 | Option | Type | Default | Description |
