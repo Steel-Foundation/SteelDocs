@@ -9,6 +9,10 @@ SteelMC is configured through a TOML configuration file located at `config/confi
 
 World settings are documented in [World Configuration](../world-configuration).
 
+:::caution
+Default means means 
+:::
+
 ## Basic Settings
 
 | Option | Type | Default | Description |
@@ -57,8 +61,8 @@ Server links are displayed in the multiplayer menu.
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `server.server_links.enable` | bool | `false` | Enable server links feature |
-| `server.server_links.links` | Array | `[]` | List of links to display |
+| `server.server_links.enable` | bool | `true` | Enable server links feature |
+| `server.server_links.links` | Array | 4 links | List of links to display |
 
 See [Server Links Guide](../server-links) for detailed configuration.
 
@@ -66,7 +70,7 @@ See [Server Links Guide](../server-links) for detailed configuration.
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `log.time` | String | `"date"` | Time format: `none`, `date`, or `uptime` |
+| `log.time` | String | `"uptime"` | Time format: `none`, `date`, or `uptime` |
 | `log.module_path` | bool | `false` | Whether the module path should be displayed |
 | `log.extra` | bool | `false` | Whether extra log data should be displayed |
 

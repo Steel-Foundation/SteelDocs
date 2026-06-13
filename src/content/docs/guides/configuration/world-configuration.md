@@ -49,7 +49,7 @@ storage.type = "steel:disk"
 | `domains.<domain>.default_gamemode` | String | inherited | Domain gamemode override |
 | `domains.<domain>.difficulty` | String | inherited | Domain difficulty override |
 | `domains.<domain>.storage` | Table | inherited | Domain storage override |
-| `domains.<domain>.worlds` | Array | required | [Worlds](../../getting-started/terminology#world) inside this domain |
+| `domains.<domain>.worlds` | Array |  | **[REQUIRED]** [Worlds](../../getting-started/terminology#world) inside this domain |
 
 The domain name must be a valid identifier namespace. `global` is reserved and cannot be used.
 
@@ -67,8 +67,8 @@ storage.type = "steel:ram"
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `name` | String | required | Name of the world inside the domain |
-| `generator` | Identifier | required | [World generator](../../getting-started/terminology#world-generator) to use, options of world generator are in the next section |
+| `name` | String |  | **[REQUIRED]** Name of the world inside the domain |
+| `generator` | Identifier |  | **[REQUIRED]** [World generator](../../getting-started/terminology#world-generator) to use, options of world generator are in the next section |
 | `default` | bool | `false` | Whether this is the default world of the domain |
 | `seed` | String | inherited | World seed override |
 | `default_gamemode` | String | inherited | World gamemode override |
@@ -102,8 +102,8 @@ The [world generator](../../getting-started/terminology#world-generator) `minecr
 |--------|------|---------|-------------|
 | `dimension_type` | Identifier | `"minecraft:overworld"` | Dimension type used by the flat [world](../../getting-started/terminology#world) |
 | `layers` | Array of layer tables | bedrock 1, dirt 2, grass block 1 | Blocks generated from bottom to top |
-| `layers[].block` | Identifier | required | Block used by this layer |
-| `layers[].height` | Integer | required | Height of this layer, must be greater than `0` |
+| `layers[].block` | Identifier |  | **[REQUIRED]** Block used by this layer |
+| `layers[].height` | Integer |  | **[REQUIRED]** Height of this layer, must be greater than `0` |
 | `features` | Boolean | `false` | Whether to generate decoration features. `true` is not implemented yet |
 | `lakes` | Boolean | `false` | Whether to generate lakes. `true` is not implemented yet |
 | `structure_overrides` | Identifier array | strongholds and villages | Structures allowed in this flat world |

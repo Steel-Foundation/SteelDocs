@@ -55,15 +55,6 @@ Steel uses identifiers for values such as world generators, dimension types, sto
 
 Domain names use the namespace-style part. World names use the path-style part.
 
-## How The Terms Fit Together
-
-| Level | Example | Notes |
-|-------|---------|-------|
-| Domain | `minecraft` | Groups related worlds and player data |
-| World | `overworld` | Selects a generator and stores the map |
-| World Generator | `minecraft:flat` | Creates terrain for the world |
-| Dimension | `minecraft:overworld` | Defines properties such as height, sky and fog |
-
 ## Related Pages
 
 - [World configuration](../../configuration/world-configuration)
