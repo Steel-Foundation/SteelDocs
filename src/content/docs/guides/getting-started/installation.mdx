@@ -8,10 +8,10 @@ import { VERSION } from '../../../../content.config.ts';
 This guide covers how to run Steel.
 
 There are multiple ways to do that:
-- [Docker](#docker)
-- [egg (pelican/pterodactyl)](#egg)
-- [binary](#pre-built-binaries)
-- [self compiled](#self-compilation)
++ [Docker](#docker)
++ [egg (pelican/pterodactyl)](#egg)
++ [binary](#pre-built-binaries)
++ [self compiled](#self-compilation)
 
 ## What to select
 
@@ -27,10 +27,10 @@ If your platform or architecture is not currently supported, build Steel from so
 
 | Method | Linux x64 | Linux arm64 | Linux armv7 | Linux armv6 | Windows x64 | Windows arm | Mac arm | Mac x64 |
 | ------ | :-------: | :---------: | :---------: | :---------: | :---------: | :---------: | :-----: | :-----: |
-| Docker | ✅ | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ |
-| Egg | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| Binary | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ | ✅ |
-| Self-built | ✅ | ✅ | ( ✅ ) | ( ✅ ) | ✅ | ✅ | ✅ | ✅ |
+| [Docker](#docker) | ✅ | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Egg](#egg) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| [Binary](#pre-built-binaries) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ | ✅ |
+| [Self-built](#self-compilation) | ✅ | ✅ | ( ✅ ) | ( ✅ ) | ✅ | ✅ | ✅ | ✅ |
 
 ✅ Supported. ❌ Not currently supported. ( ✅ ) some small adjustments needs to be done
 
@@ -50,7 +50,7 @@ Run the Steel container with the server port exposed and local folders mounted f
 docker run -d -p 25565:25565 -v ./config:/config -v ./saves:/saves ghcr.io/junkydeveloper/steelmc:<version>
 ```
 
-The same setup can be written as a Docker Compose service:
+The same setup can be written as a Docker Compose service (Recommended):
 
 ```yaml
 services:
@@ -62,6 +62,15 @@ services:
       - ./config:/config
       - ./saves:/saves
 ```
+
+### How to change ports and folders
+This section is a small helper. Docker Compose is another way to write the `docker run` command in a file.
+You can find the full Docker Compose reference here: https://docs.docker.com/reference/compose-file/
+
+Here is a small guide:
+
++ **-p (--port, ports):** the first port is the host port, which can be changed. The second port is the port inside the Docker container and should only be changed if the Steel config is changed too. For example, `-p 1111:25565` makes the Minecraft server reachable on port `1111` on the Linux server.
++ **-v (--volume, volumes):** the path before the colon is the path on your host system. The path after the colon is inside the Docker container and should not be changed.
 
 ## Egg
 
