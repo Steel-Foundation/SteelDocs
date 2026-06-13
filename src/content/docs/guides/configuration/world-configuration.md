@@ -44,12 +44,12 @@ storage.type = "steel:disk"
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
+| `domains.<domain>.worlds` | Array |  | **[REQUIRED]** [Worlds](../../getting-started/terminology#world) inside this domain |
 | `domains.<domain>.default` | bool | `false` | Whether this is the default domain |
 | `domains.<domain>.seed` | String | inherited | Domain seed override |
 | `domains.<domain>.default_gamemode` | String | inherited | Domain gamemode override |
 | `domains.<domain>.difficulty` | String | inherited | Domain difficulty override |
 | `domains.<domain>.storage` | Table | inherited | Domain storage override |
-| `domains.<domain>.worlds` | Array |  | **[REQUIRED]** [Worlds](../../getting-started/terminology#world) inside this domain |
 
 The domain name must be a valid identifier namespace. `global` is reserved and cannot be used.
 
@@ -100,10 +100,10 @@ The [world generator](../../getting-started/terminology#world-generator) `minecr
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `dimension_type` | Identifier | `"minecraft:overworld"` | Dimension type used by the flat [world](../../getting-started/terminology#world) |
-| `layers` | Array of layer tables | bedrock 1, dirt 2, grass block 1 | Blocks generated from bottom to top |
 | `layers[].block` | Identifier |  | **[REQUIRED]** Block used by this layer |
 | `layers[].height` | Integer |  | **[REQUIRED]** Height of this layer, must be greater than `0` |
+| `dimension_type` | Identifier | `"minecraft:overworld"` | Dimension type used by the flat [world](../../getting-started/terminology#world) |
+| `layers` | Array of layer tables | bedrock 1, dirt 2, grass block 1 | Blocks generated from bottom to top |
 | `features` | Boolean | `false` | Whether to generate decoration features. `true` is not implemented yet |
 | `lakes` | Boolean | `false` | Whether to generate lakes. `true` is not implemented yet |
 | `structure_overrides` | Identifier array | strongholds and villages | Structures allowed in this flat world |
