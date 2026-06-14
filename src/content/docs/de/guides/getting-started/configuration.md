@@ -146,4 +146,4 @@ Wenn die Validierung fehlschlägt, wird der Server mit einer Fehlermeldung beend
 
 ## Nächste Schritte
 
-Nachdem dein Server konfiguriert ist, kannst du ihn [starten](/SteelDocs/getting-started/running/).
+Nachdem dein Server konfiguriert ist, kannst du ihn [starten](/getting-started/running/).

@@ -11,9 +11,9 @@ import {
 } from "@lucide/astro";
 
 const languages = {
-  en: { href: "/SteelDocs/", flag: "🇬🇧", label: "English" },
-  de: { href: "/SteelDocs/de/", flag: "🇩🇪", label: "Deutsch" },
-  es: { href: "/SteelDocs/es/", flag: "🇪🇸", label: "Español" },
+  en: { href: "/", flag: "🇬🇧", label: "English" },
+  de: { href: "/de/", flag: "🇩🇪", label: "Deutsch" },
+  es: { href: "/es/", flag: "🇪🇸", label: "Español" },
 };
 const discordHref = "https://discord.gg/MwChEHnAbh";
 const githubHref = "https://github.com/Steel-Foundation/SteelMC";
@@ -120,7 +120,7 @@ function tr(label: { en: string; de: string; es: string }) {
     <div class="flex items-center gap-1">
       <!-- Download -->
       <a
-        href="/SteelDocs/download"
+        href="/download"
         class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-sm text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
         aria-label="Implementation tracker"
       >
@@ -129,7 +129,7 @@ function tr(label: { en: string; de: string; es: string }) {
       </a>
       <!-- Tracker -->
       <a
-        href="/SteelDocs/tracker/"
+        href="/tracker/"
         class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-sm text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
         aria-label="Implementation tracker"
       >

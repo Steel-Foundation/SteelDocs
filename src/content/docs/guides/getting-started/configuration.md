@@ -57,4 +57,4 @@ If validation fails, the server will exit with an error message.
 
 ## Next Steps
 
-With your server configured, you're ready to [run the server](/SteelDocs/getting-started/running/).
+With your server configured, you're ready to [run the server](/getting-started/running/).
