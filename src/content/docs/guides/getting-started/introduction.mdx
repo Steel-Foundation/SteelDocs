@@ -5,9 +5,9 @@ sidebar:
   order: 0
 ---
 
-import { VERSION } from '../../../../content.config.ts';
+import { mcVersion } from "@/lib/versions";
 
-Steel is a Minecraft Java Edition server implementation written in Rust, targeting Minecraft **{VERSION}**. It's designed for performance, reliability, and a clean developer experience.
+Steel is a Minecraft Java Edition server implementation written in Rust, targeting Minecraft **{await mcVersion()}**. It's designed for performance, reliability, and a clean developer experience.
 
 ## What is Steel?
 

@@ -3,7 +3,7 @@ title: Installation
 description: How to install Steel on your system.
 ---
 
-import { VERSION } from '../../../../content.config.ts';
+import { mcVersion } from "@/lib/versions";
 
 This guide covers how to build and run Steel.
 
@@ -88,7 +88,7 @@ The server will:
 
 1. Create a `config/steel_config.json5` file if it doesn't exist
 2. Bind to `0.0.0.0:25565` by default
-3. Start accepting Minecraft {VERSION} clients
+3. Start accepting Minecraft {await mcVersion()} clients
 
 ## Pre-built Binaries
 

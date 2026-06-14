@@ -3,7 +3,7 @@ title: Running the Server
 description: How to run and manage your Steel server.
 ---
 
-import { VERSION } from '../../../../content.config.ts';
+import { mcVersion } from "@/lib/versions";
 
 This guide covers running Steel and understanding its behavior.
 
@@ -26,7 +26,7 @@ On startup, Steel will:
 
 ## Connecting
 
-Use Minecraft Java Edition **{VERSION}** to connect:
+Use Minecraft Java Edition **{await mcVersion()}** to connect:
 
 1. Open Minecraft and go to Multiplayer
 2. Add a server with address `localhost` (or your server's IP)
@@ -81,7 +81,7 @@ If you see a bind error, another process is using port 25565. Either:
 
 Ensure:
 
-- The client is running Minecraft {VERSION}
+- The client is running Minecraft {await mcVersion()}
 - `online_mode` matches your setup (set to `false` for offline/cracked clients)
 - Firewall allows connections on the configured port
 

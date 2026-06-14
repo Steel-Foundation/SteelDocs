@@ -8,26 +8,7 @@ import FooterStatus from "@/components/sections/FooterStatus.astro";
 ---
 
 <Layout title="SteelDocs">
-  <Navbar
-    logoText="Steel"
-    logoHighlight="MC"
-    searchPlaceholder="Dokumentation durchsuchen..."
-    noResultsText="Keine Ergebnisse gefunden"
-    devWarningText="Die Suche ist nur in produktiv verfügbar"
-    langLabel="DE"
-    langChangeLabel="Sprache ändern"
-    languages={[
-      { href: "/SteelDocs/", flag: "🇬🇧", label: "English" },
-      { href: "/SteelDocs/de/", flag: "🇩🇪", label: "Deutsch" },
-      { href: "/SteelDocs/es/", flag: "🇪🇸", label: "Español" },
-      { href: "/SteelDocs/ru/", flag: "🇷🇺", label: "Русский" },
-    ]}
-    themeToggleLabel="Light/Dark mode"
-    discordLabel="Tritt unserem Discord bei"
-    discordHref="https://discord.gg/MwChEHnAbh"
-    githubLabel="GitHub repository"
-    githubHref="https://github.com/Steel-Foundation/SteelMC"
-  />
+  <Navbar />
   <Hero
     pillText="Still cooking"
     heroTitle="Steel"

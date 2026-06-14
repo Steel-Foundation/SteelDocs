@@ -5,9 +5,9 @@ sidebar:
   order: 0
 ---
 
-import { VERSION } from '../../../../../content.config.ts';
+import { mcVersion } from "@/lib/versions";
 
-Steel ist eine Rust-Implementierung des Minecraft-Java-Edition-Servers für die Version **{VERSION}**.
+Steel ist eine Rust-Implementierung des Minecraft-Java-Edition-Servers für die Version **{await mcVersion()}**.
 Es wurde mit Fokus auf maximale Performance, ein gutes Entwicklungserlebnis und minimale Fehleranfälligkeit konzipiert.
 
 ## Was ist Steel?

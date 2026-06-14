@@ -7,39 +7,60 @@ import {
   ChevronDown,
   Globe,
   ChartNoAxesCombined,
+  Download,
 } from "@lucide/astro";
 
-interface Props {
-  logoText: string;
-  logoHighlight: string;
-  searchPlaceholder: string;
-  noResultsText: string;
-  devWarningText: string;
-  langLabel: string;
-  langChangeLabel: string;
-  languages: { href: string; flag: string; label: string }[];
-  themeToggleLabel: string;
-  discordLabel: string;
-  discordHref: string;
-  githubLabel: string;
-  githubHref: string;
+const languages = {
+  en: { href: "/SteelDocs/", flag: "🇬🇧", label: "English" },
+  de: { href: "/SteelDocs/de/", flag: "🇩🇪", label: "Deutsch" },
+  es: { href: "/SteelDocs/es/", flag: "🇪🇸", label: "Español" },
+};
+const discordHref = "https://discord.gg/MwChEHnAbh";
+const githubHref = "https://github.com/Steel-Foundation/SteelMC";
+const searchPlaceholder = {
+  en: "Search docs...",
+  de: "Dokumentation durchsuchen...",
+  es: "Buscar en la documentación...",
+};
+const noResultsText = {
+  en: "No results found",
+  de: "Keine Ergebnisse gefunden",
+  es: "No se han encontrado resultados",
+};
+const devWarningText = {
+  en: "Search is only available in production builds",
+  de: "Die Suche ist nur in produktiv verfügbar",
+  es: "La busqueda esta solo disponible para la version final",
+};
+const langChangeLabel = {
+  en: "Change language",
+  de: "Sprache ändern",
+  es: "Cambiar idioma",
+};
+const themeToggleLabel = {
+  en: "Toggle theme",
+  de: "Light/Dark mode",
+  es: "Alternar tema",
+};
+const discordLabel = {
+  en: "Join our Discord",
+  de: "Tritt unserem Discord bei",
+  es: "Unete a nuestro Discord",
+};
+const githubLabel = {
+  en: "GitHub repository",
+  de: "GitHub repository",
+  es: "Repositorio de Github",
+};
+const downloadLabel = {
+  en: "Download",
+  de: "Download",
+  es: "Descargar",
+};
+type lang = "en" | "de" | "es";
+function tr(label: { en: string; de: string; es: string }) {
+  return label[Astro.currentLocale as lang] as string;
 }
-
-const {
-  logoText,
-  logoHighlight,
-  searchPlaceholder,
-  noResultsText,
-  devWarningText,
-  langLabel,
-  langChangeLabel,
-  languages,
-  themeToggleLabel,
-  discordLabel,
-  discordHref,
-  githubLabel,
-  githubHref,
-} = Astro.props;
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 px-2 pt-2 max-w-280 mx-auto">
@@ -48,12 +69,10 @@ const {
   >
     <!-- Logo -->
     <a
-      href="/SteelDocs/"
+      href={languages[Astro.currentLocale as lang].href}
       class="font-minecraft font-bold text-xl text-teal-950 dark:text-white shrink-0 mr-2"
     >
-      {logoText}<span class="text-emerald-600 dark:text-emerald-400"
-        >{logoHighlight}</span
-      >
+      Steel<span class="text-emerald-600 dark:text-emerald-400">MC</span>
     </a>
 
     <!-- Search Bar -->
@@ -68,7 +87,7 @@ const {
       <input
         id="navbar-search"
         type="search"
-        placeholder={searchPlaceholder}
+        placeholder={tr(searchPlaceholder)}
         autocomplete="off"
         class="w-full pl-8 pr-3 py-1.5 text-sm bg-teal-100 dark:bg-white/8 border border-teal-300 dark:border-white/15 rounded-full text-teal-950 dark:text-white placeholder:text-teal-400 dark:placeholder:text-white/35 focus:outline-none focus:border-emerald-500/60 dark:focus:border-emerald-400/50 transition-all"
       />
@@ -83,13 +102,13 @@ const {
           id="search-no-results"
           class="hidden px-4 py-3 text-sm text-teal-500 dark:text-white/50"
         >
-          {noResultsText}
+          {tr(noResultsText)}
         </p>
         <p
           id="search-dev-warning"
           class="hidden px-4 py-3 text-sm text-teal-500 dark:text-white/50"
         >
-          {devWarningText}
+          {tr(devWarningText)}
         </p>
       </div>
     </form>
@@ -99,6 +118,15 @@ const {
 
     <!-- Actions -->
     <div class="flex items-center gap-1">
+      <!-- Download -->
+      <a
+        href="/SteelDocs/download"
+        class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-sm text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
+        aria-label="Implementation tracker"
+      >
+        <Download class="size-3.5 shrink-0" />
+        <span class="hidden font-minecraft sm:inline">{tr(downloadLabel)}</span>
+      </a>
       <!-- Tracker -->
       <a
         href="/SteelDocs/tracker/"
@@ -114,13 +142,13 @@ const {
         <button
           id="lang-btn"
           class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-sm text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all cursor-pointer"
-          aria-label={langChangeLabel}
+          aria-label={tr(langChangeLabel)}
           aria-expanded="false"
           aria-haspopup="true"
         >
           <Globe class="size-3.5 shrink-0" />
           <span class="hidden font-minecraft sm:inline" id="lang-label"
-            >{langLabel}</span
+            >{Astro.currentLocale?.toUpperCase()}</span
           >
           <ChevronDown class="size-3 transition-transform" id="lang-chevron" />
         </button>
@@ -130,14 +158,14 @@ const {
           class="absolute right-0 top-full mt-1.5 w-36 rounded-xl bg-white dark:bg-teal-900/95 backdrop-blur-md border border-teal-200 dark:border-white/10 shadow-2xl hidden"
         >
           {
-            languages.map((lang, i) => (
+            Object.values(languages).map((lang, i) => (
               <a
                 href={lang.href}
                 role="menuitem"
                 class:list={[
                   "flex font-minecraft items-center gap-2.5 px-3 py-2 text-sm text-teal-700 dark:text-white/70 hover:text-teal-950 dark:hover:text-white hover:bg-teal-50 dark:hover:bg-white/10 transition-colors",
                   i === 0 && "rounded-t-xl",
-                  i === languages.length - 1 && "rounded-b-xl",
+                  i === Object.values(languages).length - 1 && "rounded-b-xl",
                 ]}
               >
                 <span aria-hidden="true">{lang.flag}</span> {lang.label}
@@ -151,7 +179,7 @@ const {
       <button
         id="theme-toggle"
         class="p-1.5 rounded-xl text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all cursor-pointer"
-        aria-label={themeToggleLabel}
+        aria-label={tr(themeToggleLabel)}
       >
         <Sun class="size-4" id="sun-icon" />
         <Moon class="size-4 hidden" id="moon-icon" />
@@ -163,7 +191,7 @@ const {
         target="_blank"
         rel="noopener noreferrer"
         class="p-1.5 rounded-xl text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
-        aria-label={discordLabel}
+        aria-label={tr(discordLabel)}
       >
         <svg
           class="size-4"
@@ -184,7 +212,7 @@ const {
         target="_blank"
         rel="noopener noreferrer"
         class="p-1.5 rounded-xl text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
-        aria-label={githubLabel}
+        aria-label={tr(githubLabel)}
       >
         <Github class="size-4" />
       </a>

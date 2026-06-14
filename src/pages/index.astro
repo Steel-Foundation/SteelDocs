@@ -7,27 +7,8 @@ import Community from "@/components/sections/Community.astro";
 import FooterStatus from "@/components/sections/FooterStatus.astro";
 ---
 
-<Layout title="SteelDocs">
-  <Navbar
-    logoText="Steel"
-    logoHighlight="MC"
-    searchPlaceholder="Search docs..."
-    noResultsText="No results found"
-    devWarningText="Search is only available in production builds"
-    langLabel="EN"
-    langChangeLabel="Change language"
-    languages={[
-      { href: "/SteelDocs/", flag: "🇬🇧", label: "English" },
-      { href: "/SteelDocs/de/", flag: "🇩🇪", label: "Deutsch" },
-      { href: "/SteelDocs/es/", flag: "🇪🇸", label: "Español" },
-      { href: "/SteelDocs/ru/", flag: "🇷🇺", label: "Русский" },
-    ]}
-    themeToggleLabel="Toggle theme"
-    discordLabel="Join our Discord"
-    discordHref="https://discord.gg/MwChEHnAbh"
-    githubLabel="GitHub repository"
-    githubHref="https://github.com/Steel-Foundation/SteelMC"
-  />
+<Layout title="SteelMC">
+  <Navbar />
   <Hero
     pillText="Still cooking"
     heroTitle="Steel"
