@@ -59,7 +59,7 @@ const Actions = ({
     <a
       className="px-6 md:px-8 py-2 font-minecraft font-bold rounded-[50px] text-xs md:text-sm bg-black/5 border border-black/10 text-black/80 dark:bg-white/5 dark:border-white/10 dark:text-white/85 cursor-pointer hover:bg-black/10 dark:hover:bg-white/10 hover:-translate-y-px transition-all duration-200 ease-out"
       style={glassStyle}
-      href="/guides/getting-started/introduction/"
+      href="./guides/getting-started/introduction/"
     >
       {secondCtaText}
     </a>
