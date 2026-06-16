@@ -160,19 +160,27 @@
         "chiseled_tuff",
         "tuff_bricks",
         "chiseled_tuff_bricks",
+        "sulfur",
+        "polished_sulfur",
+        "sulfur_bricks",
+        "chiseled_sulfur",
+        "cinnabar",
+        "polished_cinnabar",
+        "cinnabar_bricks",
+        "chiseled_cinnabar",
         "calcite",
-        "waxed_oxidized_chiseled_copper",
-        "waxed_weathered_chiseled_copper",
-        "waxed_exposed_chiseled_copper",
-        "waxed_chiseled_copper",
         "waxed_copper_block",
-        "waxed_weathered_copper",
         "waxed_exposed_copper",
+        "waxed_weathered_copper",
         "waxed_oxidized_copper",
-        "waxed_oxidized_cut_copper",
-        "waxed_weathered_cut_copper",
-        "waxed_exposed_cut_copper",
         "waxed_cut_copper",
+        "waxed_exposed_cut_copper",
+        "waxed_weathered_cut_copper",
+        "waxed_oxidized_cut_copper",
+        "waxed_chiseled_copper",
+        "waxed_exposed_chiseled_copper",
+        "waxed_weathered_chiseled_copper",
+        "waxed_oxidized_chiseled_copper",
         "dripstone_block",
         "cobbled_deepslate",
         "polished_deepslate",
@@ -712,10 +720,16 @@
         "tuff_stairs",
         "polished_tuff_stairs",
         "tuff_brick_stairs",
-        "waxed_oxidized_cut_copper_stairs",
-        "waxed_weathered_cut_copper_stairs",
-        "waxed_exposed_cut_copper_stairs",
+        "sulfur_stairs",
+        "polished_sulfur_stairs",
+        "sulfur_brick_stairs",
+        "cinnabar_stairs",
+        "polished_cinnabar_stairs",
+        "cinnabar_brick_stairs",
         "waxed_cut_copper_stairs",
+        "waxed_exposed_cut_copper_stairs",
+        "waxed_weathered_cut_copper_stairs",
+        "waxed_oxidized_cut_copper_stairs",
         "cobbled_deepslate_stairs",
         "polished_deepslate_stairs",
         "deepslate_tile_stairs",
@@ -811,8 +825,8 @@
         "warped_door",
         "waxed_copper_door",
         "waxed_exposed_copper_door",
-        "waxed_oxidized_copper_door",
-        "waxed_weathered_copper_door"
+        "waxed_weathered_copper_door",
+        "waxed_oxidized_copper_door"
       ]
     },
     "LadderBlock": {
@@ -1113,8 +1127,8 @@
         "warped_trapdoor",
         "waxed_copper_trapdoor",
         "waxed_exposed_copper_trapdoor",
-        "waxed_oxidized_copper_trapdoor",
-        "waxed_weathered_copper_trapdoor"
+        "waxed_weathered_copper_trapdoor",
+        "waxed_oxidized_copper_trapdoor"
       ]
     },
     "InfestedBlock": {
@@ -1320,10 +1334,16 @@
         "tuff_slab",
         "polished_tuff_slab",
         "tuff_brick_slab",
-        "waxed_oxidized_cut_copper_slab",
-        "waxed_weathered_cut_copper_slab",
-        "waxed_exposed_cut_copper_slab",
+        "sulfur_slab",
+        "polished_sulfur_slab",
+        "sulfur_brick_slab",
+        "cinnabar_slab",
+        "polished_cinnabar_slab",
+        "cinnabar_brick_slab",
         "waxed_cut_copper_slab",
+        "waxed_exposed_cut_copper_slab",
+        "waxed_weathered_cut_copper_slab",
+        "waxed_oxidized_cut_copper_slab",
         "cobbled_deepslate_slab",
         "polished_deepslate_slab",
         "deepslate_tile_slab",
@@ -1356,6 +1376,12 @@
         "tuff_wall",
         "polished_tuff_wall",
         "tuff_brick_wall",
+        "sulfur_wall",
+        "polished_sulfur_wall",
+        "sulfur_brick_wall",
+        "cinnabar_wall",
+        "polished_cinnabar_wall",
+        "cinnabar_brick_wall",
         "cobbled_deepslate_wall",
         "polished_deepslate_wall",
         "deepslate_tile_wall",
@@ -2455,6 +2481,15 @@
         "small_amethyst_bud"
       ]
     },
+    "PotentSulfurBlock": {
+      "implemented": true,
+      "todos": [
+        "Implement vanilla animateTick once Steel has client-side ambient tick/particle support:"
+      ],
+      "entries": [
+        "potent_sulfur"
+      ]
+    },
     "TintedGlassBlock": {
       "implemented": false,
       "todos": [],
@@ -2524,34 +2559,34 @@
         "exposed_copper",
         "weathered_copper",
         "oxidized_copper",
-        "oxidized_cut_copper",
-        "weathered_cut_copper",
-        "exposed_cut_copper",
         "cut_copper",
-        "oxidized_chiseled_copper",
-        "weathered_chiseled_copper",
+        "exposed_cut_copper",
+        "weathered_cut_copper",
+        "oxidized_cut_copper",
+        "chiseled_copper",
         "exposed_chiseled_copper",
-        "chiseled_copper"
+        "weathered_chiseled_copper",
+        "oxidized_chiseled_copper"
       ]
     },
     "WeatheringCopperStairBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
-        "oxidized_cut_copper_stairs",
-        "weathered_cut_copper_stairs",
+        "cut_copper_stairs",
         "exposed_cut_copper_stairs",
-        "cut_copper_stairs"
+        "weathered_cut_copper_stairs",
+        "oxidized_cut_copper_stairs"
       ]
     },
     "WeatheringCopperSlabBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
-        "oxidized_cut_copper_slab",
-        "weathered_cut_copper_slab",
+        "cut_copper_slab",
         "exposed_cut_copper_slab",
-        "cut_copper_slab"
+        "weathered_cut_copper_slab",
+        "oxidized_cut_copper_slab"
       ]
     },
     "WeatheringCopperDoorBlock": {
@@ -2560,8 +2595,8 @@
       "entries": [
         "copper_door",
         "exposed_copper_door",
-        "oxidized_copper_door",
-        "weathered_copper_door"
+        "weathered_copper_door",
+        "oxidized_copper_door"
       ]
     },
     "WeatheringCopperTrapDoorBlock": {
@@ -2570,8 +2605,8 @@
       "entries": [
         "copper_trapdoor",
         "exposed_copper_trapdoor",
-        "oxidized_copper_trapdoor",
-        "weathered_copper_trapdoor"
+        "weathered_copper_trapdoor",
+        "oxidized_copper_trapdoor"
       ]
     },
     "WeatheringCopperGrateBlock": {
@@ -2677,11 +2712,18 @@
     "PointedDripstoneBlock": {
       "implemented": true,
       "todos": [
-        "Implement thickness recalculation, scheduled-tick stalagmite breakage,",
-        "Vanilla picks tip direction from clicked-face/looking direction"
+        "Implement falling stalactites after falling block entities exist.",
+        "Implement trident projectile breakage and fluid transfer after"
       ],
       "entries": [
         "pointed_dripstone"
+      ]
+    },
+    "SulfurSpikeBlock": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "sulfur_spike"
       ]
     },
     "CaveVinesBlock": {
@@ -2929,6 +2971,33 @@
         "tuff_brick_stairs",
         "tuff_brick_wall",
         "chiseled_tuff_bricks",
+        "sulfur",
+        "potent_sulfur",
+        "sulfur_slab",
+        "sulfur_stairs",
+        "sulfur_wall",
+        "polished_sulfur",
+        "polished_sulfur_slab",
+        "polished_sulfur_stairs",
+        "polished_sulfur_wall",
+        "sulfur_bricks",
+        "sulfur_brick_slab",
+        "sulfur_brick_stairs",
+        "sulfur_brick_wall",
+        "chiseled_sulfur",
+        "cinnabar",
+        "cinnabar_slab",
+        "cinnabar_stairs",
+        "cinnabar_wall",
+        "polished_cinnabar",
+        "polished_cinnabar_slab",
+        "polished_cinnabar_stairs",
+        "polished_cinnabar_wall",
+        "cinnabar_bricks",
+        "cinnabar_brick_slab",
+        "cinnabar_brick_stairs",
+        "cinnabar_brick_wall",
+        "chiseled_cinnabar",
         "dripstone_block",
         "grass_block",
         "dirt",
@@ -2995,44 +3064,44 @@
         "budding_amethyst",
         "iron_block",
         "copper_block",
-        "gold_block",
-        "diamond_block",
-        "netherite_block",
         "exposed_copper",
         "weathered_copper",
         "oxidized_copper",
-        "chiseled_copper",
-        "exposed_chiseled_copper",
-        "weathered_chiseled_copper",
-        "oxidized_chiseled_copper",
-        "cut_copper",
-        "exposed_cut_copper",
-        "weathered_cut_copper",
-        "oxidized_cut_copper",
-        "cut_copper_stairs",
-        "exposed_cut_copper_stairs",
-        "weathered_cut_copper_stairs",
-        "oxidized_cut_copper_stairs",
-        "cut_copper_slab",
-        "exposed_cut_copper_slab",
-        "weathered_cut_copper_slab",
-        "oxidized_cut_copper_slab",
         "waxed_copper_block",
         "waxed_exposed_copper",
         "waxed_weathered_copper",
         "waxed_oxidized_copper",
+        "gold_block",
+        "diamond_block",
+        "netherite_block",
+        "chiseled_copper",
+        "exposed_chiseled_copper",
+        "weathered_chiseled_copper",
+        "oxidized_chiseled_copper",
         "waxed_chiseled_copper",
         "waxed_exposed_chiseled_copper",
         "waxed_weathered_chiseled_copper",
         "waxed_oxidized_chiseled_copper",
+        "cut_copper",
+        "exposed_cut_copper",
+        "weathered_cut_copper",
+        "oxidized_cut_copper",
         "waxed_cut_copper",
         "waxed_exposed_cut_copper",
         "waxed_weathered_cut_copper",
         "waxed_oxidized_cut_copper",
+        "cut_copper_stairs",
+        "exposed_cut_copper_stairs",
+        "weathered_cut_copper_stairs",
+        "oxidized_cut_copper_stairs",
         "waxed_cut_copper_stairs",
         "waxed_exposed_cut_copper_stairs",
         "waxed_weathered_cut_copper_stairs",
         "waxed_oxidized_cut_copper_stairs",
+        "cut_copper_slab",
+        "exposed_cut_copper_slab",
+        "weathered_cut_copper_slab",
+        "oxidized_cut_copper_slab",
         "waxed_cut_copper_slab",
         "waxed_exposed_cut_copper_slab",
         "waxed_weathered_cut_copper_slab",
@@ -3777,6 +3846,7 @@
         "large_amethyst_bud",
         "amethyst_cluster",
         "pointed_dripstone",
+        "sulfur_spike",
         "ochre_froglight",
         "verdant_froglight",
         "pearlescent_froglight",
@@ -4079,6 +4149,7 @@
         "music_disc_13",
         "music_disc_cat",
         "music_disc_blocks",
+        "music_disc_bounce",
         "music_disc_chirp",
         "music_disc_creator",
         "music_disc_creator_music_box",
@@ -4335,6 +4406,7 @@
         "cod_bucket",
         "tropical_fish_bucket",
         "axolotl_bucket",
+        "sulfur_cube_bucket",
         "tadpole_bucket"
       ]
     },
@@ -4543,6 +4615,7 @@
         "allay_spawn_egg",
         "mooshroom_spawn_egg",
         "sniffer_spawn_egg",
+        "sulfur_cube_spawn_egg",
         "copper_golem_spawn_egg",
         "iron_golem_spawn_egg",
         "snow_golem_spawn_egg",
