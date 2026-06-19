@@ -3,7 +3,7 @@ title: Running the Server
 description: How to run and manage your Steel server.
 ---
 
-import { VERSION } from '../../../../content.config.ts';
+import { mcVersion } from "@/lib/versions";
 
 This guide covers running Steel and understanding its behavior.
 
@@ -19,14 +19,14 @@ cargo run --release
 
 On startup, Steel will:
 
-1. Load or create `config/steel_config.json5`
+1. Load or create `config/config.toml`
 2. Validate the configuration
 3. Initialize the dual async runtimes
 4. Start listening on the configured port (default: 25565)
 
 ## Connecting
 
-Use Minecraft Java Edition **{VERSION}** to connect:
+Use Minecraft Java Edition **{await mcVersion()}** to connect:
 
 1. Open Minecraft and go to Multiplayer
 2. Add a server with address `localhost` (or your server's IP)
@@ -51,7 +51,7 @@ Saved 42 chunks
 Steel stores world data in the current directory:
 
 - `config/` - Configuration files
-- `world/` - World save data (chunks in NBT format)
+- `saves/` - World save data (chunks in NBT format)
 
 ## Server Status
 
@@ -81,7 +81,7 @@ If you see a bind error, another process is using port 25565. Either:
 
 Ensure:
 
-- The client is running Minecraft {VERSION}
+- The client is running Minecraft {await mcVersion()}
 - `online_mode` matches your setup (set to `false` for offline/cracked clients)
 - Firewall allows connections on the configured port
 

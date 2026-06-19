@@ -3,7 +3,7 @@ title: Installation
 description: How to install Steel on your system.
 ---
 
-import { VERSION } from '../../../../content.config.ts';
+import { mcVersion } from "@/lib/versions";
 
 This guide covers how to run Steel.
 
@@ -47,15 +47,19 @@ The `nightly` tag is available for plugin testing and early testing of upcoming 
 Run the Steel container with the server port exposed and local folders mounted for configuration and saves:
 
 ```bash
-docker run -d -p 25565:25565 -v ./config:/config -v ./saves:/saves ghcr.io/junkydeveloper/steelmc:<version>
+docker run -d -p 25565:25565 -v ./config:/config -v ./saves:/saves ghcr.io/steel-foundation/steelmc:<version>
 ```
+
+:::information
+docker pull for nightly: `docker pull ghcr.io/steel-foundation/steelmc:nightly`
+:::
 
 The same setup can be written as a Docker Compose service (Recommended):
 
 ```yaml
 services:
   steel:
-    image: ghcr.io/junkydeveloper/steelmc:<version>
+    image: ghcr.io/steel-foundation/steelmc:<version>
     ports:
       - 25565:25565
     volumes:
@@ -182,4 +186,4 @@ The server will:
 
 ## Next Steps
 
-Now that you have Steel running, proceed to [Configuration](/SteelDocs/getting-started/configuration/) to customize your server.
+Now that you have Steel running, proceed to [Configuration](/getting-started/configuration/) to customize your server.

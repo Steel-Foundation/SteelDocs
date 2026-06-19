@@ -11,17 +11,17 @@ options available. The other option are TextComponents there you can create and 
 
 ## Enable server links
 
-At first server links needed to be activated this will be done then you add to your steel_config.json5 this text:
+At first server links needed to be activated this will be done then you add to your `config/config.toml` this text:
 
-```json5
-// /config/steel_config.json5
-server_links: {
-  // Enable server links feature
-  enable: true,
-},
+```toml
+# /config/config.toml
+
+[server.server_links]
+# Enable server links feature
+enable = true
 ```
 
-This needs to be added in the root part of the config, also to deactivate temporarily you can set enable to false.
+This is added below the server configuration. Also to deactivate temporarily you can set enable to false.
 
 ## Build-in server links
 
@@ -42,44 +42,33 @@ The only special case is `bug_report` this will be also displayed then the serve
 malformed data to the client.
 
 This can be used like this:
-```json5
-// /config/steel_config.json5
-{
-  label: "bug_report",
-  url: "https://github.com/4lve/SteelMC/issues"
-}
+```toml
+[[server.server_links.links]]
+label = "bug_report"
+url = "https://github.com/4lve/SteelMC/issues"
 ```
 
 and a full example:
-```json5
-// /config/steel_config.json5
-server_links: {
-  // Enable server links feature
-  enable: true,
-  // List of links to display in the server menu
-  links: [
-    // Built-in link type (simple string label)
-    {
-      label: "bug_report",
-      url: "https://github.com/4lve/SteelMC/issues"
-    }
-  ]
-},
+```toml
+# /config/config.toml
+
+[server.server_links]
+# Enable server links feature
+enable = true
+
+# Built-in link type (simple string label)
+[[server.server_links.links]]
+label = "bug_report"
+url = "https://github.com/4lve/SteelMC/issues"
 ```
 
 ## Custom server links
 These are TextComponent So you have a lot more functionality included here for the design with custom text and color.
 This will look like this:
-```json5
-// /config/steel_config.json5
-{
-    label: {
-        text: "Visit the SteelMC Discord",
-        color: "blue",
-        bold: true
-    },
-    url: "https://discord.gg/suSXXNdVSf"
-}
+```toml
+[[server.server_links.links]]
+label = { text = "Visit the SteelMC Discord", color = "blue", bold = true }
+url = "https://discord.gg/suSXXNdVSf"
 ```
 ### Additional resources
 In the web you can find many more tutorials about TextComponent and how to use them correctly
@@ -87,69 +76,59 @@ In the web you can find many more tutorials about TextComponent and how to use t
 <details>
 <summary>Full example config</summary>
 
-```json5
-// /config/steel_config.json5
-{
-    $schema: "https://raw.githubusercontent.com/4lve/SteelMC/refs/heads/master/package-content/schema.json5",
-    // Server port
-    server_port: 25565,
-    // World seed for generating the world, empty string means random seed
-    seed: "",
-    // Maximum number of players allowed on the server
-    max_players: 20,
-    // Maximum view distance in chunks
-    view_distance: 10,
-    // Maximum simulation distance in chunks
-    simulation_distance: 10,
-    // Whether to use Mojang's authentication service
-    online_mode: true,
-    // Whether to enable encryption for client-server communication
-    encryption: true,
-    // Message of the day displayed in server lists
-    motd: "A Steel Server",
-    // Whether to use a custom favicon for the server
-    use_favicon: true,
-    // Path to the favicon file (PNG format, 64x64 pixels)
-    favicon: "config/favicon.png",
-    // Whether to enforce secure chat
-    enforce_secure_chat: false,
-    // Compression settings
-    compression: {
-        threshold: 256,
-        level: 4,
-    },
-    // Server links configuration
-    server_links: {
-        // Enable server links feature
-        enable: true,
-        // List of links to display in the server menu
-        links: [
-            // Built-in link type (simple string label)
-            {
-                label: "bug_report",
-                url: "https://github.com/4lve/SteelMC/issues"
-            },
-            // Another built-in type
-            {
-                label: "website",
-                url: "https://github.com/4lve/SteelMC"
-            },
-            // The news channel on discord
-            {
-                label: "announcements",
-                url: "https://discord.com/channels/1428487339759370322/1428487584966774795"
-            },
-            // Custom TextComponent (object label with formatting)
-            {
-                label: {
-                    text: "Visit the SteelMC Discord",
-                    color: "blue",
-                    bold: true
-                },
-                url: "https://discord.gg/suSXXNdVSf"
-            }
-        ]
-    },
-}
+```toml
+# /config/config.toml
+
+[server]
+# Server port
+server_port = 25565
+# Maximum number of players allowed on the server
+max_players = 20
+# Maximum view distance in chunks
+view_distance = 10
+# Maximum simulation distance in chunks
+simulation_distance = 10
+# Whether to use Mojang's authentication service
+online_mode = true
+# Whether to enable encryption for client-server communication
+encryption = true
+# Message of the day displayed in server lists
+motd = "A Steel Server"
+# Whether to use a custom favicon for the server
+use_favicon = true
+# Path to the favicon file (PNG format, 64x64 pixels)
+favicon = "config/favicon.png"
+# Whether to enforce secure chat
+enforce_secure_chat = false
+
+# Compression settings
+[server.compression]
+threshold = 256
+level = 4
+
+# Server links configuration
+[server.server_links]
+# Enable server links feature
+enable = true
+
+# Built-in link type (simple string label)
+[[server.server_links.links]]
+label = "bug_report"
+url = "https://github.com/4lve/SteelMC/issues"
+
+# Another built-in type
+[[server.server_links.links]]
+label = "website"
+url = "https://github.com/4lve/SteelMC"
+
+# The news channel on discord
+[[server.server_links.links]]
+label = "announcements"
+url = "https://discord.com/channels/1428487339759370322/1428487584966774795"
+
+# Custom TextComponent (object label with formatting)
+[[server.server_links.links]]
+label = { text = "Visit the SteelMC Discord", color = "blue", bold = true }
+url = "https://discord.gg/suSXXNdVSf"
 ```
 </details>

@@ -14,11 +14,10 @@ The mod hooks into the server startup lifecycle and automatically runs all extra
 ## How to use
 
 At first you need to create the run directory.
-It's very easy: build it from the command line, or simply click the Run button in your IDE of choice (e.g., IntelliJ).
-Minecraft will start, create a new world, and you can join it.
+It's very easy: build it from the command line (`./gradlew runServer`), or simply click the Run button (Minecraft server) in your IDE of choice (e.g., IntelliJ). This will start the minecraft server and the extraction will be started automatically, the extraction of the world hashes can take up to 30min.
 
-This will create a folder called `steel-extractor`. There, you'll find all the generated json files, which steel needs as a reference to vanilla.
-Not all json files are located in the same directory in steel. So please check the mapping first before you move something!
+This will create a `steel_extractor_output/` folder in the server working directory. There, you'll find all generated JSON and binary files, which Steel needs as a reference to vanilla.
+Not all output files are copied to the same directory in Steel. Check the mapping first before you move something.
 
 ## How It Works
 
@@ -39,26 +38,40 @@ interface Extractor {
 
 ## Extracted Data
 
-The following table lists all extractors and what data they produce:
+The following table lists all current extractors and what data they produce. Output paths are relative to `steel_extractor_output/`.
 
-| Extractor            | Output File           | Description                                                                                     |
-| -------------------- | --------------------- | ----------------------------------------------------------------------------------------------- |
-| `Blocks`             | `blocks.json`         | All blocks with behavior properties, block states, default values, collision and outline shapes |
-| `BlockEntities`      | `block_entities.json` | Registry keys of all block entity types                                                         |
-| `Items`              | `items.json`          | All items with components, block references, and class names                                    |
-| `Packets`            | `packets.json`        | All serverbound and clientbound packets grouped by protocol phase                               |
-| `MenuTypes`          | `menutypes.json`      | All menu/GUI types (e.g. crafting table, furnace)                                               |
-| `Entities`           | `entities.json`       | Entities with dimensions, synched data, attributes, and behavior flags                          |
-| `Fluids`             | `fluids.json`         | All fluids with behavior properties and state data                                              |
-| `GameRulesExtractor` | `game_rules.json`     | All game rules with types, defaults, and bounds                                                 |
-| `Classes`            | `classes.json`        | Java class names for all blocks and items                                                       |
-| `Attributes`         | `attributes.json`     | Entity attributes with defaults, ranges, and sync info                                          |
-| `MobEffects`         | `mob_effects.json`    | Status effects with categories and colors                                                       |
-| `Potions`            | `potions.json`        | Potions with their effects, durations, and amplifiers                                           |
-| `SoundTypes`         | `sound_types.json`    | Block sound types with volume, pitch, and sound event references                                |
-| `SoundEvents`        | `sound_events.json`   | Mapping of all sound event paths to registry IDs                                                |
-| `LevelEvents`        | `level_events.json`   | All level event constants (particles, sounds)                                                   |
-| `Tags`               | `tags.json`           | Block and item tags (excluding the `minecraft` namespace)                                       |
+| Extractor | Output File | Description |
+| --- | --- | --- |
+| `Blocks` | `steel-registry/build_assets/blocks.json` | All blocks with behavior properties, block states, default values, collision and outline shapes |
+| `BlockEntities` | `steel-registry/build_assets/block_entities.json` | Registry keys of all block entity types |
+| `Items` | `steel-registry/build_assets/items.json` | All items with components, block references, and class names |
+| `ParticleTypeRegistryExtractor` | `steel-registry/build_assets/particle_types.json` | Particle type registry keys |
+| `VillagerTypeRegistryExtractor` | `steel-registry/build_assets/villager_types.json` | Villager type registry keys |
+| `VillagerProfessionRegistryExtractor` | `steel-registry/build_assets/villager_professions.json` | Villager profession registry keys |
+| `Packets` | `steel-registry/build_assets/packets.json` | All serverbound and clientbound packets grouped by protocol phase |
+| `MenuTypes` | `steel-registry/build_assets/menutypes.json` | All menu/GUI types, such as crafting table and furnace |
+| `Entities` | `steel-registry/build_assets/entities.json` | Entities with dimensions, synched data, attributes, and behavior flags |
+| `EntityEvents` | `steel-utils/build_assets/entity_events.json` | Entity event constants |
+| `Fluids` | `steel-registry/build_assets/fluids.json` | All fluids with behavior properties and state data |
+| `GameRulesExtractor` | `steel-registry/build_assets/game_rules.json` | All game rules with types, defaults, and bounds |
+| `Classes` | `steel-core/build/classes.json` | Java class names for all blocks and items, plus extra per-entry metadata when available |
+| `Attributes` | `steel-registry/build_assets/attributes.json` | Entity attributes with defaults, ranges, and sync info |
+| `MobEffects` | `steel-registry/build_assets/mob_effects.json` | Status effects with categories and colors |
+| `Potions` | `steel-registry/build_assets/potions.json` | Potions with their effects, durations, and amplifiers |
+| `SoundTypes` | `steel-registry/build_assets/sound_types.json` | Block sound types with volume, pitch, and sound event references |
+| `SoundEvents` | `steel-registry/build_assets/sound_events.json` | Mapping of all sound event paths to registry IDs |
+| `MultiNoiseBiomeParameters` | `steel-registry/build_assets/multi_noise_biome_source_parameters.json` | Multi-noise biome source parameter lists |
+| `BiomeHashes` | `steel-core/test_assets/biome_hashes.json` | Deterministic biome hash fixtures used by Steel tests |
+| `LevelEvents` | `steel-registry/build_assets/level_events.json` | All level event constants, including particles and sounds |
+| `Tags` | `steel-registry/build_assets/tags.json` | Block and item tags excluding the `minecraft` namespace |
+| `StructureStarts` | `steel-core/test_assets/structure_starts.json` | Structure start fixtures used by Steel tests |
+| `Strippables` | `steel-core/build/strippables.json` | Block mappings for axe stripping behavior |
+| `Weathering` | `steel-core/build/weathering.json` | Block mappings for copper weathering behavior |
+| `CandleCakes` | `steel-core/build/candle_cakes.json` | Candle-to-candle-cake block mappings |
+| `Waxables` | `steel-core/build/waxables.json` | Block mappings for waxed variants |
+| `PoiTypesExtractor` | `steel-registry/build_assets/poi_types.json` | Point of interest type registry data |
+| `GameEvents` | `steel-registry/build_assets/game_events.json` | Game event registry keys |
+| `ChunkStageHashes` | `steel-core/test_assets/chunk_stage_hashes.json` and `steel-core/test_assets/chunk_stage_*_blocks.bin.gz` | Chunk generation stage hashes and binary block dumps for sampled chunks |
 
 ---
 
@@ -102,10 +115,10 @@ class Attributes : SteelExtractor.Extractor {
 }
 ```
 
-To register your new extractor, add it to the `extractors` array in `SteelExtractor.kt`:
+To register your new extractor, add it to the `immediateExtractors` array in `SteelExtractor.kt`:
 
 ```kotlin
-val extractors = arrayOf(
+val immediateExtractors = arrayOf(
     Blocks(),
     // ... other extractors ...
     Attributes(),

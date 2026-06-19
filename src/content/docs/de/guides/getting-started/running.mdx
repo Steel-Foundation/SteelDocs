@@ -3,7 +3,7 @@ title: Den Server zum Laufen bringen
 description: Wie du deinen Steel-Server verwaltest und startest.
 ---
 
-import { VERSION } from '../../../../../content.config.ts';
+import { mcVersion } from "@/lib/versions";
 
 Dieser Guide erklärt, wie man den Steel-Server zum laufen bringt und dessen Verhalten versteht.
 
@@ -26,7 +26,7 @@ Beim Hochfahren wird Steel:
 
 ## Verbinden
 
-Nutze Minecraft Java Edition **{VERSION}**, um den Server beizutreten:
+Nutze Minecraft Java Edition **{await mcVersion()}**, um den Server beizutreten:
 
 1. Öffne Minecraft und gehe zu Mehrspieler
 2. Füge einen Server mit der Adresse `localhost` (oder der IP deines Servers) hinzu
@@ -81,7 +81,7 @@ Wenn du einen Bind-Fehler siehst, nutzt ein anderer Prozess den Port 25565. Du k
 
 Stelle folgendes sicher:
 
-- Der Client läuft auf der Minecraft-Version {VERSION}
+- Der Client läuft auf der Minecraft-Version {await mcVersion()}
 - `online_mode` passt zu deinem Setup (für Offline-/Cracked-Clients auf `false` setzen)
 - Die Firewall erlaubt Verbindungen auf dem hinterlegten Port
 

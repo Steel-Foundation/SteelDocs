@@ -8,25 +8,7 @@ import FooterStatus from "@/components/sections/FooterStatus.astro";
 ---
 
 <Layout title="SteelDocs">
-  <Navbar
-    logoText="Steel"
-    logoHighlight="MC"
-    searchPlaceholder="Dokumentation durchsuchen..."
-    noResultsText="Keine Ergebnisse gefunden"
-    devWarningText="Die Suche ist nur in produktiv verfügbar"
-    langLabel="DE"
-    langChangeLabel="Sprache ändern"
-    languages={[
-      { href: "/SteelDocs/", flag: "🇬🇧", label: "English" },
-      { href: "/SteelDocs/de/", flag: "🇩🇪", label: "Deutsch" },
-      { href: "/SteelDocs/es/", flag: "🇪🇸", label: "Español" },
-    ]}
-    themeToggleLabel="Light/Dark mode"
-    discordLabel="Tritt unserem Discord bei"
-    discordHref="https://discord.gg/MwChEHnAbh"
-    githubLabel="GitHub repository"
-    githubHref="https://github.com/Steel-Foundation/SteelMC"
-  />
+  <Navbar />
   <Hero
     pillText="Still cooking"
     heroTitle="Steel"
@@ -43,12 +25,12 @@ import FooterStatus from "@/components/sections/FooterStatus.astro";
       sectionTitle="Bro, was möchtest du gerne machen ?"
       sectionDescription="Steel is carefully designed for everyone. Developers, administrators ? No matter what you wanna do, there's some docs for you !"
       sectionDescription="Steel ist für jeden gedacht. Bist du Entwickler oder Admin ? Egal was du machen möchten, oder nur mal reinschauen, hier sind die docs !"
-      adminHref="/SteelDocs/de/guides/getting-started/for-users/"
-      adminImage="/SteelDocs/admin.png"
+      adminHref="/de/guides/getting-started/for-users/"
+      adminImage="/admin.png"
       adminImageAlt="Admindokumenation"
       adminLabel="Admin"
-      devHref="/SteelDocs/de/guides/getting-started/for-devs/"
-      devImage="/SteelDocs/contributor.png"
+      devHref="/de/guides/getting-started/for-devs/"
+      devImage="/contributor.png"
       devImageAlt="Contributor Dokumentation "
       devLabel="Entwickler"
     />
