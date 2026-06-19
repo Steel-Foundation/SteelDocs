@@ -5,15 +5,104 @@ description: How to install Steel on your system.
 
 import { mcVersion } from "@/lib/versions";
 
-This guide covers how to build and run Steel.
+This guide covers how to run Steel.
 
-## Requirements
+There are multiple ways to do that:
++ [Docker](#docker)
++ [egg (pelican/pterodactyl)](#egg)
++ [binary](#pre-built-binaries)
++ [self compiled](#self-compilation)
+
+## What to select
+
+Choose the installation method that matches where Steel will run.
+
+If you already use Kubernetes, Docker Swarm, or a standard Docker host, the Docker container is the recommended option.
+
+If your target platform is Pelican, Pterodactyl, or another egg-based panel, use the provided Steel egg in JSON or YAML format.
+
+If you want to run Steel directly on the host system, use the pre-built binaries.
+
+If your platform or architecture is not currently supported, build Steel from source and cross-compile it for your target system.
+
+| Method | Linux x64 | Linux arm64 | Linux armv7 | Linux armv6 | Windows x64 | Windows arm | Mac arm | Mac x64 |
+| ------ | :-------: | :---------: | :---------: | :---------: | :---------: | :---------: | :-----: | :-----: |
+| [Docker](#docker) | ✅ | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Egg](#egg) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| [Binary](#pre-built-binaries) | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ | ❌ |
+| [Self-built](#self-compilation) | ✅ | ✅ | ( ✅ ) | ( ✅ ) | ✅ | ✅ | ✅ | ✅ |
+
+✅ Supported. ❌ Not currently supported. ( ✅ ) some small adjustments needs to be done
+
+The sections below describe each option in more detail.
+
+## Docker
+
+Steel does not publish a `latest` Docker tag. Use a specific version tag instead, so upgrades are always planned and no container updates unexpectedly.
+
+The `nightly` tag is available for plugin testing and early testing of upcoming changes. It follows the latest commit on the `master` branch and may contain bugs that have not been fixed for a release yet. Do not use `nightly` in production.
+
+### Start the image
+
+Run the Steel container with the server port exposed and local folders mounted for configuration and saves:
+
+```bash
+docker run -d -p 25565:25565 -v ./config:/config -v ./saves:/saves ghcr.io/steel-foundation/steelmc:<version>
+```
+
+:::information
+docker pull for nightly: `docker pull ghcr.io/steel-foundation/steelmc:nightly`
+:::
+
+The same setup can be written as a Docker Compose service (Recommended):
+
+```yaml
+services:
+  steel:
+    image: ghcr.io/steel-foundation/steelmc:<version>
+    ports:
+      - 25565:25565
+    volumes:
+      - ./config:/config
+      - ./saves:/saves
+```
+
+### How to change ports and folders
+This section is a small helper. Docker Compose is another way to write the `docker run` command in a file.
+You can find the full Docker Compose reference here: https://docs.docker.com/reference/compose-file/
+
+Here is a small guide:
+
++ **-p (--port, ports):** the first port is the host port, which can be changed. The second port is the port inside the Docker container and should only be changed if the Steel config is changed too. For example, `-p 1111:25565` makes the Minecraft server reachable on port `1111` on the Linux server.
++ **-v (--volume, volumes):** the path before the colon is the path on your host system. The path after the colon is inside the Docker container and should not be changed.
+
+## Egg
+
+For Pelican and Pterodactyl, Steel provides an egg that can be imported directly from the panel's egg store.
+
+For other egg-based platforms, use the JSON or YAML egg files from the repository, or download the matching egg from one of the supported stores when available.
+
+Pelican: `<link>`
+
+Pterodactyl: `<link>`
+
+## Pre-built Binaries
+
+Pre-built binaries are available on the [GitHub Releases](https://github.com/Steel-Foundation/SteelMC/releases) page for:
+
+- Linux (x86_64)
+- Windows (x86_64)
+- macOS (ARM)
+
+## Self Compilation
+
+### Requirements
 
 - **Rust nightly toolchain** - Steel uses Rust 2024 edition features
 - **64-bit operating system** - Linux, macOS, or Windows
 - **Git** - To clone the repository
 
-## Installing Rust
+### Installing Rust
 
 If you don't have Rust installed, use [rustup](https://rustup.rs/):
 
@@ -23,7 +112,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 Steel requires the nightly toolchain. The repository includes a `rust-toolchain.toml` that automatically selects the correct version.
 
-## Building from Source
+### Building from Source
 
 ```bash
 # Clone the repository
@@ -36,7 +125,12 @@ cargo build --release
 # The binary will be at target/release/steel
 ```
 
-### Build Commands
+:::caution
+If you want to build for armv6 and armv7. You also need to clone simdnbt change in the Cargo.toml to use your local version and remove the restriction of 64bit from simdnbt.
+For more help we can support at [discord](https://discord.gg/MwChEHnAbh).
+:::
+
+#### Build Commands
 
 | Command                 | Purpose                                      |
 | ----------------------- | -------------------------------------------- |
@@ -46,7 +140,7 @@ cargo build --release
 | `cargo test`            | Run the test suite                           |
 | `cargo clippy`          | Run the linter                               |
 
-### Build Features
+#### Build Features
 
 Steel supports optional build features that can be enabled with `--features`:
 
@@ -71,7 +165,7 @@ cargo build --no-default-features
 
 **Deadlock Detection** is particularly useful during development if you're experiencing hangs or suspect lock-related issues. When enabled, parking_lot will detect potential deadlocks and panic with diagnostic information.
 
-## Running the Server
+### Running the Server
 
 ```bash
 # Run directly with cargo (debug mode)
@@ -89,14 +183,6 @@ The server will:
 1. Create a `config/steel_config.json5` file if it doesn't exist
 2. Bind to `0.0.0.0:25565` by default
 3. Start accepting Minecraft {await mcVersion()} clients
-
-## Pre-built Binaries
-
-Pre-built binaries are available on the [GitHub Releases](https://github.com/Steel-Foundation/SteelMC/releases) page for:
-
-- Linux (x86_64)
-- Windows (x86_64)
-- macOS (ARM)
 
 ## Next Steps
 
