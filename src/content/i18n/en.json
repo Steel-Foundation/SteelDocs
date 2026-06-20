@@ -1,0 +1,10 @@
+{
+    "langFlag": "🇬🇧",
+    "langName": "English",
+    "searchPlaceholder": "Search docs...",
+    "devWarningText": "Search is only available in production builds",
+    "discordLabel": "Join our Discord",
+    "githubLabel": "GitHub repository",
+    "download": "Download",
+    "githubHref": "https://github.com/Steel-Foundation/SteelMC"
+}

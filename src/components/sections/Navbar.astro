@@ -9,58 +9,10 @@ import {
   ChartNoAxesCombined,
   Download,
 } from "@lucide/astro";
+import { i18n } from "astro:config/client";
+import { toCodes, getRelativeLocaleUrl } from "astro:i18n";
 
-const languages = {
-  en: { href: "/", flag: "🇬🇧", label: "English" },
-  de: { href: "/de/", flag: "🇩🇪", label: "Deutsch" },
-  es: { href: "/es/", flag: "🇪🇸", label: "Español" },
-};
-const discordHref = "https://discord.gg/MwChEHnAbh";
-const githubHref = "https://github.com/Steel-Foundation/SteelMC";
-const searchPlaceholder = {
-  en: "Search docs...",
-  de: "Dokumentation durchsuchen...",
-  es: "Buscar en la documentación...",
-};
-const noResultsText = {
-  en: "No results found",
-  de: "Keine Ergebnisse gefunden",
-  es: "No se han encontrado resultados",
-};
-const devWarningText = {
-  en: "Search is only available in production builds",
-  de: "Die Suche ist nur in produktiv verfügbar",
-  es: "La busqueda esta solo disponible para la version final",
-};
-const langChangeLabel = {
-  en: "Change language",
-  de: "Sprache ändern",
-  es: "Cambiar idioma",
-};
-const themeToggleLabel = {
-  en: "Toggle theme",
-  de: "Light/Dark mode",
-  es: "Alternar tema",
-};
-const discordLabel = {
-  en: "Join our Discord",
-  de: "Tritt unserem Discord bei",
-  es: "Unete a nuestro Discord",
-};
-const githubLabel = {
-  en: "GitHub repository",
-  de: "GitHub repository",
-  es: "Repositorio de Github",
-};
-const downloadLabel = {
-  en: "Download",
-  de: "Download",
-  es: "Descargar",
-};
-type lang = "en" | "de" | "es";
-function tr(label: { en: string; de: string; es: string }) {
-  return label[Astro.currentLocale as lang] as string;
-}
+const supportedLocales = toCodes(i18n!.locales);
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 px-2 pt-2 max-w-280 mx-auto">
@@ -69,7 +21,9 @@ function tr(label: { en: string; de: string; es: string }) {
   >
     <!-- Logo -->
     <a
-      href={languages[Astro.currentLocale as lang].href}
+      href={Astro.currentLocale
+        ? getRelativeLocaleUrl(Astro.currentLocale, "/")
+        : "/"}
       class="font-minecraft font-bold text-xl text-teal-950 dark:text-white shrink-0 mr-2"
     >
       Steel<span class="text-emerald-600 dark:text-emerald-400">MC</span>
@@ -87,7 +41,7 @@ function tr(label: { en: string; de: string; es: string }) {
       <input
         id="navbar-search"
         type="search"
-        placeholder={tr(searchPlaceholder)}
+        placeholder={Astro.locals.t("searchPlaceholder")}
         autocomplete="off"
         class="w-full pl-8 pr-3 py-1.5 text-sm bg-teal-100 dark:bg-white/8 border border-teal-300 dark:border-white/15 rounded-full text-teal-950 dark:text-white placeholder:text-teal-400 dark:placeholder:text-white/35 focus:outline-none focus:border-emerald-500/60 dark:focus:border-emerald-400/50 transition-all"
       />
@@ -102,13 +56,13 @@ function tr(label: { en: string; de: string; es: string }) {
           id="search-no-results"
           class="hidden px-4 py-3 text-sm text-teal-500 dark:text-white/50"
         >
-          {tr(noResultsText)}
+          {Astro.locals.t("pagefind.zero_results")}
         </p>
         <p
           id="search-dev-warning"
           class="hidden px-4 py-3 text-sm text-teal-500 dark:text-white/50"
         >
-          {tr(devWarningText)}
+          {Astro.locals.t("devWarningText")}
         </p>
       </div>
     </form>
@@ -120,16 +74,18 @@ function tr(label: { en: string; de: string; es: string }) {
     <div class="flex items-center gap-1">
       <!-- Download -->
       <a
-        href="/download"
+        href="./download"
         class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-sm text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
         aria-label="Implementation tracker"
       >
         <Download class="size-3.5 shrink-0" />
-        <span class="hidden font-minecraft sm:inline">{tr(downloadLabel)}</span>
+        <span class="hidden font-minecraft sm:inline"
+          >{Astro.locals.t("download")}</span
+        >
       </a>
       <!-- Tracker -->
       <a
-        href="/tracker/"
+        href="./tracker"
         class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-sm text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
         aria-label="Implementation tracker"
       >
@@ -142,7 +98,7 @@ function tr(label: { en: string; de: string; es: string }) {
         <button
           id="lang-btn"
           class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-sm text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all cursor-pointer"
-          aria-label={tr(langChangeLabel)}
+          aria-label={Astro.locals.t("languageSelect.accessibleLabel")}
           aria-expanded="false"
           aria-haspopup="true"
         >
@@ -158,17 +114,20 @@ function tr(label: { en: string; de: string; es: string }) {
           class="absolute right-0 top-full mt-1.5 w-36 rounded-xl bg-white dark:bg-teal-900/95 backdrop-blur-md border border-teal-200 dark:border-white/10 shadow-2xl hidden"
         >
           {
-            Object.values(languages).map((lang, i) => (
+            supportedLocales.map((locale, i) => (
               <a
-                href={lang.href}
+                href={getRelativeLocaleUrl(locale)}
                 role="menuitem"
                 class:list={[
                   "flex font-minecraft items-center gap-2.5 px-3 py-2 text-sm text-teal-700 dark:text-white/70 hover:text-teal-950 dark:hover:text-white hover:bg-teal-50 dark:hover:bg-white/10 transition-colors",
                   i === 0 && "rounded-t-xl",
-                  i === Object.values(languages).length - 1 && "rounded-b-xl",
+                  i === supportedLocales.length - 1 && "rounded-b-xl",
                 ]}
               >
-                <span aria-hidden="true">{lang.flag}</span> {lang.label}
+                <span aria-hidden="true">
+                  {Astro.locals.t("langFlag", "🇬🇧", { lng: locale })}
+                </span>{" "}
+                {Astro.locals.t("langName", "English", { lng: locale })}
               </a>
             ))
           }
@@ -179,7 +138,7 @@ function tr(label: { en: string; de: string; es: string }) {
       <button
         id="theme-toggle"
         class="p-1.5 rounded-xl text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all cursor-pointer"
-        aria-label={tr(themeToggleLabel)}
+        aria-label={Astro.locals.t("themeSelect.accessibleLabel")}
       >
         <Sun class="size-4" id="sun-icon" />
         <Moon class="size-4 hidden" id="moon-icon" />
@@ -187,11 +146,11 @@ function tr(label: { en: string; de: string; es: string }) {
 
       <!-- Discord -->
       <a
-        href={discordHref}
+        href="/discord"
         target="_blank"
         rel="noopener noreferrer"
         class="p-1.5 rounded-xl text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
-        aria-label={tr(discordLabel)}
+        aria-label={Astro.locals.t("discordLabel")}
       >
         <svg
           class="size-4"
@@ -208,11 +167,11 @@ function tr(label: { en: string; de: string; es: string }) {
 
       <!-- GitHub -->
       <a
-        href={githubHref}
+        href="https://github.com/Steel-Foundation/SteelMC"
         target="_blank"
         rel="noopener noreferrer"
         class="p-1.5 rounded-xl text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
-        aria-label={tr(githubLabel)}
+        aria-label={Astro.locals.t("githubLabel")}
       >
         <Github class="size-4" />
       </a>
