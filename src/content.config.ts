@@ -14,6 +14,7 @@ export const collections = {
         discordLabel: z.string().optional(),
         githubLabel: z.string().optional(),
         download: z.string().optional(),
+        githubHref: z.string().optional(),
       }),
   }) }),
 };
