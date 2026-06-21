@@ -1,9 +1,9 @@
 ---
 title: Installation
 description: Wie du Steel auf deinem System installierst.
+sidebar:
+  order: 1
 ---
-
-import { mcVersion } from "@/lib/versions";
 
 Diese Anleitung beschreibt, wie du Steel baust und ausführst.
 
@@ -83,12 +83,6 @@ cargo run --release
 # Oder die gebaute Binärdatei direkt starten
 ./target/release/steel
 ```
-
-Der Server wird:
-
-1. Eine Datei `config/steel_config.json5` erstellen, falls sie nicht existiert
-2. Standardmäßig an `0.0.0.0:25565` binden
-3. Minecraft-{await mcVersion()}-Clients akzeptieren
 
 ## Vorgebaute Binärdateien
 
