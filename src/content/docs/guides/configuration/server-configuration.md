@@ -20,6 +20,10 @@ World settings are documented in [World Configuration](../world-configuration).
 | `server.simulation_distance` | u8     | `10`               | Maximum simulation distance in chunks                                    |
 | `server.motd`                | String | `"A Steel Server"` | Message displayed in server list                                         |
 
+:::note
+If you go beyond 32 of render distance, client would need mod that allow to go beyond 32 as well like bobby or c2me or any other.
+:::
+
 ## Threads Settings
 
 | Option               | Type  | Default | Description                                                                                             |
