@@ -132,13 +132,14 @@ For more help we can support at [discord](https://discord.gg/MwChEHnAbh).
 
 #### Build Commands
 
-| Command                 | Purpose                                      |
-| ----------------------- | -------------------------------------------- |
-| `cargo build`           | Debug build (faster compile, slower runtime) |
-| `cargo build --release` | Release build (slower compile, optimized)    |
-| `cargo check`           | Fast syntax and type checking                |
-| `cargo test`            | Run the test suite                           |
-| `cargo clippy`          | Run the linter                               |
+| Command                         | Purpose                                                     |
+| ------------------------------- | ----------------------------------------------------------- |
+| `cargo build`                   | Debug build (faster compile, slower runtime)                |
+| `cargo build --release`         | Release build (slower compile, optimized)                   |
+| `cargo build-native --release`  | Release build optimized for the host CPU (best performance) |
+| `cargo check`                   | Fast syntax and type checking                               |
+| `cargo test`                    | Run the test suite                                          |
+| `cargo clippy`                  | Run the linter                                              |
 
 #### Build Features
 
@@ -173,6 +174,9 @@ cargo run
 
 # Run with release optimizations
 cargo run --release
+
+# Run with native CPU optimizations in release mode
+cargo run-native --release
 
 # Or run the built binary directly
 ./target/release/steel
