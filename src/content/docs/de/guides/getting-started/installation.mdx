@@ -38,13 +38,14 @@ cargo build --release
 
 ### Build-Befehle
 
-| Befehl                  | Zweck                                                      |
-| ----------------------- | ---------------------------------------------------------- |
-| `cargo build`           | Debug-Build (schnellere Kompilierung, langsamere Laufzeit) |
-| `cargo build --release` | Release-Build (langsameres Kompilieren, optimiert)         |
-| `cargo check`           | Schnelle Syntax- und Typprüfung                            |
-| `cargo test`            | Führt die Testsuite aus                                    |
-| `cargo clippy`          | Startet den Linter                                         |
+| Befehl                         | Zweck                                                      |
+| ------------------------------ | ---------------------------------------------------------- |
+| `cargo build`                  | Debug-Build (schnellere Kompilierung, langsamere Laufzeit) |
+| `cargo build --release`        | Release-Build (langsameres Kompilieren, optimiert)         |
+| `cargo build-native --release` | Release-Build optimiert für die Host-CPU (beste Leistung)  |
+| `cargo check`                  | Schnelle Syntax- und Typprüfung                            |
+| `cargo test`                   | Führt die Testsuite aus                                    |
+| `cargo clippy`                 | Startet den Linter                                         |
 
 ### Build-Features
 
@@ -79,6 +80,9 @@ cargo run
 
 # Mit Release-Optimierungen ausführen
 cargo run --release
+
+# Mit Release- und Host-CPU-Optimierungen ausführen
+cargo run-native --release
 
 # Oder die gebaute Binärdatei direkt starten
 ./target/release/steel
