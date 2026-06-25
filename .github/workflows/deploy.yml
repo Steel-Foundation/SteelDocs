@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [master]
+  repository_dispatch:
+    types: [deploy-trigger]
   workflow_dispatch:
 
 # Allow this job to clone the repo and create a page deployment

@@ -38,3 +38,8 @@ jobs:
           git diff --staged --quiet && echo "No changes" && exit 0
           git commit -m "chore: update implementation status"
           git push
+
+      - name: Trigger deployment workflow
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          event-type: deploy-trigger
