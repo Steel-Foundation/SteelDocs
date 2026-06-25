@@ -217,4 +217,12 @@
   body {
     @apply bg-background text-foreground;
   }
+
+}
+
+@layer starlight.reset {
+  ul {
+    list-style: disc;
+    padding: 0 15px;
+  }
 }

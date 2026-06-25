@@ -74,7 +74,7 @@ const supportedLocales = toCodes(i18n!.locales);
     <div class="flex items-center gap-1">
       <!-- Download -->
       <a
-        href="./download"
+        href={getRelativeLocaleUrl(Astro.currentLocale || "en", "/download")}
         class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-sm text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
         aria-label="Implementation tracker"
       >
@@ -85,7 +85,7 @@ const supportedLocales = toCodes(i18n!.locales);
       </a>
       <!-- Tracker -->
       <a
-        href="./tracker"
+        href={getRelativeLocaleUrl(Astro.currentLocale || "en", "/tracker")}
         class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-sm text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
         aria-label="Implementation tracker"
       >
@@ -116,7 +116,7 @@ const supportedLocales = toCodes(i18n!.locales);
           {
             supportedLocales.map((locale, i) => (
               <a
-                href={getRelativeLocaleUrl(locale)}
+                href={getRelativeLocaleUrl(locale, Astro.routePattern)}
                 role="menuitem"
                 class:list={[
                   "flex font-minecraft items-center gap-2.5 px-3 py-2 text-sm text-teal-700 dark:text-white/70 hover:text-teal-950 dark:hover:text-white hover:bg-teal-50 dark:hover:bg-white/10 transition-colors",
