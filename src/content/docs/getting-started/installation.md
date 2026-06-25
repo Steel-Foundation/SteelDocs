@@ -56,6 +56,17 @@ Once downloaded, to run the server you just need to open your prefered terminal 
 ./steel
 ```
 
+:::caution
+For MacOS users is necessary to enable the Development Mode of the system to be able to execute Steel, since it's not oficially signed.
+
+This can be achieved through running the following command in the terminal and entering your administrator password:
+
+```bash
+sudo devtools enable
+```
+
+:::
+
 ## Docker
 
 Steel does not publish a `latest` Docker tag. Use a specific version tag instead, this way upgrades are always planned and no container updates unexpectedly.
