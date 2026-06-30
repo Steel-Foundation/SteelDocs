@@ -1429,7 +1429,7 @@
       ]
     },
     "EndPortalBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "end_portal"
@@ -1704,7 +1704,7 @@
       ]
     },
     "BarrierBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "barrier"
@@ -1863,7 +1863,7 @@
       ]
     },
     "EndGatewayBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "end_gateway"
@@ -1967,7 +1967,7 @@
     "KelpBlock": {
       "implemented": true,
       "todos": [
-        "Implement full vanilla behavior beyond can_survive and get_fluid_state."
+        "Implement random growth, bonemeal growth, and clone stack behavior."
       ],
       "entries": [
         "kelp"
@@ -1976,7 +1976,7 @@
     "KelpPlantBlock": {
       "implemented": true,
       "todos": [
-        "Implement full vanilla behavior beyond can_survive and get_fluid_state."
+        "Implement bonemeal forwarding and clone stack behavior."
       ],
       "entries": [
         "kelp_plant"
@@ -2027,10 +2027,7 @@
     },
     "CoralPlantBlock": {
       "implemented": true,
-      "todos": [
-        ".",
-        "Implement death tick, scheduled tick on placement, and water update."
-      ],
+      "todos": [],
       "entries": [
         "tube_coral",
         "brain_coral",
@@ -2052,10 +2049,7 @@
     },
     "CoralFanBlock": {
       "implemented": true,
-      "todos": [
-        ".",
-        "Implement death tick and scheduled tick on placement."
-      ],
+      "todos": [],
       "entries": [
         "tube_coral_fan",
         "brain_coral_fan",
@@ -2066,9 +2060,7 @@
     },
     "BaseCoralWallFanBlock": {
       "implemented": true,
-      "todos": [
-        "Vanilla iterates over nearestLookingDirections; placeholder uses"
-      ],
+      "todos": [],
       "entries": [
         "dead_tube_coral_wall_fan",
         "dead_brain_coral_wall_fan",
@@ -2079,10 +2071,7 @@
     },
     "CoralWallFanBlock": {
       "implemented": true,
-      "todos": [
-        ".",
-        "Implement death tick and scheduled tick on placement."
-      ],
+      "todos": [],
       "entries": [
         "tube_coral_wall_fan",
         "brain_coral_wall_fan",
@@ -2129,7 +2118,7 @@
       ]
     },
     "BubbleColumnBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "bubble_column"
@@ -2138,7 +2127,8 @@
     "ScaffoldingBlock": {
       "implemented": true,
       "todos": [
-        "Add vanilla placement, stability distance updates, falling conversion, and waterlogging."
+        "Add vanilla placement, stability distance updates, falling conversion, and waterlogging.",
+        "Mirror vanilla scaffolding placement here, including WATERLOGGED,"
       ],
       "entries": [
         "scaffolding"
@@ -2243,7 +2233,7 @@
     "CampfireBlock": {
       "implemented": true,
       "todos": [
-        "Add campfire cooking, waterlogging updates, smoke particles, and dowse item ejection."
+        "Add campfire cooking, smoke particles, and dowse item ejection."
       ],
       "entries": [
         "campfire",
@@ -2603,7 +2593,7 @@
       ]
     },
     "WeatheringCopperGrateBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "copper_grate",
@@ -2613,7 +2603,7 @@
       ]
     },
     "WaterloggedTransparentBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "waxed_copper_grate",
