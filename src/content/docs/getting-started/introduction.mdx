@@ -1,0 +1,65 @@
+---
+title: What is Steel?
+description: Learn what Steel is and why you might want to use it.
+sidebar:
+  order: 0
+---
+
+import { mcVersion, steelVersion } from "@/lib/versions";
+
+Steel is a Minecraft Java Edition server implementation written in Rust, targeting Minecraft **{await mcVersion()}**.\
+It's designed for performance, reliability, and a clean developer experience.
+
+Unlike traditional Java-based servers, Steel leverages Rust's memory safety guarantees and zero-cost abstractions to deliver exceptional performance.
+
+## Who is Steel for?
+
+#### Server Administrators
+
+If you're running a Minecraft server and looking for:
+
+- **Better performance** - Lock-free data structures and efficient concurrency
+- **Lower memory usage** - Rust's efficient memory management
+- **Reliability** - Memory-safe code means fewer crashes and exploits
+
+#### Developers
+
+If you're building tools or contributing to server software:
+
+- **Modern codebase** - Rust 2024 edition with 10 focused workspace crates
+- **Type safety** - Catch errors at compile time, not runtime
+- **Behavior system** - Extensible block and item behaviors
+
+## Current Status
+
+Steel is under active development (v{await steelVersion()}).
+
+Steel currently supports:
+
+- TCP networking with Java Edition clients
+- Mojang authentication and encryption
+- Zlib packet compression
+- World generation
+  - 100% vanilla parity checked over 2500 chunks in all dimensions
+  - Currently the fastest cpu chunk generation ever written
+  - Check the performance in our [Benchmark page](../../reference/benchmarks)
+- Chunk loading, generation, and persistence
+- Block placement and breaking
+- Player movement with collision and speed validation
+- Chat system with signed messages
+- Inventory and container management (barrels)
+- Entities with AI goals
+- Block entities
+- Custom favicon and server links
+- Command auto completion in console
+
+Check in [our comunity](#comunity) for the latest updates.
+
+## Community
+
+- **Discord**: https://steel.dev/discord
+- **GitHub**: https://github.com/Steel-Foundation/SteelMC
+
+## Next Steps
+
+Ready to get started? Head to the [Installation](../installation/) guide.
