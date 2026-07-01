@@ -1101,7 +1101,7 @@
       ]
     },
     "TrapDoorBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "oak_trapdoor",
@@ -2448,15 +2448,20 @@
       ]
     },
     "BuddingAmethystBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "OnProjectile hit from AmethystBlock inheritance"
+      ],
       "entries": [
         "budding_amethyst"
       ]
     },
     "AmethystClusterBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "OnProjectile hit from AmethystBlock inheritance",
+        "Mirror and Rotate functions"
+      ],
       "entries": [
         "amethyst_cluster",
         "large_amethyst_bud",
@@ -2583,8 +2588,10 @@
       ]
     },
     "WeatheringCopperTrapDoorBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Query redstone neighbor signal once Steel has redstone power propagation."
+      ],
       "entries": [
         "copper_trapdoor",
         "exposed_copper_trapdoor",
