@@ -12,6 +12,7 @@ Configure your SteelMC server with custom settings and features.
 ## Available Guides
 
 - [**Server Links**](../server-links) - Configure server links displayed in the multiplayer menu
+- [**Permission Configuration**](../permissions) - Configure groups, command permissions, operators and runtime permission edits
 
 ## Reference Documentation
 
