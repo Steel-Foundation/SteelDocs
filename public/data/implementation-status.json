@@ -4554,9 +4554,7 @@
     },
     "EnderEyeItem": {
       "implemented": true,
-      "todos": [
-        "updateNeighborForOutputSignal, portal completion check"
-      ],
+      "todos": [],
       "entries": [
         "ender_eye"
       ]
