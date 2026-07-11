@@ -233,72 +233,21 @@ The player can use most Minecraft commands, but not `/stop`.
 
 ## Runtime Commands
 
-Use `/perms` to inspect and edit permissions while the server is running. The root permission is `steel.command.perms`; there are no `/steelperms` or `/sp` aliases.
+Use `/perms` to inspect and edit permissions while the server is running. Its general shape is:
 
-Useful commands:
+```text
+/perms <user|group|groups> ...
+```
+
+Start by inspecting the current configuration:
 
 ```text
 /perms user <targets> info
-/perms user <targets> check <permission_expr>
-/perms user <targets> allow <permission_expr>
-/perms user <targets> deny <permission_expr>
-/perms user <targets> unset <permission_expr>
-
-/perms user <targets> group add <group>
-/perms user <targets> group remove <group>
-
-/perms group <group> create
 /perms group <group> info
-/perms group <group> delete
-/perms group <group> allow <permission_expr>
-/perms group <group> deny <permission_expr>
-/perms group <group> unset <permission_expr>
-/perms group <group> priority <priority>
-/perms group <group> inherit list
-/perms group <group> inherit add <parent>
-/perms group <group> inherit remove <parent>
-
 /perms groups list
-/perms groups default add <group>
-/perms groups default remove <group>
 ```
 
-Metadata can also be edited:
-
-```text
-/perms user <targets> metadata set int <value> <metadata_expr>
-/perms user <targets> metadata set bool <value> <metadata_expr>
-/perms user <targets> metadata set string <value> <metadata_expr>
-/perms user <targets> metadata check <metadata_expr>
-/perms user <targets> metadata unset <metadata_expr>
-
-/perms group <group> metadata set int <value> <metadata_expr>
-/perms group <group> metadata set bool <value> <metadata_expr>
-/perms group <group> metadata set string <value> <metadata_expr>
-/perms group <group> metadata unset <metadata_expr>
-```
-
-`/perms user ... metadata check` resolves the effective value at the context written in `<metadata_expr>` and reports the winning source. Group metadata has no separate `check` command; use group info to inspect configured entries.
-
-`<permission_expr>` is a permission key plus an optional context selector, such as:
-
-```text
-minecraft.command.gamemode{domain=lobby}
-```
-
-`<metadata_expr>` uses the same context selector syntax:
-
-```text
-plugin:homes{world=survival:overworld}
-```
-
-`/perms` operations can resolve offline profiles and persist changes without blocking the server tick. Command execution remains suspended until the operation finishes, then the sender receives its result and feedback.
-
-### Administration Permissions
-
-Each branch also has a granular command permission, such as `steel.command.perms.user.info`, `steel.command.perms.user.allow`, or `steel.command.perms.group.inherit.add`. Holding `steel.command.perms` grants every branch unless a more specific branch is denied.
-
-Editing a rule additionally requires authority over its target permission. `steel.permission.manage.*` grants authority over all permission keys, while narrower keys such as `steel.permission.manage.minecraft.command.*` limit what the administrator can change. Group administration uses the corresponding `steel.permission.group.*` authority. Viewing metadata in user/group info and checking or editing metadata requires `steel.permission.metadata`; without it, metadata is omitted from info output. These non-command permissions are published for `/perms` autocomplete.
+These commands show direct player settings, group rules and inheritance, and the available groups before you make changes. See [Permission commands](../../commands/permissions) for every operation, required permission, and example.
 
 ## Operators
 

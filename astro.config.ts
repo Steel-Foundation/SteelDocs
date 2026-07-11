@@ -112,6 +112,10 @@ export default defineConfig({
           autogenerate: { directory: "configuration" },
         },
         {
+          label: "Commands",
+          autogenerate: { directory: "commands" },
+        },
+        {
           label: "Development",
           translations: {
             es: "Desarrollo",
