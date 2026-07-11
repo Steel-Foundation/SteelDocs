@@ -65,18 +65,54 @@ default = true
 storage.type = "steel:ram"
 ```
 
-| Option             | Type       | Default   | Description                                                                                                                              |
-| ------------------ | ---------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`             | String     | None      | **[REQUIRED]** Name of the world inside the domain                                                                                       |
-| `generator`        | Identifier | None      | **[REQUIRED]** [World generator](../../reference/terminology#world-generator) to use, options of world generator are in the next section |
-| `default`          | bool       | `false`   | Whether this is the default world of the domain                                                                                          |
-| `seed`             | String     | inherited | World seed override                                                                                                                      |
-| `default_gamemode` | String     | inherited | World gamemode override                                                                                                                  |
-| `difficulty`       | String     | inherited | World difficulty override                                                                                                                |
-| `storage`          | Table      | inherited | World storage override                                                                                                                   |
-| `config`           | Table      | `{}`      | Generator-specific config                                                                                                                |
+| Option                 | Type       | Default   | Description                                                                                                                              |
+| ---------------------- | ---------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`                 | String     | None      | **[REQUIRED]** Name of the world inside the domain                                                                                       |
+| `generator`            | Identifier | None      | **[REQUIRED]** [World generator](../../reference/terminology#world-generator) to use, options of world generator are in the next section |
+| `default`              | bool       | `false`   | Whether this is the default world of the domain                                                                                          |
+| `seed`                 | String     | inherited | World seed override                                                                                                                      |
+| `default_gamemode`     | String     | inherited | World gamemode override                                                                                                                  |
+| `difficulty`           | String     | inherited | World difficulty override                                                                                                                |
+| `storage`              | Table      | inherited | World storage override                                                                                                                   |
+| `nether_portal_target` | String     | automatic | Same-domain world name used by Nether portals from this world                                                                            |
+| `end_portal_target`    | String     | automatic | Same-domain End-dimension world name used by End portals from non-End worlds                                                             |
+| `config`               | Table      | `{}`      | Generator-specific config                                                                                                                |
 
-World names must be valid identifier paths, cannot contain `/` and must be unique within the domain. The names `overworld`, `the_nether` and `the_end` are special cases used to connect portals (Nether portals and End portals). This allows a single-player playstyle to be created for each player with all three [dimensions](../../reference/terminology#dimension), so it feels like vanilla single-player.
+World names must be valid identifier paths, cannot contain `/` and must be unique within the domain.
+
+## Portal Targets
+
+Portals are resolved inside the source world's [domain](../../reference/terminology#domain). If no explicit target is configured, Steel uses vanilla conventional world names:
+
+- Nether portals from `the_nether` target `overworld`
+- Nether portals from any other world target `the_nether`
+- End portals from non-End worlds target `the_end`
+- End portal returns from End-dimension worlds use the entity or player's respawn data instead of `end_portal_target`
+
+The conventional names make a normal `overworld`, `the_nether`, and `the_end` setup work without extra config. If you use different world names, configure explicit targets.
+
+```toml
+[domains.minecraft]
+default = true
+
+[[domains.minecraft.worlds]]
+name = "overworld2"
+generator = "minecraft:overworld"
+default = true
+nether_portal_target = "the_nether2"
+end_portal_target = "the_end2"
+
+[[domains.minecraft.worlds]]
+name = "the_nether2"
+generator = "minecraft:the_nether"
+nether_portal_target = "overworld2"
+
+[[domains.minecraft.worlds]]
+name = "the_end2"
+generator = "minecraft:the_end"
+```
+
+Portal target fields take a world name, not a full `namespace:path` identifier. They cannot point across domains, cannot point to the same world, and must point to a declared world in the same domain. `end_portal_target` is invalid on worlds using the End dimension, and it must point to a world whose generator uses the End dimension.
 
 ## Generators
 
@@ -229,7 +265,7 @@ This is the default config for `worlds.toml`, which creates a normal survival [w
 
 # Root defaults inherited by domains and worlds unless overridden.
 save_path = "saves"
-seed = "my_awesome_seed"
+seed = ""
 default_gamemode = "survival"
 difficulty = "normal"
 
@@ -242,6 +278,8 @@ type = "steel:file"
 [domains.minecraft]
 default = true
 
+# Worlds may optionally set same-domain `nether_portal_target` and
+# `end_portal_target` fields to override the vanilla conventional names.
 [[domains.minecraft.worlds]]
 name = "overworld"
 generator = "minecraft:overworld"
@@ -345,5 +383,9 @@ The server validates world configuration on startup:
 - world names must be valid identifier paths and cannot contain `/`
 - `save_path` and storage paths must be clean relative paths
 - [generators](../../reference/terminology#world-generator) and storage backends must be known to Steel
+- `nether_portal_target` and `end_portal_target` must point to an existing same-domain world and cannot target the source world
+- `end_portal_target` cannot be set on End-dimension worlds
+- `end_portal_target` must target an End-dimension world
+- `minecraft:flat` requires at least one layer, and `features = true` or `lakes = true` are not implemented yet
 
 If validation fails, the server will exit with an error message.

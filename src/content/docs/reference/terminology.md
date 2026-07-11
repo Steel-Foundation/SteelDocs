@@ -16,6 +16,7 @@ Steel uses a few terms differently from vanilla Minecraft and from Mojang's inte
 | [World](#world)                     | A playable map inside a domain                                          |
 | [Dimension](#dimension)             | The rule set and visual properties used by a world                      |
 | [World Generator](#world-generator) | The system that creates terrain and chooses or accepts a dimension type |
+| [Portal Target](#portal-target)     | The same-domain world a portal sends entities to                        |
 
 ## Identifier
 
@@ -56,6 +57,12 @@ A dimension is not the same as a saved map. Multiple worlds can use the same dim
 A **world generator** creates the terrain for a world.
 
 Some generators always target one dimension. For example, `minecraft:overworld` targets the Overworld dimension. Other generators can accept a dimension type through config. For example, `minecraft:flat` can create a flat world using the Overworld, Nether or End dimension properties.
+
+## Portal Target
+
+A **portal target** is the same-domain world that a portal sends an entity to.
+
+Steel uses vanilla conventional names by default: `overworld`, `the_nether` and `the_end`. Worlds with custom names can override this with `nether_portal_target` and `end_portal_target` in `worlds.toml`.
 
 ## Related Pages
 

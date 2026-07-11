@@ -10,8 +10,14 @@ If you don't want to use wireguard then this project can come in handy for you: 
 ## Prerequisites
 
 First, **encryption and compression must be disabled**.
-The compression threshold should be set to **1024**.
-You can find it in this file `config/steel_config.json5`, which will be generated after the first start.
+You can find these settings in `config/config.toml`, which is generated after the first start.
+
+```toml
+[server]
+encryption = false
+```
+
+Remove the `[server.compression]` table while capturing packets. If you keep compression enabled for a specific test, set `server.compression.threshold` high enough that the packets you care about stay uncompressed.
 
 You will need:
 
