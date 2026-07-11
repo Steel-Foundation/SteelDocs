@@ -5,7 +5,7 @@ sidebar:
   order: 4
 ---
 
-SteelMC permissions are configured through `config/groups.toml` and can also be edited at runtime with `/steelperms` or its alias `/sp`.
+SteelMC permissions are configured through `config/groups.toml` and can also be edited at runtime with `/perms`.
 
 Permissions control command access, command suggestions, and the command tree sent to each client. The same system also supports contextual rules and typed metadata values for server features and plugins.
 
@@ -18,7 +18,7 @@ Steel uses two permission files:
 | `config/groups.toml` | Server-wide permission groups and default groups |
 | `<save_root>/global/player_permissions.toml` | Per-player assigned groups, direct overrides, and metadata |
 
-Edit `groups.toml` for normal server policy. The player permissions file is under the configured world `save_path`, which defaults to `saves`. It is managed by Steel and `/steelperms`; manual edits should only be needed for recovery or bulk migration while the server is offline.
+Edit `groups.toml` for normal server policy. The player permissions file is under the configured world `save_path`, which defaults to `saves`. It is managed by Steel and `/perms`; manual edits should only be needed for recovery or bulk migration while the server is offline.
 
 ## Default Groups
 
@@ -29,12 +29,14 @@ default_groups = ["default"]
 
 [groups.default]
 priority = 0
+inherits = []
 allow = []
 deny = []
 metadata = []
 
 [groups.op]
 priority = 0
+inherits = []
 allow = ["*"]
 deny = []
 metadata = []
@@ -84,9 +86,9 @@ Examples:
 | `/fly` | `steel.command.fly` |
 | `/tp` and `/teleport` | `minecraft.command.teleport` |
 | `/xp` and `/experience` | `minecraft.command.experience` |
-| `/steelperms` and `/sp` | `steel.command.steelperms` |
+| `/perms` | `steel.command.perms` |
 
-Public commands, such as `/list`, do not require a permission.
+Default-access commands, such as `/list`, work when their permission is unset but can still be disabled with an explicit deny.
 
 Some commands expose narrower subcommand or value permissions. For example, `/tick freeze` can be granted with either `minecraft.command.tick` or `minecraft.command.tick.freeze`.
 
@@ -109,9 +111,9 @@ Groups are tables under `[groups.<name>]`.
 ```toml
 [groups.moderator]
 priority = 10
+inherits = []
 allow = [
-  "minecraft.command.kick",
-  "minecraft.command.ban",
+  "minecraft.command.teleport",
   "minecraft.command.gamemode.spectator",
 ]
 deny = [
@@ -122,6 +124,21 @@ metadata = []
 
 Group names must be valid permission segments: lowercase letters, digits, `_`, and `-`.
 
+### Group Inheritance
+
+Groups can inherit the permissions and metadata of other groups:
+
+```toml
+[groups.moderator]
+priority = 10
+inherits = ["helper"]
+allow = ["minecraft.command.teleport"]
+deny = []
+metadata = []
+```
+
+Inheritance is transitive, and each inherited group contributes at most once. Cycles and references to missing groups make the configuration invalid. An inherited rule keeps the priority of the group where it was defined; it does not take on the child group's priority.
+
 ### Contextual Rules
 
 Permission and metadata rules can include context selectors:
@@ -129,6 +146,7 @@ Permission and metadata rules can include context selectors:
 ```toml
 [groups.builder]
 priority = 5
+inherits = []
 allow = [
   "plugin.region.build{world=lobby:spawn,plugin:region=market}",
   "minecraft.command.gamemode{domain=lobby}",
@@ -156,7 +174,11 @@ Multiple selectors are combined with AND:
 plugin.region.build{world=lobby:spawn,plugin:region=market}
 ```
 
-Context values cannot be empty and cannot contain whitespace, `{`, `}`, `,`, or `=`.
+Each context key can appear only once in an expression. A world automatically implies the domain in its namespace, so `world=lobby:spawn` also matches rules scoped to `domain=lobby`. If both are written, the domain must match the world's namespace; Steel removes the redundant domain when it stores the expression. Conflicting pairs such as `{domain=survival,world=lobby:spawn}` are invalid.
+
+Context values cannot be empty and cannot contain whitespace, `{`, `}`, `,`, or `=`. Domain names use Minecraft identifier-namespace syntax, and worlds must be written as `<domain>:<world>`.
+
+Context specificity is additive. Global rules are least specific, a domain or custom selector adds one level, and a world adds two because it identifies both a domain and a loaded world. A rule with several matching selectors is therefore more specific than a rule with only one of them.
 
 ## Metadata
 
@@ -165,6 +187,7 @@ Metadata is typed data resolved by the same group and context model as permissio
 ```toml
 [groups.vip]
 priority = 20
+inherits = []
 allow = []
 deny = []
 metadata = [
@@ -175,6 +198,15 @@ metadata = [
 ```
 
 Metadata keys must be namespaced identifiers such as `plugin:homes` or `plugin:chat/color`.
+
+Metadata resolution considers only entries with the requested exact metadata key. Among matching entries, Steel chooses:
+
+1. The most specific context.
+2. A direct player value over a group value when specificity ties.
+3. The higher group priority when group values tie.
+4. The last entry in the effective metadata set when everything else ties.
+
+Unlike permissions, metadata has no allow/deny state and metadata keys do not use wildcard matching. Setting a value replaces only the entry with the same metadata key and exact context; unsetting it likewise removes only that exact entry. A global value and a contextual value for the same key can coexist.
 
 ## Conflict Resolution
 
@@ -191,6 +223,7 @@ This means a specific deny can override a broad allow:
 ```toml
 [groups.staff]
 priority = 10
+inherits = []
 allow = ["minecraft.command.*"]
 deny = ["minecraft.command.stop"]
 metadata = []
@@ -200,46 +233,52 @@ The player can use most Minecraft commands, but not `/stop`.
 
 ## Runtime Commands
 
-Use `/steelperms` or `/sp` to inspect and edit permissions while the server is running. The root permission is `steel.command.steelperms`.
+Use `/perms` to inspect and edit permissions while the server is running. The root permission is `steel.command.perms`; there are no `/steelperms` or `/sp` aliases.
 
 Useful commands:
 
 ```text
-/steelperms user <targets> info
-/steelperms user <targets> check <permission_expr>
-/steelperms user <targets> allow <permission_expr>
-/steelperms user <targets> deny <permission_expr>
-/steelperms user <targets> unset <permission_expr>
+/perms user <targets> info
+/perms user <targets> check <permission_expr>
+/perms user <targets> allow <permission_expr>
+/perms user <targets> deny <permission_expr>
+/perms user <targets> unset <permission_expr>
 
-/steelperms user <targets> group add <group>
-/steelperms user <targets> group remove <group>
+/perms user <targets> group add <group>
+/perms user <targets> group remove <group>
 
-/steelperms group <group> create
-/steelperms group <group> info
-/steelperms group <group> allow <permission_expr>
-/steelperms group <group> deny <permission_expr>
-/steelperms group <group> unset <permission_expr>
-/steelperms group <group> priority <priority>
+/perms group <group> create
+/perms group <group> info
+/perms group <group> delete
+/perms group <group> allow <permission_expr>
+/perms group <group> deny <permission_expr>
+/perms group <group> unset <permission_expr>
+/perms group <group> priority <priority>
+/perms group <group> inherit list
+/perms group <group> inherit add <parent>
+/perms group <group> inherit remove <parent>
 
-/steelperms groups list
-/steelperms groups default add <group>
-/steelperms groups default remove <group>
+/perms groups list
+/perms groups default add <group>
+/perms groups default remove <group>
 ```
 
 Metadata can also be edited:
 
 ```text
-/steelperms user <targets> metadata set int <value> <metadata_expr>
-/steelperms user <targets> metadata set bool <value> <metadata_expr>
-/steelperms user <targets> metadata set string <value> <metadata_expr>
-/steelperms user <targets> metadata check <metadata_expr>
-/steelperms user <targets> metadata unset <metadata_expr>
+/perms user <targets> metadata set int <value> <metadata_expr>
+/perms user <targets> metadata set bool <value> <metadata_expr>
+/perms user <targets> metadata set string <value> <metadata_expr>
+/perms user <targets> metadata check <metadata_expr>
+/perms user <targets> metadata unset <metadata_expr>
 
-/steelperms group <group> metadata set int <value> <metadata_expr>
-/steelperms group <group> metadata set bool <value> <metadata_expr>
-/steelperms group <group> metadata set string <value> <metadata_expr>
-/steelperms group <group> metadata unset <metadata_expr>
+/perms group <group> metadata set int <value> <metadata_expr>
+/perms group <group> metadata set bool <value> <metadata_expr>
+/perms group <group> metadata set string <value> <metadata_expr>
+/perms group <group> metadata unset <metadata_expr>
 ```
+
+`/perms user ... metadata check` resolves the effective value at the context written in `<metadata_expr>` and reports the winning source. Group metadata has no separate `check` command; use group info to inspect configured entries.
 
 `<permission_expr>` is a permission key plus an optional context selector, such as:
 
@@ -253,7 +292,13 @@ minecraft.command.gamemode{domain=lobby}
 plugin:homes{world=survival:overworld}
 ```
 
-Some operations that touch offline players or persist group file changes run in the background. The command sender receives the immediate result first, then a later message when background work completes.
+`/perms` operations can resolve offline profiles and persist changes without blocking the server tick. Command execution remains suspended until the operation finishes, then the sender receives its result and feedback.
+
+### Administration Permissions
+
+Each branch also has a granular command permission, such as `steel.command.perms.user.info`, `steel.command.perms.user.allow`, or `steel.command.perms.group.inherit.add`. Holding `steel.command.perms` grants every branch unless a more specific branch is denied.
+
+Editing a rule additionally requires authority over its target permission. `steel.permission.manage.*` grants authority over all permission keys, while narrower keys such as `steel.permission.manage.minecraft.command.*` limit what the administrator can change. Group administration uses the corresponding `steel.permission.group.*` authority. Viewing metadata in user/group info and checking or editing metadata requires `steel.permission.metadata`; without it, metadata is omitted from info output. These non-command permissions are published for `/perms` autocomplete.
 
 ## Operators
 
@@ -262,7 +307,7 @@ Some operations that touch offline players or persist group file changes run in 
 - `/op` adds the `op` group.
 - `/deop` removes the `op` group.
 - The default `op` group grants `*`.
-- The `op` group is required and cannot be deleted with `/steelperms`.
+- The `op` group is required and cannot be deleted with `/perms`.
 
 Targets can be online players, known offline players, or profile names the server can resolve.
 

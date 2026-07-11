@@ -3,252 +3,179 @@ title: Command Registration
 description: How SteelMC commands are built, registered, and connected to permissions.
 ---
 
-SteelMC commands are built as a graph of literal and argument nodes. The command registration step attaches root permissions, resolves subcommand permissions, registers aliases, validates ambiguity, and publishes command permissions for suggestions.
+SteelMC uses a Brigadier-style graph of literal and argument nodes. A separate `CommandRegistration` gives each graph a stable namespaced identity, aliases, and its permission policy.
 
 ## Command Modules
 
-Built-in commands live in `steel-core/src/command/commands/*.rs`.
-
-A built-in command module is registered automatically when it exposes both:
+Built-in commands live in `steel-core/src/command/builtins/`. Each module exposes a registration function and builds its command graph separately:
 
 ```rust
-pub(crate) const REGISTRATION: CommandRegistrationSpec = CommandRegistrationSpec::minecraft();
+use steel_utils::Identifier;
 
-pub(crate) fn command() -> CommandNodeBuilder {
-    literal("example")
+use super::super::{
+    brigadier::{CommandNodeBuilder, CommandSyntaxError},
+    execution::{
+        CommandSource, SteelCommandContext, SteelCommandRuntime, literal,
+    },
+    registration::CommandRegistration,
+};
+
+pub(super) fn registration() -> CommandRegistration<CommandSource> {
+    CommandRegistration::new(Identifier::vanilla_static("example"), |_| command())
+}
+
+fn command() -> CommandNodeBuilder<CommandSource, SteelCommandRuntime> {
+    literal("example").executes(run)
+}
+
+fn run(
+    context: &SteelCommandContext<CommandSource>,
+) -> Result<i32, CommandSyntaxError> {
+    context.source().send_success(&"Example ran".into());
+    Ok(1)
 }
 ```
 
-The build script scans the command directory and generates the built-in command registration list. Modules without both items are ignored or rejected by the build script.
+Add the module and its `registration()` call to `steel-core/src/command/builtins/mod.rs`. Registration is explicit; the build script no longer discovers command modules.
 
-Use the registration namespace that owns the command:
+The registration ID is authoritative. Its path must equal the root literal (`minecraft:example` has the root `example`), and its namespace owns the default permission.
 
-```rust
-pub(crate) const REGISTRATION: CommandRegistrationSpec = CommandRegistrationSpec::minecraft();
-pub(crate) const REGISTRATION: CommandRegistrationSpec = CommandRegistrationSpec::steel();
-```
+## Building a Command Graph
 
-## Building a Command Tree
-
-Use `literal(...)` for fixed command words and `argument(...)` for parsed values:
+Use `literal(...)` for fixed words and `argument(...)` for parsed values:
 
 ```rust
-use crate::command::graph::{
-    CommandNodeBuilder, CommandResult, ParsedArguments, argument, literal,
-};
-use crate::command::parsers::PlayerParser;
-
-pub(crate) fn command() -> CommandNodeBuilder {
+fn command() -> CommandNodeBuilder<CommandSource, SteelCommandRuntime> {
     literal("example")
         .then(literal("reload").executes(reload))
         .then(
-            literal("inspect")
-                .then(argument("target", PlayerParser::one()).executes(inspect)),
+            literal("inspect").then(
+                argument("target", SteelArgumentType::players())
+                    .executes(inspect),
+            ),
         )
 }
 ```
 
-Common builder methods:
+The most common builder methods are:
 
 | Method | Purpose |
-| ------ | ------- |
-| `.then(child)` | Add one child node |
-| `.then_all(children)` | Add several child nodes |
-| `.executes(handler)` | Mark a node executable |
-| `.requires(requirement)` | Add a source or permission requirement |
-| `.requires_permission(key)` | Require one permission key |
-| `.requires_permission_expr(expr)` | Require a composed permission expression |
-| `.redirects(...)` | Redirect command execution |
-| `.redirects_returning(...)` | Redirect and return the redirected result |
-| `.forks(...)` | Fork execution to multiple command contexts |
+| --- | --- |
+| `.then(child)` | Adds a child node |
+| `.executes(handler)` | Adds a synchronous executor |
+| `.executes_suspended(handler)` | Adds an executor that can finish asynchronously |
+| `.requires(requirement)` | Replaces the node requirement |
+| `.also_requires(requirement)` | Combines another requirement with the existing one |
+| `.redirects(target)` | Redirects parsing without changing the source |
+| `.redirects_with_modifier(...)` | Redirects with a source transformation or fork |
 
-Executors receive `&mut CommandContext` and `&ParsedArguments`, and return `Result<CommandResult, CommandError>`.
+Executors receive `&SteelCommandContext<CommandSource>` and return `Result<i32, CommandSyntaxError>`. The integer is the command result used by features such as `/execute store` and return-value propagation.
 
-## Parsed Arguments
+## Arguments
 
-Argument parsers store typed values in `ParsedArguments`. Read values by the argument name used in the tree:
+Built-in Minecraft-aware parsers are exposed through `SteelArgumentType`; primitive Brigadier parsers use `ArgumentType`:
+
+```rust
+literal("rate").then(
+    argument("rate", ArgumentType::float(1.0, 10_000.0))
+        .executes(set_rate),
+)
+```
+
+Read parsed values through typed `SteelCommandContext` helpers:
 
 ```rust
 fn inspect(
-    context: &mut CommandContext,
-    arguments: &ParsedArguments,
-) -> Result<CommandResult, CommandError> {
-    let targets = resolve_required_player_targets(arguments, "target", context)?;
-
-    Ok(CommandResult::from_usize_success_count(targets.len()))
+    context: &SteelCommandContext<CommandSource>,
+) -> Result<i32, CommandSyntaxError> {
+    let targets = context.players("target")?;
+    i32::try_from(targets.len())
+        .map_err(|_| CommandSyntaxError::dynamic("Too many targets"))
 }
 ```
 
-For simple typed arguments, use `arguments.get::<T>("name")` and convert parser errors with the local command helper:
+Use the same argument name in the graph and accessor. Some accessors return `Option`; convert a missing value into `CommandSyntaxError` instead of assuming it exists.
 
-```rust
-let rate = arguments
-    .get::<f32>("rate")
-    .map_err(super::invalid_parsed_argument)?;
-```
-
-Parsers provide server parsing, client parser metadata, examples for ambiguity checks, and suggestions. The server parser can be stricter than the client metadata when the Minecraft client does not have a matching native parser.
+Argument types provide server parsing, client parser metadata, and suggestions. Steel-owned keyed argument payloads keep custom argument values extensible without relying on Rust `TypeId` identity.
 
 ## Automatic Root Permissions
 
-Commands receive a root permission unless the registration is public:
+Unless overridden, a registration derives this permission from its ID:
 
 ```text
-<namespace>.command.<root>
+<namespace>.command.<path>
 ```
 
-Examples:
+For example, `minecraft:give` derives `minecraft.command.give`, while `steel:fly` derives `steel.command.fly`. The root requirement controls parsing, the client command tree, and suggestions.
 
-| Registration | Root literal | Permission |
-| ------------ | ------------ | ---------- |
-| `CommandRegistrationSpec::minecraft()` | `give` | `minecraft.command.give` |
-| `CommandRegistrationSpec::steel()` | `fly` | `steel.command.fly` |
-
-The root permission gates parsing, suggestions, and the command tree sent to players. Console and RCON pass permission requirements automatically.
-
-Use `.public()` for commands that should not require a permission:
+Unset permissions are normally denied. For a generally available command, use `.default_access()`:
 
 ```rust
-pub(crate) const REGISTRATION: CommandRegistrationSpec =
-    CommandRegistrationSpec::minecraft().public();
-```
-
-## Aliases and Permission Bases
-
-Aliases register extra root literals for the same command graph:
-
-```rust
-pub(crate) const REGISTRATION: CommandRegistrationSpec =
-    CommandRegistrationSpec::minecraft()
-        .permission_base("teleport")
-        .aliases(&["teleport"]);
-
-pub(crate) fn command() -> CommandNodeBuilder {
-    literal("tp")
+pub(super) fn registration() -> CommandRegistration<CommandSource> {
+    CommandRegistration::new(Identifier::vanilla_static("list"), |_| command())
+        .default_access()
 }
 ```
 
-This makes `/tp` and `/teleport` use `minecraft.command.teleport`.
+Default access allows an unset permission but still respects an explicit deny. This differs from bypassing permission checks.
 
-Use `.permission_base("name")` when the root literal should not become the permission segment. This is required for aliases like `/tp` where the canonical permission should be `teleport`.
+Use `.permission(expression)` when a command needs a custom or compound root policy:
 
-Alias names are validated as command literals. The permission base is validated as a permission segment.
+```rust
+let permission = PermissionExpr::key(PermissionKey::parse("plugin.command.inspect")?);
+CommandRegistration::new(Identifier::new_static("plugin", "inspect"), |_| command())
+    .permission(permission)
+```
+
+An explicit permission expression cannot be combined with derived subcommand permissions on the same registration.
+
+## Aliases and Collisions
+
+The ID path is the canonical root. Add unqualified aliases with `.alias(...)`:
+
+```rust
+CommandRegistration::new(Identifier::vanilla_static("teleport"), |_| command())
+    .alias("tp")
+```
+
+Both `/teleport` and `/tp` use `minecraft.command.teleport`; aliases do not create new permission keys.
+
+Command IDs must be unique. Earlier registrations win an unqualified root or alias collision. If a command has a collision, Steel also registers its namespaced ID (for example, `/minecraft:teleport`) as a fallback. Namespaced aliases are reserved for these collision fallbacks and cannot be declared manually.
 
 ## Subcommand Permissions
 
-Use `.requires_subcommand_permission()` on a non-root literal when a subcommand can be granted independently from the root command:
+Declare independently grantable literal paths on the registration:
 
 ```rust
-pub(crate) fn command() -> CommandNodeBuilder {
-    literal("tick")
-        .then(literal("query").executes(query_tick))
-        .then(
-            literal("freeze")
-                .requires_subcommand_permission()
-                .executes(freeze_tick),
-        )
-}
+CommandRegistration::new(Identifier::vanilla_static("tick"), |_| command())
+    .subcommand_permission(["rate"])
+    .subcommand_permission(["step"])
+    .subcommand_permission(["freeze"])
 ```
 
-For a Minecraft command rooted at `/tick`, this derives:
+This publishes `minecraft.command.tick.rate`, `minecraft.command.tick.step`, and `minecraft.command.tick.freeze`. A user may hold either the root permission or the relevant child permission. A specific child deny can override a broad root allow because each node uses a scoped permission expression.
 
-```text
-minecraft.command.tick.freeze
-```
+Paths contain literal names only. Registration walks through argument nodes while matching them, so a declaration such as `["user", "info"]` can match `/perms user <targets> info`. Missing, duplicate, ambiguous, empty, or invalid paths fail dispatcher construction.
 
-The user may hold either `minecraft.command.tick` or `minecraft.command.tick.freeze`. Holding only the child permission exposes the root command enough to reach that child.
-
-Use `.requires_additional_subcommand_permission()` when the user must hold both the root command permission and the derived child permission:
-
-```rust
-literal("delete")
-    .requires_additional_subcommand_permission()
-    .executes(delete_group)
-```
-
-This is useful for sensitive actions inside a broader command family.
-
-Use `.permission_path_passthrough()` for syntax-only literals that should not appear in derived permission keys.
-
-## Dynamic Argument Permissions
-
-Some commands derive a permission segment from a parsed argument value. `/gamemode` is the current built-in example:
-
-```rust
-pub(crate) fn command() -> CommandNodeBuilder {
-    literal("gamemode").then(
-        argument("gamemode", GameModeParser)
-            .requires_argument_permission::<GameType>("gamemode")
-            .executes(set_own_game_mode),
-    )
-}
-```
-
-`GameType` implements `CommandPermissionArgument`, so these value permissions are available:
-
-```text
-minecraft.command.gamemode.survival
-minecraft.command.gamemode.creative
-minecraft.command.gamemode.adventure
-minecraft.command.gamemode.spectator
-```
-
-The root permission `minecraft.command.gamemode` grants all values, but a more specific value rule can override it. Suggestions are filtered the same way, so a player with only `minecraft.command.gamemode.survival` only sees `survival`.
-
-When adding a dynamic permission argument:
-
-1. Implement `CommandPermissionArgument` for the parsed value type.
-2. Convert the parsed value into one `PermissionSegment`.
-3. Return all possible segments from `catalog_permission_segments()`.
-4. Use `.requires_argument_permission::<T>("argument_name")` after the matching argument node.
-
-The catalog must be finite so Steel can publish child permissions for suggestions and management tools.
+Dynamic value permissions are expressed directly when building the registration policy and checked by the executor. `/gamemode` is the built-in example: its visible root policy is an `Any` expression over scoped permissions such as `minecraft.command.gamemode.creative`, and execution checks the selected mode again.
 
 ## Permission Expressions
 
-Command requirements can use `PermissionExpr` directly for compound checks:
-
-```rust
-let root = PermissionKey::parse("minecraft.command.gamemode")?;
-let creative = PermissionKey::parse("minecraft.command.gamemode.creative")?;
-
-let permission = PermissionExpr::scoped_key(root, creative);
-```
-
-`PermissionExpr` supports:
+`PermissionExpr` composes command authorization:
 
 | Expression | Meaning |
-| ---------- | ------- |
-| `PermissionExpr::key(key)` | Require one key |
-| `PermissionExpr::scoped_key(parent, key)` | Parent grants the child unless a more specific child rule overrides it |
-| `left & right` | Require all child expressions |
-| `left | right` | Require at least one child expression |
+| --- | --- |
+| `PermissionExpr::key(key)` | Checks one key |
+| `PermissionExpr::scoped_key(parent, key)` | Lets the parent grant a child while preserving a more-specific child rule |
+| `left & right` | Requires every expression |
+| `left \| right` | Requires at least one expression |
 
-This expression model is for command requirements. Group config and `/steelperms` rule strings use a single key plus optional context selector, such as `minecraft.command.gamemode{domain=lobby}`.
+Configuration and `/perms` rule arguments are not compound command expressions. They contain one permission key and an optional context selector, such as `minecraft.command.gamemode{domain=lobby}`.
 
-## Registration Validation
+## Validation and Discovery
 
-Normal command registration resolves derived and dynamic permission markers. Calling `.build()` directly on a tree that still contains those markers fails.
+`CommandDispatcherBuilder` validates and constructs the complete dispatcher atomically. It rejects invalid IDs and aliases, duplicate IDs, mismatched or non-literal roots, invalid subcommand paths, and invalid explicit permission keys. A failed build does not expose a partially registered dispatcher.
 
-Registration also validates the command graph before committing it:
+The builder also collects root and subcommand permission keys for `/perms` suggestions. Register non-command permissions explicitly with `declare_permission(...)` when they should be discoverable.
 
-- root commands must be literal nodes
-- aliases must be valid command literal names
-- permission bases must be valid permission segments
-- terminal arguments cannot have children or redirects
-- ambiguous child parsers are rejected
-- failed alias registration does not leave the primary root registered
-
-## Client Command Tree and Suggestions
-
-`CommandDispatcher` builds a filtered command tree for each player. Nodes whose requirements fail are omitted, and permission-backed nodes are marked with the protocol restricted flag.
-
-The same graph and requirements are used for parsing and suggestions. This means command permissions affect:
-
-- whether a player can run the command
-- which command nodes the client sees
-- tab completion
-- server-side suggestions
-- value suggestions for dynamic permissions
-
-The permission context is captured from the command source at command start. Later `/execute` changes to world, entity, or position do not change the permission authority for that command.
+The filtered graph is used consistently for parsing, the client command tree, and server suggestions. Nodes whose authorization requirements fail are omitted. Permission context comes from the command source, including its world and domain; console and RCON sources bypass player permission rules.
