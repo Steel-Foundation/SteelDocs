@@ -17,7 +17,7 @@ sidebar:
 - `group` manages one named group's rules, priority, inheritance, and metadata.
 - `groups` lists groups and manages which groups every player receives by default.
 
-There are no `/steelperms` or `/sp` aliases.
+This reference assumes familiarity with permission keys, wildcards, groups, and contexts. Start with [Permission configuration](../../configuration/permissions) if those concepts are new to you.
 
 :::tip
 Inspect a player or group before editing it. Direct rules, inherited rules, contextual rules, and group priority can make the effective result different from a single configuration entry.

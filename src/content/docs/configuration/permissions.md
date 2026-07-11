@@ -22,27 +22,9 @@ Edit `groups.toml` for normal server policy. The player permissions file is unde
 
 ## Default Groups
 
-A new server creates this basic group configuration:
+A new server has two groups: `default` and `op`. Every player receives `default` because it is listed in `default_groups`. The required `op` group grants `*` and is assigned by `/op`.
 
-```toml
-default_groups = ["default"]
-
-[groups.default]
-priority = 0
-inherits = []
-allow = []
-deny = []
-metadata = []
-
-[groups.op]
-priority = 0
-inherits = []
-allow = ["*"]
-deny = []
-metadata = []
-```
-
-Every player receives all groups listed in `default_groups`. The `op` group is required, grants `*` by default, and is what `/op` assigns.
+Add server roles as tables named `[groups.<name>]`. Each group can contain permission rules, metadata, and parent groups to inherit from. A [complete example](#complete-example) later on this page shows how these pieces fit together.
 
 :::caution
 Do not put `op` in `default_groups` unless every player should have every permission.
@@ -69,6 +51,10 @@ Wildcards are allowed only as the final segment:
 | `minecraft.command.give` | Matches only that exact key |
 
 `minecraft.command.*` matches `minecraft.command.give`, but it does not match `minecraft.command` itself.
+
+:::note
+A wildcard matches descendants only. Grant both `minecraft.command` and `minecraft.command.*` if a system defines meaningful permissions at both levels.
+:::
 
 ## Command Permissions
 
@@ -129,15 +115,24 @@ Group names must be valid permission segments: lowercase letters, digits, `_`, a
 Groups can inherit the permissions and metadata of other groups:
 
 ```toml
+[groups.helper]
+priority = 5
+inherits = []
+allow = ["minecraft.command.teleport"]
+deny = []
+metadata = []
+
 [groups.moderator]
 priority = 10
 inherits = ["helper"]
-allow = ["minecraft.command.teleport"]
+allow = ["minecraft.command.gamemode.spectator"]
 deny = []
 metadata = []
 ```
 
-Inheritance is transitive, and each inherited group contributes at most once. Cycles and references to missing groups make the configuration invalid. An inherited rule keeps the priority of the group where it was defined; it does not take on the child group's priority.
+Members of `moderator` receive both permissions. The inherited teleport rule keeps the `helper` priority of `5`; it does not take on the `moderator` priority of `10`.
+
+Inheritance is transitive, and each inherited group contributes at most once. Cycles and references to missing groups make the configuration invalid.
 
 ### Contextual Rules
 
@@ -154,9 +149,7 @@ allow = [
 deny = [
   "minecraft.command.gamemode.creative{world=lobby:spawn}",
 ]
-metadata = [
-  { key = "plugin:homes{domain=lobby}", value = 3 },
-]
+metadata = []
 ```
 
 Built-in context keys:
@@ -174,7 +167,11 @@ Multiple selectors are combined with AND:
 plugin.region.build{world=lobby:spawn,plugin:region=market}
 ```
 
-Each context key can appear only once in an expression. A world automatically implies the domain in its namespace, so `world=lobby:spawn` also matches rules scoped to `domain=lobby`. If both are written, the domain must match the world's namespace; Steel removes the redundant domain when it stores the expression. Conflicting pairs such as `{domain=survival,world=lobby:spawn}` are invalid.
+Each context key can appear only once in an expression.
+
+:::note
+`world=lobby:spawn` already includes the `lobby` domain and therefore matches rules scoped to `domain=lobby`. Writing both is unnecessary. If both are present, they must agree; `{domain=survival,world=lobby:spawn}` is invalid.
+:::
 
 Context values cannot be empty and cannot contain whitespace, `{`, `}`, `,`, or `=`. Domain names use Minecraft identifier-namespace syntax, and worlds must be written as `<domain>:<world>`.
 
@@ -192,12 +189,13 @@ allow = []
 deny = []
 metadata = [
   { key = "plugin:homes", value = 10 },
+  { key = "plugin:homes{domain=lobby}", value = 3 },
   { key = "plugin:chat/color", value = "gold" },
   { key = "plugin:can_fly", value = true },
 ]
 ```
 
-Metadata keys must be namespaced identifiers such as `plugin:homes` or `plugin:chat/color`.
+Metadata keys must be namespaced identifiers such as `plugin:homes` or `plugin:chat/color`. The system that owns a key decides what its value means: for example, a homes plugin could interpret these rules as a limit of 10 homes normally and 3 inside the `lobby` domain. Steel stores and resolves the values but does not implement homes, chat colors, or flight merely because these example keys exist.
 
 Metadata resolution considers only entries with the requested exact metadata key. Among matching entries, Steel chooses:
 
@@ -230,6 +228,56 @@ metadata = []
 ```
 
 The player can use most Minecraft commands, but not `/stop`.
+
+## Complete Example
+
+This configuration provides a practical starting point for a small server:
+
+```toml
+default_groups = ["default"]
+
+[groups.default]
+priority = 0
+inherits = []
+allow = []
+deny = []
+metadata = []
+
+[groups.vip]
+priority = 5
+inherits = []
+allow = []
+deny = []
+metadata = [
+  { key = "example_homes:max", value = 5 },
+  { key = "example_chat:color", value = "gold" },
+]
+
+[groups.moderator]
+priority = 10
+inherits = []
+allow = [
+  "minecraft.command.teleport",
+  "minecraft.command.gamemode.spectator",
+  "minecraft.command.tick.freeze",
+]
+deny = []
+metadata = []
+
+[groups.op]
+priority = 0
+inherits = []
+allow = ["*"]
+deny = []
+metadata = []
+```
+
+- Everyone receives `default`.
+- Assign `vip` to players who should receive plugin-provided benefits.
+- Assign `moderator` to staff who need the listed commands.
+- `/op` assigns the required `op` group, which grants every permission by default.
+
+The `example_homes:max` and `example_chat:color` entries are illustrative. They have an effect only when plugins or server subsystems that own those keys read them. Replace them with metadata supported by the plugins you actually install.
 
 ## Runtime Commands
 

@@ -7,6 +7,12 @@ sidebar:
 
 This section documents SteelMC command families that need more than a short syntax list. Each reference explains what an operation changes, which permissions it requires, and how to use it safely.
 
+## Command Index
+
+- [`/perms`](../permissions) — inspect and manage player rules, groups, inheritance, defaults, and metadata
+
+Vanilla commands follow their normal Minecraft syntax. Until a command has Steel-specific behavior that needs its own reference, use the [Minecraft Wiki command list](https://minecraft.wiki/w/Commands#List_and_summary_of_commands).
+
 ## Reading Command Syntax
 
 Command references use angle brackets for values you must provide:
@@ -34,7 +40,3 @@ Most commands derive a permission from their namespaced command ID:
 Some command families publish more specific permissions for individual operations. The root permission grants those operations unless a more specific rule denies one. Console and RCON bypass player permission checks.
 
 For details about permission keys, groups, contexts, and conflict resolution, see [Permission configuration](../../configuration/permissions).
-
-## Available References
-
-- [Permission commands](../permissions) — inspect and manage player rules, groups, inheritance, defaults, and metadata with `/perms`
