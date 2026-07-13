@@ -38,13 +38,14 @@ These settings are only useful when you want to balance CPU use manually, for ex
 
 ## Security Settings
 
-| Option                       | Type   | Default | Description                                                             |
-| ---------------------------- | ------ | ------- | ----------------------------------------------------------------------- |
-| `server.online_mode`         | bool   | `true`  | Use Mojang authentication for player verification                       |
-| `server.auth_server`         | String | omitted | Optional `hasJoined` endpoint for online mode. Omit to use Mojang       |
-| `server.encryption`          | bool   | `true`  | Enable encryption for client-server communication                       |
-| `server.allow_flight`        | bool   | `false` | Allow unauthorized client flight in vanilla movement checks             |
-| `server.enforce_secure_chat` | bool   | `false` | Enforce secure chat. Requires `online_mode = true` and `encryption = true` |
+| Option                       | Type   | Default | Description                                                                        |
+| ---------------------------- | ------ | ------- | ---------------------------------------------------------------------------------- |
+| `server.online_mode`         | bool   | `true`  | Use Mojang authentication for player verification                                  |
+| `server.auth_server`         | String | omitted | Optional `hasJoined` endpoint for online mode. Omit to use Mojang                  |
+| `server.profile_server`      | String | omitted | Optional name-to-profile lookup endpoint. Omit to use Mojang's profile service     |
+| `server.encryption`          | bool   | `true`  | Enable encryption for client-server communication                                  |
+| `server.allow_flight`        | bool   | `false` | Allow unauthorized client flight in vanilla movement checks                        |
+| `server.enforce_secure_chat` | bool   | `false` | Enforce secure chat. Requires `online_mode = true` and `encryption = true`          |
 
 :::caution
 Disabling `online_mode` allows unauthenticated clients to connect. Only disable it for private networks or development.
@@ -116,6 +117,7 @@ view_distance = 12
 simulation_distance = 10
 online_mode = true
 # auth_server = "https://sessionserver.mojang.com/session/minecraft/hasJoined"
+# profile_server = "https://api.minecraftservices.com/minecraft/profile/lookup/name"
 encryption = true
 allow_flight = false
 motd = "Welcome to my Steel server!"
@@ -160,6 +162,7 @@ The server validates configuration on startup:
 - `server.view_distance` must be between 1 and 32, or between 1 and 127 when `server.allow_extended_view_distance` is true
 - `server.simulation_distance` must be less than or equal to `server.view_distance`
 - `server.auth_server`, when set, must be an absolute `http` or `https` URL
+- `server.profile_server`, when set, must be an absolute `http` or `https` URL
 - `server.compression.threshold` must be at least 256
 - `server.compression.level` must be between 1 and 9
 - if `server.enforce_secure_chat` is true, both `server.online_mode` and `server.encryption` must be true
