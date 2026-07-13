@@ -40,7 +40,9 @@ steel.command.fly
 plugin.region.build
 ```
 
-Segments can contain lowercase ASCII letters, digits, `_`, and `-`. Empty segments and uppercase letters are invalid.
+:::caution
+Permission key syntax is strict. Segments can contain only lowercase ASCII letters, digits, `_`, and `-`. Empty segments and uppercase letters are invalid.
+:::
 
 Wildcards are allowed only as the final segment:
 
@@ -167,13 +169,13 @@ Multiple selectors are combined with AND:
 plugin.region.build{world=lobby:spawn,plugin:region=market}
 ```
 
-Each context key can appear only once in an expression.
+:::caution
+Context syntax is strict. Each key can appear only once in an expression.
 
-:::note
 `world=lobby:spawn` already includes the `lobby` domain and therefore matches rules scoped to `domain=lobby`. Writing both is unnecessary. If both are present, they must agree; `{domain=survival,world=lobby:spawn}` is invalid.
-:::
 
-Context values cannot be empty and cannot contain whitespace, `{`, `}`, `,`, or `=`. Domain names use Minecraft identifier-namespace syntax, and worlds must be written as `<domain>:<world>`.
+Values cannot be empty and cannot contain whitespace, `{`, `}`, `,`, or `=`. Domain names use Minecraft identifier-namespace syntax, and worlds must be written as `<domain>:<world>`.
+:::
 
 Context specificity is additive. Global rules are least specific, a domain or custom selector adds one level, and a world adds two because it identifies both a domain and a loaded world. A rule with several matching selectors is therefore more specific than a rule with only one of them.
 
