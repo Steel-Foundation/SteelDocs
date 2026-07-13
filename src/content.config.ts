@@ -15,6 +15,11 @@ export const collections = {
         githubLabel: z.string().optional(),
         download: z.string().optional(),
         githubHref: z.string().optional(),
+        latestVersion: z.string().optional(),
+        latestStableRelease: z.string().optional(),
+        needOlderVersion: z.string().optional(),
+        viewPreviousVersions: z.string().optional(),
+        olderVersions: z.string().optional(),
       }),
   }) }),
 };

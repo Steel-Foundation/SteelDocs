@@ -6,5 +6,10 @@
     "discordLabel": "Join our Discord",
     "githubLabel": "GitHub repository",
     "download": "Download",
-    "githubHref": "https://github.com/Steel-Foundation/SteelMC"
+    "githubHref": "https://github.com/Steel-Foundation/SteelMC",
+    "latestVersion": "Latest Version",
+    "latestStableRelease": "Latest Stable Release",
+    "needOlderVersion": "Need an older version?",
+    "viewPreviousVersions": "View Previous Versions",
+    "olderVersions": "Older Versions"
 }
