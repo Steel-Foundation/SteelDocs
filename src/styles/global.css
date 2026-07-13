@@ -226,3 +226,30 @@
     padding: 0 15px;
   }
 }
+
+/* Smooth color transition when theme changes */
+html,
+body,
+header,
+nav,
+main,
+footer,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+button,
+input,
+div {
+  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+
+canvas,
+canvas * {
+  transition: none !important;
+}
