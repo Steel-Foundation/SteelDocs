@@ -2786,7 +2786,8 @@
     "BigDripleafBlock": {
       "implemented": true,
       "todos": [
-        "Implement tilt-on-stand, projectile tilt, bonemeal stem growth."
+        "Implement projectile tilt.",
+        "also check !level.hasNeighborSignal(pos)) once steel implements redstone"
       ],
       "entries": [
         "big_dripleaf"
