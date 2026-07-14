@@ -16,7 +16,7 @@ export const collections = {
         download: z.string().optional(),
         githubHref: z.string().optional(),
         latestVersion: z.string().optional(),
-        latestStableRelease: z.string().optional(),
+        latestRelease: z.string().optional(),
         needOlderVersion: z.string().optional(),
         viewPreviousVersions: z.string().optional(),
         olderVersions: z.string().optional(),
