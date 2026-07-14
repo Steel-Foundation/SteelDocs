@@ -84,8 +84,11 @@ var olderVersions = versions.slice(1);
         </div>
 
         <ul class="flex flex-col gap-4">
-          {olderVersions.map((version) => (
-            <li class="p-5 rounded-2xl backdrop-blur-md bg-white/60 dark:bg-teal-950/40 border border-teal-200/40 dark:border-white/5 shadow-md flex items-center justify-between gap-4">
+          {olderVersions.map((version, i) => (
+            <li
+              class="p-5 rounded-2xl backdrop-blur-md bg-white/60 dark:bg-teal-950/40 border border-teal-200/40 dark:border-white/5 shadow-md flex items-center justify-between gap-4 older-version-card"
+              style={`animation-delay: ${i * 80}ms; opacity: 0; animation-fill-mode: forwards;`}
+            >
               <div class="flex flex-col justify-center">
                 <h3 class="text-xl font-bold text-teal-950 dark:text-white">
                   Version {version.steel_version}
@@ -128,10 +131,14 @@ var olderVersions = versions.slice(1);
       toggleSection.classList.add("hidden");
     }
 
-    // Reveal older versions with the global fade-in-up animation
+    // Reveal older versions — wrapper slides up, each card staggers via CSS delay
     if (olderVersionsSection) {
       olderVersionsSection.style.display = "block";
       olderVersionsSection.classList.add("animate-fade-in-up");
+      // Trigger staggered card animations
+      olderVersionsSection.querySelectorAll(".older-version-card").forEach((card) => {
+        card.classList.add("animate-fade-in-up");
+      });
     }
   });
 </script>
