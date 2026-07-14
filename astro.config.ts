@@ -81,7 +81,6 @@ export default defineConfig({
         en: "Steel-Docs",
         de: "Steel-Doku",
         es: "Documentación de Steel",
-        ar: "مستندات Steel",
       },
       social: [
         {
@@ -182,12 +181,6 @@ export default defineConfig({
         es: {
           label: "Español",
           lang: "es",
-        },
-        // Arabic documentation in `src/content/docs/ar/`
-        ar: {
-          label: "العربية",
-          lang: "ar",
-          dir: "rtl",
         },
       },
     }),
