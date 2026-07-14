@@ -4,7 +4,7 @@ import Navbar from "@/components/sections/Navbar.astro";
 import ImplementationTracker from "@/components/tracker/ImplementationTracker";
 ---
 
-<Layout title={Astro.locals.t("tracker") + " - SteelDocs"}>
+<Layout title="Implementation Tracker - SteelDocs">
   <Navbar />
   <main
     class="container mx-4 w-auto lg:mx-auto max-w-280 px-4 pt-20 pb-16 relative z-10"
@@ -13,7 +13,9 @@ import ImplementationTracker from "@/components/tracker/ImplementationTracker";
       <h1
         class="text-3xl md:text-5xl font-minecraft font-bold text-teal-950 dark:text-white"
       >
-        {Astro.locals.t("tracker")}
+        Implementation <span class="text-emerald-600 dark:text-emerald-400"
+          >Tracker</span
+        >
       </h1>
       <p class="text-lg text-teal-700 dark:text-gray-300 mt-2">
         Track which Minecraft blocks and items have behavior implementations in
