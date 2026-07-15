@@ -2002,7 +2002,7 @@
       ]
     },
     "CoralBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "tube_coral_block",
