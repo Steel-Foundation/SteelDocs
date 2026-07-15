@@ -822,8 +822,10 @@
       ]
     },
     "LadderBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement the mirror and rotate functions"
+      ],
       "entries": [
         "ladder"
       ]
