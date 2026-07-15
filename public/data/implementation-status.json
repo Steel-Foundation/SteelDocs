@@ -1825,7 +1825,7 @@
     "ChorusFlowerBlock": {
       "implemented": true,
       "todos": [
-        "Implement ticking, projectile break behavior, and growth outside worldgen."
+        "Implement ticking and growth outside worldgen."
       ],
       "entries": [
         "chorus_flower"
@@ -2438,7 +2438,7 @@
       ]
     },
     "AmethystBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "amethyst_block"
@@ -2446,9 +2446,7 @@
     },
     "BuddingAmethystBlock": {
       "implemented": true,
-      "todos": [
-        "OnProjectile hit from AmethystBlock inheritance"
-      ],
+      "todos": [],
       "entries": [
         "budding_amethyst"
       ]
@@ -2456,7 +2454,6 @@
     "AmethystClusterBlock": {
       "implemented": true,
       "todos": [
-        "OnProjectile hit from AmethystBlock inheritance",
         "Mirror and Rotate functions"
       ],
       "entries": [
@@ -2700,7 +2697,7 @@
       "implemented": true,
       "todos": [
         "Implement falling stalactites after falling block entities exist.",
-        "Implement trident projectile breakage and fluid transfer after"
+        "Implement fluid transfer after cauldron drip-fill foundations exist."
       ],
       "entries": [
         "pointed_dripstone"
@@ -2781,7 +2778,6 @@
     "BigDripleafBlock": {
       "implemented": true,
       "todos": [
-        "Implement projectile tilt.",
         "also check !level.hasNeighborSignal(pos)) once steel implements redstone"
       ],
       "entries": [
@@ -4267,7 +4263,6 @@
       "implemented": true,
       "todos": [
         "Play SoundEvents.SHOVEL_FLATTEN",
-        "level_event(1009, pos, 0) — extinguish particle/sound",
         "CampfireBlock::dowse() — eject cooking items",
         "hurt_and_break(1, ...) — shovels take durability damage"
       ],
@@ -4482,8 +4477,7 @@
     "BoneMealItem": {
       "implemented": true,
       "todos": [
-        "implement coral and underwater bonemeal tag selection.",
-        "particles"
+        "implement coral and underwater bonemeal tag selection."
       ],
       "entries": [
         "bone_meal"
