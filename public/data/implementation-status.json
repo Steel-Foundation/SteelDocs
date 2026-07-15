@@ -471,7 +471,7 @@
       ]
     },
     "WebBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "cobweb"
