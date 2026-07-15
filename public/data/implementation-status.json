@@ -360,7 +360,7 @@
       ]
     },
     "TintedParticleLeavesBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "oak_leaves",
@@ -372,7 +372,7 @@
       ]
     },
     "UntintedParticleLeavesBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "cherry_leaves",
@@ -382,7 +382,7 @@
       ]
     },
     "MangroveLeavesBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "mangrove_leaves"
