@@ -2758,9 +2758,7 @@
     },
     "FlowerBedBlock": {
       "implemented": true,
-      "todos": [
-        "Implement full vanilla behavior beyond can_survive."
-      ],
+      "todos": [],
       "entries": [
         "pink_petals",
         "wildflowers"
@@ -2768,9 +2766,7 @@
     },
     "LeafLitterBlock": {
       "implemented": true,
-      "todos": [
-        "Implement full vanilla behavior beyond can_survive."
-      ],
+      "todos": [],
       "entries": [
         "leaf_litter"
       ]
