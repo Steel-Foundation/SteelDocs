@@ -1212,10 +1212,7 @@
     },
     "VineBlock": {
       "implemented": true,
-      "todos": [
-        "Implement placement and random tick spread.",
-        "Vanilla picks a face based on nearest looking direction and"
-      ],
+      "todos": [],
       "entries": [
         "vine"
       ]
