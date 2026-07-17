@@ -11,7 +11,7 @@ const { title, description = "SteelDocs - The Steel documentation" } =
   Astro.props;
 ---
 
-<html lang={Astro.currentLocale} class="scroll-smooth">
+<html lang={Astro.currentLocale} dir={Astro.currentLocale === "ar" ? "rtl" : "ltr"} class="scroll-smooth">
   <head>
     <title>{title}</title>
     <meta name="description" content={description} />
