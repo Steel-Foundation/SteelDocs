@@ -9,8 +9,9 @@
  *   Writes public/data/implementation-status.json
  */
 
-import { readdir, readFile, mkdir } from "node:fs/promises";
-import { join, resolve } from "node:path";
+import { readdir, readFile, mkdir, writeFile } from "node:fs/promises";
+import { join, resolve, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const STEEL_PATH = process.argv[2];
 if (!STEEL_PATH) {
@@ -159,10 +160,11 @@ const items = groupByClass(classesRaw.items, implementedItemClasses);
 
 const output = { blocks, items };
 
-const outDir = join(import.meta.dirname!, "../public/data");
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const outDir = join(__dirname, "../public/data");
 await mkdir(outDir, { recursive: true });
 const outPath = join(outDir, "implementation-status.json");
-await Bun.write(outPath, JSON.stringify(output, null, 2));
+await writeFile(outPath, JSON.stringify(output, null, 2), "utf-8");
 
 const totalBlocks = classesRaw.blocks.length;
 const implBlocks = classesRaw.blocks.filter((b) => implementedBlockClasses.has(b.class)).length;

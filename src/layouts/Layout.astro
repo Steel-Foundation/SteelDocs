@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import ThemedPixelBlast from "@/components/homepage/ThemedPixelBlast";
+import { is_rtl } from "@/lib/utils";
 
 interface Props {
   title: string;
@@ -11,7 +12,7 @@ const { title, description = "SteelDocs - The Steel documentation" } =
   Astro.props;
 ---
 
-<html lang={Astro.currentLocale} class="scroll-smooth">
+<html lang={Astro.currentLocale} dir={is_rtl(Astro.currentLocale) ? "rtl" : "ltr"} class="scroll-smooth">
   <head>
     <title>{title}</title>
     <meta name="description" content={description} />

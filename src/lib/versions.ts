@@ -1,6 +1,7 @@
 type Versions = [{
     steel_version: string,
     mc_version: string,
+    released_at: string,
     builds: [{
         platform: string,
         name: string,
@@ -17,12 +18,13 @@ export async function getVersions(): Promise<Versions> {
         "https://api.github.com/repos/Steel-Foundation/SteelMC/releases",
     ).then((response) => response.json());
     cachedData = data
-        .map((ver: { tag_name: string, assets: [{ name: string, browser_download_url: string }] }) => {
+        .map((ver: { tag_name: string, published_at: string, assets: [{ name: string, browser_download_url: string }] }) => {
             var parsed_version = ver.tag_name.match(/v(.*)\+mc(.*)/);
             if (parsed_version == null) return;
             return {
                 steel_version: parsed_version[1],
                 mc_version: parsed_version[2],
+                released_at: ver.published_at,
                 builds: ver.assets.map((asset) => {
                     return {
                         platform: asset.name

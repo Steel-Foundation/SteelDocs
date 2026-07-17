@@ -6,5 +6,14 @@
     "discordLabel": "Tritt unserem Discord bei",
     "githubLabel": "GitHub repository",
     "download": "Download",
-    "githubHref": "https://github.com/Steel-Foundation/SteelMC"
+    "githubHref": "https://github.com/Steel-Foundation/SteelMC",
+    "version": "Version",
+    "latestVersion": "Neueste Version",
+    "needOlderVersion": "Benötigen Sie eine ältere Version?",
+    "viewPreviousVersions": "Vorherige Versionen anzeigen",
+    "olderVersions": "Ältere Versionen",
+    "forMinecraft": "For Minecraft",
+    "releasedDate": "Released",
+    "tracker": "Status",
+    "trackerLabel": "Implementierungs-Status"
 }

@@ -1,5 +1,6 @@
 ---
 import RotatingText from "@/components/homepage/RotatingText";
+import { is_rtl } from "@/lib/utils";
 
 interface Props {
   prefix: string;
@@ -13,6 +14,7 @@ const { prefix, rotatingTexts } = Astro.props;
   <RotatingText
     client:only="react"
     texts={rotatingTexts}
+    splitBy={is_rtl(Astro.currentLocale) ? "words" : "characters"}
     mainClassName=" sm:px-2 md:px-3 bg-amber-400 overflow-hidden text-black font-bold py-0.5 sm:py-1 md:py-2 justify-center"
     className="flex flex-col md:flex-row gap-2 text-2xl md:text-4xl lg:text-5xl items-center justify-center my-30 font-normal font-minecraft"
     staggerFrom={"last"}
