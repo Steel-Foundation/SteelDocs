@@ -2712,18 +2712,14 @@
     },
     "CaveVinesBlock": {
       "implemented": true,
-      "todos": [
-        "Implement growth, bonemeal, berry interactions, and shape updates."
-      ],
+      "todos": [],
       "entries": [
         "cave_vines"
       ]
     },
     "CaveVinesPlantBlock": {
       "implemented": true,
-      "todos": [
-        "Implement berry interactions and shape updates."
-      ],
+      "todos": [],
       "entries": [
         "cave_vines_plant"
       ]
