@@ -2277,36 +2277,28 @@
     },
     "WeepingVinesBlock": {
       "implemented": true,
-      "todos": [
-        "Implement growth, bonemeal, and shape updates."
-      ],
+      "todos": [],
       "entries": [
         "weeping_vines"
       ]
     },
     "WeepingVinesPlantBlock": {
       "implemented": true,
-      "todos": [
-        "Implement shape updates."
-      ],
+      "todos": [],
       "entries": [
         "weeping_vines_plant"
       ]
     },
     "TwistingVinesBlock": {
       "implemented": true,
-      "todos": [
-        "Implement growth, bonemeal, and shape updates."
-      ],
+      "todos": [],
       "entries": [
         "twisting_vines"
       ]
     },
     "TwistingVinesPlantBlock": {
       "implemented": true,
-      "todos": [
-        "Implement shape updates."
-      ],
+      "todos": [],
       "entries": [
         "twisting_vines_plant"
       ]
