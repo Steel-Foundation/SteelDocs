@@ -2886,9 +2886,7 @@
     },
     "FireflyBushBlock": {
       "implemented": true,
-      "todos": [
-        "Implement particles, sounds, bonemeal, and the rest of vanilla behavior."
-      ],
+      "todos": [],
       "entries": [
         "firefly_bush"
       ]
