@@ -291,7 +291,7 @@
     "MangrovePropaguleBlock": {
       "implemented": true,
       "todos": [
-        "Implement growth ticking, bonemeal advance, and shape updates."
+        "Implement growth ticking and bonemeal advance."
       ],
       "entries": [
         "mangrove_propagule"
@@ -299,9 +299,7 @@
     },
     "LiquidBlock": {
       "implemented": true,
-      "todos": [
-        "Add support for cached fluid states when FluidState caching is implemented"
-      ],
+      "todos": [],
       "entries": [
         "water",
         "lava"
@@ -417,7 +415,7 @@
       ]
     },
     "NoteBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "note_block"
@@ -448,7 +446,7 @@
       ]
     },
     "PoweredRailBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "powered_rail",
@@ -456,15 +454,17 @@
       ]
     },
     "DetectorRailBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "detector_rail"
       ]
     },
     "PistonBaseBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Pass the block entity to loot evaluation once block-entity components and"
+      ],
       "entries": [
         "sticky_piston",
         "piston"
@@ -528,14 +528,14 @@
       ]
     },
     "PistonHeadBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "piston_head"
       ]
     },
     "MovingPistonBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "moving_piston"
@@ -734,7 +734,7 @@
       ]
     },
     "RedStoneWireBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "redstone_wire"
@@ -796,9 +796,7 @@
     },
     "DoorBlock": {
       "implemented": true,
-      "todos": [
-        "Query redstone neighbor signal once Steel has redstone power propagation."
-      ],
+      "todos": [],
       "entries": [
         "oak_door",
         "iron_door",
@@ -829,7 +827,7 @@
       ]
     },
     "RailBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "rail"
@@ -890,14 +888,14 @@
       ]
     },
     "LeverBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "lever"
       ]
     },
     "PressurePlateBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "stone_pressure_plate",
@@ -917,7 +915,7 @@
       ]
     },
     "RedStoneOreBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "redstone_ore",
@@ -926,29 +924,21 @@
     },
     "RedstoneTorchBlock": {
       "implemented": true,
-      "todos": [
-        "Redstone functionality (signal output, neighbor notifications,",
-        "implement redstone signal source behavior, neighbor updates, and burnout.",
-        "Redstone functionality (signal output by facing, neighbor notifications,"
-      ],
+      "todos": [],
       "entries": [
         "redstone_torch"
       ]
     },
     "RedstoneWallTorchBlock": {
       "implemented": true,
-      "todos": [
-        "implement redstone signal source behavior, neighbor updates, and burnout."
-      ],
+      "todos": [],
       "entries": [
         "redstone_wall_torch"
       ]
     },
     "ButtonBlock": {
       "implemented": true,
-      "todos": [
-        "Check for arrows via checkPressed() — wooden buttons should stay"
-      ],
+      "todos": [],
       "entries": [
         "stone_button",
         "oak_button",
@@ -1070,7 +1060,7 @@
       ]
     },
     "RepeaterBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "repeater"
@@ -1235,10 +1225,7 @@
     },
     "FenceGateBlock": {
       "implemented": true,
-      "todos": [
-        "` rather than faked — every other behavior is 1:1.",
-        "vanilla sets OPEN/POWERED from level.hasNeighborSignal(pos);"
-      ],
+      "todos": [],
       "entries": [
         "oak_fence_gate",
         "spruce_fence_gate",
@@ -1400,14 +1387,14 @@
       ]
     },
     "CauldronBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "cauldron"
       ]
     },
     "LayeredCauldronBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "water_cauldron",
@@ -1416,9 +1403,7 @@
     },
     "LavaCauldronBlock": {
       "implemented": true,
-      "todos": [
-        "Add shared cauldron interaction, drip-fill, and comparator behavior with the cauldron family."
-      ],
+      "todos": [],
       "entries": [
         "lava_cauldron"
       ]
@@ -1445,7 +1430,7 @@
       ]
     },
     "RedstoneLampBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "redstone_lamp"
@@ -1466,14 +1451,14 @@
       ]
     },
     "TripWireHookBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "tripwire_hook"
       ]
     },
     "TripWireBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "tripwire"
@@ -1627,7 +1612,7 @@
       ]
     },
     "WeightedPressurePlateBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "light_weighted_pressure_plate",
@@ -1635,21 +1620,21 @@
       ]
     },
     "ComparatorBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "comparator"
       ]
     },
     "DaylightDetectorBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "daylight_detector"
       ]
     },
     "PoweredBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "redstone_block"
@@ -1886,7 +1871,7 @@
       ]
     },
     "ObserverBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "observer"
@@ -2332,14 +2317,14 @@
       ]
     },
     "ComposterBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "composter"
       ]
     },
     "TargetBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "target"
@@ -2372,7 +2357,7 @@
       ]
     },
     "RespawnAnchorBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "respawn_anchor"
@@ -2524,7 +2509,7 @@
     "WeatheringCopperFullBlock": {
       "implemented": true,
       "todos": [
-        "Add weathering support for doors, trapdoors, grates, bars, bulbs, lanterns, chains, chests, and golem statues"
+        "Add weathering support for lanterns, chests, golem statues, and lightning rods."
       ],
       "entries": [
         "copper_block",
@@ -2573,9 +2558,7 @@
     },
     "WeatheringCopperTrapDoorBlock": {
       "implemented": true,
-      "todos": [
-        "Query redstone neighbor signal once Steel has redstone power propagation."
-      ],
+      "todos": [],
       "entries": [
         "copper_trapdoor",
         "exposed_copper_trapdoor",
@@ -2604,7 +2587,7 @@
       ]
     },
     "WeatheringCopperBulbBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "copper_bulb",
@@ -2614,7 +2597,7 @@
       ]
     },
     "CopperBulbBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "waxed_copper_bulb",
@@ -2763,9 +2746,7 @@
     },
     "BigDripleafBlock": {
       "implemented": true,
-      "todos": [
-        "also check !level.hasNeighborSignal(pos)) once steel implements redstone"
-      ],
+      "todos": [],
       "entries": [
         "big_dripleaf"
       ]
