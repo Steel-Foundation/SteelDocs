@@ -20,7 +20,7 @@ At the time of writing, our README still makes Steel look like a prototype. We a
 
 That does not mean Steel is ready to run your production server. It does mean this is no longer an empty repository with an ambitious README.
 
-Most of those nine months have gone into foundations that are almost invisible when you connect to the server: registries, chunk scheduling, persistence, behavior systems, networking, and the boundaries between concurrent work. We have optimized for making the difficult underlying systems correct, not for maximizing the number of visible features we can announce each week.
+Most of those nine months have gone into foundations that are almost invisible when you connect to the server. We have optimized for making the difficult underlying systems correct, not for maximizing the number of visible features we can announce each week.
 
 That makes early progress look slow, but foundational work compounds. As these systems mature, new gameplay features stop requiring their own infrastructure and become smaller implementations on top of foundations that already handle the hard parts. We are now reaching the point where more of that work will begin showing up in the game, and visible progress should accelerate with it.
 
@@ -28,31 +28,21 @@ That makes early progress look slow, but foundational work compounds. As these s
 
 ## What Steel can do today
 
-Steel targets **Minecraft Java Edition 26.2**. It already provides a persistent multiplayer loop rather than only a protocol demo. Clients can join in online or offline mode, load generated worlds, move and interact, use inventories, crafting, and commands, travel through portals, die and respawn, and return later to a world that has been saved. Those paths work end to end; that does not mean every vanilla branch within them has been implemented.
+Steel targets **Minecraft Java Edition 26.2**. Clients can join, load generated worlds, move and interact, use inventories and commands, and return later to a world that has been saved. This is a persistent multiplayer server rather than a protocol or world-generation demo.
 
-Behind that loop, chunks move from ticketed asynchronous generation through streaming, unloading, reloading, and Steel's region storage. Scheduled ticks, block entities, game events, loot, and water and lava simulation all exist as shared systems rather than isolated demonstrations. The concrete block, item, and survival behavior built on them is broad and growing, but still incomplete.
-
-Entities show the distinction particularly well. Steel has substantial foundations for their lifecycle, tracking, physics, AI, and persistence, but very few mobs have complete behavior. You can summon pigs; you should not yet expect a populated survival world. That is also why the entity-spawning stage remains disabled during world generation.
-
-Steel also supports [domains](/reference/terminology/#domain): groups of worlds with their own defaults and player data. A server owner can, for example, add a separate lobby experience without running another Minecraft server and placing the entire network behind Velocity or BungeeCord.
-
-Our goal is full vanilla parity. Plugins are planned, but they do not exist yet, and existing Paper, Bukkit, Fabric, Forge, and NeoForge extensions will not work. Steel will eventually have its own Rust API; the [FAQ explains what that means for existing plugins and mods](/getting-started/faq/).
-
-Steel remains in active development and does not yet provide full vanilla gameplay or protocol parity. It is still pre-alpha, so I am not going to pretend that you should replace your production Paper server with it tomorrow.
+It is also still pre-alpha. Survival gameplay is incomplete, only a few mobs have meaningful behavior, and Steel does not yet provide full vanilla or protocol parity. Plugins do not exist yet, and extensions written for Paper, Bukkit, Fabric, Forge, or NeoForge will not work. I am not going to pretend that you should replace your production Paper server with it tomorrow.
 
 ## Why I started Steel
 
 Before Steel, I was a regular contributor to PumpkinMC. Pumpkin is the reason I began writing Minecraft server code in Rust, and I do not intend any of what follows as criticism of its contributors. This is also based on the codebase as it existed roughly eight months ago; it may have changed substantially since then.
 
-One of the things I love about Rust is that its restrictions make more sense as you learn. A frustrating compiler error often turns out to be protection from an edge case you had not considered. That feeling—that someone had already thought the problem through—began to shape what I wanted from the systems I worked on.
+One of the things I love about Rust is that its restrictions make more sense as you learn. A frustrating compiler error often turns out to be protection from an edge case you had not considered. The feeling that someone had already thought the problem through began to shape what I wanted from the systems I worked on.
 
-I implemented redstone there and rewrote its inventory system. While contributing, I also began to notice a difference in how I wanted to approach foundational systems. Some had understandably been designed around solving the first concrete use case. I found myself wanting to step back, study the cases that would come later, and make sure the same foundation could support them too.
+I implemented redstone there and rewrote its inventory system. While contributing, I began to notice a difference in how I wanted to approach foundational systems. I wanted to step back, study the cases that would come later, and make sure a foundation could support more than its first use case.
 
-That difference became clear when Pumpkin began adding trees to its world generator. Its chunks were generated in isolation, which works until a tree grows near a chunk border and needs to place leaves in its neighbor. I spent about a month researching how to coordinate generation across chunks and eventually realized that this was not really a tree problem. A chunk requested individually through a channel had no natural way to require a surrounding region to reach particular generation stages first. Vanilla solves this with a ticket and chunk-status system that lets a generation step wait for an entire region to reach the state it needs.
+That difference became clear when Pumpkin began adding trees to its world generator. Chunks were generated in isolation, which works until a tree near a border needs to place leaves in its neighbor. I spent about a month researching the problem and came to see it as a question of coordinating generation across an entire region, not merely placing a tree. Another solution was ultimately merged that addressed the immediate problem. Neither priority was inherently wrong, but it became clear that I wanted to build around a different one.
 
-Another solution was ultimately merged. It solved the immediate tree problem, but it also made clear that I wanted to build around a different set of priorities. That does not make either decision wrong; we were trying to optimize for different things.
-
-So I started Steel, initially without many expectations. The first thing I implemented was the block registry and property system I had wanted while working on Pumpkin, using generated, typed values instead of passing properties around as strings. For the first time, I could research how vanilla handled a problem, decide which guarantees mattered, and design the API around making the correct path the easy one.
+So I started Steel, initially without many expectations. The first thing I implemented was the block registry and property system I had wanted while working on Pumpkin. For the first time, I could research how vanilla handled a problem, decide which guarantees mattered, and design around making the correct path the easy one.
 
 The point of Steel is not simply to rewrite Minecraft in Rust and call it faster. I want it to be pleasant to work with, and I want its foundations to survive the second complicated use case instead of being replaced by it.
 
@@ -66,9 +56,7 @@ Minecraft does not generate a chunk in one pass. It moves chunks through a serie
 
 I used to picture those dependencies as a tree. Request a fully generated chunk at one coordinate, let it request its neighbors, let those neighbors request their neighbors, and continue until everything it needs exists. Trying to express that directly quickly becomes recursive: chunk X waits for chunk Y, which eventually asks for chunk X again.
 
-Vanilla calls its solution a *chunk pyramid*. The name confused me until I understood what it described. In Steel's current dependency table, producing one fully generated chunk requires a 23-by-23 area—529 chunks—to reach the structure-start stage. Schedule that whole area first, then the smaller areas required by later stages. Continue upward, layer by layer, until the single chunk at the top can become full.
-
-Every target chunk still passes through all twelve stages in order. The pyramid describes how large the accumulated neighborhood must be while it does so. Consecutive stages share a tier when they need the same surrounding area; they remain separate steps even though the footprint does not become wider.
+Vanilla calls its solution a *chunk pyramid*. The name confused me until I understood what it described. In Steel's current dependency table, producing one fully generated chunk requires a 23-by-23 area, or 529 chunks, to reach the structure-start stage. Schedule that whole area first, then the smaller areas required by later stages. Continue upward, layer by layer, until the single chunk at the top can become full.
 
 ![An isometric chunk-generation pyramid showing all twelve stages in vanilla's stage colors, from a 23-by-23 Empty and Structure Starts base to one Full chunk.](@/assets/chunk-pyramid.svg "Steel's accumulated chunk-generation dependencies")
 
@@ -80,9 +68,7 @@ Once I saw it that way, the dependency problem stopped looking recursive. Steel 
 
 From the start, the target was strict vanilla parity: given the same seed, version, and coordinates, Steel should produce the same blocks as vanilla.
 
-We began with biomes and then implemented the noise stage, the first stage that fills a chunk with terrain. That immediately exposed a dependency that the neat stage diagram hides. Part of terrain shaping is the *beardifier*, which blends terrain around structures so that, for example, a structure does not sit awkwardly on untouched terrain. Noise therefore needs information about structures even though later structure work has not happened yet.
-
-To keep parity testing useful while the structure pipeline was incomplete, we used Minecraft's experimental settings to disable structures in the vanilla worlds produced by our [extractor](/development/tools/steel_extractor/). That gave us a clean reference for terrain without pretending the missing dependency did not exist. Once structures were implemented, they could be brought back into the comparison.
+We began with biomes and then the noise stage, which first fills a chunk with terrain. That immediately exposed a dependency hidden by the neat stage diagram: terrain shaping needs information about structures. While the structure pipeline was incomplete, we disabled structures in the vanilla reference worlds produced by our [extractor](/development/tools/steel_extractor/). That let us test the terrain we had actually implemented without weakening the final goal.
 
 The surface stage replaces the raw stone from noise generation with the blocks players recognize: grass, dirt, sand, snow, and so on. When our implementation was nearly finished, almost every one of the 2,500 test chunks matched. Almost.
 
@@ -92,9 +78,9 @@ That was the point where our goal became slightly more precise. Steel should rep
 
 Steel now uses a chunk-local biome cache, making the result independent of which worker thread receives the chunk. For parity tests, we added a mixin to the vanilla extractor that resets its cache for each chunk and reproduces Steel's deterministic behavior.
 
-After the relatively simple carver stage came features: ores, trees, vegetation, icebergs, springs, and most of the details that make generated terrain feel like Minecraft. Features are sensitive to the order in which neighboring chunks are generated, so the extractor generates reference chunks one at a time in a fixed order.
+The features stage introduced another source of nondeterminism. Features such as trees and ores can cross chunk borders, so changing the order in which neighboring chunks generate can change the final result. To make parity comparisons meaningful, our extractor generates reference chunks one at a time in a fixed order.
 
-Even then, a few blocks differed. The trail led to hash-based collections in vanilla's feature code. Their iteration order is not a stable part of Java's collection contract, but in world generation that order can decide which block is placed first and therefore what may be placed next. We gave those operations an explicit order and modified the extractor to use the same one.
+Even then, a few blocks still differed. The trail led to hash-based collections in vanilla's feature code. Their iteration order is not stable, but in world generation it can decide which block is placed first and what may be placed next. We gave those operations an explicit order and modified the extractor to use the same one.
 
 With that final source of nondeterminism removed, all tested chunks matched block for block. Entity spawning remains deliberately outside that claim until Steel can support the entities it would place into the world.
 
@@ -102,9 +88,7 @@ With that final source of nondeterminism removed, all tested chunks matched bloc
 
 Lighting has long been one of the conspicuously missing pieces in experimental Minecraft servers. It is easy to see why: light crosses chunk boundaries, and two adjacent chunks cannot safely propagate overlapping updates without coordination. Vanilla avoids that problem by processing lighting through a single-threaded engine, but that also makes lighting a bottleneck during parallel world generation.
 
-We did not have to approach the problem from zero. The Minecraft modding community had already produced Starlight, a rewrite of the vanilla light engine, and ScalableLux, a later project based on it. ScalableLux included an experimental parallel lighting mode. It demonstrated that the model could work, although users also reported crashes and it was not enabled by default.
-
-Steel's lighting engine is inspired by that work, but designed around Rust's ownership and concurrency tools from the beginning. Instead of sharing one global light queue, chunks can process lighting in parallel while the scheduler enforces the boundaries between overlapping work. The aim is the same output without making the entire generator wait on one thread.
+The modding community had already explored this problem through Starlight. When Starlight was no longer maintained as a mod, ScalableLux continued its work as a fork and added an experimental parallel mode. Steel's engine is inspired by that work, but designed around Rust's ownership and concurrency tools from the beginning. Chunks can process lighting in parallel while the scheduler keeps overlapping work from interfering.
 
 ## Preserving redstone's useful bugs
 
@@ -116,23 +100,11 @@ Steel's redstone implementation therefore aims to preserve not only the intended
 
 ## Designing for plugins before plugins exist
 
-Plugins are one of the features I have wanted to build for the longest, but they are also something I deliberately refuse to rush. A useful plugin API exposes almost every part of a server, which makes it very easy to freeze the wrong abstraction before the underlying game system is understood. Steel needs to become a solid Minecraft server before I can honestly decide what its public API should promise for years to come.
+Plugins are one of the features I have wanted to build for the longest, but they are also something I refuse to rush. A plugin API exposes almost every part of a server, so publishing one too early can freeze the wrong abstractions for years. Steel needs to become a solid Minecraft server before I can honestly decide what that API should promise.
 
-That has not stopped the research. I have explored WebAssembly, scripting languages, and native Rust plugins. Steel's core plugin API will be native Rust. Native code can do everything the server itself can do, without forcing every possible extension through the limitations of a sandboxed runtime. The tradeoff is deliberate: native plugins are trusted, unsandboxed code, so administrators must treat them accordingly. If someone wants WebAssembly, JavaScript, or Lua, a native plugin can host that runtime and expose a higher-level API on top. We may eventually provide an official bridge, but those runtimes do not need to be built into the server core.
+I have explored WebAssembly, scripting languages, and native Rust plugins. The current direction is a native Rust API: it gives extensions the same power as ordinary server code, while still allowing a plugin to host WebAssembly, JavaScript, or Lua for people who want a sandbox or higher-level language. Native plugins would be trusted code, and Rust's lack of a stable ABI means the boundary will need careful design around opaque server-owned types rather than exposing internals directly.
 
-The difficult part is Rust's lack of a stable ABI: separately compiled Rust libraries cannot safely assume that complex types have the same representation. We cannot simply pass internal `Arc`s, mutexes, or arbitrary Rust structs across the plugin boundary and expect them to remain compatible. My current research uses opaque handles for server-owned objects and small ABI-stable representations for values such as event data. I have experimented with Stabby, an ABI-stability library for Rust, while working out where that boundary needs to sit.
-
-Long-lived APIs accumulate history. Bukkit and Paper must preserve decisions made before many of today's plugin use cases existed. Steel has the advantage of starting after years of Minecraft plugin development have shown us what those use cases are. The goal is not to break plugins casually; it is to choose the compatibility contract deliberately before we have an ecosystem depending on it.
-
-That thinking has already affected systems in Steel today. Experiences with plugins such as LuckPerms informed our built-in [permission system](/configuration/permissions/), so plugins can eventually participate in a capable shared foundation instead of replacing a placeholder or inventing parallel systems.
-
-The registries follow the same principle. Blocks, items, data components, and other registered values are designed so that entries Steel does not know about at compile time can be added during startup. Vanilla clients cannot display a truly custom block today, but the server-side foundation should not be what prevents it.
-
-One longer-term idea is a small client bridge mod that can receive registry definitions from a server. A player would install that bridge once; individual servers could then describe their custom content and provide the required data and assets when the player connects. They would not need to download and manually assemble a different collection of client mods for every server. If the protocol proves useful, it could potentially be shared with other server implementations as well.
-
-Plugin distribution deserves the same reconsideration. The traditional model asks an administrator to download JAR files, place them in a directory, and hope their versions and dependencies agree. I would like Steel to have something closer to Cargo: a manifest that declares plugins and versions, dependency resolution, reproducible configuration, and tooling that can fetch what the server needs. The trust and security model for downloading native code still needs careful design, but dependency management should be a system rather than a ritual.
-
-None of this is a claim that Steel has plugins today. It is the reason we are preparing the foundations now—and the reason we will not publish an API until we are confident that it rests on the right ones.
+Years of Bukkit and Paper plugins have already shown us many of the use cases an extension API needs to support. That experience is influencing foundations Steel has today, including its [permission system](/configuration/permissions/) and registries. But Steel does not have plugins yet, and we will not publish an API until the server beneath it is mature enough to make that promise responsibly.
 
 ## Keeping the game tick moving
 
@@ -142,9 +114,9 @@ Steel preserves a synchronous game tick for gameplay logic, but separates it fro
 
 There is a stricter rule behind that design: the game tick must never wait for asynchronous work.
 
-Consider a player moving toward a chunk that has not loaded yet. Vanilla can block the game tick until the chunk becomes available. Steel treats the unavailable space as air for that tick and keeps going. Or consider respawning a player: the destination chunks may need to be loaded before the player can safely appear, but waiting for them would stall every other player and entity. Steel instead creates a job that is polled at a known point on each tick. Once its asynchronous preparation is complete, the move itself happens synchronously inside the game tick.
+Consider respawning a player. The destination chunks must be ready before the player can safely appear, but waiting for them would stall every other player and entity. Steel instead creates a job that is checked each tick. Once its asynchronous preparation is complete, the move happens synchronously at a defined safe point.
 
-This pattern lets us keep the useful part of a synchronous world model—gameplay changes happen at defined safe points—without turning every slow disk read or chunk dependency into a server-wide pause.
+This pattern retains the useful part of a synchronous world model, where gameplay changes happen at defined safe points, without turning every slow disk read or chunk dependency into a server-wide pause.
 
 ## What comes next
 
@@ -152,7 +124,7 @@ Steel is still pre-alpha, and there is a lot left to do. We do not have plugins 
 
 But Steel is no longer a prototype that might become a server one day. It is a server you can connect to, with nine months of work behind it, tested terrain-generation parity, working gameplay systems, and a growing group of contributors.
 
-I recently added three trial maintainers—Junky, Evstein, and purdze—who I hope will help drive the project forward and make it less dependent on one person. That matters particularly now because I begin military service on August 3 and expect to be away for roughly a year. I will not be able to contribute at the pace I have until now, but I expect to be around most weekends to review work, answer questions, and keep building where I can.
+I recently added three trial maintainers: Junky, Evald, and purdze. I hope they will help drive the project forward and make it less dependent on one person. That matters particularly now because I begin military service on August 3 and expect to be away for roughly a year. I will not be able to contribute at the pace I have until now, but I expect to be around most weekends to review work, answer questions, and keep building where I can.
 
 That is part of why I am announcing Steel now. The project needs to become more than something I quietly work on by myself.
 
@@ -163,8 +135,6 @@ I know many people are disappointed by the recent wave of vibe-coded projects. S
 We allow AI to be used as a tool. We do not allow it to replace a contributor's thinking.
 
 I do not care whether you used AI to look up an API, understand a compiler error, or explore a few possible approaches. I care whether you understand every line you submit, can explain why one design was chosen over another, and understand the Rust concepts behind the code.
-
-Strong foundations make it increasingly easy to produce code that compiles and appears to fill in missing features. That is useful, but it also makes raw feature counts a worse measure of progress. An entity, block, or item is not complete because its basic implementation can be generated quickly; it is complete when its vanilla behavior, edge cases, interactions, and place in the wider design have been understood and tested. Steel will not trade that standard for the appearance of moving faster.
 
 Fully autonomous pull requests are not welcome. Contributors must also write and understand their own pull request descriptions. Another human is giving their time to read and review that work; do not waste it by pasting something you barely read yourself. Our [contributor guide](/development/start-contributing/) covers the expectations and how to get started.
 
