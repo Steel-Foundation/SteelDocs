@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "created_at": "2026-07-25T22:42:56.837Z",
+    "minecraft": "26.2",
+    "seed": "8500081009970950196",
+    "side_chunks": 301,
+    "target_chunks": 90601,
+    "runs_per_server": 1,
+    "sample_interval_ms": 250,
+    "world_storage": "/tmp (fresh directory for every trial)",
+    "steel_commit": "2199ddb65613f0cea03941c84f7ac874ee842d14",
+    "steel_worktree_dirty": false,
+    "steel_worktree_diff_sha512": "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e",
+    "steel_binary_sha512": "792d414ae39ada85599c4550891003472cc6ed9f2e999f418a63d36b7c1a2d4860a30cd7fb6289fcb970e0eee4035464b0974274938bf3fbca735c97b9c468b2",
+    "steel_binary_modified_at": "2026-07-25T22:34:28.115Z",
+    "steel_pregen_window_size": "64",
+    "fabric_loader": "0.19.3",
+    "chunky": "1.5.3",
+    "fabric_api": "0.155.2+26.2",
+    "java_min_heap": "512M",
+    "java_max_heap": "8G",
+    "machine": {
+      "os": "Linux 7.1.4-arch1-1 x86_64",
+      "kernel": "7.1.4-arch1-1",
+      "cpu": "AMD Ryzen 9 9950X 16-Core Processor",
+      "logical_cpus": 32,
+      "memory_bytes": 132530401280,
+      "java": "openjdk version \"25.0.4\" 2026-07-21\nOpenJDK Runtime Environment (build 25.0.4)\nOpenJDK 64-Bit Server VM (build 25.0.4, mixed mode, sharing)",
+      "filesystem": "tmpfs tmpfs"
+    },
+    "c2me": {
+      "filename": "c2me-fabric-mc26.2-0.4.1-beta.1.0.jar",
+      "sha512": "21076491de36c5d680cafa494116b98a134a3d7e3cbcb77a59942bab0ceacf6c9386a80b1e4d870e501aafab27b89c0b5d7a09f1392a4d4ab43a87f9d3524841"
+    }
+  },
+  "trials": [
+    {
+      "server": "steel",
+      "run": 1,
+      "chunks": 90601,
+      "wall_seconds": 32.136801479,
+      "chunks_per_second": 2819.2289160825108,
+      "reported_seconds": 32.13,
+      "reported_chunks_per_second": 2819.5,
+      "cpu_seconds": 942.59,
+      "average_cpu_cores": 29.33054805145875,
+      "peak_rss_bytes": 4392878080
+    },
+    {
+      "server": "fabric-c2me",
+      "run": 1,
+      "chunks": 90601,
+      "wall_seconds": 129.43796029,
+      "chunks_per_second": 699.9569507817682,
+      "reported_seconds": null,
+      "reported_chunks_per_second": null,
+      "cpu_seconds": 1584.3,
+      "average_cpu_cores": 12.239840588112221,
+      "peak_rss_bytes": 3671605248
+    },
+    {
+      "server": "fabric",
+      "run": 1,
+      "chunks": 90601,
+      "wall_seconds": 522.006432764,
+      "chunks_per_second": 173.56299523029224,
+      "reported_seconds": null,
+      "reported_chunks_per_second": null,
+      "cpu_seconds": 2176.87,
+      "average_cpu_cores": 4.1701976515376895,
+      "peak_rss_bytes": 3093491712
+    }
+  ]
+}
