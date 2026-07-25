@@ -90,6 +90,16 @@ Lighting has long been one of the conspicuously missing pieces in experimental M
 
 The modding community had already explored this problem through Starlight. When Starlight was no longer maintained as a mod, ScalableLux continued its work as a fork and added an experimental parallel mode. Steel's engine is inspired by that work, but designed around Rust's ownership and concurrency tools from the beginning. Chunks can process lighting in parallel while the scheduler keeps overlapping work from interfering.
 
+### Measuring the result
+
+That design now has measurable results. On a Ryzen 9 9950X, Steel generated a fresh 10,201-chunk Overworld area in a median of 3.96 seconds. A Fabric server using Chunky took 74.55 seconds, while adding C2ME reduced that to 18.91 seconds. Across three cold runs, Steel averaged 2,571 chunks per second. That is 18.8 times the throughput of Fabric and 4.81 times the throughput of Fabric with C2ME.
+
+![A horizontal bar chart showing Steel at 2,571.2 chunks per second, Fabric with C2ME at 534.4, and Fabric at 136.8.](@/assets/benchmarks/chunk-generation-throughput.svg "Chunk generation throughput across three cold runs")
+
+Those headline numbers need context. Steel used an average of 30.1 logical CPU cores during the measured interval, compared with 13.8 for C2ME and 4.3 for Fabric. This tests parallel scaling as well as per-core efficiency. After adjusting for CPU use, Steel still generated 2.20 times as many chunks per CPU-second as C2ME and 2.69 times as many as Fabric.
+
+This is a focused world-generation benchmark on one machine, not a claim that Steel is 18.8 times faster at every server workload. Steel also leaves out entity spawning while Fabric performs that stage. The [full benchmark](/reference/benchmarks/) includes the methodology, individual runs, memory results, raw data, reproduction instructions, and further limitations. These performance measurements are separate from the block-by-block parity tests described above.
+
 ## Preserving redstone's useful bugs
 
 Redstone presents almost the opposite problem. Some vanilla behavior is technically accidental, but has been studied, documented, and turned into machinery by the redstone community over many years. “Fixing” it would break real builds.
