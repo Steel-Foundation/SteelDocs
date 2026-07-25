@@ -8,6 +8,7 @@ import {
   Globe,
   ChartNoAxesCombined,
   Download,
+  Newspaper,
 } from "@lucide/astro";
 import { i18n } from "astro:config/client";
 import { toCodes, getRelativeLocaleUrl } from "astro:i18n";
@@ -72,6 +73,15 @@ const supportedLocales = toCodes(i18n!.locales);
 
     <!-- Actions -->
     <div class="flex items-center gap-1">
+      <!-- Blog -->
+      <a
+        href="/blog/"
+        class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-sm text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
+        aria-label="Blog"
+      >
+        <Newspaper class="size-3.5 shrink-0" />
+        <span class="hidden font-minecraft lg:inline">Blog</span>
+      </a>
       <!-- Download -->
       <a
         href={getRelativeLocaleUrl(Astro.currentLocale || "en", "/download")}

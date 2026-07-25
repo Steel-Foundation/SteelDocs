@@ -5,10 +5,14 @@ import ThemedPixelBlast from "@/components/homepage/ThemedPixelBlast";
 interface Props {
   title: string;
   description?: string;
+  animatedBackground?: boolean;
 }
 
-const { title, description = "SteelDocs - The Steel documentation" } =
-  Astro.props;
+const {
+  title,
+  description = "SteelDocs - The Steel documentation",
+  animatedBackground = true,
+} = Astro.props;
 ---
 
 <html lang={Astro.currentLocale} class="scroll-smooth">
@@ -27,27 +31,36 @@ const { title, description = "SteelDocs - The Steel documentation" } =
     </script>
   </head>
   <body class="bg-teal-100 dark:bg-teal-950">
-    <div class="fixed inset-0 w-full h-full -z-10">
-      <ThemedPixelBlast
-        client:only="react"
-        variant="square"
-        pixelSize={4}
-        patternScale={2}
-        patternDensity={1}
-        pixelSizeJitter={0}
-        enableRipples
-        rippleSpeed={0.4}
-        rippleThickness={0.12}
-        rippleIntensityScale={1.5}
-        liquid={false}
-        liquidStrength={0.12}
-        liquidRadius={1.2}
-        liquidWobbleSpeed={5}
-        speed={3}
-        edgeFade={0.25}
-        transparent
-      />
-    </div>
+    {
+      animatedBackground ? (
+        <div class="fixed inset-0 w-full h-full -z-10">
+          <ThemedPixelBlast
+            client:only="react"
+            variant="square"
+            pixelSize={4}
+            patternScale={2}
+            patternDensity={1}
+            pixelSizeJitter={0}
+            enableRipples
+            rippleSpeed={0.4}
+            rippleThickness={0.12}
+            rippleIntensityScale={1.5}
+            liquid={false}
+            liquidStrength={0.12}
+            liquidRadius={1.2}
+            liquidWobbleSpeed={5}
+            speed={3}
+            edgeFade={0.25}
+            transparent
+          />
+        </div>
+      ) : (
+        <div
+          class="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_15%_10%,rgba(16,185,129,0.16),transparent_35%),radial-gradient(circle_at_85%_35%,rgba(20,184,166,0.12),transparent_32%)] dark:bg-[radial-gradient(circle_at_15%_10%,rgba(16,185,129,0.12),transparent_35%),radial-gradient(circle_at_85%_35%,rgba(20,184,166,0.08),transparent_32%)]"
+          aria-hidden="true"
+        />
+      )
+    }
     <slot />
   </body>
 </html>

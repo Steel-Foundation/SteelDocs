@@ -1,0 +1,30 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Navbar from "@/components/sections/Navbar.astro";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<Layout title={title} description={description} animatedBackground={false}>
+  <Navbar />
+  <slot />
+
+  <footer class="relative z-10 border-t border-teal-200/70 dark:border-white/10">
+    <div
+      class="mx-auto flex max-w-280 flex-col gap-2 px-6 py-8 text-sm text-teal-700 dark:text-white/55 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p>Built in the open by the SteelMC community.</p>
+      <a
+        href="/"
+        class="font-minecraft font-bold text-teal-950 transition-colors hover:text-emerald-600 dark:text-white dark:hover:text-emerald-400"
+      >
+        Steel<span class="text-emerald-600 dark:text-emerald-400">MC</span>
+      </a>
+    </div>
+  </footer>
+</Layout>
