@@ -1,0 +1,180 @@
+---
+import { Image } from "astro:assets";
+import night from "@/assets/night.webp";
+import sunset from "@/assets/sunset.webp";
+
+const views = [
+  {
+    id: "sunset",
+    label: "Sunset",
+    image: sunset,
+    alt: "A sunset over a Steel-generated world, with forests, rivers, mountains, and a lit village visible into the distance.",
+    caption: "Sunset across a Steel-generated world at the extended 128-chunk render distance.",
+  },
+  {
+    id: "night",
+    label: "Night",
+    image: night,
+    alt: "A moonlit Steel-generated world with rivers, forests, mountains, clouds, and village lights visible across the landscape.",
+    caption: "Night across the extended 128-chunk view, including generated terrain and propagated village light.",
+  },
+] as const;
+---
+
+<figure class="time-showcase" data-time-showcase>
+  <div class="time-showcase__frame">
+    {
+      views.map((view, index) => (
+        <Image
+          src={view.image}
+          alt={view.alt}
+          class:list={["time-showcase__image", { "is-active": index === 0 }]}
+          data-time-image={view.id}
+          aria-hidden={index !== 0 ? "true" : undefined}
+          loading={index === 0 ? "eager" : "lazy"}
+          widths={[768, 1200, 1600, 2560]}
+          sizes="(max-width: 1024px) 100vw, 896px"
+        />
+      ))
+    }
+  </div>
+
+  <div class="time-showcase__controls" aria-label="Choose the time of day">
+    {
+      views.map((view, index) => (
+        <button
+          type="button"
+          class="time-showcase__button"
+          data-time-button={view.id}
+          data-caption-text={view.caption}
+          aria-pressed={index === 0 ? "true" : "false"}
+        >
+          {view.label}
+        </button>
+      ))
+    }
+  </div>
+
+  <figcaption class="time-showcase__caption" data-time-caption aria-live="polite">
+    {views[0].caption}
+  </figcaption>
+</figure>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-time-showcase]").forEach((showcase) => {
+    const images = showcase.querySelectorAll<HTMLElement>("[data-time-image]");
+    const buttons = showcase.querySelectorAll<HTMLButtonElement>("[data-time-button]");
+    const caption = showcase.querySelector<HTMLElement>("[data-time-caption]");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const selected = button.dataset.timeButton;
+
+        images.forEach((image) => {
+          const active = image.dataset.timeImage === selected;
+          image.classList.toggle("is-active", active);
+          image.setAttribute("aria-hidden", String(!active));
+        });
+
+        buttons.forEach((candidate) => {
+          candidate.setAttribute(
+            "aria-pressed",
+            String(candidate.dataset.timeButton === selected),
+          );
+        });
+
+        if (caption && button.dataset.captionText) {
+          caption.textContent = button.dataset.captionText;
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .time-showcase {
+    margin-block: 2rem;
+  }
+
+  .time-showcase__frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid rgb(13 148 136 / 0.22);
+    border-radius: 1.25rem;
+    background: rgb(7 28 37);
+    box-shadow: 0 18px 45px rgb(4 47 46 / 0.13);
+  }
+
+  .time-showcase__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 250ms ease;
+  }
+
+  .time-showcase__image.is-active {
+    z-index: 1;
+    opacity: 1;
+  }
+
+  .time-showcase__controls {
+    display: flex;
+    width: fit-content;
+    gap: 0.25rem;
+    margin: 1rem auto 0;
+    padding: 0.25rem;
+    border: 1px solid rgb(13 148 136 / 0.22);
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.55);
+  }
+
+  :global(.dark) .time-showcase__controls {
+    background: rgb(255 255 255 / 0.06);
+  }
+
+  .time-showcase__button {
+    cursor: pointer;
+    border: 0;
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    background: transparent;
+    color: rgb(15 118 110);
+    font-family: "Minecraft", sans-serif;
+    font-weight: 700;
+    transition:
+      background-color 150ms ease,
+      color 150ms ease;
+  }
+
+  .time-showcase__button[aria-pressed="true"] {
+    background: rgb(5 150 105);
+    color: white;
+  }
+
+  .time-showcase__button:focus-visible {
+    outline: 2px solid rgb(16 185 129);
+    outline-offset: 2px;
+  }
+
+  .time-showcase__caption {
+    margin-top: 0.75rem;
+    text-align: center;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: rgb(15 118 110);
+  }
+
+  :global(.dark) .time-showcase__caption {
+    color: rgb(255 255 255 / 0.55);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .time-showcase__image {
+      transition: none;
+    }
+  }
+</style>
