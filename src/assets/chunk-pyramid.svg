@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title description">
-  <title id="title">Dependencies required to generate one Full chunk</title>
-  <desc id="description">An isometric five-tier pyramid showing all twelve chunk stages in their vanilla colors. Each tier shows the size of the neighborhood that must reach its listed stages: 23 by 23 for Empty and Structure Starts, 7 by 7 for Structure References and Biomes, 5 by 5 for Noise, Surface, and Carvers, 3 by 3 for Features and Initialize Light, and only the target chunk for Light, Spawn, and Full. This is a dependency map, not an execution timeline. Ready chunk stages can run in parallel.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-labelledby="title description">
+  <title id="title">Minimum generation stages required for one Full chunk</title>
+  <desc id="description">An isometric five-tier pyramid showing all twelve chunk stages in their vanilla colors. Within one generation task, every chunk in a stage's required area must reach at least that stage before the task advances. The required areas are 23 by 23 for Empty and Structure Starts, 7 by 7 for Structure References and Biomes, 5 by 5 for Noise, Surface, and Carvers, 3 by 3 for Features and Initialize Light, and only the target chunk for Light, Spawn, and Full. Nearby generation tasks overlap and reuse shared chunks, which may already be beyond the minimum stage shown.</desc>
 
   <defs>
     <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
@@ -11,21 +11,15 @@
       <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#00100f" flood-opacity="0.5"/>
     </filter>
     <style>
-      .heading { font: 700 33px Inter, ui-sans-serif, system-ui, sans-serif; fill: #f8fafc; }
-      .subheading { font: 400 16px Inter, ui-sans-serif, system-ui, sans-serif; fill: #a9c8cb; }
       .group { font: 700 12px Inter, ui-sans-serif, system-ui, sans-serif; letter-spacing: 1.4px; fill: #67e8f9; }
       .stage { font: 600 15px Inter, ui-sans-serif, system-ui, sans-serif; fill: #f1f5f9; }
-      .note { font: 400 14px Inter, ui-sans-serif, system-ui, sans-serif; fill: #a9c8cb; }
     </style>
   </defs>
 
-  <rect width="1200" height="720" rx="28" fill="url(#background)"/>
-  <path d="M1200 95 L930 225 L1200 445 Z" fill="#5f6191" opacity="0.10"/>
+  <rect width="1200" height="600" rx="28" fill="url(#background)"/>
+  <path d="M1200 45 L930 175 L1200 395 Z" fill="#5f6191" opacity="0.10"/>
 
-  <text x="58" y="58" class="heading">What one Full chunk depends on</text>
-  <text x="58" y="88" class="subheading">Tier width shows the required neighborhood—not when the work runs.</text>
-
-  <g filter="url(#shadow)" stroke="#ffffff" stroke-opacity="0.18" stroke-width="1.5">
+  <g transform="translate(0 -115)" filter="url(#shadow)" stroke="#ffffff" stroke-opacity="0.18" stroke-width="1.5">
     <!-- 23x23: Empty, Structure Starts -->
     <path d="M350 376 L662 514 L350 652 L38 514 Z" fill="#999999"/>
     <path d="M38 514 L350 652 L350 669 L38 531 Z" fill="#999999"/>
@@ -67,8 +61,8 @@
   </g>
 
   <!-- Legend: all stages remain visible even when they share a footprint. -->
-  <g transform="translate(724 128)">
-    <path d="M0 0 V526" stroke="#67e8f9" stroke-opacity="0.20" stroke-width="2"/>
+  <g transform="translate(724 75)">
+    <path d="M0 0 V400" stroke="#67e8f9" stroke-opacity="0.20" stroke-width="2"/>
 
     <g transform="translate(26 0)">
       <text x="0" y="0" class="group">23 × 23 · RADIUS 11</text>
@@ -114,11 +108,5 @@
       <text x="250" y="27" class="stage">Full</text>
     </g>
 
-    <g transform="translate(26 410)">
-      <text x="0" y="0" class="note">This is a dependency map, not an execution timeline.</text>
-      <text x="0" y="26" class="note">Each chunk stage starts when its own inputs are ready.</text>
-      <text x="0" y="52" class="note">Independent work can run in parallel across the pyramid.</text>
-      <text x="0" y="92" class="note">Tier widths are compressed. Counts and radii are exact.</text>
-    </g>
   </g>
 </svg>
