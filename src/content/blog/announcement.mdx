@@ -107,22 +107,6 @@ Those headline numbers need context. Steel used an average of 30.1 logical CPU c
 
 This is a focused world-generation benchmark on one machine, not a claim that Steel is 18.8 times faster at every server workload. Steel also leaves out entity spawning while Fabric performs that stage. The [full benchmark](/reference/benchmarks/) includes the methodology, individual runs, memory results, raw data, reproduction instructions, and further limitations. These performance measurements are separate from the block-by-block parity tests described above.
 
-## Preserving redstone's useful bugs
-
-Redstone presents almost the opposite problem. Some vanilla behavior is technically accidental, but has been studied, documented, and turned into machinery by the redstone community over many years. “Fixing” it would break real builds.
-
-One example is locationality: a contraption can behave differently depending on where or how it is oriented in the world. Some of that behavior originated in the iteration order of a hash set used while processing updates. It may look like an implementation detail, but to technical players it is part of the game.
-
-Steel's redstone implementation therefore aims to preserve not only the intended rules, but also the quirks that players depend on. Vanilla parity does not mean cleaning up every strange behavior. It means knowing which strangeness has become a feature.
-
-## Designing for plugins before plugins exist
-
-Plugins are one of the features I have wanted to build for the longest, but they are also something I refuse to rush. A plugin API exposes almost every part of a server, so publishing one too early can freeze the wrong abstractions for years. Steel needs to become a solid Minecraft server before I can honestly decide what that API should promise.
-
-I have explored WebAssembly, scripting languages, and native Rust plugins. The current direction is a native Rust API, giving extensions the same power as ordinary server code. A native plugin could still host WebAssembly, JavaScript, or Lua for people who want a sandbox or higher-level language. Native plugins would be trusted code, so the API boundary will need careful design.
-
-Years of Bukkit and Paper plugins have already shown us many of the use cases an extension API needs to support. That experience is influencing foundations Steel has today, including its [permission system](/configuration/permissions/) and registries. But Steel does not have plugins yet, and we will not publish an API until the server beneath it is mature enough to make that promise responsibly.
-
 ## Keeping the game tick moving
 
 Vanilla is famous for its main thread. The design provides a valuable guarantee: while a game tick is running, the world does not change underneath it. The cost is that unrelated work can hold up the entire server.
@@ -138,6 +122,22 @@ The rule behind that design is simple: the game tick must never wait for asynchr
 Consider respawning a player. The destination chunks must be ready before the player can safely appear, but waiting for them would stall every other player and entity. Steel instead creates a job that is checked each tick. Once its asynchronous preparation is complete, the move happens synchronously at a defined safe point.
 
 This preserves the useful part of a synchronous world model: gameplay changes happen at defined safe points. A slow disk read or chunk dependency does not have to become a server-wide pause.
+
+## Preserving redstone's useful bugs
+
+Redstone presents almost the opposite problem. Some vanilla behavior is technically accidental, but has been studied, documented, and turned into machinery by the redstone community over many years. “Fixing” it would break real builds.
+
+One example is locationality: a contraption can behave differently depending on where or how it is oriented in the world. Some of that behavior originated in the iteration order of a hash set used while processing updates. It may look like an implementation detail, but to technical players it is part of the game.
+
+Steel's redstone implementation therefore aims to preserve not only the intended rules, but also the quirks that players depend on. Vanilla parity does not mean cleaning up every strange behavior. It means knowing which strangeness has become a feature.
+
+## Designing for plugins before plugins exist
+
+Plugins are one of the features I have wanted to build for the longest, but they are also something I refuse to rush. A plugin API exposes almost every part of a server, so publishing one too early can freeze the wrong abstractions for years. Steel needs to become a solid Minecraft server before I can honestly decide what that API should promise.
+
+I have explored WebAssembly, scripting languages, and native Rust plugins. The current direction is a native Rust API, giving extensions the same power as ordinary server code. A native plugin could still host WebAssembly, JavaScript, or Lua for people who want a sandbox or higher-level language. Native plugins would be trusted code, so the API boundary will need careful design.
+
+Years of Bukkit and Paper plugins have already shown us many of the use cases an extension API needs to support. That experience is influencing foundations Steel has today, including its [permission system](/configuration/permissions/) and registries. But Steel does not have plugins yet, and we will not publish an API until the server beneath it is mature enough to make that promise responsibly.
 
 ## What comes next
 
