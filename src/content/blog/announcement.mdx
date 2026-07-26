@@ -66,11 +66,9 @@ One Full chunk depends on a 23-by-23 area reaching the Structure Starts stage. L
 
 ![An isometric chunk-generation pyramid showing all twelve stages in vanilla's stage colors, from a 23-by-23 Empty and Structure Starts base to one Full chunk.](@/assets/chunk-pyramid.svg "Steel's accumulated chunk-generation dependencies")
 
-*Each tier shows the minimum area that must reach the listed stages before one generation task advances. Nearby tasks can share the same chunks, so the live status of those chunks may not form such a neat pyramid. The dimensions and radii are exact, although the tier widths are compressed visually.*
+*Each tier shows the minimum area required at that stage. The dimensions and radii are exact, although the tier widths are compressed visually.*
 
-Once I saw it that way, the dependency problem stopped looking recursive. Steel advances one generation task stage by stage. At each stage, it schedules every chunk in the required area together and waits until all of them have reached at least that stage. Work within the stage can run in parallel, but the task does not advance until the whole area is ready.
-
-That barrier belongs to one generation task, not the entire server. Requests for nearby chunks create overlapping pyramids. If a shared chunk is already beyond the stage a task requires, Steel reuses that progress. If another task is currently advancing it, later requests wait on the same work rather than generating it twice. At first every stage was a no-op, but watching the scheduler coordinate the whole system correctly was still beautiful.
+Once I saw it that way, the dependency problem stopped looking recursive. Steel advances through the stages in order, processing all required chunks for each stage in parallel before moving on. In practice, nearby requests overlap, so many chunks are already further ahead than the minimum shown by the pyramid. At first every stage was a no-op, but watching the scheduler coordinate the whole system correctly was still beautiful.
 
 ### Chasing parity
 
@@ -122,7 +120,7 @@ Steel's redstone implementation therefore aims to preserve not only the intended
 
 Plugins are one of the features I have wanted to build for the longest, but they are also something I refuse to rush. A plugin API exposes almost every part of a server, so publishing one too early can freeze the wrong abstractions for years. Steel needs to become a solid Minecraft server before I can honestly decide what that API should promise.
 
-I have explored WebAssembly, scripting languages, and native Rust plugins. The current direction is a native Rust API, giving extensions the same power as ordinary server code. A native plugin could still host WebAssembly, JavaScript, or Lua for people who want a sandbox or higher-level language. Native plugins would be trusted code, and Rust's lack of a stable ABI means the boundary will need careful design around opaque server-owned types rather than exposing internals directly.
+I have explored WebAssembly, scripting languages, and native Rust plugins. The current direction is a native Rust API, giving extensions the same power as ordinary server code. A native plugin could still host WebAssembly, JavaScript, or Lua for people who want a sandbox or higher-level language. Native plugins would be trusted code, so the API boundary will need careful design.
 
 Years of Bukkit and Paper plugins have already shown us many of the use cases an extension API needs to support. That experience is influencing foundations Steel has today, including its [permission system](/configuration/permissions/) and registries. But Steel does not have plugins yet, and we will not publish an API until the server beneath it is mature enough to make that promise responsibly.
 
@@ -136,11 +134,7 @@ In parallel, chunk scheduling propagates tickets and starts generation work, whi
 
 <TickArchitecture />
 
-At each game-tick boundary, Steel checks whether the previous chunk-scheduling epoch is ready. If it is, the game tick commits the result and launches the next epoch in the background. If it is still running, the game tick keeps the previously committed chunk state and moves on. It never waits for the scheduler to catch up.
-
-Chunk sending follows the same principle from another direction. Its independent loop briefly snapshots a batch, then encodes chunks in parallel without holding the sender lock. Before sending, it checks that the player, holder, readiness state, and chunk contents still match that snapshot. If any of them changed during encoding, the stale result is discarded.
-
-There is a stricter rule behind that design: the game tick must never wait for asynchronous work.
+The rule behind that design is simple: the game tick must never wait for asynchronous work.
 
 Consider respawning a player. The destination chunks must be ready before the player can safely appear, but waiting for them would stall every other player and entity. Steel instead creates a job that is checked each tick. Once its asynchronous preparation is complete, the move happens synchronously at a defined safe point.
 
