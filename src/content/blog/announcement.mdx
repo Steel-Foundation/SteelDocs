@@ -12,6 +12,7 @@ socialImage:
 ---
 
 import ParityComparison from "@/components/blog/ParityComparison.astro";
+import TickArchitecture from "@/components/blog/TickArchitecture.astro";
 
 SteelMC is a “new” Minecraft server written in Rust. Do not bother updating [*Days Since the Last Rust Minecraft Server*](https://dayssincelastrustmcserver.com/). We have already been on there for nine months.
 
@@ -123,7 +124,15 @@ Years of Bukkit and Paper plugins have already shown us many of the use cases an
 
 Vanilla is famous for its main thread. The design provides a valuable guarantee: while a game tick is running, the world does not change underneath it. The cost is that unrelated work can hold up the entire server.
 
-Steel preserves a synchronous game tick for gameplay logic, but separates it from chunk scheduling and chunk sending. The game tick advances chunks and entities. In parallel, chunk scheduling propagates tickets and starts generation work, while the sending loop prepares and transmits completed chunks to clients. Disk and network I/O do not need to consume time from the gameplay budget.
+Steel preserves a synchronous game tick for gameplay logic, but moves packet processing, chunk scheduling, and chunk sending out of it. Dedicated workers handle gameplay packets throughout the time between ticks, rather than accumulating every packet for one large batch at the start of the next tick as vanilla does. At the tick boundary, Steel drains the finite set of packets already admitted and briefly closes that phase. It can then advance chunks and entities against a stable world before reopening packet processing.
+
+In parallel, chunk scheduling propagates tickets and starts generation work, while the sending loop prepares and transmits completed chunks to clients. Disk and network I/O do not need to consume time from the gameplay budget.
+
+<TickArchitecture />
+
+At each game-tick boundary, Steel checks whether the previous chunk-scheduling epoch is ready. If it is, the game tick commits the result and launches the next epoch in the background. If it is still running, the game tick keeps the previously committed chunk state and moves on. It never waits for the scheduler to catch up.
+
+Chunk sending follows the same principle from another direction. Its independent loop briefly snapshots a batch, encodes chunks in parallel without holding the sender lock, then checks that the player, holder, readiness state, and chunk contents still match that snapshot before sending. If any of them changed during encoding, the stale result is discarded.
 
 There is a stricter rule behind that design: the game tick must never wait for asynchronous work.
 
