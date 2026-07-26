@@ -97,5 +97,5 @@ At the end, the packets will be **far more readable** than raw network data, mak
 
 These resources can you help to get a deeper understanding:
 
-- [Decompiled Minecraft](../../getting-started/decompile-minecraft)
+- [Decompiled Minecraft](../../decompile-minecraft/)
 - [https://minecraft.wiki/w/Java_Edition_protocol/Packets](https://minecraft.wiki/w/Java_Edition_protocol/Packets)

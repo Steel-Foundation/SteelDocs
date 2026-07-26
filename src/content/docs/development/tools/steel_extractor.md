@@ -150,4 +150,4 @@ After starting the server, the output will appear in `steel_extractor_output/att
 
 ## Other useful resources
 
-- [Reflection in Extractors](../tools/reflection_extractor) - How to use Java reflection to access private Minecraft internals
+- [Reflection in Extractors](../reflection_extractor/) - How to use Java reflection to access private Minecraft internals

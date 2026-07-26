@@ -94,4 +94,4 @@ Vorgebaute Binaries sind auf der Seite [GitHub Releases](https://github.com/Stee
 
 ## Nächste Schritte
 
-Nachdem Steel läuft, gehe weiter zu [Configuration](/getting-started/configuration/), um deinen Server anzupassen.
+Nachdem Steel läuft, gehe weiter zur [Konfiguration](../../configuration/overview/), um deinen Server anzupassen.

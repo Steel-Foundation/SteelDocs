@@ -87,5 +87,5 @@ Al final, los paquetes aparecerán de una forma **mucho más legible** que la in
 
 Estos recursos pueden ayudarte a tener un entendimiento mayor:
 
-- [Como decompilar Minecraft](../../getting-started/decompile-minecraft)
+- [Como decompilar Minecraft](../../decompile-minecraft/)
 - [https://minecraft.wiki/w/Java_Edition_protocol/Packets](https://minecraft.wiki/w/Java_Edition_protocol/Packets)

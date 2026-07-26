@@ -14,6 +14,12 @@ import { i18n } from "astro:config/client";
 import { toCodes, getRelativeLocaleUrl } from "astro:i18n";
 
 const supportedLocales = toCodes(i18n!.locales);
+
+interface Props {
+  showLanguageSwitcher?: boolean;
+}
+
+const { showLanguageSwitcher = true } = Astro.props;
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 px-2 pt-2 max-w-280 mx-auto">
@@ -34,7 +40,6 @@ const supportedLocales = toCodes(i18n!.locales);
     <form
       id="search-form"
       class="relative flex-1 max-w-60 hidden md:flex"
-      onsubmit="event.preventDefault();"
     >
       <Search
         class="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-teal-500 dark:text-white/40 pointer-events-none z-10"
@@ -86,7 +91,7 @@ const supportedLocales = toCodes(i18n!.locales);
       <a
         href={getRelativeLocaleUrl(Astro.currentLocale || "en", "/download")}
         class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-sm text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
-        aria-label="Implementation tracker"
+        aria-label={Astro.locals.t("download")}
       >
         <Download class="size-3.5 shrink-0" />
         <span class="hidden font-minecraft sm:inline"
@@ -104,49 +109,59 @@ const supportedLocales = toCodes(i18n!.locales);
       </a>
 
       <!-- Language Switcher -->
-      <div class="relative" id="lang-dropdown">
-        <button
-          id="lang-btn"
-          class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-sm text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all cursor-pointer"
-          aria-label={Astro.locals.t("languageSelect.accessibleLabel")}
-          aria-expanded="false"
-          aria-haspopup="true"
-        >
-          <Globe class="size-3.5 shrink-0" />
-          <span class="hidden font-minecraft sm:inline" id="lang-label"
-            >{Astro.currentLocale?.toUpperCase()}</span
-          >
-          <ChevronDown class="size-3 transition-transform" id="lang-chevron" />
-        </button>
-        <div
-          id="lang-menu"
-          role="menu"
-          class="absolute right-0 top-full mt-1.5 w-36 rounded-xl bg-white dark:bg-teal-900/95 backdrop-blur-md border border-teal-200 dark:border-white/10 shadow-2xl hidden"
-        >
-          {
-            supportedLocales.map((locale, i) => {
-              let url = Astro.currentLocale == "en" ? Astro.routePattern : Astro.routePattern.replace("/"+Astro.currentLocale, "");
-              url = url.trim().length == 0 ? "/" : url;
-              return (
-                <a
-                  href={getRelativeLocaleUrl(locale, url)}
-                  role="menuitem"
-                  class:list={[
-                    "flex font-minecraft items-center gap-2.5 px-3 py-2 text-sm text-teal-700 dark:text-white/70 hover:text-teal-950 dark:hover:text-white hover:bg-teal-50 dark:hover:bg-white/10 transition-colors",
-                    i === 0 && "rounded-t-xl",
-                    i === supportedLocales.length - 1 && "rounded-b-xl",
-                  ]}
-                >
-                  <span aria-hidden="true">
-                    {Astro.locals.t("langFlag", "🇬🇧", { lng: locale })}
-                  </span>{" "}
-                  {Astro.locals.t("langName", "English", { lng: locale })}
-                </a>
-              )
-            })
-          }
-        </div>
-      </div>
+      {
+        showLanguageSwitcher && (
+          <div class="relative" id="lang-dropdown">
+            <button
+              id="lang-btn"
+              class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-sm text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all cursor-pointer"
+              aria-label={Astro.locals.t("languageSelect.accessibleLabel")}
+              aria-expanded="false"
+              aria-haspopup="true"
+            >
+              <Globe class="size-3.5 shrink-0" />
+              <span class="hidden font-minecraft sm:inline" id="lang-label">
+                {Astro.currentLocale?.toUpperCase()}
+              </span>
+              <ChevronDown class="size-3 transition-transform" id="lang-chevron" />
+            </button>
+            <div
+              id="lang-menu"
+              role="menu"
+              class="absolute right-0 top-full mt-1.5 w-36 rounded-xl bg-white dark:bg-teal-900/95 backdrop-blur-md border border-teal-200 dark:border-white/10 shadow-2xl hidden"
+            >
+              {
+                supportedLocales.map((locale, i) => {
+                  let url =
+                    Astro.currentLocale == "en"
+                      ? Astro.routePattern
+                      : Astro.routePattern.replace(
+                          "/" + Astro.currentLocale,
+                          "",
+                        );
+                  url = url.trim().length == 0 ? "/" : url;
+                  return (
+                    <a
+                      href={getRelativeLocaleUrl(locale, url)}
+                      role="menuitem"
+                      class:list={[
+                        "flex font-minecraft items-center gap-2.5 px-3 py-2 text-sm text-teal-700 dark:text-white/70 hover:text-teal-950 dark:hover:text-white hover:bg-teal-50 dark:hover:bg-white/10 transition-colors",
+                        i === 0 && "rounded-t-xl",
+                        i === supportedLocales.length - 1 && "rounded-b-xl",
+                      ]}
+                    >
+                      <span aria-hidden="true">
+                        {Astro.locals.t("langFlag", "🇬🇧", { lng: locale })}
+                      </span>{" "}
+                      {Astro.locals.t("langName", "English", { lng: locale })}
+                    </a>
+                  );
+                })
+              }
+            </div>
+          </div>
+        )
+      }
 
       <!-- Theme Toggle -->
       <button
@@ -163,7 +178,7 @@ const supportedLocales = toCodes(i18n!.locales);
         href="/discord"
         target="_blank"
         rel="noopener noreferrer"
-        class="p-1.5 rounded-xl text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
+        class="hidden sm:inline-flex p-1.5 rounded-xl text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
         aria-label={Astro.locals.t("discordLabel")}
       >
         <svg
@@ -184,7 +199,7 @@ const supportedLocales = toCodes(i18n!.locales);
         href="https://github.com/Steel-Foundation/SteelMC"
         target="_blank"
         rel="noopener noreferrer"
-        class="p-1.5 rounded-xl text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
+        class="hidden sm:inline-flex p-1.5 rounded-xl text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
         aria-label={Astro.locals.t("githubLabel")}
       >
         <Github class="size-4" />
@@ -251,6 +266,9 @@ const supportedLocales = toCodes(i18n!.locales);
   });
 
   // --- Pagefind search ---
+  const searchForm = document.getElementById("search-form");
+  searchForm?.addEventListener("submit", (event) => event.preventDefault());
+
   const searchInput = document.getElementById(
     "navbar-search",
   ) as HTMLInputElement | null;
@@ -361,7 +379,7 @@ const supportedLocales = toCodes(i18n!.locales);
   }
 
   document.addEventListener("click", (e) => {
-    if (!document.getElementById("search-form")?.contains(e.target as Node)) {
+    if (!searchForm?.contains(e.target as Node)) {
       closeResults();
     }
   });
