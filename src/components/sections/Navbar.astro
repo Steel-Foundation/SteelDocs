@@ -31,9 +31,19 @@ const { showLanguageSwitcher = true } = Astro.props;
       href={Astro.currentLocale
         ? getRelativeLocaleUrl(Astro.currentLocale, "/")
         : "/"}
-      class="font-minecraft font-bold text-xl text-teal-950 dark:text-white shrink-0 mr-2"
+      class="flex items-center gap-2 font-minecraft font-bold text-xl text-teal-950 dark:text-white shrink-0 mr-2"
+      aria-label="SteelMC home"
     >
-      Steel<span class="text-emerald-600 dark:text-emerald-400">MC</span>
+      <img
+        src="/steel_logo.png"
+        alt=""
+        width="320"
+        height="320"
+        class="size-9 object-contain [image-rendering:pixelated]"
+      />
+      <span class="hidden sm:inline"
+        >Steel<span class="text-emerald-600 dark:text-emerald-400">MC</span></span
+      >
     </a>
 
     <!-- Search Bar -->

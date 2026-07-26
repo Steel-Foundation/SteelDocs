@@ -82,6 +82,13 @@ export default defineConfig({
         de: "Steel-Doku",
         es: "Documentación de Steel",
       },
+      logo: {
+        src: "./public/steel_logo.png",
+        alt: "",
+      },
+      components: {
+        Footer: "./src/components/starlight/Footer.astro",
+      },
       social: [
         {
           icon: "discord",

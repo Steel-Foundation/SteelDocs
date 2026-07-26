@@ -4,6 +4,7 @@ import { getImage } from "astro:assets";
 import defaultSocialImage from "@/assets/sunset.webp";
 import "../styles/global.css";
 import ThemedPixelBlast from "@/components/homepage/ThemedPixelBlast";
+import LogoCredit from "@/components/sections/LogoCredit.astro";
 
 interface Props {
   title: string;
@@ -146,5 +147,6 @@ const socialImageUrl = new URL(renderedSocialImage.src, siteUrl);
       )
     }
     <slot />
+    <LogoCredit />
   </body>
 </html>
