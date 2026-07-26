@@ -1,12 +1,16 @@
-type Versions = [{
-    steel_version: string,
-    mc_version: string,
-    builds: [{
-        platform: string,
-        name: string,
-        download: string,
-    }]
-}]
+interface Build {
+    platform: string;
+    name: string;
+    download: string;
+}
+
+interface Version {
+    steel_version: string;
+    mc_version: string;
+    builds: Build[];
+}
+
+type Versions = Version[];
 
 let cachedData: Versions | null = null;
 
@@ -39,9 +43,9 @@ export async function getVersions(): Promise<Versions> {
 }
 export async function steelVersion() {
     var versions = await getVersions();
-    return versions[0].steel_version
+    return versions[0]?.steel_version
 }
 export async function mcVersion() {
     var versions = await getVersions();
-    return versions[0].mc_version
+    return versions[0]?.mc_version
 }

@@ -2,41 +2,190 @@
 import Navbar from "@/components/sections/Navbar.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getVersions } from "@/lib/versions";
-var versions = await getVersions();
+import {
+  ArrowRight,
+  ArrowDownToLine,
+  BookOpenText,
+  Check,
+  ChevronDown,
+  Clock3,
+  PackageOpen,
+} from "@lucide/astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const versions = await getVersions();
+const [latestVersion, ...olderVersions] = versions;
+const installationUrl = getRelativeLocaleUrl(
+  Astro.currentLocale || "en",
+  "/getting-started/installation",
+);
+
+function formatPlatform(platform: string) {
+  return platform
+    .replace(/x86[_-]64/gi, "x64")
+    .replace(/aarch64|arm64/gi, "ARM64")
+    .split(/[-_]/)
+    .filter(Boolean)
+    .map((part) => {
+      const labels: Record<string, string> = {
+        amd64: "x64",
+        aarch64: "ARM64",
+        arm64: "ARM64",
+        linux: "Linux",
+        windows: "Windows",
+        win: "Windows",
+        macos: "macOS",
+        darwin: "macOS",
+      };
+      return labels[part.toLowerCase()] ?? part.charAt(0).toUpperCase() + part.slice(1);
+    })
+    .join(" · ");
+}
 ---
 
-<Layout title={"SteelMC - " + Astro.locals.t("download")}>
+<Layout
+  title={`SteelMC - ${Astro.locals.t("download")}`}
+  description="Download the latest SteelMC server build or browse previous releases."
+>
   <Navbar />
-  <ol class="mt-25 mb-10 flex flex-col gap-5 basis-full shrink-0">
+  <main class="relative z-10 mx-auto w-full max-w-300 px-4 pb-20 pt-28 sm:px-6 lg:pt-32">
+    <header class="mx-auto mb-10 max-w-210 text-center md:mb-14">
+      <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-700 dark:text-emerald-300">
+        <PackageOpen class="size-3.5" />
+        SteelMC releases
+      </div>
+      <h1 class="font-minecraft text-4xl font-bold leading-tight text-teal-950 dark:text-white sm:text-5xl md:text-7xl">
+        Ready to run <span class="text-emerald-600 dark:text-emerald-400">Steel?</span>
+      </h1>
+      <p class="mx-auto mt-5 max-w-170 text-base leading-relaxed text-teal-700 dark:text-white/60 md:text-xl">
+        Grab the newest build for your platform. Previous versions are still available in the release archive below.
+      </p>
+    </header>
+
     {
-      versions.map((version, idx) => {
-        return (
-          <li class="pt-2 min-w-130 mx-auto gap-3 px-4 py-2.5 rounded-2xl backdrop-blur-md bg-white/80 dark:bg-teal-950/70 border border-teal-200/60 dark:border-white/10 shadow-xl flex content-center justify-between">
-            <div class="p-2 flex flex-col justify-center">
-              <h2 class="text-4xl font-bold">
-                Version {version.steel_version}
-              </h2>
-              <p class="text-2xl">For Minecraft {version.mc_version}</p>
+      latestVersion ? (
+        <>
+          <section aria-labelledby="latest-release" class="relative overflow-hidden rounded-4xl border border-emerald-500/25 bg-white/85 shadow-2xl shadow-teal-950/10 backdrop-blur-xl dark:border-emerald-400/20 dark:bg-teal-950/80 dark:shadow-black/25">
+            <div class="pointer-events-none absolute -right-24 -top-32 size-90 rounded-full bg-emerald-400/15 blur-3xl" aria-hidden="true" />
+            <div class="pointer-events-none absolute -bottom-40 -left-20 size-80 rounded-full bg-teal-400/10 blur-3xl" aria-hidden="true" />
+
+            <div class="relative grid gap-8 p-6 sm:p-9 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.8fr)] lg:items-center lg:gap-14 lg:p-12">
+              <div>
+                <div class="mb-5 flex flex-wrap items-center gap-3">
+                  <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-emerald-500/20">
+                    <Check class="size-3.5" stroke-width={3} />
+                    Latest release
+                  </span>
+                  <span class="text-sm text-teal-600 dark:text-white/45">
+                    Minecraft {latestVersion.mc_version}
+                  </span>
+                </div>
+                <h2 id="latest-release" class="font-minecraft text-4xl font-bold text-teal-950 dark:text-white sm:text-5xl lg:text-6xl">
+                  Steel {latestVersion.steel_version}
+                </h2>
+                <p class="mt-4 max-w-145 text-base leading-relaxed text-teal-700 dark:text-white/60 md:text-lg">
+                  The newest SteelMC server build, with the latest compatibility and implementation improvements.
+                </p>
+              </div>
+
+              <div class="rounded-3xl border border-teal-200/60 bg-teal-50/80 p-4 dark:border-white/10 dark:bg-black/15 sm:p-5">
+                <p class="mb-3 px-1 text-xs font-semibold uppercase tracking-[0.15em] text-teal-600 dark:text-white/45">
+                  Choose your platform
+                </p>
+                <div class="grid gap-2.5">
+                  {latestVersion.builds.map((build) => (
+                    <a
+                      href={build.download}
+                      download={build.name}
+                      class="group flex min-h-14 items-center justify-between gap-4 rounded-2xl border border-teal-200/70 bg-white px-4 py-3 text-teal-950 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/50 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500 dark:border-white/10 dark:bg-white/[0.06] dark:text-white dark:hover:border-emerald-400/40 dark:hover:bg-white/10 sm:px-5"
+                    >
+                      <span>
+                        <span class="block font-minecraft text-base font-bold sm:text-lg">
+                          {formatPlatform(build.platform)}
+                        </span>
+                        <span class="mt-0.5 block text-xs text-teal-500 dark:text-white/40">
+                          {build.name}
+                        </span>
+                      </span>
+                      <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-emerald-500 text-white transition-transform group-hover:scale-105 dark:bg-emerald-400 dark:text-teal-950">
+                        <ArrowDownToLine class="size-5" />
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
-            <div class="flex flex-col gap-2">
-              {version.builds.map((build) => {
-                var platform =
-                  String(build.platform).charAt(0).toUpperCase() +
-                  String(build.platform).slice(1);
-                return (
-                  <a
-                    href={build.download}
-                    download={build.name}
-                    class="px-6 md:px-8 py-2 font-minecraft font-bold rounded-[50px] text-xs md:text-sm bg-black/5 border border-black/10 text-black/80 dark:bg-white/5 dark:border-white/10 dark:text-white/85 cursor-pointer hover:bg-black/10 dark:hover:bg-white/10 hover:-translate-y-px transition-all duration-200 ease-out text-center"
-                  >
-                    {platform}
-                  </a>
-                );
-              })}
-            </div>
-          </li>
-        );
-      })
+          </section>
+
+          <a
+            href={installationUrl}
+            class="group mt-4 flex items-center gap-3 rounded-2xl border border-teal-200/50 bg-white/55 px-4 py-3.5 text-sm text-teal-700 backdrop-blur-md transition-all hover:border-emerald-500/30 hover:bg-white/75 hover:text-teal-950 dark:border-white/10 dark:bg-teal-950/45 dark:text-white/55 dark:hover:border-emerald-400/25 dark:hover:bg-teal-950/65 dark:hover:text-white sm:px-5"
+          >
+            <BookOpenText class="size-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
+            <span class="flex-1">
+              Using Docker, a server panel, or building natively?
+              <span class="font-semibold text-teal-950 dark:text-white">See the installation guide.</span>
+            </span>
+            <ArrowRight class="size-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
+          </a>
+
+          {olderVersions.length > 0 && (
+            <section class="mt-7" aria-labelledby="release-archive">
+              <details class="group overflow-hidden rounded-3xl border border-teal-200/60 bg-white/70 shadow-xl shadow-teal-950/5 backdrop-blur-lg dark:border-white/10 dark:bg-teal-950/60">
+                <summary class="flex cursor-pointer list-none items-center gap-4 px-5 py-5 transition-colors hover:bg-white/60 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-emerald-500 dark:hover:bg-white/5 sm:px-7 sm:py-6 [&::-webkit-details-marker]:hidden">
+                  <span class="grid size-11 shrink-0 place-items-center rounded-2xl bg-teal-100 text-teal-700 dark:bg-white/10 dark:text-white/70">
+                    <Clock3 class="size-5" />
+                  </span>
+                  <span class="min-w-0 flex-1">
+                    <span id="release-archive" class="block font-minecraft text-lg font-bold text-teal-950 dark:text-white sm:text-xl">
+                      Previous releases
+                    </span>
+                    <span class="mt-0.5 block text-sm text-teal-600 dark:text-white/45">
+                      Browse {olderVersions.length} older {olderVersions.length === 1 ? "version" : "versions"}
+                    </span>
+                  </span>
+                  <ChevronDown class="size-5 shrink-0 text-teal-500 transition-transform duration-200 group-open:rotate-180 dark:text-white/45" />
+                </summary>
+
+                <ol class="border-t border-teal-200/50 px-4 py-4 dark:border-white/10 sm:px-6 sm:py-6">
+                  {olderVersions.map((version) => (
+                    <li class="grid gap-4 border-b border-teal-200/50 py-5 first:pt-1 last:border-0 last:pb-1 dark:border-white/10 md:grid-cols-[minmax(0,1fr)_minmax(20rem,1fr)] md:items-center md:gap-8">
+                      <div>
+                        <h3 class="font-minecraft text-xl font-bold text-teal-950 dark:text-white sm:text-2xl">
+                          Steel {version.steel_version}
+                        </h3>
+                        <p class="mt-1 text-sm text-teal-600 dark:text-white/45">
+                          For Minecraft {version.mc_version}
+                        </p>
+                      </div>
+                      <div class="flex flex-wrap gap-2 md:justify-end">
+                        {version.builds.map((build) => (
+                          <a
+                            href={build.download}
+                            download={build.name}
+                            class="inline-flex items-center gap-2 rounded-full border border-teal-200/70 bg-white/70 px-4 py-2 text-sm font-semibold text-teal-800 transition-all hover:-translate-y-px hover:border-emerald-500/40 hover:text-emerald-700 dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:border-emerald-400/40 dark:hover:text-emerald-300"
+                          >
+                            <ArrowDownToLine class="size-3.5" />
+                            {formatPlatform(build.platform)}
+                          </a>
+                        ))}
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </details>
+            </section>
+          )}
+        </>
+      ) : (
+        <section class="rounded-3xl border border-teal-200/60 bg-white/80 px-6 py-16 text-center backdrop-blur-xl dark:border-white/10 dark:bg-teal-950/70">
+          <PackageOpen class="mx-auto size-10 text-teal-500 dark:text-white/40" />
+          <h2 class="mt-4 font-minecraft text-2xl font-bold text-teal-950 dark:text-white">
+            No releases available yet
+          </h2>
+          <p class="mt-2 text-teal-600 dark:text-white/50">Check back soon for the first SteelMC build.</p>
+        </section>
+      )
     }
-  </ol>
+  </main>
 </Layout>

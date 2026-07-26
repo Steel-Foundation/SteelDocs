@@ -9,8 +9,9 @@
  *   Writes public/data/implementation-status.json
  */
 
-import { readdir, readFile, mkdir } from "node:fs/promises";
-import { join, resolve } from "node:path";
+import { readdir, readFile, mkdir, writeFile } from "node:fs/promises";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const STEEL_PATH = process.argv[2];
 if (!STEEL_PATH) {
@@ -20,6 +21,7 @@ if (!STEEL_PATH) {
 
 const steelRoot = resolve(STEEL_PATH);
 const behaviorDir = join(steelRoot, "steel-core/src/behavior");
+const entityDir = join(steelRoot, "steel-core/src/entity/entities");
 const classesJsonPath = join(steelRoot, "steel-core/build/classes.json");
 
 // --- Scan .rs files for annotated structs ---
@@ -47,12 +49,11 @@ interface ClassInfo {
  * Returns a map of class name -> { todos } where todos is the count of TODO/FIXME
  * comments attributed to that struct (based on proximity in the source file).
  */
-async function scanImplementedClasses(folder: string, annotation: string): Promise<Map<string, ClassInfo>> {
-  const dir = join(behaviorDir, folder);
+async function scanImplementedClasses(dir: string, annotation: string): Promise<Map<string, ClassInfo>> {
   const classes = new Map<string, ClassInfo>();
 
   const structPattern = new RegExp(
-    `#\\[${annotation}\\]` +
+    `#\\[${annotation}(?:\\(([^\\]]*)\\))?\\]` +
     `[\\s\\S]*?` +
     `pub\\s+struct\\s+(\\w+)`,
     "g"
@@ -67,7 +68,9 @@ async function scanImplementedClasses(folder: string, annotation: string): Promi
     const structs: { name: string; pos: number }[] = [];
     let match;
     while ((match = structPattern.exec(content)) !== null) {
-      structs.push({ name: match[1], pos: match.index });
+      const annotationArgs = match[1] ?? "";
+      const classOverride = annotationArgs.match(/class\s*=\s*"([^"]+)"/);
+      structs.push({ name: classOverride?.[1] ?? match[2], pos: match.index });
     }
     if (structs.length === 0) continue;
 
@@ -125,14 +128,16 @@ interface ClassEntry {
 interface ClassesJson {
   blocks: ClassEntry[];
   items: ClassEntry[];
+  entities: ClassEntry[];
 }
 
 // --- Main ---
 
-const [classesRaw, implementedBlockClasses, implementedItemClasses] = await Promise.all([
+const [classesRaw, implementedBlockClasses, implementedItemClasses, implementedEntityClasses] = await Promise.all([
   readFile(classesJsonPath, "utf-8").then((raw) => JSON.parse(raw) as ClassesJson),
-  scanImplementedClasses("blocks", "block_behavior"),
-  scanImplementedClasses("items", "item_behavior"),
+  scanImplementedClasses(join(behaviorDir, "blocks"), "block_behavior"),
+  scanImplementedClasses(join(behaviorDir, "items"), "item_behavior"),
+  scanImplementedClasses(entityDir, "entity_behavior"),
 ]);
 
 function groupByClass(
@@ -156,21 +161,26 @@ function groupByClass(
 
 const blocks = groupByClass(classesRaw.blocks, implementedBlockClasses);
 const items = groupByClass(classesRaw.items, implementedItemClasses);
+const entities = groupByClass(classesRaw.entities, implementedEntityClasses);
 
-const output = { blocks, items };
+const output = { blocks, items, entities };
 
-const outDir = join(import.meta.dirname!, "../public/data");
+const outDir = join(dirname(fileURLToPath(import.meta.url)), "../public/data");
 await mkdir(outDir, { recursive: true });
 const outPath = join(outDir, "implementation-status.json");
-await Bun.write(outPath, JSON.stringify(output, null, 2));
+await writeFile(outPath, JSON.stringify(output, null, 2));
 
 const totalBlocks = classesRaw.blocks.length;
 const implBlocks = classesRaw.blocks.filter((b) => implementedBlockClasses.has(b.class)).length;
 const totalItems = classesRaw.items.length;
 const implItems = classesRaw.items.filter((i) => implementedItemClasses.has(i.class)).length;
+const totalEntities = classesRaw.entities.length;
+const implEntities = classesRaw.entities.filter((e) => implementedEntityClasses.has(e.class)).length;
 const partialBlocks = Object.values(blocks).filter((g) => g.implemented && g.todos.length > 0).length;
 const partialItems = Object.values(items).filter((g) => g.implemented && g.todos.length > 0).length;
+const partialEntities = Object.values(entities).filter((g) => g.implemented && g.todos.length > 0).length;
 
 console.log(`Wrote ${outPath}`);
 console.log(`Blocks: ${implBlocks}/${totalBlocks} implemented (${partialBlocks} partial)`);
 console.log(`Items:  ${implItems}/${totalItems} implemented (${partialItems} partial)`);
+console.log(`Entities: ${implEntities}/${totalEntities} implemented (${partialEntities} partial)`);

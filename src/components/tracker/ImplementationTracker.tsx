@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { Search, ChevronDown, Blocks, Sword, Filter } from "lucide-react";
+import { Search, ChevronDown, Blocks, Sword, Filter, PawPrint } from "lucide-react";
 
 interface ClassGroup {
   implemented: boolean;
@@ -17,16 +17,19 @@ function getStatus(group: ClassGroup): Status {
 interface ImplementationData {
   blocks: Record<string, ClassGroup>;
   items: Record<string, ClassGroup>;
+  entities: Record<string, ClassGroup>;
 }
 
-type Tab = "blocks" | "items";
+type Tab = "blocks" | "items" | "entities";
 type StatusFilter = "all" | "complete" | "partial" | "unimplemented";
+type ProgressMetric = "surface" | "classes";
 
 export default function ImplementationTracker() {
   const [data, setData] = useState<ImplementationData | null>(null);
   const [tab, setTab] = useState<Tab>("blocks");
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
+  const [progressMetric, setProgressMetric] = useState<ProgressMetric>("surface");
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
 
   useEffect(() => {
@@ -36,19 +39,23 @@ export default function ImplementationTracker() {
   }, []);
 
   const currentData = data?.[tab];
+  const entryLabel = tab === "entities" ? "entities" : tab;
 
   const stats = useMemo(() => {
     if (!currentData) return { total: 0, complete: 0, partial: 0, unimplemented: 0 };
     const classes = Object.entries(currentData);
     const byStatus = { complete: 0, partial: 0, unimplemented: 0 };
     for (const [, g] of classes) {
-      byStatus[getStatus(g)] += g.entries.length;
+      byStatus[getStatus(g)] += progressMetric === "classes" ? 1 : g.entries.length;
     }
     return {
-      total: classes.reduce((sum, [, g]) => sum + g.entries.length, 0),
+      total: classes.reduce(
+        (sum, [, g]) => sum + (progressMetric === "classes" ? 1 : g.entries.length),
+        0,
+      ),
       ...byStatus,
     };
-  }, [currentData]);
+  }, [currentData, progressMetric]);
 
   const filtered = useMemo(() => {
     if (!currentData) return [];
@@ -93,7 +100,10 @@ export default function ImplementationTracker() {
     <div className="w-full">
       {/* Stats overview */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-        <StatCard label="Total entries" value={stats.total} />
+        <StatCard
+          label={progressMetric === "classes" ? "Total behaviors" : "Total entries"}
+          value={stats.total}
+        />
         <StatCard label="Complete" value={stats.complete} color="emerald" />
         <StatCard label="Partial" value={stats.partial} color="amber" />
         <StatCard label="Unimplemented" value={stats.unimplemented} />
@@ -101,19 +111,45 @@ export default function ImplementationTracker() {
 
       {/* Progress bar */}
       <div className="mb-6 p-4 rounded-2xl bg-white/5 dark:bg-white/5 border border-teal-200/30 dark:border-white/10">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium text-teal-700 dark:text-white/70">
-            Implementation progress
-          </span>
-          <div className="flex items-center gap-3 text-xs">
-            <span className="flex items-center gap-1">
-              <span className="inline-block size-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
-              <span className="text-teal-700 dark:text-white/60">{pctComplete}%</span>
+        <div className="flex flex-col gap-3 mb-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <span className="text-sm font-medium text-teal-700 dark:text-white/70">
+              Implementation progress
             </span>
-            <span className="flex items-center gap-1">
-              <span className="inline-block size-2 rounded-full bg-amber-500 dark:bg-amber-400" />
-              <span className="text-teal-700 dark:text-white/60">{pctPartial}%</span>
-            </span>
+            <p className="mt-0.5 text-xs text-teal-500 dark:text-white/35">
+              {progressMetric === "classes"
+                ? "Each behavior type counts equally."
+                : `Weighted by registered ${entryLabel}.`}
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <div
+              className="flex rounded-lg bg-teal-100 dark:bg-white/5 border border-teal-200/40 dark:border-white/10 p-0.5"
+              aria-label="Progress calculation"
+            >
+              <MetricButton
+                active={progressMetric === "surface"}
+                onClick={() => setProgressMetric("surface")}
+              >
+                Surface area
+              </MetricButton>
+              <MetricButton
+                active={progressMetric === "classes"}
+                onClick={() => setProgressMetric("classes")}
+              >
+                Behaviors
+              </MetricButton>
+            </div>
+            <div className="flex items-center gap-3 text-xs">
+              <span className="flex items-center gap-1">
+                <span className="inline-block size-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
+                <span className="text-teal-700 dark:text-white/60">{pctComplete}%</span>
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="inline-block size-2 rounded-full bg-amber-500 dark:bg-amber-400" />
+                <span className="text-teal-700 dark:text-white/60">{pctPartial}%</span>
+              </span>
+            </div>
           </div>
         </div>
         <div className="relative h-3 rounded-full bg-teal-100 dark:bg-white/10 overflow-visible flex group cursor-default">
@@ -159,6 +195,10 @@ export default function ImplementationTracker() {
             <Sword className="size-3.5" />
             Items
           </TabButton>
+          <TabButton active={tab === "entities"} onClick={() => setTab("entities")}>
+            <PawPrint className="size-3.5" />
+            Entities
+          </TabButton>
         </div>
 
         {/* Search */}
@@ -166,7 +206,7 @@ export default function ImplementationTracker() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-teal-500 dark:text-white/40 pointer-events-none" />
           <input
             type="text"
-            placeholder="Search blocks, items, or classes..."
+            placeholder={`Search ${entryLabel} or classes...`}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full pl-9 pr-3 py-2 text-sm bg-white dark:bg-white/5 border border-teal-200/40 dark:border-white/10 rounded-xl text-teal-950 dark:text-white placeholder:text-teal-400 dark:placeholder:text-white/35 focus:outline-none focus:border-emerald-500/60 dark:focus:border-emerald-400/50 transition-all"
@@ -340,6 +380,31 @@ function TabButton({
         active
           ? "bg-white dark:bg-white/10 text-teal-950 dark:text-white shadow-sm"
           : "text-teal-600 dark:text-white/50 hover:text-teal-950 dark:hover:text-white"
+      }`}
+    >
+      {children}
+    </button>
+  );
+}
+
+function MetricButton({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      aria-pressed={active}
+      onClick={onClick}
+      className={`rounded-md px-2.5 py-1 text-xs font-medium transition-all cursor-pointer ${
+        active
+          ? "bg-white dark:bg-white/10 text-teal-950 dark:text-white shadow-sm"
+          : "text-teal-600 dark:text-white/45 hover:text-teal-950 dark:hover:text-white"
       }`}
     >
       {children}
