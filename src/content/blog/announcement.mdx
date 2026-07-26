@@ -11,7 +11,7 @@ socialImage:
   alt: "A sunset over a Steel-generated world, with forests, rivers, mountains, and a lit village visible into the distance."
 ---
 
-import TimeOfDayShowcase from "@/components/blog/TimeOfDayShowcase.astro";
+import ParityComparison from "@/components/blog/ParityComparison.astro";
 
 SteelMC is a “new” Minecraft server written in Rust. Do not bother updating [*Days Since the Last Rust Minecraft Server*](https://dayssincelastrustmcserver.com/). We have already been on there for nine months.
 
@@ -26,8 +26,6 @@ That does not mean Steel is ready to run your production server. It means the pr
 Most of those nine months have gone into foundations that are almost invisible when you connect to the server. We have optimized for making the difficult underlying systems correct, not for maximizing the number of visible features we can announce each week.
 
 That makes early progress look slow, but foundational work compounds. As these systems mature, new gameplay features stop requiring their own infrastructure and become smaller implementations on top of foundations that already handle the hard parts. We are now reaching the point where more of that work will begin showing up in the game, and visible progress should accelerate with it.
-
-<TimeOfDayShowcase />
 
 ## What Steel can do today
 
@@ -59,13 +57,13 @@ Minecraft does not generate a chunk in one pass. It moves chunks through a serie
 
 I used to picture those dependencies as a tree. Request a fully generated chunk at one coordinate, let it request its neighbors, let those neighbors request their neighbors, and continue until everything it needs exists. Trying to express that directly quickly becomes recursive: chunk X waits for chunk Y, which eventually asks for chunk X again.
 
-Vanilla calls its solution a *chunk pyramid*. The name confused me until I understood what it described. In Steel's current dependency table, producing one fully generated chunk requires a 23-by-23 area, or 529 chunks, to reach the structure-start stage. Schedule that whole area first, then the smaller areas required by later stages. Continue upward, layer by layer, until the single chunk at the top can become full.
+Vanilla calls its solution a *chunk pyramid*. The name confused me until I understood what it described. In Steel's current dependency table, producing one fully generated chunk requires a 23-by-23 area, or 529 chunks, to reach the structure-start stage. Above that base, each later stage needs a smaller surrounding area, so the accumulated dependency footprint tapers until the single chunk at the top can become full.
 
 ![An isometric chunk-generation pyramid showing all twelve stages in vanilla's stage colors, from a 23-by-23 Empty and Structure Starts base to one Full chunk.](@/assets/chunk-pyramid.svg "Steel's accumulated chunk-generation dependencies")
 
 *All twelve stages and the accumulated dependencies for one Full chunk. Footprints are compressed visually, but the dimensions and radii come directly from Steel's generation pyramid.*
 
-Once I saw it that way, the dependency problem stopped looking recursive. Steel could build the pyramid from its base upward and run every chunk stage as soon as its inputs were ready. At first every stage was a no-op, but watching the entire scheduler execute correctly was still beautiful.
+Once I saw it that way, the dependency problem stopped looking recursive. The pyramid describes dependencies, not a sequential execution order: Steel does not finish every chunk in one layer before beginning the next. It schedules each chunk stage as soon as that stage's own inputs are ready, allowing independent work across the pyramid to run in parallel. At first every stage was a no-op, but watching the entire scheduler execute correctly was still beautiful.
 
 ### Chasing parity
 
@@ -86,6 +84,8 @@ The features stage introduced another source of nondeterminism. Features such as
 Even then, a few blocks still differed. The trail led to hash-based collections in vanilla's feature code. Their iteration order is not stable, but in world generation it can decide which block is placed first and what may be placed next. We gave those operations an explicit order and modified the extractor to use the same one.
 
 With that final source of nondeterminism removed, all tested chunks matched block for block. Entity spawning remains deliberately outside that claim until Steel can support the entities it would place into the world.
+
+<ParityComparison />
 
 ### Lighting without a global queue
 
