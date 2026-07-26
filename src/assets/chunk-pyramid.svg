@@ -64,7 +64,7 @@
   <g transform="translate(724 75)">
     <path d="M0 0 V400" stroke="#67e8f9" stroke-opacity="0.20" stroke-width="2"/>
 
-    <g transform="translate(26 0)">
+    <g transform="translate(26 320)">
       <text x="0" y="0" class="group">23 × 23 · RADIUS 11</text>
       <rect x="0" y="14" width="16" height="16" rx="3" fill="#545454" stroke="#ffffff" stroke-opacity="0.35"/>
       <text x="26" y="27" class="stage">Empty</text>
@@ -72,7 +72,7 @@
       <text x="186" y="27" class="stage">Structure Starts</text>
     </g>
 
-    <g transform="translate(26 80)">
+    <g transform="translate(26 240)">
       <text x="0" y="0" class="group">7 × 7 · RADIUS 3</text>
       <rect x="0" y="14" width="16" height="16" rx="3" fill="#5f6191" stroke="#ffffff" stroke-opacity="0.35"/>
       <text x="26" y="27" class="stage">Structure References</text>
@@ -90,7 +90,7 @@
       <text x="276" y="27" class="stage">Carvers</text>
     </g>
 
-    <g transform="translate(26 240)">
+    <g transform="translate(26 80)">
       <text x="0" y="0" class="group">3 × 3 · RADIUS 1</text>
       <rect x="0" y="14" width="16" height="16" rx="3" fill="#21c600" stroke="#ffffff" stroke-opacity="0.35"/>
       <text x="26" y="27" class="stage">Features</text>
@@ -98,7 +98,7 @@
       <text x="174" y="27" class="stage">Initialize Light</text>
     </g>
 
-    <g transform="translate(26 320)">
+    <g transform="translate(26 0)">
       <text x="0" y="0" class="group">1 × 1 · TARGET</text>
       <rect x="0" y="14" width="16" height="16" rx="3" fill="#ffe0a0" stroke="#ffffff" stroke-opacity="0.35"/>
       <text x="26" y="27" class="stage">Light</text>
