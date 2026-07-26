@@ -539,30 +539,36 @@ const scenarios: Scenario[] = [
 
 <style>
   .tick-architecture {
+    --tick-heading: rgb(4 47 46);
+    --tick-text: rgb(17 94 89);
+    --tick-muted: rgb(15 118 110 / 0.72);
+    --tick-faint: rgb(15 118 110 / 0.56);
+    --tick-border: rgb(13 148 136 / 0.2);
+    --tick-grid: rgb(13 148 136 / 0.08);
+    --tick-surface: rgb(255 255 255 / 0.3);
+    --tick-surface-strong: rgb(255 255 255 / 0.48);
+
     position: relative;
     isolation: isolate;
-    overflow: hidden;
-    margin-block: 2.25rem;
-    border: 1px solid rgb(94 234 212 / 0.18);
-    border-radius: 1.35rem;
-    padding: 1.35rem;
-    background:
-      linear-gradient(145deg, rgb(5 31 39 / 0.98), rgb(5 25 36 / 0.99)),
-      rgb(5 31 39);
-    box-shadow: 0 20px 55px rgb(4 47 46 / 0.16);
-    color: rgb(236 254 255);
+    margin-block: 2.75rem;
+    border-block: 1px solid var(--tick-border);
+    padding-block: 1.5rem 1.25rem;
+    color: var(--tick-text);
+  }
+
+  :global(.dark) .tick-architecture {
+    --tick-heading: rgb(255 255 255 / 0.94);
+    --tick-text: rgb(204 251 241 / 0.82);
+    --tick-muted: rgb(204 251 241 / 0.56);
+    --tick-faint: rgb(204 251 241 / 0.42);
+    --tick-border: rgb(94 234 212 / 0.16);
+    --tick-grid: rgb(255 255 255 / 0.035);
+    --tick-surface: rgb(1 28 32 / 0.2);
+    --tick-surface-strong: rgb(255 255 255 / 0.04);
   }
 
   .tick-architecture__glow {
-    position: absolute;
-    z-index: -1;
-    top: -12rem;
-    right: -8rem;
-    width: 28rem;
-    height: 28rem;
-    border-radius: 999px;
-    background: radial-gradient(circle, rgb(16 185 129 / 0.16), transparent 68%);
-    pointer-events: none;
+    display: none;
   }
 
   .tick-architecture__header {
@@ -585,7 +591,7 @@ const scenarios: Scenario[] = [
 
   .tick-architecture h3 {
     margin: 0;
-    color: white;
+    color: var(--tick-heading);
     font-family: "Minecraft", sans-serif;
     font-size: clamp(1.2rem, 3vw, 1.65rem);
     line-height: 1.2;
@@ -597,11 +603,11 @@ const scenarios: Scenario[] = [
     align-items: center;
     gap: 0.38rem;
     min-height: 2rem;
-    border: 1px solid rgb(255 255 255 / 0.15);
+    border: 1px solid var(--tick-border);
     border-radius: 999px;
     padding: 0.4rem 0.7rem;
-    background: rgb(255 255 255 / 0.06);
-    color: rgb(207 250 254);
+    background: var(--tick-surface-strong);
+    color: var(--tick-text);
     font-size: 0.72rem;
     font-weight: 700;
     line-height: 1;
@@ -638,10 +644,10 @@ const scenarios: Scenario[] = [
     display: inline-flex;
     gap: 0.25rem;
     margin-top: 1rem;
-    border: 1px solid rgb(255 255 255 / 0.09);
+    border: 1px solid var(--tick-border);
     border-radius: 0.8rem;
     padding: 0.25rem;
-    background: rgb(0 0 0 / 0.16);
+    background: var(--tick-surface);
   }
 
   .tick-architecture__scenario-picker button {
@@ -649,7 +655,7 @@ const scenarios: Scenario[] = [
     border-radius: 0.58rem;
     padding: 0.48rem 0.72rem;
     background: transparent;
-    color: rgb(165 186 194);
+    color: var(--tick-muted);
     font-size: 0.72rem;
     font-weight: 700;
     line-height: 1.1;
@@ -657,13 +663,13 @@ const scenarios: Scenario[] = [
   }
 
   .tick-architecture__scenario-picker button:hover {
-    color: white;
+    color: var(--tick-heading);
   }
 
   .tick-architecture__scenario-picker button[aria-pressed="true"] {
-    background: rgb(13 148 136 / 0.28);
+    background: rgb(13 148 136 / 0.16);
     box-shadow: inset 0 0 0 1px rgb(94 234 212 / 0.14);
-    color: rgb(204 251 241);
+    color: var(--tick-heading);
   }
 
   .tick-architecture__scenario[hidden] {
@@ -674,7 +680,7 @@ const scenarios: Scenario[] = [
     position: relative;
     height: 1.4rem;
     margin: 1rem 0 0.15rem 8.3rem;
-    color: rgb(148 179 188);
+    color: var(--tick-muted);
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.62rem;
     font-variant-numeric: tabular-nums;
@@ -723,8 +729,8 @@ const scenarios: Scenario[] = [
     background: linear-gradient(
       to bottom,
       transparent,
-      rgb(255 255 255 / 0.18) 10%,
-      rgb(255 255 255 / 0.18) 90%,
+      var(--tick-border) 10%,
+      var(--tick-border) 90%,
       transparent
     );
   }
@@ -788,15 +794,15 @@ const scenarios: Scenario[] = [
   }
 
   .tick-architecture__lane-label strong {
-    color: rgb(226 252 250);
-    font-size: 0.72rem;
+    color: var(--tick-heading);
+    font-size: 0.76rem;
   }
 
   .tick-architecture__lane-label span {
     overflow: hidden;
     margin-top: 0.18rem;
-    color: rgb(121 153 161);
-    font-size: 0.59rem;
+    color: var(--tick-faint);
+    font-size: 0.62rem;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -805,17 +811,17 @@ const scenarios: Scenario[] = [
     position: relative;
     height: 3.35rem;
     overflow: hidden;
-    border: 1px solid rgb(255 255 255 / 0.07);
+    border: 1px solid var(--tick-border);
     border-radius: 0.7rem;
     background:
       repeating-linear-gradient(
         90deg,
         transparent 0,
         transparent calc(8.333% - 1px),
-        rgb(255 255 255 / 0.025) calc(8.333% - 1px),
-        rgb(255 255 255 / 0.025) 8.333%
+        var(--tick-grid) calc(8.333% - 1px),
+        var(--tick-grid) 8.333%
       ),
-      rgb(0 0 0 / 0.17);
+      var(--tick-surface);
   }
 
   .tick-architecture__event {
@@ -837,7 +843,7 @@ const scenarios: Scenario[] = [
     border-radius: 0.42rem;
     padding-inline: 0.4rem;
     background: rgb(var(--event-color) / 0.09);
-    color: rgb(229 255 252);
+    color: var(--tick-heading);
     line-height: 1.05;
     opacity: 0.68;
     transition: opacity 180ms ease, box-shadow 180ms ease, transform 180ms ease;
@@ -876,13 +882,13 @@ const scenarios: Scenario[] = [
   }
 
   .tick-architecture__event-label {
-    font-size: 0.62rem;
+    font-size: 0.66rem;
     font-weight: 800;
   }
 
   .tick-architecture__event-detail {
     margin-top: 0.18rem;
-    color: rgb(225 255 251 / 0.61);
+    color: var(--tick-muted);
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.52rem;
   }
@@ -938,18 +944,16 @@ const scenarios: Scenario[] = [
   .tick-architecture__explanation {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
-    gap: 0.75rem;
+    gap: 0.8rem;
     align-items: flex-start;
-    margin: 1rem 0 0;
-    border: 1px solid rgb(52 211 153 / 0.15);
-    border-radius: 0.8rem;
-    padding: 0.8rem 0.9rem;
-    background: rgb(16 185 129 / 0.06);
+    margin: 1.2rem 0 0;
+    border: 0;
+    border-left: 2px solid rgb(16 185 129 / 0.5);
+    padding: 0.2rem 0 0.2rem 1rem;
   }
 
   .tick-architecture__explanation--warning {
-    border-color: rgb(251 191 36 / 0.17);
-    background: rgb(251 191 36 / 0.055);
+    border-color: rgb(245 158 11 / 0.6);
   }
 
   .tick-architecture__status-dot {
@@ -989,22 +993,23 @@ const scenarios: Scenario[] = [
   }
 
   .tick-architecture__explanation strong {
-    color: white;
-    font-size: 0.77rem;
+    color: var(--tick-heading);
+    font-size: 0.82rem;
     line-height: 1.35;
   }
 
   .tick-architecture__explanation span {
     margin-top: 0.2rem;
-    color: rgb(173 202 207);
-    font-size: 0.68rem;
-    line-height: 1.5;
+    color: var(--tick-muted);
+    font-size: 0.76rem;
+    line-height: 1.55;
   }
 
   .tick-architecture figcaption {
-    margin-top: 0.9rem;
-    color: rgb(137 167 174);
-    font-size: 0.64rem;
+    max-width: 47rem;
+    margin: 1.1rem auto 0;
+    color: var(--tick-faint);
+    font-size: 0.76rem;
     font-style: italic;
     line-height: 1.55;
     text-align: center;
@@ -1012,8 +1017,8 @@ const scenarios: Scenario[] = [
 
   @media (max-width: 640px) {
     .tick-architecture {
-      border-radius: 1rem;
-      padding: 1rem;
+      margin-block: 2.25rem;
+      padding-block: 1.25rem;
     }
 
     .tick-architecture__header {
