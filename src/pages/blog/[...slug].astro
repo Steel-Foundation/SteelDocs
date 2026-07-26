@@ -32,6 +32,13 @@ const formatDate = (date: Date) =>
 <BlogLayout
   title={`${post.data.title} - SteelMC Blog`}
   description={post.data.description}
+  socialTitle={post.data.title}
+  socialImage={post.data.socialImage?.src}
+  socialImageAlt={post.data.socialImage?.alt}
+  pageType="article"
+  publishedAt={post.data.publishedAt}
+  updatedAt={post.data.updatedAt}
+  author={post.data.author}
 >
   <main class="relative z-10 mx-auto min-h-screen max-w-280 px-6 pb-24 pt-28">
     <a

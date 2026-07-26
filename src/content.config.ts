@@ -8,7 +8,7 @@ export const collections = {
   docs: defineCollection({ loader: docsLoader(), schema: docsSchema() }),
   blog: defineCollection({
     loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
-    schema: z.object({
+    schema: ({ image }) => z.object({
       title: z.string(),
       description: z.string(),
       publishedAt: z.coerce.date(),
@@ -17,6 +17,10 @@ export const collections = {
       category: z.string().default("News"),
       featured: z.boolean().default(false),
       placeholder: z.boolean().default(false),
+      socialImage: z.object({
+        src: image(),
+        alt: z.string().min(1),
+      }).optional(),
     }),
   }),
   i18n: defineCollection({ loader: i18nLoader(), schema: i18nSchema({

@@ -1,16 +1,45 @@
 ---
+import type { ImageMetadata } from "astro";
 import Layout from "@/layouts/Layout.astro";
 import Navbar from "@/components/sections/Navbar.astro";
 
 interface Props {
   title: string;
   description: string;
+  socialTitle?: string;
+  socialImage?: ImageMetadata;
+  socialImageAlt?: string;
+  pageType?: "website" | "article";
+  publishedAt?: Date;
+  updatedAt?: Date;
+  author?: string;
 }
 
-const { title, description } = Astro.props;
+const {
+  title,
+  description,
+  socialTitle,
+  socialImage,
+  socialImageAlt,
+  pageType,
+  publishedAt,
+  updatedAt,
+  author,
+} = Astro.props;
 ---
 
-<Layout title={title} description={description} animatedBackground={false}>
+<Layout
+  title={title}
+  description={description}
+  socialTitle={socialTitle}
+  socialImage={socialImage}
+  socialImageAlt={socialImageAlt}
+  pageType={pageType}
+  publishedAt={publishedAt}
+  updatedAt={updatedAt}
+  author={author}
+  animatedBackground={false}
+>
   <Navbar />
   <slot />
 
