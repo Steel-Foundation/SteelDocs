@@ -103,6 +103,9 @@ async function barChart(
     const y = 142 + index * 92;
     const average = mean(values[server]);
     const barWidth = (width * average) / maximum;
+    const markerXs = values[server].map(
+      (value: number) => left + (width * value) / maximum,
+    );
     parts.push(
       `<text x="48" y="${y + 7}" font-size="17" font-weight="650">${labels[server]}</text>`,
     );
@@ -112,16 +115,17 @@ async function barChart(
     parts.push(
       `<rect x="${left}" y="${y - 16}" width="${barWidth.toFixed(1)}" height="32" rx="8" fill="${colors[server]}"/>`,
     );
-    values[server].forEach((value: number, trial: number) => {
-      const x = left + (width * value) / maximum;
+    markerXs.forEach((x: number, trial: number) => {
       parts.push(
         `<circle cx="${x.toFixed(1)}" cy="${y + [-5, 0, 5][trial]}" r="4" fill="#ffffff" stroke="${colors[server]}" stroke-width="2"/>`,
       );
     });
-    const labelX =
-      barWidth > width * 0.65 ? left + barWidth - 165 : left + barWidth + 12;
+    const inside = barWidth > width * 0.65;
+    const labelX = inside
+      ? Math.min(...markerXs) - 12
+      : Math.max(left + barWidth, ...markerXs) + 12;
     parts.push(
-      `<text x="${labelX.toFixed(1)}" y="${y + 6}" font-size="15" font-weight="700">${average.toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 })} ${unit}</text>`,
+      `<text x="${labelX.toFixed(1)}" y="${y + 6}" text-anchor="${inside ? "end" : "start"}" font-size="15" font-weight="700">${average.toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 })} ${unit}</text>`,
     );
   });
   await writeFile(join(output, filename), document(parts.join("")));
