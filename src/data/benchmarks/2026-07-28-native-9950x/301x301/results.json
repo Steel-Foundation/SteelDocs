@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "created_at": "2026-07-28T09:23:40.415Z",
+    "created_at": "2026-07-28T15:09:50.695Z",
     "minecraft": "26.2",
     "seed": "8500081009970950196",
     "side_chunks": 301,
@@ -8,11 +8,11 @@
     "runs_per_server": 1,
     "sample_interval_ms": 250,
     "world_storage": "/tmp (fresh directory for every trial)",
-    "steel_commit": "cc2f577dd16b8a9099aefc5163a48dc6bf8aeddf",
+    "steel_commit": "c9f6a90b843a984b7c2c522ed7418098083c4780",
     "steel_worktree_dirty": false,
     "steel_worktree_diff_sha512": "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e",
     "steel_binary_sha512": "68c8e6b4be8a09a9f9aacf9444d1e33545d85066f8cd8fc510368abbbbf2ea3f5124de61da1422beb2919e1bc534246b6103e81cc724e0800b4e3858d6e7469a",
-    "steel_binary_modified_at": "2026-07-28T09:04:52.154Z",
+    "steel_binary_modified_at": "2026-07-28T15:03:42.578Z",
     "steel_pregen_window_size": "64",
     "fabric_loader": "0.19.3",
     "chunky": "1.5.3",
@@ -34,25 +34,25 @@
       "server": "steel",
       "run": 1,
       "chunks": 90601,
-      "wall_seconds": 32.58687315,
-      "chunks_per_second": 2780.2913026652263,
-      "reported_seconds": 32.58,
-      "reported_chunks_per_second": 2780.6,
-      "cpu_seconds": 942.92,
-      "average_cpu_cores": 28.935577699022033,
-      "peak_rss_bytes": 4243406848
+      "wall_seconds": 32.143490586999995,
+      "chunks_per_second": 2818.642230369416,
+      "reported_seconds": 32.14,
+      "reported_chunks_per_second": 2819,
+      "cpu_seconds": 945.09,
+      "average_cpu_cores": 29.40222056599631,
+      "peak_rss_bytes": 4273569792
     },
     {
       "server": "fabric",
       "run": 1,
       "chunks": 90601,
-      "wall_seconds": 533.793159778,
-      "chunks_per_second": 169.73053764435682,
+      "wall_seconds": 517.3854998329999,
+      "chunks_per_second": 175.11314103167544,
       "reported_seconds": null,
       "reported_chunks_per_second": null,
-      "cpu_seconds": 2184.28,
-      "average_cpu_cores": 4.091996984203439,
-      "peak_rss_bytes": 3113091072
+      "cpu_seconds": 2122.81,
+      "average_cpu_cores": 4.1029561143193884,
+      "peak_rss_bytes": 3594485760
     }
   ]
 }

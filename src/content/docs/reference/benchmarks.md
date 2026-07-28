@@ -9,20 +9,20 @@ Steel's first published benchmark focuses on the work it currently does best: ge
 Throughout this page, **Fabric** means a Minecraft Java Edition 26.2 server with Fabric Loader, Fabric API, and Chunky, but no performance mods. We use it as a repeatable stand-in for vanilla: Chunky defines a fixed pregeneration area while Minecraft's vanilla world generator does the work.
 :::
 
-On this machine, Steel generated the 10,201-chunk test area **18.7 times as fast as Fabric** across three runs.
+On this machine, Steel generated the 10,201-chunk test area **18.8 times as fast as Fabric** across three runs.
 
 | Server | Median time |  Mean throughput | Median peak RSS | Mean CPU use |
 | ------ | ----------: | ---------------: | --------------: | -----------: |
-| Steel  |      3.98 s | 2,555.6 chunks/s |        1.79 GiB |   30.0 cores |
-| Fabric |     74.40 s |   136.7 chunks/s |        2.40 GiB |    4.3 cores |
+| Steel  |      3.95 s | 2,581.8 chunks/s |        1.79 GiB |   30.2 cores |
+| Fabric |     74.42 s |   137.2 chunks/s |        2.47 GiB |    4.4 cores |
 
 Times and memory figures are medians of three runs. Throughput and CPU use are arithmetic means. Higher throughput is better; lower time and memory are better.
 
-![A horizontal bar chart showing Steel at 2,555.6 chunks per second and Fabric at 136.7.](../../../assets/benchmarks/chunk-generation-throughput.svg)
+![A horizontal bar chart showing Steel at 2,581.8 chunks per second and Fabric at 137.2.](../../../assets/benchmarks/chunk-generation-throughput.svg)
 
-Parallelism is a large part of the result. Steel kept an average of 30.0 logical CPU cores busy during the measured interval, compared with 4.3 for Fabric.
+Parallelism is a large part of the result. Steel kept an average of 30.2 logical CPU cores busy during the measured interval, compared with 4.4 for Fabric.
 
-![A horizontal bar chart showing average CPU use of 30.0 cores for Steel and 4.3 for Fabric.](../../../assets/benchmarks/chunk-generation-cpu.svg)
+![A horizontal bar chart showing average CPU use of 30.2 cores for Steel and 4.4 for Fabric.](../../../assets/benchmarks/chunk-generation-cpu.svg)
 
 ### Adjusted for CPU use
 
@@ -30,18 +30,18 @@ Dividing throughput by average CPU use gives a rough measure of work completed p
 
 | Server | Chunks per CPU-second | Relative to Fabric |
 | ------ | --------------------: | -----------------: |
-| Steel  |                 85.29 |              2.71× |
-| Fabric |                 31.53 |              1.00× |
+| Steel  |                 85.51 |              2.75× |
+| Fabric |                 31.15 |              1.00× |
 
-This adjustment narrows the headline gap, but does not remove it: Steel generated about **2.71 times as many chunks per CPU-second as Fabric**. It is not a substitute for wall-clock throughput—unused cores cannot make a generation job finish sooner—but it gives a rough view of per-core efficiency alongside parallel scaling in this CPU-bound test.
+This adjustment narrows the headline gap, but does not remove it: Steel generated about **2.75 times as many chunks per CPU-second as Fabric**. It is not a substitute for wall-clock throughput—unused cores cannot make a generation job finish sooner—but it gives a rough view of per-core efficiency alongside parallel scaling in this CPU-bound test.
 
 ## Memory use
 
-Peak resident memory was lowest for Steel in this test. Its median peak was 1.79 GiB, compared with 2.40 GiB for Fabric.
+Peak resident memory was lowest for Steel in this test. Its median peak was 1.79 GiB, compared with 2.47 GiB for Fabric.
 
 The graph below uses the median-duration run from each server. A line ending earlier means that server finished generation earlier; it does not mean memory fell to zero.
 
-![A line chart of resident memory over time. Steel finishes after about 4.0 seconds near 1.8 GiB, and Fabric finishes after about 74.4 seconds near 2.4 GiB.](../../../assets/benchmarks/chunk-generation-memory.svg)
+![A line chart of resident memory over time. Steel finishes after about 4.0 seconds near 1.8 GiB, and Fabric finishes after about 74.4 seconds near 3.6 GiB.](../../../assets/benchmarks/chunk-generation-memory.svg)
 
 Resident set size measures the whole server process, not only live chunk data. For Java, this includes the JVM and committed heap pages; for Steel, it includes the native process and allocator. The metric shows what the operating system kept in memory during this workload, but it does not directly compare Java heap usage with Rust allocations.
 
@@ -51,12 +51,12 @@ We also ran each server once over a 301-by-301 area: 90,601 chunks, or 8.88 time
 
 | Server |    Time |       Throughput | Peak RSS | Average CPU use | Chunks per CPU-second |
 | ------ | ------: | ---------------: | -------: | --------------: | --------------------: |
-| Steel  | 32.59 s | 2,780.3 chunks/s | 3.95 GiB |      28.9 cores |                 96.09 |
-| Fabric | 8:53.79 |   169.7 chunks/s | 2.90 GiB |       4.1 cores |                 41.48 |
+| Steel  | 32.14 s | 2,818.6 chunks/s | 3.98 GiB |      29.4 cores |                 95.86 |
+| Fabric | 8:37.39 |   175.1 chunks/s | 3.35 GiB |       4.1 cores |                 42.68 |
 
-Steel was **16.38 times as fast as Fabric** in this run. After dividing by average CPU use, Steel completed **2.32 times as many chunks per CPU-second as Fabric**.
+Steel was **16.10 times as fast as Fabric** in this run. After dividing by average CPU use, Steel completed **2.25 times as many chunks per CPU-second as Fabric**.
 
-Both servers posted higher throughput over the larger area: Steel improved by 8.8%, and Fabric by 24.2% relative to their 101-by-101 means. Peak RSS is not directly comparable across region sizes because larger runs keep more generated and pending chunk data resident.
+Both servers posted higher throughput over the larger area: Steel improved by 9.2%, and Fabric by 27.6% relative to their 101-by-101 means. Peak RSS is not directly comparable across region sizes because larger runs keep more generated and pending chunk data resident.
 
 ![A grouped horizontal bar chart comparing mean 101-by-101 throughput with one 301-by-301 run for Steel and Fabric.](../../../assets/benchmarks/chunk-generation-scaling.svg)
 
@@ -89,7 +89,7 @@ Steel's measured interval starts at `Preparing spawn area` and ends at `Spawn ar
 
 | Component     | Version                                                          |
 | ------------- | ---------------------------------------------------------------- |
-| Steel         | commit `cc2f577dd16b8a9099aefc5163a48dc6bf8aeddf`, clean worktree |
+| Steel         | commit `c9f6a90b843a984b7c2c522ed7418098083c4780`, clean worktree |
 | Fabric Loader | 0.19.3                                                           |
 | Fabric API    | 0.155.2+26.2                                                     |
 | Chunky        | 1.5.3                                                            |
@@ -132,12 +132,12 @@ bun run benchmark:render
 
 | Server | Run |     Time |       Throughput | Peak RSS | Average CPU use |
 | ------ | --: | -------: | ---------------: | -------: | --------------: |
-| Steel  |   1 |  4.018 s | 2,538.5 chunks/s | 1.78 GiB |     29.83 cores |
-| Steel  |   2 |  3.972 s | 2,568.5 chunks/s | 1.79 GiB |     30.11 cores |
-| Steel  |   3 |  3.985 s | 2,560.0 chunks/s | 1.80 GiB |     29.95 cores |
-| Fabric |   1 | 75.560 s |   135.0 chunks/s | 2.40 GiB |      4.32 cores |
-| Fabric |   2 | 73.994 s |   137.9 chunks/s | 2.40 GiB |      4.30 cores |
-| Fabric |   3 | 74.396 s |   137.1 chunks/s | 2.39 GiB |      4.39 cores |
+| Steel  |   1 |  3.940 s | 2,588.9 chunks/s | 1.79 GiB |     30.19 cores |
+| Steel  |   2 |  3.959 s | 2,576.7 chunks/s | 1.79 GiB |     30.17 cores |
+| Steel  |   3 |  3.954 s | 2,579.9 chunks/s | 1.80 GiB |     30.22 cores |
+| Fabric |   1 | 75.088 s |   135.9 chunks/s | 2.35 GiB |      4.42 cores |
+| Fabric |   2 | 74.419 s |   137.1 chunks/s | 3.63 GiB |      4.40 cores |
+| Fabric |   3 | 73.547 s |   138.7 chunks/s | 2.47 GiB |      4.40 cores |
 
 The 301-by-301 table above contains one run per server, so it is not repeated here.
 
@@ -146,7 +146,7 @@ The machine-readable source data used for the tables and graphs is stored alongs
 ## Limitations
 
 :::caution[Read this before quoting the results]
-This is a focused world-generation benchmark, not a claim that Steel is 18.7 times faster at every server workload.
+This is a focused world-generation benchmark, not a claim that Steel is 18.8 times faster at every server workload.
 :::
 
 - **The repeated area is intentionally modest.** The 101-by-101 test was chosen so vanilla Fabric could be repeated three times. The 301-by-301 result demonstrates warmup effects, but it is only one run and should not be treated as a stable average.
