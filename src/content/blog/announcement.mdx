@@ -107,6 +107,17 @@ Those headline numbers need context. Steel used an average of 30.0 logical CPU c
 
 This is a focused world-generation benchmark on one machine, not a claim that Steel is 18.7 times faster at every server workload. Steel also leaves out entity spawning while Fabric performs that stage. The [full benchmark](/reference/benchmarks/) includes the methodology, individual runs, memory results, raw data, reproduction instructions, and further limitations. These performance measurements are separate from the block-by-block parity tests described above.
 
+<iframe
+  src="https://www.youtube-nocookie.com/embed/T_7zQ75xBEc"
+  title="Unedited in-game Steel chunk-generation speed test"
+  loading="lazy"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+></iframe>
+
+*An unedited in-game test of Steel generating and sending chunks while moving through the world, using a 32-chunk render distance and a 10-chunk simulation distance. This is a visual demonstration, not the controlled benchmark described above.*
+
 ## Keeping the game tick moving
 
 Vanilla is famous for its main thread. The design provides a valuable guarantee: while a game tick is running, the world does not change underneath it. The cost is that unrelated work can hold up the entire server.
