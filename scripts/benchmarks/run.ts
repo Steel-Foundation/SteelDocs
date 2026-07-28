@@ -37,7 +37,7 @@ const FABRIC_API = {
     "cc56984378a27c5bcd56374d6ffbb27a45c6bf3355add2ac6be9817ccac5854362249bf9d0147eb271a70fda2716129204e240d53c9aa876a2a7861f4c7f880f",
 };
 
-type Profile = "all" | "steel" | "fabric" | "fabric-c2me";
+type Profile = "all" | "steel" | "fabric";
 type Options = {
   steel: string;
   fabric: string;
@@ -50,7 +50,6 @@ type Options = {
   javaMaxHeap: string;
   cache: string;
   profile: Profile;
-  c2meJar?: string;
 };
 type Sample = {
   server: string;
@@ -89,7 +88,7 @@ Required:
   --output PATH            Results directory
 
 Options:
-  --profile NAME           all, steel, fabric, or fabric-c2me (default: all)
+  --profile NAME           all, steel, or fabric (default: all)
   --runs N                 Trials per profile (default: 3)
   --side N                 Positive odd square side in chunks (default: 101)
   --sample-ms N            /proc sampling interval (default: 250)
@@ -97,7 +96,6 @@ Options:
   --java-min-heap SIZE     Fabric initial heap (default: 512M)
   --java-max-heap SIZE     Fabric maximum heap (default: 8G)
   --cache PATH             Download cache (default: /tmp/steel-benchmark-cache)
-  --c2me-jar PATH          C2ME jar; required for fabric-c2me
   --help                    Show this help
 
 Steel reads PREGEN_WINDOW_SIZE from the environment. PREGEN_SIZE is set from --side.
@@ -112,11 +110,25 @@ function parseArgs(argv: string[]): Options {
     process.exit(0);
   }
   const values = new Map<string, string>();
+  const validOptions = new Set([
+    "--steel",
+    "--fabric",
+    "--output",
+    "--profile",
+    "--runs",
+    "--side",
+    "--sample-ms",
+    "--cooldown",
+    "--java-min-heap",
+    "--java-max-heap",
+    "--cache",
+  ]);
   for (let index = 0; index < argv.length; index += 2) {
     const key = argv[index];
     const value = argv[index + 1];
     if (!key?.startsWith("--") || value === undefined)
       throw new Error(`Invalid argument near ${key ?? "end of input"}`);
+    if (!validOptions.has(key)) throw new Error(`Unknown option ${key}`);
     values.set(key, value);
   }
   const required = (key: string) => {
@@ -130,7 +142,7 @@ function parseArgs(argv: string[]): Options {
     return value;
   };
   const profile = (values.get("--profile") ?? "all") as Profile;
-  if (!["all", "steel", "fabric", "fabric-c2me"].includes(profile))
+  if (!["all", "steel", "fabric"].includes(profile))
     throw new Error(`Invalid --profile: ${profile}`);
   const options: Options = {
     steel: required("--steel"),
@@ -146,9 +158,6 @@ function parseArgs(argv: string[]): Options {
       values.get("--cache") ?? join(tmpdir(), "steel-benchmark-cache"),
     ),
     profile,
-    c2meJar: values.get("--c2me-jar")
-      ? resolve(values.get("--c2me-jar")!)
-      : undefined,
   };
   if (
     !Number.isInteger(options.side) ||
@@ -160,8 +169,6 @@ function parseArgs(argv: string[]): Options {
     throw new Error("--runs must be a positive integer");
   if (options.sampleMs <= 0 || options.cooldown < 0)
     throw new Error("Sampling and cooldown values must be non-negative");
-  if (options.profile === "fabric-c2me" && !options.c2meJar)
-    throw new Error("--profile fabric-c2me requires --c2me-jar");
   if (options.profile !== "steel" && !options.fabric)
     throw new Error("--fabric is required for Fabric profiles");
   return options;
@@ -243,7 +250,6 @@ async function prepareFabric(
   chunky: string,
   api: string,
   port: number,
-  extraMods: string[],
 ): Promise<Prepared> {
   const work = await mkdtemp(join(tmpdir(), "steel-benchmark-fabric."));
   const entries = (await readdir(options.fabric)).filter((entry) =>
@@ -265,7 +271,7 @@ async function prepareFabric(
     });
   } catch {}
   await mkdir(join(work, "mods"));
-  for (const mod of [chunky, api, ...extraMods])
+  for (const mod of [chunky, api])
     await copyFile(mod, join(work, "mods", basename(mod)));
   await writeFile(join(work, "eula.txt"), "eula=true\n");
   let properties = await readFile(
@@ -544,12 +550,6 @@ async function writeOutputs(
 async function main() {
   const options = parseArgs(process.argv.slice(2));
   await mkdir(join(options.output, "raw"), { recursive: true });
-  const steelWorlds = await readFile(
-    join(options.steel, "config/worlds.toml"),
-    "utf8",
-  );
-  if (!steelWorlds.match(new RegExp(`^seed\\s*=\\s*"${SEED}"`, "m")))
-    throw new Error(`Steel worlds.toml no longer uses benchmark seed ${SEED}`);
   const needsFabric = options.profile !== "steel";
   const chunky = needsFabric ? await fetchArtifact(CHUNKY, options.cache) : "";
   const api = needsFabric ? await fetchArtifact(FABRIC_API, options.cache) : "";
@@ -608,21 +608,13 @@ async function main() {
       ]),
     },
   };
-  if (options.c2meJar)
-    metadata.c2me = {
-      filename: basename(options.c2meJar),
-      sha512: await sha512(options.c2meJar),
-    };
-
   const trials: Trial[] = [];
   for (let run = 1; run <= options.runs; run++) {
     let order: Exclude<Profile, "all">[];
     if (options.profile !== "all") {
       order = [options.profile];
     } else {
-      const profiles: Exclude<Profile, "all">[] = options.c2meJar
-        ? ["steel", "fabric-c2me", "fabric"]
-        : ["steel", "fabric"];
+      const profiles: Exclude<Profile, "all">[] = ["steel", "fabric"];
       const offset = (run - 1) % profiles.length;
       order = [...profiles.slice(offset), ...profiles.slice(0, offset)];
     }
@@ -631,13 +623,7 @@ async function main() {
       const prepared =
         server === "steel"
           ? await prepareSteel(options.steel, port)
-          : await prepareFabric(
-              options,
-              chunky,
-              api,
-              port,
-              server === "fabric-c2me" ? [options.c2meJar!] : [],
-            );
+          : await prepareFabric(options, chunky, api, port);
       trials.push(await runTrial(server, run, options, prepared));
       await writeOutputs(options.output, metadata, trials);
       const finalTrial = run === options.runs && index === order.length - 1;

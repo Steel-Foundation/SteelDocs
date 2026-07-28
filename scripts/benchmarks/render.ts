@@ -10,18 +10,16 @@ type Row = Record<string, string | number | null>;
 type Results = { metadata: Record<string, unknown>; trials: Row[] };
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
-const defaultData = join(root, "src/data/benchmarks/2026-07-26-native-9950x");
+const defaultData = join(root, "src/data/benchmarks/2026-07-28-native-9950x");
 const defaultScalingData = join(defaultData, "301x301");
 const output = join(root, "src/assets/benchmarks");
-const order = ["steel", "fabric-c2me", "fabric"];
+const order = ["steel", "fabric"];
 const labels: Record<string, string> = {
   steel: "Steel",
-  "fabric-c2me": "Fabric + C2ME",
   fabric: "Fabric",
 };
 const colors: Record<string, string> = {
   steel: "#14b8a6",
-  "fabric-c2me": "#8b5cf6",
   fabric: "#f59e0b",
 };
 
@@ -82,11 +80,16 @@ async function barChart(
   unit: string,
   maximum: number,
   filename: string,
+  labelsInside = true,
 ) {
   const values = grouped(trials, field);
   const left = 215,
     right = 905,
-    width = right - left;
+    width = right - left,
+    firstRowY = 140,
+    rowGap = 80,
+    plotBottom = firstRowY + (order.length - 1) * rowGap + 32,
+    tickY = plotBottom + 26;
   const parts = [
     `<text x="48" y="48" font-size="26" font-weight="700">${title}</text>`,
     `<text x="48" y="76" font-size="14" class="muted">${subtitle}</text>`,
@@ -94,13 +97,15 @@ async function barChart(
   for (let tick = 0; tick < 5; tick++) {
     const value = (maximum * tick) / 4,
       x = left + (width * tick) / 4;
-    parts.push(`<line x1="${x}" y1="104" x2="${x}" y2="382" class="grid"/>`);
     parts.push(
-      `<text x="${x}" y="408" text-anchor="middle" font-size="12" class="muted">${value.toLocaleString("en-US", { maximumFractionDigits: 0 })}</text>`,
+      `<line x1="${x}" y1="104" x2="${x}" y2="${plotBottom}" class="grid"/>`,
+    );
+    parts.push(
+      `<text x="${x}" y="${tickY}" text-anchor="middle" font-size="12" class="muted">${value.toLocaleString("en-US", { maximumFractionDigits: 0 })}</text>`,
     );
   }
   order.forEach((server, index) => {
-    const y = 142 + index * 92;
+    const y = firstRowY + index * rowGap;
     const average = mean(values[server]);
     const barWidth = (width * average) / maximum;
     const markerXs = values[server].map(
@@ -120,7 +125,7 @@ async function barChart(
         `<circle cx="${x.toFixed(1)}" cy="${y + [-5, 0, 5][trial]}" r="4" fill="#ffffff" stroke="${colors[server]}" stroke-width="2"/>`,
       );
     });
-    const inside = barWidth > width * 0.65;
+    const inside = labelsInside && barWidth > width * 0.65;
     const labelX = inside
       ? Math.min(...markerXs) - 12
       : Math.max(left + barWidth, ...markerXs) + 12;
@@ -128,7 +133,10 @@ async function barChart(
       `<text x="${labelX.toFixed(1)}" y="${y + 6}" text-anchor="${inside ? "end" : "start"}" font-size="15" font-weight="700">${average.toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 })} ${unit}</text>`,
     );
   });
-  await writeFile(join(output, filename), document(parts.join("")));
+  await writeFile(
+    join(output, filename),
+    document(parts.join(""), tickY + 26),
+  );
 }
 
 async function memoryChart(trials: Row[], samples: Record<string, string>[]) {
@@ -143,10 +151,20 @@ async function memoryChart(trials: Row[], samples: Record<string, string>[]) {
   const left = 90,
     right = 910,
     top = 105,
-    bottom = 365;
+    bottom = 325;
   const width = right - left,
     height = bottom - top;
-  const longest = Math.max(...trials.map((row) => Number(row.wall_seconds)));
+  const longest = Math.max(
+    ...order.map((server) =>
+      Number(
+        trials.find(
+          (row) =>
+            row.server === server &&
+            Number(row.run) === medianRuns[server],
+        )?.wall_seconds ?? 0,
+      ),
+    ),
+  );
   const maxSeconds = Math.ceil(longest / 15) * 15,
     maxGib = 4;
   const parts = [
@@ -160,7 +178,7 @@ async function memoryChart(trials: Row[], samples: Record<string, string>[]) {
       `<line x1="${x}" y1="${top}" x2="${x}" y2="${bottom}" class="grid"/>`,
     );
     parts.push(
-      `<text x="${x}" y="394" text-anchor="middle" font-size="12" class="muted">${seconds.toFixed(0)}s</text>`,
+      `<text x="${x}" y="354" text-anchor="middle" font-size="12" class="muted">${seconds.toFixed(0)}s</text>`,
     );
   }
   for (let tick = 0; tick < 5; tick++) {
@@ -205,18 +223,18 @@ async function memoryChart(trials: Row[], samples: Record<string, string>[]) {
       );
     }
   });
-  [315, 475, 680].forEach((x, index) => {
+  [385, 570].forEach((x, index) => {
     const server = order[index];
     parts.push(
-      `<line x1="${x}" y1="425" x2="${x + 28}" y2="425" stroke="${colors[server]}" stroke-width="4"/>`,
+      `<line x1="${x}" y1="388" x2="${x + 28}" y2="388" stroke="${colors[server]}" stroke-width="4"/>`,
     );
     parts.push(
-      `<text x="${x + 38}" y="430" font-size="14">${labels[server]}</text>`,
+      `<text x="${x + 38}" y="393" font-size="14">${labels[server]}</text>`,
     );
   });
   await writeFile(
     join(output, "chunk-generation-memory.svg"),
-    document(parts.join(""), 455),
+    document(parts.join(""), 415),
   );
 }
 
@@ -224,7 +242,8 @@ async function scalingChart(shortTrials: Row[], longTrials: Row[]) {
   const left = 215,
     right = 905,
     width = right - left,
-    maximum = 3000;
+    maximum = 3500,
+    plotBottom = 292;
   const parts = [
     '<text x="48" y="48" font-size="26" font-weight="700">Throughput at larger region sizes</text>',
     '<text x="48" y="76" font-size="14" class="muted">101×101: mean of three cold runs · 301×301: one cold run</text>',
@@ -232,9 +251,11 @@ async function scalingChart(shortTrials: Row[], longTrials: Row[]) {
   for (let tick = 0; tick < 5; tick++) {
     const value = (maximum * tick) / 4,
       x = left + (width * tick) / 4;
-    parts.push(`<line x1="${x}" y1="104" x2="${x}" y2="425" class="grid"/>`);
     parts.push(
-      `<text x="${x}" y="451" text-anchor="middle" font-size="12" class="muted">${value.toLocaleString("en-US")}</text>`,
+      `<line x1="${x}" y1="104" x2="${x}" y2="${plotBottom}" class="grid"/>`,
+    );
+    parts.push(
+      `<text x="${x}" y="320" text-anchor="middle" font-size="12" class="muted">${value.toLocaleString("en-US")}</text>`,
     );
   }
   order.forEach((server, index) => {
@@ -257,22 +278,21 @@ async function scalingChart(shortTrials: Row[], longTrials: Row[]) {
       [long, 17, 1, "301×301"],
     ] as const) {
       const barWidth = (width * value) / maximum;
-      const inside = barWidth > width * 0.7;
-      const labelX = inside ? right - 12 : left + barWidth + 9;
+      const labelX = left + barWidth + 9;
       parts.push(
         `<rect x="${left}" y="${y + offset - 10}" width="${barWidth.toFixed(1)}" height="20" rx="5" fill="${colors[server]}" opacity="${opacity}"/>`,
       );
       parts.push(
-        `<text x="${labelX.toFixed(1)}" y="${y + offset + 5}" text-anchor="${inside ? "end" : "start"}" font-size="12" font-weight="650">${value.toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 })} · ${size}</text>`,
+        `<text x="${labelX.toFixed(1)}" y="${y + offset + 5}" text-anchor="start" font-size="12" font-weight="650">${value.toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 })} · ${size}</text>`,
       );
     }
   });
   parts.push(
-    '<text x="560" y="486" text-anchor="middle" font-size="12" class="muted">chunks per second</text>',
+    '<text x="560" y="354" text-anchor="middle" font-size="12" class="muted">chunks per second</text>',
   );
   await writeFile(
     join(output, "chunk-generation-scaling.svg"),
-    document(parts.join(""), 510),
+    document(parts.join(""), 374),
   );
 }
 
@@ -325,6 +345,7 @@ async function main() {
   const throughputMax =
     Math.ceil(
       Math.max(...results.trials.map((row) => Number(row.chunks_per_second))) /
+        0.8 /
         500,
     ) * 500;
   await barChart(
@@ -335,6 +356,7 @@ async function main() {
     "chunks/s",
     throughputMax,
     "chunk-generation-throughput.svg",
+    false,
   );
   await barChart(
     results.trials,

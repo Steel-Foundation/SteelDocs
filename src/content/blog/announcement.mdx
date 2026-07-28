@@ -101,13 +101,13 @@ The modding community had already explored this problem through [Starlight](http
 
 ### Measuring the result
 
-That design now has measurable results. On a Ryzen 9 9950X, Steel generated a fresh 10,201-chunk Overworld area in a median of 3.96 seconds. A Fabric server using Chunky took 74.55 seconds, while adding C2ME reduced that to 18.91 seconds. Across three cold runs, Steel averaged 2,571 chunks per second. That is 18.8 times the throughput of Fabric and 4.81 times the throughput of Fabric with C2ME.
+That design now has measurable results. On a Ryzen 9 9950X, Steel generated a fresh 10,201-chunk Overworld area in a median of 3.98 seconds. A Fabric server using Chunky took 74.40 seconds. Across three cold runs, Steel averaged 2,556 chunks per second. That is 18.7 times the throughput of Fabric.
 
-![A horizontal bar chart showing Steel at 2,571.2 chunks per second, Fabric with C2ME at 534.4, and Fabric at 136.8.](@/assets/benchmarks/chunk-generation-throughput.svg "Chunk generation throughput across three cold runs")
+![A horizontal bar chart showing Steel at 2,555.6 chunks per second and Fabric at 136.7.](@/assets/benchmarks/chunk-generation-throughput.svg "Chunk generation throughput across three cold runs")
 
-Those headline numbers need context. Steel used an average of 30.1 logical CPU cores during the measured interval, compared with 13.8 for C2ME and 4.3 for Fabric. This tests parallel scaling as well as per-core efficiency. After adjusting for CPU use, Steel still generated 2.20 times as many chunks per CPU-second as C2ME and 2.69 times as many as Fabric.
+Those headline numbers need context. Steel used an average of 30.0 logical CPU cores during the measured interval, compared with 4.3 for Fabric. This tests parallel scaling as well as per-core efficiency. After adjusting for CPU use, Steel still generated 2.71 times as many chunks per CPU-second as Fabric.
 
-This is a focused world-generation benchmark on one machine, not a claim that Steel is 18.8 times faster at every server workload. Steel also leaves out entity spawning while Fabric performs that stage. The [full benchmark](/reference/benchmarks/) includes the methodology, individual runs, memory results, raw data, reproduction instructions, and further limitations. These performance measurements are separate from the block-by-block parity tests described above.
+This is a focused world-generation benchmark on one machine, not a claim that Steel is 18.7 times faster at every server workload. Steel also leaves out entity spawning while Fabric performs that stage. The [full benchmark](/reference/benchmarks/) includes the methodology, individual runs, memory results, raw data, reproduction instructions, and further limitations. These performance measurements are separate from the block-by-block parity tests described above.
 
 ## Keeping the game tick moving
 
