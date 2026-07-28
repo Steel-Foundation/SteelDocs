@@ -21,7 +21,7 @@ interface TimelineEvent {
 
 interface Lane {
   name: string;
-  note: string;
+  phases: { label: string; kind: EventKind }[];
   events: TimelineEvent[];
 }
 
@@ -34,6 +34,28 @@ interface Scenario {
   tone: "safe" | "warning";
   lanes: Lane[];
 }
+
+const packetPhases: Lane["phases"] = [
+  { label: "drain + close", kind: "closed" },
+  { label: "process packets", kind: "packets" },
+];
+
+const gamePhases: Lane["phases"] = [
+  { label: "handoff", kind: "boundary" },
+  { label: "game logic", kind: "game" },
+];
+
+const schedulerPhases: Lane["phases"] = [
+  { label: "run epoch", kind: "scheduler" },
+  { label: "ready", kind: "ready" },
+];
+
+const senderPhases: Lane["phases"] = [
+  { label: "snapshot", kind: "boundary" },
+  { label: "encode", kind: "encode" },
+  { label: "verify", kind: "verify" },
+  { label: "send", kind: "send" },
+];
 
 const packetCadence: TimelineEvent[] = [
   { label: "Drain + close", start: 0, end: 5.3, kind: "closed" },
@@ -107,22 +129,22 @@ const scenarios: Scenario[] = [
     lanes: [
       {
         name: "Packet workers",
-        note: "continuous inter-tick phase",
+        phases: packetPhases,
         events: packetCadence,
       },
       {
         name: "Game tick",
-        note: "brief synchronous phase",
+        phases: gamePhases,
         events: gameCadence,
       },
       {
         name: "Chunk scheduler",
-        note: "background epochs",
+        phases: schedulerPhases,
         events: healthyScheduler,
       },
       {
         name: "Chunk sender",
-        note: "independent 20 TPS",
+        phases: senderPhases,
         events: healthySender,
       },
     ],
@@ -138,7 +160,7 @@ const scenarios: Scenario[] = [
     lanes: [
       {
         name: "Packet workers",
-        note: "resume after every tick",
+        phases: packetPhases,
         events: [
           { label: "Drain + close", start: 0, end: 5.3, kind: "closed" },
           { label: "Packets flow continuously", start: 5.3, end: 41.5, kind: "packets" },
@@ -150,7 +172,11 @@ const scenarios: Scenario[] = [
       },
       {
         name: "Game tick",
-        note: "never waits",
+        phases: [
+          { label: "handoff", kind: "boundary" },
+          { label: "skip", kind: "skip" },
+          { label: "game logic", kind: "game" },
+        ],
         events: [
           { label: "Handoff", start: 0, end: 1.3, kind: "boundary" },
           { label: "Game logic", start: 1.3, end: 5.3, kind: "game" },
@@ -173,7 +199,7 @@ const scenarios: Scenario[] = [
       },
       {
         name: "Chunk scheduler",
-        note: "previous epoch remains authoritative",
+        phases: schedulerPhases,
         events: [
           {
             label: "Epoch A",
@@ -201,7 +227,7 @@ const scenarios: Scenario[] = [
       },
       {
         name: "Chunk sender",
-        note: "continues independently",
+        phases: senderPhases,
         events: healthySender,
       },
     ],
@@ -217,12 +243,15 @@ const scenarios: Scenario[] = [
     lanes: [
       {
         name: "Packet workers",
-        note: "continue between safe points",
+        phases: packetPhases,
         events: packetCadence,
       },
       {
         name: "Game tick",
-        note: "authoritative mutations",
+        phases: [
+          { label: "handoff", kind: "boundary" },
+          { label: "mutate state", kind: "game" },
+        ],
         events: [
           { label: "Handoff", start: 0, end: 1.3, kind: "boundary" },
           {
@@ -240,12 +269,18 @@ const scenarios: Scenario[] = [
       },
       {
         name: "Chunk scheduler",
-        note: "unaffected",
+        phases: schedulerPhases,
         events: healthyScheduler,
       },
       {
         name: "Chunk sender",
-        note: "prepare → encode → commit",
+        phases: [
+          { label: "snapshot", kind: "boundary" },
+          { label: "encode", kind: "encode" },
+          { label: "discard", kind: "skip" },
+          { label: "verify", kind: "verify" },
+          { label: "send", kind: "send" },
+        ],
         events: [
           {
             label: "Prep",
@@ -281,6 +316,7 @@ const scenarios: Scenario[] = [
     ],
   },
 ];
+
 ---
 
 <figure
@@ -300,8 +336,9 @@ const scenarios: Scenario[] = [
       class="tick-architecture__play"
       type="button"
       data-animation-toggle
-      aria-pressed="false"
-      aria-label="Pause timeline animation"
+      data-paused="true"
+      aria-pressed="true"
+      aria-label="Play timeline animation"
     >
       <svg class="tick-architecture__pause-icon" viewBox="0 0 16 16" aria-hidden="true">
         <path d="M4 3.25h2.5v9.5H4zm5.5 0H12v9.5H9.5z"></path>
@@ -309,7 +346,7 @@ const scenarios: Scenario[] = [
       <svg class="tick-architecture__play-icon" viewBox="0 0 16 16" aria-hidden="true">
         <path d="m4.75 2.75 8 5.25-8 5.25z"></path>
       </svg>
-      <span data-animation-label>Pause</span>
+      <span data-animation-label>Play</span>
     </button>
   </header>
 
@@ -353,13 +390,23 @@ const scenarios: Scenario[] = [
             <div class="tick-architecture__lane">
               <div class="tick-architecture__lane-label">
                 <strong>{lane.name}</strong>
-                <span>{lane.note}</span>
+                <span class="tick-architecture__lane-phases">
+                  {
+                    lane.phases.map((phase) => (
+                      <span
+                        class={`tick-architecture__lane-phase tick-architecture__lane-phase--${phase.kind}`}
+                      >
+                        {phase.label}
+                      </span>
+                    ))
+                  }
+                </span>
               </div>
               <div class="tick-architecture__track">
                 {lane.events.map((event) => (
                   <div
                     class={`tick-architecture__event tick-architecture__event--${event.kind}`}
-                    style={`--event-left: ${event.start}%; --event-width: ${event.end - event.start}%;`}
+                    style={`--event-left: ${event.start}%; --event-end: ${event.end}%;`}
                     data-timeline-event
                     data-start={event.start}
                     data-end={event.end}
@@ -419,12 +466,9 @@ const scenarios: Scenario[] = [
     if (!animationToggle || !animationLabel || scenarios.length === 0) return;
 
     const cycleDuration = 8_000;
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    );
     let activeScenario = scenarios[0];
-    let running = !prefersReducedMotion.matches;
-    let elapsed = running ? 0 : cycleDuration * 0.72;
+    let running = false;
+    let elapsed = 0;
     let previousFrame = performance.now();
     let animationFrame = 0;
 
@@ -514,13 +558,6 @@ const scenarios: Scenario[] = [
       render();
     });
 
-    prefersReducedMotion.addEventListener("change", (event) => {
-      if (!event.matches) return;
-      running = false;
-      setToggleState();
-      render();
-    });
-
     setToggleState();
     render();
     animationFrame = requestAnimationFrame(animate);
@@ -604,7 +641,7 @@ const scenarios: Scenario[] = [
     gap: 0.38rem;
     min-height: 2rem;
     border: 1px solid var(--tick-border);
-    border-radius: 999px;
+    border-radius: 0;
     padding: 0.4rem 0.7rem;
     background: var(--tick-surface-strong);
     color: var(--tick-text);
@@ -645,14 +682,14 @@ const scenarios: Scenario[] = [
     gap: 0.25rem;
     margin-top: 1rem;
     border: 1px solid var(--tick-border);
-    border-radius: 0.8rem;
+    border-radius: 0;
     padding: 0.25rem;
     background: var(--tick-surface);
   }
 
   .tick-architecture__scenario-picker button {
     border: 0;
-    border-radius: 0.58rem;
+    border-radius: 0;
     padding: 0.48rem 0.72rem;
     background: transparent;
     color: var(--tick-muted);
@@ -760,7 +797,6 @@ const scenarios: Scenario[] = [
       rgb(153 246 228) 88%,
       transparent
     );
-    box-shadow: 0 0 12px rgb(45 212 191 / 0.7);
   }
 
   .tick-architecture__playhead::before {
@@ -770,9 +806,8 @@ const scenarios: Scenario[] = [
     width: 0.38rem;
     height: 0.38rem;
     transform: translate(-50%, -50%);
-    border-radius: 999px;
+    border-radius: 0;
     background: rgb(153 246 228);
-    box-shadow: 0 0 0 3px rgb(45 212 191 / 0.14), 0 0 14px rgb(45 212 191);
     content: "";
   }
 
@@ -788,23 +823,75 @@ const scenarios: Scenario[] = [
     line-height: 1.15;
   }
 
-  .tick-architecture__lane-label strong,
-  .tick-architecture__lane-label span {
+  .tick-architecture__lane-label > strong,
+  .tick-architecture__lane-phases {
     display: block;
   }
 
-  .tick-architecture__lane-label strong {
+  .tick-architecture__lane-label > strong {
     color: var(--tick-heading);
     font-size: 0.76rem;
   }
 
-  .tick-architecture__lane-label span {
-    overflow: hidden;
+  .tick-architecture__lane-phases {
     margin-top: 0.18rem;
-    color: var(--tick-faint);
     font-size: 0.62rem;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    line-height: 1.3;
+  }
+
+  .tick-architecture__lane-phase {
+    color: rgb(var(--phase-light));
+  }
+
+  :global(.dark) .tick-architecture__lane-phase {
+    color: rgb(var(--phase-dark));
+  }
+
+  .tick-architecture__lane-phase:not(:last-child)::after {
+    color: var(--tick-faint);
+    content: " · ";
+  }
+
+  .tick-architecture__lane-phase--packets {
+    --phase-light: 3 105 161;
+    --phase-dark: 56 189 248;
+  }
+
+  .tick-architecture__lane-phase--closed {
+    --phase-light: 71 85 105;
+    --phase-dark: 148 163 184;
+  }
+
+  .tick-architecture__lane-phase--boundary {
+    --phase-light: 109 40 217;
+    --phase-dark: 167 139 250;
+  }
+
+  .tick-architecture__lane-phase--game,
+  .tick-architecture__lane-phase--ready,
+  .tick-architecture__lane-phase--verify {
+    --phase-light: 4 120 87;
+    --phase-dark: 52 211 153;
+  }
+
+  .tick-architecture__lane-phase--send {
+    --phase-light: 29 78 216;
+    --phase-dark: 96 165 250;
+  }
+
+  .tick-architecture__lane-phase--scheduler {
+    --phase-light: 161 98 7;
+    --phase-dark: 251 191 36;
+  }
+
+  .tick-architecture__lane-phase--encode {
+    --phase-light: 8 145 178;
+    --phase-dark: 34 211 238;
+  }
+
+  .tick-architecture__lane-phase--skip {
+    --phase-light: 190 18 60;
+    --phase-dark: 251 113 133;
   }
 
   .tick-architecture__track {
@@ -812,7 +899,7 @@ const scenarios: Scenario[] = [
     height: 3.35rem;
     overflow: hidden;
     border: 1px solid var(--tick-border);
-    border-radius: 0.7rem;
+    border-radius: 0;
     background:
       repeating-linear-gradient(
         90deg,
@@ -833,15 +920,18 @@ const scenarios: Scenario[] = [
     top: 0.42rem;
     bottom: 0.42rem;
     left: var(--event-left);
+    right: calc(100% - var(--event-end));
     display: flex;
-    width: var(--event-width);
-    min-width: 2px;
+    box-sizing: border-box;
+    min-width: 0;
+    container-name: timeline-event;
+    container-type: inline-size;
     flex-direction: column;
     justify-content: center;
     overflow: hidden;
     border: 1px solid rgb(var(--event-color) / 0.24);
-    border-radius: 0.42rem;
-    padding-inline: 0.4rem;
+    border-radius: 0;
+    padding-inline: 0;
     background: rgb(var(--event-color) / 0.09);
     color: var(--tick-heading);
     line-height: 1.05;
@@ -869,13 +959,16 @@ const scenarios: Scenario[] = [
   .tick-architecture__event[data-state="active"] {
     z-index: 2;
     border-color: rgb(var(--event-color) / 0.68);
-    box-shadow: 0 0 18px rgb(var(--event-color) / 0.16);
+    box-shadow: inset 0 0 0 1px rgb(var(--event-color) / 0.1);
     opacity: 1;
     transform: translateY(-1px);
   }
 
   .tick-architecture__event-label,
   .tick-architecture__event-detail {
+    display: block;
+    min-width: 0;
+    padding-inline: 0.4rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -891,6 +984,18 @@ const scenarios: Scenario[] = [
     color: var(--tick-muted);
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.52rem;
+  }
+
+  @container timeline-event (max-width: 7rem) {
+    .tick-architecture__event-detail {
+      display: none;
+    }
+  }
+
+  @container timeline-event (max-width: 4rem) {
+    .tick-architecture__event-label {
+      display: none;
+    }
   }
 
   .tick-architecture__event--packets {
@@ -910,15 +1015,18 @@ const scenarios: Scenario[] = [
       );
   }
 
-  .tick-architecture__event--boundary,
-  .tick-architecture__event--verify {
+  .tick-architecture__event--boundary {
     --event-color: 167 139 250;
   }
 
   .tick-architecture__event--game,
   .tick-architecture__event--ready,
-  .tick-architecture__event--send {
+  .tick-architecture__event--verify {
     --event-color: 52 211 153;
+  }
+
+  .tick-architecture__event--send {
+    --event-color: 96 165 250;
   }
 
   .tick-architecture__event--scheduler {
@@ -960,14 +1068,12 @@ const scenarios: Scenario[] = [
     width: 0.55rem;
     height: 0.55rem;
     margin-top: 0.28rem;
-    border-radius: 999px;
+    border-radius: 0;
     background: rgb(52 211 153);
-    box-shadow: 0 0 0 4px rgb(52 211 153 / 0.11);
   }
 
   .tick-architecture__explanation--warning .tick-architecture__status-dot {
     background: rgb(251 191 36);
-    box-shadow: 0 0 0 4px rgb(251 191 36 / 0.1);
   }
 
   .tick-architecture__explanation p,
@@ -1077,12 +1183,12 @@ const scenarios: Scenario[] = [
       margin-bottom: 0.35rem;
     }
 
-    .tick-architecture__lane-label strong,
-    .tick-architecture__lane-label span {
+    .tick-architecture__lane-label > strong,
+    .tick-architecture__lane-phases {
       display: inline;
     }
 
-    .tick-architecture__lane-label span {
+    .tick-architecture__lane-phases {
       margin: 0;
       text-align: right;
     }
@@ -1094,6 +1200,10 @@ const scenarios: Scenario[] = [
     .tick-architecture__event {
       top: 0.36rem;
       bottom: 0.36rem;
+    }
+
+    .tick-architecture__event-label,
+    .tick-architecture__event-detail {
       padding-inline: 0.25rem;
     }
 
