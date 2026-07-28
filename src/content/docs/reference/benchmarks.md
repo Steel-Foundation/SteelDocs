@@ -3,11 +3,13 @@ title: Benchmarks
 description: Reproducible performance benchmarks of SteelMC
 ---
 
-Steel's first published benchmark focuses on the work it currently does best: generating terrain. We compared a native Steel build with a baseline Fabric server using [Chunky](https://modrinth.com/plugin/chunky).
+Steel's first published benchmark focuses on the work it currently does best: generating terrain. We compared a native Steel build with Fabric using [Chunky](https://modrinth.com/plugin/chunky).
 
-We chose Fabric as a practical substitute for an otherwise unmodified vanilla server: it lets Chunky define a repeatable pregeneration area while keeping the baseline free of performance mods.
+:::note[Fabric is the vanilla baseline]
+Throughout this page, **Fabric** means a Minecraft Java Edition 26.2 server with Fabric Loader, Fabric API, and Chunky, but no performance mods. We use it as a repeatable stand-in for vanilla: Chunky defines a fixed pregeneration area while Minecraft's vanilla world generator does the work.
+:::
 
-On this machine, Steel generated the repeated 10,201-chunk test area **18.7 times as fast as Fabric**.
+On this machine, Steel generated the 10,201-chunk test area **18.7 times as fast as Fabric** across three runs.
 
 | Server | Median time |  Mean throughput | Median peak RSS | Mean CPU use |
 | ------ | ----------: | ---------------: | --------------: | -----------: |
@@ -31,7 +33,7 @@ Dividing throughput by average CPU use gives a rough measure of work completed p
 | Steel  |                 85.29 |              2.71× |
 | Fabric |                 31.53 |              1.00× |
 
-This adjustment narrows the headline gap, but does not remove it: Steel generated about **2.71 times as many chunks per CPU-second as Fabric**. It is not a substitute for wall-clock throughput—unused cores cannot make a generation job finish sooner—but it separates per-core efficiency from parallel scaling reasonably well for this CPU-bound test.
+This adjustment narrows the headline gap, but does not remove it: Steel generated about **2.71 times as many chunks per CPU-second as Fabric**. It is not a substitute for wall-clock throughput—unused cores cannot make a generation job finish sooner—but it gives a rough view of per-core efficiency alongside parallel scaling in this CPU-bound test.
 
 ## Memory use
 
@@ -41,7 +43,7 @@ The graph below uses the median-duration run from each server. A line ending ear
 
 ![A line chart of resident memory over time. Steel finishes after about 4.0 seconds near 1.8 GiB, and Fabric finishes after about 74.4 seconds near 2.4 GiB.](../../../assets/benchmarks/chunk-generation-memory.svg)
 
-Resident set size measures the whole server process, not only live chunk data. For Java this includes the JVM and committed heap pages; for Steel it includes the native process and allocator. It is useful for measuring what the operating system actually kept resident during this workload, but it is not a direct comparison of Java heap usage with Rust allocations.
+Resident set size measures the whole server process, not only live chunk data. For Java, this includes the JVM and committed heap pages; for Steel, it includes the native process and allocator. The metric shows what the operating system kept in memory during this workload, but it does not directly compare Java heap usage with Rust allocations.
 
 ## Larger region
 
@@ -79,7 +81,7 @@ The common settings were:
 - process CPU time and RSS sampled every 250 milliseconds
 - Steel pregeneration window size set to 64 chunks (`PREGEN_WINDOW_SIZE=64`)
 
-Putting the worlds on `tmpfs` removes the particular storage device from the comparison. Chunk serialization, compression, and saving still run, but physical disk latency and throughput do not dominate the result.
+Putting the worlds on `tmpfs` removes the storage device from the comparison. Chunk serialization, compression, and saving still run, but physical disk speed does not dominate the result.
 
 Steel's measured interval starts at `Preparing spawn area` and ends at `Spawn area prepared`. The Fabric intervals start when Chunky reports `Task started` and end at `Task finished`. Startup, registry loading, spawn selection, and shutdown are outside the measured interval for both servers.
 
@@ -149,8 +151,7 @@ This is a focused world-generation benchmark, not a claim that Steel is 18.7 tim
 
 - **The repeated area is intentionally modest.** The 101-by-101 test was chosen so vanilla Fabric could be repeated three times. The 301-by-301 result demonstrates warmup effects, but it is only one run and should not be treated as a stable average.
 - **The generated work is not perfectly identical.** Steel currently disables the entity-spawning generation stage because most generated entities are not implemented. Vanilla Fabric performs that stage. Both configurations otherwise request fully generated chunks with structures and lighting.
-- **The Fabric result is an unoptimized baseline.** We intentionally excluded performance mods because credible results can require sophisticated, workload-specific configuration. Testing a poorly tuned setup could understate what those mods can do. We welcome future benchmark contributions from people with deep experience configuring a given mod, provided the settings and methodology are fully reproducible.
-- **These are performance results, not parity results.** We have not block-compared Fabric's output with Steel, so these timings do not establish correctness.
+- **Fabric is our vanilla baseline, not an optimized modded server.** Fabric Loader provides the mod environment, while Fabric API and Chunky let us define and run the same pregeneration task each time. We intentionally excluded performance mods because they often need workload-specific tuning. A poorly configured test could understate what they can do. We welcome reproducible benchmark contributions from people experienced in configuring a particular mod.
 - **The benchmark favours CPU work.** `tmpfs`, an idle server, and no players reduce disk and gameplay interference. A live server on persistent storage will behave differently.
 - **This is one machine, seed, dimension, and server revision.** Results should be reproduced on other hardware and expanded to the Nether, the End, chunk loading, chunk sending, ticking, and player concurrency before drawing broader conclusions.
 
@@ -165,4 +166,3 @@ The next useful additions are:
 - generated-chunk loading from disk
 - chunk sending to one and multiple clients
 - tick time and memory under simulated players
-- parity checks of the exact worlds produced by each server
