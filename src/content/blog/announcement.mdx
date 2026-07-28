@@ -136,7 +136,7 @@ This preserves the useful part of a synchronous world model: gameplay changes ha
 
 Redstone presents almost the opposite problem. Some vanilla behavior is technically accidental, but has been studied, documented, and turned into machinery by the redstone community over many years. “Fixing” it would break real builds.
 
-One example is locationality: a contraption can behave differently depending on where or how it is oriented in the world. Some of that behavior originated in the iteration order of a hash set used while processing updates. It may look like an implementation detail, but to technical players it is part of the game.
+One example is [locationality](https://www.youtube.com/watch?v=7gF5mbjFies): a contraption can behave differently depending on where or how it is oriented in the world. Some of that behavior originated in the iteration order of a hash set used while processing updates. It may look like an implementation detail, but to technical players it is part of the game.
 
 Steel's redstone implementation therefore aims to preserve not only the intended rules, but also the quirks that players depend on. Vanilla parity does not mean cleaning up every strange behavior. It means knowing which strangeness has become a feature.
 
