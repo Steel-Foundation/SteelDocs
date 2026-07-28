@@ -1596,7 +1596,7 @@
       ]
     },
     "AnvilBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "anvil",
@@ -1901,7 +1901,7 @@
       ]
     },
     "GlazedTerracottaBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "white_glazed_terracotta",
@@ -2875,7 +2875,7 @@
   },
   "items": {
     "AirItem": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "air"
@@ -4360,8 +4360,10 @@
       ]
     },
     "CompassItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement lodestone binding and tracked-target invalidation when item"
+      ],
       "entries": [
         "compass"
       ]
@@ -4501,8 +4503,12 @@
       ]
     },
     "PotionItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement PotionItem.useOn water-to-mud conversion, bottle replacement,",
+        "Add PotionItem's water default instance when Steel has item-specific",
+        "Complete the shared CONSUMABLE use/finish lifecycle so potions can be"
+      ],
       "entries": [
         "potion"
       ]
@@ -4666,7 +4672,7 @@
       ]
     },
     "PlayerHeadItem": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "player_head"
@@ -4732,8 +4738,15 @@
       ]
     },
     "SplashPotionItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement inherited PotionItem.useOn water-to-mud conversion.",
+        "Implement ThrowablePotionItem use and dispenser behavior once",
+        "Add the inherited water default instance when Steel has item-specific",
+        "Implement inherited PotionItem.useOn water-to-mud conversion.",
+        "Implement ThrowablePotionItem use and dispenser behavior once",
+        "Add the inherited water default instance when Steel has item-specific"
+      ],
       "entries": [
         "splash_potion"
       ]
@@ -4746,22 +4759,27 @@
       ]
     },
     "TippedArrowItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Add TippedArrowItem's poison default instance when Steel has",
+        "Implement inherited ArrowItem projectile and dispenser behavior once"
+      ],
       "entries": [
         "tipped_arrow"
       ]
     },
     "LingeringPotionItem": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "lingering_potion"
       ]
     },
     "ShieldItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Complete the shared Item.use BLOCKS_ATTACKS path so shields can block."
+      ],
       "entries": [
         "shield"
       ]
