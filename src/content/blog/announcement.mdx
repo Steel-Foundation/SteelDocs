@@ -144,9 +144,9 @@ Steel's redstone implementation therefore aims to preserve not only the intended
 
 Plugins are one of the features I have wanted to build for the longest, but they are also something I refuse to rush. A plugin API exposes almost every part of a server, so publishing one too early can freeze the wrong abstractions for years. Steel needs to become a solid Minecraft server before I can honestly decide what that API should promise.
 
-I have explored WebAssembly, scripting languages, and native Rust plugins. The current direction is a native Rust API, giving extensions the same power as ordinary server code. A native plugin could still host WebAssembly, JavaScript, or Lua for people who want a sandbox or higher-level language. Native plugins would be trusted code, so the API boundary will need careful design.
+I have explored WebAssembly, scripting languages, and native Rust plugins. The current direction is a native Rust API, giving extensions the same power as ordinary server code. Native plugins could still provide sandboxed or higher-level environments by embedding WebAssembly or language runtimes such as JavaScript and Lua. Native plugins would be trusted code, so the API boundary will need careful design.
 
-Years of Bukkit and Paper plugins have already shown us many of the use cases an extension API needs to support. That experience is shaping systems Steel has today, including its [permission system](/configuration/permissions/) and registries. But Steel does not have plugins yet, and we will not publish an API until the server beneath it is mature enough to make that promise responsibly.
+Years of Bukkit and Paper plugins have shown which problems server extensions commonly solve. Steel draws inspiration from those use cases, including how servers and plugins use [permissions](/configuration/permissions/), without copying the public APIs of Bukkit or Paper. But Steel does not have plugins yet, and we will not publish an API until the server beneath it is mature enough to make that promise responsibly.
 
 ## Why announce Steel now
 
