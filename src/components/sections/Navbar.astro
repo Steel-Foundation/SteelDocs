@@ -120,7 +120,7 @@ const { showLanguageSwitcher = true } = Astro.props;
 
       <!-- Language Switcher -->
       {
-        showLanguageSwitcher && (
+        showLanguageSwitcher && supportedLocales.length > 1 && (
           <div class="relative" id="lang-dropdown">
             <button
               id="lang-btn"
