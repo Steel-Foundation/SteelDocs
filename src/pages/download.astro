@@ -2,10 +2,14 @@
 import Navbar from "@/components/sections/Navbar.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getVersions } from "@/lib/versions";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
-var versions = await getVersions();
-var latestVersion = versions[0];
-var olderVersions = versions.slice(1);
+const versions = await getVersions();
+const [latestVersion, ...olderVersions] = versions;
+const installationUrl = getRelativeLocaleUrl(
+  Astro.currentLocale || "en",
+  "/getting-started/installation",
+);
 ---
 
 <Layout title={"SteelMC - " + Astro.locals.t("download")}>
