@@ -11,14 +11,14 @@ import {
   Clock3,
   PackageOpen,
 } from "@lucide/astro";
-import { getRelativeLocaleUrl } from "astro:i18n";
+import { getDocHref } from "@/lib/docs-href";
+
+const { t } = Astro.locals;
+const locale = Astro.currentLocale ?? "en";
 
 const versions = await getVersions();
 const [latestVersion, ...olderVersions] = versions;
-const installationUrl = getRelativeLocaleUrl(
-  Astro.currentLocale || "en",
-  "/getting-started/installation",
-);
+const installationUrl = await getDocHref("getting-started/installation", locale);
 
 function formatPlatform(platform: string) {
   return platform
@@ -44,21 +44,21 @@ function formatPlatform(platform: string) {
 ---
 
 <Layout
-  title={`SteelMC - ${Astro.locals.t("download")}`}
-  description="Download the latest SteelMC server build or browse previous releases."
+  title={`SteelMC - ${t("download")}`}
+  description={t("download.meta.description")}
 >
   <Navbar />
   <main class="relative z-10 mx-auto w-full max-w-300 px-4 pb-20 pt-28 sm:px-6 lg:pt-32">
     <header class="mx-auto mb-10 max-w-210 text-center md:mb-14">
       <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-700 dark:text-emerald-300">
         <PackageOpen class="size-3.5" />
-        SteelMC releases
+        {t("download.pill")}
       </div>
       <h1 class="font-minecraft text-4xl font-bold leading-tight text-teal-950 dark:text-white sm:text-5xl md:text-7xl">
-        Ready to run <span class="text-emerald-600 dark:text-emerald-400">Steel?</span>
+        {t("download.title")} <span class="text-emerald-600 dark:text-emerald-400">{t("download.titleHighlight")}</span>
       </h1>
       <p class="mx-auto mt-5 max-w-170 text-base leading-relaxed text-teal-700 dark:text-white/60 md:text-xl">
-        Grab the newest build for your platform. Previous versions are still available in the release archive below.
+        {t("download.subtitle")}
       </p>
     </header>
 
@@ -74,23 +74,23 @@ function formatPlatform(platform: string) {
                 <div class="mb-5 flex flex-wrap items-center gap-3">
                   <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-emerald-500/20">
                     <Check class="size-3.5" stroke-width={3} />
-                    Latest release
+                    {t("download.latest.badge")}
                   </span>
                   <span class="text-sm text-teal-600 dark:text-white/45">
-                    Minecraft {latestVersion.mc_version}
+                    {t("download.latest.minecraft", { version: latestVersion.mc_version })}
                   </span>
                 </div>
                 <h2 id="latest-release" class="font-minecraft text-4xl font-bold text-teal-950 dark:text-white sm:text-5xl lg:text-6xl">
                   Steel {latestVersion.steel_version}
                 </h2>
                 <p class="mt-4 max-w-145 text-base leading-relaxed text-teal-700 dark:text-white/60 md:text-lg">
-                  The newest SteelMC server build, with the latest compatibility and implementation improvements.
+                  {t("download.latest.description")}
                 </p>
               </div>
 
               <div class="rounded-3xl border border-teal-200/60 bg-teal-50/80 p-4 dark:border-white/10 dark:bg-black/15 sm:p-5">
                 <p class="mb-3 px-1 text-xs font-semibold uppercase tracking-[0.15em] text-teal-600 dark:text-white/45">
-                  Choose your platform
+                  {t("download.platform.label")}
                 </p>
                 <div class="grid gap-2.5">
                   {latestVersion.builds.map((build) => (
@@ -123,8 +123,8 @@ function formatPlatform(platform: string) {
           >
             <BookOpenText class="size-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
             <span class="flex-1">
-              Using Docker, a server panel, or building natively?
-              <span class="font-semibold text-teal-950 dark:text-white">See the installation guide.</span>
+              {t("download.installGuide.text")}
+              <span class="font-semibold text-teal-950 dark:text-white">{t("download.installGuide.link")}</span>
             </span>
             <ArrowRight class="size-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
           </a>
@@ -138,10 +138,12 @@ function formatPlatform(platform: string) {
                   </span>
                   <span class="min-w-0 flex-1">
                     <span id="release-archive" class="block font-minecraft text-lg font-bold text-teal-950 dark:text-white sm:text-xl">
-                      Previous releases
+                      {t("download.archive.title")}
                     </span>
                     <span class="mt-0.5 block text-sm text-teal-600 dark:text-white/45">
-                      Browse {olderVersions.length} older {olderVersions.length === 1 ? "version" : "versions"}
+                      {olderVersions.length === 1
+                        ? t("download.archive.count.one", { count: olderVersions.length })
+                        : t("download.archive.count.other", { count: olderVersions.length })}
                     </span>
                   </span>
                   <ChevronDown class="size-5 shrink-0 text-teal-500 transition-transform duration-200 group-open:rotate-180 dark:text-white/45" />
@@ -155,7 +157,7 @@ function formatPlatform(platform: string) {
                           Steel {version.steel_version}
                         </h3>
                         <p class="mt-1 text-sm text-teal-600 dark:text-white/45">
-                          For Minecraft {version.mc_version}
+                          {t("download.archive.minecraft", { version: version.mc_version })}
                         </p>
                       </div>
                       <div class="flex flex-wrap gap-2 md:justify-end">
@@ -181,9 +183,9 @@ function formatPlatform(platform: string) {
         <section class="rounded-3xl border border-teal-200/60 bg-white/80 px-6 py-16 text-center backdrop-blur-xl dark:border-white/10 dark:bg-teal-950/70">
           <PackageOpen class="mx-auto size-10 text-teal-500 dark:text-white/40" />
           <h2 class="mt-4 font-minecraft text-2xl font-bold text-teal-950 dark:text-white">
-            No releases available yet
+            {t("download.empty.title")}
           </h2>
-          <p class="mt-2 text-teal-600 dark:text-white/50">Check back soon for the first SteelMC build.</p>
+          <p class="mt-2 text-teal-600 dark:text-white/50">{t("download.empty.text")}</p>
         </section>
       )
     }

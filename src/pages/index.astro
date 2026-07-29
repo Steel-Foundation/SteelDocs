@@ -5,59 +5,70 @@ import Hero from "@/components/sections/Hero.astro";
 import ChooseDocs from "@/components/sections/ChooseDocs.astro";
 import Community from "@/components/sections/Community.astro";
 import FooterStatus from "@/components/sections/FooterStatus.astro";
+import { getDocHref } from "@/lib/docs-href";
+
+const { t } = Astro.locals;
+const locale = Astro.currentLocale ?? "en";
+
+const docsCtaHref = await getDocHref("getting-started/introduction", locale);
+const adminHref = await getDocHref("getting-started/installation", locale);
+const devHref = await getDocHref("development/start-contributing", locale);
+
+const rotatingTexts = [
+  t("home.status.rotating.0"),
+  t("home.status.rotating.1"),
+  t("home.status.rotating.2"),
+  t("home.status.rotating.3"),
+  t("home.status.rotating.4"),
+  t("home.status.rotating.5"),
+  t("home.status.rotating.6"),
+  t("home.status.rotating.7"),
+  t("home.status.rotating.8"),
+  t("home.status.rotating.9"),
+];
 ---
 
 <Layout
   title="SteelMC"
-  description="SteelMC is a Minecraft server written in Rust, built for vanilla parity, parallelism, performance, and customization."
+  description={t("home.meta.description")}
 >
   <Navbar />
   <Hero
-    pillText="Still cooking"
+    pillText={t("home.hero.pill")}
     heroTitle="Steel"
     heroTitleHighlight="MC"
-    subtitle="Minecraft implemented the right way. Built in Rust, with multithreading in mind. We aim for vanilla parity, performance, and customization."
-    mainCtaText="Join us!"
-    secondCtaText="Documentation"
+    subtitle={t("home.hero.subtitle")}
+    mainCtaText={t("home.hero.ctaMain")}
+    secondCtaText={t("home.hero.ctaDocs")}
+    secondCtaHref={docsCtaHref}
   />
   <main
     class="container mx-4 w-auto lg:mx-auto max-w-280 px-4 mt-16 lg:-mt-12 text-white relative z-10"
   >
     <ChooseDocs
-      sectionLabel="CHOOSE YOUR DOCUMENTATION"
-      sectionTitle="Hey, what do you want to do?"
-      sectionDescription="Steel is designed for everyone. Whether you're running a server, contributing code, or just exploring, there's documentation for you."
-      adminHref="./getting-started/installation/"
+      sectionLabel={t("home.chooseDocs.label")}
+      sectionTitle={t("home.chooseDocs.title")}
+      sectionDescription={t("home.chooseDocs.description")}
+      adminHref={adminHref}
       adminImage="/admin.png"
-      adminImageAlt="Admin documentation"
-      adminLabel="Administrator"
-      devHref="./development/start-contributing/"
+      adminImageAlt={t("home.chooseDocs.adminAlt")}
+      adminLabel={t("home.chooseDocs.adminLabel")}
+      devHref={devHref}
       devImage="/contributor.png"
-      devImageAlt="Contributor documentation"
-      devLabel="Developer"
+      devImageAlt={t("home.chooseDocs.devAlt")}
+      devLabel={t("home.chooseDocs.devLabel")}
     />
     <Community
-      heading="Interested?"
-      headingHighlight="Join us!"
-      descriptionBold1="Steel is a place where people gather"
-      descriptionMiddle=" to code, chat and have fun. From talented developers to the biggest yappers, "
-      descriptionBold2="everyone is welcome!"
-      descriptionAfter=" We're just a bunch of people trying to make a cool Minecraft server."
+      heading={t("home.community.heading")}
+      headingHighlight={t("home.community.headingHighlight")}
+      descriptionBold1={t("home.community.bold1")}
+      descriptionMiddle={t("home.community.middle")}
+      descriptionBold2={t("home.community.bold2")}
+      descriptionAfter={t("home.community.after")}
     />
     <FooterStatus
-      prefix="Steel is"
-      rotatingTexts={[
-        "in development",
-        "not ready yet",
-        "fuck it we ball",
-        "an alloy btw 🤓☝️",
-        "made with love",
-        "hella fast",
-        "rusty",
-        "cooking!",
-        "drunk dudes hyping 4lve",
-        "thanking contributors",
-      ]}
+      prefix={t("home.status.prefix")}
+      rotatingTexts={rotatingTexts}
     />
   </main>
 </Layout>
