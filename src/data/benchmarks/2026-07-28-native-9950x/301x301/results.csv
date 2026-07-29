@@ -1,0 +1,3 @@
+server,run,chunks,wall_seconds,chunks_per_second,reported_seconds,reported_chunks_per_second,cpu_seconds,average_cpu_cores,peak_rss_bytes
+steel,1,90601,32.143490586999995,2818.642230369416,32.14,2819,945.09,29.40222056599631,4273569792
+fabric,1,90601,517.3854998329999,175.11314103167544,,,2122.81,4.1029561143193884,3594485760

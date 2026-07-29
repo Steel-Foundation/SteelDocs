@@ -1,0 +1,21 @@
+---
+import DefaultFooter from "@astrojs/starlight/components/Footer.astro";
+---
+
+<DefaultFooter />
+<p class="logo-credit">
+  SteelMC logo by <span>colonthreeing</span>.
+</p>
+
+<style>
+  .logo-credit {
+    margin-block: 1.5rem;
+    text-align: center;
+    color: var(--sl-color-gray-3);
+    font-size: var(--sl-text-xs);
+  }
+
+  .logo-credit span {
+    font-weight: 600;
+  }
+</style>

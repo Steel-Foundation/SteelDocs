@@ -1,0 +1,1224 @@
+---
+type EventKind =
+  | "packets"
+  | "closed"
+  | "boundary"
+  | "game"
+  | "scheduler"
+  | "ready"
+  | "encode"
+  | "verify"
+  | "send"
+  | "skip";
+
+interface TimelineEvent {
+  label: string;
+  detail?: string;
+  start: number;
+  end: number;
+  kind: EventKind;
+}
+
+interface Lane {
+  name: string;
+  phases: { label: string; kind: EventKind }[];
+  events: TimelineEvent[];
+}
+
+interface Scenario {
+  id: string;
+  label: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  tone: "safe" | "warning";
+  lanes: Lane[];
+}
+
+const packetPhases: Lane["phases"] = [
+  { label: "drain + close", kind: "closed" },
+  { label: "process packets", kind: "packets" },
+];
+
+const gamePhases: Lane["phases"] = [
+  { label: "handoff", kind: "boundary" },
+  { label: "game logic", kind: "game" },
+];
+
+const schedulerPhases: Lane["phases"] = [
+  { label: "run epoch", kind: "scheduler" },
+  { label: "ready", kind: "ready" },
+];
+
+const senderPhases: Lane["phases"] = [
+  { label: "snapshot", kind: "boundary" },
+  { label: "encode", kind: "encode" },
+  { label: "verify", kind: "verify" },
+  { label: "send", kind: "send" },
+];
+
+const packetCadence: TimelineEvent[] = [
+  { label: "Drain + close", start: 0, end: 5.3, kind: "closed" },
+  { label: "Packets flow continuously", start: 5.3, end: 41.5, kind: "packets" },
+  { label: "Drain + close", start: 41.7, end: 47, kind: "closed" },
+  { label: "Packets flow continuously", start: 47, end: 83.1, kind: "packets" },
+  { label: "Drain + close", start: 83.3, end: 88.6, kind: "closed" },
+  { label: "Packets flow continuously", start: 88.6, end: 100, kind: "packets" },
+];
+
+const gameCadence: TimelineEvent[] = [
+  { label: "Handoff", start: 0, end: 1.3, kind: "boundary" },
+  { label: "Game logic", start: 1.3, end: 5.3, kind: "game" },
+  { label: "Commit + handoff", start: 41.7, end: 43, kind: "boundary" },
+  { label: "Game logic", start: 43, end: 47, kind: "game" },
+  { label: "Commit + handoff", start: 83.3, end: 84.6, kind: "boundary" },
+  { label: "Game logic", start: 84.6, end: 88.6, kind: "game" },
+];
+
+const healthyScheduler: TimelineEvent[] = [
+  {
+    label: "Epoch A",
+    detail: "running",
+    start: 1.2,
+    end: 10.5,
+    kind: "scheduler",
+  },
+  { label: "Ready", start: 10.5, end: 41.5, kind: "ready" },
+  {
+    label: "Epoch B",
+    detail: "running",
+    start: 42.9,
+    end: 52.2,
+    kind: "scheduler",
+  },
+  { label: "Ready", start: 52.2, end: 83.1, kind: "ready" },
+  {
+    label: "Epoch C",
+    detail: "running",
+    start: 84.5,
+    end: 93.8,
+    kind: "scheduler",
+  },
+  { label: "Ready", start: 93.8, end: 100, kind: "ready" },
+];
+
+const healthySender: TimelineEvent[] = [
+  { label: "Prep", detail: "snapshot", start: 0.6, end: 2, kind: "boundary" },
+  { label: "Encode", start: 2, end: 9, kind: "encode" },
+  { label: "Verify", start: 9, end: 10.5, kind: "verify" },
+  { label: "Send", start: 10.5, end: 12, kind: "send" },
+  { label: "Prep", detail: "snapshot", start: 42.3, end: 43.7, kind: "boundary" },
+  { label: "Encode", start: 43.7, end: 50.7, kind: "encode" },
+  { label: "Verify", start: 50.7, end: 52.2, kind: "verify" },
+  { label: "Send", start: 52.2, end: 53.7, kind: "send" },
+  { label: "Prep", start: 84, end: 85.4, kind: "boundary" },
+  { label: "Encode", start: 85.4, end: 92.4, kind: "encode" },
+  { label: "Verify", start: 92.4, end: 93.9, kind: "verify" },
+  { label: "Send", start: 93.9, end: 95.4, kind: "send" },
+];
+
+const scenarios: Scenario[] = [
+  {
+    id: "healthy",
+    label: "Normal cadence",
+    eyebrow: "Normal cadence",
+    title: "Packets keep flowing while background work overlaps",
+    description:
+      "Packet workers use the whole inter-tick window instead of building one large queue for the next game tick. At the boundary, admission closes briefly while ready scheduler state and gameplay are applied safely.",
+    tone: "safe",
+    lanes: [
+      {
+        name: "Packet workers",
+        phases: packetPhases,
+        events: packetCadence,
+      },
+      {
+        name: "Game tick",
+        phases: gamePhases,
+        events: gameCadence,
+      },
+      {
+        name: "Chunk scheduler",
+        phases: schedulerPhases,
+        events: healthyScheduler,
+      },
+      {
+        name: "Chunk sender",
+        phases: senderPhases,
+        events: healthySender,
+      },
+    ],
+  },
+  {
+    id: "slow",
+    label: "Slow scheduler",
+    eyebrow: "Scheduler overrun",
+    title: "The game tick skips the handoff instead of waiting",
+    description:
+      "Epoch A is still running at +50 ms, so the game tick keeps the last committed chunk state and continues. Once the epoch becomes Ready, a later boundary commits it and launches Epoch B.",
+    tone: "warning",
+    lanes: [
+      {
+        name: "Packet workers",
+        phases: packetPhases,
+        events: [
+          { label: "Drain + close", start: 0, end: 5.3, kind: "closed" },
+          { label: "Packets flow continuously", start: 5.3, end: 41.5, kind: "packets" },
+          { label: "Drain + close", start: 41.7, end: 47.5, kind: "closed" },
+          { label: "Packets flow continuously", start: 47.5, end: 83.1, kind: "packets" },
+          { label: "Drain + close", start: 83.3, end: 88.6, kind: "closed" },
+          { label: "Packets flow continuously", start: 88.6, end: 100, kind: "packets" },
+        ],
+      },
+      {
+        name: "Game tick",
+        phases: [
+          { label: "handoff", kind: "boundary" },
+          { label: "skip", kind: "skip" },
+          { label: "game logic", kind: "game" },
+        ],
+        events: [
+          { label: "Handoff", start: 0, end: 1.3, kind: "boundary" },
+          { label: "Game logic", start: 1.3, end: 5.3, kind: "game" },
+          {
+            label: "Skip",
+            detail: "still running",
+            start: 41.7,
+            end: 43.5,
+            kind: "skip",
+          },
+          { label: "Game logic", start: 43.5, end: 47.5, kind: "game" },
+          {
+            label: "Commit + handoff",
+            start: 83.3,
+            end: 84.6,
+            kind: "boundary",
+          },
+          { label: "Game logic", start: 84.6, end: 88.6, kind: "game" },
+        ],
+      },
+      {
+        name: "Chunk scheduler",
+        phases: schedulerPhases,
+        events: [
+          {
+            label: "Epoch A",
+            detail: "running late",
+            start: 1.2,
+            end: 55,
+            kind: "scheduler",
+          },
+          {
+            label: "Ready",
+            detail: "wait for boundary",
+            start: 55,
+            end: 83.1,
+            kind: "ready",
+          },
+          {
+            label: "Epoch B",
+            detail: "running",
+            start: 84.5,
+            end: 93.8,
+            kind: "scheduler",
+          },
+          { label: "Ready", start: 93.8, end: 100, kind: "ready" },
+        ],
+      },
+      {
+        name: "Chunk sender",
+        phases: senderPhases,
+        events: healthySender,
+      },
+    ],
+  },
+  {
+    id: "changed",
+    label: "Chunk changed",
+    eyebrow: "Stale encode",
+    title: "A revision check prevents stale chunk data from escaping",
+    description:
+      "The sender snapshots revision 42, but gameplay changes the chunk to revision 43 while it is being encoded. The old result fails validation, is discarded, and the next pass starts from fresh state.",
+    tone: "warning",
+    lanes: [
+      {
+        name: "Packet workers",
+        phases: packetPhases,
+        events: packetCadence,
+      },
+      {
+        name: "Game tick",
+        phases: [
+          { label: "handoff", kind: "boundary" },
+          { label: "mutate state", kind: "game" },
+        ],
+        events: [
+          { label: "Handoff", start: 0, end: 1.3, kind: "boundary" },
+          {
+            label: "Game logic",
+            detail: "chunk r42 → r43",
+            start: 1.3,
+            end: 5.3,
+            kind: "game",
+          },
+          { label: "Commit + handoff", start: 41.7, end: 43, kind: "boundary" },
+          { label: "Game logic", start: 43, end: 47, kind: "game" },
+          { label: "Commit + handoff", start: 83.3, end: 84.6, kind: "boundary" },
+          { label: "Game logic", start: 84.6, end: 88.6, kind: "game" },
+        ],
+      },
+      {
+        name: "Chunk scheduler",
+        phases: schedulerPhases,
+        events: healthyScheduler,
+      },
+      {
+        name: "Chunk sender",
+        phases: [
+          { label: "snapshot", kind: "boundary" },
+          { label: "encode", kind: "encode" },
+          { label: "discard", kind: "skip" },
+          { label: "verify", kind: "verify" },
+          { label: "send", kind: "send" },
+        ],
+        events: [
+          {
+            label: "Prep",
+            detail: "snapshot r42",
+            start: 0.6,
+            end: 2,
+            kind: "boundary",
+          },
+          { label: "Encode r42", start: 2, end: 9, kind: "encode" },
+          {
+            label: "Discard",
+            detail: "revision mismatch",
+            start: 9,
+            end: 13,
+            kind: "skip",
+          },
+          {
+            label: "Prep",
+            detail: "snapshot r43",
+            start: 42.3,
+            end: 43.7,
+            kind: "boundary",
+          },
+          { label: "Encode r43", start: 43.7, end: 50.7, kind: "encode" },
+          { label: "Verify", detail: "still r43", start: 50.7, end: 52.2, kind: "verify" },
+          { label: "Send", start: 52.2, end: 53.7, kind: "send" },
+          { label: "Prep", start: 84, end: 85.4, kind: "boundary" },
+          { label: "Encode", start: 85.4, end: 92.4, kind: "encode" },
+          { label: "Verify", start: 92.4, end: 93.9, kind: "verify" },
+          { label: "Send", start: 93.9, end: 95.4, kind: "send" },
+        ],
+      },
+    ],
+  },
+];
+
+---
+
+<figure
+  class="tick-architecture"
+  data-tick-architecture
+  aria-labelledby="tick-architecture-title"
+>
+  <div class="tick-architecture__glow" aria-hidden="true"></div>
+
+  <header class="tick-architecture__header">
+    <div>
+      <p class="tick-architecture__kicker">Steel's runtime architecture</p>
+      <h3 id="tick-architecture-title">Continuous work, one safe boundary</h3>
+    </div>
+
+    <button
+      class="tick-architecture__play"
+      type="button"
+      data-animation-toggle
+      data-paused="true"
+      aria-pressed="true"
+      aria-label="Play timeline animation"
+    >
+      <svg class="tick-architecture__pause-icon" viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M4 3.25h2.5v9.5H4zm5.5 0H12v9.5H9.5z"></path>
+      </svg>
+      <svg class="tick-architecture__play-icon" viewBox="0 0 16 16" aria-hidden="true">
+        <path d="m4.75 2.75 8 5.25-8 5.25z"></path>
+      </svg>
+      <span data-animation-label>Play</span>
+    </button>
+  </header>
+
+  <div class="tick-architecture__scenario-picker" aria-label="Timeline scenario">
+    {
+      scenarios.map((scenario, index) => (
+        <button
+          type="button"
+          data-scenario-button={scenario.id}
+          aria-pressed={index === 0 ? "true" : "false"}
+        >
+          {scenario.label}
+        </button>
+      ))
+    }
+  </div>
+
+  {
+    scenarios.map((scenario, index) => (
+      <section
+        class="tick-architecture__scenario"
+        data-scenario={scenario.id}
+        hidden={index !== 0}
+        aria-hidden={index === 0 ? "false" : "true"}
+      >
+        <div class="tick-architecture__axis" aria-hidden="true">
+          <span>Tick N</span>
+          <span>+50 ms</span>
+          <span>+100 ms</span>
+        </div>
+
+        <div class="tick-architecture__lanes">
+          <div class="tick-architecture__boundaries" aria-hidden="true">
+            <i></i>
+            <i></i>
+            <i></i>
+            <span class="tick-architecture__playhead"></span>
+          </div>
+
+          {scenario.lanes.map((lane) => (
+            <div class="tick-architecture__lane">
+              <div class="tick-architecture__lane-label">
+                <strong>{lane.name}</strong>
+                <span class="tick-architecture__lane-phases">
+                  {
+                    lane.phases.map((phase) => (
+                      <span
+                        class={`tick-architecture__lane-phase tick-architecture__lane-phase--${phase.kind}`}
+                      >
+                        {phase.label}
+                      </span>
+                    ))
+                  }
+                </span>
+              </div>
+              <div class="tick-architecture__track">
+                {lane.events.map((event) => (
+                  <div
+                    class={`tick-architecture__event tick-architecture__event--${event.kind}`}
+                    style={`--event-left: ${event.start}%; --event-end: ${event.end}%;`}
+                    data-timeline-event
+                    data-start={event.start}
+                    data-end={event.end}
+                    title={event.detail ? `${event.label}: ${event.detail}` : event.label}
+                  >
+                    <span class="tick-architecture__event-label">{event.label}</span>
+                    {event.detail && (
+                      <span class="tick-architecture__event-detail">{event.detail}</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div
+          class:list={[
+            "tick-architecture__explanation",
+            `tick-architecture__explanation--${scenario.tone}`,
+          ]}
+        >
+          <span class="tick-architecture__status-dot" aria-hidden="true"></span>
+          <div>
+            <p>{scenario.eyebrow}</p>
+            <strong>{scenario.title}</strong>
+            <span>{scenario.description}</span>
+          </div>
+        </div>
+      </section>
+    ))
+  }
+
+  <figcaption>
+    Conceptual timing, expanded for clarity rather than measured to scale. Chunk
+    sending validates the player send epoch, holder identity, ticking-readiness
+    generation, and packet-content revision before committing a packet.
+  </figcaption>
+</figure>
+
+<script>
+  const initialiseTickArchitecture = (figure: HTMLElement) => {
+    if (figure.dataset.initialised === "true") return;
+    figure.dataset.initialised = "true";
+
+    const scenarioButtons = Array.from(
+      figure.querySelectorAll<HTMLButtonElement>("[data-scenario-button]"),
+    );
+    const scenarios = Array.from(
+      figure.querySelectorAll<HTMLElement>("[data-scenario]"),
+    );
+    const animationToggle =
+      figure.querySelector<HTMLButtonElement>("[data-animation-toggle]");
+    const animationLabel =
+      figure.querySelector<HTMLElement>("[data-animation-label]");
+
+    if (!animationToggle || !animationLabel || scenarios.length === 0) return;
+
+    const cycleDuration = 8_000;
+    let activeScenario = scenarios[0];
+    let running = false;
+    let elapsed = 0;
+    let previousFrame = performance.now();
+    let animationFrame = 0;
+
+    const setToggleState = () => {
+      animationToggle.dataset.paused = running ? "false" : "true";
+      animationToggle.setAttribute("aria-pressed", running ? "false" : "true");
+      animationToggle.setAttribute(
+        "aria-label",
+        running ? "Pause timeline animation" : "Play timeline animation",
+      );
+      animationLabel.textContent = running ? "Pause" : "Play";
+    };
+
+    const render = () => {
+      const progress = elapsed / cycleDuration;
+      activeScenario.style.setProperty("--playhead-position", `${progress * 100}%`);
+
+      activeScenario
+        .querySelectorAll<HTMLElement>("[data-timeline-event]")
+        .forEach((event) => {
+          const start = Number(event.dataset.start) / 100;
+          const end = Number(event.dataset.end) / 100;
+          let eventProgress = 0;
+          let state = "upcoming";
+
+          if (progress >= end) {
+            eventProgress = 1;
+            state = "past";
+          } else if (progress >= start) {
+            eventProgress = (progress - start) / (end - start);
+            state = "active";
+          }
+
+          event.dataset.state = state;
+          event.style.setProperty(
+            "--event-progress",
+            `${Math.max(0, Math.min(1, eventProgress)) * 100}%`,
+          );
+        });
+    };
+
+    const animate = (now: number) => {
+      if (!figure.isConnected) return;
+      if (running) {
+        elapsed = (elapsed + now - previousFrame) % cycleDuration;
+        render();
+      }
+      previousFrame = now;
+      animationFrame = requestAnimationFrame(animate);
+    };
+
+    const selectScenario = (id: string) => {
+      const nextScenario = scenarios.find(
+        (scenario) => scenario.dataset.scenario === id,
+      );
+      if (!nextScenario) return;
+
+      activeScenario = nextScenario;
+      elapsed = 0;
+      previousFrame = performance.now();
+
+      scenarios.forEach((scenario) => {
+        const active = scenario === nextScenario;
+        scenario.hidden = !active;
+        scenario.setAttribute("aria-hidden", active ? "false" : "true");
+      });
+      scenarioButtons.forEach((button) => {
+        button.setAttribute(
+          "aria-pressed",
+          button.dataset.scenarioButton === id ? "true" : "false",
+        );
+      });
+      render();
+    };
+
+    scenarioButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const id = button.dataset.scenarioButton;
+        if (id) selectScenario(id);
+      });
+    });
+
+    animationToggle.addEventListener("click", () => {
+      running = !running;
+      previousFrame = performance.now();
+      setToggleState();
+      render();
+    });
+
+    setToggleState();
+    render();
+    animationFrame = requestAnimationFrame(animate);
+
+    window.addEventListener(
+      "pagehide",
+      () => cancelAnimationFrame(animationFrame),
+      { once: true },
+    );
+  };
+
+  document
+    .querySelectorAll<HTMLElement>("[data-tick-architecture]")
+    .forEach(initialiseTickArchitecture);
+</script>
+
+<style>
+  .tick-architecture {
+    --tick-heading: rgb(4 47 46);
+    --tick-text: rgb(17 94 89);
+    --tick-muted: rgb(15 118 110 / 0.72);
+    --tick-faint: rgb(15 118 110 / 0.56);
+    --tick-border: rgb(13 148 136 / 0.2);
+    --tick-grid: rgb(13 148 136 / 0.08);
+    --tick-surface: rgb(255 255 255 / 0.3);
+    --tick-surface-strong: rgb(255 255 255 / 0.48);
+
+    position: relative;
+    isolation: isolate;
+    margin-block: 2.75rem;
+    border-block: 1px solid var(--tick-border);
+    padding-block: 1.5rem 1.25rem;
+    color: var(--tick-text);
+  }
+
+  :global(.dark) .tick-architecture {
+    --tick-heading: rgb(255 255 255 / 0.94);
+    --tick-text: rgb(204 251 241 / 0.82);
+    --tick-muted: rgb(204 251 241 / 0.56);
+    --tick-faint: rgb(204 251 241 / 0.42);
+    --tick-border: rgb(94 234 212 / 0.16);
+    --tick-grid: rgb(255 255 255 / 0.035);
+    --tick-surface: rgb(1 28 32 / 0.2);
+    --tick-surface-strong: rgb(255 255 255 / 0.04);
+  }
+
+  .tick-architecture__glow {
+    display: none;
+  }
+
+  .tick-architecture__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .tick-architecture__kicker {
+    margin: 0 0 0.3rem;
+    color: rgb(45 212 191);
+    font-family: "Minecraft", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .tick-architecture h3 {
+    margin: 0;
+    color: var(--tick-heading);
+    font-family: "Minecraft", sans-serif;
+    font-size: clamp(1.2rem, 3vw, 1.65rem);
+    line-height: 1.2;
+  }
+
+  .tick-architecture__play {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    gap: 0.38rem;
+    min-height: 2rem;
+    border: 1px solid var(--tick-border);
+    border-radius: 0;
+    padding: 0.4rem 0.7rem;
+    background: var(--tick-surface-strong);
+    color: var(--tick-text);
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .tick-architecture__play:hover {
+    border-color: rgb(94 234 212 / 0.4);
+    background: rgb(45 212 191 / 0.1);
+  }
+
+  .tick-architecture__play:focus-visible,
+  .tick-architecture__scenario-picker button:focus-visible {
+    outline: 2px solid rgb(94 234 212);
+    outline-offset: 2px;
+  }
+
+  .tick-architecture__play svg {
+    width: 0.8rem;
+    height: 0.8rem;
+    fill: currentcolor;
+  }
+
+  .tick-architecture__play-icon,
+  .tick-architecture__play[data-paused="true"] .tick-architecture__pause-icon {
+    display: none;
+  }
+
+  .tick-architecture__play[data-paused="true"] .tick-architecture__play-icon {
+    display: block;
+  }
+
+  .tick-architecture__scenario-picker {
+    display: inline-flex;
+    gap: 0.25rem;
+    margin-top: 1rem;
+    border: 1px solid var(--tick-border);
+    border-radius: 0;
+    padding: 0.25rem;
+    background: var(--tick-surface);
+  }
+
+  .tick-architecture__scenario-picker button {
+    border: 0;
+    border-radius: 0;
+    padding: 0.48rem 0.72rem;
+    background: transparent;
+    color: var(--tick-muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.1;
+    cursor: pointer;
+  }
+
+  .tick-architecture__scenario-picker button:hover {
+    color: var(--tick-heading);
+  }
+
+  .tick-architecture__scenario-picker button[aria-pressed="true"] {
+    background: rgb(13 148 136 / 0.16);
+    box-shadow: inset 0 0 0 1px rgb(94 234 212 / 0.14);
+    color: var(--tick-heading);
+  }
+
+  .tick-architecture__scenario[hidden] {
+    display: none;
+  }
+
+  .tick-architecture__axis {
+    position: relative;
+    height: 1.4rem;
+    margin: 1rem 0 0.15rem 8.3rem;
+    color: var(--tick-muted);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.62rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tick-architecture__axis span {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+  }
+
+  .tick-architecture__axis span:first-child {
+    left: 0;
+    transform: none;
+  }
+
+  .tick-architecture__axis span:nth-child(2) {
+    left: 41.67%;
+  }
+
+  .tick-architecture__axis span:last-child {
+    left: 83.33%;
+  }
+
+  .tick-architecture__lanes {
+    position: relative;
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .tick-architecture__boundaries {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 8.3rem;
+    pointer-events: none;
+  }
+
+  .tick-architecture__boundaries i {
+    position: absolute;
+    top: -0.3rem;
+    bottom: -0.3rem;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      var(--tick-border) 10%,
+      var(--tick-border) 90%,
+      transparent
+    );
+  }
+
+  .tick-architecture__boundaries i:first-child {
+    left: 0;
+  }
+
+  .tick-architecture__boundaries i:nth-child(2) {
+    left: 41.67%;
+  }
+
+  .tick-architecture__boundaries i:nth-child(3) {
+    left: 83.33%;
+  }
+
+  .tick-architecture__playhead {
+    position: absolute;
+    top: -0.45rem;
+    bottom: -0.45rem;
+    left: var(--playhead-position, 0%);
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(153 246 228) 12%,
+      rgb(153 246 228) 88%,
+      transparent
+    );
+  }
+
+  .tick-architecture__playhead::before {
+    position: absolute;
+    top: -0.1rem;
+    left: 50%;
+    width: 0.38rem;
+    height: 0.38rem;
+    transform: translate(-50%, -50%);
+    border-radius: 0;
+    background: rgb(153 246 228);
+    content: "";
+  }
+
+  .tick-architecture__lane {
+    display: grid;
+    grid-template-columns: 7.6rem minmax(0, 1fr);
+    gap: 0.7rem;
+    align-items: center;
+  }
+
+  .tick-architecture__lane-label {
+    min-width: 0;
+    line-height: 1.15;
+  }
+
+  .tick-architecture__lane-label > strong,
+  .tick-architecture__lane-phases {
+    display: block;
+  }
+
+  .tick-architecture__lane-label > strong {
+    color: var(--tick-heading);
+    font-size: 0.76rem;
+  }
+
+  .tick-architecture__lane-phases {
+    margin-top: 0.18rem;
+    font-size: 0.62rem;
+    line-height: 1.3;
+  }
+
+  .tick-architecture__lane-phase {
+    color: rgb(var(--phase-light));
+  }
+
+  :global(.dark) .tick-architecture__lane-phase {
+    color: rgb(var(--phase-dark));
+  }
+
+  .tick-architecture__lane-phase:not(:last-child)::after {
+    color: var(--tick-faint);
+    content: " · ";
+  }
+
+  .tick-architecture__lane-phase--packets {
+    --phase-light: 3 105 161;
+    --phase-dark: 56 189 248;
+  }
+
+  .tick-architecture__lane-phase--closed {
+    --phase-light: 71 85 105;
+    --phase-dark: 148 163 184;
+  }
+
+  .tick-architecture__lane-phase--boundary {
+    --phase-light: 109 40 217;
+    --phase-dark: 167 139 250;
+  }
+
+  .tick-architecture__lane-phase--game,
+  .tick-architecture__lane-phase--ready,
+  .tick-architecture__lane-phase--verify {
+    --phase-light: 4 120 87;
+    --phase-dark: 52 211 153;
+  }
+
+  .tick-architecture__lane-phase--send {
+    --phase-light: 29 78 216;
+    --phase-dark: 96 165 250;
+  }
+
+  .tick-architecture__lane-phase--scheduler {
+    --phase-light: 161 98 7;
+    --phase-dark: 251 191 36;
+  }
+
+  .tick-architecture__lane-phase--encode {
+    --phase-light: 8 145 178;
+    --phase-dark: 34 211 238;
+  }
+
+  .tick-architecture__lane-phase--skip {
+    --phase-light: 190 18 60;
+    --phase-dark: 251 113 133;
+  }
+
+  .tick-architecture__track {
+    position: relative;
+    height: 3.35rem;
+    overflow: hidden;
+    border: 1px solid var(--tick-border);
+    border-radius: 0;
+    background:
+      repeating-linear-gradient(
+        90deg,
+        transparent 0,
+        transparent calc(8.333% - 1px),
+        var(--tick-grid) calc(8.333% - 1px),
+        var(--tick-grid) 8.333%
+      ),
+      var(--tick-surface);
+  }
+
+  .tick-architecture__event {
+    --event-color: 94 234 212;
+    --event-progress: 0%;
+
+    position: absolute;
+    z-index: 1;
+    top: 0.42rem;
+    bottom: 0.42rem;
+    left: var(--event-left);
+    right: calc(100% - var(--event-end));
+    display: flex;
+    box-sizing: border-box;
+    min-width: 0;
+    container-name: timeline-event;
+    container-type: inline-size;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid rgb(var(--event-color) / 0.24);
+    border-radius: 0;
+    padding-inline: 0;
+    background: rgb(var(--event-color) / 0.09);
+    color: var(--tick-heading);
+    line-height: 1.05;
+    opacity: 0.68;
+    transition: opacity 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  }
+
+  .tick-architecture__event::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0 auto 0 0;
+    width: var(--event-progress);
+    background: linear-gradient(
+      90deg,
+      rgb(var(--event-color) / 0.1),
+      rgb(var(--event-color) / 0.27)
+    );
+    content: "";
+  }
+
+  .tick-architecture__event[data-state="past"] {
+    opacity: 0.88;
+  }
+
+  .tick-architecture__event[data-state="active"] {
+    z-index: 2;
+    border-color: rgb(var(--event-color) / 0.68);
+    box-shadow: inset 0 0 0 1px rgb(var(--event-color) / 0.1);
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+
+  .tick-architecture__event-label,
+  .tick-architecture__event-detail {
+    display: block;
+    min-width: 0;
+    padding-inline: 0.4rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .tick-architecture__event-label {
+    font-size: 0.66rem;
+    font-weight: 800;
+  }
+
+  .tick-architecture__event-detail {
+    margin-top: 0.18rem;
+    color: var(--tick-muted);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.52rem;
+  }
+
+  @container timeline-event (max-width: 7rem) {
+    .tick-architecture__event-detail {
+      display: none;
+    }
+  }
+
+  @container timeline-event (max-width: 4rem) {
+    .tick-architecture__event-label {
+      display: none;
+    }
+  }
+
+  .tick-architecture__event--packets {
+    --event-color: 56 189 248;
+  }
+
+  .tick-architecture__event--closed {
+    --event-color: 148 163 184;
+
+    background:
+      repeating-linear-gradient(
+        -45deg,
+        rgb(148 163 184 / 0.13),
+        rgb(148 163 184 / 0.13) 5px,
+        rgb(148 163 184 / 0.045) 5px,
+        rgb(148 163 184 / 0.045) 10px
+      );
+  }
+
+  .tick-architecture__event--boundary {
+    --event-color: 167 139 250;
+  }
+
+  .tick-architecture__event--game,
+  .tick-architecture__event--ready,
+  .tick-architecture__event--verify {
+    --event-color: 52 211 153;
+  }
+
+  .tick-architecture__event--send {
+    --event-color: 96 165 250;
+  }
+
+  .tick-architecture__event--scheduler {
+    --event-color: 251 191 36;
+  }
+
+  .tick-architecture__event--encode {
+    --event-color: 34 211 238;
+  }
+
+  .tick-architecture__event--skip {
+    --event-color: 251 113 133;
+    background:
+      repeating-linear-gradient(
+        -45deg,
+        rgb(251 113 133 / 0.13),
+        rgb(251 113 133 / 0.13) 5px,
+        rgb(251 113 133 / 0.05) 5px,
+        rgb(251 113 133 / 0.05) 10px
+      );
+  }
+
+  .tick-architecture__explanation {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.8rem;
+    align-items: flex-start;
+    margin: 1.2rem 0 0;
+    border: 0;
+    border-left: 2px solid rgb(16 185 129 / 0.5);
+    padding: 0.2rem 0 0.2rem 1rem;
+  }
+
+  .tick-architecture__explanation--warning {
+    border-color: rgb(245 158 11 / 0.6);
+  }
+
+  .tick-architecture__status-dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    margin-top: 0.28rem;
+    border-radius: 0;
+    background: rgb(52 211 153);
+  }
+
+  .tick-architecture__explanation--warning .tick-architecture__status-dot {
+    background: rgb(251 191 36);
+  }
+
+  .tick-architecture__explanation p,
+  .tick-architecture__explanation strong,
+  .tick-architecture__explanation span {
+    display: block;
+    margin: 0;
+  }
+
+  .tick-architecture__explanation p {
+    margin-bottom: 0.18rem;
+    color: rgb(94 234 212);
+    font-family: "Minecraft", sans-serif;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .tick-architecture__explanation--warning p {
+    color: rgb(253 224 71);
+  }
+
+  .tick-architecture__explanation strong {
+    color: var(--tick-heading);
+    font-size: 0.82rem;
+    line-height: 1.35;
+  }
+
+  .tick-architecture__explanation span {
+    margin-top: 0.2rem;
+    color: var(--tick-muted);
+    font-size: 0.76rem;
+    line-height: 1.55;
+  }
+
+  .tick-architecture figcaption {
+    max-width: 47rem;
+    margin: 1.1rem auto 0;
+    color: var(--tick-faint);
+    font-size: 0.76rem;
+    font-style: italic;
+    line-height: 1.55;
+    text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .tick-architecture {
+      margin-block: 2.25rem;
+      padding-block: 1.25rem;
+    }
+
+    .tick-architecture__header {
+      align-items: center;
+    }
+
+    .tick-architecture__play span {
+      position: absolute;
+      overflow: hidden;
+      width: 1px;
+      height: 1px;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+      clip-path: inset(50%);
+    }
+
+    .tick-architecture__play {
+      width: 2.1rem;
+      justify-content: center;
+      padding-inline: 0;
+    }
+
+    .tick-architecture__scenario-picker {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      width: 100%;
+    }
+
+    .tick-architecture__scenario-picker button {
+      padding-inline: 0.35rem;
+      font-size: 0.62rem;
+    }
+
+    .tick-architecture__axis {
+      margin-left: 0;
+    }
+
+    .tick-architecture__lanes {
+      gap: 0.85rem;
+    }
+
+    .tick-architecture__boundaries {
+      top: 1.95rem;
+      left: 0;
+    }
+
+    .tick-architecture__lane {
+      display: block;
+    }
+
+    .tick-architecture__lane-label {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .tick-architecture__lane-label > strong,
+    .tick-architecture__lane-phases {
+      display: inline;
+    }
+
+    .tick-architecture__lane-phases {
+      margin: 0;
+      text-align: right;
+    }
+
+    .tick-architecture__track {
+      height: 3rem;
+    }
+
+    .tick-architecture__event {
+      top: 0.36rem;
+      bottom: 0.36rem;
+    }
+
+    .tick-architecture__event-label,
+    .tick-architecture__event-detail {
+      padding-inline: 0.25rem;
+    }
+
+    .tick-architecture__event-label {
+      font-size: 0.55rem;
+    }
+
+    .tick-architecture__event-detail {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tick-architecture__event {
+      transition: none;
+    }
+  }
+</style>

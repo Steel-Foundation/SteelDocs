@@ -6,8 +6,10 @@
 # Steel Docs
 
    <p align="center" width="66%">
-     <img src="https://i.imgur.com/lFQ6jH2.png" alt="Logo" width="66%">
+     <img src="./public/steel_logo.png" alt="SteelMC logo" width="240">
    </p>
+
+Logo created by **colonthreeing**.
 
 This is the main repository for the [SteelMC](https://github.com/Steel-Foundation/SteelMC) documentation, made using [Astro Starlight](https://starlight.astro.build/).
 

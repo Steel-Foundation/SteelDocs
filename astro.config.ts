@@ -82,6 +82,13 @@ export default defineConfig({
         de: "Steel-Doku",
         es: "Documentación de Steel",
       },
+      logo: {
+        src: "./public/steel_logo.png",
+        alt: "",
+      },
+      components: {
+        Footer: "./src/components/starlight/Footer.astro",
+      },
       social: [
         {
           icon: "discord",
@@ -172,16 +179,15 @@ export default defineConfig({
           label: "English",
           lang: "en",
         },
-        // Sprich Deutsch, du Hurensohn :O) `src/content/docs/de/`
-        de: {
-          label: "Deutsch",
-          lang: "de",
-        },
-        // Documentacion en Español en `src/content/docs/es`
-        es: {
-          label: "Español",
-          lang: "es",
-        },
+        // Temporarily disabled until the translations are ready.
+        // de: {
+        //   label: "Deutsch",
+        //   lang: "de",
+        // },
+        // es: {
+        //   label: "Español",
+        //   lang: "es",
+        // },
       },
     }),
     react(),

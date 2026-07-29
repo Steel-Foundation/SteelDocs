@@ -81,5 +81,5 @@ Am Ende werden die Pakete **deutlich lesbarer** sein als rohe Netzwerkdaten, was
 
 Diese Ressourcen können dir helfen, ein tieferes Verständnis zu erlangen:
 
-- [Dekompiliertes Minecraft](../../getting-started/decompile-minecraft)
+- [Dekompiliertes Minecraft](../../decompile-minecraft/)
 - [https://minecraft.wiki/w/Java_Edition_protocol/Packets](https://minecraft.wiki/w/Java_Edition_protocol/Packets)

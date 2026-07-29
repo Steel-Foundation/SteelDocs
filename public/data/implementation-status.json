@@ -291,7 +291,7 @@
     "MangrovePropaguleBlock": {
       "implemented": true,
       "todos": [
-        "Implement growth ticking, bonemeal advance, and shape updates."
+        "Implement growth ticking and bonemeal advance."
       ],
       "entries": [
         "mangrove_propagule"
@@ -299,9 +299,7 @@
     },
     "LiquidBlock": {
       "implemented": true,
-      "todos": [
-        "Add support for cached fluid states when FluidState caching is implemented"
-      ],
+      "todos": [],
       "entries": [
         "water",
         "lava"
@@ -360,7 +358,7 @@
       ]
     },
     "TintedParticleLeavesBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "oak_leaves",
@@ -372,7 +370,7 @@
       ]
     },
     "UntintedParticleLeavesBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "cherry_leaves",
@@ -382,7 +380,7 @@
       ]
     },
     "MangroveLeavesBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "mangrove_leaves"
@@ -417,7 +415,7 @@
       ]
     },
     "NoteBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "note_block"
@@ -448,7 +446,7 @@
       ]
     },
     "PoweredRailBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "powered_rail",
@@ -456,22 +454,24 @@
       ]
     },
     "DetectorRailBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "detector_rail"
       ]
     },
     "PistonBaseBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Pass the block entity to loot evaluation once block-entity components and"
+      ],
       "entries": [
         "sticky_piston",
         "piston"
       ]
     },
     "WebBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "cobweb"
@@ -528,14 +528,14 @@
       ]
     },
     "PistonHeadBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "piston_head"
       ]
     },
     "MovingPistonBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "moving_piston"
@@ -563,9 +563,7 @@
     },
     "WitherRoseBlock": {
       "implemented": true,
-      "todos": [
-        "Implement full vanilla behavior beyond can_survive."
-      ],
+      "todos": [],
       "entries": [
         "wither_rose"
       ]
@@ -736,7 +734,7 @@
       ]
     },
     "RedStoneWireBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "redstone_wire"
@@ -798,9 +796,7 @@
     },
     "DoorBlock": {
       "implemented": true,
-      "todos": [
-        "Query redstone neighbor signal once Steel has redstone power propagation."
-      ],
+      "todos": [],
       "entries": [
         "oak_door",
         "iron_door",
@@ -822,14 +818,16 @@
       ]
     },
     "LadderBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement the mirror and rotate functions"
+      ],
       "entries": [
         "ladder"
       ]
     },
     "RailBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "rail"
@@ -890,14 +888,14 @@
       ]
     },
     "LeverBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "lever"
       ]
     },
     "PressurePlateBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "stone_pressure_plate",
@@ -917,7 +915,7 @@
       ]
     },
     "RedStoneOreBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "redstone_ore",
@@ -926,29 +924,21 @@
     },
     "RedstoneTorchBlock": {
       "implemented": true,
-      "todos": [
-        "Redstone functionality (signal output, neighbor notifications,",
-        "implement redstone signal source behavior, neighbor updates, and burnout.",
-        "Redstone functionality (signal output by facing, neighbor notifications,"
-      ],
+      "todos": [],
       "entries": [
         "redstone_torch"
       ]
     },
     "RedstoneWallTorchBlock": {
       "implemented": true,
-      "todos": [
-        "implement redstone signal source behavior, neighbor updates, and burnout."
-      ],
+      "todos": [],
       "entries": [
         "redstone_wall_torch"
       ]
     },
     "ButtonBlock": {
       "implemented": true,
-      "todos": [
-        "Check for arrows via checkPressed() — wooden buttons should stay"
-      ],
+      "todos": [],
       "entries": [
         "stone_button",
         "oak_button",
@@ -976,7 +966,7 @@
       ]
     },
     "IceBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "ice"
@@ -1070,7 +1060,7 @@
       ]
     },
     "RepeaterBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "repeater"
@@ -1210,10 +1200,7 @@
     },
     "VineBlock": {
       "implemented": true,
-      "todos": [
-        "Implement placement and random tick spread.",
-        "Vanilla picks a face based on nearest looking direction and"
-      ],
+      "todos": [],
       "entries": [
         "vine"
       ]
@@ -1238,10 +1225,7 @@
     },
     "FenceGateBlock": {
       "implemented": true,
-      "todos": [
-        "` rather than faked — every other behavior is 1:1.",
-        "vanilla sets OPEN/POWERED from level.hasNeighborSignal(pos);"
-      ],
+      "todos": [],
       "entries": [
         "oak_fence_gate",
         "spruce_fence_gate",
@@ -1403,14 +1387,14 @@
       ]
     },
     "CauldronBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "cauldron"
       ]
     },
     "LayeredCauldronBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "water_cauldron",
@@ -1419,9 +1403,7 @@
     },
     "LavaCauldronBlock": {
       "implemented": true,
-      "todos": [
-        "Add shared cauldron interaction, drip-fill, and comparator behavior with the cauldron family."
-      ],
+      "todos": [],
       "entries": [
         "lava_cauldron"
       ]
@@ -1448,7 +1430,7 @@
       ]
     },
     "RedstoneLampBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "redstone_lamp"
@@ -1469,14 +1451,14 @@
       ]
     },
     "TripWireHookBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "tripwire_hook"
       ]
     },
     "TripWireBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "tripwire"
@@ -1614,7 +1596,7 @@
       ]
     },
     "AnvilBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "anvil",
@@ -1630,7 +1612,7 @@
       ]
     },
     "WeightedPressurePlateBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "light_weighted_pressure_plate",
@@ -1638,21 +1620,21 @@
       ]
     },
     "ComparatorBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "comparator"
       ]
     },
     "DaylightDetectorBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "daylight_detector"
       ]
     },
     "PoweredBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "redstone_block"
@@ -1826,7 +1808,7 @@
     "ChorusFlowerBlock": {
       "implemented": true,
       "todos": [
-        "Implement ticking, projectile break behavior, and growth outside worldgen."
+        "Implement ticking and growth outside worldgen."
       ],
       "entries": [
         "chorus_flower"
@@ -1889,7 +1871,7 @@
       ]
     },
     "ObserverBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "observer"
@@ -1919,7 +1901,7 @@
       ]
     },
     "GlazedTerracottaBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "white_glazed_terracotta",
@@ -2002,7 +1984,7 @@
       ]
     },
     "CoralBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "tube_coral_block",
@@ -2280,36 +2262,28 @@
     },
     "WeepingVinesBlock": {
       "implemented": true,
-      "todos": [
-        "Implement growth, bonemeal, and shape updates."
-      ],
+      "todos": [],
       "entries": [
         "weeping_vines"
       ]
     },
     "WeepingVinesPlantBlock": {
       "implemented": true,
-      "todos": [
-        "Implement shape updates."
-      ],
+      "todos": [],
       "entries": [
         "weeping_vines_plant"
       ]
     },
     "TwistingVinesBlock": {
       "implemented": true,
-      "todos": [
-        "Implement growth, bonemeal, and shape updates."
-      ],
+      "todos": [],
       "entries": [
         "twisting_vines"
       ]
     },
     "TwistingVinesPlantBlock": {
       "implemented": true,
-      "todos": [
-        "Implement shape updates."
-      ],
+      "todos": [],
       "entries": [
         "twisting_vines_plant"
       ]
@@ -2343,14 +2317,14 @@
       ]
     },
     "ComposterBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "composter"
       ]
     },
     "TargetBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "target"
@@ -2383,7 +2357,7 @@
       ]
     },
     "RespawnAnchorBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "respawn_anchor"
@@ -2439,7 +2413,7 @@
       ]
     },
     "AmethystBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "amethyst_block"
@@ -2447,9 +2421,7 @@
     },
     "BuddingAmethystBlock": {
       "implemented": true,
-      "todos": [
-        "OnProjectile hit from AmethystBlock inheritance"
-      ],
+      "todos": [],
       "entries": [
         "budding_amethyst"
       ]
@@ -2457,7 +2429,6 @@
     "AmethystClusterBlock": {
       "implemented": true,
       "todos": [
-        "OnProjectile hit from AmethystBlock inheritance",
         "Mirror and Rotate functions"
       ],
       "entries": [
@@ -2538,7 +2509,7 @@
     "WeatheringCopperFullBlock": {
       "implemented": true,
       "todos": [
-        "Add weathering support for doors, trapdoors, grates, bars, bulbs, lanterns, chains, chests, and golem statues"
+        "Add weathering support for lanterns, chests, golem statues, and lightning rods."
       ],
       "entries": [
         "copper_block",
@@ -2587,9 +2558,7 @@
     },
     "WeatheringCopperTrapDoorBlock": {
       "implemented": true,
-      "todos": [
-        "Query redstone neighbor signal once Steel has redstone power propagation."
-      ],
+      "todos": [],
       "entries": [
         "copper_trapdoor",
         "exposed_copper_trapdoor",
@@ -2618,7 +2587,7 @@
       ]
     },
     "WeatheringCopperBulbBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "copper_bulb",
@@ -2628,7 +2597,7 @@
       ]
     },
     "CopperBulbBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "waxed_copper_bulb",
@@ -2701,7 +2670,7 @@
       "implemented": true,
       "todos": [
         "Implement falling stalactites after falling block entities exist.",
-        "Implement trident projectile breakage and fluid transfer after"
+        "Implement fluid transfer after cauldron drip-fill foundations exist."
       ],
       "entries": [
         "pointed_dripstone"
@@ -2716,18 +2685,14 @@
     },
     "CaveVinesBlock": {
       "implemented": true,
-      "todos": [
-        "Implement growth, bonemeal, berry interactions, and shape updates."
-      ],
+      "todos": [],
       "entries": [
         "cave_vines"
       ]
     },
     "CaveVinesPlantBlock": {
       "implemented": true,
-      "todos": [
-        "Implement berry interactions and shape updates."
-      ],
+      "todos": [],
       "entries": [
         "cave_vines_plant"
       ]
@@ -2758,9 +2723,7 @@
     },
     "FlowerBedBlock": {
       "implemented": true,
-      "todos": [
-        "Implement full vanilla behavior beyond can_survive."
-      ],
+      "todos": [],
       "entries": [
         "pink_petals",
         "wildflowers"
@@ -2768,9 +2731,7 @@
     },
     "LeafLitterBlock": {
       "implemented": true,
-      "todos": [
-        "Implement full vanilla behavior beyond can_survive."
-      ],
+      "todos": [],
       "entries": [
         "leaf_litter"
       ]
@@ -2785,9 +2746,7 @@
     },
     "BigDripleafBlock": {
       "implemented": true,
-      "todos": [
-        "Implement tilt-on-stand, projectile tilt, bonemeal stem growth."
-      ],
+      "todos": [],
       "entries": [
         "big_dripleaf"
       ]
@@ -2908,9 +2867,7 @@
     },
     "FireflyBushBlock": {
       "implemented": true,
-      "todos": [
-        "Implement particles, sounds, bonemeal, and the rest of vanilla behavior."
-      ],
+      "todos": [],
       "entries": [
         "firefly_bush"
       ]
@@ -2918,7 +2875,7 @@
   },
   "items": {
     "AirItem": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "air"
@@ -4271,7 +4228,6 @@
       "implemented": true,
       "todos": [
         "Play SoundEvents.SHOVEL_FLATTEN",
-        "level_event(1009, pos, 0) — extinguish particle/sound",
         "CampfireBlock::dowse() — eject cooking items",
         "hurt_and_break(1, ...) — shovels take durability damage"
       ],
@@ -4404,8 +4360,10 @@
       ]
     },
     "CompassItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement lodestone binding and tracked-target invalidation when item"
+      ],
       "entries": [
         "compass"
       ]
@@ -4486,8 +4444,7 @@
     "BoneMealItem": {
       "implemented": true,
       "todos": [
-        "implement coral and underwater bonemeal tag selection.",
-        "particles"
+        "implement coral and underwater bonemeal tag selection."
       ],
       "entries": [
         "bone_meal"
@@ -4530,8 +4487,10 @@
       ]
     },
     "EnderpearlItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "award the ITEM_USED stat once a stats system exists."
+      ],
       "entries": [
         "ender_pearl"
       ]
@@ -4544,8 +4503,12 @@
       ]
     },
     "PotionItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement PotionItem.useOn water-to-mud conversion, bottle replacement,",
+        "Add PotionItem's water default instance when Steel has item-specific",
+        "Complete the shared CONSUMABLE use/finish lifecycle so potions can be"
+      ],
       "entries": [
         "potion"
       ]
@@ -4709,15 +4672,17 @@
       ]
     },
     "PlayerHeadItem": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "player_head"
       ]
     },
     "FireworkRocketItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Award `Stats.ITEM_USED` once Steel has a statistics foundation."
+      ],
       "entries": [
         "firework_rocket"
       ]
@@ -4773,8 +4738,15 @@
       ]
     },
     "SplashPotionItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement inherited PotionItem.useOn water-to-mud conversion.",
+        "Implement ThrowablePotionItem use and dispenser behavior once",
+        "Add the inherited water default instance when Steel has item-specific",
+        "Implement inherited PotionItem.useOn water-to-mud conversion.",
+        "Implement ThrowablePotionItem use and dispenser behavior once",
+        "Add the inherited water default instance when Steel has item-specific"
+      ],
       "entries": [
         "splash_potion"
       ]
@@ -4787,22 +4759,27 @@
       ]
     },
     "TippedArrowItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Add TippedArrowItem's poison default instance when Steel has",
+        "Implement inherited ArrowItem projectile and dispenser behavior once"
+      ],
       "entries": [
         "tipped_arrow"
       ]
     },
     "LingeringPotionItem": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "lingering_potion"
       ]
     },
     "ShieldItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Complete the shared Item.use BLOCKS_ATTACKS path so shields can block."
+      ],
       "entries": [
         "shield"
       ]
@@ -4888,6 +4865,1025 @@
         "host_armor_trim_smithing_template",
         "flow_armor_trim_smithing_template",
         "bolt_armor_trim_smithing_template"
+      ]
+    }
+  },
+  "entities": {
+    "Boat": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "acacia_boat",
+        "birch_boat",
+        "cherry_boat",
+        "dark_oak_boat",
+        "jungle_boat",
+        "mangrove_boat",
+        "oak_boat",
+        "pale_oak_boat",
+        "spruce_boat"
+      ]
+    },
+    "ChestBoat": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "acacia_chest_boat",
+        "birch_chest_boat",
+        "cherry_chest_boat",
+        "dark_oak_chest_boat",
+        "jungle_chest_boat",
+        "mangrove_chest_boat",
+        "oak_chest_boat",
+        "pale_oak_chest_boat",
+        "spruce_chest_boat"
+      ]
+    },
+    "Allay": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "allay"
+      ]
+    },
+    "AreaEffectCloud": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "area_effect_cloud"
+      ]
+    },
+    "Armadillo": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "armadillo"
+      ]
+    },
+    "ArmorStand": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "armor_stand"
+      ]
+    },
+    "Arrow": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "arrow"
+      ]
+    },
+    "Axolotl": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "axolotl"
+      ]
+    },
+    "ChestRaft": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "bamboo_chest_raft"
+      ]
+    },
+    "Raft": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "bamboo_raft"
+      ]
+    },
+    "Bat": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "bat"
+      ]
+    },
+    "Bee": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "bee"
+      ]
+    },
+    "Blaze": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "blaze"
+      ]
+    },
+    "BlockDisplay": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "block_display"
+      ]
+    },
+    "Bogged": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "bogged"
+      ]
+    },
+    "Breeze": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "breeze"
+      ]
+    },
+    "BreezeWindCharge": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "breeze_wind_charge"
+      ]
+    },
+    "Camel": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "camel"
+      ]
+    },
+    "CamelHusk": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "camel_husk"
+      ]
+    },
+    "Cat": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "cat"
+      ]
+    },
+    "CaveSpider": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "cave_spider"
+      ]
+    },
+    "MinecartChest": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "chest_minecart"
+      ]
+    },
+    "Chicken": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "chicken"
+      ]
+    },
+    "Cod": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "cod"
+      ]
+    },
+    "CopperGolem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "copper_golem"
+      ]
+    },
+    "MinecartCommandBlock": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "command_block_minecart"
+      ]
+    },
+    "Cow": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "cow"
+      ]
+    },
+    "Creaking": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "creaking"
+      ]
+    },
+    "Creeper": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "creeper"
+      ]
+    },
+    "Dolphin": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "dolphin"
+      ]
+    },
+    "Donkey": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "donkey"
+      ]
+    },
+    "DragonFireball": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "dragon_fireball"
+      ]
+    },
+    "Drowned": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "drowned"
+      ]
+    },
+    "ThrownEgg": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "egg"
+      ]
+    },
+    "ElderGuardian": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "elder_guardian"
+      ]
+    },
+    "EnderMan": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "enderman"
+      ]
+    },
+    "Endermite": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "endermite"
+      ]
+    },
+    "EnderDragon": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "ender_dragon"
+      ]
+    },
+    "ThrownEnderpearl": {
+      "implemented": true,
+      "todos": [
+        "5% endermite spawn (Endermite entity not implemented)."
+      ],
+      "entries": [
+        "ender_pearl"
+      ]
+    },
+    "EndCrystal": {
+      "implemented": true,
+      "todos": [
+        "Implement portal handling, fire refresh, dragon fight callbacks, and explosion behavior."
+      ],
+      "entries": [
+        "end_crystal"
+      ]
+    },
+    "Evoker": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "evoker"
+      ]
+    },
+    "EvokerFangs": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "evoker_fangs"
+      ]
+    },
+    "ThrownExperienceBottle": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "experience_bottle"
+      ]
+    },
+    "ExperienceOrb": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "experience_orb"
+      ]
+    },
+    "EyeOfEnder": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "eye_of_ender"
+      ]
+    },
+    "FallingBlockEntity": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "falling_block"
+      ]
+    },
+    "LargeFireball": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "fireball"
+      ]
+    },
+    "FireworkRocketEntity": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "firework_rocket"
+      ]
+    },
+    "Fox": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "fox"
+      ]
+    },
+    "Frog": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "frog"
+      ]
+    },
+    "MinecartFurnace": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "furnace_minecart"
+      ]
+    },
+    "Ghast": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "ghast"
+      ]
+    },
+    "HappyGhast": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "happy_ghast"
+      ]
+    },
+    "Giant": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "giant"
+      ]
+    },
+    "GlowItemFrame": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "glow_item_frame"
+      ]
+    },
+    "GlowSquid": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "glow_squid"
+      ]
+    },
+    "Goat": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "goat"
+      ]
+    },
+    "Guardian": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "guardian"
+      ]
+    },
+    "Hoglin": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "hoglin"
+      ]
+    },
+    "MinecartHopper": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "hopper_minecart"
+      ]
+    },
+    "Horse": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "horse"
+      ]
+    },
+    "Husk": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "husk"
+      ]
+    },
+    "Illusioner": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "illusioner"
+      ]
+    },
+    "Interaction": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "interaction"
+      ]
+    },
+    "IronGolem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "iron_golem"
+      ]
+    },
+    "ItemEntity": {
+      "implemented": true,
+      "todos": [
+        "Check isInvulnerableToBase once the shared non-living entity hook is ported.",
+        "Call item.onDestroyed() when implemented"
+      ],
+      "entries": [
+        "item"
+      ]
+    },
+    "ItemDisplay": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "item_display"
+      ]
+    },
+    "ItemFrame": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "item_frame"
+      ]
+    },
+    "LeashFenceKnotEntity": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "leash_knot"
+      ]
+    },
+    "LightningBolt": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "lightning_bolt"
+      ]
+    },
+    "Llama": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "llama"
+      ]
+    },
+    "LlamaSpit": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "llama_spit"
+      ]
+    },
+    "MagmaCube": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "magma_cube"
+      ]
+    },
+    "Mannequin": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "mannequin"
+      ]
+    },
+    "Marker": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "marker"
+      ]
+    },
+    "Minecart": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "minecart"
+      ]
+    },
+    "MushroomCow": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "mooshroom"
+      ]
+    },
+    "Mule": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "mule"
+      ]
+    },
+    "Nautilus": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "nautilus"
+      ]
+    },
+    "Ocelot": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "ocelot"
+      ]
+    },
+    "OminousItemSpawner": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "ominous_item_spawner"
+      ]
+    },
+    "Painting": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "painting"
+      ]
+    },
+    "Panda": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "panda"
+      ]
+    },
+    "Parched": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "parched"
+      ]
+    },
+    "Parrot": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "parrot"
+      ]
+    },
+    "Phantom": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "phantom"
+      ]
+    },
+    "Pig": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "pig"
+      ]
+    },
+    "Piglin": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "piglin"
+      ]
+    },
+    "PiglinBrute": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "piglin_brute"
+      ]
+    },
+    "Pillager": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "pillager"
+      ]
+    },
+    "PolarBear": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "polar_bear"
+      ]
+    },
+    "ThrownSplashPotion": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "splash_potion"
+      ]
+    },
+    "ThrownLingeringPotion": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "lingering_potion"
+      ]
+    },
+    "Pufferfish": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "pufferfish"
+      ]
+    },
+    "Rabbit": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "rabbit"
+      ]
+    },
+    "Ravager": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "ravager"
+      ]
+    },
+    "Salmon": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "salmon"
+      ]
+    },
+    "Sheep": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "sheep"
+      ]
+    },
+    "Shulker": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "shulker"
+      ]
+    },
+    "ShulkerBullet": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "shulker_bullet"
+      ]
+    },
+    "Silverfish": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "silverfish"
+      ]
+    },
+    "Skeleton": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "skeleton"
+      ]
+    },
+    "SkeletonHorse": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "skeleton_horse"
+      ]
+    },
+    "Slime": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "slime"
+      ]
+    },
+    "SmallFireball": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "small_fireball"
+      ]
+    },
+    "Sniffer": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "sniffer"
+      ]
+    },
+    "Snowball": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "snowball"
+      ]
+    },
+    "SnowGolem": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "snow_golem"
+      ]
+    },
+    "MinecartSpawner": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "spawner_minecart"
+      ]
+    },
+    "SpectralArrow": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "spectral_arrow"
+      ]
+    },
+    "Spider": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "spider"
+      ]
+    },
+    "Squid": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "squid"
+      ]
+    },
+    "Stray": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "stray"
+      ]
+    },
+    "Strider": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "strider"
+      ]
+    },
+    "SulfurCube": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "sulfur_cube"
+      ]
+    },
+    "Tadpole": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "tadpole"
+      ]
+    },
+    "TextDisplay": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "text_display"
+      ]
+    },
+    "PrimedTnt": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "tnt"
+      ]
+    },
+    "MinecartTNT": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "tnt_minecart"
+      ]
+    },
+    "TraderLlama": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "trader_llama"
+      ]
+    },
+    "ThrownTrident": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "trident"
+      ]
+    },
+    "TropicalFish": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "tropical_fish"
+      ]
+    },
+    "Turtle": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "turtle"
+      ]
+    },
+    "Vex": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "vex"
+      ]
+    },
+    "Villager": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "villager"
+      ]
+    },
+    "Vindicator": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "vindicator"
+      ]
+    },
+    "WanderingTrader": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "wandering_trader"
+      ]
+    },
+    "Warden": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "warden"
+      ]
+    },
+    "WindCharge": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "wind_charge"
+      ]
+    },
+    "Witch": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "witch"
+      ]
+    },
+    "WitherBoss": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "wither"
+      ]
+    },
+    "WitherSkeleton": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "wither_skeleton"
+      ]
+    },
+    "WitherSkull": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "wither_skull"
+      ]
+    },
+    "Wolf": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "wolf"
+      ]
+    },
+    "Zoglin": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "zoglin"
+      ]
+    },
+    "Zombie": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "zombie"
+      ]
+    },
+    "ZombieHorse": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "zombie_horse"
+      ]
+    },
+    "ZombieNautilus": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "zombie_nautilus"
+      ]
+    },
+    "ZombieVillager": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "zombie_villager"
+      ]
+    },
+    "ZombifiedPiglin": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "zombified_piglin"
+      ]
+    },
+    "Player": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "player"
+      ]
+    },
+    "FishingHook": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "fishing_bobber"
       ]
     }
   }

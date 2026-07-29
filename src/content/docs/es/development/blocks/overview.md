@@ -11,4 +11,4 @@ Los bloques son implementados en Rust mediante un sistema de comportamiento flex
 
 ## Guías disponibles
 
-- [**Añadir un nuevo bloque (Guía básica)**](starting-blocks) - Aprende a registrar y crear nuevos bloques
+- [**Añadir un nuevo bloque (Guía básica)**](../starting-blocks/) - Aprende a registrar y crear nuevos bloques

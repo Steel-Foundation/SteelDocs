@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-labelledby="title description">
+  <title id="title">Minimum generation stages required for one Full chunk</title>
+  <desc id="description">An isometric five-tier pyramid showing all twelve chunk stages in their vanilla colors. Within one generation task, every chunk in a stage's required area must reach at least that stage before the task advances. The required areas are 23 by 23 for Empty and Structure Starts, 7 by 7 for Structure References and Biomes, 5 by 5 for Noise, Surface, and Carvers, 3 by 3 for Features and Initialize Light, and only the target chunk for Light, Spawn, and Full. Nearby generation tasks overlap and reuse shared chunks, which may already be beyond the minimum stage shown.</desc>
+
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#102b31"/>
+      <stop offset="1" stop-color="#071c25"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#00100f" flood-opacity="0.5"/>
+    </filter>
+    <style>
+      .group { font: 700 12px Inter, ui-sans-serif, system-ui, sans-serif; letter-spacing: 1.4px; fill: #67e8f9; }
+      .stage { font: 600 15px Inter, ui-sans-serif, system-ui, sans-serif; fill: #f1f5f9; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="600" rx="28" fill="url(#background)"/>
+  <path d="M1200 45 L930 175 L1200 395 Z" fill="#5f6191" opacity="0.10"/>
+
+  <g transform="translate(0 -115)" filter="url(#shadow)" stroke="#ffffff" stroke-opacity="0.18" stroke-width="1.5">
+    <!-- 23x23: Empty, Structure Starts -->
+    <path d="M350 376 L662 514 L350 652 L38 514 Z" fill="#999999"/>
+    <path d="M38 514 L350 652 L350 669 L38 531 Z" fill="#999999"/>
+    <path d="M350 652 L662 514 L662 531 L350 669 Z" fill="#858585"/>
+    <path d="M38 531 L350 669 L350 686 L38 548 Z" fill="#545454"/>
+    <path d="M350 669 L662 531 L662 548 L350 686 Z" fill="#464646"/>
+
+    <!-- 7x7: Structure References, Biomes -->
+    <path d="M350 329 L568 425 L350 521 L132 425 Z" fill="#80b252"/>
+    <path d="M132 425 L350 521 L350 538 L132 442 Z" fill="#80b252"/>
+    <path d="M350 521 L568 425 L568 442 L350 538 Z" fill="#679342"/>
+    <path d="M132 442 L350 538 L350 555 L132 459 Z" fill="#5f6191"/>
+    <path d="M350 538 L568 442 L568 459 L350 555 Z" fill="#4d4f78"/>
+
+    <!-- 5x5: Noise, Surface, Carvers -->
+    <path d="M350 276 L504 344 L350 412 L196 344 Z" fill="#303572"/>
+    <path d="M196 344 L350 412 L350 426 L196 358 Z" fill="#303572"/>
+    <path d="M350 412 L504 344 L504 358 L350 426 Z" fill="#25295c"/>
+    <path d="M196 358 L350 426 L350 440 L196 372 Z" fill="#726809"/>
+    <path d="M350 426 L504 358 L504 372 L350 440 Z" fill="#5d5507"/>
+    <path d="M196 372 L350 440 L350 454 L196 386 Z" fill="#d1d1d1"/>
+    <path d="M350 440 L504 372 L504 386 L350 454 Z" fill="#aaaaaa"/>
+
+    <!-- 3x3: Features, Initialize Light -->
+    <path d="M350 225 L448 268 L350 311 L252 268 Z" fill="#cccccc"/>
+    <path d="M252 268 L350 311 L350 328 L252 285 Z" fill="#cccccc"/>
+    <path d="M350 311 L448 268 L448 285 L350 328 Z" fill="#a8a8a8"/>
+    <path d="M252 285 L350 328 L350 345 L252 302 Z" fill="#21c600"/>
+    <path d="M350 328 L448 285 L448 302 L350 345 Z" fill="#199b00"/>
+
+    <!-- 1x1: Light, Spawn, Full -->
+    <path d="M350 169 L400 191 L350 213 L300 191 Z" fill="#ffffff" stroke-opacity="0.65"/>
+    <path d="M300 191 L350 213 L350 227 L300 205 Z" fill="#ffffff"/>
+    <path d="M350 213 L400 191 L400 205 L350 227 Z" fill="#d8d8d8"/>
+    <path d="M300 205 L350 227 L350 241 L300 219 Z" fill="#f26060"/>
+    <path d="M350 227 L400 205 L400 219 L350 241 Z" fill="#c84c4c"/>
+    <path d="M300 219 L350 241 L350 255 L300 233 Z" fill="#ffe0a0"/>
+    <path d="M350 241 L400 219 L400 233 L350 255 Z" fill="#d3b878"/>
+  </g>
+
+  <!-- Legend: all stages remain visible even when they share a footprint. -->
+  <g transform="translate(724 75)">
+    <path d="M0 0 V400" stroke="#67e8f9" stroke-opacity="0.20" stroke-width="2"/>
+
+    <g transform="translate(26 320)">
+      <text x="0" y="0" class="group">23 × 23 · RADIUS 11</text>
+      <rect x="0" y="14" width="16" height="16" rx="3" fill="#545454" stroke="#ffffff" stroke-opacity="0.35"/>
+      <text x="26" y="27" class="stage">Empty</text>
+      <rect x="160" y="14" width="16" height="16" rx="3" fill="#999999" stroke="#ffffff" stroke-opacity="0.35"/>
+      <text x="186" y="27" class="stage">Structure Starts</text>
+    </g>
+
+    <g transform="translate(26 240)">
+      <text x="0" y="0" class="group">7 × 7 · RADIUS 3</text>
+      <rect x="0" y="14" width="16" height="16" rx="3" fill="#5f6191" stroke="#ffffff" stroke-opacity="0.35"/>
+      <text x="26" y="27" class="stage">Structure References</text>
+      <rect x="242" y="14" width="16" height="16" rx="3" fill="#80b252" stroke="#ffffff" stroke-opacity="0.35"/>
+      <text x="268" y="27" class="stage">Biomes</text>
+    </g>
+
+    <g transform="translate(26 160)">
+      <text x="0" y="0" class="group">5 × 5 · RADIUS 2</text>
+      <rect x="0" y="14" width="16" height="16" rx="3" fill="#d1d1d1" stroke="#ffffff" stroke-opacity="0.35"/>
+      <text x="26" y="27" class="stage">Noise</text>
+      <rect x="116" y="14" width="16" height="16" rx="3" fill="#726809" stroke="#ffffff" stroke-opacity="0.35"/>
+      <text x="142" y="27" class="stage">Surface</text>
+      <rect x="250" y="14" width="16" height="16" rx="3" fill="#303572" stroke="#ffffff" stroke-opacity="0.35"/>
+      <text x="276" y="27" class="stage">Carvers</text>
+    </g>
+
+    <g transform="translate(26 80)">
+      <text x="0" y="0" class="group">3 × 3 · RADIUS 1</text>
+      <rect x="0" y="14" width="16" height="16" rx="3" fill="#21c600" stroke="#ffffff" stroke-opacity="0.35"/>
+      <text x="26" y="27" class="stage">Features</text>
+      <rect x="148" y="14" width="16" height="16" rx="3" fill="#cccccc" stroke="#ffffff" stroke-opacity="0.35"/>
+      <text x="174" y="27" class="stage">Initialize Light</text>
+    </g>
+
+    <g transform="translate(26 0)">
+      <text x="0" y="0" class="group">1 × 1 · TARGET</text>
+      <rect x="0" y="14" width="16" height="16" rx="3" fill="#ffe0a0" stroke="#ffffff" stroke-opacity="0.35"/>
+      <text x="26" y="27" class="stage">Light</text>
+      <rect x="105" y="14" width="16" height="16" rx="3" fill="#f26060" stroke="#ffffff" stroke-opacity="0.35"/>
+      <text x="131" y="27" class="stage">Spawn</text>
+      <rect x="224" y="14" width="16" height="16" rx="3" fill="#ffffff" stroke="#ffffff" stroke-opacity="0.65"/>
+      <text x="250" y="27" class="stage">Full</text>
+    </g>
+
+  </g>
+</svg>

@@ -1,0 +1,106 @@
+{
+  "metadata": {
+    "created_at": "2026-07-28T15:21:31.846Z",
+    "minecraft": "26.2",
+    "seed": "8500081009970950196",
+    "side_chunks": 101,
+    "target_chunks": 10201,
+    "runs_per_server": 3,
+    "sample_interval_ms": 250,
+    "world_storage": "/tmp (fresh directory for every trial)",
+    "steel_commit": "c9f6a90b843a984b7c2c522ed7418098083c4780",
+    "steel_worktree_dirty": false,
+    "steel_worktree_diff_sha512": "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e",
+    "steel_binary_sha512": "68c8e6b4be8a09a9f9aacf9444d1e33545d85066f8cd8fc510368abbbbf2ea3f5124de61da1422beb2919e1bc534246b6103e81cc724e0800b4e3858d6e7469a",
+    "steel_binary_modified_at": "2026-07-28T15:03:42.578Z",
+    "steel_pregen_window_size": "64",
+    "fabric_loader": "0.19.3",
+    "chunky": "1.5.3",
+    "fabric_api": "0.155.2+26.2",
+    "java_min_heap": "512M",
+    "java_max_heap": "8G",
+    "machine": {
+      "os": "Linux 7.1.4-arch1-1 x86_64",
+      "kernel": "7.1.4-arch1-1",
+      "cpu": "AMD Ryzen 9 9950X 16-Core Processor",
+      "logical_cpus": 32,
+      "memory_bytes": 132530401280,
+      "java": "openjdk version \"25.0.4\" 2026-07-21\nOpenJDK Runtime Environment (build 25.0.4)\nOpenJDK 64-Bit Server VM (build 25.0.4, mixed mode, sharing)",
+      "filesystem": "tmpfs tmpfs"
+    }
+  },
+  "trials": [
+    {
+      "server": "steel",
+      "run": 1,
+      "chunks": 10201,
+      "wall_seconds": 3.940211492,
+      "chunks_per_second": 2588.947324454938,
+      "reported_seconds": 3.94,
+      "reported_chunks_per_second": 2591.4,
+      "cpu_seconds": 118.95,
+      "average_cpu_cores": 30.188734853829516,
+      "peak_rss_bytes": 1926905856
+    },
+    {
+      "server": "fabric",
+      "run": 1,
+      "chunks": 10201,
+      "wall_seconds": 75.087586801,
+      "chunks_per_second": 135.85467897690043,
+      "reported_seconds": null,
+      "reported_chunks_per_second": null,
+      "cpu_seconds": 331.65000000000003,
+      "average_cpu_cores": 4.416841905959124,
+      "peak_rss_bytes": 2523082752
+    },
+    {
+      "server": "fabric",
+      "run": 2,
+      "chunks": 10201,
+      "wall_seconds": 74.419358296,
+      "chunks_per_second": 137.07454933198878,
+      "reported_seconds": null,
+      "reported_chunks_per_second": null,
+      "cpu_seconds": 327.65,
+      "average_cpu_cores": 4.402752287876298,
+      "peak_rss_bytes": 3894734848
+    },
+    {
+      "server": "steel",
+      "run": 2,
+      "chunks": 10201,
+      "wall_seconds": 3.958918323000006,
+      "chunks_per_second": 2576.7139323727806,
+      "reported_seconds": 3.96,
+      "reported_chunks_per_second": 2578.4,
+      "cpu_seconds": 119.42999999999999,
+      "average_cpu_cores": 30.167331138445366,
+      "peak_rss_bytes": 1918353408
+    },
+    {
+      "server": "steel",
+      "run": 3,
+      "chunks": 10201,
+      "wall_seconds": 3.9540547100000083,
+      "chunks_per_second": 2579.883372428091,
+      "reported_seconds": 3.95,
+      "reported_chunks_per_second": 2582.6,
+      "cpu_seconds": 119.49000000000001,
+      "average_cpu_cores": 30.21961221168833,
+      "peak_rss_bytes": 1929543680
+    },
+    {
+      "server": "fabric",
+      "run": 3,
+      "chunks": 10201,
+      "wall_seconds": 73.547159,
+      "chunks_per_second": 138.70012300543112,
+      "reported_seconds": null,
+      "reported_chunks_per_second": null,
+      "cpu_seconds": 323.29,
+      "average_cpu_cores": 4.395683047390043,
+      "peak_rss_bytes": 2652327936
+    }
+  ]
+}

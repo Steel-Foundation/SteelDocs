@@ -1,0 +1,226 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import { ArrowLeft, CalendarDays, Clock3 } from "@lucide/astro";
+import BlogLayout from "@/layouts/BlogLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const wordCount = (post.body ?? "").trim().split(/\s+/).filter(Boolean).length;
+const readingTime = Math.max(1, Math.ceil(wordCount / 220));
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat("en", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(date);
+---
+
+<BlogLayout
+  title={`${post.data.title} - SteelMC Blog`}
+  description={post.data.description}
+  socialTitle={post.data.title}
+  socialImage={post.data.socialImage?.src}
+  socialImageAlt={post.data.socialImage?.alt}
+  pageType="article"
+  publishedAt={post.data.publishedAt}
+  updatedAt={post.data.updatedAt}
+  author={post.data.author}
+>
+  <main class="relative z-10 mx-auto min-h-screen max-w-280 px-6 pb-24 pt-28">
+    <a
+      href="/blog/"
+      class="inline-flex items-center gap-2 rounded-full px-3 py-2 font-minecraft text-sm font-bold text-teal-700 transition-colors hover:bg-white/60 hover:text-emerald-700 dark:text-white/60 dark:hover:bg-white/10 dark:hover:text-emerald-400"
+    >
+      <ArrowLeft class="size-4" />
+      All posts
+    </a>
+
+    <article class="mx-auto mt-8 max-w-4xl">
+      <header class="border-b border-teal-200/80 pb-10 dark:border-white/10">
+        <div class="flex flex-wrap items-center gap-3">
+          <span
+            class="rounded-full bg-emerald-600 px-3 py-1 font-minecraft text-xs font-bold uppercase tracking-wider text-white"
+          >
+            {post.data.category}
+          </span>
+          {
+            post.data.placeholder && (
+              <span class="rounded-full border border-amber-500/30 bg-amber-400/10 px-3 py-1 font-minecraft text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300">
+                Placeholder
+              </span>
+            )
+          }
+        </div>
+
+        <h1
+          class="mt-6 text-balance font-minecraft text-4xl font-bold leading-tight text-teal-950 dark:text-white md:text-6xl"
+        >
+          {post.data.title}
+        </h1>
+        <p class="mt-5 max-w-3xl text-lg leading-8 text-teal-700 dark:text-white/65 md:text-xl">
+          {post.data.description}
+        </p>
+
+        <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-teal-600 dark:text-white/50">
+          <span class="font-semibold text-teal-800 dark:text-white/75">
+            {post.data.author}
+          </span>
+          <span class="flex items-center gap-2">
+            <CalendarDays class="size-4" />
+            <time datetime={post.data.publishedAt.toISOString()}>
+              {formatDate(post.data.publishedAt)}
+            </time>
+          </span>
+          <span class="flex items-center gap-2">
+            <Clock3 class="size-4" />
+            {readingTime} min read
+          </span>
+        </div>
+      </header>
+
+      {
+        post.data.placeholder && (
+          <aside class="my-8 rounded-2xl border border-amber-500/30 bg-amber-100/70 p-5 text-amber-950 backdrop-blur-sm dark:bg-amber-400/10 dark:text-amber-100">
+            <p class="font-minecraft font-bold">Draft content</p>
+            <p class="mt-1 text-sm leading-6 opacity-80">
+              This announcement is placeholder copy. Update its date, details,
+              and status in the Markdown file before publishing it as final.
+            </p>
+          </aside>
+        )
+      }
+
+      <div class="blog-prose mt-10">
+        <Content />
+      </div>
+
+      <footer class="mt-14 border-t border-teal-200/80 pt-8 dark:border-white/10">
+        <a
+          href="/blog/"
+          class="inline-flex items-center gap-2 font-minecraft font-bold text-emerald-700 hover:text-emerald-600 dark:text-emerald-400 dark:hover:text-emerald-300"
+        >
+          <ArrowLeft class="size-4" />
+          Back to the blog
+        </a>
+      </footer>
+    </article>
+  </main>
+</BlogLayout>
+
+<style is:global>
+  .blog-prose {
+    color: rgb(19 78 74);
+    font-size: 1.0625rem;
+    line-height: 1.8;
+  }
+
+  .dark .blog-prose {
+    color: rgb(255 255 255 / 0.72);
+  }
+
+  .blog-prose > * + * {
+    margin-top: 1.5rem;
+  }
+
+  .blog-prose h2,
+  .blog-prose h3 {
+    margin-top: 2.75rem;
+    color: rgb(4 47 46);
+    font-family: "Minecraft", sans-serif;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .dark .blog-prose h2,
+  .dark .blog-prose h3 {
+    color: white;
+  }
+
+  .blog-prose h2 {
+    font-size: 1.875rem;
+  }
+
+  .blog-prose h3 {
+    font-size: 1.4rem;
+  }
+
+  .blog-prose a {
+    color: rgb(4 120 87);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .dark .blog-prose a {
+    color: rgb(52 211 153);
+  }
+
+  .blog-prose ul,
+  .blog-prose ol {
+    padding-left: 1.5rem;
+  }
+
+  .blog-prose ul {
+    list-style: disc;
+  }
+
+  .blog-prose ol {
+    list-style: decimal;
+  }
+
+  .blog-prose li + li {
+    margin-top: 0.55rem;
+  }
+
+  .blog-prose strong {
+    color: rgb(4 47 46);
+  }
+
+  .blog-prose img {
+    width: 100%;
+    border: 1px solid rgb(13 148 136 / 0.22);
+    border-radius: 1.25rem;
+    box-shadow: 0 18px 45px rgb(4 47 46 / 0.13);
+  }
+
+  .blog-prose iframe {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border: 1px solid rgb(13 148 136 / 0.22);
+    border-radius: 1.25rem;
+    box-shadow: 0 18px 45px rgb(4 47 46 / 0.13);
+  }
+
+  .dark .blog-prose strong {
+    color: white;
+  }
+
+  .blog-prose blockquote {
+    border-left: 3px solid rgb(16 185 129);
+    border-radius: 0 0.75rem 0.75rem 0;
+    background: rgb(255 255 255 / 0.55);
+    padding: 1rem 1.25rem;
+    color: rgb(17 94 89);
+  }
+
+  .dark .blog-prose blockquote {
+    background: rgb(255 255 255 / 0.06);
+    color: rgb(255 255 255 / 0.65);
+  }
+</style>

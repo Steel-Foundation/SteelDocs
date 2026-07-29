@@ -4,10 +4,13 @@ import Navbar from "@/components/sections/Navbar.astro";
 import ImplementationTracker from "@/components/tracker/ImplementationTracker";
 ---
 
-<Layout title="Implementation Tracker - SteelDocs">
+<Layout
+  title="Implementation Tracker - SteelMC"
+  description="Track which Minecraft blocks, items, and entities have behavior implementations in SteelMC."
+>
   <Navbar />
   <main
-    class="container mx-4 w-auto lg:mx-auto max-w-280 px-4 pt-20 pb-16 relative z-10"
+    class="container mx-4 w-auto lg:mx-auto max-w-300 px-4 pt-24 pb-20 relative z-10"
   >
     <div class="mb-8">
       <h1
@@ -17,9 +20,9 @@ import ImplementationTracker from "@/components/tracker/ImplementationTracker";
           >Tracker</span
         >
       </h1>
-      <p class="text-lg text-teal-700 dark:text-gray-300 mt-2">
-        Track which Minecraft blocks and items have behavior implementations in
-        Steel.
+      <p class="max-w-190 text-lg text-teal-700 dark:text-gray-300 mt-3 md:text-xl">
+        Track which Minecraft blocks, items, and entities have behavior
+        implementations in Steel.
       </p>
     </div>
     <ImplementationTracker client:only="react" />

@@ -8,7 +8,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "sync": "bun run scripts/sync-implementation.ts"
+    "sync": "bun run scripts/sync-implementation.ts",
+    "benchmark": "bun run scripts/benchmarks/run.ts",
+    "benchmark:render": "bun run scripts/benchmarks/render.ts"
   },
   "dependencies": {
     "@astrojs/check": "0.9.7",

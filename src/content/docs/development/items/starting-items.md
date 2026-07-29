@@ -71,7 +71,7 @@ pub struct ShovelBehavior;
 impl ItemBehavior for ShovelBehavior {}
 ```
 
-> ⚠️ More complex items than the shovel have properties, you can find more information [here](../block_item_registration) more information!
+> ⚠️ More complex items than the shovel have properties. You can find more information [here](../../block_item_registration/).
 
 
 ---

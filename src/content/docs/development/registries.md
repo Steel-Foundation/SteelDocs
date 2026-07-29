@@ -51,7 +51,7 @@ There are three useful categories to keep in mind:
 - **Tagged registries** do the same thing, but also group entries under tag identifiers such as `minecraft:fence_gates`.
 - **Complex registries** have extra domain-specific behavior. Blocks and items are the main examples, because their registry entries connect to states, components, behavior, and other systems.
 
-This guide focuses on simple and tagged registries. After reading it, you should also have enough context to follow the more complex registries. For a concrete walkthrough of blocks and items, see [Block/Item registration](./block_item_registration).
+This guide focuses on simple and tagged registries. After reading it, you should also have enough context to follow the more complex registries. For a concrete walkthrough of blocks and items, see [Block/Item registration](../block_item_registration/).
 
 ## Folder structure
 
@@ -463,7 +463,7 @@ As the last step, in the `steel-registry/src/lib.rs` file we need to add an iden
 pub const BEER_TYPE_REGISTRY: Identifier = Identifier::vanilla_static("beer_type");
 ```
 
-Now we have finished the self-written code! Only macros are needed from here. You can find more information about what each macro does [here](registry-macros).
+Now we have finished the self-written code! Only macros are needed from here. You can find more information about what each macro does [here](#registry-macros).
 Switch back to your registry file.
 
 So the first macro:
@@ -490,7 +490,7 @@ crate::impl_registry!(
 ```
 Here the first four parameters are the same as before, but the last parameter is the field name of this registry in the `Registry` struct.
 
-Now we are finished and have a working registry! But don't be surprised that your registry will be empty — for that, the guide [for build scripts](create-your-own-build-script-for-a-registry) was written.
+Now we are finished and have a working registry! But don't be surprised that your registry will be empty — for that, the guide [for build scripts](#create-your-own-build-script-for-a-registry) was written.
 
 ### Extend to tagged registry
 
