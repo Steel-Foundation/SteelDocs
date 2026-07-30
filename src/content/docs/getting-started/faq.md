@@ -42,6 +42,11 @@ NeoForge/Forge/Fabric mods will not be supported. As with plugins, Steel will us
 
 Just use the `/fly speed <velocity multiplier>` command, where the velocity multiplier must be a decimal number between 0 and 30.
 
+## Can I integrate steel-worldgen into paper/fabric/etc?
+
+There are some PoCs and we are happy to help but the goal of this project is to be a full minecraft server. To integrate Rust with Java, JNI or Panama is needed.
+Come on the discord server and connect with them!
+
 ## When I'm flying fast the server keeps pushing me back every few seconds
 
 That's due to a vanilla gamerule, you can use `/gamerule player_movement_check false` to disable it.
