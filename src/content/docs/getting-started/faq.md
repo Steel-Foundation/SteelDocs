@@ -45,7 +45,6 @@ Just use the `/fly speed <velocity multiplier>` command, where the velocity mult
 ## Can I integrate steel-worldgen into paper/fabric/etc?
 
 There are some PoCs and we are happy to help but the goal of this project is to be a full minecraft server. To integrate Rust with Java, JNI or Panama is needed.
-Come on the discord server and connect with them!
 
 ## When I'm flying fast the server keeps pushing me back every few seconds
 
