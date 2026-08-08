@@ -42,9 +42,11 @@ const Headline = ({
 const Actions = ({
   mainCtaText,
   secondCtaText,
+  secondCtaHref,
 }: {
   mainCtaText: string;
   secondCtaText: string;
+  secondCtaHref: string;
 }) => (
   <div className="flex gap-4 mt-8 items-center pointer-events-auto">
     {/* Main CTA */}
@@ -59,7 +61,7 @@ const Actions = ({
     <a
       className="px-6 md:px-8 py-2 font-minecraft font-bold rounded-[50px] text-xs md:text-sm bg-black/5 border border-black/10 text-black/80 dark:bg-white/5 dark:border-white/10 dark:text-white/85 cursor-pointer hover:bg-black/10 dark:hover:bg-white/10 hover:-translate-y-px transition-all duration-200 ease-out"
       style={glassStyle}
-      href="./getting-started/introduction/"
+      href={secondCtaHref}
     >
       {secondCtaText}
     </a>
@@ -73,6 +75,7 @@ interface HeaderProps {
   subtitle: string;
   mainCtaText: string;
   secondCtaText: string;
+  secondCtaHref: string;
 }
 
 const BackgroundContent = ({
@@ -82,6 +85,7 @@ const BackgroundContent = ({
   subtitle,
   mainCtaText,
   secondCtaText,
+  secondCtaHref,
 }: HeaderProps) => {
   return (
     <div className="relative w-full h-full overflow-hidden">
@@ -92,7 +96,11 @@ const BackgroundContent = ({
           heroTitleHighlight={heroTitleHighlight}
           subtitle={subtitle}
         />
-        <Actions mainCtaText={mainCtaText} secondCtaText={secondCtaText} />
+        <Actions
+          mainCtaText={mainCtaText}
+          secondCtaText={secondCtaText}
+          secondCtaHref={secondCtaHref}
+        />
         <a href="#arrow" id="arrow" aria-label="Scroll down">
           <ArrowDown
             aria-hidden="true"

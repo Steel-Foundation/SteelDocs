@@ -2,11 +2,47 @@
 import Layout from "@/layouts/Layout.astro";
 import Navbar from "@/components/sections/Navbar.astro";
 import ImplementationTracker from "@/components/tracker/ImplementationTracker";
+
+const { t } = Astro.locals;
+
+const labels = {
+  totalBehaviors: t("tracker.stats.totalBehaviors"),
+  totalEntries: t("tracker.stats.totalEntries"),
+  complete: t("tracker.stats.complete"),
+  partial: t("tracker.stats.partial"),
+  unimplemented: t("tracker.stats.unimplemented"),
+  progressTitle: t("tracker.progress.title"),
+  progressByClasses: t("tracker.progress.byClasses"),
+  progressByEntries: t("tracker.progress.byEntries"),
+  progressAriaLabel: t("tracker.progress.ariaLabel"),
+  metricSurface: t("tracker.metric.surface"),
+  metricBehaviors: t("tracker.metric.behaviors"),
+  notStarted: t("tracker.tooltip.notStarted"),
+  tabBlocks: t("tracker.tab.blocks"),
+  tabItems: t("tracker.tab.items"),
+  tabEntities: t("tracker.tab.entities"),
+  entryLabels: {
+    blocks: t("tracker.entryLabel.blocks"),
+    items: t("tracker.entryLabel.items"),
+    entities: t("tracker.entryLabel.entities"),
+  },
+  searchPlaceholder: t("tracker.search.placeholder"),
+  filterAll: t("tracker.filter.all"),
+  filterTodo: t("tracker.filter.todo"),
+  showing: t("tracker.results.showing"),
+  classSingular: t("tracker.results.class.one"),
+  classPlural: t("tracker.results.class.other"),
+  entries: t("tracker.results.entries"),
+  todoBadge: t("tracker.badge.todo"),
+  more: t("tracker.results.more"),
+  noResults: t("tracker.noResults.title"),
+  noResultsHint: t("tracker.noResults.hint"),
+};
 ---
 
 <Layout
-  title="Implementation Tracker - SteelMC"
-  description="Track which Minecraft blocks, items, and entities have behavior implementations in SteelMC."
+  title={t("tracker.meta.title")}
+  description={t("tracker.meta.description")}
 >
   <Navbar />
   <main
@@ -16,15 +52,14 @@ import ImplementationTracker from "@/components/tracker/ImplementationTracker";
       <h1
         class="text-3xl md:text-5xl font-minecraft font-bold text-teal-950 dark:text-white"
       >
-        Implementation <span class="text-emerald-600 dark:text-emerald-400"
-          >Tracker</span
+        {t("tracker.title")} <span class="text-emerald-600 dark:text-emerald-400"
+          >{t("tracker.titleHighlight")}</span
         >
       </h1>
       <p class="max-w-190 text-lg text-teal-700 dark:text-gray-300 mt-3 md:text-xl">
-        Track which Minecraft blocks, items, and entities have behavior
-        implementations in Steel.
+        {t("tracker.subtitle")}
       </p>
     </div>
-    <ImplementationTracker client:only="react" />
+    <ImplementationTracker client:only="react" labels={labels} />
   </main>
 </Layout>

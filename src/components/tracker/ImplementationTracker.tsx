@@ -24,7 +24,37 @@ type Tab = "blocks" | "items" | "entities";
 type StatusFilter = "all" | "complete" | "partial" | "unimplemented";
 type ProgressMetric = "surface" | "classes";
 
-export default function ImplementationTracker() {
+export interface TrackerLabels {
+  totalBehaviors: string;
+  totalEntries: string;
+  complete: string;
+  partial: string;
+  unimplemented: string;
+  progressTitle: string;
+  progressByClasses: string;
+  progressByEntries: string;
+  progressAriaLabel: string;
+  metricSurface: string;
+  metricBehaviors: string;
+  notStarted: string;
+  tabBlocks: string;
+  tabItems: string;
+  tabEntities: string;
+  entryLabels: Record<Tab, string>;
+  searchPlaceholder: string;
+  filterAll: string;
+  filterTodo: string;
+  showing: string;
+  classSingular: string;
+  classPlural: string;
+  entries: string;
+  todoBadge: string;
+  more: string;
+  noResults: string;
+  noResultsHint: string;
+}
+
+export default function ImplementationTracker({ labels }: { labels: TrackerLabels }) {
   const [data, setData] = useState<ImplementationData | null>(null);
   const [tab, setTab] = useState<Tab>("blocks");
   const [search, setSearch] = useState("");
@@ -39,7 +69,7 @@ export default function ImplementationTracker() {
   }, []);
 
   const currentData = data?.[tab];
-  const entryLabel = tab === "entities" ? "entities" : tab;
+  const entryLabel = labels.entryLabels[tab];
 
   const stats = useMemo(() => {
     if (!currentData) return { total: 0, complete: 0, partial: 0, unimplemented: 0 };
@@ -101,12 +131,12 @@ export default function ImplementationTracker() {
       {/* Stats overview */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
         <StatCard
-          label={progressMetric === "classes" ? "Total behaviors" : "Total entries"}
+          label={progressMetric === "classes" ? labels.totalBehaviors : labels.totalEntries}
           value={stats.total}
         />
-        <StatCard label="Complete" value={stats.complete} color="emerald" />
-        <StatCard label="Partial" value={stats.partial} color="amber" />
-        <StatCard label="Unimplemented" value={stats.unimplemented} />
+        <StatCard label={labels.complete} value={stats.complete} color="emerald" />
+        <StatCard label={labels.partial} value={stats.partial} color="amber" />
+        <StatCard label={labels.unimplemented} value={stats.unimplemented} />
       </div>
 
       {/* Progress bar */}
@@ -114,30 +144,30 @@ export default function ImplementationTracker() {
         <div className="flex flex-col gap-3 mb-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <span className="text-sm font-medium text-teal-700 dark:text-white/70">
-              Implementation progress
+              {labels.progressTitle}
             </span>
             <p className="mt-0.5 text-xs text-teal-500 dark:text-white/35">
               {progressMetric === "classes"
-                ? "Each behavior type counts equally."
-                : `Weighted by registered ${entryLabel}.`}
+                ? labels.progressByClasses
+                : labels.progressByEntries.replace("{{entryLabel}}", entryLabel)}
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <div
               className="flex rounded-lg bg-teal-100 dark:bg-white/5 border border-teal-200/40 dark:border-white/10 p-0.5"
-              aria-label="Progress calculation"
+              aria-label={labels.progressAriaLabel}
             >
               <MetricButton
                 active={progressMetric === "surface"}
                 onClick={() => setProgressMetric("surface")}
               >
-                Surface area
+                {labels.metricSurface}
               </MetricButton>
               <MetricButton
                 active={progressMetric === "classes"}
                 onClick={() => setProgressMetric("classes")}
               >
-                Behaviors
+                {labels.metricBehaviors}
               </MetricButton>
             </div>
             <div className="flex items-center gap-3 text-xs">
@@ -169,15 +199,15 @@ export default function ImplementationTracker() {
             pointer-events-none z-10 flex flex-col gap-1 whitespace-nowrap shadow-lg">
             <span className="flex items-center gap-2">
               <span className="inline-block size-2 rounded-full bg-emerald-400" />
-              Complete — {pctComplete}%
+              {labels.complete} — {pctComplete}%
             </span>
             <span className="flex items-center gap-2">
               <span className="inline-block size-2 rounded-full bg-amber-400" />
-              Partial — {pctPartial}%
+              {labels.partial} — {pctPartial}%
             </span>
             <span className="flex items-center gap-2">
               <span className="inline-block size-2 rounded-full bg-white/20" />
-              Not started — {100 - pctComplete - pctPartial}%
+              {labels.notStarted} — {100 - pctComplete - pctPartial}%
             </span>
           </div>
         </div>
@@ -189,15 +219,15 @@ export default function ImplementationTracker() {
         <div className="flex rounded-xl bg-teal-100 dark:bg-white/5 border border-teal-200/40 dark:border-white/10 p-1">
           <TabButton active={tab === "blocks"} onClick={() => setTab("blocks")}>
             <Blocks className="size-3.5" />
-            Blocks
+            {labels.tabBlocks}
           </TabButton>
           <TabButton active={tab === "items"} onClick={() => setTab("items")}>
             <Sword className="size-3.5" />
-            Items
+            {labels.tabItems}
           </TabButton>
           <TabButton active={tab === "entities"} onClick={() => setTab("entities")}>
             <PawPrint className="size-3.5" />
-            Entities
+            {labels.tabEntities}
           </TabButton>
         </div>
 
@@ -206,7 +236,7 @@ export default function ImplementationTracker() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-teal-500 dark:text-white/40 pointer-events-none" />
           <input
             type="text"
-            placeholder={`Search ${entryLabel} or classes...`}
+            placeholder={labels.searchPlaceholder.replace("{{entryLabel}}", entryLabel)}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full pl-9 pr-3 py-2 text-sm bg-white dark:bg-white/5 border border-teal-200/40 dark:border-white/10 rounded-xl text-teal-950 dark:text-white placeholder:text-teal-400 dark:placeholder:text-white/35 focus:outline-none focus:border-emerald-500/60 dark:focus:border-emerald-400/50 transition-all"
@@ -217,23 +247,23 @@ export default function ImplementationTracker() {
         <div className="flex rounded-xl bg-teal-100 dark:bg-white/5 border border-teal-200/40 dark:border-white/10 p-1">
           <TabButton active={statusFilter === "all"} onClick={() => setStatusFilter("all")}>
             <Filter className="size-3.5" />
-            All
+            {labels.filterAll}
           </TabButton>
           <TabButton active={statusFilter === "complete"} onClick={() => setStatusFilter("complete")}>
-            Complete
+            {labels.complete}
           </TabButton>
           <TabButton active={statusFilter === "partial"} onClick={() => setStatusFilter("partial")}>
-            Partial
+            {labels.partial}
           </TabButton>
           <TabButton active={statusFilter === "unimplemented"} onClick={() => setStatusFilter("unimplemented")}>
-            Todo
+            {labels.filterTodo}
           </TabButton>
         </div>
       </div>
 
       {/* Results count */}
       <p className="text-xs text-teal-600 dark:text-white/40 mb-3">
-        Showing {filtered.length} class{filtered.length !== 1 ? "es" : ""} ({filtered.reduce((s, [, g]) => s + g.entries.length, 0)} entries)
+        {labels.showing} {filtered.length} {filtered.length === 1 ? labels.classSingular : labels.classPlural} ({filtered.reduce((s, [, g]) => s + g.entries.length, 0)} {labels.entries})
       </p>
 
       {/* Class list */}
@@ -277,12 +307,12 @@ export default function ImplementationTracker() {
                 {/* Status badge */}
                 {getStatus(group) === "complete" && (
                   <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-400/15 text-emerald-700 dark:text-emerald-400">
-                    Complete
+                    {labels.complete}
                   </span>
                 )}
                 {getStatus(group) === "partial" && (
                   <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-400/15 text-amber-700 dark:text-amber-400">
-                    Partial ({group.todos.length} TODO{group.todos.length !== 1 ? "s" : ""})
+                    {labels.partial} ({group.todos.length} {labels.todoBadge}{group.todos.length !== 1 ? "s" : ""})
                   </span>
                 )}
 
@@ -307,7 +337,7 @@ export default function ImplementationTracker() {
                           key={i}
                           className="flex items-start gap-2 text-xs px-2.5 py-1.5 rounded-lg bg-amber-50 dark:bg-amber-400/5 border border-amber-200/50 dark:border-amber-400/10"
                         >
-                          <span className="text-amber-500 dark:text-amber-400 shrink-0 mt-px font-bold">TODO</span>
+                          <span className="text-amber-500 dark:text-amber-400 shrink-0 mt-px font-bold">{labels.todoBadge}</span>
                           <span className="text-amber-800 dark:text-amber-200/70">{todo}</span>
                         </div>
                       ))}
@@ -326,7 +356,7 @@ export default function ImplementationTracker() {
                     ))}
                     {search && matchingEntries.length < group.entries.length && (
                       <span className="text-xs px-2 py-1 text-teal-400 dark:text-white/30 italic">
-                        +{group.entries.length - matchingEntries.length} more
+                        +{group.entries.length - matchingEntries.length} {labels.more}
                       </span>
                     )}
                   </div>
@@ -339,8 +369,8 @@ export default function ImplementationTracker() {
 
       {filtered.length === 0 && (
         <div className="text-center py-16 text-teal-500 dark:text-white/40">
-          <p className="font-minecraft text-lg">No results found</p>
-          <p className="text-sm mt-1">Try adjusting your search or filter</p>
+          <p className="font-minecraft text-lg">{labels.noResults}</p>
+          <p className="text-sm mt-1">{labels.noResultsHint}</p>
         </div>
       )}
     </div>
