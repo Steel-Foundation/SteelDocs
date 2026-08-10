@@ -43,6 +43,7 @@ These settings are only useful when you want to balance CPU use manually, for ex
 | `server.online_mode`         | bool   | `true`  | Use Mojang authentication for player verification                                  |
 | `server.auth_server`         | String | omitted | Optional `hasJoined` endpoint for online mode. Omit to use Mojang                  |
 | `server.profile_server`      | String | omitted | Optional name-to-profile lookup endpoint. Omit to use Mojang's profile service     |
+| `server.services_server`     | String | omitted | Optional public-key endpoint for secure chat validation. Omit to use Mojang        |
 | `server.encryption`          | bool   | `true`  | Enable encryption for client-server communication                                  |
 | `server.allow_flight`        | bool   | `false` | Allow unauthorized client flight in vanilla movement checks                        |
 | `server.enforce_secure_chat` | bool   | `false` | Enforce secure chat. Requires `online_mode = true` and `encryption = true`          |
@@ -118,6 +119,7 @@ simulation_distance = 10
 online_mode = true
 # auth_server = "https://sessionserver.mojang.com/session/minecraft/hasJoined"
 # profile_server = "https://api.minecraftservices.com/minecraft/profile/lookup/name"
+# services_server = "https://api.minecraftservices.com/publickeys"
 encryption = true
 allow_flight = false
 motd = "Welcome to my Steel server!"
@@ -163,6 +165,7 @@ The server validates configuration on startup:
 - `server.simulation_distance` must be less than or equal to `server.view_distance`
 - `server.auth_server`, when set, must be an absolute `http` or `https` URL
 - `server.profile_server`, when set, must be an absolute `http` or `https` URL
+- `server.services_server`, when set, must be an absolute `http` or `https` URL
 - `server.compression.threshold` must be at least 256
 - `server.compression.level` must be between 1 and 9
 - if `server.enforce_secure_chat` is true, both `server.online_mode` and `server.encryption` must be true
