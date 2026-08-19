@@ -31,6 +31,11 @@ export default function ImplementationTracker() {
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
   const [progressMetric, setProgressMetric] = useState<ProgressMetric>("surface");
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
+  const [displayLimit, setDisplayLimit] = useState(40);
+
+  useEffect(() => {
+    setDisplayLimit(40);
+  }, [tab, search, statusFilter]);
 
   useEffect(() => {
     fetch(import.meta.env.BASE_URL + "data/implementation-status.json")
@@ -233,12 +238,12 @@ export default function ImplementationTracker() {
 
       {/* Results count */}
       <p className="text-xs text-teal-600 dark:text-white/40 mb-3">
-        Showing {filtered.length} class{filtered.length !== 1 ? "es" : ""} ({filtered.reduce((s, [, g]) => s + g.entries.length, 0)} entries)
+        Showing {Math.min(displayLimit, filtered.length)} of {filtered.length} class{filtered.length !== 1 ? "es" : ""} ({filtered.reduce((s, [, g]) => s + g.entries.length, 0)} entries)
       </p>
 
       {/* Class list */}
       <div className="flex flex-col gap-2">
-        {filtered.map(([className, group]) => {
+        {filtered.slice(0, displayLimit).map(([className, group]) => {
           const isOpen = expanded.has(className);
           const matchingEntries = search
             ? group.entries.filter((e) => e.toLowerCase().includes(search.toLowerCase()))
@@ -247,7 +252,9 @@ export default function ImplementationTracker() {
           return (
             <div
               key={className}
-              className="rounded-xl border border-teal-200/30 dark:border-white/10 bg-white/60 dark:bg-white/[0.03] overflow-hidden transition-all"
+              className={`rounded-xl border border-teal-200/30 dark:border-white/10 bg-white/60 dark:bg-white/[0.03] overflow-hidden transition-colors duration-150 ${
+                !isOpen ? "tracker-card-lazy" : ""
+              }`}
             >
               <button
                 onClick={() => toggleExpand(className)}
@@ -336,6 +343,17 @@ export default function ImplementationTracker() {
           );
         })}
       </div>
+
+      {filtered.length > displayLimit && (
+        <div className="mt-6 flex flex-col items-center gap-2">
+          <button
+            onClick={() => setDisplayLimit((prev) => prev + 40)}
+            className="px-5 py-2.5 rounded-xl bg-teal-100 dark:bg-white/10 text-teal-900 dark:text-white hover:bg-teal-200 dark:hover:bg-white/20 text-sm font-medium transition-colors cursor-pointer border border-teal-200/50 dark:border-white/10 shadow-sm"
+          >
+            Show more ({filtered.length - displayLimit} remaining)
+          </button>
+        </div>
+      )}
 
       {filtered.length === 0 && (
         <div className="text-center py-16 text-teal-500 dark:text-white/40">

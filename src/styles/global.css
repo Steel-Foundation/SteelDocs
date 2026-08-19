@@ -237,20 +237,8 @@ body,
 header,
 nav,
 main,
-footer,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-span,
-a,
-button,
-input,
-div {
-  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+footer {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 canvas,
@@ -272,4 +260,10 @@ canvas * {
 
 .animate-fade-in-up {
   animation: fadeInUp 0.4s ease-out forwards;
+}
+
+/* Optimization for long lists (e.g. tracker items) */
+.tracker-card-lazy {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 46px;
 }
