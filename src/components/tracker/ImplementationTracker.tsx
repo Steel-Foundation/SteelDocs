@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { Search, ChevronDown, Blocks, Sword, Filter, PawPrint } from "lucide-react";
+import SegmentedControl from "./SegmentedControl";
 
 interface ClassGroup {
   implemented: boolean;
@@ -123,23 +124,16 @@ export default function ImplementationTracker() {
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            <div
-              className="flex rounded-lg bg-teal-100 dark:bg-white/5 border border-teal-200/40 dark:border-white/10 p-0.5"
-              aria-label="Progress calculation"
-            >
-              <MetricButton
-                active={progressMetric === "surface"}
-                onClick={() => setProgressMetric("surface")}
-              >
-                Surface area
-              </MetricButton>
-              <MetricButton
-                active={progressMetric === "classes"}
-                onClick={() => setProgressMetric("classes")}
-              >
-                Behaviors
-              </MetricButton>
-            </div>
+            <SegmentedControl
+              label="Progress calculation"
+              size="sm"
+              value={progressMetric}
+              onChange={setProgressMetric}
+              segments={[
+                { value: "surface", content: "Surface area" },
+                { value: "classes", content: "Behaviors" },
+              ]}
+            />
             <div className="flex items-center gap-3 text-xs">
               <span className="flex items-center gap-1">
                 <span className="inline-block size-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
@@ -185,21 +179,40 @@ export default function ImplementationTracker() {
 
       {/* Controls */}
       <div className="flex flex-col md:flex-row gap-3 mb-6">
-        {/* Tabs */}
-        <div className="flex rounded-xl bg-teal-100 dark:bg-white/5 border border-teal-200/40 dark:border-white/10 p-1">
-          <TabButton active={tab === "blocks"} onClick={() => setTab("blocks")}>
-            <Blocks className="size-3.5" />
-            Blocks
-          </TabButton>
-          <TabButton active={tab === "items"} onClick={() => setTab("items")}>
-            <Sword className="size-3.5" />
-            Items
-          </TabButton>
-          <TabButton active={tab === "entities"} onClick={() => setTab("entities")}>
-            <PawPrint className="size-3.5" />
-            Entities
-          </TabButton>
-        </div>
+        <SegmentedControl
+          label="Category"
+          value={tab}
+          onChange={setTab}
+          segments={[
+            {
+              value: "blocks",
+              content: (
+                <>
+                  <Blocks className="size-3.5" />
+                  Blocks
+                </>
+              ),
+            },
+            {
+              value: "items",
+              content: (
+                <>
+                  <Sword className="size-3.5" />
+                  Items
+                </>
+              ),
+            },
+            {
+              value: "entities",
+              content: (
+                <>
+                  <PawPrint className="size-3.5" />
+                  Entities
+                </>
+              ),
+            },
+          ]}
+        />
 
         {/* Search */}
         <div className="relative flex-1">
@@ -213,22 +226,25 @@ export default function ImplementationTracker() {
           />
         </div>
 
-        {/* Status filter */}
-        <div className="flex rounded-xl bg-teal-100 dark:bg-white/5 border border-teal-200/40 dark:border-white/10 p-1">
-          <TabButton active={statusFilter === "all"} onClick={() => setStatusFilter("all")}>
-            <Filter className="size-3.5" />
-            All
-          </TabButton>
-          <TabButton active={statusFilter === "complete"} onClick={() => setStatusFilter("complete")}>
-            Complete
-          </TabButton>
-          <TabButton active={statusFilter === "partial"} onClick={() => setStatusFilter("partial")}>
-            Partial
-          </TabButton>
-          <TabButton active={statusFilter === "unimplemented"} onClick={() => setStatusFilter("unimplemented")}>
-            Todo
-          </TabButton>
-        </div>
+        <SegmentedControl
+          label="Status filter"
+          value={statusFilter}
+          onChange={setStatusFilter}
+          segments={[
+            {
+              value: "all",
+              content: (
+                <>
+                  <Filter className="size-3.5" />
+                  All
+                </>
+              ),
+            },
+            { value: "complete", content: "Complete" },
+            { value: "partial", content: "Partial" },
+            { value: "unimplemented", content: "Todo" },
+          ]}
+        />
       </div>
 
       {/* Results count */}
@@ -364,50 +380,4 @@ function StatCard({ label, value, color = "default" }: { label: string; value: n
   );
 }
 
-function TabButton({
-  active,
-  onClick,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all cursor-pointer ${
-        active
-          ? "bg-white dark:bg-white/10 text-teal-950 dark:text-white shadow-sm"
-          : "text-teal-600 dark:text-white/50 hover:text-teal-950 dark:hover:text-white"
-      }`}
-    >
-      {children}
-    </button>
-  );
-}
 
-function MetricButton({
-  active,
-  onClick,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      aria-pressed={active}
-      onClick={onClick}
-      className={`rounded-md px-2.5 py-1 text-xs font-medium transition-all cursor-pointer ${
-        active
-          ? "bg-white dark:bg-white/10 text-teal-950 dark:text-white shadow-sm"
-          : "text-teal-600 dark:text-white/45 hover:text-teal-950 dark:hover:text-white"
-      }`}
-    >
-      {children}
-    </button>
-  );
-}
