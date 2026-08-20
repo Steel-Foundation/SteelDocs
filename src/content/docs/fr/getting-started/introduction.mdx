@@ -1,0 +1,73 @@
+---
+title: Qu'est-ce que Steel ?
+description: Découvre ce qu'est Steel et pourquoi tu pourrais vouloir l'utiliser.
+sidebar:
+  order: 0
+---
+
+import { mcVersion, steelVersion } from "@/lib/versions";
+
+Steel est une implémentation du serveur Minecraft Java Edition écrite en Rust, qui vise Minecraft **{await mcVersion()}**.\
+Il est conçu pour la performance, la fiabilité et une expérience de développement soignée.
+
+Contrairement aux serveurs traditionnels basés sur Java, Steel s'appuie sur les garanties de sûreté mémoire et les abstractions à coût nul de Rust pour offrir des performances exceptionnelles.
+
+## À qui s'adresse Steel ?
+
+#### Administrateurs de serveur
+
+Si tu gères un serveur Minecraft et que tu cherches :
+
+- **De meilleures performances** - Structures de données sans verrou et concurrence efficace
+- **Une consommation mémoire réduite** - Gestion mémoire efficace de Rust
+- **De la fiabilité** - Un code sûr en mémoire, donc moins de crashs et de failles
+
+#### Développeurs
+
+Si tu développes des outils ou que tu contribues au logiciel serveur :
+
+- **Une base de code moderne** - Rust édition 2024, réparti en 10 crates de workspace ciblées
+- **La sûreté du typage** - Des erreurs détectées à la compilation, pas à l'exécution
+- **Un système de comportements** - Comportements de blocs et d'items extensibles
+
+## État actuel
+
+Steel est en développement actif (v{await steelVersion()}).
+
+Steel prend aujourd'hui en charge :
+
+- Le réseau TCP avec les clients Java Edition
+- L'authentification et le chiffrement Mojang
+- La compression de paquets Zlib
+- La génération de monde
+  - 100 % de parité vanilla vérifiée sur 2500 chunks dans toutes les dimensions
+  - À ce jour, la génération de chunks sur CPU la plus rapide jamais écrite
+  - Regarde les performances sur notre [page de benchmarks](../../reference/benchmarks)
+- Le chargement, la génération et la persistance des chunks
+- Le placement et la destruction de blocs
+- Le déplacement des joueurs avec collisions et validation de la vitesse
+- Un système de chat avec messages signés
+- La gestion des inventaires et des conteneurs (tonneaux)
+- Des entités avec des objectifs d'IA
+- Les block entities
+- Un favicon personnalisé et des liens de serveur
+- L'autocomplétion des commandes dans la console
+
+Rends-toi dans [notre communauté](#communauté) pour les dernières nouveautés.
+
+## Serveurs pour tester SteelMC
+
+Pour l'instant, seuls 2 serveurs tournent jour et nuit pour te permettre de te connecter et de voir ce qui fonctionne dans Steel et ce qui ne fonctionne pas.
+Garde aussi en tête que Steel est encore en pre-alpha : ni le format de fichier ni l'ensemble des fonctionnalités ne sont définitifs.
+
+- `steel.mrshadow.dev` (VPS : 4 vCores, 8 Go de RAM)
+- `de1.papernodes.com:27006` (7950x mutualisé, 16 Go de RAM)
+
+## Communauté
+
+- **Discord** : https://steelmc.dev/discord
+- **GitHub** : https://github.com/Steel-Foundation/SteelMC
+
+## Étapes suivantes
+
+Prêt à te lancer ? Direction le guide d'[installation](../installation/).
