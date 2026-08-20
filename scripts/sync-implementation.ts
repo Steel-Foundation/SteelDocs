@@ -9,6 +9,7 @@
  *   Writes public/data/implementation-status.json
  */
 
+import { execFileSync } from "node:child_process";
 import { readdir, readFile, mkdir, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -166,7 +167,35 @@ const blocks = groupByClass(classesRaw.blocks, implementedBlockClasses);
 const items = groupByClass(classesRaw.items, implementedItemClasses);
 const entities = groupByClass(classesRaw.entities, implementedEntityClasses);
 
-const output = { blocks, items, entities };
+function steelGit(...args: string[]): string | null {
+  try {
+    return execFileSync("git", ["-C", steelRoot, ...args], { encoding: "utf8" }).trim();
+  } catch {
+    return null;
+  }
+}
+
+async function steelVersion(): Promise<string | null> {
+  try {
+    const manifest = await readFile(join(steelRoot, "Cargo.toml"), "utf8");
+    const section = manifest.split(/^\[workspace\.package\]$/m)[1];
+    return section?.match(/^version\s*=\s*"([^"]+)"/m)?.[1] ?? null;
+  } catch {
+    return null;
+  }
+}
+
+// The Steel commit date is used instead of the current time so that re-running the
+// script on an unchanged Steel checkout produces an identical file, which keeps the
+// sync workflow's "no changes" guard from committing on every dispatch.
+const meta = {
+  source: "nightly",
+  steel_version: await steelVersion(),
+  steel_commit: steelGit("rev-parse", "HEAD"),
+  steel_committed_at: steelGit("show", "-s", "--format=%cI", "HEAD"),
+};
+
+const output = { meta, blocks, items, entities };
 
 const outDir = join(dirname(fileURLToPath(import.meta.url)), "../public/data");
 await mkdir(outDir, { recursive: true });
@@ -188,6 +217,7 @@ const itemStats = summarize(items);
 const entityStats = summarize(entities);
 
 console.log(`Wrote ${outPath}`);
+console.log(`Source: ${meta.source} ${meta.steel_version ?? "unknown"} @ ${meta.steel_commit?.slice(0, 9) ?? "unknown"}`);
 console.log(`Blocks: ${blockStats.implemented}/${blockStats.total} implemented (${blockStats.partial} partial)`);
 console.log(`Items:  ${itemStats.implemented}/${itemStats.total} implemented (${itemStats.partial} partial)`);
 console.log(`Entities: ${entityStats.implemented}/${entityStats.total} implemented (${entityStats.partial} partial)`);

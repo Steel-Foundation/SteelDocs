@@ -1,4 +1,10 @@
 {
+  "meta": {
+    "source": "nightly",
+    "steel_version": "0.15.2+mc26.2",
+    "steel_commit": "29452b529e5e96c52bf1593db91d3ae26c92c98a",
+    "steel_committed_at": "2026-08-19T16:35:53+02:00"
+  },
   "blocks": {
     "GrassBlock": {
       "implemented": false,
