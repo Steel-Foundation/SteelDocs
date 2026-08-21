@@ -68,7 +68,17 @@ fn custom_crafting(container_id: u8, player: &Player) -> Menu {
 }
 ```
 
-We paint all of the menu with gray stained glass panes, because this way every slot that is not handled by a container will then just become a display slot inside of an **anonymous** container that the builder creates for you upon carving.
+The grid builder is for your convenience, because normally the MenuBuilder forces you to add slots in order that they appear in the menu. The grid builder can only be created on the start of a row and it allows you to then place [`Rect`](https://rustdoc.steelmc.dev/steel_core/inventory/menu/struct.Rect.html) (Rectangles) without having to do the manual math. When you place a rect in the grid, you however cannot overlap with another placement. For more rules on the grid placement, refer to the [module docs of the grid placer](https://rustdoc.steelmc.dev/steel_core/inventory/menu/grid/index.html).
+
+The invariant of a menu is, that **every** index in the menu is handled by something that implements [`Slot`](https://rustdoc.steelmc.dev/steel_core/inventory/slots/slot/trait.Slot.html). The `MenuBuilder` enforces this invariant through an append only vec, because when you can only append, there can never be holes in the menu and we always know that the previous indices are already handled. Anything that would break the menu panics while you build it, instead of you having to discover a broken menu at runtime.
+
+Calling [`b.grid(2, ...)`](https://rustdoc.steelmc.dev/steel_core/inventory/menu/struct.MenuBuilder.html#method.grid) tells the menu builder: "the next 2 rows (18 slots) are mine, and when my closure returns they will all be handled". The grid builder enforces this promise by panicking if any cell isn't "placed" or "painted" on. This is also why [`paint_all`](https://rustdoc.steelmc.dev/steel_core/inventory/menu/struct.GridPlacer.html#method.paint_all) exists: every painted cell that no placement claims is handled by becoming a display slot.
+
+When we paint all of the menu with gray stained glass panes, every slot that is not handled by a container will then just become a display slot inside of an **anonymous** container that the builder creates for us when exiting the closure.
+
+A grid always has to start on a multiple of 9 and assumes that the previous rows have been fully handled. It assumes that its 0th position is also the start of a row on the screen, because otherwise the placing of rectangles wouldn't work due to the offsets being wrong.
+
+The grid placer can even extend into the player inventory slots (see [`MenuBuilder::override_player_slots`](https://rustdoc.steelmc.dev/steel_core/inventory/menu/struct.MenuBuilder.html#method.override_player_slots) if you want to paint over them). So you as the user are required to decide how many rows of the menu you actually want to handle in it.
 
 ---
 
