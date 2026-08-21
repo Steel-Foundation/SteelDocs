@@ -65,7 +65,7 @@ export default function SegmentedControl<T extends string>({
       ref={wrapper}
       role="tablist"
       aria-label={label}
-      className={`relative flex shrink-0 bg-teal-100 dark:bg-white/5 border border-teal-200/40 dark:border-white/10 ${styles.wrapper}`}
+      className={`relative flex shrink-0 overflow-hidden bg-teal-100 dark:bg-white/5 border border-teal-200/40 dark:border-white/10 ${styles.wrapper}`}
     >
       {indicator && (
         <span
@@ -77,8 +77,12 @@ export default function SegmentedControl<T extends string>({
             transform: `translateX(${indicator.left}px)`,
             width: `${indicator.width}px`,
             transitionProperty: "transform, width",
-            transitionDuration: reducedMotion ? "0ms" : "280ms",
-            transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
+            // The slide overshoots slightly then settles; the width stays on a plain
+            // ease-out so the pill does not visibly stretch past its target.
+            transitionDuration: reducedMotion ? "0ms, 0ms" : "420ms, 260ms",
+            transitionTimingFunction: reducedMotion
+              ? "linear, linear"
+              : "cubic-bezier(0.34, 1.35, 0.5, 1), cubic-bezier(0.22, 1, 0.36, 1)",
           }}
         />
       )}
