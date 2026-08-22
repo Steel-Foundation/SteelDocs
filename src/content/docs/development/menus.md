@@ -3,15 +3,13 @@ title: Menu Builder Tutorial
 description: Implementing a custom crafting command with the menu builder and the grid builder.
 ---
 
-This is the tutorial for using the menu builder and the grid builder to implement a custom crafting command. If you want more information beyond that, the doc comments for the types contained in the [prelude](https://rustdoc.steelmc.dev/steel_core/inventory/prelude/index.html) can definitely help you with that.
+This is a tutorial for using the menu builder and the grid builder to implement a custom crafting command. If you want more information beyond that, the doc comments for the types contained in the [prelude](https://rustdoc.steelmc.dev/steel_core/inventory/prelude/index.html) can definitely help you with that.
 
-First of all when we create our command, we can import
+First of all when we create our command, we can import the prelude, it already contains all of the most important imports that you could need when working on menus.
 
 ```rust
 use steel_core::inventory::prelude::*;
 ```
-
-... this already has all of the most important imports that you could need when working on menus.
 
 Then register your command using the already existing tutorial on commands. After doing that you create an executor
 and get the player that you want to open the menu. You don't actually need an `Arc<Player>` since open_menu actually only takes `&self`.
@@ -30,6 +28,10 @@ player.open_menu("Crafting", |context| {
 
 In the `custom_crafting` function you create the Menu by first creating a mutable [`MenuBuilder`](https://rustdoc.steelmc.dev/steel_core/inventory/menu/struct.MenuBuilder.html) and passing it the type of menu you want it to open and the container id you have been passed. All of the vanilla menu types you can choose from are contained in [`steel_registry::vanilla_menu_types`](https://rustdoc.steelmc.dev/steel_registry/vanilla_menu_types/index.html).
 
+Then you create a struct that implements the [`MenuKind`](https://rustdoc.steelmc.dev/steel_core/inventory/menu/trait.MenuKind.html) trait. This is what is going to bring life to your menu and implement the different behaviors the `Menu` should have. Lastly you call [`MenuBuilder::build`](https://rustdoc.steelmc.dev/steel_core/inventory/menu/struct.MenuBuilder.html#method.build) and give it your struct. `build` accepts any `impl MenuKind`.
+
+There is also the [`DowncastType`](https://rustdoc.steelmc.dev/steel_utils/downcast/trait.DowncastType.html) trait that you have to implement here. This is so that when you get a `dyn MenuKind` you can downcast it back to your concrete own `CustomCraftingMenuKind`. Although it says `unsafe` here, you don't have to worry, as long as you choose the TYPE_KEY uniquely, that means that to your knowledge your key is not the same as any of the other keys in the steel crates, you will be fine.
+
 ```rust
 fn custom_crafting(container_id: u8, player: &Player) -> Menu {
     let mut b = MenuBuilder::new(&vanilla_menu_types::GENERIC_9X6, container_id);
@@ -46,10 +48,6 @@ unsafe impl DowncastType for CustomCraftingMenuKind {
     const TYPE_KEY: steel_utils::DowncastTypeKey = DowncastTypeKey::new("steel:command/craft");
 }
 ```
-
-Then you create a struct that implements the [`MenuKind`](https://rustdoc.steelmc.dev/steel_core/inventory/menu/trait.MenuKind.html) trait. This is what is going to bring life to your menu and implement the different behaviors the `Menu` should have. Lastly you call [`MenuBuilder::build`](https://rustdoc.steelmc.dev/steel_core/inventory/menu/struct.MenuBuilder.html#method.build) and give it your struct. `build` accepts any `impl MenuKind`.
-
-There is also the [`DowncastType`](https://rustdoc.steelmc.dev/steel_utils/downcast/trait.DowncastType.html) trait that you have to implement here. This is so that when you get a `dyn MenuKind` you can downcast it back to your concrete own `CustomCraftingMenuKind`. Although it says `unsafe` here, you don't have to worry, as long as you choose the TYPE_KEY uniquely, that means that to your knowledge your key is not the same as any of the other keys in the steel crates, you will be fine.
 
 ---
 
@@ -84,7 +82,9 @@ The grid placer can even extend into the player inventory slots (see [`MenuBuild
 
 Inside of the builder we can then create a new [`CraftingContainer`](https://rustdoc.steelmc.dev/steel_core/inventory/container/struct.CraftingContainer.html) and call [`into_shared`](https://rustdoc.steelmc.dev/steel_core/inventory/prelude/trait.IntoShared.html) on it, which just wraps the container in an `Arc<Mutex<>>`. We then use the place function to tell the grid placer that we want this container to be placed on a rectangle spanning from the 1st (2nd row remember zero indexing) to the third (so actually the fourth row, inclusive because of the **=** in the range). We pass it the crafting container we created and then call `.region()` to actually place it on the canvas. We save the created region for later because it will become relevant.
 
-> IMPORTANT: if you don't call region your slots won't be placed. This is also why there is a must_use warning!
+:::caution
+If you don't call region your slots won't be placed. This is also why there is a must_use warning!
+:::
 
 ```rust
 b.grid(6, |g| {
@@ -244,4 +244,4 @@ unsafe impl DowncastType for CustomCraftingMenuKind {
 
 ---
 
-For if you want to build a more advanced menu you can take a look at the `invsee` command and the `domain` command if you want an example for a click menu with buttons. You can also take a look at the different slot types in [`steel_core::inventory::slots`](https://rustdoc.steelmc.dev/steel_core/inventory/slots/index.html).
+If you want to build a more advanced menu you can take a look at the `invsee` command, and the `domain` command if you want an example for a click menu with buttons. You can also take a look at the different slot types in [`steel_core::inventory::slots`](https://rustdoc.steelmc.dev/steel_core/inventory/slots/index.html) and read the other doc comments in the rustdoc
