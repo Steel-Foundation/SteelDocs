@@ -65,7 +65,7 @@ impl IronBarsBlock {
     }
 }
 
-impl BlockBehaviour for IronBarsBlock {}
+impl BlockBehavior for IronBarsBlock {}
 ```
 
 > ⚠️ Dies ist nur die grundlegende Einrichtung und **bietet noch keine Funktionalität!**
@@ -243,7 +243,7 @@ Dies sollte das Problem lösen.
 
 Wie bereits gesagt, **macht der Block an diesem Punkt nichts**.
 
-Um Verhalten hinzuzufügen, musst du die notwendigen Methoden in `BlockBehaviour` in deiner Datei implementieren (z.B. `iron_bars_block.rs`).
+Um Verhalten hinzuzufügen, musst du die notwendigen Methoden in `BlockBehavior` in deiner Datei implementieren (z.B. `iron_bars_block.rs`).
 
 👉 **Ich würde empfehlen**, sich andere Block-Implementierungen anzusehen, um zu prüfen, welche ähnliche Block-Funktionalität wie dein Block haben.
 

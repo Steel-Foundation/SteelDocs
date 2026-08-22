@@ -5,7 +5,7 @@ description: A full guide on how to register a new item or block behavior in Ste
 
 ## Registration
 
-To register a block, add the attribute `block_behaviour`. Here is an example:
+To register a block, add the attribute `block_behavior`. Here is an example:
 
 ```rust
 // steel-core/src/behavior/blocks/vegetation/cactus_block.rs
@@ -19,7 +19,7 @@ pub struct CactusBlock {
 The generation script expects the block property for the block behavior. For item behavior this is not needed!
 :::
 
-In order to register an item instead, add the attribute `item_behaviour`, like this:
+In order to register an item instead, add the attribute `item_behavior`, like this:
 
 ```rust
 // steel-core/src/behavior/items/shovel.rs

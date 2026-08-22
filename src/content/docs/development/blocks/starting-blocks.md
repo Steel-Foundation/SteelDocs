@@ -1,6 +1,6 @@
 ---
 title: Adding a New Block (Basic Setup)
-description: Gives a basic guidance of how to add a new block without a behaviour and gives hints for behaviour
+description: Gives a basic guidance of how to add a new block without a behavior and gives hints for behavior
 ---
 
 > ⚠️ This is only the very basic setup and **does not provide any functionality yet**.
@@ -65,7 +65,7 @@ impl IronBarsBlock {
     }
 }
 
-impl BlockBehaviour for IronBarsBlock {}
+impl BlockBehavior for IronBarsBlock {}
 ```
 
 > ⚠️ This is only the basic setup and **doesn't give any functionality yet!**
@@ -89,7 +89,7 @@ impl IronBarsBlock {
     }
 }
 
-impl BlockBehaviour for IronBarsBlock {}
+impl BlockBehavior for IronBarsBlock {}
 ```
 
 > ⚠️ More complex blocks than the iron bar block have properties. You can find more information [here](../../block_item_registration/).
@@ -129,7 +129,7 @@ This should solve the problem.
 
 Like already said, at this point the block **does nothing**.
 
-To add behavior, you need to implement the necessary methods in `BlockBehaviour` in your file (e.g. `iron_bars_block.rs`).
+To add behavior, you need to implement the necessary methods in `BlockBehavior` in your file (e.g. `iron_bars_block.rs`).
 
 👉 **I would recommend** looking at other block implementations to check which have similar block functionality as your block.
 

@@ -1,6 +1,6 @@
 ---
 title: Adding a New Item (Basic Setup)
-description: Gives a basic guidance of how to add a new item without a behaviour and gives hints for behaviour
+description: Gives a basic guidance of how to add a new item without a behavior and gives hints for behavior
 ---
 
 > ⚠️ This is only the very basic setup and **does not provide any functionality yet**.
