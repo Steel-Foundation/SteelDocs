@@ -1,0 +1,30 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Navbar from "@/components/sections/Navbar.astro";
+import ImplementationTracker from "@/components/tracker/ImplementationTracker";
+---
+
+<Layout
+  title="Suivi d'implémentation - SteelMC"
+  description="Suis quels blocs, items et entités de Minecraft ont un comportement implémenté dans SteelMC."
+>
+  <Navbar />
+  <main
+    class="container mx-4 w-auto lg:mx-auto max-w-300 px-4 pt-24 pb-20 relative z-10"
+  >
+    <div class="mb-8">
+      <h1
+        class="text-3xl md:text-5xl font-minecraft font-bold text-teal-950 dark:text-white"
+      >
+        Suivi d'<span class="text-emerald-600 dark:text-emerald-400"
+          >implémentation</span
+        >
+      </h1>
+      <p class="max-w-190 text-lg text-teal-700 dark:text-gray-300 mt-3 md:text-xl">
+        Suis quels blocs, items et entités de Minecraft ont un comportement
+        implémenté dans Steel.
+      </p>
+    </div>
+    <ImplementationTracker client:only="react" />
+  </main>
+</Layout>

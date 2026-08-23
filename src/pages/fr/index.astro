@@ -1,0 +1,61 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Navbar from "@/components/sections/Navbar.astro";
+import Hero from "@/components/sections/Hero.astro";
+import ChooseDocs from "@/components/sections/ChooseDocs.astro";
+import Community from "@/components/sections/Community.astro";
+import FooterStatus from "@/components/sections/FooterStatus.astro";
+---
+
+<Layout
+  title="SteelMC"
+  description="SteelMC est un serveur Minecraft écrit en Rust, pensé pour la parité vanilla, le parallélisme, la performance et la personnalisation."
+>
+  <Navbar />
+  <Hero
+    pillText="Ça mijote encore"
+    heroTitle="Steel"
+    heroTitleHighlight="MC"
+    subtitle="Minecraft implémenté comme il faut. Écrit en Rust, avec le multithreading en tête. On vise la parité vanilla, la performance et la personnalisation."
+    mainCtaText="Rejoins-nous !"
+    secondCtaText="Documentation"
+  />
+  <main
+    class="container mx-4 w-auto lg:mx-auto max-w-280 px-4 mt-16 lg:-mt-12 text-white relative z-10"
+  >
+    <ChooseDocs
+      sectionLabel="CHOISIS TA DOCUMENTATION"
+      sectionTitle="Salut, tu veux faire quoi ?"
+      sectionDescription="Steel est fait pour tout le monde. Que tu gères un serveur, que tu contribues au code ou que tu sois juste de passage, il y a une documentation pour toi."
+      adminHref="./getting-started/installation/"
+      adminImage="/admin.png"
+      adminImageAlt="Documentation administrateur"
+      adminLabel="Administrateur"
+      devHref="./development/start-contributing/"
+      devImage="/contributor.png"
+      devImageAlt="Documentation contributeur"
+      devLabel="Développeur"
+    />
+    <Community
+      heading="Intéressé ?"
+      headingHighlight="Rejoins-nous !"
+      descriptionBold1="Steel est un endroit où les gens se retrouvent"
+      descriptionMiddle=" pour coder, discuter et s'amuser. Des développeurs les plus doués aux plus grands bavards, "
+      descriptionBold2="tout le monde est le bienvenu !"
+      descriptionAfter=" On est juste une bande de gens qui essaient de faire un serveur Minecraft sympa."
+    />
+    <FooterStatus
+      prefix="Steel est"
+      rotatingTexts={[
+        "en développement",
+        "pas encore prêt",
+        "un alliage au fait 🤓☝️",
+        "fait avec amour",
+        "super rapide",
+        "rouillé",
+        "en train de mijoter !",
+        "reconnaissant envers ses contributeurs",
+      ]}
+    />
+  </main>
+</Layout>
