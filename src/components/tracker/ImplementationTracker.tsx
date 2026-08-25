@@ -6,6 +6,8 @@ interface ClassGroup {
   implemented: boolean;
   todos: string[];
   entries: string[];
+  issues: GHIssues[];
+  prs: GHIssues[];
 }
 
 type Status = "complete" | "partial" | "unimplemented";
@@ -21,12 +23,57 @@ interface ImplementationData {
   entities: Record<string, ClassGroup>;
 }
 
+interface GHIssues {
+  html_url: string;
+  title: string;
+  body_text: string | null;
+  pull_request: Record<string, string> | null;
+}
+
 type Tab = "blocks" | "items" | "entities";
 type StatusFilter = "all" | "complete" | "partial" | "unimplemented";
 type ProgressMetric = "surface" | "classes";
 
+async function iterIssues(pages: number, data: ImplementationData) {
+  for (let i = 0; i < pages; i++) {
+    await fetch(`https://api.github.com/repos/Steel-Foundation/SteelMC/issues?per_page=100&page=${i + 1}`, {
+      headers: { "accept": "application/vnd.github.text+json" }
+    })
+      .then((r) => r.json())
+      .then((json: GHIssues[]) => {
+        Object.values(json).forEach((pr) => {
+
+          const iter = (group: Record<string, ClassGroup>) => Object.keys(group).forEach((name) => {
+            const regex = new RegExp(`\\b${name.toLowerCase()}\\b`);
+            if (regex.test(pr.title.toLowerCase()) || (pr.body_text && regex.test(pr.body_text.toLowerCase()))) {
+              if (!pr.pull_request) {
+                if (group[name].issues) {
+                  group[name].issues.push({ title: pr.title, html_url: pr.html_url } as GHIssues);
+                  return;
+                }
+                group[name].issues = [{ title: pr.title, html_url: pr.html_url } as GHIssues];
+                return;
+              }
+              if (group[name].prs) {
+                group[name].prs.push({ title: pr.title, html_url: pr.html_url } as GHIssues);
+                return;
+              }
+              group[name].prs = [{ title: pr.title, html_url: pr.html_url } as GHIssues];
+            }
+          });
+
+          iter(data.items);
+          iter(data.entities);
+          iter(data.blocks);
+        });
+      });
+  }
+  return;
+}
+
 export default function ImplementationTracker() {
   const [data, setData] = useState<ImplementationData | null>(null);
+  const [ghLoaded, setGhLoaded] = useState<boolean>(false);
   const [tab, setTab] = useState<Tab>("blocks");
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
@@ -34,10 +81,24 @@ export default function ImplementationTracker() {
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
 
   useEffect(() => {
+    if (data) return;
     fetch(import.meta.env.BASE_URL + "data/implementation-status.json")
       .then((r) => r.json())
       .then(setData);
   }, []);
+
+  useEffect(() => {
+    if (!data || ghLoaded) return;
+    fetch("https://api.github.com/repos/Steel-Foundation/SteelMC/issues?per_page=1", {
+      headers: { "accept": "application/vnd.github.text+json" }
+    })
+      .then(async (r) => {
+        const pages = Math.ceil(Number.parseInt(r.headers.get("link")?.match(/page=(\d+)>; rel="last"/)?.[1] || "100") / 100);
+        setGhLoaded(true);
+        await iterIssues(pages, data);
+        setData(data);
+      });
+  }, [data]);
 
   const currentData = data?.[tab];
   const entryLabel = tab === "entities" ? "entities" : tab;
@@ -263,7 +324,7 @@ export default function ImplementationTracker() {
           return (
             <div
               key={className}
-              className="rounded-xl border border-teal-200/30 dark:border-white/10 bg-white/60 dark:bg-white/[0.03] overflow-hidden [content-visibility:auto] [contain-intrinsic-size:auto_50px]"
+              className="rounded-xl border border-teal-200/30 dark:border-white/10 bg-white/60 dark:bg-white/3 overflow-hidden [content-visibility:auto] [contain-intrinsic-size:auto_50px]"
             >
               <button
                 onClick={() => toggleExpand(className)}
@@ -302,6 +363,15 @@ export default function ImplementationTracker() {
                   </span>
                 )}
 
+                {/* Issues badge */}
+                {group.issues && <span className="text-xs px-2 py-0.5 rounded-full bg-rose-200 dark:bg-rose-400/15 text-rose-800 dark:text-rose-400">
+                  {group.issues.length} issues open
+                </span>}
+                {/* PRs badge */}
+                {group.prs && <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-200 dark:bg-indigo-400/15 text-indigo-800 dark:text-indigo-400">
+                  {group.prs.length} PRs open
+                </span>}
+
                 <div className="flex-1" />
 
                 {/* Chevron */}
@@ -326,6 +396,36 @@ export default function ImplementationTracker() {
                           <span className="text-amber-500 dark:text-amber-400 shrink-0 mt-px font-bold">TODO</span>
                           <span className="text-amber-800 dark:text-amber-200/70">{todo}</span>
                         </div>
+                      ))}
+                    </div>
+                  )}
+                  {/* Issues */}
+                  {group.issues && (
+                    <div className="flex flex-col gap-1.5 pt-2 border-t border-teal-100 dark:border-white/5 mb-3">
+                      {group.issues.map((pr, i) => (
+                        <a
+                          key={i}
+                          href={pr.html_url}
+                          className="flex items-start gap-2 text-xs px-2.5 py-1.5 rounded-lg bg-rose-50 dark:bg-rose-400/5 border border-rose-200/50 dark:border-rose-400/10"
+                        >
+                          <span className="text-rose-500 dark:text-rose-400 shrink-0 mt-px font-bold">Issue</span>
+                          <span className="text-rose-800 dark:text-rose-200/70">{pr.title}</span>
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                  {/* PRs */}
+                  {group.prs && (
+                    <div className="flex flex-col gap-1.5 pt-2 border-t border-teal-100 dark:border-white/5 mb-3">
+                      {group.prs.map((pr, i) => (
+                        <a
+                          key={i}
+                          href={pr.html_url}
+                          className="flex items-start gap-2 text-xs px-2.5 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-400/5 border border-indigo-200/50 dark:border-indigo-400/10"
+                        >
+                          <span className="text-indigo-500 dark:text-indigo-400 shrink-0 mt-px font-bold">PR</span>
+                          <span className="text-indigo-800 dark:text-indigo-200/70">{pr.title}</span>
+                        </a>
                       ))}
                     </div>
                   )}
@@ -371,7 +471,7 @@ const colorClasses = {
 
 function StatCard({ label, value, color = "default" }: { label: string; value: number; color?: keyof typeof colorClasses }) {
   return (
-    <div className="p-3 rounded-xl bg-white/60 dark:bg-white/[0.03] border border-teal-200/30 dark:border-white/10">
+    <div className="p-3 rounded-xl bg-white/60 dark:bg-white/3 border border-teal-200/30 dark:border-white/10">
       <p className="text-xs text-teal-600 dark:text-white/40">{label}</p>
       <p className={`text-2xl font-minecraft mt-0.5 ${colorClasses[color]}`}>
         {value}
@@ -379,5 +479,3 @@ function StatCard({ label, value, color = "default" }: { label: string; value: n
     </div>
   );
 }
-
-
