@@ -314,7 +314,7 @@ export default function ImplementationTracker() {
       </p>
 
       {/* Class list */}
-      <div className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-2">
         {filtered.map(([className, group]) => {
           const isOpen = expanded.has(className);
           const matchingEntries = search
@@ -322,7 +322,7 @@ export default function ImplementationTracker() {
             : group.entries;
 
           return (
-            <div
+            <li
               key={className}
               className="rounded-xl border border-teal-200/30 dark:border-white/10 bg-white/60 dark:bg-white/3 overflow-hidden [content-visibility:auto] [contain-intrinsic-size:auto_50px]"
             >
@@ -342,7 +342,7 @@ export default function ImplementationTracker() {
                 />
 
                 {/* Class name */}
-                <span className="font-minecraft text-sm text-teal-950 dark:text-white">
+                <span className="font-minecraft text-sm text-teal-950 dark:text-white select-text cursor-text">
                   {className}
                 </span>
 
@@ -448,10 +448,10 @@ export default function ImplementationTracker() {
                   </div>
                 </div>
               )}
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
 
       {filtered.length === 0 && (
         <div className="text-center py-16 text-teal-500 dark:text-white/40">
