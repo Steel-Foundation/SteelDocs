@@ -276,31 +276,31 @@ canvas * {
 @layer theme {
     .font-minecraft {
         font-size: 1.4rem;
-        --text-xs: calc(1.1*1.125rem);
+        --text-xs: 1.2375rem;
         --text-xs--line-height: 0.66;
-        --text-sm: calc(1.1*1.3125rem);
+        --text-sm: 1.44375rem;
         --text-sm--line-height: 0.8;
-        --text-base: calc(1.1*1.5rem);
+        --text-base: 1.65rem;
         --text-base--line-height: 0.75;
-        --text-lg: calc(1.1*1.6875rem);
+        --text-lg: 1.85625rem;
         --text-lg--line-height: 0.78;
-        --text-xl: calc(1.1*1.875rem);
+        --text-xl: 2.0625rem;
         --text-xl--line-height: 0.73;
-        --text-2xl: calc(1.1*2.25rem);
-        --text-2xl--line-height: 0.67;
-        --text-3xl: calc(1.1*2.8125rem);
-        --text-3xl--line-height: 0.67;
-        --text-4xl: calc(1.1*3.375rem);
-        --text-4xl--line-height: 0.56;
-        --text-5xl: calc(1.1*4.5rem);
-        --text-5xl--line-height: 0.5;
-        --text-6xl: calc(1.1*5.625rem);
-        --text-6xl--line-height: 0.5;
-        --text-7xl: calc(1.1*6.75rem);
-        --text-7xl--line-height: 0.5;
-        --text-8xl: calc(1.1*9rem);
-        --text-8xl--line-height: 0.5;
-        --text-9xl: calc(1.1*12rem);
-        --text-9xl--line-height: 0.5;
+        --text-2xl: 2.475rem;
+        --text-2xl--line-height: 0.73;
+        --text-3xl: 3.09375rem;
+        --text-3xl--line-height: 0.73;
+        --text-4xl: 3.7125rem;
+        --text-4xl--line-height: 0.6;
+        --text-5xl: 4.95rem;
+        --text-5xl--line-height: 0.6;
+        --text-6xl: 6.1875rem;
+        --text-6xl--line-height: 0.6;
+        --text-7xl: 7.425rem;
+        --text-7xl--line-height: 0.6;
+        --text-8xl: 9.9rem;
+        --text-8xl--line-height: 0.6;
+        --text-9xl: 13.2rem;
+        --text-9xl--line-height: 0.6;
     }
 }
