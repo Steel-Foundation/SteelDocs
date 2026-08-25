@@ -94,9 +94,9 @@ export default function ImplementationTracker() {
     })
       .then(async (r) => {
         const pages = Math.ceil(Number.parseInt(r.headers.get("link")?.match(/page=(\d+)>; rel="last"/)?.[1] || "100") / 100);
-        setGhLoaded(true);
         await iterIssues(pages, data);
         setData(data);
+        setGhLoaded(true);
       });
   }, [data]);
 
@@ -136,7 +136,7 @@ export default function ImplementationTracker() {
         if (sa !== sb) return sa - sb;
         return a[0].localeCompare(b[0]);
       });
-  }, [currentData, search, statusFilter]);
+  }, [currentData, search, statusFilter, ghLoaded]);
 
   const toggleExpand = (className: string) => {
     setExpanded((prev) => {
