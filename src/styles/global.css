@@ -9,11 +9,12 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* BlockFont by Filou: https://github.com/filsin/blockfont */
 @font-face {
   font-family: "Minecraft";
   src:
-    local("Minecraft Regular"),
-    url("/fonts/1_MinecraftRegular1.woff") format("woff");
+    url("/fonts/latin/BlockFont-Regular.woff") format("woff"),
+    url("/fonts/latin/BlockFont-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
@@ -21,8 +22,8 @@
 @font-face {
   font-family: "Minecraft";
   src:
-    local("Minecraft Italic"),
-    url("/fonts/2_MinecraftItalic1.woff") format("woff");
+    url("/fonts/latin/BlockFont-Italic.woff") format("woff"),
+    url("/fonts/latin/BlockFont-Italic.ttf") format("truetype");
   font-weight: 400;
   font-style: italic;
 }
@@ -30,8 +31,8 @@
 @font-face {
   font-family: "Minecraft";
   src:
-    local("Minecraft Bold"),
-    url("/fonts/3_MinecraftBold1.woff") format("woff");
+    url("/fonts/latin/BlockFont-Bold.woff") format("woff"),
+    url("/fonts/latin/BlockFont-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
@@ -39,8 +40,8 @@
 @font-face {
   font-family: "Minecraft";
   src:
-    local("Minecraft Bold Italic"),
-    url("/fonts/4_MinecraftBoldItalic1.woff") format("woff");
+    url("/fonts/latin/BlockFont-BoldItalic.woff") format("woff"),
+    url("/fonts/latin/BlockFont-BoldItalic.ttf") format("truetype");
   font-weight: 700;
   font-style: italic;
 }
@@ -251,7 +252,6 @@ button,
 input {
   transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
 }
-
 canvas,
 canvas * {
   transition: none !important;
@@ -271,4 +271,36 @@ canvas * {
 
 .animate-fade-in-up {
   animation: fadeInUp 0.4s ease-out forwards;
+}
+
+@layer theme {
+    .font-minecraft {
+        font-size: 1.4rem;
+        --text-xs: calc(1.1*1.125rem);
+        --text-xs--line-height: 0.66;
+        --text-sm: calc(1.1*1.3125rem);
+        --text-sm--line-height: 0.8;
+        --text-base: calc(1.1*1.5rem);
+        --text-base--line-height: 0.75;
+        --text-lg: calc(1.1*1.6875rem);
+        --text-lg--line-height: 0.78;
+        --text-xl: calc(1.1*1.875rem);
+        --text-xl--line-height: 0.73;
+        --text-2xl: calc(1.1*2.25rem);
+        --text-2xl--line-height: 0.67;
+        --text-3xl: calc(1.1*2.8125rem);
+        --text-3xl--line-height: 0.67;
+        --text-4xl: calc(1.1*3.375rem);
+        --text-4xl--line-height: 0.56;
+        --text-5xl: calc(1.1*4.5rem);
+        --text-5xl--line-height: 0.5;
+        --text-6xl: calc(1.1*5.625rem);
+        --text-6xl--line-height: 0.5;
+        --text-7xl: calc(1.1*6.75rem);
+        --text-7xl--line-height: 0.5;
+        --text-8xl: calc(1.1*9rem);
+        --text-8xl--line-height: 0.5;
+        --text-9xl: calc(1.1*12rem);
+        --text-9xl--line-height: 0.5;
+    }
 }
