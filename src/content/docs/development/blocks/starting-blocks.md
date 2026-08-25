@@ -56,7 +56,7 @@ pub struct IronBarsBlock {
 }
 
 impl IronBarsBlock {
-    /// Creates a new bar block behavior for the given block.
+     /// Creates a new instance of IronBarsBlock
     #[must_use]
     pub const fn new(block: BlockRef) -> Self {
         Self { block }
@@ -127,7 +127,7 @@ This should solve the problem.
 
 Like already said, at this point the block **does nothing**.
 
-To add behavior, you need to implement the necessary methods in `BlockBehavior` in your file (e.g. `iron_bars_block.rs`).
+To add behavior, you need to implement the necessary functions in `BlockBehavior` in your file (e.g. `iron_bars_block.rs`).
 
 I would recommend looking at other block implementations to check which have similar block functionality as your block.
 
