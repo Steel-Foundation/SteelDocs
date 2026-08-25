@@ -28,7 +28,7 @@ steel-core/build/classes.json
 Search for your block in this file. In our example:
 - We find `IronBarsBlock`
 
-This means we need **two different structs** to manage both blocks.
+This means we need **one struct** to manage this block.
 
 ---
 
@@ -42,7 +42,6 @@ steel-core/src/behavior/blocks/
 
 Be **as descriptive as possible** with the file name. For our example:
 - `iron_bars_block.rs`
-- `copper_bars_block.rs`
 
 ---
 
@@ -67,12 +66,12 @@ impl IronBarsBlock {
 impl BlockBehavior for IronBarsBlock {}
 ```
 
-> Again, note that this is only a basic setup and **does not provide functionality yet**.
+> Like mentioned above, we are only covering a basic setup, so this does not provide behavior or functionality.
 
 ---
 
 ## 5. Register the Block Module
-To register the block, there needs to be the attribute block_behavior added! Notice how at the top of the code the line <span style="background-color: #003f6f">#[block_behavior]</span> was added.
+To register the block, we need to give it the attribute block_behavior. Notice how at the top of the code the line <span style="background-color: #003f6f">#[block_behavior]</span> was added.
 ```rust
 // /steel-core/src/behavior/blocks/iron_bars_block.rs
 #[block_behavior]
@@ -81,7 +80,7 @@ pub struct IronBarsBlock {
 }
 
 impl IronBarsBlock {
-    /// Creates a new bar block behavior for the given block.
+    /// Creates a new instance of IronBarsBlock
     #[must_use]
     pub const fn new(block: BlockRef) -> Self {
         Self { block }
@@ -147,7 +146,7 @@ let west_pos = Direction::West.relative(pos);
 let west_state = world.get_block_state(&west_pos);
 ```
 
-In this block state, **all information** of the specific block is saved.
+In this example, the position of the block west of our own has been saved inside `west_pos` and the state of the block at position `west_pos` has been saved inside `west_state`.
 
 ---
 
@@ -156,8 +155,9 @@ In this block state, **all information** of the specific block is saved.
 Block state properties can be changed like this:
 
 ```rust
-const WEST: &BoolProperty = &BlockStateProperties::WEST;
+state.set_value(&BlockStateProperties::WEST, true); 
 ```
+This sets the `BoolProperty` saved in `state` to `true`, modifying the block state property.
 
 ---
 
@@ -173,10 +173,14 @@ let excluded = is_excluded_for_connection(neighbor_block);
     || neighbor_block.has_tag(&BlockTag::WALLS)
     || neighbor_block.has_tag(&BlockTag::C_GLASS_PANES)
 ```
+
+This checks the state of the block and stores it in `neighbor_block`. Next, it checks if the iron bars can connect to that block before saving that in `excluded`. Finally, it makes a list of blocks that are not full blocks but that can be connected to.
 > Note that this only works for iron bars, and this needs to be evaluated and changed on a case-by-case basis if necessary. 
 ---
 
 Now that all of that is finished, you are able to make a pull request (PR) and get it reviewed by maintainers on GitHub. Make sure to double-check your work to make sure it is satisfactory!
+
+In addition, please ensure you stick to our coding and AI guidelines to ensure quality and comprehensible code!
 ___
 ## Other useful resources
 - using properties for blocks and items, you can find information [here](../../block_item_registration)
