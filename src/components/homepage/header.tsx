@@ -26,7 +26,7 @@ const Headline = ({
   subtitle: string;
 }) => (
   <>
-    <h1 className="mt-4 text-black dark:text-white text-center leading-[.8] -tracking-[2px] max-w-[16ch] font-minecraft text-7xl">
+    <h1 className="mt-4 text-black dark:text-white text-center leading-[1.2] -tracking-[2px] max-w-[16ch] font-minecraft text-7xl">
       {heroTitle}
       <span className="text-teal-600 dark:text-teal-400 font-bold italic">
         {heroTitleHighlight}
