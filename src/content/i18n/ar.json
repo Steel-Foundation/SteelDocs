@@ -1,0 +1,111 @@
+{
+  "langFlag": "🇸🇦",
+  "langName": "العربية",
+  "githubHref": "https://github.com/Steel-Foundation/SteelMC",
+
+  "header": {
+    "searchPlaceholder": "البحث في التوثيق...",
+    "devWarningText": "البحث متاح فقط في النسخ الإنتاجية",
+    "discordLabel": "انضم إلى خادم الديسكورد",
+    "githubLabel": "مستودع GitHub",
+    "blog": "المدونة",
+    "download": "تنزيل",
+    "tracker": "المتتبع",
+    "trackerLabel": "متتبع التنفيذ"
+  },
+
+  "index": {
+    "pillText": "ما زال قيد التطوير",
+    "subtitle": "ماين كرافت كما ينبغي أن تكون. مبني بلغة Rust مع معالجة متعددة المسارات. نهدف إلى التوافق التام مع فانيلا، وأعلى أداء، وإمكانية تخصيص فائقة.",
+    "mainCtaText": "انضم إلينا!",
+    "secondCtaText": "التوثيق",
+    "chooseDocs": {
+      "label": "اختر مسار التوثيق",
+      "title": "مرحباً، ما الذي ترغب في فعله؟",
+      "description": "صُمم Steel للجميع. سواء كنت تدير خادماً، أو تساهم برمجياً، أو تستكشف المشروع، فهناك توثيق مخصص لك.",
+      "adminLabel": "مدير خادم",
+      "adminImageAlt": "توثيق إدارة الخادم",
+      "devLabel": "مطور",
+      "devImageAlt": "توثيق المساهمين المطورين"
+    },
+    "community": {
+      "heading": "مهتم بالمشروع؟",
+      "headingHighlight": "انضم إلينا!",
+      "descriptionBold1": "Steel هو ملتقى للمجتمع",
+      "descriptionMiddle": " للبرمجة والمحادثة وقضاء وقت ممتع. من المطورين الموهوبين إلى عشاق الحوار، ",
+      "descriptionBold2": "الجميع مرحب بهم!",
+      "descriptionAfter": " نحن مجرد فريق يسعى لبناء خادم ماين كرافت رائع."
+    },
+    "rotatingPrefix": "Steel",
+    "rotating": [
+      "قيد التطوير",
+      "ليس جاهزاً بعد",
+      "مغامرة بلا حدود",
+      "سبيكة بالمناسبة 🤓☝️",
+      "صُنع بحب",
+      "سريع للغاية",
+      "مكتوب بـ Rust",
+      "يطبخ على نار هادئة!",
+      "حماس لا ينتهي مع 4lve",
+      "يشكر جميع المساهمين"
+    ]
+  },
+
+  "tracker": {
+    "title": "متتبع",
+    "titleHighlight": "التنفيذ",
+    "description": "تتبع بلوكات وعناصر وكائنات ماين كرافت التي تم تنفيذ سلوكها البرمجي في Steel.",
+    "note": "ملاحظة: يتتبع هذا الإصدارات الليلية (Nightly)، وليس الإصدار المستقر.",
+    "metaTitle": "متتبع التنفيذ - SteelMC",
+    "metaDescription": "تتبع أي بلوكات وعناصر وكائنات ماين كرافت تم تنفيذ سلوكها في SteelMC."
+  },
+
+  "download": {
+    "metaDescription": "نزّل أحدث إصدار لخادم SteelMC أو تصفح الإصدارات السابقة.",
+    "badge": "إصدارات SteelMC",
+    "hero": {
+      "title": "مستعد لتشغيل",
+      "titleHighlight": "Steel؟",
+      "subtitle": "احصل على أحدث نسخة لمنصتك. تظل الإصدارات السابقة متاحة في أرشيف الإصدارات أدناه."
+    },
+    "latestBadge": "أحدث إصدار",
+    "latestDescription": "أحدث بناء لخادم SteelMC، مع أحدث تحسينات التوافق والتنفيذ.",
+    "choosePlatform": "اختر منصتك",
+    "installHint": "هل تستخدم Docker، أو لوحة تحكم للخادم، أو تبني يدوياً؟",
+    "installHintLink": "راجع دليل التثبيت.",
+    "previousReleases": "الإصدارات السابقة",
+    "browseOlder": "تصفح إصداراً أقدم ({{count}})",
+    "browseOlderPlural": "تصفح {{count}} إصدارات أقدم",
+    "noReleases": {
+      "title": "لا توجد إصدارات متاحة حتى الآن",
+      "body": "عد قريباً للاطلاع على أول إصدار من SteelMC."
+    },
+    "version": "الإصدار",
+    "latestVersion": "أحدث إصدار",
+    "needOlderVersion": "هل تحتاج إلى إصدار أقدم؟",
+    "viewPreviousVersions": "عرض الإصدارات السابقة",
+    "olderVersions": "إصدارات أقدم",
+    "forMinecraft": "لماين كرافت",
+    "releasedDate": "تاريخ الإصدار"
+  },
+
+  "blog": {
+    "metaTitle": "المدونة - SteelMC",
+    "metaDescription": "الإعلانات وتحديثات التطوير وقصص من فريق SteelMC.",
+    "badge": "من ورشة العمل",
+    "title": "مدونة",
+    "titleHighlight": "SteelMC",
+    "subtitle": "إعلانات وتفاصيل تقنية متعمقة وتحديثات التقدم من الأشخاص الذين يطورون SteelMC.",
+    "featured": "مميز",
+    "readArticle": "قراءة المقال",
+    "latestPosts": "أحدث المقالات",
+    "allPosts": "جميع المقالات",
+    "backToBlog": "العودة إلى المدونة",
+    "minRead": "دقائق قراءة",
+    "placeholder": {
+      "title": "مسودة",
+      "body": "هذا الإعلان عبارة عن نص مؤقت. يُرجى تحديث تاريخه وتفاصيله وحالته في ملف Markdown قبل نشره رسمياً."
+    },
+    "footer": "مشروع مفتوح المصدر تم تطويره بواسطة مجتمع SteelMC."
+  }
+}
