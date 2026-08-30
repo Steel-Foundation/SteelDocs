@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.15.2+mc26.2",
-    "steel_commit": "2d0c39c83be136c4a70d6a522197598fbb30c104",
-    "steel_committed_at": "2026-08-30T18:51:08+02:00"
+    "steel_commit": "59291875525ddd4d3bd216dded792f587cffdca1",
+    "steel_committed_at": "2026-08-30T19:09:47+02:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -3871,7 +3871,7 @@
       ]
     },
     "SnowballItem": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "snowball"
@@ -5170,7 +5170,7 @@
       ]
     },
     "Snowball": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "snowball"
