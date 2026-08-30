@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.15.2+mc26.2",
-    "steel_commit": "36156e984018a77ba0a61850e532360979dc672e",
-    "steel_committed_at": "2026-08-28T17:31:43+02:00"
+    "steel_commit": "2d0c39c83be136c4a70d6a522197598fbb30c104",
+    "steel_committed_at": "2026-08-30T18:51:08+02:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -4034,7 +4034,7 @@
       ]
     },
     "BottleItem": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "glass_bottle"
@@ -4864,8 +4864,10 @@
       ]
     },
     "Interaction": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Trigger PLAYER_HURT_ENTITY advancement criterion trigger"
+      ],
       "entries": [
         "interaction"
       ]
