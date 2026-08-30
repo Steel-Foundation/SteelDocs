@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "nightly",
-    "steel_version": "0.15.2+mc26.2",
-    "steel_commit": "59291875525ddd4d3bd216dded792f587cffdca1",
-    "steel_committed_at": "2026-08-30T19:09:47+02:00"
+    "steel_version": "0.15.3+mc26.2",
+    "steel_commit": "fb97a01edd2fb6485c0d7602de445458909dcf12",
+    "steel_committed_at": "2026-08-30T21:31:34+02:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -1898,10 +1898,7 @@
     },
     "ScaffoldingBlock": {
       "implemented": true,
-      "todos": [
-        "Add vanilla placement, stability distance updates, falling conversion, and waterlogging.",
-        "Mirror vanilla scaffolding placement here, including WATERLOGGED,"
-      ],
+      "todos": [],
       "entries": [
         "scaffolding"
       ]
@@ -3692,7 +3689,7 @@
       ]
     },
     "ScaffoldingBlockItem": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "scaffolding"
