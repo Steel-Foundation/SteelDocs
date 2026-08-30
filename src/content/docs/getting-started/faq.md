@@ -50,11 +50,11 @@ There are some PoCs and we are happy to help but the goal of this project is to 
 
 That's due to a vanilla gamerule, you can use `/gamerule player_movement_check false` to disable it.
 
-## Why not combine effort with other rust rewrite ?
+## Why not combine efforts with other rust rewrite ?
 
-Each rewrite have their own vision and management. Steel was create after analyse each project where we decide to create our own rewrite from scratch.
+Each rewrite has their own vision and management. We were not satisfied with any of them, which led us to make our own rewrite from scratch.
 
-## How to start contribute to Steel ?
+## How to start contributing to Steel ?
 
 See [this page](../../development/start-contributing/).
 
