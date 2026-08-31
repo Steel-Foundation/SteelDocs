@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.15.3+mc26.2",
-    "steel_commit": "03c59db4354f707d27e0f2a1d29f38ac594e7d43",
-    "steel_committed_at": "2026-09-01T00:39:52+02:00"
+    "steel_commit": "57d77c26c8b02086756cb56177bb24ba65333b9a",
+    "steel_committed_at": "2026-09-01T01:31:34+02:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -4021,8 +4021,10 @@
       ]
     },
     "ShearsItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Trigger ITEM_USED_ON_BLOCK once advancement criteria dispatch is implemented."
+      ],
       "entries": [
         "shears"
       ]
