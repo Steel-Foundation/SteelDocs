@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.15.3+mc26.2",
-    "steel_commit": "f976fc9ca2273a22d21376bdd112edcd23238685",
-    "steel_committed_at": "2026-08-31T23:56:25+02:00"
+    "steel_commit": "03c59db4354f707d27e0f2a1d29f38ac594e7d43",
+    "steel_committed_at": "2026-09-01T00:39:52+02:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -1755,8 +1755,12 @@
       ]
     },
     "TurtleEggBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "(environment-attributes): replace this inline curve with a single",
+        "(turtle-entity): spawn one baby Turtle per egg here once the",
+        "(zombie-family): widen this to the whole zombie set (a shared"
+      ],
       "entries": [
         "turtle_egg"
       ]
