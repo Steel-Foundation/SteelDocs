@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.15.3+mc26.2",
-    "steel_commit": "37066259018bd543aec985d27fc02276fc277f9d",
-    "steel_committed_at": "2026-08-30T21:42:38+02:00"
+    "steel_commit": "f976fc9ca2273a22d21376bdd112edcd23238685",
+    "steel_committed_at": "2026-08-31T23:56:25+02:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -4049,7 +4049,9 @@
     },
     "EnderEyeItem": {
       "implemented": true,
-      "todos": [],
+      "todos": [
+        "implement advancment"
+      ],
       "entries": [
         "ender_eye"
       ]
@@ -4728,7 +4730,7 @@
       ]
     },
     "EyeOfEnder": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "eye_of_ender"
