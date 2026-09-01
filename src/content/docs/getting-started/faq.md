@@ -54,7 +54,7 @@ That's due to a vanilla gamerule, you can use `/gamerule player_movement_check f
 
 Each rewrite has their own vision and management. We were not satisfied with any of them, which led us to make our own rewrite from scratch.
 
-## How to start contributing to Steel ?
+## How do I start contributing to Steel ?
 
 See [this page](../../development/start-contributing/).
 
