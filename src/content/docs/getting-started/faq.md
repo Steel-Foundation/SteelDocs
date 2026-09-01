@@ -52,7 +52,7 @@ That's due to a vanilla gamerule, you can use `/gamerule player_movement_check f
 
 ## Why not combine efforts with other Rust rewrites ?
 
-Each rewrite has their own vision and management. We were not satisfied with any of them, which led us to make our own rewrite from scratch.
+Each rewrite has its own vision and management. We were not satisfied with any of them, which led us to make our own rewrite from scratch.
 
 ## How do I start contributing to Steel ?
 
