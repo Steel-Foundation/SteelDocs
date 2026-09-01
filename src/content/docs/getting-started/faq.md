@@ -50,7 +50,7 @@ There are some PoCs and we are happy to help but the goal of this project is to 
 
 That's due to a vanilla gamerule, you can use `/gamerule player_movement_check false` to disable it.
 
-## Why not combine efforts with other rust rewrite ?
+## Why not combine efforts with other Rust rewrites ?
 
 Each rewrite has their own vision and management. We were not satisfied with any of them, which led us to make our own rewrite from scratch.
 
