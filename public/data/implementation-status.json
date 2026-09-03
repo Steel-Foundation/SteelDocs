@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.15.3+mc26.2",
-    "steel_commit": "5765dfdb7948d114ac460022ef7a886f5f40fad1",
-    "steel_committed_at": "2026-09-03T20:17:31+02:00"
+    "steel_commit": "897c8f55a70d5ab1987f40618eba0fc6ba4cf08b",
+    "steel_committed_at": "2026-09-03T23:09:59+02:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -3935,8 +3935,11 @@
       ]
     },
     "FishingRodItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "add vibration (Java equivalent: `ItemStack.causeVibration()`)",
+        "add vibration, see above TODO"
+      ],
       "entries": [
         "fishing_rod"
       ]
@@ -5422,8 +5425,15 @@
       ]
     },
     "FishingHook": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "as soon as we have enchantments: use `luck` and `lure_speed` as input",
+        "`lure_speed` and `luck` are taken from the existing rod, but auto generation fails when doing this, refer to: https://mcsrc.dev/2/26.2/net/minecraft/world/entity/projectile/FishingHook#L75",
+        "criteria triggers (advancements)",
+        "criteria triggers (advancements)",
+        "check if passing a lock is better here",
+        "check if passing a lock is better here"
+      ],
       "entries": [
         "fishing_bobber"
       ]
