@@ -1,0 +1,240 @@
+---
+import { Image } from "astro:assets";
+import steel from "@/assets/steel.png";
+import vanilla from "@/assets/vanilla.png";
+---
+
+<figure class="parity-comparison" data-parity-comparison>
+  <div class="parity-comparison__frame" data-comparison-frame>
+    <Image
+      src={vanilla}
+      alt=""
+      class="parity-comparison__image"
+      loading="lazy"
+      widths={[768, 1200, 1600, 2560]}
+      sizes="(max-width: 1024px) 100vw, 896px"
+    />
+
+    <div class="parity-comparison__steel" aria-hidden="true">
+      <Image
+        src={steel}
+        alt=""
+        class="parity-comparison__image"
+        loading="lazy"
+        widths={[768, 1200, 1600, 2560]}
+        sizes="(max-width: 1024px) 100vw, 896px"
+      />
+    </div>
+
+    <span class="parity-comparison__label parity-comparison__label--steel">
+      Steel
+    </span>
+    <span class="parity-comparison__label parity-comparison__label--vanilla">
+      Vanilla
+    </span>
+
+    <input
+      class="parity-comparison__range"
+      data-comparison-range
+      type="range"
+      min="0"
+      max="100"
+      value="50"
+      aria-label="Reveal Steel terrain over vanilla terrain"
+      aria-valuetext="50% Steel visible"
+    />
+
+    <div class="parity-comparison__divider" aria-hidden="true">
+      <span class="parity-comparison__handle">
+        <span>‹</span>
+        <span>›</span>
+      </span>
+    </div>
+  </div>
+
+  <figcaption class="parity-comparison__caption">
+    <strong>Steel and vanilla at the same seed and coordinates.</strong>
+    Drag the handle to compare the generated worlds. Cross-chunk features such
+    as trees can differ in this live comparison because their final placement
+    depends on neighboring chunk-generation order; the parity tests use a fixed
+    order so their results are reproducible.
+  </figcaption>
+</figure>
+
+<script>
+  document
+    .querySelectorAll<HTMLElement>("[data-parity-comparison]")
+    .forEach((comparison) => {
+      const frame = comparison.querySelector<HTMLElement>(
+        "[data-comparison-frame]",
+      );
+      const range = comparison.querySelector<HTMLInputElement>(
+        "[data-comparison-range]",
+      );
+
+      if (!frame || !range) return;
+
+      const updateComparison = () => {
+        const position = `${range.value}%`;
+        frame.style.setProperty("--comparison-position", position);
+        range.setAttribute("aria-valuetext", `${range.value}% Steel visible`);
+      };
+
+      range.addEventListener("input", updateComparison);
+      updateComparison();
+    });
+</script>
+
+<style>
+  .parity-comparison {
+    margin-block: 2rem;
+  }
+
+  .parity-comparison__frame {
+    --comparison-position: 50%;
+
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid rgb(13 148 136 / 0.22);
+    border-radius: 1.25rem;
+    background: rgb(7 28 37);
+    box-shadow: 0 18px 45px rgb(4 47 46 / 0.13);
+    user-select: none;
+  }
+
+  .parity-comparison__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .parity-comparison__steel {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    clip-path: inset(0 calc(100% - var(--comparison-position)) 0 0);
+  }
+
+  .parity-comparison__label {
+    position: absolute;
+    z-index: 2;
+    top: 1rem;
+    border: 1px solid rgb(255 255 255 / 0.22);
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+    background: rgb(4 47 46 / 0.72);
+    box-shadow: 0 4px 14px rgb(0 0 0 / 0.18);
+    color: white;
+    font-family: "Minecraft", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1;
+    backdrop-filter: blur(8px);
+  }
+
+  .parity-comparison__label--steel {
+    left: 1rem;
+  }
+
+  .parity-comparison__label--vanilla {
+    right: 1rem;
+  }
+
+  .parity-comparison__range {
+    position: absolute;
+    z-index: 4;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: ew-resize;
+    opacity: 0;
+  }
+
+  .parity-comparison__divider {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    bottom: 0;
+    left: var(--comparison-position);
+    width: 2px;
+    transform: translateX(-1px);
+    background: rgb(255 255 255 / 0.9);
+    box-shadow: 0 0 0 1px rgb(4 47 46 / 0.28);
+    pointer-events: none;
+  }
+
+  .parity-comparison__handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    width: 2.8rem;
+    height: 2.8rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    transform: translate(-50%, -50%);
+    border: 2px solid white;
+    border-radius: 999px;
+    background: rgb(5 150 105);
+    box-shadow: 0 6px 18px rgb(0 0 0 / 0.3);
+    color: white;
+    font-family: sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .parity-comparison__range:focus-visible + .parity-comparison__divider
+    .parity-comparison__handle {
+    outline: 3px solid rgb(52 211 153);
+    outline-offset: 3px;
+  }
+
+  .parity-comparison__caption {
+    margin-top: 0.85rem;
+    text-align: center;
+    font-size: 0.95rem;
+    font-style: italic;
+    line-height: 1.65;
+    color: rgb(15 118 110);
+  }
+
+  .parity-comparison__caption strong {
+    color: rgb(17 94 89);
+  }
+
+  :global(.dark) .parity-comparison__caption {
+    color: rgb(255 255 255 / 0.55);
+  }
+
+  :global(.dark) .parity-comparison__caption strong {
+    color: rgb(255 255 255 / 0.78);
+  }
+
+  @media (max-width: 640px) {
+    .parity-comparison__label {
+      top: 0.65rem;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.7rem;
+    }
+
+    .parity-comparison__label--steel {
+      left: 0.65rem;
+    }
+
+    .parity-comparison__label--vanilla {
+      right: 0.65rem;
+    }
+
+    .parity-comparison__handle {
+      width: 2.35rem;
+      height: 2.35rem;
+      font-size: 1.1rem;
+    }
+  }
+</style>

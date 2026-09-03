@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 374" role="img"><style>
+  text { font-family: Inter, ui-sans-serif, system-ui, sans-serif; fill: #172033; }
+  .muted { fill: #64748b; }
+  .grid { stroke: #dbe3ef; stroke-width: 1; }
+  .track { fill: #edf2f7; }
+  @media (prefers-color-scheme: dark) {
+    text { fill: #edf3fb; }
+    .muted { fill: #9aacbf; }
+    .grid { stroke: #334155; }
+    .track { fill: #1e293b; }
+  }
+</style><text x="48" y="48" font-size="26" font-weight="700">Throughput at larger region sizes</text><text x="48" y="76" font-size="14" class="muted">101×101: mean of three cold runs · 301×301: one cold run</text><line x1="215" y1="104" x2="215" y2="292" class="grid"/><text x="215" y="320" text-anchor="middle" font-size="12" class="muted">0</text><line x1="387.5" y1="104" x2="387.5" y2="292" class="grid"/><text x="387.5" y="320" text-anchor="middle" font-size="12" class="muted">875</text><line x1="560" y1="104" x2="560" y2="292" class="grid"/><text x="560" y="320" text-anchor="middle" font-size="12" class="muted">1,750</text><line x1="732.5" y1="104" x2="732.5" y2="292" class="grid"/><text x="732.5" y="320" text-anchor="middle" font-size="12" class="muted">2,625</text><line x1="905" y1="104" x2="905" y2="292" class="grid"/><text x="905" y="320" text-anchor="middle" font-size="12" class="muted">3,500</text><text x="48" y="158" font-size="17" font-weight="650">Steel</text><rect x="215" y="122" width="509.0" height="20" rx="5" fill="#14b8a6" opacity="0.55"/><text x="733.0" y="137" text-anchor="start" font-size="12" font-weight="650">2,581.8 · 101×101</text><rect x="215" y="152" width="555.7" height="20" rx="5" fill="#14b8a6" opacity="1"/><text x="779.7" y="167" text-anchor="start" font-size="12" font-weight="650">2,818.6 · 301×301</text><text x="48" y="263" font-size="17" font-weight="650">Fabric</text><rect x="215" y="227" width="27.0" height="20" rx="5" fill="#f59e0b" opacity="0.55"/><text x="251.0" y="242" text-anchor="start" font-size="12" font-weight="650">137.2 · 101×101</text><rect x="215" y="257" width="34.5" height="20" rx="5" fill="#f59e0b" opacity="1"/><text x="258.5" y="272" text-anchor="start" font-size="12" font-weight="650">175.1 · 301×301</text><text x="560" y="354" text-anchor="middle" font-size="12" class="muted">chunks per second</text></svg>

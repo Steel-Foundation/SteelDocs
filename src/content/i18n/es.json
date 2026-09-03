@@ -1,10 +1,111 @@
 {
-    "langFlag": "🇪🇸",
-    "langName": "Español",
+  "langFlag": "🇪🇸",
+  "langName": "Español",
+  "githubHref": "https://github.com/Steel-Foundation/SteelMC",
+
+  "header": {
     "searchPlaceholder": "Buscar en la documentación...",
-    "devWarningText": "La busqueda solo está disponible en producción",
+    "devWarningText": "La búsqueda solo está disponible en producción",
     "discordLabel": "Únete a nuestro Discord",
-    "githubLabel": "Repositorio de Github",
+    "githubLabel": "Repositorio de GitHub",
+    "blog": "Blog",
     "download": "Descargar",
-    "githubHref": "https://github.com/Steel-Foundation/SteelMC"
+    "tracker": "Tracker",
+    "trackerLabel": "Seguimiento de implementación"
+  },
+
+  "index": {
+    "pillText": "Cocinándose a fuego lento",
+    "subtitle": "Minecraft implementado de la forma correcta. Escrito en Rust, con arquitectura multihilo. Nuestro objetivo es que se comporte como vanilla pero con rendimiento y personalización.",
+    "mainCtaText": "¡Únete!",
+    "secondCtaText": "Documentación",
+    "chooseDocs": {
+      "label": "ESCOGE TU DOCUMENTACIÓN",
+      "title": "Oye, ¿qué buscas hacer?",
+      "description": "Steel fue diseñado para todo el mundo. Ya sea que tengas un servidor, contribuyas con código, o solo estés echando un vistazo, tenemos documentación para ti.",
+      "adminLabel": "Administrador",
+      "adminImageAlt": "Documentación para administración",
+      "devLabel": "Desarrollador",
+      "devImageAlt": "Documentación para contribución"
+    },
+    "community": {
+      "heading": "¿Te interesa?",
+      "headingHighlight": "¡Únete a nosotros!",
+      "descriptionBold1": "Steel es un lugar donde la gente se junta",
+      "descriptionMiddle": " para programar, charlar y divertirse. Desde talentosos desarrolladores hasta los mayores charlatanes, ",
+      "descriptionBold2": "¡todos son bienvenidos!",
+      "descriptionAfter": " Somos solo un grupo de gente tratando de hacer un servidor de Minecraft que valga la pena."
+    },
+    "rotatingPrefix": "Steel",
+    "rotating": [
+      "está en desarrollo",
+      "aún no está listo",
+      "es un 'agárrame el cubata'",
+      "es una aleación 🤓☝️",
+      "está hecho con amor",
+      "es rápido como el rayo",
+      "es rústico",
+      "se está cocinando",
+      "borrachos hypeados por 4lve™",
+      "agradece a sus contribuidores"
+    ]
+  },
+
+  "tracker": {
+    "title": "Seguimiento de ",
+    "titleHighlight": "Implementación",
+    "description": "Comprueba cuáles bloques, objetos y entidades de Minecraft tienen implementado su comportamiento en Steel.",
+    "note": "Aviso: Aquí se muestran las implementaciones en desarrollo, no la versión estable.",
+    "metaTitle": "Seguimiento de implementación - SteelMC",
+    "metaDescription": "Comprueba cuáles bloques, objetos y entidades de Minecraft tienen implementado su comportamiento en Steel."
+  },
+
+  "download": {
+    "metaDescription": "Descarga la última versión del servidor SteelMC o busca lanzamientos anteriores.",
+    "badge": "Lanzamientos de SteelMC",
+    "hero": {
+      "title": "¿Listo para ejecutar ",
+      "titleHighlight": "Steel?",
+      "subtitle": "Aquí tienes la versión más nueva para tu plataforma. Los lanzamientos anteriores aún están disponibles en la sección de abajo."
+    },
+    "latestBadge": "Último lanzamiento",
+    "latestDescription": "La versión más nueva del servidor SteelMC, con la compatibilidad y mejoras de implementación más recientes.",
+    "choosePlatform": "Escoge tu plataforma",
+    "installHint": "¿Usas Docker, un panel de servidor o quieres compilarlo tú mismo?",
+    "installHintLink": "Échale un vistazo a nuestra guía.",
+    "previousReleases": "Lanzamientos anteriores",
+    "browseOlder": "Busca {{count}} versión antigua",
+    "browseOlderPlural": "Busca {{count}} versiones antiguas",
+    "noReleases": {
+      "title": "Aún no ha salido ninguna versión",
+      "body": "Vuelve pronto para descargar el primer lanzamiento de SteelMC."
+    },
+    "version": "Versión",
+    "latestVersion": "Última versión",
+    "needOlderVersion": "¿Necesitas una versión anterior?",
+    "viewPreviousVersions": "Ver versiones anteriores",
+    "olderVersions": "Versiones anteriores",
+    "forMinecraft": "Para Minecraft",
+    "releasedDate": "Lanzada el"
+  },
+
+  "blog": {
+    "metaTitle": "Blog - SteelMC",
+    "metaDescription": "Anuncios, actualizaciones del desarrollo e historias de parte del equipo de SteelMC.",
+    "badge": "Sacado del taller",
+    "title": "Blog de ",
+    "titleHighlight": "SteelMC",
+    "subtitle": "Anuncios, datos técnicos a fondo y actualizaciones del desarrollo de parte de la gente detrás de SteelMC.",
+    "featured": "Recomendado",
+    "readArticle": "Leer el artículo",
+    "latestPosts": "Últimas entradas",
+    "allPosts": "Todas las entradas",
+    "backToBlog": "Volver al blog",
+    "minRead": "minutos de lectura",
+    "placeholder": {
+      "title": "Borrador",
+      "body": "Este anuncio es una copia de pruebas. Recuerda actualizar su fecha, detalles, y estados en el archivo Markdown antes de publicarlo oficialmente."
+    },
+    "footer": "Creado en abierto por la comunidad de SteelMC."
+  }
 }

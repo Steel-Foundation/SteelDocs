@@ -1,13 +1,37 @@
 import { useState, useEffect, useMemo } from "react";
-import { Search, ChevronDown, Blocks, Sword, Filter } from "lucide-react";
+import { Search, ChevronDown, Blocks, Sword, Filter, PawPrint, Terminal, CheckCircle2, Circle, Wrench } from "lucide-react";
+import SegmentedControl from "./SegmentedControl";
 
 interface ClassGroup {
   implemented: boolean;
   todos: string[];
   entries: string[];
+  issues: GHIssues[];
+  prs: GHIssues[];
 }
 
 type Status = "complete" | "partial" | "unimplemented";
+
+const statusMeta = {
+  complete: {
+    label: "Implemented",
+    Icon: CheckCircle2,
+    dotClass: "bg-emerald-500 dark:bg-emerald-400",
+    badgeClass: "bg-emerald-100 dark:bg-emerald-400/15 text-emerald-700 dark:text-emerald-400",
+  },
+  partial: {
+    label: "In progress",
+    Icon: Wrench,
+    dotClass: "bg-amber-500 dark:bg-amber-400",
+    badgeClass: "bg-amber-100 dark:bg-amber-400/15 text-amber-700 dark:text-amber-400",
+  },
+  unimplemented: {
+    label: "Planned",
+    Icon: Circle,
+    dotClass: "bg-slate-400 dark:bg-white/30",
+    badgeClass: "bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-white/60",
+  },
+} as const;
 
 function getStatus(group: ClassGroup): Status {
   if (!group.implemented) return "unimplemented";
@@ -17,38 +41,106 @@ function getStatus(group: ClassGroup): Status {
 interface ImplementationData {
   blocks: Record<string, ClassGroup>;
   items: Record<string, ClassGroup>;
+  entities: Record<string, ClassGroup>;
+  commands: Record<string, ClassGroup>;
 }
 
-type Tab = "blocks" | "items";
+interface GHIssues {
+  html_url: string;
+  title: string;
+  body_text: string | null;
+  pull_request: Record<string, string> | null;
+}
+
+type Tab = "blocks" | "items" | "entities" | "commands";
 type StatusFilter = "all" | "complete" | "partial" | "unimplemented";
+type ProgressMetric = "surface" | "classes";
+
+async function iterIssues(pages: number, data: ImplementationData) {
+  for (let i = 0; i < pages; i++) {
+    await fetch(`https://api.github.com/repos/Steel-Foundation/SteelMC/issues?per_page=100&page=${i + 1}`, {
+      headers: { "accept": "application/vnd.github.text+json" }
+    })
+      .then((r) => r.json())
+      .then((json: GHIssues[]) => {
+        Object.values(json).forEach((pr) => {
+
+          const iter = (group: Record<string, ClassGroup>, use_slash_regex: boolean) => Object.keys(group).forEach((name) => {
+            const regex = use_slash_regex ? new RegExp(`\\B${name.toLowerCase()}\\b`) : new RegExp(`\\b${name.toLowerCase()}\\b`);
+            if (regex.test(pr.title.toLowerCase()) || (pr.body_text && regex.test(pr.body_text.toLowerCase()))) {
+              if (!pr.pull_request) {
+                if (group[name].issues) {
+                  group[name].issues.push({ title: pr.title, html_url: pr.html_url } as GHIssues);
+                  return;
+                }
+                group[name].issues = [{ title: pr.title, html_url: pr.html_url } as GHIssues];
+                return;
+              }
+              if (group[name].prs) {
+                group[name].prs.push({ title: pr.title, html_url: pr.html_url } as GHIssues);
+                return;
+              }
+              group[name].prs = [{ title: pr.title, html_url: pr.html_url } as GHIssues];
+            }
+          });
+
+          iter(data.items, false);
+          iter(data.entities, false);
+          iter(data.blocks, false);
+          iter(data.commands, true);
+        });
+      });
+  }
+  return;
+}
 
 export default function ImplementationTracker() {
   const [data, setData] = useState<ImplementationData | null>(null);
+  const [ghLoaded, setGhLoaded] = useState<boolean>(false);
   const [tab, setTab] = useState<Tab>("blocks");
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
+  const [progressMetric, setProgressMetric] = useState<ProgressMetric>("surface");
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
 
   useEffect(() => {
+    if (data) return;
     fetch(import.meta.env.BASE_URL + "data/implementation-status.json")
       .then((r) => r.json())
       .then(setData);
   }, []);
 
+  useEffect(() => {
+    if (!data || ghLoaded) return;
+    fetch("https://api.github.com/repos/Steel-Foundation/SteelMC/issues?per_page=1", {
+      headers: { "accept": "application/vnd.github.text+json" }
+    })
+      .then(async (r) => {
+        const pages = Math.ceil(Number.parseInt(r.headers.get("link")?.match(/page=(\d+)>; rel="last"/)?.[1] || "100") / 100);
+        await iterIssues(pages, data);
+        setData(data);
+        setGhLoaded(true);
+      });
+  }, [data]);
+
   const currentData = data?.[tab];
+  const entryLabel = tab === "entities" ? "entities" : tab;
 
   const stats = useMemo(() => {
     if (!currentData) return { total: 0, complete: 0, partial: 0, unimplemented: 0 };
     const classes = Object.entries(currentData);
     const byStatus = { complete: 0, partial: 0, unimplemented: 0 };
     for (const [, g] of classes) {
-      byStatus[getStatus(g)] += g.entries.length;
+      byStatus[getStatus(g)] += progressMetric === "classes" ? 1 : g.entries.length;
     }
     return {
-      total: classes.reduce((sum, [, g]) => sum + g.entries.length, 0),
+      total: classes.reduce(
+        (sum, [, g]) => sum + (progressMetric === "classes" ? 1 : g.entries.length),
+        0,
+      ),
       ...byStatus,
     };
-  }, [currentData]);
+  }, [currentData, progressMetric]);
 
   const filtered = useMemo(() => {
     if (!currentData) return [];
@@ -67,7 +159,7 @@ export default function ImplementationTracker() {
         if (sa !== sb) return sa - sb;
         return a[0].localeCompare(b[0]);
       });
-  }, [currentData, search, statusFilter]);
+  }, [currentData, search, statusFilter, ghLoaded]);
 
   const toggleExpand = (className: string) => {
     setExpanded((prev) => {
@@ -93,37 +185,65 @@ export default function ImplementationTracker() {
     <div className="w-full">
       {/* Stats overview */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-        <StatCard label="Total entries" value={stats.total} />
-        <StatCard label="Complete" value={stats.complete} color="emerald" />
-        <StatCard label="Partial" value={stats.partial} color="amber" />
-        <StatCard label="Unimplemented" value={stats.unimplemented} />
+        <StatCard
+          label={progressMetric === "classes" ? "Total behaviors" : "Total entries"}
+          value={stats.total}
+        />
+        <StatCard label="Implemented" value={stats.complete} color="emerald" />
+        <StatCard label="In progress" value={stats.partial} color="amber" />
+        <StatCard label="Planned" value={stats.unimplemented} />
       </div>
 
       {/* Progress bar */}
-      <div className="mb-6 p-4 rounded-2xl bg-white/5 dark:bg-white/5 border border-teal-200/30 dark:border-white/10">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium text-teal-700 dark:text-white/70">
-            Implementation progress
-          </span>
-          <div className="flex items-center gap-3 text-xs">
-            <span className="flex items-center gap-1">
-              <span className="inline-block size-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
-              <span className="text-teal-700 dark:text-white/60">{pctComplete}%</span>
+      <div className="surface-forged mb-6 p-4 rounded-3xl bg-white/5 dark:bg-white/5 border border-teal-200/30 dark:border-white/10">
+        <div className="flex flex-col gap-3 mb-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <span className="text-sm font-medium text-teal-700 dark:text-white/70">
+              Implementation progress
             </span>
-            <span className="flex items-center gap-1">
-              <span className="inline-block size-2 rounded-full bg-amber-500 dark:bg-amber-400" />
-              <span className="text-teal-700 dark:text-white/60">{pctPartial}%</span>
-            </span>
+            <p className="mt-0.5 text-xs text-teal-500 dark:text-white/35">
+              {progressMetric === "classes"
+                ? "Each behavior type counts equally."
+                : `Weighted by registered ${entryLabel}.`}
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <SegmentedControl
+              label="Progress calculation"
+              size="sm"
+              value={progressMetric}
+              onChange={setProgressMetric}
+              segments={[
+                { value: "surface", content: "Surface area" },
+                { value: "classes", content: "Behaviors" },
+              ]}
+            />
+            <div className="flex items-center gap-3 text-xs">
+              <span className="flex items-center gap-1">
+                <span className="inline-block size-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
+                <span className="text-teal-700 dark:text-white/60">Implemented {pctComplete}%</span>
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="inline-block size-2 rounded-full bg-amber-500 dark:bg-amber-400" />
+                <span className="text-teal-700 dark:text-white/60">In progress {pctPartial}%</span>
+              </span>
+            </div>
           </div>
         </div>
         <div className="relative h-3 rounded-full bg-teal-100 dark:bg-white/10 overflow-visible flex group cursor-default">
           <div
-            className="h-full bg-emerald-500 dark:bg-emerald-400 transition-all duration-500 rounded-l-full"
-            style={{ width: `${pctComplete}%` }}
+            className="h-full bg-emerald-500 dark:bg-emerald-400 rounded-l-full"
+            style={{
+              width: `${pctComplete}%`,
+              transition: "width 0.5s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.35s ease",
+            }}
           />
           <div
-            className="h-full bg-amber-500 dark:bg-amber-400 transition-all duration-500"
-            style={{ width: `${pctPartial}%` }}
+            className="h-full bg-amber-500 dark:bg-amber-400"
+            style={{
+              width: `${pctPartial}%`,
+              transition: "width 0.5s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.35s ease",
+            }}
           />
 
           {/* Tooltip */}
@@ -133,15 +253,15 @@ export default function ImplementationTracker() {
             pointer-events-none z-10 flex flex-col gap-1 whitespace-nowrap shadow-lg">
             <span className="flex items-center gap-2">
               <span className="inline-block size-2 rounded-full bg-emerald-400" />
-              Complete — {pctComplete}%
+              Implemented — {pctComplete}%
             </span>
             <span className="flex items-center gap-2">
               <span className="inline-block size-2 rounded-full bg-amber-400" />
-              Partial — {pctPartial}%
+              In progress — {pctPartial}%
             </span>
             <span className="flex items-center gap-2">
               <span className="inline-block size-2 rounded-full bg-white/20" />
-              Not started — {100 - pctComplete - pctPartial}%
+              Planned — {100 - pctComplete - pctPartial}%
             </span>
           </div>
         </div>
@@ -149,46 +269,81 @@ export default function ImplementationTracker() {
 
       {/* Controls */}
       <div className="flex flex-col md:flex-row gap-3 mb-6">
-        {/* Tabs */}
-        <div className="flex rounded-xl bg-teal-100 dark:bg-white/5 border border-teal-200/40 dark:border-white/10 p-1">
-          <TabButton active={tab === "blocks"} onClick={() => setTab("blocks")}>
-            <Blocks className="size-3.5" />
-            Blocks
-          </TabButton>
-          <TabButton active={tab === "items"} onClick={() => setTab("items")}>
-            <Sword className="size-3.5" />
-            Items
-          </TabButton>
-        </div>
+        <SegmentedControl
+          label="Category"
+          value={tab}
+          onChange={setTab}
+          segments={[
+            {
+              value: "blocks",
+              content: (
+                <>
+                  <Blocks className="size-3.5" />
+                  Blocks
+                </>
+              ),
+            },
+            {
+              value: "items",
+              content: (
+                <>
+                  <Sword className="size-3.5" />
+                  Items
+                </>
+              ),
+            },
+            {
+              value: "entities",
+              content: (
+                <>
+                  <PawPrint className="size-3.5" />
+                  Entities
+                </>
+              ),
+            },
+            {
+              value: "commands",
+              content: (
+                <>
+                  <Terminal className="size-3.5" />
+                  Commands
+                </>
+              ),
+            },
+          ]}
+        />
 
         {/* Search */}
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-teal-500 dark:text-white/40 pointer-events-none" />
           <input
             type="text"
-            placeholder="Search blocks, items, or classes..."
+            placeholder={entryLabel === "commands" ? `Search ${entryLabel}...` : `Search ${entryLabel} or classes...`}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 text-sm bg-white dark:bg-white/5 border border-teal-200/40 dark:border-white/10 rounded-xl text-teal-950 dark:text-white placeholder:text-teal-400 dark:placeholder:text-white/35 focus:outline-none focus:border-emerald-500/60 dark:focus:border-emerald-400/50 transition-all"
+            className="tracker-control w-full pl-9 pr-3 py-2 text-sm bg-white dark:bg-white/5 border border-teal-200/40 dark:border-white/10 rounded-2xl text-teal-950 dark:text-white placeholder:text-teal-400 dark:placeholder:text-white/35 focus:outline-none focus:border-emerald-500/60 dark:focus:border-emerald-400/50 transition-all"
           />
         </div>
 
-        {/* Status filter */}
-        <div className="flex rounded-xl bg-teal-100 dark:bg-white/5 border border-teal-200/40 dark:border-white/10 p-1">
-          <TabButton active={statusFilter === "all"} onClick={() => setStatusFilter("all")}>
-            <Filter className="size-3.5" />
-            All
-          </TabButton>
-          <TabButton active={statusFilter === "complete"} onClick={() => setStatusFilter("complete")}>
-            Complete
-          </TabButton>
-          <TabButton active={statusFilter === "partial"} onClick={() => setStatusFilter("partial")}>
-            Partial
-          </TabButton>
-          <TabButton active={statusFilter === "unimplemented"} onClick={() => setStatusFilter("unimplemented")}>
-            Todo
-          </TabButton>
-        </div>
+        <SegmentedControl
+          label="Status filter"
+          value={statusFilter}
+          onChange={setStatusFilter}
+          segments={[
+            {
+              value: "all",
+              content: (
+                <>
+                  <Filter className="size-3.5" />
+                  All
+                </>
+              ),
+            },
+            { value: "complete", content: <><CheckCircle2 className="size-3.5" /> Implemented</> },
+            { value: "partial", content: <><Wrench className="size-3.5" /> In progress</> },
+            { value: "unimplemented", content: <><Circle className="size-3.5" /> Planned</> },
+          ]}
+        />
       </div>
 
       {/* Results count */}
@@ -197,35 +352,29 @@ export default function ImplementationTracker() {
       </p>
 
       {/* Class list */}
-      <div className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-2">
         {filtered.map(([className, group]) => {
           const isOpen = expanded.has(className);
+          const status = getStatus(group);
+          const { Icon: StatusIcon, label: statusLabel, dotClass, badgeClass } = statusMeta[status];
           const matchingEntries = search
             ? group.entries.filter((e) => e.toLowerCase().includes(search.toLowerCase()))
             : group.entries;
 
           return (
-            <div
+            <li
               key={className}
-              className="rounded-xl border border-teal-200/30 dark:border-white/10 bg-white/60 dark:bg-white/[0.03] overflow-hidden transition-all"
+              className="tracker-row rounded-[10px] border border-teal-200/30 dark:border-white/10 bg-white/60 dark:bg-white/3 overflow-hidden [content-visibility:auto] [contain-intrinsic-size:auto_50px]"
             >
               <button
                 onClick={() => toggleExpand(className)}
                 className="w-full flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-teal-50 dark:hover:bg-white/5 transition-colors"
               >
                 {/* Status indicator */}
-                <div
-                  className={`size-2.5 rounded-full shrink-0 ${
-                    {
-                      complete: "bg-emerald-500 dark:bg-emerald-400",
-                      partial: "bg-amber-500 dark:bg-amber-400",
-                      unimplemented: "bg-teal-300 dark:bg-white/20",
-                    }[getStatus(group)]
-                  }`}
-                />
+                <div className={`size-2.5 rounded-full shrink-0 ${dotClass}`} />
 
                 {/* Class name */}
-                <span className="font-minecraft text-sm text-teal-950 dark:text-white">
+                <span className="font-minecraft text-sm text-teal-950 dark:text-white select-text cursor-text">
                   {className}
                 </span>
 
@@ -234,17 +383,19 @@ export default function ImplementationTracker() {
                   {group.entries.length}
                 </span>
 
-                {/* Status badge */}
-                {getStatus(group) === "complete" && (
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-400/15 text-emerald-700 dark:text-emerald-400">
-                    Complete
-                  </span>
-                )}
-                {getStatus(group) === "partial" && (
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-400/15 text-amber-700 dark:text-amber-400">
-                    Partial ({group.todos.length} TODO{group.todos.length !== 1 ? "s" : ""})
-                  </span>
-                )}
+                <span className={`flex items-center gap-1 text-xs px-2 py-0.5 rounded-full ${badgeClass}`}>
+                  <StatusIcon className="size-3" aria-hidden="true" />
+                  {statusLabel}{status === "partial" ? ` · ${group.todos.length} task${group.todos.length !== 1 ? "s" : ""}` : ""}
+                </span>
+
+                {/* Issues badge */}
+                {group.issues && <span className="text-xs px-2 py-0.5 rounded-full bg-rose-200 dark:bg-rose-400/15 text-rose-800 dark:text-rose-400">
+                  {group.issues.length} issues open
+                </span>}
+                {/* PRs badge */}
+                {group.prs && <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-200 dark:bg-indigo-400/15 text-indigo-800 dark:text-indigo-400">
+                  {group.prs.length} PRs open
+                </span>}
 
                 <div className="flex-1" />
 
@@ -273,6 +424,36 @@ export default function ImplementationTracker() {
                       ))}
                     </div>
                   )}
+                  {/* Issues */}
+                  {group.issues && (
+                    <div className="flex flex-col gap-1.5 pt-2 border-t border-teal-100 dark:border-white/5 mb-3">
+                      {group.issues.map((pr, i) => (
+                        <a
+                          key={i}
+                          href={pr.html_url}
+                          className="flex items-start gap-2 text-xs px-2.5 py-1.5 rounded-lg bg-rose-50 dark:bg-rose-400/5 border border-rose-200/50 dark:border-rose-400/10"
+                        >
+                          <span className="text-rose-500 dark:text-rose-400 shrink-0 mt-px font-bold">Issue</span>
+                          <span className="text-rose-800 dark:text-rose-200/70">{pr.title}</span>
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                  {/* PRs */}
+                  {group.prs && (
+                    <div className="flex flex-col gap-1.5 pt-2 border-t border-teal-100 dark:border-white/5 mb-3">
+                      {group.prs.map((pr, i) => (
+                        <a
+                          key={i}
+                          href={pr.html_url}
+                          className="flex items-start gap-2 text-xs px-2.5 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-400/5 border border-indigo-200/50 dark:border-indigo-400/10"
+                        >
+                          <span className="text-indigo-500 dark:text-indigo-400 shrink-0 mt-px font-bold">PR</span>
+                          <span className="text-indigo-800 dark:text-indigo-200/70">{pr.title}</span>
+                        </a>
+                      ))}
+                    </div>
+                  )}
 
                   {/* Entries */}
                   <div className={`flex flex-wrap gap-1.5 ${group.todos.length === 0 ? "pt-2 border-t border-teal-100 dark:border-white/5" : ""}`}>
@@ -292,10 +473,10 @@ export default function ImplementationTracker() {
                   </div>
                 </div>
               )}
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
 
       {filtered.length === 0 && (
         <div className="text-center py-16 text-teal-500 dark:text-white/40">
@@ -315,34 +496,11 @@ const colorClasses = {
 
 function StatCard({ label, value, color = "default" }: { label: string; value: number; color?: keyof typeof colorClasses }) {
   return (
-    <div className="p-3 rounded-xl bg-white/60 dark:bg-white/[0.03] border border-teal-200/30 dark:border-white/10">
+    <div className="surface-forged p-3 rounded-3xl bg-white/60 dark:bg-white/3 border border-teal-200/30 dark:border-white/10">
       <p className="text-xs text-teal-600 dark:text-white/40">{label}</p>
       <p className={`text-2xl font-minecraft mt-0.5 ${colorClasses[color]}`}>
         {value}
       </p>
     </div>
-  );
-}
-
-function TabButton({
-  active,
-  onClick,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all cursor-pointer ${
-        active
-          ? "bg-white dark:bg-white/10 text-teal-950 dark:text-white shadow-sm"
-          : "text-teal-600 dark:text-white/50 hover:text-teal-950 dark:hover:text-white"
-      }`}
-    >
-      {children}
-    </button>
   );
 }

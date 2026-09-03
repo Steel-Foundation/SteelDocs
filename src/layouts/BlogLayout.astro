@@ -1,0 +1,43 @@
+---
+import type { ImageMetadata } from "astro";
+import Layout from "@/layouts/Layout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  socialTitle?: string;
+  socialImage?: ImageMetadata;
+  socialImageAlt?: string;
+  pageType?: "website" | "article";
+  publishedAt?: Date;
+  updatedAt?: Date;
+  author?: string;
+}
+
+const {
+  title,
+  description,
+  socialTitle,
+  socialImage,
+  socialImageAlt,
+  pageType,
+  publishedAt,
+  updatedAt,
+  author,
+} = Astro.props;
+---
+
+<Layout
+  title={title}
+  description={description}
+  socialTitle={socialTitle}
+  socialImage={socialImage}
+  socialImageAlt={socialImageAlt}
+  pageType={pageType}
+  publishedAt={publishedAt}
+  updatedAt={updatedAt}
+  author={author}
+  animatedBackground={true}
+>
+  <slot />
+</Layout>

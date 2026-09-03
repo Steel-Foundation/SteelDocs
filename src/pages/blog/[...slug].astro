@@ -1,0 +1,263 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import { ArrowLeft, CalendarDays, Clock3 } from "@lucide/astro";
+import BlogLayout from "@/layouts/BlogLayout.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+import { t as tBase } from "@/lib/utils";
+function t(key: string): string {return tBase(Astro, key)}
+const wordCount = (post.body ?? "").trim().split(/\s+/).filter(Boolean).length;
+const readingTime = Math.max(1, Math.ceil(wordCount / 220));
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat(Astro.currentLocale ?? "en", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(date);
+---
+
+<BlogLayout
+  title={`${post.data.title} - SteelMC Blog`}
+  description={post.data.description}
+  socialTitle={post.data.title}
+  socialImage={post.data.socialImage?.src}
+  socialImageAlt={post.data.socialImage?.alt}
+  pageType="article"
+  publishedAt={post.data.publishedAt}
+  updatedAt={post.data.updatedAt}
+  author={post.data.author}
+>
+  <main class="relative z-10 mx-auto min-h-screen max-w-280 px-4 pb-24 pt-28 sm:px-6 lg:pt-32">
+    <div class="mx-auto max-w-4xl">
+      <a
+        href={getRelativeLocaleUrl(Astro.currentLocale || "en", "/blog/")}
+        class="surface-smoked group inline-flex items-center gap-2 rounded-full border border-teal-200/60 bg-white/70 px-4 py-2 font-minecraft text-xs font-bold uppercase tracking-wider text-teal-700 shadow-sm backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/40 hover:bg-white hover:text-emerald-700 hover:shadow-md dark:border-white/10 dark:bg-teal-950/60 dark:text-white/70 dark:hover:border-emerald-400/30 dark:hover:bg-white/10 dark:hover:text-emerald-300"
+      >
+        <ArrowLeft class="size-3.5 transition-transform group-hover:-translate-x-0.5" />
+        {t("blog.allPosts")}
+      </a>
+    </div>
+
+    <article class="surface-forged relative mx-auto mt-6 max-w-4xl overflow-hidden rounded-3xl border border-emerald-500/20 bg-white/85 p-6 shadow-2xl shadow-teal-950/10 backdrop-blur-xl dark:border-emerald-400/15 dark:bg-teal-950/80 dark:shadow-black/25 sm:p-10 md:p-14">
+      <div
+        class="pointer-events-none absolute -right-24 -top-32 size-90 rounded-full bg-emerald-400/15 blur-3xl"
+        aria-hidden="true"
+      />
+      <div
+        class="pointer-events-none absolute -bottom-40 -left-20 size-80 rounded-full bg-teal-400/10 blur-3xl"
+        aria-hidden="true"
+      />
+
+      <header class="relative border-b border-teal-200/60 pb-10 dark:border-white/10">
+        <div class="flex flex-wrap items-center gap-3">
+          <span
+            class="rounded-full bg-emerald-500 px-3 py-1 font-minecraft text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-emerald-500/20"
+          >
+            {post.data.category}
+          </span>
+          {
+            post.data.placeholder && (
+              <span class="rounded-full border border-amber-500/30 bg-amber-400/10 px-3 py-1 font-minecraft text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300">
+                {t("blog.placeholder.title")}
+              </span>
+            )
+          }
+        </div>
+
+        <h1
+          class="mt-6 text-balance font-minecraft text-3xl font-bold leading-tight text-teal-950 dark:text-white sm:text-4xl md:text-5xl lg:text-6xl"
+        >
+          {post.data.title}
+        </h1>
+        <p class="mt-5 max-w-3xl text-base leading-relaxed text-teal-700 dark:text-white/65 md:text-xl">
+          {post.data.description}
+        </p>
+
+        <div class="mt-8 flex flex-wrap items-center gap-3 text-xs sm:text-sm">
+          <span class="surface-smoked rounded-full border border-teal-200/70 bg-teal-50/80 px-3 py-1.5 font-semibold text-teal-800 dark:border-white/10 dark:bg-white/5 dark:text-white/80">
+            {post.data.author}
+          </span>
+          <span class="surface-smoked flex items-center gap-1.5 rounded-full border border-teal-200/70 bg-teal-50/80 px-3 py-1.5 text-teal-600 dark:border-white/10 dark:bg-white/5 dark:text-white/60">
+            <CalendarDays class="size-3.5" />
+            <time datetime={post.data.publishedAt.toISOString()}>
+              {formatDate(post.data.publishedAt)}
+            </time>
+          </span>
+          <span class="surface-smoked flex items-center gap-1.5 rounded-full border border-teal-200/70 bg-teal-50/80 px-3 py-1.5 text-teal-600 dark:border-white/10 dark:bg-white/5 dark:text-white/60">
+            <Clock3 class="size-3.5" />
+            {readingTime} {t("blog.minRead")}
+          </span>
+        </div>
+      </header>
+
+      {
+        post.data.placeholder && (
+          <aside class="my-8 rounded-2xl border border-amber-500/30 bg-amber-100/70 p-5 text-amber-950 backdrop-blur-sm dark:bg-amber-400/10 dark:text-amber-100">
+            <p class="font-minecraft font-bold">{t("blog.placeholder.title")}</p>
+            <p class="mt-1 text-sm leading-6 opacity-80">
+              {t("blog.placeholder.body")}
+            </p>
+          </aside>
+        )
+      }
+
+      <div class="blog-prose relative mt-10">
+        <Content />
+      </div>
+
+      <footer class="relative mt-14 border-t border-teal-200/60 pt-8 dark:border-white/10">
+        <a
+          href={getRelativeLocaleUrl(Astro.currentLocale || "en", "/blog/")}
+          class="group inline-flex items-center gap-2 font-minecraft text-sm font-bold text-emerald-700 transition-colors hover:text-emerald-600 dark:text-white dark:hover:text-emerald-200"
+        >
+          <ArrowLeft class="size-4 transition-transform group-hover:-translate-x-1" />
+          {t("blog.backToBlog")}
+        </a>
+      </footer>
+    </article>
+  </main>
+</BlogLayout>
+
+<style is:global>
+  .blog-prose {
+    color: rgb(19 78 74);
+    font-size: 1.0625rem;
+    line-height: 1.8;
+  }
+
+  .dark .blog-prose {
+    color: rgb(255 255 255 / 0.72);
+  }
+
+  .blog-prose > * + * {
+    margin-top: 1.5rem;
+  }
+
+  .blog-prose h2,
+  .blog-prose h3 {
+    margin-top: 2.75rem;
+    color: rgb(4 47 46);
+    font-family: "Minecraft", sans-serif;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .dark .blog-prose h2,
+  .dark .blog-prose h3 {
+    color: white;
+  }
+
+  .blog-prose h2 {
+    font-size: 1.875rem;
+  }
+
+  .blog-prose h3 {
+    font-size: 1.4rem;
+  }
+
+  .blog-prose a {
+    color: rgb(4 120 87);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .dark .blog-prose a {
+    color: rgb(52 211 153);
+  }
+
+  .blog-prose ul,
+  .blog-prose ol {
+    padding-left: 1.5rem;
+  }
+
+  .blog-prose ul {
+    list-style: disc;
+  }
+
+  .blog-prose ol {
+    list-style: decimal;
+  }
+
+  .blog-prose li + li {
+    margin-top: 0.55rem;
+  }
+
+  .blog-prose strong {
+    color: rgb(4 47 46);
+  }
+
+  .blog-prose img {
+    width: 100%;
+    border: 1px solid rgb(13 148 136 / 0.22);
+    border-radius: 1.25rem;
+    box-shadow: 0 18px 45px rgb(4 47 46 / 0.13);
+  }
+
+  .blog-prose iframe {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border: 1px solid rgb(13 148 136 / 0.22);
+    border-radius: 1.25rem;
+    box-shadow: 0 18px 45px rgb(4 47 46 / 0.13);
+  }
+
+  .dark .blog-prose strong {
+    color: white;
+  }
+
+  .blog-prose blockquote {
+    border-left: 3px solid rgb(16 185 129);
+    border-radius: 0 0.75rem 0.75rem 0;
+    background: rgb(255 255 255 / 0.55);
+    padding: 1rem 1.25rem;
+    color: rgb(17 94 89);
+  }
+
+  .dark .blog-prose blockquote {
+    background: rgb(255 255 255 / 0.06);
+    color: rgb(255 255 255 / 0.65);
+  }
+
+  .blog-prose pre {
+    border: 1px solid rgb(13 148 136 / 0.25);
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+    background: rgb(4 47 46 / 0.85) !important;
+    box-shadow: 0 12px 30px rgb(4 47 46 / 0.15);
+  }
+
+  .blog-prose code:not(pre code) {
+    font-family: monospace;
+    font-size: 0.875em;
+    padding: 0.2em 0.4em;
+    border-radius: 0.5rem;
+    background: rgb(13 148 136 / 0.15);
+    color: rgb(4 120 87);
+    border: 1px solid rgb(13 148 136 / 0.2);
+  }
+
+  .dark .blog-prose code:not(pre code) {
+    background: rgb(255 255 255 / 0.08);
+    color: rgb(52 211 153);
+    border: 1px solid rgb(255 255 255 / 0.12);
+  }
+</style>

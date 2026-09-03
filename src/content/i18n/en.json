@@ -1,10 +1,111 @@
 {
-    "langFlag": "🇬🇧",
-    "langName": "English",
+  "langFlag": "🇬🇧",
+  "langName": "English",
+  "githubHref": "https://github.com/Steel-Foundation/SteelMC",
+
+  "header": {
     "searchPlaceholder": "Search docs...",
     "devWarningText": "Search is only available in production builds",
     "discordLabel": "Join our Discord",
     "githubLabel": "GitHub repository",
+    "blog": "Blog",
     "download": "Download",
-    "githubHref": "https://github.com/Steel-Foundation/SteelMC"
+    "tracker": "Tracker",
+    "trackerLabel": "Implementation tracker"
+  },
+
+  "index": {
+    "pillText": "Still cooking",
+    "subtitle": "Minecraft implemented the right way. Built in Rust, with multithreading in mind. We aim for vanilla parity, performance, and customization.",
+    "mainCtaText": "Join us!",
+    "secondCtaText": "Documentation",
+    "chooseDocs": {
+      "label": "CHOOSE YOUR DOCUMENTATION",
+      "title": "Hey, what do you want to do?",
+      "description": "Steel is designed for everyone. Whether you're running a server, contributing code, or just exploring, there's documentation for you.",
+      "adminLabel": "Administrator",
+      "adminImageAlt": "Admin documentation",
+      "devLabel": "Developer",
+      "devImageAlt": "Contributor documentation"
+    },
+    "community": {
+      "heading": "Interested?",
+      "headingHighlight": "Join us!",
+      "descriptionBold1": "Steel is a place where people gather",
+      "descriptionMiddle": " to code, chat and have fun. From talented developers to the biggest yappers, ",
+      "descriptionBold2": "everyone is welcome!",
+      "descriptionAfter": " We're just a bunch of people trying to make a cool Minecraft server."
+    },
+    "rotatingPrefix": "Steel is",
+    "rotating": [
+      "in development",
+      "not ready yet",
+      "fuck it we ball",
+      "an alloy btw 🤓☝️",
+      "made with love",
+      "hella fast",
+      "rusty",
+      "cooking!",
+      "drunk dudes hyping 4lve",
+      "thanking contributors"
+    ]
+  },
+
+  "tracker": {
+    "title": "Implementation",
+    "titleHighlight": "Tracker",
+    "description": "Track which Minecraft blocks, items, and entities have behavior implementations in Steel.",
+    "note": "Note: This tracks the nightly build, not the stable release.",
+    "metaTitle": "Implementation Tracker - SteelMC",
+    "metaDescription": "Track which Minecraft blocks, items, and entities have behavior implementations in SteelMC."
+  },
+
+  "download": {
+    "metaDescription": "Download the latest SteelMC server build or browse previous releases.",
+    "badge": "SteelMC releases",
+    "hero": {
+      "title": "Ready to run",
+      "titleHighlight": "Steel?",
+      "subtitle": "Grab the newest build for your platform. Previous versions are still available in the release archive below."
+    },
+    "latestBadge": "Latest release",
+    "latestDescription": "The newest SteelMC server build, with the latest compatibility and implementation improvements.",
+    "choosePlatform": "Choose your platform",
+    "installHint": "Using Docker, a server panel, or building natively?",
+    "installHintLink": "See the installation guide.",
+    "previousReleases": "Previous releases",
+    "browseOlder": "Browse {{count}} older version",
+    "browseOlderPlural": "Browse {{count}} older versions",
+    "noReleases": {
+      "title": "No releases available yet",
+      "body": "Check back soon for the first SteelMC build."
+    },
+    "version": "Version",
+    "latestVersion": "Latest Version",
+    "needOlderVersion": "Need an older version?",
+    "viewPreviousVersions": "View Previous Versions",
+    "olderVersions": "Older Versions",
+    "forMinecraft": "For Minecraft",
+    "releasedDate": "Released"
+  },
+
+  "blog": {
+    "metaTitle": "Blog - SteelMC",
+    "metaDescription": "Announcements, development updates, and stories from the SteelMC team.",
+    "badge": "From the workshop",
+    "title": "SteelMC",
+    "titleHighlight": "Blog",
+    "subtitle": "Announcements, technical deep dives, and progress updates from the people building SteelMC.",
+    "featured": "Featured",
+    "readArticle": "Read article",
+    "latestPosts": "Latest posts",
+    "allPosts": "All posts",
+    "backToBlog": "Back to the blog",
+    "minRead": "min read",
+    "placeholder": {
+      "title": "Draft content",
+      "body": "This announcement is placeholder copy. Update its date, details, and status in the Markdown file before publishing it as final."
+    },
+    "footer": "Built in the open by the SteelMC community."
+  }
 }

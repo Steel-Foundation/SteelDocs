@@ -1,10 +1,109 @@
 {
-    "langFlag": "🇩🇪",
-    "langName": "Deutsch",
+  "langFlag": "🇩🇪",
+  "langName": "Deutsch",
+  "githubHref": "https://github.com/Steel-Foundation/SteelMC",
+
+  "header": {
     "searchPlaceholder": "Dokumentation durchsuchen...",
     "devWarningText": "Die Suche ist nur in produktiv verfügbar",
     "discordLabel": "Tritt unserem Discord bei",
     "githubLabel": "GitHub repository",
+    "blog": "Blog",
     "download": "Download",
-    "githubHref": "https://github.com/Steel-Foundation/SteelMC"
+    "tracker": "Status",
+    "trackerLabel": "Implementierungs-Status"
+  },
+
+  "index": {
+    "pillText": "noch immer am Kochen",
+    "subtitle": "Minecraft in einem neuen Gewand, gebaut in Rust und mit Multithreading geplant. Wir setzen auf Vanilla like, Performance und Erweiterbarkeit.",
+    "mainCtaText": "Tritt uns bei!",
+    "secondCtaText": "Dokumentation",
+    "chooseDocs": {
+      "label": "WÄHLE DEINE DOKUMENTATION",
+      "title": "Hey, was möchtest du gerne machen?",
+      "description": "Steel ist für jeden gedacht. Ob du Admin bist, zu dem Code contributen willst oder einfach nur das Projekt auschecken wolltest, es gibt Dokumentation für dich!",
+      "adminLabel": "Admin",
+      "adminImageAlt": "Admindokumentation",
+      "devLabel": "Entwickler",
+      "devImageAlt": "Contributor Dokumentation"
+    },
+    "community": {
+      "heading": "Interessiert?",
+      "headingHighlight": "Tritt uns bei!",
+      "descriptionBold1": "Steel ist ein Ort, wo die Community zusammen kommt",
+      "descriptionMiddle": " zum entwickeln, chatten und zusammen Spaß zu haben. Von den talentiertesten Entwicklern bis zu den größten Labertaschen ",
+      "descriptionBold2": "jeder ist willkommen!",
+      "descriptionAfter": " Wir sind nur eine Community, welche versucht einen geilen Minecraft server zu erstellen."
+    },
+    "rotatingPrefix": "Steel ist",
+    "rotating": [
+      "in Entwicklung",
+      "noch nicht bereit",
+      "eine Legierung btw 🤓☝️",
+      "mit Liebe gemacht",
+      "höllisch schnell",
+      "rostig",
+      "am kochen!",
+      "Mitwirkenden dankbar"
+    ]
+  },
+
+  "tracker": {
+    "title": "Implementierungs",
+    "titleHighlight": "Tracker",
+    "description": "Verfolge, welche Minecraft-Blöcke, Gegenstände und Entitäten schon in Steel implementiert sind.",
+    "note": "Achtung: Dies trackt nur den Nightly Build, nicht den stabilen Release!",
+    "metaTitle": "Implementierungs-Tracker - SteelMC",
+    "metaDescription": "Verfolge, welche Minecraft-Blöcke, Gegenstände und Entitäten schon in SteelMC implementiert sind."
+  },
+
+  "download": {
+    "metaDescription": "Lade die neueste Version des SteelMC-Servers herunter oder durchsuche frühere Versionen.",
+    "badge": "SteelMC releases",
+    "hero": {
+      "title": "Bereit zum starten von",
+      "titleHighlight": "Steel?",
+      "subtitle": "Hole dir die neueste Version von unserer Plattform. Ältere Versionen sind weiterhin im Versionsarchiv unten verfügbar."
+    },
+    "latestBadge": "Neueste Version",
+    "latestDescription": "Der neueste SteelMC server build, mit den neuesten Kompatibilitäts- und Umsetzungsverbesserungen.",
+    "choosePlatform": "Wähle deine Plattform",
+    "installHint": "Du benutzt Docker, ein Serverpanel, oder baust nativ?",
+    "installHintLink": "Schaue dir die Installationsanleitung an.",
+    "previousReleases": "Ältere Versionen",
+    "browseOlder": "Durchsuche {{count}} ältere Version",
+    "browseOlderPlural": "Durchsuche {{count}} ältere Versionen",
+    "noReleases": {
+      "title": "Noch keine Versionen verfügbar",
+      "body": "Komm bald wieder zurück, um den ersten SteelMC build zu sehen."
+    },
+    "version": "Version",
+    "latestVersion": "Neueste Version",
+    "needOlderVersion": "Du brauchst eine ältere Version?",
+    "viewPreviousVersions": "Vorherige Versionen anzeigen",
+    "olderVersions": "Ältere Versionen",
+    "forMinecraft": "Für Minecraft",
+    "releasedDate": "Erschienen"
+  },
+
+  "blog": {
+    "metaTitle": "Blog - SteelMC",
+    "metaDescription": "Ankündigungen, Entwicklungs-Updates und Geschichten vom SteelMC-Team.",
+    "badge": "Aus der Werkstatt",
+    "title": "SteelMC",
+    "titleHighlight": "Blog",
+    "subtitle": "Ankündigungen, technische Einblicke und Fortschritts-Updates von den Leuten, die SteelMC bauen.",
+    "featured": "Featured",
+    "readArticle": "Artikel lesen",
+    "latestPosts": "Neueste Beiträge",
+    "allPosts": "Alle Beiträge",
+    "backToBlog": "Zurück zum Blog",
+    "minRead": "Min. Lesezeit",
+    "placeholder": {
+      "title": "Entwurfsinhalt",
+      "body": "Diese Ankündigung ist ein Platzhalterbeitrag. Aktualisiere das Datum, die Details und den Status in der Markdown-Datei, bevor du ihn veröffentlichst."
+    },
+    "footer": "Offen entwickelt von der SteelMC-Community."
+  }
 }
