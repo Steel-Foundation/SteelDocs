@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.15.3+mc26.2",
-    "steel_commit": "d5d33eaa8a8069356b2dccaebecc9f4fca6eb2fa",
-    "steel_committed_at": "2026-09-03T17:26:46+02:00"
+    "steel_commit": "5765dfdb7948d114ac460022ef7a886f5f40fad1",
+    "steel_committed_at": "2026-09-03T20:17:31+02:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -1648,7 +1648,7 @@
       ]
     },
     "FrostedIceBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "frosted_ice"
@@ -4897,7 +4897,7 @@
       ]
     },
     "ItemDisplay": {
-      "implemented": true,
+      "implemented": false,
       "todos": [],
       "entries": [
         "item_display"
@@ -5247,10 +5247,8 @@
       ]
     },
     "TextDisplay": {
-      "implemented": true,
-      "todos": [
-        "resolve text component"
-      ],
+      "implemented": false,
+      "todos": [],
       "entries": [
         "text_display"
       ]
@@ -5449,15 +5447,15 @@
     "/execute": {
       "implemented": true,
       "todos": [
-        "Add pagination for domains and worlds instead of truncating to the grid capacity.",
-        "Add items after every vanilla command-slot provider and container inventory is",
-        "Add predicate and function after their runtime registries are ported.",
-        "Restore Steel stopwatch conditions with the stopwatch command system.",
-        "Add bossbar after Steel has a persistent custom-bossbar manager.",
-        "Add entity after live entity NBT can reload every command-visible field.",
+        "Add the vanilla compound-NBT branch once Steel has an SNBT compound",
         "Add `locate biome` once Steel has an asynchronous closest-biome search.",
         "Add `locate poi` once Steel has a point-of-interest manager.",
-        "Add the vanilla compound-NBT branch once Steel has an SNBT compound"
+        "Add pagination for domains and worlds instead of truncating to the grid capacity.",
+        "Add bossbar after Steel has a persistent custom-bossbar manager.",
+        "Add entity after live entity NBT can reload every command-visible field.",
+        "Add items after every vanilla command-slot provider and container inventory is",
+        "Add predicate and function after their runtime registries are ported.",
+        "Restore Steel stopwatch conditions with the stopwatch command system."
       ],
       "entries": [
         "/execute"
@@ -5563,7 +5561,7 @@
       ]
     },
     "/fill": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/fill"
@@ -5792,7 +5790,7 @@
       ]
     },
     "/spawnpoint": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/spawnpoint"
@@ -5901,7 +5899,7 @@
       ]
     },
     "/title": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/title"
@@ -5929,7 +5927,7 @@
       ]
     },
     "/worldborder": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/worldborder"
