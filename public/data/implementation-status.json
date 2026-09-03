@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.15.3+mc26.2",
-    "steel_commit": "dd3ce28013c9e1b074c8b966bc187c848f5b782a",
-    "steel_committed_at": "2026-09-01T01:46:55+02:00"
+    "steel_commit": "d8110ec3fe8d061ac90c3cccef57ef62d8b5c3f0",
+    "steel_committed_at": "2026-09-03T10:34:29+02:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -1244,8 +1244,10 @@
       ]
     },
     "EnderChestBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Anger nearby piglins"
+      ],
       "entries": [
         "ender_chest"
       ]
