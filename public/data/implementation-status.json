@@ -4897,7 +4897,7 @@
       ]
     },
     "ItemDisplay": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "item_display"
@@ -5247,8 +5247,10 @@
       ]
     },
     "TextDisplay": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "resolve text component"
+      ],
       "entries": [
         "text_display"
       ]
@@ -5426,6 +5428,623 @@
       "todos": [],
       "entries": [
         "fishing_bobber"
+      ]
+    }
+  },
+  "commands": {
+    "/advancement": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/advancement"
+      ]
+    },
+    "/attribute": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/attribute"
+      ]
+    },
+    "/execute": {
+      "implemented": true,
+      "todos": [
+        "Add pagination for domains and worlds instead of truncating to the grid capacity.",
+        "Add items after every vanilla command-slot provider and container inventory is",
+        "Add predicate and function after their runtime registries are ported.",
+        "Restore Steel stopwatch conditions with the stopwatch command system.",
+        "Add bossbar after Steel has a persistent custom-bossbar manager.",
+        "Add entity after live entity NBT can reload every command-visible field.",
+        "Add `locate biome` once Steel has an asynchronous closest-biome search.",
+        "Add `locate poi` once Steel has a point-of-interest manager.",
+        "Add the vanilla compound-NBT branch once Steel has an SNBT compound"
+      ],
+      "entries": [
+        "/execute"
+      ]
+    },
+    "/bossbar": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/bossbar"
+      ]
+    },
+    "/clear": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "/clear"
+      ]
+    },
+    "/clone": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/clone"
+      ]
+    },
+    "/damage": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "/damage"
+      ]
+    },
+    "/data": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/data"
+      ]
+    },
+    "/datapack": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/datapack"
+      ]
+    },
+    "/debug": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/debug"
+      ]
+    },
+    "/defaultgamemode": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/defaultgamemode"
+      ]
+    },
+    "/dialog": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/dialog"
+      ]
+    },
+    "/difficulty": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "/difficulty"
+      ]
+    },
+    "/effect": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/effect"
+      ]
+    },
+    "/me": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/me"
+      ]
+    },
+    "/enchant": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "/enchant"
+      ]
+    },
+    "/experience": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "/experience",
+        "/xp"
+      ]
+    },
+    "/fill": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/fill"
+      ]
+    },
+    "/fillbiome": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/fillbiome"
+      ]
+    },
+    "/forceload": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/forceload"
+      ]
+    },
+    "/function": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/function"
+      ]
+    },
+    "/gamemode": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "/gamemode"
+      ]
+    },
+    "/gamerule": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "/gamerule"
+      ]
+    },
+    "/give": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "/give"
+      ]
+    },
+    "/help": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/help"
+      ]
+    },
+    "/item": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/item"
+      ]
+    },
+    "/kick": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/kick"
+      ]
+    },
+    "/kill": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "/kill"
+      ]
+    },
+    "/list": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "/list"
+      ]
+    },
+    "/locate": {
+      "implemented": true,
+      "todos": [
+        "Add `locate biome` once Steel has an asynchronous closest-biome search.",
+        "Add `locate poi` once Steel has a point-of-interest manager."
+      ],
+      "entries": [
+        "/locate"
+      ]
+    },
+    "/loot": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/loot"
+      ]
+    },
+    "/msg": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/msg",
+        "/tell",
+        "/w"
+      ]
+    },
+    "/swing": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/swing"
+      ]
+    },
+    "/particle": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/particle"
+      ]
+    },
+    "/place": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/place"
+      ]
+    },
+    "/playsound": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/playsound"
+      ]
+    },
+    "/random": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/random"
+      ]
+    },
+    "/reload": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/reload"
+      ]
+    },
+    "/recipe": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/recipe"
+      ]
+    },
+    "/fetchprofile": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/fetchprofile"
+      ]
+    },
+    "/return": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/return"
+      ]
+    },
+    "/ride": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/ride"
+      ]
+    },
+    "/rotate": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/rotate"
+      ]
+    },
+    "/say": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/say"
+      ]
+    },
+    "/schedule": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/schedule"
+      ]
+    },
+    "/scoreboard": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/scoreboard"
+      ]
+    },
+    "/seed": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "/seed"
+      ]
+    },
+    "/version": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/version"
+      ]
+    },
+    "/setblock": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "/setblock"
+      ]
+    },
+    "/spawnpoint": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/spawnpoint"
+      ]
+    },
+    "/setworldspawn": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "/setworldspawn"
+      ]
+    },
+    "/spectate": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/spectate"
+      ]
+    },
+    "/spreadplayers": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/spreadplayers"
+      ]
+    },
+    "/stopsound": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/stopsound"
+      ]
+    },
+    "/stopwatch": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/stopwatch"
+      ]
+    },
+    "/summon": {
+      "implemented": true,
+      "todos": [
+        "Add the vanilla compound-NBT branch once Steel has an SNBT compound"
+      ],
+      "entries": [
+        "/summon"
+      ]
+    },
+    "/tag": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/tag"
+      ]
+    },
+    "/team": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/team"
+      ]
+    },
+    "/teammsg": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/teammsg",
+        "/tm"
+      ]
+    },
+    "/teleport": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "/teleport",
+        "/tp"
+      ]
+    },
+    "/tellraw": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "/tellraw"
+      ]
+    },
+    "/test": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/test"
+      ]
+    },
+    "/tick": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "/tick"
+      ]
+    },
+    "/time": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "/time"
+      ]
+    },
+    "/title": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/title"
+      ]
+    },
+    "/trigger": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/trigger"
+      ]
+    },
+    "/waypoint": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/waypoint"
+      ]
+    },
+    "/weather": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "/weather"
+      ]
+    },
+    "/worldborder": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/worldborder"
+      ]
+    },
+    "/debugconfig": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/debugconfig"
+      ]
+    },
+    "/ban-ip": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/ban-ip"
+      ]
+    },
+    "/banlist": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/banlist"
+      ]
+    },
+    "/ban": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/ban"
+      ]
+    },
+    "/deop": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/deop"
+      ]
+    },
+    "/op": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/op"
+      ]
+    },
+    "/pardon": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/pardon"
+      ]
+    },
+    "/pardon-ip": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/pardon-ip"
+      ]
+    },
+    "/perf": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/perf"
+      ]
+    },
+    "/save-all": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/save-all"
+      ]
+    },
+    "/save-off": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/save-off"
+      ]
+    },
+    "/save-on": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/save-on"
+      ]
+    },
+    "/setidletimeout": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "/setidletimeout"
+      ]
+    },
+    "/stop": {
+      "implemented": true,
+      "todos": [],
+      "entries": [
+        "/stop"
+      ]
+    },
+    "/transfer": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/transfer"
+      ]
+    },
+    "/whitelist": {
+      "implemented": false,
+      "todos": [],
+      "entries": [
+        "/whitelist"
       ]
     }
   }

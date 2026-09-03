@@ -1,0 +1,368 @@
+{
+  "commands": [
+    {
+      "name": "/advancement",
+      "class": "/advancement"
+    },
+    {
+      "name": "/attribute",
+      "class": "/attribute"
+    },
+    {
+      "name": "/execute",
+      "class": "/execute"
+    },
+    {
+      "name": "/bossbar",
+      "class": "/bossbar"
+    },
+    {
+      "name": "/clear",
+      "class": "/clear"
+    },
+    {
+      "name": "/clone",
+      "class": "/clone"
+    },
+    {
+      "name": "/damage",
+      "class": "/damage"
+    },
+    {
+      "name": "/data",
+      "class": "/data"
+    },
+    {
+      "name": "/datapack",
+      "class": "/datapack"
+    },
+    {
+      "name": "/debug",
+      "class": "/debug"
+    },
+    {
+      "name": "/defaultgamemode",
+      "class": "/defaultgamemode"
+    },
+    {
+      "name": "/dialog",
+      "class": "/dialog"
+    },
+    {
+      "name": "/difficulty",
+      "class": "/difficulty"
+    },
+    {
+      "name": "/effect",
+      "class": "/effect"
+    },
+    {
+      "name": "/me",
+      "class": "/me"
+    },
+    {
+      "name": "/enchant",
+      "class": "/enchant"
+    },
+    {
+      "name": "/experience",
+      "class": "/experience"
+    },
+    {
+      "name": "/xp",
+      "class": "/experience"
+    },
+    {
+      "name": "/fill",
+      "class": "/fill"
+    },
+    {
+      "name": "/fillbiome",
+      "class": "/fillbiome"
+    },
+    {
+      "name": "/forceload",
+      "class": "/forceload"
+    },
+    {
+      "name": "/function",
+      "class": "/function"
+    },
+    {
+      "name": "/gamemode",
+      "class": "/gamemode"
+    },
+    {
+      "name": "/gamerule",
+      "class": "/gamerule"
+    },
+    {
+      "name": "/give",
+      "class": "/give"
+    },
+    {
+      "name": "/help",
+      "class": "/help"
+    },
+    {
+      "name": "/item",
+      "class": "/item"
+    },
+    {
+      "name": "/kick",
+      "class": "/kick"
+    },
+    {
+      "name": "/kill",
+      "class": "/kill"
+    },
+    {
+      "name": "/list",
+      "class": "/list"
+    },
+    {
+      "name": "/locate",
+      "class": "/locate"
+    },
+    {
+      "name": "/loot",
+      "class": "/loot"
+    },
+    {
+      "name": "/msg",
+      "class": "/msg"
+    },
+    {
+      "name": "/tell",
+      "class": "/msg"
+    },
+    {
+      "name": "/w",
+      "class": "/msg"
+    },
+    {
+      "name": "/swing",
+      "class": "/swing"
+    },
+    {
+      "name": "/particle",
+      "class": "/particle"
+    },
+    {
+      "name": "/place",
+      "class": "/place"
+    },
+    {
+      "name": "/playsound",
+      "class": "/playsound"
+    },
+    {
+      "name": "/random",
+      "class": "/random"
+    },
+    {
+      "name": "/reload",
+      "class": "/reload"
+    },
+    {
+      "name": "/recipe",
+      "class": "/recipe"
+    },
+    {
+      "name": "/fetchprofile",
+      "class": "/fetchprofile"
+    },
+    {
+      "name": "/return",
+      "class": "/return"
+    },
+    {
+      "name": "/ride",
+      "class": "/ride"
+    },
+    {
+      "name": "/rotate",
+      "class": "/rotate"
+    },
+    {
+      "name": "/say",
+      "class": "/say"
+    },
+    {
+      "name": "/schedule",
+      "class": "/schedule"
+    },
+    {
+      "name": "/scoreboard",
+      "class": "/scoreboard"
+    },
+    {
+      "name": "/seed",
+      "class": "/seed"
+    },
+    {
+      "name": "/version",
+      "class": "/version"
+    },
+    {
+      "name": "/setblock",
+      "class": "/setblock"
+    },
+    {
+      "name": "/spawnpoint",
+      "class": "/spawnpoint"
+    },
+    {
+      "name": "/setworldspawn",
+      "class": "/setworldspawn"
+    },
+    {
+      "name": "/spectate",
+      "class": "/spectate"
+    },
+    {
+      "name": "/spreadplayers",
+      "class": "/spreadplayers"
+    },
+    {
+      "name": "/stopsound",
+      "class": "/stopsound"
+    },
+    {
+      "name": "/stopwatch",
+      "class": "/stopwatch"
+    },
+    {
+      "name": "/summon",
+      "class": "/summon"
+    },
+    {
+      "name": "/tag",
+      "class": "/tag"
+    },
+    {
+      "name": "/team",
+      "class": "/team"
+    },
+    {
+      "name": "/teammsg",
+      "class": "/teammsg"
+    },
+    {
+      "name": "/tm",
+      "class": "/teammsg"
+    },
+    {
+      "name": "/teleport",
+      "class": "/teleport"
+    },
+    {
+      "name": "/tp",
+      "class": "/teleport"
+    },
+    {
+      "name": "/tellraw",
+      "class": "/tellraw"
+    },
+    {
+      "name": "/test",
+      "class": "/test"
+    },
+    {
+      "name": "/tick",
+      "class": "/tick"
+    },
+    {
+      "name": "/time",
+      "class": "/time"
+    },
+    {
+      "name": "/title",
+      "class": "/title"
+    },
+    {
+      "name": "/trigger",
+      "class": "/trigger"
+    },
+    {
+      "name": "/waypoint",
+      "class": "/waypoint"
+    },
+    {
+      "name": "/weather",
+      "class": "/weather"
+    },
+    {
+      "name": "/worldborder",
+      "class": "/worldborder"
+    },
+    {
+      "name": "/jfr",
+      "class": "/jfr"
+    },
+    {
+      "name": "/debugconfig",
+      "class": "/debugconfig"
+    },
+    {
+      "name": "/ban-ip",
+      "class": "/ban-ip"
+    },
+    {
+      "name": "/banlist",
+      "class": "/banlist"
+    },
+    {
+      "name": "/ban",
+      "class": "/ban"
+    },
+    {
+      "name": "/deop",
+      "class": "/deop"
+    },
+    {
+      "name": "/op",
+      "class": "/op"
+    },
+    {
+      "name": "/pardon",
+      "class": "/pardon"
+    },
+    {
+      "name": "/pardon-ip",
+      "class": "/pardon-ip"
+    },
+    {
+      "name": "/perf",
+      "class": "/perf"
+    },
+    {
+      "name": "/save-all",
+      "class": "/save-all"
+    },
+    {
+      "name": "/save-off",
+      "class": "/save-off"
+    },
+    {
+      "name": "/save-on",
+      "class": "/save-on"
+    },
+    {
+      "name": "/setidletimeout",
+      "class": "/setidletimeout"
+    },
+    {
+      "name": "/stop",
+      "class": "/stop"
+    },
+    {
+      "name": "/transfer",
+      "class": "/transfer"
+    },
+    {
+      "name": "/whitelist",
+      "class": "/whitelist"
+    }
+  ]
+}

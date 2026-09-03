@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { Search, ChevronDown, Blocks, Sword, Filter, PawPrint, CheckCircle2, Circle, Wrench } from "lucide-react";
+import { Search, ChevronDown, Blocks, Sword, Filter, PawPrint, Terminal, CheckCircle2, Circle, Wrench } from "lucide-react";
 import SegmentedControl from "./SegmentedControl";
 
 interface ClassGroup {
@@ -42,6 +42,7 @@ interface ImplementationData {
   blocks: Record<string, ClassGroup>;
   items: Record<string, ClassGroup>;
   entities: Record<string, ClassGroup>;
+  commands: Record<string, ClassGroup>;
 }
 
 interface GHIssues {
@@ -51,7 +52,7 @@ interface GHIssues {
   pull_request: Record<string, string> | null;
 }
 
-type Tab = "blocks" | "items" | "entities";
+type Tab = "blocks" | "items" | "entities" | "commands";
 type StatusFilter = "all" | "complete" | "partial" | "unimplemented";
 type ProgressMetric = "surface" | "classes";
 
@@ -64,8 +65,8 @@ async function iterIssues(pages: number, data: ImplementationData) {
       .then((json: GHIssues[]) => {
         Object.values(json).forEach((pr) => {
 
-          const iter = (group: Record<string, ClassGroup>) => Object.keys(group).forEach((name) => {
-            const regex = new RegExp(`\\b${name.toLowerCase()}\\b`);
+          const iter = (group: Record<string, ClassGroup>, use_slash_regex: boolean) => Object.keys(group).forEach((name) => {
+            const regex = use_slash_regex ? new RegExp(`\\B${name.toLowerCase()}\\b`) : new RegExp(`\\b${name.toLowerCase()}\\b`);
             if (regex.test(pr.title.toLowerCase()) || (pr.body_text && regex.test(pr.body_text.toLowerCase()))) {
               if (!pr.pull_request) {
                 if (group[name].issues) {
@@ -83,9 +84,10 @@ async function iterIssues(pages: number, data: ImplementationData) {
             }
           });
 
-          iter(data.items);
-          iter(data.entities);
-          iter(data.blocks);
+          iter(data.items, false);
+          iter(data.entities, false);
+          iter(data.blocks, false);
+          iter(data.commands, true);
         });
       });
   }
@@ -299,6 +301,15 @@ export default function ImplementationTracker() {
                 </>
               ),
             },
+            {
+              value: "commands",
+              content: (
+                <>
+                  <Terminal className="size-3.5" />
+                  Commands
+                </>
+              ),
+            },
           ]}
         />
 
@@ -307,7 +318,7 @@ export default function ImplementationTracker() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-teal-500 dark:text-white/40 pointer-events-none" />
           <input
             type="text"
-            placeholder={`Search ${entryLabel} or classes...`}
+            placeholder={entryLabel === "commands" ? `Search ${entryLabel}...` : `Search ${entryLabel} or classes...`}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="tracker-control w-full pl-9 pr-3 py-2 text-sm bg-white dark:bg-white/5 border border-teal-200/40 dark:border-white/10 rounded-2xl text-teal-950 dark:text-white placeholder:text-teal-400 dark:placeholder:text-white/35 focus:outline-none focus:border-emerald-500/60 dark:focus:border-emerald-400/50 transition-all"
