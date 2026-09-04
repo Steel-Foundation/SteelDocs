@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.15.3+mc26.2",
-    "steel_commit": "897c8f55a70d5ab1987f40618eba0fc6ba4cf08b",
-    "steel_committed_at": "2026-09-03T23:09:59+02:00"
+    "steel_commit": "3a4154946bb277d074c8be54d9d402120a310b47",
+    "steel_committed_at": "2026-09-04T20:06:51+02:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -5427,7 +5427,6 @@
     "FishingHook": {
       "implemented": true,
       "todos": [
-        "as soon as we have enchantments: use `luck` and `lure_speed` as input",
         "`lure_speed` and `luck` are taken from the existing rod, but auto generation fails when doing this, refer to: https://mcsrc.dev/2/26.2/net/minecraft/world/entity/projectile/FishingHook#L75",
         "criteria triggers (advancements)",
         "criteria triggers (advancements)",
