@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.15.3+mc26.2",
-    "steel_commit": "d76ea9139a89ae6c2ff861837d5cd9057b472572",
-    "steel_committed_at": "2026-09-05T19:35:37+02:00"
+    "steel_commit": "b2d075d528830c0e9ccf32ddf1c71b27bf124011",
+    "steel_committed_at": "2026-09-06T01:04:32+02:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -4048,8 +4048,7 @@
     "PotionItem": {
       "implemented": true,
       "todos": [
-        "Add PotionItem's water default instance when Steel has item-specific",
-        "Complete the shared CONSUMABLE use/finish lifecycle so potions can be"
+        "Add PotionItem's water default instance when Steel has item-specific"
       ],
       "entries": [
         "potion"
