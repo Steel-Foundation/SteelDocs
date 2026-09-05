@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.15.3+mc26.2",
-    "steel_commit": "3a4154946bb277d074c8be54d9d402120a310b47",
-    "steel_committed_at": "2026-09-04T20:06:51+02:00"
+    "steel_commit": "d76ea9139a89ae6c2ff861837d5cd9057b472572",
+    "steel_committed_at": "2026-09-05T19:35:37+02:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -574,7 +574,7 @@
       ]
     },
     "FurnaceBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "furnace"
@@ -1927,14 +1927,14 @@
       ]
     },
     "SmokerBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "smoker"
       ]
     },
     "BlastFurnaceBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "blast_furnace"
@@ -2008,9 +2008,7 @@
     },
     "CampfireBlock": {
       "implemented": true,
-      "todos": [
-        "Add campfire cooking, smoke particles, and dowse item ejection."
-      ],
+      "todos": [],
       "entries": [
         "campfire",
         "soul_campfire"
@@ -3771,7 +3769,6 @@
     "ShovelItem": {
       "implemented": true,
       "todos": [
-        "CampfireBlock::dowse() — eject cooking items",
         "hurt_and_break(1, ...) — shovels take durability damage"
       ],
       "entries": [
@@ -5118,7 +5115,10 @@
     },
     "Sheep": {
       "implemented": true,
-      "todos": [],
+      "todos": [
+        "add this function to DyeColor",
+        "add this function to DyeColor"
+      ],
       "entries": [
         "sheep"
       ]
@@ -5701,7 +5701,7 @@
       ]
     },
     "/playsound": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/playsound"
