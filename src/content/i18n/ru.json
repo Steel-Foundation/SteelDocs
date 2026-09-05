@@ -1,0 +1,10 @@
+{
+    "langFlag": "🇷🇺",
+    "langName": "Русский",
+    "searchPlaceholder": "Поиск документации...",
+    "devWarningText": "Поиск доступен только в production-сборках",
+    "discordLabel": "Присоединяйтесь к нашему Discord",
+    "githubLabel": "Репозиторий GitHub",
+    "download": "Скачать",
+    "githubHref": "https://github.com/Steel-Foundation/SteelMC"
+}
