@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.15.3+mc26.2",
-    "steel_commit": "b2d075d528830c0e9ccf32ddf1c71b27bf124011",
-    "steel_committed_at": "2026-09-06T01:04:32+02:00"
+    "steel_commit": "8c74c7bbcf033072ff0d9ef10c225341e4202515",
+    "steel_committed_at": "2026-09-07T22:16:35+02:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -2186,8 +2186,7 @@
     "CandleCakeBlock": {
       "implemented": true,
       "todos": [
-        "",
-        "particles!"
+        ""
       ],
       "entries": [
         "candle_cake",
@@ -2235,9 +2234,7 @@
     },
     "PotentSulfurBlock": {
       "implemented": true,
-      "todos": [
-        "Implement vanilla animateTick once Steel has client-side ambient tick/particle support:"
-      ],
+      "todos": [],
       "entries": [
         "potent_sulfur"
       ]
@@ -2491,9 +2488,7 @@
     },
     "SporeBlossomBlock": {
       "implemented": true,
-      "todos": [
-        "Implement particles and the rest of vanilla behavior."
-      ],
+      "todos": [],
       "entries": [
         "spore_blossom"
       ]
