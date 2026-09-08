@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.15.3+mc26.2",
-    "steel_commit": "36acddb90c2a6502f6a0ecda03239bb23e803916",
-    "steel_committed_at": "2026-09-07T22:55:21+02:00"
+    "steel_commit": "589395cd4561ce5a56d59b5b0da1b88cfa547173",
+    "steel_committed_at": "2026-09-09T00:16:54+02:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -4059,8 +4059,10 @@
       ]
     },
     "SpawnEggItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Use spawn eggs on a spawner block and also check if the condition is correct"
+      ],
       "entries": [
         "chicken_spawn_egg",
         "cow_spawn_egg",
