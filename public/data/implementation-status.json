@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.15.3+mc26.2",
-    "steel_commit": "589395cd4561ce5a56d59b5b0da1b88cfa547173",
-    "steel_committed_at": "2026-09-09T00:16:54+02:00"
+    "steel_commit": "74f6fd7e1f90d6881faf62f6f455c89a680f34d3",
+    "steel_committed_at": "2026-09-09T09:45:40+02:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -1676,8 +1676,11 @@
       ]
     },
     "ShulkerBoxBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Anger nearby piglins (PiglinAi.angerNearbyPiglins)",
+        "maybe? shulkerBoxBlockEntity.unpackLootTable(player);"
+      ],
       "entries": [
         "shulker_box",
         "white_shulker_box",
