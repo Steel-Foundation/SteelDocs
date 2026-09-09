@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.15.3+mc26.2",
-    "steel_commit": "74f6fd7e1f90d6881faf62f6f455c89a680f34d3",
-    "steel_committed_at": "2026-09-09T09:45:40+02:00"
+    "steel_commit": "e8e1d4b6396bff5821a4ea5cc7a4c8e9b275bbbf",
+    "steel_committed_at": "2026-09-09T17:06:22+02:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -2442,8 +2442,10 @@
       ]
     },
     "WeatheringLightningRodBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "override onLightningStrike() once it gets implemented"
+      ],
       "entries": [
         "lightning_rod",
         "exposed_lightning_rod",
@@ -2452,7 +2454,7 @@
       ]
     },
     "LightningRodBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "waxed_lightning_rod",
