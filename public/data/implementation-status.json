@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.15.3+mc26.2",
-    "steel_commit": "e8e1d4b6396bff5821a4ea5cc7a4c8e9b275bbbf",
-    "steel_committed_at": "2026-09-09T17:06:22+02:00"
+    "steel_commit": "453554849658237763c538bd00603a201bc58619",
+    "steel_committed_at": "2026-09-09T20:22:23+02:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -102,9 +102,7 @@
     },
     "MangrovePropaguleBlock": {
       "implemented": true,
-      "todos": [
-        "Implement growth ticking and bonemeal advance."
-      ],
+      "todos": [],
       "entries": [
         "mangrove_propagule"
       ]
@@ -163,7 +161,7 @@
       ]
     },
     "MangroveRootsBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "mangrove_roots"
