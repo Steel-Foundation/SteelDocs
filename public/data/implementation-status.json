@@ -2,14 +2,14 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.15.3+mc26.2",
-    "steel_commit": "2d5846740e4a035dce34bac83e741e07dcee10bc",
-    "steel_committed_at": "2026-09-11T15:34:15+02:00"
+    "steel_commit": "09af4ea5e12d872093162fbd5af2276e4d729298",
+    "steel_committed_at": "2026-09-11T15:57:02+02:00"
   },
   "blocks": {
     "GrassBlock": {
       "implemented": true,
       "todos": [
-        "Implement SpreadingSnowyBlock random ticks (spreading, turning to dirt when covered) and bonemeal behavior."
+        "Implement bonemeal behavior."
       ],
       "entries": [
         "grass_block"
@@ -1041,9 +1041,7 @@
     },
     "MyceliumBlock": {
       "implemented": true,
-      "todos": [
-        "Implement SpreadingSnowyBlock random ticks (spreading, turning to dirt when covered)."
-      ],
+      "todos": [],
       "entries": [
         "mycelium"
       ]
