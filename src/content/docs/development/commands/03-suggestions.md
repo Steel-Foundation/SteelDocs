@@ -66,3 +66,44 @@ suggest | _context, builder | {
 },
 ```
 :::
+
+## Custom Suggestions
+
+You can override the default suggestions of an argument type by attaching a `SuggestionProvider`.
+A `SuggestionProvider` is any type (or closure) that implements the trait, which requires a single method:
+
+```rust
+fn list_suggestions(
+    &self,
+    context: &CommandSuggestionContext,
+    builder: &mut SuggestionsBuilder<'_>,
+);
+```
+
+The `context` provides access to the current argument being typed and the command source.
+The `builder` is used to add suggestions via `.suggest()` and to inspect the current input via `.remaining()` or `.remaining_lowercase()`.
+
+To attach a suggestion provider to an argument, use the `.suggests()` method. If your provider is already behind an `Arc`, you can use `.suggests_arc()` to avoid cloning it.
+
+#### Fixed Suggestions
+
+If you just want to suggest a fixed list of string values, you can use the built-in `FixedSuggestionProvider` struct.
+It automatically filters suggestions to only include those matching the currently-typed prefix:
+
+```rust
+argument("food", ArgumentType::string())
+    .suggests(FixedSuggestionProvider::new(&["cookie", "cake"]))
+```
+
+#### Using a Closure
+
+You can also pass a closure directly as a `SuggestionProvider`. The closure receives the suggestion context and a builder:
+
+```rust
+argument("food", ArgumentType::string())
+    .suggests(|context, builder| {
+        for item in ["cookie", "cake", "bread"] {
+            builder.suggest(item);
+        }
+    })
+```
