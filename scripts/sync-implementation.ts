@@ -11,7 +11,7 @@
 
 import { execFileSync } from "node:child_process";
 import { readdir, readFile, mkdir, writeFile } from "node:fs/promises";
-import path, { dirname, join, resolve } from "node:path";
+import path, { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const STEEL_PATH = process.argv[2];
@@ -45,6 +45,7 @@ async function collectRsFiles(dir: string): Promise<string[]> {
 
 interface ClassInfo {
   todos: string[];
+  path?: string;
 }
 
 /** A single implementation, like a struct or command. */
@@ -129,8 +130,9 @@ async function scanImplementedClasses(dir: string, annotation: string): Promise<
 
     let todoLists = extractTodoList(lines, structs);
 
+    const sourcePath = relative(steelRoot, file).replaceAll("\\", "/");
     for (const struct of structs) {
-      classes.set(struct.name, { todos: todoLists.get(struct.name) ?? [] });
+      classes.set(struct.name, { todos: todoLists.get(struct.name) ?? [], path: sourcePath });
     }
   }
 
@@ -167,8 +169,12 @@ async function scanCommandFiles(dir: string): Promise<Map<string, ClassInfo>> {
 
     let todoLists = extractTodoList(lines, commands);
 
+    const sourcePath = relative(steelRoot, file).replaceAll("\\", "/");
     for (const command of commands) {
-      commandImplementations.set("/" + command.name, { todos: todoLists.get(command.name) ?? [] });
+      commandImplementations.set("/" + command.name, {
+        todos: todoLists.get(command.name) ?? [],
+        path: sourcePath,
+      });
     }
   }
 
@@ -216,11 +222,18 @@ const [classesRaw, commandsRaw, implementedBlockClasses, implementedItemClasses,
 
 const BLACKLISTED_CLASSES = new Set(["AirBlock", "Block", "Item", "/jfr"]);
 
+interface ClassGroup {
+  implemented: boolean;
+  todos: string[];
+  path: string | null;
+  entries: string[];
+}
+
 function groupByClass(
   entries: ClassEntry[],
   implementedClasses: Map<string, ClassInfo>,
-): Record<string, { implemented: boolean; todos: string[]; entries: string[] }> {
-  const groups: Record<string, { implemented: boolean; todos: string[]; entries: string[] }> = {};
+): Record<string, ClassGroup> {
+  const groups: Record<string, ClassGroup> = {};
   for (const entry of entries) {
     if (BLACKLISTED_CLASSES.has(entry.class)) continue;
     if (!groups[entry.class]) {
@@ -228,6 +241,7 @@ function groupByClass(
       groups[entry.class] = {
         implemented: info !== undefined,
         todos: info?.todos ?? [],
+        path: info?.path ?? null,
         entries: [],
       };
     }
@@ -277,7 +291,7 @@ const outPath = join(outDir, "implementation-status.json");
 await writeFile(outPath, JSON.stringify(output, null, 2));
 
 // Counted from the grouped output so blacklisted classes are left out here too.
-function summarize(groups: Record<string, { implemented: boolean; todos: string[]; entries: string[] }>) {
+function summarize(groups: Record<string, ClassGroup>) {
   const all = Object.values(groups);
   return {
     total: all.reduce((sum, g) => sum + g.entries.length, 0),
