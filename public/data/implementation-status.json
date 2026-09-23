@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.15.3+mc26.2",
-    "steel_commit": "26c8dd059bf8c1e5ab425bca963e40c1209771aa",
-    "steel_committed_at": "2026-09-22T17:10:33+02:00"
+    "steel_commit": "b09d99903626e4527ee8cb389b7e23dfeac54e23",
+    "steel_committed_at": "2026-09-23T17:09:24+02:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -854,9 +854,7 @@
     },
     "CakeBlock": {
       "implemented": true,
-      "todos": [
-        ""
-      ],
+      "todos": [],
       "entries": [
         "cake"
       ]
@@ -5824,7 +5822,7 @@
       ]
     },
     "/stopsound": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/stopsound"
