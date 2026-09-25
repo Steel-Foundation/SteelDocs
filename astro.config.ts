@@ -108,7 +108,7 @@ export default defineConfig({
             es: "Primeros pasos",
             de: "Erste Schritte",
           },
-          items: [{ autogenerate: { directory: "getting-started" } }],
+          autogenerate: { directory: "getting-started" },
         },
         {
           label: "Configuration",
@@ -116,11 +116,11 @@ export default defineConfig({
             es: "Configuración",
             de: "Konfiguration",
           },
-          items: [{ autogenerate: { directory: "configuration" } }],
+          autogenerate: { directory: "configuration" },
         },
         {
           label: "Commands",
-          items: [{ autogenerate: { directory: "commands" } }],
+          autogenerate: { directory: "commands" },
         },
         {
           label: "Development",
@@ -170,7 +170,7 @@ export default defineConfig({
             es: "Referencias",
             de: "Referenz",
           },
-          items: [{ autogenerate: { directory: "reference" } }],
+          autogenerate: { directory: "reference" },
         },
       ],
       editLink: {
