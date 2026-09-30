@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.15.3+mc26.2",
-    "steel_commit": "ff2d36699a5e781d025c7e770aa2829b7292f7e6",
-    "steel_committed_at": "2026-09-29T18:45:19+02:00"
+    "steel_commit": "e505901c24a62f20a399e9f48d8c5f91fece2fef",
+    "steel_committed_at": "2026-09-30T14:27:29+02:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -1277,8 +1277,10 @@
       ]
     },
     "FlowerPotBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Potted open/closed eyeblossoms do not transform at day/night yet."
+      ],
       "entries": [
         "flower_pot",
         "potted_torchflower",
