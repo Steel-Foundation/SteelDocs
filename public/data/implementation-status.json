@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.15.4+mc26.2",
-    "steel_commit": "91f171dedc701a967caf3c42037062253fc1c1e8",
-    "steel_committed_at": "2026-10-05T23:55:52+02:00"
+    "steel_commit": "f3d345146b9849aaf57123667ca3bbd18912f962",
+    "steel_committed_at": "2026-10-08T09:53:59+02:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -6038,7 +6038,7 @@
       ]
     },
     "/transfer": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/transfer"
