@@ -10,6 +10,7 @@ This section documents SteelMC command families that need more than a short synt
 ## Command Index
 
 - [`/perms`](../permissions) — inspect and manage player rules, groups, inheritance, defaults, and metadata
+- [Server Console](../console) — keyboard shortcuts, history, reverse search, completion, and graceful shutdown
 
 Vanilla commands follow their normal Minecraft syntax. Until a command has Steel-specific behavior that needs its own reference, use the [Minecraft Wiki command list](https://minecraft.wiki/w/Commands#List_and_summary_of_commands).
 
