@@ -144,28 +144,27 @@ async function scanImplementedClasses(dir: string, annotation: string): Promise<
  */
 async function scanCommandFiles(dir: string): Promise<Map<string, ClassInfo>> {
   const structPattern = new RegExp(
-    `CommandRegistration\\s*::\\s*new\\s*\\(\\s*Identifier\\s*::\\s*vanilla_static\\s*\\(\\s*"(\\w+)"\\s*\\)\\s*,.*\\|_\\|\\s*command\\s*\\(\\s*\\)\\s*\\)`
+    `CommandRegistration\\s*::\\s*new\\s*\\(\\s*Identifier\\s*::\\s*vanilla_static\\s*\\(\\s*"(\\w+)"\\s*\\)\\s*,\\s*(?:\\|_\\|\\s*)?\\w*command\\s*(?:\\(\\s*\\))?\\s*\\)`,
+    "g",
   );
   const commandImplementations = new Map<string, ClassInfo>();
-
 
   const files = await collectRsFiles(dir);
   for (const file of files) {
     const content = await readFile(file, "utf-8");
     const lines = content.split("\n");
 
+    const commands: Implementation[] = [];
     let match;
-    const commands: { name: string; pos: number }[] = [];
     while ((match = structPattern.exec(content)) !== null) {
-      let command = match[1] as string;
+      const command = match[1];
       if (command === undefined || command === "execute") continue;
-      commands.push({name: command, pos: match.index});
-      break;
+      commands.push({ name: command, pos: match.index });
     }
 
     if (commands.length === 0) continue;
 
-    let todoLists = extractTodoList(lines, commands);
+    const todoLists = extractTodoList(lines, commands);
 
     for (const command of commands) {
       commandImplementations.set("/" + command.name, { todos: todoLists.get(command.name) ?? [] });
@@ -173,16 +172,14 @@ async function scanCommandFiles(dir: string): Promise<Map<string, ClassInfo>> {
   }
 
   // Hardcoded check for the /execute command.
-  const executeFiles = await collectRsFiles(dir + "/execute");
-  for (const file of executeFiles) {
-    let todos = [];
-    for (const file of files) {
+  const executeFiles = await collectRsFiles(join(dir, "execute"));
+  if (executeFiles.length > 0) {
+    const todos: Todo[] = [];
+    for (const file of executeFiles) {
       const content = await readFile(file, "utf-8");
-      const lines = content.split("\n");
-
-      todos.push(...extractTodos(lines));
+      todos.push(...extractTodos(content.split("\n")));
     }
-    commandImplementations.set("/execute", { todos: todos.map(t => t.text) ?? [] });
+    commandImplementations.set("/execute", { todos: todos.map((todo) => todo.text) });
   }
 
   return commandImplementations;
