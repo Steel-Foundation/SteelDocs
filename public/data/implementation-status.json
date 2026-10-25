@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.16.1+mc26.3",
-    "steel_commit": "beba69c161c43887132ada970edb442c457365a2",
-    "steel_committed_at": "2026-10-25T01:13:39+02:00"
+    "steel_commit": "dd4b43078ae1522cacb93dd845a44d5861305430",
+    "steel_committed_at": "2026-10-25T17:23:25+01:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -4133,10 +4133,7 @@
     },
     "FishingRodItem": {
       "implemented": true,
-      "todos": [
-        "add vibration (Java equivalent: `ItemStack.causeVibration()`)",
-        "add vibration, see above TODO"
-      ],
+      "todos": [],
       "entries": [
         "fishing_rod"
       ]
