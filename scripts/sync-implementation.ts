@@ -205,49 +205,92 @@ interface ClassesJson {
 
 // --- Main ---
 
-const [classesRaw, commandsRaw, implementedBlockClasses, implementedItemClasses, implementedEntityClasses, implementedCommands] = await Promise.all([
+function scanAllImplemented() {
+  return Promise.all([
+    scanImplementedClasses(join(behaviorDir, "blocks"), "block_behavior"),
+    scanImplementedClasses(join(behaviorDir, "items"), "item_behavior"),
+    scanImplementedClasses(entityDir, "entity_behavior"),
+    scanCommandFiles(commandsDir),
+  ]);
+}
+
+const [classesRaw, commandsRaw] = await Promise.all([
   readFile(classesJsonPath, "utf-8").then((raw) => JSON.parse(raw) as ClassesJson),
   readFile(commandsJsonPath, "utf-8").then((raw) => JSON.parse(raw) as ClassesJson),
-  scanImplementedClasses(join(behaviorDir, "blocks"), "block_behavior"),
-  scanImplementedClasses(join(behaviorDir, "items"), "item_behavior"),
-  scanImplementedClasses(entityDir, "entity_behavior"),
-  scanCommandFiles(commandsDir),
 ]);
 
+const [implementedBlockClasses, implementedItemClasses, implementedEntityClasses, implementedCommands] = await scanAllImplemented();
+
+function steelGit(...args: string[]): string {
+  try {
+    return execFileSync("git", ["-C", steelRoot, ...args], {
+      encoding: "utf8",
+      stdio: ["pipe", "pipe", "pipe"],
+    }).trim();
+  } catch (err: unknown) {
+    const error = err as { stderr?: Buffer | string; message?: string };
+    const stderr = error?.stderr?.toString()?.trim() || error?.message || String(err);
+    throw new Error(`git -C "${steelRoot}" ${args.join(" ")} failed: ${stderr}`);
+  }
+}
+
+const tagsRaw = steelGit("tag", "-l", "v*", "--sort=-v:refname");
+const latestTag = tagsRaw ? tagsRaw.split("\n").map((t) => t.trim()).filter(Boolean)[0] ?? null : null;
+let releasedBlockClasses: Map<string, ClassInfo> | undefined;
+let releasedItemClasses: Map<string, ClassInfo> | undefined;
+let releasedEntityClasses: Map<string, ClassInfo> | undefined;
+let releasedCommands: Map<string, ClassInfo> | undefined;
+
+if (latestTag) {
+  const currentHead = steelGit("rev-parse", "HEAD");
+  steelGit("checkout", latestTag);
+  try {
+    [releasedBlockClasses, releasedItemClasses, releasedEntityClasses, releasedCommands] = await scanAllImplemented();
+  } finally {
+    steelGit("checkout", currentHead);
+  }
+}
+
 const BLACKLISTED_CLASSES = new Set(["AirBlock", "Block", "Item", "/jfr"]);
+
+interface GroupedClass {
+  implemented: boolean;
+  todos: string[];
+  entries: string[];
+  released: string[];
+  new_in_nightly: string[];
+}
 
 function groupByClass(
   entries: ClassEntry[],
   implementedClasses: Map<string, ClassInfo>,
-): Record<string, { implemented: boolean; todos: string[]; entries: string[] }> {
-  const groups: Record<string, { implemented: boolean; todos: string[]; entries: string[] }> = {};
+  releasedClasses?: Map<string, ClassInfo>,
+): Record<string, GroupedClass> {
+  const groups: Record<string, GroupedClass> = {};
   for (const entry of entries) {
     if (BLACKLISTED_CLASSES.has(entry.class)) continue;
-    if (!groups[entry.class]) {
-      const info = implementedClasses.get(entry.class);
-      groups[entry.class] = {
-        implemented: info !== undefined,
-        todos: info?.todos ?? [],
-        entries: [],
-      };
+    const info = implementedClasses.get(entry.class);
+    const g = (groups[entry.class] ??= {
+      implemented: info !== undefined,
+      todos: info?.todos ?? [],
+      entries: [],
+      released: [],
+      new_in_nightly: [],
+    });
+    g.entries.push(entry.name);
+    if (g.implemented) {
+      (releasedClasses ? releasedClasses.has(entry.class) : true)
+        ? g.released.push(entry.name)
+        : g.new_in_nightly.push(entry.name);
     }
-    groups[entry.class].entries.push(entry.name);
   }
   return groups;
 }
 
-const blocks = groupByClass(classesRaw.blocks, implementedBlockClasses);
-const items = groupByClass(classesRaw.items, implementedItemClasses);
-const entities = groupByClass(classesRaw.entities, implementedEntityClasses);
-const commands = groupByClass(commandsRaw.commands, implementedCommands);
-
-function steelGit(...args: string[]): string | null {
-  try {
-    return execFileSync("git", ["-C", steelRoot, ...args], { encoding: "utf8" }).trim();
-  } catch {
-    return null;
-  }
-}
+const blocks = groupByClass(classesRaw.blocks, implementedBlockClasses, releasedBlockClasses);
+const items = groupByClass(classesRaw.items, implementedItemClasses, releasedItemClasses);
+const entities = groupByClass(classesRaw.entities, implementedEntityClasses, releasedEntityClasses);
+const commands = groupByClass(commandsRaw.commands, implementedCommands, releasedCommands);
 
 async function steelVersion(): Promise<string | null> {
   try {
@@ -267,6 +310,7 @@ const meta = {
   steel_version: await steelVersion(),
   steel_commit: steelGit("rev-parse", "HEAD"),
   steel_committed_at: steelGit("show", "-s", "--format=%cI", "HEAD"),
+  latest_release: latestTag,
 };
 
 const output = { meta, blocks, items, entities, commands };
