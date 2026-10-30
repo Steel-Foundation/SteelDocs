@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.16.1+mc26.3",
-    "steel_commit": "098c2c91b2168b90c6e3957c30a6af3ccb15e52e",
-    "steel_committed_at": "2026-10-29T23:57:30+01:00"
+    "steel_commit": "0a8fb05afdd6c8bd3f1e0b0908742ee9ba0b8786",
+    "steel_committed_at": "2026-10-30T03:27:58+01:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -614,8 +614,10 @@
       ]
     },
     "TntBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Check an arrow's pickup stack once arrows exist. Other projectiles use an empty"
+      ],
       "entries": [
         "tnt"
       ]
@@ -5456,7 +5458,7 @@
       ]
     },
     "PrimedTnt": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "tnt"
