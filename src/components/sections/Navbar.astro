@@ -8,6 +8,7 @@ import {
   ChartNoAxesCombined,
   Download,
   Newspaper,
+  Heart,
 } from "@lucide/astro";
 import { i18n } from "astro:config/client";
 import { toCodes, getRelativeLocaleUrl } from "astro:i18n";
@@ -31,6 +32,7 @@ const navbarCopy = Object.fromEntries(
       language: Astro.locals.t("languageSelect.accessibleLabel", { lng: locale }),
       blog: Astro.locals.t("header.blog", { lng: locale }),
       download: Astro.locals.t("header.download", { lng: locale }),
+      donate: Astro.locals.t("header.donate", { lng: locale }),
       tracker: Astro.locals.t("header.tracker", { lng: locale }),
       trackerLabel: Astro.locals.t("header.trackerLabel", { lng: locale }),
       noResults: Astro.locals.t("pagefind.zero_results", { lng: locale }),
@@ -151,6 +153,20 @@ const navbarCopy = Object.fromEntries(
         <ChartNoAxesCombined class="size-3.5 shrink-0" />
         <span class="hidden font-minecraft sm:inline" data-navbar-label="tracker"
           >{t("header.tracker")}</span
+        >
+      </a>
+
+      <!-- Donate -->
+      <a
+        href={getRelativeLocaleUrl(Astro.currentLocale || "en", "/donate")}
+        data-localized-path="/donate/"
+        data-navbar-link="donate"
+        class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-sm text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
+        aria-label={t("header.donate")}
+      >
+        <Heart class="size-3.5 shrink-0" />
+        <span class="hidden font-minecraft lg:inline" data-navbar-label="donate"
+          >{t("header.donate")}</span
         >
       </a>
 
@@ -291,7 +307,7 @@ const navbarCopy = Object.fromEntries(
     document.querySelector<HTMLElement>("[data-search-message=\"noResults\"]")!.textContent = copy.noResults;
     document.querySelector<HTMLElement>("[data-search-message=\"devWarning\"]")!.textContent = copy.devWarning;
 
-    (["blog", "download", "tracker"] as const).forEach((key) => {
+    (["blog", "download", "tracker", "donate"] as const).forEach((key) => {
       const link = document.querySelector<HTMLElement>(`[data-navbar-link="${key}"]`);
       const text = document.querySelector<HTMLElement>(`[data-navbar-label="${key}"]`);
       if (text) text.textContent = copy[key];

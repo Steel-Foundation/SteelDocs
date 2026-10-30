@@ -11,6 +11,7 @@
     "blog": "Blog",
     "download": "Download",
     "tracker": "Tracker",
+    "donate": "Donate",
     "trackerLabel": "Implementation tracker"
   },
 
@@ -58,6 +59,24 @@
     "note": "Note: This tracks the nightly build, not the stable release.",
     "metaTitle": "Implementation Tracker - SteelMC",
     "metaDescription": "Track which Minecraft blocks, items, and entities have behavior implementations in SteelMC."
+  },
+
+  "donate": {
+    "metaTitle": "Donate - SteelMC",
+    "metaDescription": "Support SteelMC and see everyone who has donated so far.",
+    "title": "Support",
+    "titleHighlight": "Steel",
+    "subtitle": "Steel is free and open source. Donations go toward the costs of running the project. Thank you to everyone who supports us!",
+    "cta": "Become a sponsor",
+    "goal": "Current goal",
+    "goalMonthly": "${{value}} per month",
+    "goalCount": "{{value}} supporters",
+    "current": "Monthly supporters",
+    "oneTime": "One-time supporters",
+    "past": "Past supporters",
+    "empty": "No public supporters yet. Be the first!",
+    "refreshHint": "This list is refreshed at least every second day.",
+    "lastUpdated": "Last updated"
   },
 
   "download": {
