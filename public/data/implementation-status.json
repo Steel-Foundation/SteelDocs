@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.16.1+mc26.3",
-    "steel_commit": "0a8fb05afdd6c8bd3f1e0b0908742ee9ba0b8786",
-    "steel_committed_at": "2026-10-30T03:27:58+01:00"
+    "steel_commit": "de99f551be02208b8cf82e18edeb242b95ca2f76",
+    "steel_committed_at": "2026-11-02T02:01:34+01:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -684,7 +684,7 @@
       ]
     },
     "SpawnerBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "spawner"
@@ -4256,9 +4256,7 @@
     },
     "SpawnEggItem": {
       "implemented": true,
-      "todos": [
-        "Use spawn eggs on a spawner block and also check if the condition is correct"
-      ],
+      "todos": [],
       "entries": [
         "chicken_spawn_egg",
         "cow_spawn_egg",
@@ -5416,8 +5414,11 @@
       ]
     },
     "Squid": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "(ageable-water-creature): vanilla `Squid extends AgeableWaterCreature`.",
+        "depending on how `LivingEntity.air_travel_vertical_friction` implements `FlyingAnimal`'s"
+      ],
       "entries": [
         "squid"
       ]
