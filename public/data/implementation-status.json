@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.16.1+mc26.3",
-    "steel_commit": "4c423da3d87a53677a6272c1339b487e52ec216d",
-    "steel_committed_at": "2026-11-03T18:14:53+01:00"
+    "steel_commit": "bc655be8f7a322dc3910b05b481ca850f367230b",
+    "steel_committed_at": "2026-11-03T21:38:41+01:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -1262,7 +1262,7 @@
       ]
     },
     "EnchantingTableBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "enchanting_table"
