@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.16.1+mc26.3",
-    "steel_commit": "75680ea7aaa2442809a7d4ad32351b1ffe9ef1eb",
-    "steel_committed_at": "2026-11-04T21:41:06+01:00"
+    "steel_commit": "ca1f2ea3871f1b0215b1ebbcef9613855af95e37",
+    "steel_committed_at": "2026-11-04T23:07:27+01:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -4027,8 +4027,7 @@
       "implemented": true,
       "todos": [
         "Remove fallback once all waterloggable blocks implement pickup_block.",
-        "Refactor into smaller helpers once all bucket types are implemented",
-        "Per-position environment attributes (vanilla uses EnvironmentAttributes.WATER_EVAPORATES per-pos)"
+        "Read the per-position WATER_EVAPORATES attribute once Steel has environment attributes."
       ],
       "entries": [
         "bucket",
