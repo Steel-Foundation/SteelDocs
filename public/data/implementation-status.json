@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.16.1+mc26.3",
-    "steel_commit": "bc655be8f7a322dc3910b05b481ca850f367230b",
-    "steel_committed_at": "2026-11-03T21:38:41+01:00"
+    "steel_commit": "bff9cbaa28a202bcf8ad042e0ea94dc6e9fa4816",
+    "steel_committed_at": "2026-11-04T09:19:07+01:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -4468,7 +4468,7 @@
       "implemented": true,
       "todos": [
         "Implement the `ProjectileItem` dispenser dispatch.",
-        "Implement `use` and the `ProjectileItem` dispenser dispatch. Blocked on"
+        "Implement the `ProjectileItem` dispenser dispatch."
       ],
       "entries": [
         "splash_potion"
@@ -4631,8 +4631,10 @@
       ]
     },
     "AreaEffectCloud": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Persist `custom_particle` once particle options have an NBT codec. Vanilla"
+      ],
       "entries": [
         "area_effect_cloud"
       ]
@@ -5273,7 +5275,7 @@
       ]
     },
     "ThrownLingeringPotion": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "lingering_potion"
