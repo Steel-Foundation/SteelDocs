@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.16.1+mc26.3",
-    "steel_commit": "bff9cbaa28a202bcf8ad042e0ea94dc6e9fa4816",
-    "steel_committed_at": "2026-11-04T09:19:07+01:00"
+    "steel_commit": "75680ea7aaa2442809a7d4ad32351b1ffe9ef1eb",
+    "steel_committed_at": "2026-11-04T21:41:06+01:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -1980,9 +1980,7 @@
     },
     "ConduitBlock": {
       "implemented": true,
-      "todos": [
-        "implement Block entity"
-      ],
+      "todos": [],
       "entries": [
         "conduit"
       ]
