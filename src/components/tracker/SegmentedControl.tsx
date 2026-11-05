@@ -15,14 +15,14 @@ interface Props<T extends string> {
 
 const SIZES = {
   md: {
-    wrapper: "p-1 rounded-2xl",
-    button: "gap-1.5 px-3 py-1.5 text-sm rounded-2xl",
-    indicator: "rounded-2xl",
+    wrapper: "p-1 rounded-full",
+    button: "gap-1.5 px-3 py-1.5 text-sm rounded-full",
+    indicator: "rounded-full",
   },
   sm: {
-    wrapper: "p-0.5 rounded-2xl",
-    button: "gap-1 px-2.5 py-1 text-xs rounded-2xl",
-    indicator: "rounded-2xl",
+    wrapper: "p-0.5 rounded-full",
+    button: "gap-1 px-2.5 py-1 text-xs rounded-full",
+    indicator: "rounded-full",
   },
 };
 
@@ -49,8 +49,15 @@ export default function SegmentedControl<T extends string>({
   useLayoutEffect(() => {
     const measure = () => {
       const active = buttons.current.get(value);
-      if (!active) return;
-      setIndicator({ left: active.offsetLeft, width: active.offsetWidth });
+      const box = wrapper.current;
+      if (!active || !box) return;
+      const wrapperBox = box.getBoundingClientRect();
+      const activeBox = active.getBoundingClientRect();
+      const borderLeft = Number.parseFloat(getComputedStyle(box).borderLeftWidth);
+      setIndicator({
+        left: activeBox.left - wrapperBox.left - borderLeft,
+        width: activeBox.width,
+      });
     };
     measure();
 
