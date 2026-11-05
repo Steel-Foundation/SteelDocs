@@ -11,6 +11,7 @@
     "blog": "Blog",
     "download": "Download",
     "tracker": "Status",
+    "donate": "Spenden",
     "trackerLabel": "Implementierungs-Status"
   },
 
@@ -56,6 +57,24 @@
     "note": "Achtung: Dies trackt nur den Nightly Build, nicht den stabilen Release!",
     "metaTitle": "Implementierungs-Tracker - SteelMC",
     "metaDescription": "Verfolge, welche Minecraft-Blöcke, Gegenstände und Entitäten schon in SteelMC implementiert sind."
+  },
+
+  "donate": {
+    "metaTitle": "Spenden - SteelMC",
+    "metaDescription": "Unterstütze SteelMC und sieh alle, die bisher gespendet haben.",
+    "title": "Unterstütze",
+    "titleHighlight": "Steel",
+    "subtitle": "Steel ist kostenlos und Open Source. Spenden fließen in die Kosten für den Betrieb des Projekts. Danke an alle, die uns unterstützen!",
+    "cta": "Sponsor werden",
+    "goal": "Aktuelles Ziel",
+    "goalMonthly": "{{value}} $ pro Monat",
+    "goalCount": "{{value}} Unterstützer",
+    "current": "Monatliche Unterstützer",
+    "oneTime": "Einmalige Unterstützer",
+    "past": "Ehemalige Unterstützer",
+    "empty": "Noch keine öffentlichen Unterstützer. Sei der Erste!",
+    "refreshHint": "Diese Liste wird spätestens alle zwei Tage aktualisiert.",
+    "lastUpdated": "Zuletzt aktualisiert"
   },
 
   "download": {

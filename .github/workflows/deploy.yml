@@ -6,6 +6,9 @@ on:
   repository_dispatch:
     types: [steel-released]
   workflow_dispatch:
+  schedule:
+    # refresh sponsors list every second day
+    - cron: "0 4 * * *"
 
 # Allow this job to clone the repo and create a page deployment
 permissions:
@@ -19,6 +22,12 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v5
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+      - name: Fetch GitHub sponsors
+        run: bun run scripts/sync-sponsors.ts
+        env:
+          SPONSORS_TOKEN: ${{ secrets.SPONSORS_TOKEN }}
       - name: Install, build, and upload your site
         uses: withastro/action@v5
 
