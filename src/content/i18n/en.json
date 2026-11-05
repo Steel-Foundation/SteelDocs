@@ -2,8 +2,16 @@
   "langFlag": "🇬🇧",
   "langName": "English",
   "githubHref": "https://github.com/Steel-Foundation/SteelMC",
-
+  "meta": {
+    "defaultDescription": "Documentation, downloads, implementation status, and development updates for SteelMC, a Minecraft server written in Rust.",
+    "defaultSocialImageAlt": "A sunset over a SteelMC-generated Minecraft world."
+  },
+  "common": {
+    "logoCredit": "SteelMC logo by",
+    "scrollToTop": "Scroll to top"
+  },
   "header": {
+    "homeLabel": "SteelMC home",
     "searchPlaceholder": "Search docs...",
     "devWarningText": "Search is only available in production builds",
     "discordLabel": "Join our Discord",
@@ -11,14 +19,15 @@
     "blog": "Blog",
     "download": "Download",
     "tracker": "Tracker",
-    "trackerLabel": "Implementation tracker"
+    "trackerLabel": "Implementation tracker",
+    "noResultsText": "No results found"
   },
-
   "index": {
     "pillText": "Still cooking",
     "subtitle": "Minecraft implemented the right way. Built in Rust, with multithreading in mind. We aim for vanilla parity, performance, and customization.",
     "mainCtaText": "Join us!",
     "secondCtaText": "Documentation",
+    "scrollDownLabel": "Scroll down",
     "chooseDocs": {
       "label": "CHOOSE YOUR DOCUMENTATION",
       "title": "Hey, what do you want to do?",
@@ -50,16 +59,70 @@
       "thanking contributors"
     ]
   },
-
   "tracker": {
     "title": "Implementation",
     "titleHighlight": "Tracker",
     "description": "Track which Minecraft blocks, items, and entities have behavior implementations in Steel.",
     "note": "Note: This tracks the nightly build, not the stable release.",
     "metaTitle": "Implementation Tracker - SteelMC",
-    "metaDescription": "Track which Minecraft blocks, items, and entities have behavior implementations in SteelMC."
+    "metaDescription": "Track which Minecraft blocks, items, and entities have behavior implementations in SteelMC.",
+    "status": {
+      "implemented": "Implemented",
+      "inProgress": "In progress",
+      "planned": "Planned"
+    },
+    "stats": {
+      "totalBehaviors": "Total behaviors",
+      "totalEntries": "Total entries"
+    },
+    "progress": {
+      "title": "Implementation progress",
+      "byClasses": "Each behavior type counts equally.",
+      "bySurfaceBlocks": "Weighted by registered blocks.",
+      "bySurfaceItems": "Weighted by registered items.",
+      "bySurfaceEntities": "Weighted by registered entities.",
+      "bySurfaceCommands": "Weighted by registered commands.",
+      "calculationLabel": "Progress calculation",
+      "surfaceArea": "Surface area",
+      "behaviors": "Behaviors"
+    },
+    "categories": {
+      "label": "Category",
+      "blocks": "Blocks",
+      "items": "Items",
+      "entities": "Entities",
+      "commands": "Commands"
+    },
+    "search": {
+      "blocks": "Search blocks or classes...",
+      "items": "Search items or classes...",
+      "entities": "Search entities or classes...",
+      "commands": "Search commands..."
+    },
+    "filter": {
+      "label": "Status filter",
+      "all": "All"
+    },
+    "results": {
+      "showing": "Showing {{classes}} ({{entries}})",
+      "classSingular": "{{count}} class",
+      "classPlural": "{{count}} classes",
+      "entrySingular": "{{count}} entry",
+      "entryPlural": "{{count}} entries",
+      "taskSingular": "{{count}} task",
+      "taskPlural": "{{count}} tasks",
+      "issueOpenSingular": "{{count}} issue open",
+      "issueOpenPlural": "{{count}} issues open",
+      "prOpenSingular": "{{count}} PR open",
+      "prOpenPlural": "{{count}} PRs open",
+      "todoBadge": "TODO",
+      "issueBadge": "Issue",
+      "prBadge": "PR",
+      "moreEntries": "+{{count}} more",
+      "noResultsTitle": "No results found",
+      "noResultsBody": "Try adjusting your search or filter"
+    }
   },
-
   "download": {
     "metaDescription": "Download the latest SteelMC server build or browse previous releases.",
     "badge": "SteelMC releases",
@@ -88,7 +151,6 @@
     "forMinecraft": "For Minecraft",
     "releasedDate": "Released"
   },
-
   "blog": {
     "metaTitle": "Blog - SteelMC",
     "metaDescription": "Announcements, development updates, and stories from the SteelMC team.",
@@ -102,9 +164,102 @@
     "allPosts": "All posts",
     "backToBlog": "Back to the blog",
     "minRead": "min read",
+    "categories": {
+      "announcement": "Announcement",
+      "news": "News"
+    },
     "placeholder": {
       "title": "Draft content",
       "body": "This announcement is placeholder copy. Update its date, details, and status in the Markdown file before publishing it as final."
+    },
+    "parityComparison": {
+      "steel": "Steel",
+      "vanilla": "Vanilla",
+      "ariaLabel": "Reveal Steel terrain over vanilla terrain",
+      "valueText": "{{value}}% Steel visible",
+      "captionStrong": "Steel and vanilla at the same seed and coordinates.",
+      "captionBody": "Drag the handle to compare the generated worlds. Cross-chunk features such as trees can differ in this live comparison because their final placement depends on neighboring chunk-generation order; the parity tests use a fixed order so their results are reproducible."
+    },
+    "tickArchitecture": {
+      "kicker": "Steel's runtime architecture",
+      "title": "Continuous work, one safe boundary",
+      "play": "Play",
+      "pause": "Pause",
+      "playAriaLabel": "Play timeline animation",
+      "pauseAriaLabel": "Pause timeline animation",
+      "scenarioPickerLabel": "Timeline scenario",
+      "axisTick": "Tick N",
+      "figcaption": "Conceptual timing, expanded for clarity rather than measured to scale. Chunk sending validates the player send epoch, holder identity, ticking-readiness generation, and packet-content revision before committing a packet.",
+      "lanes": {
+        "packetWorkers": "Packet workers",
+        "gameTick": "Game tick",
+        "chunkScheduler": "Chunk scheduler",
+        "chunkSender": "Chunk sender"
+      },
+      "phases": {
+        "drainClose": "drain + close",
+        "processPackets": "process packets",
+        "handoff": "handoff",
+        "gameLogic": "game logic",
+        "runEpoch": "run epoch",
+        "ready": "ready",
+        "snapshot": "snapshot",
+        "encode": "encode",
+        "verify": "verify",
+        "send": "send",
+        "skip": "skip",
+        "mutateState": "mutate state",
+        "discard": "discard"
+      },
+      "events": {
+        "drainClose": "Drain + close",
+        "packetsFlow": "Packets flow continuously",
+        "handoff": "Handoff",
+        "commitHandoff": "Commit + handoff",
+        "gameLogic": "Game logic",
+        "epochA": "Epoch A",
+        "epochB": "Epoch B",
+        "epochC": "Epoch C",
+        "running": "running",
+        "runningLate": "running late",
+        "ready": "Ready",
+        "waitForBoundary": "wait for boundary",
+        "prep": "Prep",
+        "snapshot": "snapshot",
+        "snapshotR42": "snapshot r42",
+        "snapshotR43": "snapshot r43",
+        "encode": "Encode",
+        "encodeR42": "Encode r42",
+        "encodeR43": "Encode r43",
+        "verify": "Verify",
+        "stillR43": "still r43",
+        "send": "Send",
+        "skip": "Skip",
+        "stillRunning": "still running",
+        "discard": "Discard",
+        "revisionMismatch": "revision mismatch",
+        "chunkR42ToR43": "chunk r42 → r43"
+      },
+      "scenarios": {
+        "healthy": {
+          "label": "Normal cadence",
+          "eyebrow": "Normal cadence",
+          "title": "Packets keep flowing while background work overlaps",
+          "description": "Packet workers use the whole inter-tick window instead of building one large queue for the next game tick. At the boundary, admission closes briefly while ready scheduler state and gameplay are applied safely."
+        },
+        "slow": {
+          "label": "Slow scheduler",
+          "eyebrow": "Scheduler overrun",
+          "title": "The game tick skips the handoff instead of waiting",
+          "description": "Epoch A is still running at +50 ms, so the game tick keeps the last committed chunk state and continues. Once the epoch becomes Ready, a later boundary commits it and launches Epoch B."
+        },
+        "changed": {
+          "label": "Chunk changed",
+          "eyebrow": "Stale encode",
+          "title": "A revision check prevents stale chunk data from escaping",
+          "description": "The sender snapshots revision 42, but gameplay changes the chunk to revision 43 while it is being encoded. The old result fails validation, is discarded, and the next pass starts from fresh state."
+        }
+      }
     },
     "footer": "Built in the open by the SteelMC community."
   }

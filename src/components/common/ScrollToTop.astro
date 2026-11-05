@@ -1,11 +1,15 @@
 ---
 import { ArrowUp } from "@lucide/astro";
+import { t as tBase } from "@/lib/utils";
+function t(key: string): string {
+  return tBase(Astro, key);
+}
 ---
 
 <button
   id="scroll-to-top"
   type="button"
-  aria-label="Scroll to top"
+  aria-label={t("common.scrollToTop")}
   class="fixed bottom-6 right-6 z-40 flex size-11 items-center justify-center rounded-2xl border border-teal-200/80 bg-white/85 text-teal-800 shadow-xl shadow-teal-950/10 backdrop-blur-md hover:-translate-y-0.5 hover:scale-105 hover:border-emerald-500/50 hover:bg-emerald-500 hover:text-white dark:border-white/15 dark:bg-teal-950/80 dark:text-white dark:shadow-black/30 dark:hover:border-emerald-400/50 dark:hover:bg-emerald-400 dark:hover:text-teal-950 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500"
 >
   <ArrowUp class="size-5 transition-transform duration-200 group-hover:-translate-y-0.5" />

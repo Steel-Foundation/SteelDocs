@@ -27,13 +27,19 @@ const navbarCopy = Object.fromEntries(
     locale,
     {
       code: locale.toUpperCase(),
+      basePath: getRelativeLocaleUrl(locale, "/"),
+      homeLabel: Astro.locals.t("header.homeLabel" as any, { lng: locale }),
       search: Astro.locals.t("header.searchPlaceholder", { lng: locale }),
       language: Astro.locals.t("languageSelect.accessibleLabel", { lng: locale }),
+      themeLabel: Astro.locals.t("themeSelect.accessibleLabel", { lng: locale }),
+      discordLabel: Astro.locals.t("header.discordLabel", { lng: locale }),
+      githubLabel: Astro.locals.t("header.githubLabel", { lng: locale }),
+      githubHref: Astro.locals.t("githubHref", { lng: locale }),
       blog: Astro.locals.t("header.blog", { lng: locale }),
       download: Astro.locals.t("header.download", { lng: locale }),
       tracker: Astro.locals.t("header.tracker", { lng: locale }),
       trackerLabel: Astro.locals.t("header.trackerLabel", { lng: locale }),
-      noResults: Astro.locals.t("pagefind.zero_results", { lng: locale }),
+      noResults: Astro.locals.t("header.noResultsText" as any, { lng: locale }),
       devWarning: Astro.locals.t("header.devWarningText", { lng: locale }),
     },
   ]),
@@ -57,8 +63,9 @@ const navbarCopy = Object.fromEntries(
         ? getRelativeLocaleUrl(Astro.currentLocale, "/")
         : "/"}
       data-localized-path="/"
+      data-navbar-home
       class="flex items-center gap-2 font-minecraft font-bold text-xl text-teal-950 dark:text-white shrink-0 mr-2"
-      aria-label="SteelMC home"
+      aria-label={t("header.homeLabel")}
     >
       <img
         src="/steel_logo.png"
@@ -99,7 +106,7 @@ const navbarCopy = Object.fromEntries(
           data-search-message="noResults"
           class="hidden px-4 py-3 text-sm text-teal-500 dark:text-white/50"
         >
-          {Astro.locals.t("pagefind.zero_results")}
+          {t("header.noResultsText")}
         </p>
         <p
           id="search-dev-warning"
@@ -174,15 +181,15 @@ const navbarCopy = Object.fromEntries(
             <div
               id="lang-menu"
               role="menu"
-              class="lang-menu surface-smoked absolute right-0 top-full mt-1.5 w-36 rounded-2xl bg-white/80 dark:bg-teal-950/80 backdrop-blur-xl border border-teal-200/60 dark:border-white/10 shadow-2xl overflow-hidden"
+              class="lang-menu surface-smoked absolute right-0 top-full mt-1.5 min-w-44 w-max rounded-2xl bg-white/80 dark:bg-teal-950/80 backdrop-blur-xl border border-teal-200/60 dark:border-white/10 shadow-2xl overflow-hidden"
             >
               {
                 supportedLocales.map((locale, i) => {
-                  const currentPath = Astro.url.pathname;
+                  const currentPath = Astro.originPathname || Astro.url.pathname;
                   const pathWithoutLocale =
                     Astro.currentLocale && Astro.currentLocale !== "en"
                       ? currentPath.replace(
-                          new RegExp(`^/${Astro.currentLocale}(/|$)`),
+                          new RegExp(`^/${Astro.currentLocale}(/|$)`, "i"),
                           "/",
                         )
                       : currentPath;
@@ -192,7 +199,7 @@ const navbarCopy = Object.fromEntries(
                       data-language-option={locale}
                       role="menuitem"
                       class:list={[
-                        "flex font-minecraft items-center gap-2.5 px-3 py-2 text-sm text-teal-700 dark:text-white/70 hover:text-teal-950 dark:hover:text-white hover:bg-teal-50 dark:hover:bg-white/10 transition-colors",
+                        "flex font-minecraft items-center gap-2.5 px-3.5 py-2 text-sm whitespace-nowrap text-teal-700 dark:text-white/70 hover:text-teal-950 dark:hover:text-white hover:bg-teal-50 dark:hover:bg-white/10 transition-colors",
                         i === 0 && "rounded-t-xl",
                         i === supportedLocales.length - 1 && "rounded-b-xl",
                       ]}
@@ -225,6 +232,7 @@ const navbarCopy = Object.fromEntries(
       <!-- Discord -->
       <a
         href="/discord"
+        data-navbar-discord
         target="_blank"
         rel="noopener noreferrer"
         class="hidden sm:inline-flex p-1.5 rounded-xl text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
@@ -246,6 +254,7 @@ const navbarCopy = Object.fromEntries(
       <!-- GitHub -->
       <a
         href={Astro.locals.t("githubHref")}
+        data-navbar-github
         target="_blank"
         rel="noopener noreferrer"
         class="hidden sm:inline-flex p-1.5 rounded-xl text-teal-600 dark:text-white/60 hover:text-teal-950 dark:hover:text-white hover:bg-teal-100 dark:hover:bg-white/10 transition-all"
@@ -266,19 +275,31 @@ const navbarCopy = Object.fromEntries(
 </header>
 
 <script>
-  const navbar = document.querySelector<HTMLElement>("[data-navbar-persist]");
-  const navbarCopy = JSON.parse(navbar?.dataset.navbarCopy ?? "{}");
-
-  function currentLocaleCode() {
-    const language = document.documentElement.lang.toLowerCase();
-    return language.startsWith("de") ? "de" : language.startsWith("es") ? "es" : "en";
+  function currentLocaleCode(navbarCopy: Record<string, any>) {
+    const knownLocales = Object.keys(navbarCopy);
+    const language = document.documentElement.lang.trim().toLowerCase();
+    if (!language) return "en";
+    const exact = knownLocales.find((code) => code.toLowerCase() === language);
+    if (exact) return exact;
+    const matched = knownLocales.find((code) => {
+      const lower = code.toLowerCase();
+      return language.startsWith(`${lower}-`) || lower.startsWith(`${language}-`);
+    });
+    return matched ?? "en";
   }
 
   function syncPersistentNavbarLocale() {
-    const locale = currentLocaleCode();
+    const navbar = document.querySelector<HTMLElement>("[data-navbar-persist]");
+    if (!navbar) return;
+    const navbarCopy = JSON.parse(navbar.dataset.navbarCopy ?? "{}");
+    const knownLocales = Object.keys(navbarCopy);
+    const locale = currentLocaleCode(navbarCopy);
     const copy = navbarCopy[locale] ?? navbarCopy.en;
     if (!copy) return;
-    const prefix = locale === "en" ? "" : `/${locale}`;
+    const prefix = (copy.basePath ?? (locale === "en" ? "/" : `/${locale}/`)).replace(/\/$/, "");
+
+    const homeLink = navbar.querySelector<HTMLAnchorElement>("[data-navbar-home]");
+    if (homeLink && copy.homeLabel) homeLink.setAttribute("aria-label", copy.homeLabel);
 
     const label = document.getElementById("lang-label");
     if (label) label.textContent = copy.code;
@@ -286,35 +307,65 @@ const navbarCopy = Object.fromEntries(
     const languageButton = document.getElementById("lang-btn");
     languageButton?.setAttribute("aria-label", copy.language);
 
+    const themeButton = document.getElementById("theme-toggle");
+    if (themeButton && copy.themeLabel) themeButton.setAttribute("aria-label", copy.themeLabel);
+
+    const discordLink = navbar.querySelector<HTMLAnchorElement>("[data-navbar-discord]");
+    if (discordLink && copy.discordLabel) discordLink.setAttribute("aria-label", copy.discordLabel);
+
+    const githubLink = navbar.querySelector<HTMLAnchorElement>("[data-navbar-github]");
+    if (githubLink) {
+      if (copy.githubLabel) githubLink.setAttribute("aria-label", copy.githubLabel);
+      if (copy.githubHref) githubLink.href = copy.githubHref;
+    }
+
     const searchInput = document.getElementById("navbar-search");
     searchInput?.setAttribute("placeholder", copy.search);
-    document.querySelector<HTMLElement>("[data-search-message=\"noResults\"]")!.textContent = copy.noResults;
-    document.querySelector<HTMLElement>("[data-search-message=\"devWarning\"]")!.textContent = copy.devWarning;
+    const noResultsEl = navbar.querySelector<HTMLElement>("[data-search-message=\"noResults\"]");
+    if (noResultsEl) noResultsEl.textContent = copy.noResults;
+    const devWarningEl = navbar.querySelector<HTMLElement>("[data-search-message=\"devWarning\"]");
+    if (devWarningEl) devWarningEl.textContent = copy.devWarning;
 
     (["blog", "download", "tracker"] as const).forEach((key) => {
-      const link = document.querySelector<HTMLElement>(`[data-navbar-link="${key}"]`);
-      const text = document.querySelector<HTMLElement>(`[data-navbar-label="${key}"]`);
+      const link = navbar.querySelector<HTMLElement>(`[data-navbar-link="${key}"]`);
+      const text = navbar.querySelector<HTMLElement>(`[data-navbar-label="${key}"]`);
       if (text) text.textContent = copy[key];
       if (link) link.setAttribute("aria-label", key === "tracker" ? copy.trackerLabel : copy[key]);
     });
 
-    document.querySelectorAll<HTMLAnchorElement>("[data-localized-path]").forEach((link) => {
+    navbar.querySelectorAll<HTMLAnchorElement>("[data-localized-path]").forEach((link) => {
       link.href = `${prefix}${link.dataset.localizedPath}`;
     });
 
-    const pathWithoutLocale = locale === "en"
-      ? window.location.pathname
-      : window.location.pathname.replace(new RegExp(`^/${locale}(/|$)`), "/");
-    document.querySelectorAll<HTMLAnchorElement>("[data-language-option]").forEach((link) => {
-      const optionLocale = link.dataset.languageOption;
+    const nonDefaultPaths = knownLocales
+      .filter((code) => code !== "en" && code !== "root")
+      .map((code) => (navbarCopy[code]?.basePath ?? `/${code}/`).replace(/^\/|\/$/g, ""))
+      .filter(Boolean);
+    const localePrefixPattern = nonDefaultPaths.length > 0
+      ? new RegExp(`^/(${nonDefaultPaths.join("|")})(/|$)`, "i")
+      : null;
+    const pathWithoutLocale = localePrefixPattern
+      ? window.location.pathname.replace(localePrefixPattern, "/")
+      : window.location.pathname;
+    navbar.querySelectorAll<HTMLAnchorElement>("[data-language-option]").forEach((link) => {
+      const optionLocale = link.dataset.languageOption ?? "en";
       const isDefaultLocale = optionLocale === "root" || optionLocale === "en";
-      link.href = isDefaultLocale ? pathWithoutLocale : `/${optionLocale}${pathWithoutLocale}`;
+      const optionPrefix = isDefaultLocale
+        ? ""
+        : (navbarCopy[optionLocale]?.basePath ?? `/${optionLocale}/`).replace(/\/$/, "");
+      link.href = `${optionPrefix}${pathWithoutLocale}`;
     });
   }
 
+  let navbarDocController: AbortController | null = null;
+
   function initNavbar() {
+  const navbar = document.querySelector<HTMLElement>("[data-navbar-persist]");
   if (!navbar || navbar.dataset.initialized === "true") return;
   navbar.dataset.initialized = "true";
+  navbarDocController?.abort();
+  navbarDocController = new AbortController();
+  const { signal } = navbarDocController;
 
   // --- Language dropdown ---
   const langBtn = document.getElementById("lang-btn");
@@ -339,7 +390,7 @@ const navbarCopy = Object.fromEntries(
     }
   });
 
-  document.addEventListener("click", closeLang);
+  document.addEventListener("click", closeLang, { signal });
 
   // --- Theme toggle ---
   const themeToggle = document.getElementById("theme-toggle");
@@ -482,7 +533,7 @@ const navbarCopy = Object.fromEntries(
     if (!searchForm?.contains(e.target as Node)) {
       closeResults();
     }
-  });
+  }, { signal });
 
   document.addEventListener("astro:before-swap", () => {
     clearTimeout(debounceTimer);
@@ -491,7 +542,7 @@ const navbarCopy = Object.fromEntries(
     pagefindLoading = null;
     searchResultsList?.replaceChildren();
     closeResults();
-  });
+  }, { signal });
   }
 
   initNavbar();

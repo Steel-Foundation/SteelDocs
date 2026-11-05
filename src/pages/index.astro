@@ -4,8 +4,11 @@ import Hero from "@/components/sections/Hero.astro";
 import ChooseDocs from "@/components/sections/ChooseDocs.astro";
 import Community from "@/components/sections/Community.astro";
 import FooterStatus from "@/components/sections/FooterStatus.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import { t as tBase, tArr } from "@/lib/utils";
 function t(key: string): string {return tBase(Astro, key)}
+
+const locale = Astro.currentLocale || "en";
 ---
 
 <Layout
@@ -20,17 +23,19 @@ function t(key: string): string {return tBase(Astro, key)}
       subtitle={t("index.subtitle")}
       mainCtaText={t("index.mainCtaText")}
       secondCtaText={t("index.secondCtaText")}
+      secondCtaHref={getRelativeLocaleUrl(locale, "/getting-started/introduction/")}
+      scrollDownLabel={t("index.scrollDownLabel")}
     />
     <div class="container mx-4 mt-16 w-auto max-w-280 px-4 text-white lg:mx-auto lg:-mt-12">
       <ChooseDocs
         sectionLabel={t("index.chooseDocs.label")}
         sectionTitle={t("index.chooseDocs.title")}
         sectionDescription={t("index.chooseDocs.description")}
-        adminHref="./getting-started/installation/"
+        adminHref={getRelativeLocaleUrl(locale, "/getting-started/installation/")}
         adminImage="/admin.png"
         adminImageAlt={t("index.chooseDocs.adminImageAlt")}
         adminLabel={t("index.chooseDocs.adminLabel")}
-        devHref="./development/start-contributing/"
+        devHref={getRelativeLocaleUrl(locale, "/development/start-contributing/")}
         devImage="/contributor.png"
         devImageAlt={t("index.chooseDocs.devImageAlt")}
         devLabel={t("index.chooseDocs.devLabel")}

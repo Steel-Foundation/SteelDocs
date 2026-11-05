@@ -120,6 +120,10 @@ export default defineConfig({
         },
         {
           label: "Commands",
+          translations: {
+            es: "Comandos",
+            de: "Befehle",
+          },
           items: [{ autogenerate: { directory: "commands" } }],
         },
         {

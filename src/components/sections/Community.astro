@@ -48,7 +48,7 @@ const glassStyle = {
       class="h-12 w-12 p-2 hover:scale-110 transition-all duration-300 rounded-full border hover:opacity-100 bg-teal-600/20 dark:bg-white/30 border-teal-400 dark:border-white/40"
       style={glassStyle}
     >
-      <a href="/discord">
+      <a href="/discord" aria-label={Astro.locals.t("header.discordLabel")}>
         <svg
           class="w-full h-full text-teal-700 dark:text-teal-100 size-4"
           viewBox="0 0 24 24"
@@ -68,7 +68,7 @@ const glassStyle = {
       class="h-12 w-12 p-2 hover:scale-110 transition-all duration-300 rounded-full border hover:opacity-100 bg-teal-600/20 dark:bg-white/30 border-teal-400 dark:border-white/40"
       style={glassStyle}
     >
-      <a href={Astro.locals.t("githubHref")}>
+      <a href={Astro.locals.t("githubHref")} aria-label={Astro.locals.t("header.githubLabel")}>
         <svg
           class="w-full h-full text-teal-700 dark:text-teal-100 size-4"
           viewBox="0 -0.5 25 25"

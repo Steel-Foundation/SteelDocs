@@ -2,23 +2,32 @@
   "langFlag": "🇩🇪",
   "langName": "Deutsch",
   "githubHref": "https://github.com/Steel-Foundation/SteelMC",
-
+  "meta": {
+    "defaultDescription": "Dokumentation, Downloads, Implementierungsstatus und Entwicklungs-Updates für SteelMC, einen in Rust geschriebenen Minecraft-Server.",
+    "defaultSocialImageAlt": "Ein Sonnenuntergang über einer von SteelMC generierten Minecraft-Welt."
+  },
+  "common": {
+    "logoCredit": "SteelMC-Logo von",
+    "scrollToTop": "Nach oben scrollen"
+  },
   "header": {
+    "homeLabel": "SteelMC-Startseite",
     "searchPlaceholder": "Dokumentation durchsuchen...",
     "devWarningText": "Die Suche ist nur in produktiv verfügbar",
     "discordLabel": "Tritt unserem Discord bei",
-    "githubLabel": "GitHub repository",
+    "githubLabel": "GitHub-Repository",
     "blog": "Blog",
     "download": "Download",
     "tracker": "Status",
-    "trackerLabel": "Implementierungs-Status"
+    "trackerLabel": "Implementierungs-Status",
+    "noResultsText": "Keine Ergebnisse gefunden"
   },
-
   "index": {
     "pillText": "noch immer am Kochen",
     "subtitle": "Minecraft in einem neuen Gewand, gebaut in Rust und mit Multithreading geplant. Wir setzen auf Vanilla like, Performance und Erweiterbarkeit.",
     "mainCtaText": "Tritt uns bei!",
     "secondCtaText": "Dokumentation",
+    "scrollDownLabel": "Nach unten scrollen",
     "chooseDocs": {
       "label": "WÄHLE DEINE DOKUMENTATION",
       "title": "Hey, was möchtest du gerne machen?",
@@ -48,19 +57,73 @@
       "Mitwirkenden dankbar"
     ]
   },
-
   "tracker": {
     "title": "Implementierungs",
     "titleHighlight": "Tracker",
     "description": "Verfolge, welche Minecraft-Blöcke, Gegenstände und Entitäten schon in Steel implementiert sind.",
     "note": "Achtung: Dies trackt nur den Nightly Build, nicht den stabilen Release!",
     "metaTitle": "Implementierungs-Tracker - SteelMC",
-    "metaDescription": "Verfolge, welche Minecraft-Blöcke, Gegenstände und Entitäten schon in SteelMC implementiert sind."
+    "metaDescription": "Verfolge, welche Minecraft-Blöcke, Gegenstände und Entitäten schon in SteelMC implementiert sind.",
+    "status": {
+      "implemented": "Implementiert",
+      "inProgress": "In Arbeit",
+      "planned": "Geplant"
+    },
+    "stats": {
+      "totalBehaviors": "Verhalten gesamt",
+      "totalEntries": "Einträge gesamt"
+    },
+    "progress": {
+      "title": "Implementierungsfortschritt",
+      "byClasses": "Jeder Verhaltenstyp zählt gleich.",
+      "bySurfaceBlocks": "Gewichtet nach registrierten Blöcken.",
+      "bySurfaceItems": "Gewichtet nach registrierten Gegenständen.",
+      "bySurfaceEntities": "Gewichtet nach registrierten Entitäten.",
+      "bySurfaceCommands": "Gewichtet nach registrierten Befehlen.",
+      "calculationLabel": "Fortschrittsberechnung",
+      "surfaceArea": "Abdeckung",
+      "behaviors": "Verhalten"
+    },
+    "categories": {
+      "label": "Kategorie",
+      "blocks": "Blöcke",
+      "items": "Gegenstände",
+      "entities": "Entitäten",
+      "commands": "Befehle"
+    },
+    "search": {
+      "blocks": "Blöcke oder Klassen durchsuchen...",
+      "items": "Gegenstände oder Klassen durchsuchen...",
+      "entities": "Entitäten oder Klassen durchsuchen...",
+      "commands": "Befehle durchsuchen..."
+    },
+    "filter": {
+      "label": "Statusfilter",
+      "all": "Alle"
+    },
+    "results": {
+      "showing": "Zeige {{classes}} ({{entries}})",
+      "classSingular": "{{count}} Klasse",
+      "classPlural": "{{count}} Klassen",
+      "entrySingular": "{{count}} Eintrag",
+      "entryPlural": "{{count}} Einträge",
+      "taskSingular": "{{count}} Aufgabe",
+      "taskPlural": "{{count}} Aufgaben",
+      "issueOpenSingular": "{{count}} Issue offen",
+      "issueOpenPlural": "{{count}} Issues offen",
+      "prOpenSingular": "{{count}} PR offen",
+      "prOpenPlural": "{{count}} PRs offen",
+      "todoBadge": "TODO",
+      "issueBadge": "Issue",
+      "prBadge": "PR",
+      "moreEntries": "+{{count}} weitere",
+      "noResultsTitle": "Keine Ergebnisse gefunden",
+      "noResultsBody": "Versuche deine Suche oder den Filter anzupassen"
+    }
   },
-
   "download": {
     "metaDescription": "Lade die neueste Version des SteelMC-Servers herunter oder durchsuche frühere Versionen.",
-    "badge": "SteelMC releases",
+    "badge": "SteelMC-Versionen",
     "hero": {
       "title": "Bereit zum starten von",
       "titleHighlight": "Steel?",
@@ -86,7 +149,6 @@
     "forMinecraft": "Für Minecraft",
     "releasedDate": "Erschienen"
   },
-
   "blog": {
     "metaTitle": "Blog - SteelMC",
     "metaDescription": "Ankündigungen, Entwicklungs-Updates und Geschichten vom SteelMC-Team.",
@@ -94,16 +156,116 @@
     "title": "SteelMC",
     "titleHighlight": "Blog",
     "subtitle": "Ankündigungen, technische Einblicke und Fortschritts-Updates von den Leuten, die SteelMC bauen.",
-    "featured": "Featured",
+    "featured": "Empfohlen",
     "readArticle": "Artikel lesen",
     "latestPosts": "Neueste Beiträge",
     "allPosts": "Alle Beiträge",
     "backToBlog": "Zurück zum Blog",
     "minRead": "Min. Lesezeit",
+    "categories": {
+      "announcement": "Ankündigung",
+      "news": "Neuigkeiten"
+    },
     "placeholder": {
       "title": "Entwurfsinhalt",
       "body": "Diese Ankündigung ist ein Platzhalterbeitrag. Aktualisiere das Datum, die Details und den Status in der Markdown-Datei, bevor du ihn veröffentlichst."
     },
-    "footer": "Offen entwickelt von der SteelMC-Community."
+    "parityComparison": {
+      "steel": "Steel",
+      "vanilla": "Vanilla",
+      "ariaLabel": "Steel-Terrain über Vanilla-Terrain einblenden",
+      "valueText": "{{value}}% Steel sichtbar",
+      "captionStrong": "Steel und Vanilla mit demselben Seed und denselben Koordinaten.",
+      "captionBody": "Ziehe den Regler, um die generierten Welten zu vergleichen. Chunk-übergreifende Features wie Bäume können in diesem Live-Vergleich abweichen, da ihre endgültige Platzierung von der Generierungsreihenfolge benachbarter Chunks abhängt; die Paritätstests verwenden eine feste Reihenfolge, damit ihre Ergebnisse reproduzierbar sind."
+    },
+    "tickArchitecture": {
+      "kicker": "Steels Laufzeitarchitektur",
+      "title": "Kontinuierliche Arbeit, eine sichere Grenze",
+      "play": "Abspielen",
+      "pause": "Pause",
+      "playAriaLabel": "Zeitachsen-Animation abspielen",
+      "pauseAriaLabel": "Zeitachsen-Animation pausieren",
+      "scenarioPickerLabel": "Zeitachsen-Szenario",
+      "axisTick": "Tick N",
+      "figcaption": "Konzeptionelles Timing, zur besseren Übersichtlichkeit gestreckt statt maßstabsgetreu gemessen. Das Chunk-Senden validiert die Sende-Epoche des Spielers, die Holder-Identität, die Ticking-Bereitschaftsgeneration und die Paket-Inhaltsrevision vor dem Absenden eines Pakets.",
+      "lanes": {
+        "packetWorkers": "Paket-Worker",
+        "gameTick": "Spiel-Tick",
+        "chunkScheduler": "Chunk-Scheduler",
+        "chunkSender": "Chunk-Sender"
+      },
+      "phases": {
+        "drainClose": "leeren + schließen",
+        "processPackets": "Pakete verarbeiten",
+        "handoff": "Übergabe",
+        "gameLogic": "Spiellogik",
+        "runEpoch": "Epoche ausführen",
+        "ready": "bereit",
+        "snapshot": "Snapshot",
+        "encode": "kodieren",
+        "verify": "prüfen",
+        "send": "senden",
+        "skip": "überspringen",
+        "mutateState": "Status ändern",
+        "discard": "verwerfen"
+      },
+      "events": {
+        "drainClose": "Leeren + schließen",
+        "packetsFlow": "Pakete fließen kontinuierlich",
+        "handoff": "Übergabe",
+        "commitHandoff": "Commit + Übergabe",
+        "gameLogic": "Spiellogik",
+        "epochA": "Epoche A",
+        "epochB": "Epoche B",
+        "epochC": "Epoche C",
+        "running": "läuft",
+        "runningLate": "verspätet",
+        "ready": "Bereit",
+        "waitForBoundary": "warte auf Grenze",
+        "prep": "Vorber.",
+        "snapshot": "Snapshot",
+        "snapshotR42": "Snapshot r42",
+        "snapshotR43": "Snapshot r43",
+        "encode": "Kodieren",
+        "encodeR42": "Kodiere r42",
+        "encodeR43": "Kodiere r43",
+        "verify": "Prüfen",
+        "stillR43": "noch r43",
+        "send": "Senden",
+        "skip": "Überspringen",
+        "stillRunning": "läuft noch",
+        "discard": "Verwerfen",
+        "revisionMismatch": "Revisionskonflikt",
+        "chunkR42ToR43": "Chunk r42 → r43"
+      },
+      "scenarios": {
+        "healthy": {
+          "label": "Normaler Takt",
+          "eyebrow": "Normaler Takt",
+          "title": "Pakete fließen weiter, während Hintergrundarbeit überlappt",
+          "description": "Paket-Worker nutzen das gesamte Zeitfenster zwischen den Ticks, anstatt eine große Warteschlange für den nächsten Spiel-Tick aufzubauen. An der Grenze schließt die Annahme kurzzeitig, während der bereite Scheduler-Status und die Spiellogik sicher angewendet werden."
+        },
+        "slow": {
+          "label": "Langsamer Scheduler",
+          "eyebrow": "Scheduler-Überlauf",
+          "title": "Der Spiel-Tick überspringt die Übergabe, anstatt zu warten",
+          "description": "Epoche A läuft bei +50 ms noch, sodass der Spiel-Tick den zuletzt übernommenen Chunk-Status beibehält und fortfährt. Sobald die Epoche bereit ist, übernimmt eine spätere Grenze sie und startet Epoche B."
+        },
+        "changed": {
+          "label": "Chunk geändert",
+          "eyebrow": "Veraltete Kodierung",
+          "title": "Eine Revisionsprüfung verhindert das Senden veralteter Chunk-Daten",
+          "description": "Der Sender erstellt einen Snapshot von Revision 42, aber die Spiellogik ändert den Chunk während der Kodierung auf Revision 43. Das alte Ergebnis besteht die Validierung nicht, wird verworfen und der nächste Durchlauf startet mit aktuellem Status."
+        }
+      }
+    },
+    "footer": "Offen entwickelt von der SteelMC-Community.",
+    "posts": {
+      "announcement": {
+        "title": "Wir stellen SteelMC vor",
+        "description": "Nach neun Monaten Entwicklung bietet SteelMC Block-für-Block-Terrain-Parität, ein Multithreading-Fundament und einen Server, den du heute ausprobieren kannst.",
+        "socialImageAlt": "Eine von Steel generierte Welt mit einem Kirschhain rund um ein Kratertal mit Flüssen und Dörfern."
+      }
+    }
   }
 }
