@@ -52,7 +52,7 @@ These settings are only useful when you want to balance CPU use manually, for ex
 Disabling `online_mode` allows unauthenticated clients to connect. Only disable it for private networks or development.
 :::
 
-:::info
+:::note
 For debugging and bots it's recommended to disable encryption (only for testing!)
 :::
 
