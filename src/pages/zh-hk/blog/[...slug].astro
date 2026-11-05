@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import { i18n } from "astro:config/client";
+import { getRelativeLocaleUrl, toCodes } from "astro:i18n";
+
+export async function getStaticPaths() {
+  const nonDefaultDirs = new Set(
+    toCodes(i18n!.locales)
+      .filter((code) => code !== "en")
+      .flatMap((code) => [
+        code.toLowerCase(),
+        getRelativeLocaleUrl(code, "/").replace(/^\/|\/$/g, "").toLowerCase(),
+      ])
+      .filter(Boolean),
+  );
+  const posts = (await getCollection("blog")).filter((post) => {
+    const firstSegment = post.id.split("/")[0]?.toLowerCase();
+    return !(firstSegment && post.id.includes("/") && nonDefaultDirs.has(firstSegment));
+  });
+  return posts.map((post) => ({
+    params: { slug: post.id },
+  }));
+}
+
+const { slug } = Astro.params;
+return Astro.rewrite(`/blog/${slug}`);
+---

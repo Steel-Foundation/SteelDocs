@@ -1,0 +1,72 @@
+---
+title: 咩係 Steel？
+description: 了解 Steel 係咩，以及點解你可能會選擇使用佢。
+sidebar:
+  order: 0
+---
+
+import { mcVersion, steelVersion } from "@/lib/versions";
+
+Steel 係一個使用 Rust 編寫嘅 Minecraft Java 版伺服器實現，目前支援 Minecraft **{await mcVersion()}**。\
+佢專為極致效能、高可靠性以及乾淨嘅開發者體驗而設。
+
+與傳統基於 Java 嘅伺服器唔同，Steel 充分利用咗 Rust 嘅記憶體安全保證與零成本抽象（Zero-cost Abstractions），從而提供卓越嘅運行效能。
+
+## Steel 適合邊啲人？
+
+#### 伺服器管理員 / 服主
+
+如果你正在營運 Minecraft 伺服器，並追求：
+
+- **更強悍嘅效能**—— 無鎖（Lock-free）數據結構與高效嘅多線程並行
+- **更低嘅記憶體佔用**—— 得益於 Rust 高效嘅記憶體管理機制，告別 GC 停頓
+- **出色嘅可靠性**—— 記憶體安全嘅程式碼意味住更少嘅死機與安全漏洞
+
+#### 開發者
+
+如果你正在建構配套工具或參與伺服器軟件開發：
+
+- **現代化程式碼庫**—— 採用 Rust 2024 Edition，包含 10 個職責清晰嘅 Workspace Crate
+- **類型安全**—— 喺編譯期而唔係運行時捕捉錯誤
+- **行為系統（Behavior System）**—— 易於擴展嘅方塊與物品行為抽象
+
+## 目前開發狀態
+
+Steel 目前正在積極開發中（v{await steelVersion()}）。
+
+Steel 目前已支援：
+
+- 與 Java 版客戶端嘅 TCP 網絡通信
+- Mojang 正版驗證與通信加密
+- Zlib 封包壓縮
+- 世界生成（World Generation）
+  - 喺所有維度嘅 2,500 個隨機區塊上通過 100% 原版地形相容（Vanilla Parity）檢驗
+  - 目前已知最快嘅 CPU 區塊生成實現
+  - 前往[基準測試頁面](../../reference/benchmarks)查看詳細效能數據
+- 區塊載入、生成與磁碟持久化保存
+- 方塊放置與挖掘破壞
+- 帶有碰撞箱檢測與移動速度檢驗嘅玩家移動邏輯
+- 支援訊息簽名嘅聊天系統
+- 物品欄與容器管理（木桶等）
+- 帶有 AI 目標（Goals）嘅實體系統
+- 方塊實體（Block Entities）
+- 自訂伺服器圖標（Favicon）與伺服器連結（Server Links）
+- 後台控制台指令自動補全
+
+歡迎加入[我哋嘅社群](#社群)獲取最新開發動態。
+
+## SteelMC 測試伺服器
+
+目前有全天候運行嘅公開測試服，歡迎隨時入服體驗 Steel 已實現嘅功能。
+請注意，Steel 仍處於 Pre-Alpha 階段，存檔格式尚未最終定型，部分原版特性亦仍喺度陸續實現緊。
+
+- `steel.mrshadow.dev`（VPS：4 vCores，8GB RAM）
+
+## 社群
+
+- **Discord**：https://steelmc.dev/discord
+- **GitHub** ：https://github.com/Steel-Foundation/SteelMC
+
+## 下一步
+
+準備好落手體驗未？請前往閱讀[安裝指南](../installation/)。

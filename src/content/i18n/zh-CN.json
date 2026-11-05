@@ -1,0 +1,301 @@
+{
+  "skipLink.label": "跳转到正文",
+  "search.label": "搜索",
+  "search.ctrlKey": "Ctrl",
+  "search.cancelLabel": "取消",
+  "search.devWarning": "搜索功能仅在生产构建版本中可用。\n请先在本地构建并预览站点以测试搜索。",
+  "themeSelect.accessibleLabel": "选择主题",
+  "themeSelect.dark": "深色",
+  "themeSelect.light": "浅色",
+  "themeSelect.auto": "跟随系统",
+  "languageSelect.accessibleLabel": "选择语言",
+  "menuButton.accessibleLabel": "菜单",
+  "sidebarNav.accessibleLabel": "主导航",
+  "tableOfContents.onThisPage": "本页目录",
+  "tableOfContents.overview": "概述",
+  "i18n.untranslatedContent": "本页内容暂未提供当前语言译文。",
+  "page.editLink": "编辑此页",
+  "page.lastUpdated": "最后更新：",
+  "page.previousLink": "上一页",
+  "page.nextLink": "下一页",
+  "page.draft": "此内容为草稿，不会包含在生产构建版本中。",
+  "404.text": "未找到页面。请检查 URL 或尝试使用搜索栏。",
+  "aside.note": "注意",
+  "aside.tip": "提示",
+  "aside.caution": "警告",
+  "aside.danger": "危险",
+  "fileTree.directory": "目录",
+  "builtWithStarlight.label": "基于 Starlight 构建",
+  "heading.anchorLabel": "题为“{{title}}”的章节",
+  "langFlag": "🇨🇳",
+  "langName": "简体中文",
+  "githubHref": "https://github.com/Steel-Foundation/SteelMC",
+  "meta": {
+    "defaultDescription": "SteelMC 的官方文档、服务端下载、特性实现进度追踪与开发动态——基于 Rust 编写的高性能多线程 Minecraft 服务端。",
+    "defaultSocialImageAlt": "SteelMC 生成的 Minecraft 世界日落景观。"
+  },
+  "common": {
+    "logoCredit": "SteelMC 图标由",
+    "scrollToTop": "回到顶部"
+  },
+  "header": {
+    "homeLabel": "SteelMC 首页",
+    "searchPlaceholder": "搜索文档...",
+    "noResultsText": "未找到匹配结果",
+    "devWarningText": "搜索功能仅在生产构建版本中可用",
+    "discordLabel": "加入我们的 Discord",
+    "githubLabel": "GitHub 仓库",
+    "blog": "博客",
+    "download": "下载",
+    "tracker": "进度追踪",
+    "trackerLabel": "特性实现进度追踪器"
+  },
+  "index": {
+    "pillText": "正在全力锻造中",
+    "subtitle": "用正确的方式重构 Minecraft 服务端。基于 Rust 编写，原生面向多线程并发设计。我们追求原版特性对齐（Vanilla Parity）、极致性能与高度可定制性。",
+    "mainCtaText": "加入我们！",
+    "secondCtaText": "阅读文档",
+    "scrollDownLabel": "向下滚动",
+    "chooseDocs": {
+      "label": "选择适合你的文档",
+      "title": "嗨，你想从哪里开始？",
+      "description": "Steel 面向每一位玩家与开发者。无论你是开服服主、准备贡献代码的开发者，还是单纯想了解项目架构，这里都有对应的文档。",
+      "adminLabel": "服主 / 管理员",
+      "adminImageAlt": "服主与管理员文档",
+      "devLabel": "开发者",
+      "devImageAlt": "贡献者与开发者文档"
+    },
+    "community": {
+      "heading": "感兴趣吗？",
+      "headingHighlight": "加入我们！",
+      "descriptionBold1": "Steel 是一个开放的社区聚集地",
+      "descriptionMiddle": "，大家在这里写代码、聊技术、享受乐趣。从资深开发者到吹水达人，",
+      "descriptionBold2": "欢迎每一个人的加入！",
+      "descriptionAfter": "我们只是一群想要打造一个更酷的 Minecraft 服务端的人。"
+    },
+    "rotatingPrefix": "Steel",
+    "rotating": [
+      "正在持续开发中",
+      "尚未正式发布",
+      "干就完了！",
+      "顺带一提，钢是一种合金 🤓☝️",
+      "用爱发电锻造",
+      "快得飞起",
+      "充满 Rust 气息",
+      "正在火热锻造！",
+      "由一群微醺老哥为 4lve 打 Call",
+      "衷心感谢每一位贡献者"
+    ]
+  },
+  "tracker": {
+    "title": "特性实现",
+    "titleHighlight": "进度追踪",
+    "description": "追踪 Minecraft 的各个方块、物品、实体与命令在 Steel 中的行为逻辑实现进度。",
+    "note": "注：此处追踪的是每夜构建版（Nightly Build），而非稳定发布版。",
+    "metaTitle": "特性实现进度追踪 - SteelMC",
+    "metaDescription": "追踪 Minecraft 的各个方块、物品、实体与命令在 SteelMC 中的行为逻辑实现进度。",
+    "status": {
+      "implemented": "已实现",
+      "inProgress": "进行中",
+      "planned": "计划中"
+    },
+    "stats": {
+      "totalBehaviors": "行为类总数",
+      "totalEntries": "注册条目总数"
+    },
+    "progress": {
+      "title": "实现进度",
+      "byClasses": "按行为类型等权重统计。",
+      "bySurfaceBlocks": "按已注册方块数量加权统计。",
+      "bySurfaceItems": "按已注册物品数量加权统计。",
+      "bySurfaceEntities": "按已注册实体数量加权统计。",
+      "bySurfaceCommands": "按已注册命令数量加权统计。",
+      "calculationLabel": "进度统计方式",
+      "surfaceArea": "覆盖面（按条目）",
+      "behaviors": "行为类"
+    },
+    "categories": {
+      "label": "分类",
+      "blocks": "方块",
+      "items": "物品",
+      "entities": "实体",
+      "commands": "命令"
+    },
+    "search": {
+      "blocks": "搜索方块 ID 或行为类名...",
+      "items": "搜索物品 ID 或行为类名...",
+      "entities": "搜索实体 ID 或行为类名...",
+      "commands": "搜索命令..."
+    },
+    "filter": {
+      "label": "状态筛选",
+      "all": "全部"
+    },
+    "results": {
+      "showing": "正在显示 {{classes}}（共 {{entries}}）",
+      "classSingular": "{{count}} 个行为类",
+      "classPlural": "{{count}} 个行为类",
+      "entrySingular": "{{count}} 个条目",
+      "entryPlural": "{{count}} 个条目",
+      "taskSingular": "{{count}} 项待办",
+      "taskPlural": "{{count}} 项待办",
+      "issueOpenSingular": "{{count}} 个开启的 Issue",
+      "issueOpenPlural": "{{count}} 个开启的 Issue",
+      "prOpenSingular": "{{count}} 个开启的 PR",
+      "prOpenPlural": "{{count}} 个开启的 PR",
+      "todoBadge": "待办",
+      "issueBadge": "议题",
+      "prBadge": "PR",
+      "moreEntries": "还有 {{count}} 个条目",
+      "noResultsTitle": "未找到匹配结果",
+      "noResultsBody": "请尝试调整搜索关键词或状态筛选条件"
+    }
+  },
+  "download": {
+    "metaDescription": "下载最新的 SteelMC 服务端构建版本，或浏览历史发布版本。",
+    "badge": "SteelMC 发布版本",
+    "hero": {
+      "title": "准备好运行",
+      "titleHighlight": "Steel 了吗？",
+      "subtitle": "选择适合你操作系统的最新构建版本。历史版本仍可在下方的版本归档中下载。"
+    },
+    "latestBadge": "最新版本",
+    "latestDescription": "最新的 SteelMC 服务端构建版本，包含最新的协议兼容性与原版特性实现改进。",
+    "choosePlatform": "选择你的系统平台",
+    "installHint": "使用 Docker、翼龙面板（Pterodactyl）或从源码原生编译？",
+    "installHintLink": "查看安装指南。",
+    "previousReleases": "历史版本",
+    "browseOlder": "查看 {{count}} 个旧版本",
+    "browseOlderPlural": "查看 {{count}} 个旧版本",
+    "noReleases": {
+      "title": "暂无可用的发布版本",
+      "body": "请稍后再来查看首个 SteelMC 构建版本。"
+    },
+    "version": "版本",
+    "latestVersion": "最新版本",
+    "needOlderVersion": "需要旧版本？",
+    "viewPreviousVersions": "查看历史版本",
+    "olderVersions": "历史版本",
+    "forMinecraft": "适用于 Minecraft",
+    "releasedDate": "发布于"
+  },
+  "blog": {
+    "metaTitle": "博客 - SteelMC",
+    "metaDescription": "来自 SteelMC 团队的官方公告、开发进展与技术深潜文章。",
+    "badge": "来自锻造工坊",
+    "title": "SteelMC",
+    "titleHighlight": "博客",
+    "subtitle": "来自 SteelMC 开发者们的官方公告、底层技术深潜与开发进度更新。",
+    "featured": "精选文章",
+    "readArticle": "阅读全文",
+    "latestPosts": "最新文章",
+    "allPosts": "所有文章",
+    "backToBlog": "返回博客列表",
+    "minRead": "分钟阅读",
+    "categories": {
+      "announcement": "官方公告",
+      "news": "新闻动态"
+    },
+    "posts": {
+      "announcement": {
+        "title": "SteelMC 正式亮相",
+        "description": "历经九个月的潜心研发，SteelMC 现已实现逐方块原版地形对齐、多线程并发底座，并提供可立即体验的服务端。",
+        "socialImageAlt": "由 Steel 生成的 Minecraft 世界，樱花树林环绕着带有河流与村庄的陨石坑山谷。"
+      }
+    },
+    "placeholder": {
+      "title": "草稿内容",
+      "body": "此公告目前为占位草稿。在正式发布前，请先更新 Markdown 文件中的日期、详情与状态。"
+    },
+    "parityComparison": {
+      "steel": "Steel",
+      "vanilla": "原版 (Vanilla)",
+      "ariaLabel": "在原版地形上滑动展示 Steel 生成的地形",
+      "valueText": "当前显示 {{value}}% Steel 画面",
+      "captionStrong": "相同种子与坐标下的 Steel 与原版画面对比。",
+      "captionBody": "拖动滑块对比两者生成的世界。诸如树木等跨区块地物（Feature）在此实时对比中可能存在细微差异，因为它们的最终放置结果取决于相邻区块的生成顺序；而一致性测试套件使用固定顺序以保证结果完全可复现。"
+    },
+    "tickArchitecture": {
+      "kicker": "Steel 运行时架构",
+      "title": "持续并行工作，单一安全边界",
+      "play": "播放",
+      "pause": "暂停",
+      "playAriaLabel": "播放时间线动画",
+      "pauseAriaLabel": "暂停时间线动画",
+      "scenarioPickerLabel": "时间线场景",
+      "axisTick": "Tick N",
+      "figcaption": "概念时序示意图，为清晰展示已作比例拉伸而非严格按真实耗时绘制。区块发送器在正式提交数据包前，会依次校验玩家发送纪元（Epoch）、持有者身份、可刻（Ticking）就绪代数以及数据包内容修订号（Revision）。",
+      "lanes": {
+        "packetWorkers": "数据包工作线程",
+        "gameTick": "游戏刻 (Game Tick)",
+        "chunkScheduler": "区块调度器",
+        "chunkSender": "区块发送器"
+      },
+      "phases": {
+        "drainClose": "排空 + 关闭准入",
+        "processPackets": "持续处理数据包",
+        "handoff": "状态交接",
+        "gameLogic": "游戏逻辑",
+        "runEpoch": "运行调度纪元",
+        "ready": "就绪待提交",
+        "snapshot": "状态快照",
+        "encode": "编码数据包",
+        "verify": "修订号校验",
+        "send": "网络发送",
+        "skip": "跳过交接",
+        "mutateState": "变更区块状态",
+        "discard": "丢弃过期结果"
+      },
+      "events": {
+        "drainClose": "排空 + 关闭",
+        "packetsFlow": "数据包在刻间窗口持续流转",
+        "handoff": "交接",
+        "commitHandoff": "提交 + 交接",
+        "gameLogic": "游戏逻辑",
+        "epochA": "纪元 A",
+        "epochB": "纪元 B",
+        "epochC": "纪元 C",
+        "running": "运行中",
+        "runningLate": "耗时超时",
+        "ready": "已就绪",
+        "waitForBoundary": "等待下一刻边界",
+        "prep": "准备",
+        "snapshot": "快照",
+        "snapshotR42": "快照 r42",
+        "snapshotR43": "快照 r43",
+        "encode": "编码",
+        "encodeR42": "编码 r42",
+        "encodeR43": "编码 r43",
+        "verify": "校验",
+        "stillR43": "仍为 r43",
+        "send": "发送",
+        "skip": "跳过",
+        "stillRunning": "仍在运行",
+        "discard": "丢弃",
+        "revisionMismatch": "修订号不匹配",
+        "chunkR42ToR43": "区块 r42 → r43"
+      },
+      "scenarios": {
+        "healthy": {
+          "label": "常规节拍",
+          "eyebrow": "常规节拍",
+          "title": "后台任务并行重叠，数据包持续流转",
+          "description": "数据包工作线程充分利用整个刻间窗口（Inter-tick Window）处理数据包，而非将所有数据包堆积到下一游戏刻集中处理。在刻边界处，准入短暂关闭，以安全地提交已就绪的调度器状态并推进游戏逻辑。"
+        },
+        "slow": {
+          "label": "调度器慢速",
+          "eyebrow": "调度器跨刻超时",
+          "title": "游戏刻直接跳过交接，无需阻塞等待",
+          "description": "纪元 A 在 +50 ms 处仍在运行，因此游戏刻直接沿用上一次已提交的区块状态继续执行。待该纪元变为“已就绪”后，后续的刻边界再将其提交并启动纪元 B。"
+        },
+        "changed": {
+          "label": "区块发生变更",
+          "eyebrow": "过期编码拦截",
+          "title": "修订号校验防止过期区块数据发往客户端",
+          "description": "区块发送器对修订号 42 进行了快照，但在编码过程中游戏逻辑将该区块修改到了修订号 43。旧编码结果在校验阶段被判定失效并直接丢弃，下一轮会基于最新状态重新开始。"
+        }
+      }
+    },
+    "footer": "由 SteelMC 社区开源共建。"
+  }
+}

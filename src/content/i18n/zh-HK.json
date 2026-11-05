@@ -1,0 +1,301 @@
+{
+  "skipLink.label": "跳至主內容",
+  "search.label": "搜尋",
+  "search.ctrlKey": "Ctrl",
+  "search.cancelLabel": "取消",
+  "search.devWarning": "正式建置版本先可以使用搜尋功能。\n如要在本地測試，請先建置並預覽網站。",
+  "themeSelect.accessibleLabel": "選擇主題",
+  "themeSelect.dark": "深色",
+  "themeSelect.light": "淺色",
+  "themeSelect.auto": "跟隨系統",
+  "languageSelect.accessibleLabel": "選擇語言",
+  "menuButton.accessibleLabel": "選單",
+  "sidebarNav.accessibleLabel": "主導覽",
+  "tableOfContents.onThisPage": "本頁目錄",
+  "tableOfContents.overview": "概述",
+  "i18n.untranslatedContent": "本頁內容暫未提供目前語言嘅翻譯。",
+  "page.editLink": "編輯此頁",
+  "page.lastUpdated": "最後更新：",
+  "page.previousLink": "上一頁",
+  "page.nextLink": "下一頁",
+  "page.draft": "此內容為草稿，唔會包含喺正式建置版本入面。",
+  "404.text": "搵唔到頁面。請檢查網址或試下使用搜尋欄。",
+  "aside.note": "注意",
+  "aside.tip": "提示",
+  "aside.caution": "警告",
+  "aside.danger": "危險",
+  "fileTree.directory": "目錄",
+  "builtWithStarlight.label": "基於 Starlight 建置",
+  "heading.anchorLabel": "標題為「{{title}}」嘅章節",
+  "langFlag": "🇭🇰",
+  "langName": "繁體中文（香港）",
+  "githubHref": "https://github.com/Steel-Foundation/SteelMC",
+  "meta": {
+    "defaultDescription": "SteelMC 嘅官方文檔、伺服器下載、實現進度追蹤與開發動態——以 Rust 編寫嘅高效能多線程 Minecraft 伺服器。",
+    "defaultSocialImageAlt": "SteelMC 生成嘅 Minecraft 世界日落景觀。"
+  },
+  "common": {
+    "logoCredit": "SteelMC 圖標由",
+    "scrollToTop": "回到頂部"
+  },
+  "header": {
+    "homeLabel": "SteelMC 首頁",
+    "searchPlaceholder": "搜尋文檔...",
+    "noResultsText": "搵唔到符合嘅結果",
+    "devWarningText": "搜尋功能僅喺正式建置版本中可用",
+    "discordLabel": "加入我哋嘅 Discord",
+    "githubLabel": "GitHub 倉庫",
+    "blog": "網誌",
+    "download": "下載",
+    "tracker": "進度追蹤",
+    "trackerLabel": "實現進度追蹤器"
+  },
+  "index": {
+    "pillText": "正在全力鍛造中",
+    "subtitle": "以正確嘅方式重構 Minecraft 伺服器。採用 Rust 編寫，原生面向多線程並行設計。我哋追求原版特性相容（Vanilla Parity）、極致效能與高度自訂性。",
+    "mainCtaText": "加入我哋！",
+    "secondCtaText": "閱讀文檔",
+    "scrollDownLabel": "向下滾動",
+    "chooseDocs": {
+      "label": "選擇適合你嘅文檔",
+      "title": "嗨，你想從邊度開始？",
+      "description": "Steel 專為所有人而設。無論你係架設伺服器嘅服主、準備貢獻程式碼嘅開發者，定係單純想探索項目架構，呢度都有適合你嘅文檔。",
+      "adminLabel": "伺服器管理員",
+      "adminImageAlt": "伺服器管理員文檔",
+      "devLabel": "開發者",
+      "devImageAlt": "貢獻者與開發者文檔"
+    },
+    "community": {
+      "heading": "有興趣嗎？",
+      "headingHighlight": "加入我哋！",
+      "descriptionBold1": "Steel 係一個開放嘅社群聚集地",
+      "descriptionMiddle": "，大家喺度寫 Code、傾技術、享受樂趣。由頂尖開發者到吹水達人，",
+      "descriptionBold2": "歡迎每一個人加入！",
+      "descriptionAfter": "我哋只係一班想整一個超正 Minecraft 伺服器嘅人。"
+    },
+    "rotatingPrefix": "Steel",
+    "rotating": [
+      "正在持續開發中",
+      "尚未正式發佈",
+      "衝就啱啦！",
+      "順帶一提，鋼係一種合金 🤓☝️",
+      "用愛發電鍛造",
+      "快到飛起",
+      "充滿 Rust 氣息",
+      "正在火熱鍛造！",
+      "由一班微醺師兄為 4lve 打氣",
+      "衷心感謝每一位貢獻者"
+    ]
+  },
+  "tracker": {
+    "title": "特性實現",
+    "titleHighlight": "進度追蹤",
+    "description": "追蹤 Minecraft 嘅各個方塊、物品、實體與指令喺 Steel 入面嘅行為邏輯實現進度。",
+    "note": "註：呢度追蹤嘅係每夜建置版（Nightly Build），而非穩定發佈版。",
+    "metaTitle": "特性實現進度追蹤 - SteelMC",
+    "metaDescription": "追蹤 Minecraft 嘅各個方塊、物品、實體與指令喺 SteelMC 入面嘅行為邏輯實現進度。",
+    "status": {
+      "implemented": "已實現",
+      "inProgress": "進行中",
+      "planned": "計劃中"
+    },
+    "stats": {
+      "totalBehaviors": "行為類別總數",
+      "totalEntries": "註冊項目總數"
+    },
+    "progress": {
+      "title": "實現進度",
+      "byClasses": "按行為類型等權重統計。",
+      "bySurfaceBlocks": "按已註冊方塊數量加權統計。",
+      "bySurfaceItems": "按已註冊物品數量加權統計。",
+      "bySurfaceEntities": "按已註冊實體數量加權統計。",
+      "bySurfaceCommands": "按已註冊指令數量加權統計。",
+      "calculationLabel": "進度統計方式",
+      "surfaceArea": "覆蓋範圍（按項目）",
+      "behaviors": "行為類別"
+    },
+    "categories": {
+      "label": "分類",
+      "blocks": "方塊",
+      "items": "物品",
+      "entities": "實體",
+      "commands": "指令"
+    },
+    "search": {
+      "blocks": "搜尋方塊 ID 或行為類別名稱...",
+      "items": "搜尋物品 ID 或行為類別名稱...",
+      "entities": "搜尋實體 ID 或行為類別名稱...",
+      "commands": "搜尋指令..."
+    },
+    "filter": {
+      "label": "狀態篩選",
+      "all": "全部"
+    },
+    "results": {
+      "showing": "正在顯示 {{classes}}（共 {{entries}}）",
+      "classSingular": "{{count}} 個行為類別",
+      "classPlural": "{{count}} 個行為類別",
+      "entrySingular": "{{count}} 個項目",
+      "entryPlural": "{{count}} 個項目",
+      "taskSingular": "{{count}} 項待辦",
+      "taskPlural": "{{count}} 項待辦",
+      "issueOpenSingular": "{{count}} 個開啟嘅 Issue",
+      "issueOpenPlural": "{{count}} 個開啟嘅 Issue",
+      "prOpenSingular": "{{count}} 個開啟嘅 PR",
+      "prOpenPlural": "{{count}} 個開啟嘅 PR",
+      "todoBadge": "待辦",
+      "issueBadge": "議題",
+      "prBadge": "PR",
+      "moreEntries": "仲有 {{count}} 個項目",
+      "noResultsTitle": "搵唔到符合嘅結果",
+      "noResultsBody": "請試下調整搜尋關鍵字或狀態篩選條件"
+    }
+  },
+  "download": {
+    "metaDescription": "下載最新嘅 SteelMC 伺服器建置版本，或瀏覽先前嘅發佈版本。",
+    "badge": "SteelMC 發佈版本",
+    "hero": {
+      "title": "準備好運行",
+      "titleHighlight": "Steel 未？",
+      "subtitle": "獲取適合你作業系統嘅最新建置版本。先前嘅版本仍然可以喺下方嘅版本歸檔入面下載。"
+    },
+    "latestBadge": "最新版本",
+    "latestDescription": "最新嘅 SteelMC 伺服器建置版本，包含最新嘅網絡協議相容性與原版特性實現改進。",
+    "choosePlatform": "選擇你嘅系統平台",
+    "installHint": "使用 Docker、伺服器控制面板（Pterodactyl），定係由源碼原生編譯？",
+    "installHintLink": "查看安裝指南。",
+    "previousReleases": "歷史版本",
+    "browseOlder": "瀏覽 {{count}} 個舊版本",
+    "browseOlderPlural": "瀏覽 {{count}} 個舊版本",
+    "noReleases": {
+      "title": "暫時未有可用嘅發佈版本",
+      "body": "請稍後再返嚟查看首個 SteelMC 建置版本。"
+    },
+    "version": "版本",
+    "latestVersion": "最新版本",
+    "needOlderVersion": "需要舊版本？",
+    "viewPreviousVersions": "查看歷史版本",
+    "olderVersions": "歷史版本",
+    "forMinecraft": "適用於 Minecraft",
+    "releasedDate": "發佈於"
+  },
+  "blog": {
+    "metaTitle": "網誌 - SteelMC",
+    "metaDescription": "來自 SteelMC 團隊嘅官方公告、開發進展與技術深潛文章。",
+    "badge": "來自鍛造工坊",
+    "title": "SteelMC",
+    "titleHighlight": "網誌",
+    "subtitle": "來自 SteelMC 開發團隊嘅官方公告、底層技術剖析與開發進度更新。",
+    "featured": "精選文章",
+    "readArticle": "閱讀全文",
+    "latestPosts": "最新文章",
+    "allPosts": "所有文章",
+    "backToBlog": "返回網誌列表",
+    "minRead": "分鐘閱讀",
+    "categories": {
+      "announcement": "官方公告",
+      "news": "最新消息"
+    },
+    "posts": {
+      "announcement": {
+        "title": "SteelMC 正式亮相",
+        "description": "歷經九個月嘅潛心研發，SteelMC 現已實現逐方塊原版地形相容、多線程並行底座，並提供可即時體驗嘅伺服器。",
+        "socialImageAlt": "由 Steel 生成嘅 Minecraft 世界，櫻花樹林環繞住帶有河流與村莊嘅隕石坑山谷。"
+      }
+    },
+    "placeholder": {
+      "title": "草稿內容",
+      "body": "此公告目前為佔位草稿。喺正式發佈前，請先更新 Markdown 檔案入面嘅日期、詳情與狀態。"
+    },
+    "parityComparison": {
+      "steel": "Steel",
+      "vanilla": "原版 (Vanilla)",
+      "ariaLabel": "喺原版地形上滑動顯示 Steel 生成嘅地形",
+      "valueText": "目前顯示 {{value}}% Steel 畫面",
+      "captionStrong": "相同種子碼與座標下嘅 Steel 與原版畫面對比。",
+      "captionBody": "拖動滑桿對比兩者生成嘅世界。好似樹木呢類跨區塊地物（Feature）喺即時對比中可能會有細微差異，因為佢哋嘅最終放置結果取決於相鄰區塊嘅生成順序；而相容性測試套件使用固定順序以確保結果完全可重現。"
+    },
+    "tickArchitecture": {
+      "kicker": "Steel 運行時架構",
+      "title": "持續並行工作，單一安全邊界",
+      "play": "播放",
+      "pause": "暫停",
+      "playAriaLabel": "播放時間軸動畫",
+      "pauseAriaLabel": "暫停時間軸動畫",
+      "scenarioPickerLabel": "時間軸場景",
+      "axisTick": "Tick N",
+      "figcaption": "概念時序示意圖，為清晰呈現已作比例拉伸而非嚴格按真實耗時繪製。區塊發送器喺正式提交封包前，會依序驗證玩家發送紀元（Epoch）、持有者身份、可刻（Ticking）就緒代數以及封包內容修訂號（Revision）。",
+      "lanes": {
+        "packetWorkers": "封包工作線程",
+        "gameTick": "遊戲刻 (Game Tick)",
+        "chunkScheduler": "區塊調度器",
+        "chunkSender": "區塊發送器"
+      },
+      "phases": {
+        "drainClose": "排空 + 關閉准入",
+        "processPackets": "持續處理封包",
+        "handoff": "狀態交接",
+        "gameLogic": "遊戲邏輯",
+        "runEpoch": "運行調度紀元",
+        "ready": "就緒待提交",
+        "snapshot": "狀態快照",
+        "encode": "編碼封包",
+        "verify": "修訂號驗證",
+        "send": "網絡發送",
+        "skip": "跳過交接",
+        "mutateState": "變更區塊狀態",
+        "discard": "丟棄過期結果"
+      },
+      "events": {
+        "drainClose": "排空 + 關閉",
+        "packetsFlow": "封包喺刻間窗口持續流轉",
+        "handoff": "交接",
+        "commitHandoff": "提交 + 交接",
+        "gameLogic": "遊戲邏輯",
+        "epochA": "紀元 A",
+        "epochB": "紀元 B",
+        "epochC": "紀元 C",
+        "running": "運行中",
+        "runningLate": "耗時超時",
+        "ready": "已就緒",
+        "waitForBoundary": "等待下一刻邊界",
+        "prep": "準備",
+        "snapshot": "快照",
+        "snapshotR42": "快照 r42",
+        "snapshotR43": "快照 r43",
+        "encode": "編碼",
+        "encodeR42": "編碼 r42",
+        "encodeR43": "編碼 r43",
+        "verify": "驗證",
+        "stillR43": "仍為 r43",
+        "send": "發送",
+        "skip": "跳過",
+        "stillRunning": "仍在運行",
+        "discard": "丟棄",
+        "revisionMismatch": "修訂號唔匹配",
+        "chunkR42ToR43": "區塊 r42 → r43"
+      },
+      "scenarios": {
+        "healthy": {
+          "label": "常規節拍",
+          "eyebrow": "常規節拍",
+          "title": "背景工作並行重疊，封包持續流轉",
+          "description": "封包工作線程充分利用成個刻間窗口（Inter-tick Window）處理封包，而唔係將所有封包堆積到下一個遊戲刻集中處理。喺刻邊界處，准入短暫關閉，以安全地提交已就緒嘅調度器狀態並推進遊戲邏輯。"
+        },
+        "slow": {
+          "label": "調度器慢速",
+          "eyebrow": "調度器跨刻超時",
+          "title": "遊戲刻直接跳過交接，無需阻塞等待",
+          "description": "紀元 A 喺 +50 ms 處仍然運行緊，因此遊戲刻直接沿用上一次已提交嘅區塊狀態繼續執行。等該紀元變為「已就緒」後，後續嘅刻邊界再將其提交並啟動紀元 B。"
+        },
+        "changed": {
+          "label": "區塊發生變更",
+          "eyebrow": "過期編碼攔截",
+          "title": "修訂號驗證防止過期區塊數據發往客戶端",
+          "description": "區塊發送器對修訂號 42 建立咗快照，但喺編碼過程中遊戲邏輯將該區塊修改到修訂號 43。舊編碼結果喺驗證階段被判定失效並直接丟棄，下一輪會基於最新狀態重新開始。"
+        }
+      }
+    },
+    "footer": "由 SteelMC 社群開源共建。"
+  }
+}
