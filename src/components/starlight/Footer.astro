@@ -1,10 +1,14 @@
 ---
 import DefaultFooter from "@astrojs/starlight/components/Footer.astro";
+import { t as tBase } from "@/lib/utils";
+function t(key: string): string {
+  return tBase(Astro, key);
+}
 ---
 
 <DefaultFooter />
 <p class="logo-credit">
-  SteelMC logo by <span>colonthreeing</span>.
+  {t("common.logoCredit")} <span>colonthreeing</span>.
 </p>
 
 <style>

@@ -12,30 +12,132 @@ interface ClassGroup {
 
 type Status = "complete" | "partial" | "unimplemented";
 
-const statusMeta = {
-  complete: {
-    label: "Implemented",
-    Icon: CheckCircle2,
-    dotClass: "bg-emerald-500 dark:bg-emerald-400",
-    badgeClass: "bg-emerald-100 dark:bg-emerald-400/15 text-emerald-700 dark:text-emerald-400",
+export interface TrackerCopy {
+  status: {
+    implemented: string;
+    inProgress: string;
+    planned: string;
+  };
+  stats: {
+    totalBehaviors: string;
+    totalEntries: string;
+  };
+  progress: {
+    title: string;
+    byClasses: string;
+    bySurfaceBlocks: string;
+    bySurfaceItems: string;
+    bySurfaceEntities: string;
+    bySurfaceCommands: string;
+    calculationLabel: string;
+    surfaceArea: string;
+    behaviors: string;
+  };
+  categories: {
+    label: string;
+    blocks: string;
+    items: string;
+    entities: string;
+    commands: string;
+  };
+  search: {
+    blocks: string;
+    items: string;
+    entities: string;
+    commands: string;
+  };
+  filter: {
+    label: string;
+    all: string;
+  };
+  results: {
+    showing: string;
+    classSingular: string;
+    classPlural: string;
+    entrySingular: string;
+    entryPlural: string;
+    taskSingular: string;
+    taskPlural: string;
+    issueOpenSingular: string;
+    issueOpenPlural: string;
+    prOpenSingular: string;
+    prOpenPlural: string;
+    todoBadge: string;
+    issueBadge: string;
+    prBadge: string;
+    moreEntries: string;
+    noResultsTitle: string;
+    noResultsBody: string;
+  };
+}
+
+const defaultCopy: TrackerCopy = {
+  status: {
+    implemented: "Implemented",
+    inProgress: "In progress",
+    planned: "Planned",
   },
-  partial: {
-    label: "In progress",
-    Icon: Wrench,
-    dotClass: "bg-amber-500 dark:bg-amber-400",
-    badgeClass: "bg-amber-100 dark:bg-amber-400/15 text-amber-700 dark:text-amber-400",
+  stats: {
+    totalBehaviors: "Total behaviors",
+    totalEntries: "Total entries",
   },
-  unimplemented: {
-    label: "Planned",
-    Icon: Circle,
-    dotClass: "bg-slate-400 dark:bg-white/30",
-    badgeClass: "bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-white/60",
+  progress: {
+    title: "Implementation progress",
+    byClasses: "Each behavior type counts equally.",
+    bySurfaceBlocks: "Weighted by registered blocks.",
+    bySurfaceItems: "Weighted by registered items.",
+    bySurfaceEntities: "Weighted by registered entities.",
+    bySurfaceCommands: "Weighted by registered commands.",
+    calculationLabel: "Progress calculation",
+    surfaceArea: "Surface area",
+    behaviors: "Behaviors",
   },
-} as const;
+  categories: {
+    label: "Category",
+    blocks: "Blocks",
+    items: "Items",
+    entities: "Entities",
+    commands: "Commands",
+  },
+  search: {
+    blocks: "Search blocks or classes...",
+    items: "Search items or classes...",
+    entities: "Search entities or classes...",
+    commands: "Search commands...",
+  },
+  filter: {
+    label: "Status filter",
+    all: "All",
+  },
+  results: {
+    showing: "Showing {{classes}} ({{entries}})",
+    classSingular: "{{count}} class",
+    classPlural: "{{count}} classes",
+    entrySingular: "{{count}} entry",
+    entryPlural: "{{count}} entries",
+    taskSingular: "{{count}} task",
+    taskPlural: "{{count}} tasks",
+    issueOpenSingular: "{{count}} issue open",
+    issueOpenPlural: "{{count}} issues open",
+    prOpenSingular: "{{count}} PR open",
+    prOpenPlural: "{{count}} PRs open",
+    todoBadge: "TODO",
+    issueBadge: "Issue",
+    prBadge: "PR",
+    moreEntries: "+{{count}} more",
+    noResultsTitle: "No results found",
+    noResultsBody: "Try adjusting your search or filter",
+  },
+};
 
 function getStatus(group: ClassGroup): Status {
   if (!group.implemented) return "unimplemented";
   return group.todos.length > 0 ? "partial" : "complete";
+}
+
+function formatCount(count: number, singular: string, plural: string): string {
+  const template = count === 1 ? singular : plural;
+  return template.replace("{{count}}", String(count));
 }
 
 interface ImplementationData {
@@ -94,7 +196,59 @@ async function iterIssues(pages: number, data: ImplementationData) {
   return;
 }
 
-export default function ImplementationTracker() {
+interface ImplementationTrackerProps {
+  copy?: Partial<TrackerCopy>;
+}
+
+function mergeSection<T extends Record<string, string>>(defaults: T, overrides?: Partial<T>): T {
+  if (!overrides) return defaults;
+  const merged: Record<string, string> = { ...defaults };
+  for (const [k, v] of Object.entries(overrides)) {
+    if (typeof v === "string" && v.length > 0) {
+      merged[k] = v;
+    }
+  }
+  return merged as T;
+}
+
+export default function ImplementationTracker({ copy: customCopy }: ImplementationTrackerProps = {}) {
+  const copy: TrackerCopy = useMemo(
+    () => ({
+      status: mergeSection(defaultCopy.status, customCopy?.status),
+      stats: mergeSection(defaultCopy.stats, customCopy?.stats),
+      progress: mergeSection(defaultCopy.progress, customCopy?.progress),
+      categories: mergeSection(defaultCopy.categories, customCopy?.categories),
+      search: mergeSection(defaultCopy.search, customCopy?.search),
+      filter: mergeSection(defaultCopy.filter, customCopy?.filter),
+      results: mergeSection(defaultCopy.results, customCopy?.results),
+    }),
+    [customCopy],
+  );
+
+  const statusMeta = useMemo(
+    () => ({
+      complete: {
+        label: copy.status.implemented,
+        Icon: CheckCircle2,
+        dotClass: "bg-emerald-500 dark:bg-emerald-400",
+        badgeClass: "bg-emerald-100 dark:bg-emerald-400/15 text-emerald-700 dark:text-emerald-400",
+      },
+      partial: {
+        label: copy.status.inProgress,
+        Icon: Wrench,
+        dotClass: "bg-amber-500 dark:bg-amber-400",
+        badgeClass: "bg-amber-100 dark:bg-amber-400/15 text-amber-700 dark:text-amber-400",
+      },
+      unimplemented: {
+        label: copy.status.planned,
+        Icon: Circle,
+        dotClass: "bg-slate-400 dark:bg-white/30",
+        badgeClass: "bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-white/60",
+      },
+    }),
+    [copy.status],
+  );
+
   const [data, setData] = useState<ImplementationData | null>(null);
   const [ghLoaded, setGhLoaded] = useState<boolean>(false);
   const [tab, setTab] = useState<Tab>("blocks");
@@ -124,7 +278,20 @@ export default function ImplementationTracker() {
   }, [data]);
 
   const currentData = data?.[tab];
-  const entryLabel = tab === "entities" ? "entities" : tab;
+
+  const surfaceSubtitleByTab: Record<Tab, string> = {
+    blocks: copy.progress.bySurfaceBlocks,
+    items: copy.progress.bySurfaceItems,
+    entities: copy.progress.bySurfaceEntities,
+    commands: copy.progress.bySurfaceCommands,
+  };
+
+  const searchPlaceholderByTab: Record<Tab, string> = {
+    blocks: copy.search.blocks,
+    items: copy.search.items,
+    entities: copy.search.entities,
+    commands: copy.search.commands,
+  };
 
   const stats = useMemo(() => {
     if (!currentData) return { total: 0, complete: 0, partial: 0, unimplemented: 0 };
@@ -180,18 +347,22 @@ export default function ImplementationTracker() {
 
   const pctComplete = stats.total > 0 ? Math.round((stats.complete / stats.total) * 100) : 0;
   const pctPartial = stats.total > 0 ? Math.round((stats.partial / stats.total) * 100) : 0;
+  const totalFilteredEntries = filtered.reduce((s, [, g]) => s + g.entries.length, 0);
+  const showingText = copy.results.showing
+    .replace("{{classes}}", formatCount(filtered.length, copy.results.classSingular, copy.results.classPlural))
+    .replace("{{entries}}", formatCount(totalFilteredEntries, copy.results.entrySingular, copy.results.entryPlural));
 
   return (
     <div className="w-full">
       {/* Stats overview */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
         <StatCard
-          label={progressMetric === "classes" ? "Total behaviors" : "Total entries"}
+          label={progressMetric === "classes" ? copy.stats.totalBehaviors : copy.stats.totalEntries}
           value={stats.total}
         />
-        <StatCard label="Implemented" value={stats.complete} color="emerald" />
-        <StatCard label="In progress" value={stats.partial} color="amber" />
-        <StatCard label="Planned" value={stats.unimplemented} />
+        <StatCard label={copy.status.implemented} value={stats.complete} color="emerald" />
+        <StatCard label={copy.status.inProgress} value={stats.partial} color="amber" />
+        <StatCard label={copy.status.planned} value={stats.unimplemented} />
       </div>
 
       {/* Progress bar */}
@@ -199,33 +370,33 @@ export default function ImplementationTracker() {
         <div className="flex flex-col gap-3 mb-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <span className="text-sm font-medium text-teal-700 dark:text-white/70">
-              Implementation progress
+              {copy.progress.title}
             </span>
             <p className="mt-0.5 text-xs text-teal-500 dark:text-white/35">
               {progressMetric === "classes"
-                ? "Each behavior type counts equally."
-                : `Weighted by registered ${entryLabel}.`}
+                ? copy.progress.byClasses
+                : surfaceSubtitleByTab[tab]}
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <SegmentedControl
-              label="Progress calculation"
+              label={copy.progress.calculationLabel}
               size="sm"
               value={progressMetric}
               onChange={setProgressMetric}
               segments={[
-                { value: "surface", content: "Surface area" },
-                { value: "classes", content: "Behaviors" },
+                { value: "surface", content: copy.progress.surfaceArea },
+                { value: "classes", content: copy.progress.behaviors },
               ]}
             />
             <div className="flex items-center gap-3 text-xs">
               <span className="flex items-center gap-1">
                 <span className="inline-block size-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
-                <span className="text-teal-700 dark:text-white/60">Implemented {pctComplete}%</span>
+                <span className="text-teal-700 dark:text-white/60">{copy.status.implemented} {pctComplete}%</span>
               </span>
               <span className="flex items-center gap-1">
                 <span className="inline-block size-2 rounded-full bg-amber-500 dark:bg-amber-400" />
-                <span className="text-teal-700 dark:text-white/60">In progress {pctPartial}%</span>
+                <span className="text-teal-700 dark:text-white/60">{copy.status.inProgress} {pctPartial}%</span>
               </span>
             </div>
           </div>
@@ -253,15 +424,15 @@ export default function ImplementationTracker() {
             pointer-events-none z-10 flex flex-col gap-1 whitespace-nowrap shadow-lg">
             <span className="flex items-center gap-2">
               <span className="inline-block size-2 rounded-full bg-emerald-400" />
-              Implemented — {pctComplete}%
+              {copy.status.implemented} — {pctComplete}%
             </span>
             <span className="flex items-center gap-2">
               <span className="inline-block size-2 rounded-full bg-amber-400" />
-              In progress — {pctPartial}%
+              {copy.status.inProgress} — {pctPartial}%
             </span>
             <span className="flex items-center gap-2">
               <span className="inline-block size-2 rounded-full bg-white/20" />
-              Planned — {100 - pctComplete - pctPartial}%
+              {copy.status.planned} — {100 - pctComplete - pctPartial}%
             </span>
           </div>
         </div>
@@ -270,7 +441,7 @@ export default function ImplementationTracker() {
       {/* Controls */}
       <div className="flex flex-col md:flex-row gap-3 mb-6">
         <SegmentedControl
-          label="Category"
+          label={copy.categories.label}
           value={tab}
           onChange={setTab}
           segments={[
@@ -279,7 +450,7 @@ export default function ImplementationTracker() {
               content: (
                 <>
                   <Blocks className="size-3.5" />
-                  Blocks
+                  {copy.categories.blocks}
                 </>
               ),
             },
@@ -288,7 +459,7 @@ export default function ImplementationTracker() {
               content: (
                 <>
                   <Sword className="size-3.5" />
-                  Items
+                  {copy.categories.items}
                 </>
               ),
             },
@@ -297,7 +468,7 @@ export default function ImplementationTracker() {
               content: (
                 <>
                   <PawPrint className="size-3.5" />
-                  Entities
+                  {copy.categories.entities}
                 </>
               ),
             },
@@ -306,7 +477,7 @@ export default function ImplementationTracker() {
               content: (
                 <>
                   <Terminal className="size-3.5" />
-                  Commands
+                  {copy.categories.commands}
                 </>
               ),
             },
@@ -318,7 +489,7 @@ export default function ImplementationTracker() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-teal-500 dark:text-white/40 pointer-events-none" />
           <input
             type="text"
-            placeholder={entryLabel === "commands" ? `Search ${entryLabel}...` : `Search ${entryLabel} or classes...`}
+            placeholder={searchPlaceholderByTab[tab]}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="tracker-control w-full pl-9 pr-3 py-2 text-sm bg-white dark:bg-white/5 border border-teal-200/40 dark:border-white/10 rounded-2xl text-teal-950 dark:text-white placeholder:text-teal-400 dark:placeholder:text-white/35 focus:outline-none focus:border-emerald-500/60 dark:focus:border-emerald-400/50 transition-all"
@@ -326,7 +497,7 @@ export default function ImplementationTracker() {
         </div>
 
         <SegmentedControl
-          label="Status filter"
+          label={copy.filter.label}
           value={statusFilter}
           onChange={setStatusFilter}
           segments={[
@@ -335,20 +506,20 @@ export default function ImplementationTracker() {
               content: (
                 <>
                   <Filter className="size-3.5" />
-                  All
+                  {copy.filter.all}
                 </>
               ),
             },
-            { value: "complete", content: <><CheckCircle2 className="size-3.5" /> Implemented</> },
-            { value: "partial", content: <><Wrench className="size-3.5" /> In progress</> },
-            { value: "unimplemented", content: <><Circle className="size-3.5" /> Planned</> },
+            { value: "complete", content: <><CheckCircle2 className="size-3.5" /> {copy.status.implemented}</> },
+            { value: "partial", content: <><Wrench className="size-3.5" /> {copy.status.inProgress}</> },
+            { value: "unimplemented", content: <><Circle className="size-3.5" /> {copy.status.planned}</> },
           ]}
         />
       </div>
 
       {/* Results count */}
       <p className="text-xs text-teal-600 dark:text-white/40 mb-3">
-        Showing {filtered.length} class{filtered.length !== 1 ? "es" : ""} ({filtered.reduce((s, [, g]) => s + g.entries.length, 0)} entries)
+        {showingText}
       </p>
 
       {/* Class list */}
@@ -385,16 +556,19 @@ export default function ImplementationTracker() {
 
                 <span className={`flex items-center gap-1 text-xs px-2 py-0.5 rounded-full ${badgeClass}`}>
                   <StatusIcon className="size-3" aria-hidden="true" />
-                  {statusLabel}{status === "partial" ? ` · ${group.todos.length} task${group.todos.length !== 1 ? "s" : ""}` : ""}
+                  {statusLabel}
+                  {status === "partial"
+                    ? ` · ${formatCount(group.todos.length, copy.results.taskSingular, copy.results.taskPlural)}`
+                    : ""}
                 </span>
 
                 {/* Issues badge */}
                 {group.issues && <span className="text-xs px-2 py-0.5 rounded-full bg-rose-200 dark:bg-rose-400/15 text-rose-800 dark:text-rose-400">
-                  {group.issues.length} issues open
+                  {formatCount(group.issues.length, copy.results.issueOpenSingular, copy.results.issueOpenPlural)}
                 </span>}
                 {/* PRs badge */}
                 {group.prs && <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-200 dark:bg-indigo-400/15 text-indigo-800 dark:text-indigo-400">
-                  {group.prs.length} PRs open
+                  {formatCount(group.prs.length, copy.results.prOpenSingular, copy.results.prOpenPlural)}
                 </span>}
 
                 <div className="flex-1" />
@@ -418,7 +592,7 @@ export default function ImplementationTracker() {
                           key={i}
                           className="flex items-start gap-2 text-xs px-2.5 py-1.5 rounded-lg bg-amber-50 dark:bg-amber-400/5 border border-amber-200/50 dark:border-amber-400/10"
                         >
-                          <span className="text-amber-500 dark:text-amber-400 shrink-0 mt-px font-bold">TODO</span>
+                          <span className="text-amber-500 dark:text-amber-400 shrink-0 mt-px font-bold">{copy.results.todoBadge}</span>
                           <span className="text-amber-800 dark:text-amber-200/70">{todo}</span>
                         </div>
                       ))}
@@ -433,7 +607,7 @@ export default function ImplementationTracker() {
                           href={pr.html_url}
                           className="flex items-start gap-2 text-xs px-2.5 py-1.5 rounded-lg bg-rose-50 dark:bg-rose-400/5 border border-rose-200/50 dark:border-rose-400/10"
                         >
-                          <span className="text-rose-500 dark:text-rose-400 shrink-0 mt-px font-bold">Issue</span>
+                          <span className="text-rose-500 dark:text-rose-400 shrink-0 mt-px font-bold">{copy.results.issueBadge}</span>
                           <span className="text-rose-800 dark:text-rose-200/70">{pr.title}</span>
                         </a>
                       ))}
@@ -448,7 +622,7 @@ export default function ImplementationTracker() {
                           href={pr.html_url}
                           className="flex items-start gap-2 text-xs px-2.5 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-400/5 border border-indigo-200/50 dark:border-indigo-400/10"
                         >
-                          <span className="text-indigo-500 dark:text-indigo-400 shrink-0 mt-px font-bold">PR</span>
+                          <span className="text-indigo-500 dark:text-indigo-400 shrink-0 mt-px font-bold">{copy.results.prBadge}</span>
                           <span className="text-indigo-800 dark:text-indigo-200/70">{pr.title}</span>
                         </a>
                       ))}
@@ -467,7 +641,7 @@ export default function ImplementationTracker() {
                     ))}
                     {search && matchingEntries.length < group.entries.length && (
                       <span className="text-xs px-2 py-1 text-teal-400 dark:text-white/30 italic">
-                        +{group.entries.length - matchingEntries.length} more
+                        {copy.results.moreEntries.replace("{{count}}", String(group.entries.length - matchingEntries.length))}
                       </span>
                     )}
                   </div>
@@ -480,8 +654,8 @@ export default function ImplementationTracker() {
 
       {filtered.length === 0 && (
         <div className="text-center py-16 text-teal-500 dark:text-white/40">
-          <p className="font-minecraft text-lg">No results found</p>
-          <p className="text-sm mt-1">Try adjusting your search or filter</p>
+          <p className="font-minecraft text-lg">{copy.results.noResultsTitle}</p>
+          <p className="text-sm mt-1">{copy.results.noResultsBody}</p>
         </div>
       )}
     </div>

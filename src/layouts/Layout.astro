@@ -4,7 +4,7 @@ import { getImage } from "astro:assets";
 import defaultSocialImage from "@/assets/sunset.webp";
 import "../styles/global.css";
 import ThemedPixelBlast from "@/components/homepage/ThemedPixelBlast";
-import { is_rtl } from "@/lib/utils";
+import { is_rtl, t as tBase } from "@/lib/utils";
 import LogoCredit from "@/components/sections/LogoCredit.astro";
 import ScrollToTop from "@/components/common/ScrollToTop.astro";
 import Navbar from "@/components/sections/Navbar.astro";
@@ -23,9 +23,13 @@ interface Props {
   animatedBackground?: boolean;
 }
 
+function t(key: string): string {
+  return tBase(Astro, key);
+}
+
 const {
   title,
-  description = "Documentation, downloads, implementation status, and development updates for SteelMC, a Minecraft server written in Rust.",
+  description = t("meta.defaultDescription"),
   socialTitle = title,
   socialImage,
   socialImageAlt,
@@ -37,11 +41,11 @@ const {
 } = Astro.props;
 
 const siteUrl = Astro.site ?? Astro.url;
-const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
+const canonicalUrl = new URL(Astro.originPathname || Astro.url.pathname, siteUrl);
 const resolvedSocialImage = socialImage ?? defaultSocialImage;
 const resolvedSocialImageAlt = socialImageAlt ?? (socialImage
   ? undefined
-  : "A sunset over a SteelMC-generated Minecraft world.");
+  : t("meta.defaultSocialImageAlt"));
 const renderedSocialImage = await getImage({
   src: resolvedSocialImage,
   width: 1200,

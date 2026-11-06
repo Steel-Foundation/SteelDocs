@@ -2,10 +2,23 @@
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import { ArrowLeft, CalendarDays, Clock3 } from "@lucide/astro";
 import BlogLayout from "@/layouts/BlogLayout.astro";
-import { getRelativeLocaleUrl } from "astro:i18n";
+import { i18n } from "astro:config/client";
+import { getRelativeLocaleUrl, toCodes } from "astro:i18n";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+  const nonDefaultDirs = new Set(
+    toCodes(i18n!.locales)
+      .filter((code) => code !== "en")
+      .flatMap((code) => [
+        code.toLowerCase(),
+        getRelativeLocaleUrl(code, "/").replace(/^\/|\/$/g, "").toLowerCase(),
+      ])
+      .filter(Boolean),
+  );
+  const posts = (await getCollection("blog")).filter((post) => {
+    const firstSegment = post.id.split("/")[0]?.toLowerCase();
+    return !(firstSegment && post.id.includes("/") && nonDefaultDirs.has(firstSegment));
+  });
 
   return posts.map((post) => ({
     params: { slug: post.id },
@@ -17,12 +30,49 @@ interface Props {
   post: CollectionEntry<"blog">;
 }
 
-const { post } = Astro.props;
+const locale = Astro.currentLocale || "en";
+const localeDir = getRelativeLocaleUrl(locale, "/").replace(/^\/|\/$/g, "").toLowerCase();
+const allPosts = await getCollection("blog");
+const localizedCandidates = new Set([
+  `${locale.toLowerCase()}/${Astro.props.post.id.toLowerCase()}`,
+  localeDir ? `${localeDir}/${Astro.props.post.id.toLowerCase()}` : "",
+]);
+const post =
+  (locale !== "en"
+    ? allPosts.find((p) => localizedCandidates.has(p.id.toLowerCase()))
+    : undefined) ?? Astro.props.post;
 const { Content } = await render(post);
 import { t as tBase } from "@/lib/utils";
 function t(key: string): string {return tBase(Astro, key)}
-const wordCount = (post.body ?? "").trim().split(/\s+/).filter(Boolean).length;
-const readingTime = Math.max(1, Math.ceil(wordCount / 220));
+
+function translateCategory(category: string): string {
+  const key = `blog.categories.${category.toLowerCase()}`;
+  const translated = t(key);
+  return translated && translated !== key ? translated : category;
+}
+
+function translatePostField(slug: string, field: "title" | "description" | "socialImageAlt", fallback?: string): string | undefined {
+  if (!fallback || locale === "en") return fallback;
+  const key = `blog.posts.${slug}.${field}`;
+  if (!Astro.locals.t.exists(key, { fallbackLng: false })) return fallback;
+  return t(key);
+}
+
+const baseSlug = Astro.props.post.id;
+const postTitle = post === Astro.props.post
+  ? (translatePostField(baseSlug, "title", post.data.title) ?? post.data.title)
+  : post.data.title;
+const postDescription = post === Astro.props.post
+  ? (translatePostField(baseSlug, "description", post.data.description) ?? post.data.description)
+  : post.data.description;
+const postSocialImageAlt = post === Astro.props.post
+  ? translatePostField(baseSlug, "socialImageAlt", post.data.socialImage?.alt)
+  : post.data.socialImage?.alt;
+
+const rawBody = post.body ?? "";
+const cjkCount = (rawBody.match(/[\u4e00-\u9fff\u3400-\u4dbf]/g) ?? []).length;
+const nonCjkWords = rawBody.replace(/[\u4e00-\u9fff\u3400-\u4dbf]/g, " ").trim().split(/\s+/).filter(Boolean).length;
+const readingTime = Math.max(1, Math.ceil(nonCjkWords / 220 + cjkCount / 400));
 
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat(Astro.currentLocale ?? "en", {
@@ -33,11 +83,11 @@ const formatDate = (date: Date) =>
 ---
 
 <BlogLayout
-  title={`${post.data.title} - SteelMC Blog`}
-  description={post.data.description}
-  socialTitle={post.data.title}
+  title={`${postTitle} - ${t("blog.metaTitle")}`}
+  description={postDescription}
+  socialTitle={postTitle}
   socialImage={post.data.socialImage?.src}
-  socialImageAlt={post.data.socialImage?.alt}
+  socialImageAlt={postSocialImageAlt}
   pageType="article"
   publishedAt={post.data.publishedAt}
   updatedAt={post.data.updatedAt}
@@ -69,7 +119,7 @@ const formatDate = (date: Date) =>
           <span
             class="rounded-full bg-emerald-500 px-3 py-1 font-minecraft text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-emerald-500/20"
           >
-            {post.data.category}
+            {translateCategory(post.data.category)}
           </span>
           {
             post.data.placeholder && (
@@ -83,10 +133,10 @@ const formatDate = (date: Date) =>
         <h1
           class="mt-6 text-balance font-minecraft text-3xl font-bold leading-tight text-teal-950 dark:text-white sm:text-4xl md:text-5xl lg:text-6xl"
         >
-          {post.data.title}
+          {postTitle}
         </h1>
         <p class="mt-5 max-w-3xl text-base leading-relaxed text-teal-700 dark:text-white/65 md:text-xl">
-          {post.data.description}
+          {postDescription}
         </p>
 
         <div class="mt-8 flex flex-wrap items-center gap-3 text-xs sm:text-sm">

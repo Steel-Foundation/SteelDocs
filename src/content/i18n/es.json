@@ -2,8 +2,16 @@
   "langFlag": "🇪🇸",
   "langName": "Español",
   "githubHref": "https://github.com/Steel-Foundation/SteelMC",
-
+  "meta": {
+    "defaultDescription": "Documentación, descargas, estado de implementación y actualizaciones de desarrollo de SteelMC, un servidor de Minecraft escrito en Rust.",
+    "defaultSocialImageAlt": "Un atardecer sobre un mundo de Minecraft generado por SteelMC."
+  },
+  "common": {
+    "logoCredit": "Logo de SteelMC por",
+    "scrollToTop": "Volver arriba"
+  },
   "header": {
+    "homeLabel": "Inicio de SteelMC",
     "searchPlaceholder": "Buscar en la documentación...",
     "devWarningText": "La búsqueda solo está disponible en producción",
     "discordLabel": "Únete a nuestro Discord",
@@ -11,14 +19,15 @@
     "blog": "Blog",
     "download": "Descargar",
     "tracker": "Tracker",
-    "trackerLabel": "Seguimiento de implementación"
+    "trackerLabel": "Seguimiento de implementación",
+    "noResultsText": "No se encontraron resultados"
   },
-
   "index": {
     "pillText": "Cocinándose a fuego lento",
     "subtitle": "Minecraft implementado de la forma correcta. Escrito en Rust, con arquitectura multihilo. Nuestro objetivo es que se comporte como vanilla pero con rendimiento y personalización.",
     "mainCtaText": "¡Únete!",
     "secondCtaText": "Documentación",
+    "scrollDownLabel": "Desplazarse hacia abajo",
     "chooseDocs": {
       "label": "ESCOGE TU DOCUMENTACIÓN",
       "title": "Oye, ¿qué buscas hacer?",
@@ -50,16 +59,70 @@
       "agradece a sus contribuidores"
     ]
   },
-
   "tracker": {
     "title": "Seguimiento de ",
     "titleHighlight": "Implementación",
     "description": "Comprueba cuáles bloques, objetos y entidades de Minecraft tienen implementado su comportamiento en Steel.",
     "note": "Aviso: Aquí se muestran las implementaciones en desarrollo, no la versión estable.",
     "metaTitle": "Seguimiento de implementación - SteelMC",
-    "metaDescription": "Comprueba cuáles bloques, objetos y entidades de Minecraft tienen implementado su comportamiento en Steel."
+    "metaDescription": "Comprueba cuáles bloques, objetos y entidades de Minecraft tienen implementado su comportamiento en Steel.",
+    "status": {
+      "implemented": "Implementado",
+      "inProgress": "En progreso",
+      "planned": "Planeado"
+    },
+    "stats": {
+      "totalBehaviors": "Comportamientos totales",
+      "totalEntries": "Entradas totales"
+    },
+    "progress": {
+      "title": "Progreso de implementación",
+      "byClasses": "Cada tipo de comportamiento cuenta por igual.",
+      "bySurfaceBlocks": "Ponderado por bloques registrados.",
+      "bySurfaceItems": "Ponderado por objetos registrados.",
+      "bySurfaceEntities": "Ponderado por entidades registradas.",
+      "bySurfaceCommands": "Ponderado por comandos registrados.",
+      "calculationLabel": "Cálculo de progreso",
+      "surfaceArea": "Superficie",
+      "behaviors": "Comportamientos"
+    },
+    "categories": {
+      "label": "Categoría",
+      "blocks": "Bloques",
+      "items": "Objetos",
+      "entities": "Entidades",
+      "commands": "Comandos"
+    },
+    "search": {
+      "blocks": "Buscar bloques o clases...",
+      "items": "Buscar objetos o clases...",
+      "entities": "Buscar entidades o clases...",
+      "commands": "Buscar comandos..."
+    },
+    "filter": {
+      "label": "Filtro de estado",
+      "all": "Todos"
+    },
+    "results": {
+      "showing": "Mostrando {{classes}} ({{entries}})",
+      "classSingular": "{{count}} clase",
+      "classPlural": "{{count}} clases",
+      "entrySingular": "{{count}} entrada",
+      "entryPlural": "{{count}} entradas",
+      "taskSingular": "{{count}} tarea",
+      "taskPlural": "{{count}} tareas",
+      "issueOpenSingular": "{{count}} issue abierto",
+      "issueOpenPlural": "{{count}} issues abiertos",
+      "prOpenSingular": "{{count}} PR abierto",
+      "prOpenPlural": "{{count}} PRs abiertos",
+      "todoBadge": "TODO",
+      "issueBadge": "Issue",
+      "prBadge": "PR",
+      "moreEntries": "+{{count}} más",
+      "noResultsTitle": "No se encontraron resultados",
+      "noResultsBody": "Prueba a ajustar tu búsqueda o filtro"
+    }
   },
-
   "download": {
     "metaDescription": "Descarga la última versión del servidor SteelMC o busca lanzamientos anteriores.",
     "badge": "Lanzamientos de SteelMC",
@@ -88,7 +151,6 @@
     "forMinecraft": "Para Minecraft",
     "releasedDate": "Lanzada el"
   },
-
   "blog": {
     "metaTitle": "Blog - SteelMC",
     "metaDescription": "Anuncios, actualizaciones del desarrollo e historias de parte del equipo de SteelMC.",
@@ -102,10 +164,110 @@
     "allPosts": "Todas las entradas",
     "backToBlog": "Volver al blog",
     "minRead": "minutos de lectura",
+    "categories": {
+      "announcement": "Anuncio",
+      "news": "Noticias"
+    },
     "placeholder": {
       "title": "Borrador",
       "body": "Este anuncio es una copia de pruebas. Recuerda actualizar su fecha, detalles, y estados en el archivo Markdown antes de publicarlo oficialmente."
     },
-    "footer": "Creado en abierto por la comunidad de SteelMC."
+    "parityComparison": {
+      "steel": "Steel",
+      "vanilla": "Vanilla",
+      "ariaLabel": "Mostrar el terreno de Steel sobre el de vanilla",
+      "valueText": "{{value}}% de Steel visible",
+      "captionStrong": "Steel y vanilla con la misma semilla y coordenadas.",
+      "captionBody": "Arrastra el control para comparar los mundos generados. Las características que cruzan chunks, como los árboles, pueden variar en esta comparación en vivo porque su ubicación final depende del orden de generación de los chunks vecinos; las pruebas de paridad usan un orden fijo para que sus resultados sean reproducibles."
+    },
+    "tickArchitecture": {
+      "kicker": "Arquitectura en tiempo de ejecución de Steel",
+      "title": "Trabajo continuo, un límite seguro",
+      "play": "Reproducir",
+      "pause": "Pausar",
+      "playAriaLabel": "Reproducir animación de la línea de tiempo",
+      "pauseAriaLabel": "Pausar animación de la línea de tiempo",
+      "scenarioPickerLabel": "Escenario de la línea de tiempo",
+      "axisTick": "Tick N",
+      "figcaption": "Tiempos conceptuales, ampliados por claridad en lugar de medidos a escala. El envío de chunks valida la época de envío del jugador, la identidad del titular, la generación de disponibilidad de tick y la revisión del contenido del paquete antes de confirmar un paquete.",
+      "lanes": {
+        "packetWorkers": "Workers de paquetes",
+        "gameTick": "Tick del juego",
+        "chunkScheduler": "Planificador de chunks",
+        "chunkSender": "Emisor de chunks"
+      },
+      "phases": {
+        "drainClose": "vaciar + cerrar",
+        "processPackets": "procesar paquetes",
+        "handoff": "entrega",
+        "gameLogic": "lógica del juego",
+        "runEpoch": "ejecutar época",
+        "ready": "listo",
+        "snapshot": "instantánea",
+        "encode": "codificar",
+        "verify": "verificar",
+        "send": "enviar",
+        "skip": "omitir",
+        "mutateState": "mutar estado",
+        "discard": "descartar"
+      },
+      "events": {
+        "drainClose": "Vaciar + cerrar",
+        "packetsFlow": "Los paquetes fluyen continuamente",
+        "handoff": "Entrega",
+        "commitHandoff": "Confirmar + entrega",
+        "gameLogic": "Lógica del juego",
+        "epochA": "Época A",
+        "epochB": "Época B",
+        "epochC": "Época C",
+        "running": "ejecutándose",
+        "runningLate": "con retraso",
+        "ready": "Listo",
+        "waitForBoundary": "esperar al límite",
+        "prep": "Prep.",
+        "snapshot": "instantánea",
+        "snapshotR42": "instantánea r42",
+        "snapshotR43": "instantánea r43",
+        "encode": "Codificar",
+        "encodeR42": "Codificar r42",
+        "encodeR43": "Codificar r43",
+        "verify": "Verificar",
+        "stillR43": "aún r43",
+        "send": "Enviar",
+        "skip": "Omitir",
+        "stillRunning": "aún ejecutándose",
+        "discard": "Descartar",
+        "revisionMismatch": "revisión no coincide",
+        "chunkR42ToR43": "chunk r42 → r43"
+      },
+      "scenarios": {
+        "healthy": {
+          "label": "Cadencia normal",
+          "eyebrow": "Cadencia normal",
+          "title": "Los paquetes siguen fluyendo mientras el trabajo en segundo plano se superpone",
+          "description": "Los workers de paquetes usan toda la ventana entre ticks en lugar de acumular una gran cola para el siguiente tick del juego. En el límite, la admisión se cierra brevemente mientras el estado listo del planificador y la lógica del juego se aplican de forma segura."
+        },
+        "slow": {
+          "label": "Planificador lento",
+          "eyebrow": "Exceso de tiempo del planificador",
+          "title": "El tick del juego omite la entrega en lugar de esperar",
+          "description": "La Época A sigue ejecutándose a los +50 ms, por lo que el tick del juego conserva el último estado de chunk confirmado y continúa. Una vez que la época está lista, un límite posterior la confirma e inicia la Época B."
+        },
+        "changed": {
+          "label": "Chunk modificado",
+          "eyebrow": "Codificación obsoleta",
+          "title": "Una comprobación de revisión evita que salgan datos de chunk obsoletos",
+          "description": "El emisor toma una instantánea de la revisión 42, pero el juego cambia el chunk a la revisión 43 mientras se codifica. El resultado antiguo falla la validación, se descarta y la siguiente pasada comienza desde el estado actualizado."
+        }
+      }
+    },
+    "footer": "Creado en abierto por la comunidad de SteelMC.",
+    "posts": {
+      "announcement": {
+        "title": "Presentamos SteelMC",
+        "description": "Tras nueve meses de desarrollo, SteelMC cuenta con paridad de terreno bloque por bloque, una base multihilo y un servidor que puedes probar hoy mismo.",
+        "socialImageAlt": "Un mundo generado por Steel que muestra un bosque de cerezos rodeando un valle de cráter con ríos y aldeas."
+      }
+    }
   }
 }

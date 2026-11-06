@@ -1,5 +1,12 @@
+---
+import { t as tBase } from "@/lib/utils";
+function t(key: string): string {
+  return tBase(Astro, key);
+}
+---
+
 <footer class="relative z-10 px-6 py-5 text-center">
   <p class="text-xs text-teal-700/70 dark:text-white/40">
-    SteelMC logo by <span class="font-semibold">colonthreeing</span>.
+    {t("common.logoCredit")} <span class="font-semibold">colonthreeing</span>.
   </p>
 </footer>

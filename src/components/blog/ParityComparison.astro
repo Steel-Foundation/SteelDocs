@@ -2,6 +2,12 @@
 import { Image } from "astro:assets";
 import steel from "@/assets/steel.png";
 import vanilla from "@/assets/vanilla.png";
+import { t as tBase } from "@/lib/utils";
+function t(key: string): string {
+  return tBase(Astro, key);
+}
+
+const valueTextTemplate = t("blog.parityComparison.valueText");
 ---
 
 <figure class="parity-comparison" data-parity-comparison>
@@ -27,21 +33,22 @@ import vanilla from "@/assets/vanilla.png";
     </div>
 
     <span class="parity-comparison__label parity-comparison__label--steel">
-      Steel
+      {t("blog.parityComparison.steel")}
     </span>
     <span class="parity-comparison__label parity-comparison__label--vanilla">
-      Vanilla
+      {t("blog.parityComparison.vanilla")}
     </span>
 
     <input
       class="parity-comparison__range"
       data-comparison-range
+      data-valuetext-template={valueTextTemplate}
       type="range"
       min="0"
       max="100"
       value="50"
-      aria-label="Reveal Steel terrain over vanilla terrain"
-      aria-valuetext="50% Steel visible"
+      aria-label={t("blog.parityComparison.ariaLabel")}
+      aria-valuetext={valueTextTemplate.replace("{{value}}", "50")}
     />
 
     <div class="parity-comparison__divider" aria-hidden="true">
@@ -53,36 +60,45 @@ import vanilla from "@/assets/vanilla.png";
   </div>
 
   <figcaption class="parity-comparison__caption">
-    <strong>Steel and vanilla at the same seed and coordinates.</strong>
-    Drag the handle to compare the generated worlds. Cross-chunk features such
-    as trees can differ in this live comparison because their final placement
-    depends on neighboring chunk-generation order; the parity tests use a fixed
-    order so their results are reproducible.
+    <strong>{t("blog.parityComparison.captionStrong")}</strong>
+    {" "}{t("blog.parityComparison.captionBody")}
   </figcaption>
 </figure>
 
 <script>
-  document
-    .querySelectorAll<HTMLElement>("[data-parity-comparison]")
-    .forEach((comparison) => {
-      const frame = comparison.querySelector<HTMLElement>(
-        "[data-comparison-frame]",
-      );
-      const range = comparison.querySelector<HTMLInputElement>(
-        "[data-comparison-range]",
-      );
+  function initParityComparisons() {
+    document
+      .querySelectorAll<HTMLElement>("[data-parity-comparison]")
+      .forEach((comparison) => {
+        if (comparison.dataset.initialised === "true") return;
+        comparison.dataset.initialised = "true";
 
-      if (!frame || !range) return;
+        const frame = comparison.querySelector<HTMLElement>(
+          "[data-comparison-frame]",
+        );
+        const range = comparison.querySelector<HTMLInputElement>(
+          "[data-comparison-range]",
+        );
 
-      const updateComparison = () => {
-        const position = `${range.value}%`;
-        frame.style.setProperty("--comparison-position", position);
-        range.setAttribute("aria-valuetext", `${range.value}% Steel visible`);
-      };
+        if (!frame || !range) return;
 
-      range.addEventListener("input", updateComparison);
-      updateComparison();
-    });
+        const template = range.dataset.valuetextTemplate ?? "{{value}}% Steel visible";
+        const updateComparison = () => {
+          const position = `${range.value}%`;
+          frame.style.setProperty("--comparison-position", position);
+          range.setAttribute(
+            "aria-valuetext",
+            template.replace("{{value}}", range.value),
+          );
+        };
+
+        range.addEventListener("input", updateComparison);
+        updateComparison();
+      });
+  }
+
+  initParityComparisons();
+  document.addEventListener("astro:page-load", initParityComparisons);
 </script>
 
 <style>

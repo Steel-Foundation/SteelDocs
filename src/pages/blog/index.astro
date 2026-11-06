@@ -2,14 +2,65 @@
 import { getCollection } from "astro:content";
 import { ArrowRight, CalendarDays, Newspaper } from "@lucide/astro";
 import BlogLayout from "@/layouts/BlogLayout.astro";
-import { getRelativeLocaleUrl } from "astro:i18n";
+import { i18n } from "astro:config/client";
+import { getRelativeLocaleUrl, toCodes } from "astro:i18n";
 
 import { t as tBase } from "@/lib/utils";
 function t(key: string): string {return tBase(Astro, key)}
 
-const posts = (await getCollection("blog")).sort(
-  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+function translateCategory(category: string): string {
+  const key = `blog.categories.${category.toLowerCase()}`;
+  const translated = t(key);
+  return translated && translated !== key ? translated : category;
+}
+
+const locale = Astro.currentLocale || "en";
+const localeDir = getRelativeLocaleUrl(locale, "/").replace(/^\/|\/$/g, "").toLowerCase();
+const nonDefaultDirs = new Set(
+  toCodes(i18n!.locales)
+    .filter((code) => code !== "en")
+    .flatMap((code) => [
+      code.toLowerCase(),
+      getRelativeLocaleUrl(code, "/").replace(/^\/|\/$/g, "").toLowerCase(),
+    ])
+    .filter(Boolean),
 );
+
+function isLocalizedPostId(id: string): boolean {
+  const firstSegment = id.split("/")[0]?.toLowerCase();
+  return Boolean(firstSegment && id.includes("/") && nonDefaultDirs.has(firstSegment));
+}
+
+function translatePostField(slug: string, field: "title" | "description", fallback: string): string {
+  if (locale === "en") return fallback;
+  const key = `blog.posts.${slug}.${field}`;
+  if (!Astro.locals.t.exists(key, { fallbackLng: false })) return fallback;
+  return t(key);
+}
+
+const allPosts = await getCollection("blog");
+const posts = allPosts
+  .filter((post) => !isLocalizedPostId(post.id))
+  .map((basePost) => {
+    if (locale !== "en") {
+      const candidates = new Set([
+        `${locale.toLowerCase()}/${basePost.id.toLowerCase()}`,
+        localeDir ? `${localeDir}/${basePost.id.toLowerCase()}` : "",
+      ]);
+      const localized = allPosts.find((p) => candidates.has(p.id.toLowerCase()));
+      if (localized) return { ...localized, id: basePost.id };
+      return {
+        ...basePost,
+        data: {
+          ...basePost.data,
+          title: translatePostField(basePost.id, "title", basePost.data.title),
+          description: translatePostField(basePost.id, "description", basePost.data.description),
+        },
+      };
+    }
+    return basePost;
+  })
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 
 const featuredPost = posts.find((post) => post.data.featured) ?? posts[0];
 const remainingPosts = posts.filter((post) => post.id !== featuredPost?.id);
@@ -67,7 +118,7 @@ const formatDate = (date: Date) =>
                   {t("blog.featured")}
                 </span>
                 <span class="rounded-full border border-teal-200/80 bg-teal-50/80 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-teal-700 dark:border-white/10 dark:bg-white/5 dark:text-white/60">
-                  {featuredPost.data.category}
+                  {translateCategory(featuredPost.data.category)}
                 </span>
               </div>
               <h2 class="font-minecraft text-3xl font-bold text-teal-950 dark:text-white sm:text-4xl md:text-5xl">
@@ -109,7 +160,7 @@ const formatDate = (date: Date) =>
               >
                 <div>
                   <span class="inline-block rounded-full border border-teal-200/80 bg-teal-50/80 px-3 py-1 font-minecraft text-xs font-bold uppercase tracking-wider text-emerald-700 dark:border-white/10 dark:bg-white/5 dark:text-emerald-400">
-                    {post.data.category}
+                    {translateCategory(post.data.category)}
                   </span>
                   <h3 class="mt-4 font-minecraft text-2xl font-bold text-teal-950 transition-colors group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-400">
                     {post.data.title}

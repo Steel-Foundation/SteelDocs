@@ -9,6 +9,8 @@ interface Props {
   subtitle: string;
   mainCtaText: string;
   secondCtaText: string;
+  secondCtaHref?: string;
+  scrollDownLabel?: string;
 }
 
 const {
@@ -18,6 +20,8 @@ const {
   subtitle,
   mainCtaText,
   secondCtaText,
+  secondCtaHref,
+  scrollDownLabel,
 } = Astro.props;
 ---
 
@@ -57,6 +61,8 @@ const {
       subtitle={subtitle}
       mainCtaText={mainCtaText}
       secondCtaText={secondCtaText}
+      secondCtaHref={secondCtaHref}
+      scrollDownLabel={scrollDownLabel}
     />
   </div>
 </div>
