@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "nightly",
-    "steel_version": "0.16.1+mc26.3",
-    "steel_commit": "ca1f2ea3871f1b0215b1ebbcef9613855af95e37",
-    "steel_committed_at": "2026-11-04T23:07:27+01:00"
+    "steel_version": "0.17.0+mc26.3",
+    "steel_commit": "cf5b732815a7e138b1e05dfe51fde15684ffe917",
+    "steel_committed_at": "2026-11-07T22:29:54+01:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -3929,8 +3929,10 @@
       ]
     },
     "MinecartItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Place chest, furnace, TNT, hopper, spawner and command block minecarts once"
+      ],
       "entries": [
         "minecart",
         "chest_minecart",
@@ -5150,8 +5152,10 @@
       ]
     },
     "Minecart": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement getPickResult."
+      ],
       "entries": [
         "minecart"
       ]
