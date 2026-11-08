@@ -142,8 +142,9 @@ for (const login of logins) {
   }
 }
 if (failed === logins.length) {
-  console.error("All sponsor lookups failed");
-  process.exit(1);
+  // don't block the deploy over a GitHub API hiccup
+  console.warn("All sponsor lookups failed, keeping existing sponsors.json");
+  process.exit(0);
 }
 
 const sponsors = [...byLogin.values()].sort(

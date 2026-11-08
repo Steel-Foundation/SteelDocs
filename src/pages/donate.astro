@@ -29,11 +29,12 @@ const goalTarget = goal
       String(goal.targetValue),
     )
   : null;
+// GitHub's default goal title is the target itself ("$100 per month"), don't repeat it
+const showGoalTarget = goalTarget && goalTarget.trim().toLowerCase() !== goal!.title.trim().toLowerCase();
 const updated = updatedAt
   ? new Intl.DateTimeFormat(Astro.currentLocale || "en", { dateStyle: "medium" }).format(new Date(updatedAt))
   : null;
 
-// ponytail: Steel-Foundation sponsor page still awaiting approval, switch when live
 const SPONSOR_URL = "https://github.com/sponsors/Steel-Foundation";
 ---
 
@@ -84,7 +85,7 @@ const SPONSOR_URL = "https://github.com/sponsors/Steel-Foundation";
           </div>
           <p class="mt-2 flex justify-between text-sm font-semibold text-teal-700 dark:text-white/60">
             <span>{goal.percentComplete}%</span>
-            <span>{goalTarget}</span>
+            {showGoalTarget && <span>{goalTarget}</span>}
           </p>
         </section>
       )
