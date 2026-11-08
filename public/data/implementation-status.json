@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "nightly",
-    "steel_version": "0.16.1+mc26.3",
-    "steel_commit": "beba69c161c43887132ada970edb442c457365a2",
-    "steel_committed_at": "2026-10-25T01:13:39+02:00"
+    "steel_version": "0.17.0+mc26.3",
+    "steel_commit": "cf5b732815a7e138b1e05dfe51fde15684ffe917",
+    "steel_committed_at": "2026-11-07T22:29:54+01:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -248,9 +248,7 @@
     "BedBlock": {
       "implemented": true,
       "todos": [
-        "Mirror vanilla `BedBlock.useWithoutItem` invalid-dimension explosion",
         "Mirror vanilla `BedBlock.kickVillagerOutOfBed` once villager sleeping",
-        "When WOrld::explode foundation exists display the bedrule error remove both halves and create the bad respawn point explosion",
         "Mirror vanilla `kickVillagerOutOfBed`: find a sleeping"
       ],
       "entries": [
@@ -614,8 +612,10 @@
       ]
     },
     "TntBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Check an arrow's pickup stack once arrows exist. Other projectiles use an empty"
+      ],
       "entries": [
         "tnt"
       ]
@@ -682,7 +682,7 @@
       ]
     },
     "SpawnerBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "spawner"
@@ -1262,7 +1262,7 @@
       ]
     },
     "EnchantingTableBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "enchanting_table"
@@ -1980,9 +1980,7 @@
     },
     "ConduitBlock": {
       "implemented": true,
-      "todos": [
-        "implement Block entity"
-      ],
+      "todos": [],
       "entries": [
         "conduit"
       ]
@@ -2258,10 +2256,7 @@
     },
     "RespawnAnchorBlock": {
       "implemented": true,
-      "todos": [
-        "Implement vanilla invalid-dimension explosion once Steel has a strict",
-        "Once `World::explode` exist remove the anchor and use the"
-      ],
+      "todos": [],
       "entries": [
         "respawn_anchor"
       ]
@@ -3934,8 +3929,10 @@
       ]
     },
     "MinecartItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Place chest, furnace, TNT, hopper, spawner and command block minecarts once"
+      ],
       "entries": [
         "minecart",
         "chest_minecart",
@@ -4032,8 +4029,7 @@
       "implemented": true,
       "todos": [
         "Remove fallback once all waterloggable blocks implement pickup_block.",
-        "Refactor into smaller helpers once all bucket types are implemented",
-        "Per-position environment attributes (vanilla uses EnvironmentAttributes.WATER_EVAPORATES per-pos)"
+        "Read the per-position WATER_EVAPORATES attribute once Steel has environment attributes."
       ],
       "entries": [
         "bucket",
@@ -4133,10 +4129,7 @@
     },
     "FishingRodItem": {
       "implemented": true,
-      "todos": [
-        "add vibration (Java equivalent: `ItemStack.causeVibration()`)",
-        "add vibration, see above TODO"
-      ],
+      "todos": [],
       "entries": [
         "fishing_rod"
       ]
@@ -4257,9 +4250,7 @@
     },
     "SpawnEggItem": {
       "implemented": true,
-      "todos": [
-        "Use spawn eggs on a spawner block and also check if the condition is correct"
-      ],
+      "todos": [],
       "entries": [
         "chicken_spawn_egg",
         "cow_spawn_egg",
@@ -4476,7 +4467,7 @@
       "implemented": true,
       "todos": [
         "Implement the `ProjectileItem` dispenser dispatch.",
-        "Implement `use` and the `ProjectileItem` dispenser dispatch. Blocked on"
+        "Implement the `ProjectileItem` dispenser dispatch."
       ],
       "entries": [
         "splash_potion"
@@ -4639,8 +4630,10 @@
       ]
     },
     "AreaEffectCloud": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Persist `custom_particle` once particle options have an NBT codec. Vanilla"
+      ],
       "entries": [
         "area_effect_cloud"
       ]
@@ -5159,8 +5152,10 @@
       ]
     },
     "Minecart": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement getPickResult."
+      ],
       "entries": [
         "minecart"
       ]
@@ -5281,7 +5276,7 @@
       ]
     },
     "ThrownLingeringPotion": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "lingering_potion"
@@ -5417,8 +5412,11 @@
       ]
     },
     "Squid": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "(ageable-water-creature): vanilla `Squid extends AgeableWaterCreature`.",
+        "depending on how `LivingEntity.air_travel_vertical_friction` implements `FlyingAnimal`'s"
+      ],
       "entries": [
         "squid"
       ]
@@ -5459,7 +5457,7 @@
       ]
     },
     "PrimedTnt": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "tnt"
@@ -5658,16 +5656,16 @@
     "/execute": {
       "implemented": true,
       "todos": [
-        "Add the vanilla compound-NBT branch once Steel has an SNBT compound",
-        "Add bossbar after Steel has a persistent custom-bossbar manager.",
-        "Add entity after live entity NBT can reload every command-visible field.",
+        "Enforce the new game mode on online players when `force-gamemode=true` and return the",
         "Add items after every vanilla command-slot provider and container inventory is",
         "Add predicate and function after their runtime registries are ported.",
         "Restore Steel stopwatch conditions with the stopwatch command system.",
-        "Enforce the new game mode on online players when `force-gamemode=true` and return the",
+        "Add bossbar after Steel has a persistent custom-bossbar manager.",
+        "Add entity after live entity NBT can reload every command-visible field.",
+        "Add pagination for domains and worlds instead of truncating to the grid capacity.",
         "Add `locate biome` once Steel has an asynchronous closest-biome search.",
         "Add `locate poi` once Steel has a point-of-interest manager.",
-        "Add pagination for domains and worlds instead of truncating to the grid capacity."
+        "Add the vanilla compound-NBT branch once Steel has an SNBT compound"
       ],
       "entries": [
         "/execute"
