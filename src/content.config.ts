@@ -41,6 +41,7 @@ export const collections = {
           blog: i18nStr(),
           download: i18nStr(),
           tracker: i18nStr(),
+          donate: i18nStr(),
           trackerLabel: i18nStr(),
         }),
 
@@ -77,6 +78,24 @@ export const collections = {
           note: i18nStr(),
           metaTitle: i18nStr(),
           metaDescription: i18nStr(),
+        }),
+
+        donate: i18nObj({
+          metaTitle: i18nStr(),
+          metaDescription: i18nStr(),
+          title: i18nStr(),
+          titleHighlight: i18nStr(),
+          subtitle: i18nStr(),
+          cta: i18nStr(),
+          goal: i18nStr(),
+          goalMonthly: i18nStr(),
+          goalCount: i18nStr(),
+          current: i18nStr(),
+          oneTime: i18nStr(),
+          past: i18nStr(),
+          empty: i18nStr(),
+          refreshHint: i18nStr(),
+          lastUpdated: i18nStr(),
         }),
 
         download: i18nObj({
