@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.17.0+mc26.3",
-    "steel_commit": "800df8c62240e2b6c20e454a6a5cd36b14a72ec7",
-    "steel_committed_at": "2026-11-10T16:04:11+01:00"
+    "steel_commit": "fb85bdc6f2ea2bda64a2d5359f55da05fdabe61d",
+    "steel_committed_at": "2026-11-11T15:14:14+01:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -853,7 +853,9 @@
     },
     "LeverBlock": {
       "implemented": true,
-      "todos": [],
+      "todos": [
+        "Client-local interaction/ambient dust particles are omitted."
+      ],
       "entries": [
         "lever"
       ]
@@ -2286,9 +2288,7 @@
     },
     "CandleCakeBlock": {
       "implemented": true,
-      "todos": [
-        ""
-      ],
+      "todos": [],
       "entries": [
         "candle_cake",
         "white_candle_cake",
@@ -4893,7 +4893,8 @@
     "EndCrystal": {
       "implemented": true,
       "todos": [
-        "Implement portal handling, fire refresh, dragon fight callbacks, and explosion behavior."
+        "Implement portal handling and fire refresh.",
+        "Notify the dragon fight (`EndCrystal.onDestroyedBy`) here and from `kill`"
       ],
       "entries": [
         "end_crystal"
