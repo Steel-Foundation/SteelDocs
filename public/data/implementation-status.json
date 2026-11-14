@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.17.0+mc26.3",
-    "steel_commit": "fb85bdc6f2ea2bda64a2d5359f55da05fdabe61d",
-    "steel_committed_at": "2026-11-11T15:14:14+01:00"
+    "steel_commit": "947ca4b69097c9dbaae9fb88ecdfd21fa8999b4c",
+    "steel_committed_at": "2026-11-14T01:33:57+01:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -696,8 +696,10 @@
       ]
     },
     "ChestBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Preserve vanilla access ordering so loot-generation contention"
+      ],
       "entries": [
         "chest"
       ]
@@ -1784,7 +1786,8 @@
       "implemented": true,
       "todos": [
         "Anger nearby piglins (PiglinAi.angerNearbyPiglins)",
-        "maybe? shulkerBoxBlockEntity.unpackLootTable(player);"
+        "maybe? shulkerBoxBlockEntity.unpackLootTable(player);",
+        "Handle preparation failures without reporting an empty"
       ],
       "entries": [
         "shulker_box",
@@ -2026,7 +2029,8 @@
       "implemented": true,
       "todos": [
         "Anger nearby piglins (PiglinAi.angerNearbyPiglins)",
-        "Implement ContainerOpenersCounter to track open state, play sounds, and update OPEN block property. Requires scheduled block ticks (scheduleTick) for recheck functionality. See vanilla BarrelBlockEntity and ContainerOpenersCounter."
+        "Implement ContainerOpenersCounter to track open state, play sounds, and update OPEN block property. Requires scheduled block ticks (scheduleTick) for recheck functionality. See vanilla BarrelBlockEntity and ContainerOpenersCounter.",
+        "Preserve vanilla access ordering so loot-generation contention"
       ],
       "entries": [
         "barrel"
@@ -2034,7 +2038,9 @@
     },
     "SmokerBlock": {
       "implemented": true,
-      "todos": [],
+      "todos": [
+        "Handle preparation failures without reporting an empty inventory."
+      ],
       "entries": [
         "smoker"
       ]
@@ -5659,16 +5665,16 @@
     "/execute": {
       "implemented": true,
       "todos": [
-        "Enforce the new game mode on online players when `force-gamemode=true` and return the",
+        "Add the vanilla compound-NBT branch once Steel has an SNBT compound",
+        "Add bossbar after Steel has a persistent custom-bossbar manager.",
+        "Add entity after live entity NBT can reload every command-visible field.",
         "Add items after every vanilla command-slot provider and container inventory is",
         "Add predicate and function after their runtime registries are ported.",
         "Restore Steel stopwatch conditions with the stopwatch command system.",
-        "Add bossbar after Steel has a persistent custom-bossbar manager.",
-        "Add entity after live entity NBT can reload every command-visible field.",
         "Add pagination for domains and worlds instead of truncating to the grid capacity.",
         "Add `locate biome` once Steel has an asynchronous closest-biome search.",
         "Add `locate poi` once Steel has a point-of-interest manager.",
-        "Add the vanilla compound-NBT branch once Steel has an SNBT compound"
+        "Enforce the new game mode on online players when `force-gamemode=true` and return the"
       ],
       "entries": [
         "/execute"
@@ -5921,7 +5927,7 @@
       ]
     },
     "/reload": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/reload"
