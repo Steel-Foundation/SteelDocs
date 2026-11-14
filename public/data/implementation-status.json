@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.17.0+mc26.3",
-    "steel_commit": "947ca4b69097c9dbaae9fb88ecdfd21fa8999b4c",
-    "steel_committed_at": "2026-11-14T01:33:57+01:00"
+    "steel_commit": "b7f5dc54ed98cf1d1ed7b30f0ba964804043a553",
+    "steel_committed_at": "2026-11-14T01:38:30+01:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -4463,8 +4463,10 @@
       ]
     },
     "EndCrystalItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Call `EnderDragonFight.tryRespawn` once the dragon fight exists."
+      ],
       "entries": [
         "end_crystal"
       ]
@@ -5665,16 +5667,16 @@
     "/execute": {
       "implemented": true,
       "todos": [
+        "Enforce the new game mode on online players when `force-gamemode=true` and return the",
         "Add the vanilla compound-NBT branch once Steel has an SNBT compound",
-        "Add bossbar after Steel has a persistent custom-bossbar manager.",
-        "Add entity after live entity NBT can reload every command-visible field.",
-        "Add items after every vanilla command-slot provider and container inventory is",
-        "Add predicate and function after their runtime registries are ported.",
-        "Restore Steel stopwatch conditions with the stopwatch command system.",
         "Add pagination for domains and worlds instead of truncating to the grid capacity.",
         "Add `locate biome` once Steel has an asynchronous closest-biome search.",
         "Add `locate poi` once Steel has a point-of-interest manager.",
-        "Enforce the new game mode on online players when `force-gamemode=true` and return the"
+        "Add items after every vanilla command-slot provider and container inventory is",
+        "Add predicate and function after their runtime registries are ported.",
+        "Restore Steel stopwatch conditions with the stopwatch command system.",
+        "Add bossbar after Steel has a persistent custom-bossbar manager.",
+        "Add entity after live entity NBT can reload every command-visible field."
       ],
       "entries": [
         "/execute"
