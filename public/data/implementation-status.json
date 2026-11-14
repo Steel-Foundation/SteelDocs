@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.17.0+mc26.3",
-    "steel_commit": "39dd2bdb6e87e56a89fe0946206d5fb9eeb64391",
-    "steel_committed_at": "2026-11-14T01:48:37+01:00"
+    "steel_commit": "91a3dc60c7a7d823928db34f3d3bbb078a856f5b",
+    "steel_committed_at": "2026-11-14T06:23:49+01:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -4506,9 +4506,7 @@
     },
     "ShieldItem": {
       "implemented": true,
-      "todos": [
-        "Complete the shared Item.use BLOCKS_ATTACKS path so shields can block."
-      ],
+      "todos": [],
       "entries": [
         "shield"
       ]
