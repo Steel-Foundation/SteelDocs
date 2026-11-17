@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.17.0+mc26.3",
-    "steel_commit": "130dddca78c301fa1a7740449ed8c348566a4392",
-    "steel_committed_at": "2026-11-15T15:38:16+01:00"
+    "steel_commit": "d6b24f2c539b0682595293d7977ba139fd0c08bf",
+    "steel_committed_at": "2026-11-17T07:05:42+01:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -4363,8 +4363,10 @@
       ]
     },
     "WindChargeItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement the `ProjectileItem` dispenser dispatch."
+      ],
       "entries": [
         "wind_charge"
       ]
@@ -5540,7 +5542,7 @@
       ]
     },
     "WindCharge": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "wind_charge"
@@ -5662,16 +5664,16 @@
     "/execute": {
       "implemented": true,
       "todos": [
+        "Add pagination for domains and worlds instead of truncating to the grid capacity.",
         "Add the vanilla compound-NBT branch once Steel has an SNBT compound",
-        "Add bossbar after Steel has a persistent custom-bossbar manager.",
-        "Add entity after live entity NBT can reload every command-visible field.",
+        "Add `locate biome` once Steel has an asynchronous closest-biome search.",
+        "Add `locate poi` once Steel has a point-of-interest manager.",
+        "Enforce the new game mode on online players when `force-gamemode=true` and return the",
         "Add items after every vanilla command-slot provider and container inventory is",
         "Add predicate and function after their runtime registries are ported.",
         "Restore Steel stopwatch conditions with the stopwatch command system.",
-        "Add pagination for domains and worlds instead of truncating to the grid capacity.",
-        "Add `locate biome` once Steel has an asynchronous closest-biome search.",
-        "Add `locate poi` once Steel has a point-of-interest manager.",
-        "Enforce the new game mode on online players when `force-gamemode=true` and return the"
+        "Add bossbar after Steel has a persistent custom-bossbar manager.",
+        "Add entity after live entity NBT can reload every command-visible field."
       ],
       "entries": [
         "/execute"
