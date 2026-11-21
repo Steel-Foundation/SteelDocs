@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "nightly",
-    "steel_version": "0.17.0+mc26.3",
-    "steel_commit": "743e1bac984124429502451cae49692502ecfeef",
-    "steel_committed_at": "2026-11-18T23:06:56+01:00"
+    "steel_version": "0.17.1+mc26.3",
+    "steel_commit": "cf5a7f6490a2808f0edcc21efd8c99399b344922",
+    "steel_committed_at": "2026-11-21T16:46:40+01:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -3937,7 +3937,7 @@
     "MinecartItem": {
       "implemented": true,
       "todos": [
-        "Place chest, furnace, TNT, hopper, and command block minecarts once"
+        "Place chest, furnace, hopper, and command block minecarts once"
       ],
       "entries": [
         "minecart",
@@ -5472,8 +5472,11 @@
       ]
     },
     "MinecartTNT": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Explode immediately when the direct entity is a burning `AbstractArrow`, with",
+        "Return a TNT minecart item once entity pickitem handling is wired up"
+      ],
       "entries": [
         "tnt_minecart"
       ]
@@ -5664,16 +5667,16 @@
     "/execute": {
       "implemented": true,
       "todos": [
+        "Add the vanilla compound-NBT branch once Steel has an SNBT compound",
+        "Add pagination for domains and worlds instead of truncating to the grid capacity.",
         "Add `locate biome` once Steel has an asynchronous closest-biome search.",
         "Add `locate poi` once Steel has a point-of-interest manager.",
         "Enforce the new game mode on online players when `force-gamemode=true` and return the",
-        "Add pagination for domains and worlds instead of truncating to the grid capacity.",
         "Add items after every vanilla command-slot provider and container inventory is",
         "Add predicate and function after their runtime registries are ported.",
         "Restore Steel stopwatch conditions with the stopwatch command system.",
         "Add bossbar after Steel has a persistent custom-bossbar manager.",
-        "Add entity after live entity NBT can reload every command-visible field.",
-        "Add the vanilla compound-NBT branch once Steel has an SNBT compound"
+        "Add entity after live entity NBT can reload every command-visible field."
       ],
       "entries": [
         "/execute"
@@ -5968,7 +5971,7 @@
       ]
     },
     "/say": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/say"
@@ -6210,7 +6213,7 @@
       ]
     },
     "/perf": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/perf"
