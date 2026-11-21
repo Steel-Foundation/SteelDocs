@@ -368,9 +368,12 @@ export default function ImplementationTracker() {
           const isOpen = expanded.has(className);
           const status = getStatus(group);
           const { Icon: StatusIcon, label: statusLabel, dotClass, badgeClass } = statusMeta[status];
-          const matchingEntries = search
-            ? group.entries.filter((e) => e.toLowerCase().includes(search.toLowerCase()))
-            : group.entries;
+          const q = search.toLowerCase();
+          const filterEntries = (list?: string[]) =>
+            !list ? [] : q ? list.filter((e) => e.toLowerCase().includes(q)) : list;
+          const matchingEntries = filterEntries(group.entries);
+          const released = filterEntries(group.released);
+          const nightly = filterEntries(group.new_in_nightly);
 
           return (
             <li
@@ -467,40 +470,31 @@ export default function ImplementationTracker() {
                   )}
 
                   {/* Entries */}
-                  {(() => {
-                    const hasSplit = Boolean(group.released?.length || group.new_in_nightly?.length);
-                    const released = (group.released || []).filter((e) => !search || e.toLowerCase().includes(search.toLowerCase()));
-                    const nightly = (group.new_in_nightly || []).filter((e) => !search || e.toLowerCase().includes(search.toLowerCase()));
-
-                    return (
-                      <div className={`flex flex-col gap-2.5 ${group.todos.length === 0 && !group.issues && !group.prs ? "pt-2" : "pt-2 border-t border-teal-100 dark:border-white/5"}`}>
-                        {hasSplit ? (
-                          <>
-                            {((!search && (group.released?.length || 0) > 0) || released.length > 0 || (nightly.length === 0 && (group.released?.length || 0) > 0)) && (
-                              <div>
-                                <span className="text-[11px] font-semibold text-teal-700/80 dark:text-white/50 uppercase tracking-wider mb-1.5 block">
-                                  In release {data?.meta?.latest_release ? `(${data.meta.latest_release})` : ""}
-                                </span>
-                                <EntryChips entries={released} totalCount={group.released?.length || 0} search={search} />
-                              </div>
-                            )}
-
-                            {((!search && (group.new_in_nightly?.length || 0) > 0) || nightly.length > 0 || (released.length === 0 && (group.new_in_nightly?.length || 0) > 0)) && (
-                              <div>
-                                <span className="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-                                  <span className="inline-block size-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                                  New in nightly
-                                </span>
-                                <EntryChips entries={nightly} totalCount={group.new_in_nightly?.length || 0} search={search} nightly />
-                              </div>
-                            )}
-                          </>
-                        ) : (
-                          <EntryChips entries={search ? matchingEntries : group.entries} totalCount={group.entries.length} search={search} />
+                  <div className={`flex flex-col gap-2.5 ${group.todos.length === 0 && !group.issues && !group.prs ? "pt-2" : "pt-2 border-t border-teal-100 dark:border-white/5"}`}>
+                    {group.released?.length || group.new_in_nightly?.length ? (
+                      <>
+                        {Boolean(group.released?.length) && (released.length > 0 || nightly.length === 0) && (
+                          <div>
+                            <span className="text-[11px] font-semibold text-teal-700/80 dark:text-white/50 uppercase tracking-wider mb-1.5 block">
+                              In release {data?.meta?.latest_release ? `(${data.meta.latest_release})` : ""}
+                            </span>
+                            <EntryChips entries={released} totalCount={group.released!.length} search={search} />
+                          </div>
                         )}
-                      </div>
-                    );
-                  })()}
+                        {Boolean(group.new_in_nightly?.length) && (nightly.length > 0 || released.length === 0) && (
+                          <div>
+                            <span className="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                              <span className="inline-block size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                              New in nightly
+                            </span>
+                            <EntryChips entries={nightly} totalCount={group.new_in_nightly!.length} search={search} nightly />
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <EntryChips entries={matchingEntries} totalCount={group.entries.length} search={search} />
+                    )}
+                  </div>
                 </div>
               )}
             </li>
@@ -554,7 +548,7 @@ function EntryChips({
           className={`text-xs px-2 py-1 rounded-lg border ${
             nightly
               ? "bg-emerald-50 dark:bg-emerald-400/10 text-emerald-700 dark:text-emerald-300 border-emerald-200/60 dark:border-emerald-400/20"
-              : "bg-teal-50 dark:bg-white/5 text-teal-700 dark:text-white/60 border border-teal-100 dark:border-white/5"
+              : "bg-teal-50 dark:bg-white/5 text-teal-700 dark:text-white/60 border-teal-100 dark:border-white/5"
           }`}
         >
           {entry}

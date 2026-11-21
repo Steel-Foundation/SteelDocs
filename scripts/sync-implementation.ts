@@ -234,18 +234,14 @@ function steelGit(...args: string[]): string {
   }
 }
 
-const tagsRaw = steelGit("tag", "-l", "v*", "--sort=-v:refname");
-const latestTag = tagsRaw ? tagsRaw.split("\n").map((t) => t.trim()).filter(Boolean)[0] ?? null : null;
-let releasedBlockClasses: Map<string, ClassInfo> | undefined;
-let releasedItemClasses: Map<string, ClassInfo> | undefined;
-let releasedEntityClasses: Map<string, ClassInfo> | undefined;
-let releasedCommands: Map<string, ClassInfo> | undefined;
+const latestTag = steelGit("tag", "-l", "v*", "--sort=-v:refname").split("\n")[0]?.trim() || null;
+let released: Awaited<ReturnType<typeof scanAllImplemented>> | undefined;
 
 if (latestTag) {
   const currentHead = steelGit("rev-parse", "HEAD");
   steelGit("checkout", latestTag);
   try {
-    [releasedBlockClasses, releasedItemClasses, releasedEntityClasses, releasedCommands] = await scanAllImplemented();
+    released = await scanAllImplemented();
   } finally {
     steelGit("checkout", currentHead);
   }
@@ -279,18 +275,16 @@ function groupByClass(
     });
     g.entries.push(entry.name);
     if (g.implemented) {
-      (releasedClasses ? releasedClasses.has(entry.class) : true)
-        ? g.released.push(entry.name)
-        : g.new_in_nightly.push(entry.name);
+      (!releasedClasses || releasedClasses.has(entry.class) ? g.released : g.new_in_nightly).push(entry.name);
     }
   }
   return groups;
 }
 
-const blocks = groupByClass(classesRaw.blocks, implementedBlockClasses, releasedBlockClasses);
-const items = groupByClass(classesRaw.items, implementedItemClasses, releasedItemClasses);
-const entities = groupByClass(classesRaw.entities, implementedEntityClasses, releasedEntityClasses);
-const commands = groupByClass(commandsRaw.commands, implementedCommands, releasedCommands);
+const blocks = groupByClass(classesRaw.blocks, implementedBlockClasses, released?.[0]);
+const items = groupByClass(classesRaw.items, implementedItemClasses, released?.[1]);
+const entities = groupByClass(classesRaw.entities, implementedEntityClasses, released?.[2]);
+const commands = groupByClass(commandsRaw.commands, implementedCommands, released?.[3]);
 
 async function steelVersion(): Promise<string | null> {
   try {
