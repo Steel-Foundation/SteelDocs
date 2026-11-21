@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "nightly",
-    "steel_version": "0.16.0+mc26.3",
-    "steel_commit": "4d92a8ab998fc5770fafe21e913571c6ca9968bb",
-    "steel_committed_at": "2026-10-16T23:57:20+02:00"
+    "steel_version": "0.17.1+mc26.3",
+    "steel_commit": "cf5a7f6490a2808f0edcc21efd8c99399b344922",
+    "steel_committed_at": "2026-11-21T16:46:40+01:00"
   },
   "blocks": {
     "GrassBlock": {
@@ -248,9 +248,7 @@
     "BedBlock": {
       "implemented": true,
       "todos": [
-        "Mirror vanilla `BedBlock.useWithoutItem` invalid-dimension explosion",
         "Mirror vanilla `BedBlock.kickVillagerOutOfBed` once villager sleeping",
-        "When WOrld::explode foundation exists display the bedrule error remove both halves and create the bad respawn point explosion",
         "Mirror vanilla `kickVillagerOutOfBed`: find a sleeping"
       ],
       "entries": [
@@ -614,8 +612,10 @@
       ]
     },
     "TntBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Check an arrow's pickup stack once arrows exist. Other projectiles use an empty"
+      ],
       "entries": [
         "tnt"
       ]
@@ -682,7 +682,7 @@
       ]
     },
     "SpawnerBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "spawner"
@@ -696,8 +696,10 @@
       ]
     },
     "ChestBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Preserve vanilla access ordering so loot-generation contention"
+      ],
       "entries": [
         "chest"
       ]
@@ -739,11 +741,7 @@
     },
     "StandingSignBlock": {
       "implemented": true,
-      "todos": [
-        "Implement dye sign applicators.",
-        "Play waxed sign interaction fail sound",
-        "Implement may_build check properly"
-      ],
+      "todos": [],
       "entries": [
         "oak_sign",
         "spruce_sign",
@@ -857,7 +855,9 @@
     },
     "LeverBlock": {
       "implemented": true,
-      "todos": [],
+      "todos": [
+        "Client-local interaction/ambient dust particles are omitted."
+      ],
       "entries": [
         "lever"
       ]
@@ -1266,7 +1266,7 @@
       ]
     },
     "EnchantingTableBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "enchanting_table"
@@ -1337,7 +1337,7 @@
       ]
     },
     "ShelfMushroomBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "shelf_mushroom"
@@ -1445,7 +1445,7 @@
       ]
     },
     "SkullBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "skeleton_skull",
@@ -1456,7 +1456,7 @@
       ]
     },
     "WallSkullBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "skeleton_wall_skull",
@@ -1466,35 +1466,39 @@
       ]
     },
     "WitherSkullBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement wither spawning behavior (block pattern check and actual spawning)"
+      ],
       "entries": [
         "wither_skeleton_skull"
       ]
     },
     "WitherWallSkullBlock": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "implement set_placed_by (requires WitherSkullBlock::check_spawn to be implemented)"
+      ],
       "entries": [
         "wither_skeleton_wall_skull"
       ]
     },
     "PlayerHeadBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "player_head"
       ]
     },
     "PlayerWallHeadBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "player_wall_head"
       ]
     },
     "PiglinWallSkullBlock": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "piglin_wall_head"
@@ -1782,7 +1786,8 @@
       "implemented": true,
       "todos": [
         "Anger nearby piglins (PiglinAi.angerNearbyPiglins)",
-        "maybe? shulkerBoxBlockEntity.unpackLootTable(player);"
+        "maybe? shulkerBoxBlockEntity.unpackLootTable(player);",
+        "Handle preparation failures without reporting an empty"
       ],
       "entries": [
         "shulker_box",
@@ -1980,9 +1985,7 @@
     },
     "ConduitBlock": {
       "implemented": true,
-      "todos": [
-        "implement Block entity"
-      ],
+      "todos": [],
       "entries": [
         "conduit"
       ]
@@ -2026,7 +2029,8 @@
       "implemented": true,
       "todos": [
         "Anger nearby piglins (PiglinAi.angerNearbyPiglins)",
-        "Implement ContainerOpenersCounter to track open state, play sounds, and update OPEN block property. Requires scheduled block ticks (scheduleTick) for recheck functionality. See vanilla BarrelBlockEntity and ContainerOpenersCounter."
+        "Implement ContainerOpenersCounter to track open state, play sounds, and update OPEN block property. Requires scheduled block ticks (scheduleTick) for recheck functionality. See vanilla BarrelBlockEntity and ContainerOpenersCounter.",
+        "Preserve vanilla access ordering so loot-generation contention"
       ],
       "entries": [
         "barrel"
@@ -2034,7 +2038,9 @@
     },
     "SmokerBlock": {
       "implemented": true,
-      "todos": [],
+      "todos": [
+        "Handle preparation failures without reporting an empty inventory."
+      ],
       "entries": [
         "smoker"
       ]
@@ -2258,10 +2264,7 @@
     },
     "RespawnAnchorBlock": {
       "implemented": true,
-      "todos": [
-        "Implement vanilla invalid-dimension explosion once Steel has a strict",
-        "Once `World::explode` exist remove the anchor and use the"
-      ],
+      "todos": [],
       "entries": [
         "respawn_anchor"
       ]
@@ -2291,9 +2294,7 @@
     },
     "CandleCakeBlock": {
       "implemented": true,
-      "todos": [
-        ""
-      ],
+      "todos": [],
       "entries": [
         "candle_cake",
         "white_candle_cake",
@@ -3934,8 +3935,10 @@
       ]
     },
     "MinecartItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Place chest, furnace, hopper, and command block minecarts once"
+      ],
       "entries": [
         "minecart",
         "chest_minecart",
@@ -4032,8 +4035,7 @@
       "implemented": true,
       "todos": [
         "Remove fallback once all waterloggable blocks implement pickup_block.",
-        "Refactor into smaller helpers once all bucket types are implemented",
-        "Per-position environment attributes (vanilla uses EnvironmentAttributes.WATER_EVAPORATES per-pos)"
+        "Read the per-position WATER_EVAPORATES attribute once Steel has environment attributes."
       ],
       "entries": [
         "bucket",
@@ -4133,10 +4135,7 @@
     },
     "FishingRodItem": {
       "implemented": true,
-      "todos": [
-        "add vibration (Java equivalent: `ItemStack.causeVibration()`)",
-        "add vibration, see above TODO"
-      ],
+      "todos": [],
       "entries": [
         "fishing_rod"
       ]
@@ -4241,9 +4240,7 @@
     },
     "PotionItem": {
       "implemented": true,
-      "todos": [
-        "Add PotionItem's water default instance when Steel has item-specific"
-      ],
+      "todos": [],
       "entries": [
         "potion"
       ]
@@ -4259,9 +4256,7 @@
     },
     "SpawnEggItem": {
       "implemented": true,
-      "todos": [
-        "Use spawn eggs on a spawner block and also check if the condition is correct"
-      ],
+      "todos": [],
       "entries": [
         "chicken_spawn_egg",
         "cow_spawn_egg",
@@ -4368,8 +4363,10 @@
       ]
     },
     "WindChargeItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement the `ProjectileItem` dispenser dispatch."
+      ],
       "entries": [
         "wind_charge"
       ]
@@ -4468,8 +4465,10 @@
       ]
     },
     "EndCrystalItem": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Call `EnderDragonFight.tryRespawn` once the dragon fight exists."
+      ],
       "entries": [
         "end_crystal"
       ]
@@ -4477,12 +4476,8 @@
     "SplashPotionItem": {
       "implemented": true,
       "todos": [
-        "Implement inherited PotionItem.useOn water-to-mud conversion.",
-        "Implement ThrowablePotionItem use and dispenser behavior once",
-        "Add the inherited water default instance when Steel has item-specific",
-        "Implement inherited PotionItem.useOn water-to-mud conversion.",
-        "Implement ThrowablePotionItem use and dispenser behavior once",
-        "Add the inherited water default instance when Steel has item-specific"
+        "Implement the `ProjectileItem` dispenser dispatch.",
+        "Implement the `ProjectileItem` dispenser dispatch."
       ],
       "entries": [
         "splash_potion"
@@ -4498,7 +4493,6 @@
     "TippedArrowItem": {
       "implemented": true,
       "todos": [
-        "Add TippedArrowItem's poison default instance when Steel has",
         "Implement inherited ArrowItem projectile and dispenser behavior once"
       ],
       "entries": [
@@ -4514,9 +4508,7 @@
     },
     "ShieldItem": {
       "implemented": true,
-      "todos": [
-        "Complete the shared Item.use BLOCKS_ATTACKS path so shields can block."
-      ],
+      "todos": [],
       "entries": [
         "shield"
       ]
@@ -4646,8 +4638,10 @@
       ]
     },
     "AreaEffectCloud": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Persist `custom_particle` once particle options have an NBT codec. Vanilla"
+      ],
       "entries": [
         "area_effect_cloud"
       ]
@@ -4695,7 +4689,7 @@
       ]
     },
     "Bat": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "bat"
@@ -4907,7 +4901,8 @@
     "EndCrystal": {
       "implemented": true,
       "todos": [
-        "Implement portal handling, fire refresh, dragon fight callbacks, and explosion behavior."
+        "Implement portal handling and fire refresh.",
+        "Notify the dragon fight (`EndCrystal.onDestroyedBy`) here and from `kill`"
       ],
       "entries": [
         "end_crystal"
@@ -5109,7 +5104,9 @@
     },
     "ItemFrame": {
       "implemented": true,
-      "todos": [],
+      "todos": [
+        "Add interaction, drops, map tracking, and support checks."
+      ],
       "entries": [
         "item_frame"
       ]
@@ -5164,15 +5161,20 @@
       ]
     },
     "Minecart": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement getPickResult."
+      ],
       "entries": [
         "minecart"
       ]
     },
     "MushroomCow": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Route server-side LightningBolt hits here once that shared entity and dispatch exist.",
+        "Replace these local transfers with the shared conversion state transfer API."
+      ],
       "entries": [
         "mooshroom"
       ]
@@ -5276,14 +5278,14 @@
       ]
     },
     "ThrownSplashPotion": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "splash_potion"
       ]
     },
     "ThrownLingeringPotion": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "lingering_potion"
@@ -5319,10 +5321,7 @@
     },
     "Sheep": {
       "implemented": true,
-      "todos": [
-        "add this function to DyeColor",
-        "add this function to DyeColor"
-      ],
+      "todos": [],
       "entries": [
         "sheep"
       ]
@@ -5398,8 +5397,10 @@
       ]
     },
     "MinecartSpawner": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Implement getPickResult."
+      ],
       "entries": [
         "spawner_minecart"
       ]
@@ -5419,8 +5420,11 @@
       ]
     },
     "Squid": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "(ageable-water-creature): vanilla `Squid extends AgeableWaterCreature`.",
+        "depending on how `LivingEntity.air_travel_vertical_friction` implements `FlyingAnimal`'s"
+      ],
       "entries": [
         "squid"
       ]
@@ -5461,15 +5465,18 @@
       ]
     },
     "PrimedTnt": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "tnt"
       ]
     },
     "MinecartTNT": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Explode immediately when the direct entity is a burning `AbstractArrow`, with",
+        "Return a TNT minecart item once entity pickitem handling is wired up"
+      ],
       "entries": [
         "tnt_minecart"
       ]
@@ -5538,7 +5545,7 @@
       ]
     },
     "WindCharge": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "wind_charge"
@@ -5644,7 +5651,7 @@
   },
   "commands": {
     "/advancement": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/advancement"
@@ -5661,15 +5668,15 @@
       "implemented": true,
       "todos": [
         "Add the vanilla compound-NBT branch once Steel has an SNBT compound",
-        "Add bossbar after Steel has a persistent custom-bossbar manager.",
-        "Add entity after live entity NBT can reload every command-visible field.",
+        "Add pagination for domains and worlds instead of truncating to the grid capacity.",
+        "Add `locate biome` once Steel has an asynchronous closest-biome search.",
+        "Add `locate poi` once Steel has a point-of-interest manager.",
+        "Enforce the new game mode on online players when `force-gamemode=true` and return the",
         "Add items after every vanilla command-slot provider and container inventory is",
         "Add predicate and function after their runtime registries are ported.",
         "Restore Steel stopwatch conditions with the stopwatch command system.",
-        "Enforce the new game mode on online players when `force-gamemode=true` and return the",
-        "Add `locate biome` once Steel has an asynchronous closest-biome search.",
-        "Add `locate poi` once Steel has a point-of-interest manager.",
-        "Add pagination for domains and worlds instead of truncating to the grid capacity."
+        "Add bossbar after Steel has a persistent custom-bossbar manager.",
+        "Add entity after live entity NBT can reload every command-visible field."
       ],
       "entries": [
         "/execute"
@@ -5887,7 +5894,7 @@
       ]
     },
     "/swing": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/swing"
@@ -5922,7 +5929,7 @@
       ]
     },
     "/reload": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/reload"
@@ -5964,7 +5971,7 @@
       ]
     },
     "/say": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/say"
@@ -6057,7 +6064,7 @@
       ]
     },
     "/tag": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/tag"
@@ -6206,7 +6213,7 @@
       ]
     },
     "/perf": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/perf"

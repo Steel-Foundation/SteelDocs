@@ -11,6 +11,7 @@
     "blog": "Blog",
     "download": "Descargar",
     "tracker": "Tracker",
+    "donate": "Donar",
     "trackerLabel": "Seguimiento de implementación"
   },
 
@@ -58,6 +59,24 @@
     "note": "Aviso: Aquí se muestran las implementaciones en desarrollo, no la versión estable.",
     "metaTitle": "Seguimiento de implementación - SteelMC",
     "metaDescription": "Comprueba cuáles bloques, objetos y entidades de Minecraft tienen implementado su comportamiento en Steel."
+  },
+
+  "donate": {
+    "metaTitle": "Donar - SteelMC",
+    "metaDescription": "Apoya a SteelMC y mira a todas las personas que han donado hasta ahora.",
+    "title": "Apoya a",
+    "titleHighlight": "Steel",
+    "subtitle": "Steel es gratuito y de código abierto. Las donaciones se destinan a los costes de mantener el proyecto. ¡Gracias a todos los que nos apoyan!",
+    "cta": "Hazte patrocinador",
+    "goal": "Objetivo actual",
+    "goalMonthly": "{{value}} $ al mes",
+    "goalCount": "{{value}} personas",
+    "current": "Apoyos mensuales",
+    "oneTime": "Apoyos puntuales",
+    "past": "Apoyos anteriores",
+    "empty": "Aún no hay apoyos públicos. ¡Sé el primero!",
+    "refreshHint": "Esta lista se actualiza como máximo cada dos días.",
+    "lastUpdated": "Última actualización"
   },
 
   "download": {
