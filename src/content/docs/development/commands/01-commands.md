@@ -174,16 +174,16 @@ Running just `/player` should give us an error:
 ![Running `/player`](../../../../assets/commands/complex_command_2.png)
 
 :::note
-To make our command executable by anyone, we could use the `default_access()` method during the command's registration:
+To make our command executable by anyone, declare the `minecraft:all` collection so every player receives its derived permission:
 
 ```rust ins={3}
 pub(super) fn registration() -> CommandRegistration<CommandSource> {
     CommandRegistration::new(Identifier::new("example", "player"), |_| command())
-        .default_access()
+        .permission_collection(ALL_COLLECTION)
 }
 ```
 
-Permissions are explained in greated detail in [Command Permissions](../04-permissions).
+Permissions are explained in greater detail in [Command Permissions](../04-permissions).
 :::
 
 Let's add the other subcommand called `find`, this time adding a string *word* argument. This time, we add an argument node after our subcommand node:

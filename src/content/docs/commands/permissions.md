@@ -1,23 +1,25 @@
 ---
 title: Permission Commands
-description: Inspect and manage SteelMC permissions, groups, inheritance, and metadata with /perms.
+description: Inspect and manage SteelMC permissions, groups, collections, inheritance, and metadata with /perms.
 sidebar:
   order: 2
 ---
 
-`/perms` manages permissions while the server is running. It has three scopes:
+`/perms` manages permissions while the server is running. It has four scopes:
 
 ```text
 /perms user <targets> <operation>
 /perms group <group> <operation>
 /perms groups <operation>
+/perms collection <collection> <operation>
 ```
 
 - `user` manages direct player overrides and group assignments.
 - `group` manages one named group's rules, priority, inheritance, and metadata.
 - `groups` lists groups and manages which groups every player receives by default.
+- `collection` inspects, edits, and exports code-owned permission collections.
 
-This reference assumes familiarity with permission keys, wildcards, groups, and contexts. Start with [Permission configuration](../../configuration/permissions) if those concepts are new to you.
+This reference assumes familiarity with permission keys, wildcards, groups, collections, and contexts. Start with [Permission configuration](../../configuration/permissions) if those concepts are new to you.
 
 :::tip
 Inspect a player or group before editing it. Direct rules, inherited rules, contextual rules, and group priority can make the effective result different from a single configuration entry.
@@ -25,19 +27,23 @@ Inspect a player or group before editing it. Direct rules, inherited rules, cont
 
 ## How Authorization Works
 
-Every operation has a granular command permission. For example, player inspection requires `steel.command.perms.user.info`. The root `steel.command.perms` permission grants every `/perms` operation unless a more specific operation is denied.
+Every operation has a granular command permission. For example, player inspection requires `steel:command.perms.user.info`. The root `steel:command.perms` permission grants every `/perms` operation unless a more specific operation is denied.
 
 Changing or displaying managed data may require additional authority:
 
 | Authority | Purpose |
 | --- | --- |
-| `steel.permission.manage.<permission>` | Inspect, check, or change rules for that permission key |
-| `steel.permission.group.<group>` | Inspect, assign, or change that group |
-| `steel.permission.metadata` | Display, check, or change permission metadata |
+| `steel:permission.manage.<namespace>.<path>` | Inspect, check, or change rules for that permission key |
+| `steel:permission.group.<group>` | Inspect, assign, or change that group |
+| `steel:permission.metadata` | Display, check, or change permission metadata |
 
-Wildcards can grant a range of authority. For example, `steel.permission.manage.minecraft.command.*` permits management of descendant keys such as `minecraft.command.give`, while `steel.permission.manage.*` permits management of every permission key. Similarly, `steel.permission.group.*` permits management of every group.
+The management authority encodes the managed key's namespace and path as additional path segments. For example, `minecraft:command.give` is managed by `steel:permission.manage.minecraft.command.give`, and a namespace-less expression such as `command.*` is managed by `steel:permission.manage.command.*`.
 
-Information commands filter their output to the sender's authority. For example, user info omits metadata without `steel.permission.metadata` and omits rules or groups the sender cannot manage.
+Wildcards can grant a range of authority. For example, `steel:permission.manage.minecraft.command.*` permits management of descendant keys such as `minecraft:command.give`, while `steel:permission.manage.*` permits management of every permission key. Similarly, `steel:permission.group.*` permits management of every group.
+
+A collection rule is managed through the authority of its collection id, so `#minecraft:gamemasters` requires `steel:permission.manage.minecraft.gamemasters`.
+
+Information commands filter their output to the sender's authority. For example, user info omits metadata without `steel:permission.metadata` and omits rules or groups the sender cannot manage.
 
 Console and RCON bypass these player permission checks.
 
@@ -53,7 +59,7 @@ These are the best commands to run before making changes.
 
 Shows each target's assigned groups, direct permission rules, and direct metadata overrides. This reports stored player settings, not every inherited effective rule.
 
-Command permission: `steel.command.perms.user.info`
+Command permission: `steel:command.perms.user.info`
 
 The output is filtered by the sender's permission-management, group-management, and metadata authority.
 
@@ -69,13 +75,13 @@ The output is filtered by the sender's permission-management, group-management, 
 
 Resolves the permission for each target, including default groups, assigned groups, direct overrides, inheritance, priority, and context. The result identifies the winning rule and its source, or reports that the permission is unset.
 
-Command permission: `steel.command.perms.user.check`
+Command permission: `steel:command.perms.user.check`
 
-Additional authority: `steel.permission.manage.<permission>` for the checked key.
+Additional authority: `steel:permission.manage.<permission>` for the checked key.
 
 ```text
-/perms user Steve check minecraft.command.gamemode.creative
-/perms user Steve check minecraft.command.gamemode{domain=lobby}
+/perms user Steve check minecraft:command.gamemode.creative
+/perms user Steve check minecraft:command.gamemode{domain=lobby}
 ```
 
 ### Inspect a group
@@ -84,11 +90,11 @@ Additional authority: `steel.permission.manage.<permission>` for the checked key
 /perms group <group> info
 ```
 
-Shows the group's priority, parent groups, allow rules, deny rules, and metadata. Entries outside the sender's management authority are omitted.
+Shows the group's priority, parent groups, allow rules, deny rules, and metadata. Rules are shown as configured, so a collection reference appears literally as `#minecraft:gamemasters` rather than its expanded permissions. Use `/perms collection <collection> info` to inspect a collection. Entries outside the sender's management authority are omitted.
 
-Command permission: `steel.command.perms.group.info`
+Command permission: `steel:command.perms.group.info`
 
-Additional authority: `steel.permission.group.<group>`. Metadata also requires `steel.permission.metadata`; individual permission rules require matching `steel.permission.manage.<permission>` authority.
+Additional authority: `steel:permission.group.<group>`. Metadata also requires `steel:permission.metadata`; individual permission rules require matching `steel:permission.manage.<permission>` authority.
 
 ```text
 /perms group moderator info
@@ -102,9 +108,45 @@ Additional authority: `steel.permission.group.<group>`. Metadata also requires `
 
 Lists the groups the sender has authority to manage and indicates which are default groups.
 
-Command permission: `steel.command.perms.groups.list`
+Command permission: `steel:command.perms.groups.list`
 
-Only groups covered by the sender's `steel.permission.group.<group>` authority are shown.
+Only groups covered by the sender's `steel:permission.group.<group>` authority are shown.
+
+### Inspect a collection
+
+```text
+/perms collection <collection> info
+```
+
+Shows the members of a code-owned permission collection, including concrete permissions and nested `#namespace:name` references. Collection names are written as identifiers such as `minecraft:gamemasters`.
+
+Command permission: `steel:command.perms.collection.info`
+
+Additional authority: `steel:permission.manage.<namespace>.<collection>`.
+
+```text
+/perms collection minecraft:gamemasters info
+```
+
+### Add or remove a collection member
+
+```text
+/perms collection <collection> add <permission|#collection>
+/perms collection <collection> remove <permission|#collection>
+```
+
+Adds or removes one member of a collection. The member is either a concrete permission identifier such as `minecraft:command.give` or a nested `#namespace:name` collection reference. Adding a member that is already present, or removing one that is absent, reports no change.
+
+Command permission: `steel:command.perms.collection.add` and `steel:command.perms.collection.remove`
+
+Additional authority: `steel:permission.manage.<namespace>.<collection>`.
+
+```text
+/perms collection minecraft:gamemasters add myplugin:moderation.kick
+/perms collection minecraft:gamemasters remove #minecraft:moderators
+```
+
+The first edit snapshots the collection's current effective members and writes the full list to `config/permission/collections.toml`. From then on the collection is config-owned and is no longer updated automatically, even when the server later adds new vanilla permissions. Use `/perms collection export` if you only want to take ownership without changing the members.
 
 ## Manage Player Permission Rules
 
@@ -124,13 +166,13 @@ See [Contextual rules](../../configuration/permissions#contextual-rules) for the
 
 Adds or replaces the exact direct rule with an allow. Other contexts for the same permission remain unchanged.
 
-Command permission: `steel.command.perms.user.allow`
+Command permission: `steel:command.perms.user.allow`
 
-Additional authority: `steel.permission.manage.<permission>`.
+Additional authority: `steel:permission.manage.<permission>`.
 
 ```text
-/perms user Steve allow minecraft.command.teleport
-/perms user Steve allow minecraft.command.gamemode{domain=lobby}
+/perms user Steve allow minecraft:command.teleport
+/perms user Steve allow minecraft:command.gamemode{domain=lobby}
 ```
 
 ### Deny a permission
@@ -141,12 +183,12 @@ Additional authority: `steel.permission.manage.<permission>`.
 
 Adds or replaces the exact direct rule with a deny. A specific deny can override a broader allow.
 
-Command permission: `steel.command.perms.user.deny`
+Command permission: `steel:command.perms.user.deny`
 
-Additional authority: `steel.permission.manage.<permission>`.
+Additional authority: `steel:permission.manage.<permission>`.
 
 ```text
-/perms user Steve deny minecraft.command.gamemode.creative
+/perms user Steve deny minecraft:command.gamemode.creative
 ```
 
 ### Remove a direct rule
@@ -157,12 +199,12 @@ Additional authority: `steel.permission.manage.<permission>`.
 
 Removes only the direct rule with the same permission key and exact context. Rules inherited from groups are not removed.
 
-Command permission: `steel.command.perms.user.unset`
+Command permission: `steel:command.perms.user.unset`
 
-Additional authority: `steel.permission.manage.<permission>`.
+Additional authority: `steel:permission.manage.<permission>`.
 
 ```text
-/perms user Steve unset minecraft.command.gamemode{domain=lobby}
+/perms user Steve unset minecraft:command.gamemode{domain=lobby}
 ```
 
 ## Assign Player Groups
@@ -175,9 +217,9 @@ Additional authority: `steel.permission.manage.<permission>`.
 
 Assigns the group to each target. Assigning an already present group makes no change.
 
-Command permission: `steel.command.perms.user.group.add`
+Command permission: `steel:command.perms.user.group.add`
 
-Additional authority: `steel.permission.group.<group>`.
+Additional authority: `steel:permission.group.<group>`.
 
 ```text
 /perms user Steve group add moderator
@@ -191,9 +233,9 @@ Additional authority: `steel.permission.group.<group>`.
 
 Removes the assigned group from each target. This does not remove a group received through `default_groups` or inheritance.
 
-Command permission: `steel.command.perms.user.group.remove`
+Command permission: `steel:command.perms.user.group.remove`
 
-Additional authority: `steel.permission.group.<group>`.
+Additional authority: `steel:permission.group.<group>`.
 
 ```text
 /perms user Steve group remove moderator
@@ -208,11 +250,11 @@ Additional authority: `steel.permission.group.<group>`.
 /perms group <group> delete
 ```
 
-`create` adds an empty group. `delete` removes the group from the group configuration. Steel rejects deletion if the group is `op`, is still a default, or is inherited by another group; remove those references first.
+`create` adds an empty group. `delete` removes the group from the group configuration. Steel rejects deletion if the group is the configured `op_group`, a command block group, a default group, or is inherited by another group; remove those references first.
 
-Command permissions: `steel.command.perms.group.create` and `steel.command.perms.group.delete`.
+Command permissions: `steel:command.perms.group.create` and `steel:command.perms.group.delete`.
 
-Additional authority: `steel.permission.group.<group>`.
+Additional authority: `steel:permission.group.<group>`.
 
 ```text
 /perms group moderator create
@@ -222,25 +264,26 @@ Additional authority: `steel.permission.group.<group>`.
 ### Allow, deny, or unset a group rule
 
 ```text
-/perms group <group> allow <permission_expr>
-/perms group <group> deny <permission_expr>
-/perms group <group> unset <permission_expr>
+/perms group <group> allow <permission_expr|#collection>
+/perms group <group> deny <permission_expr|#collection>
+/perms group <group> unset <permission_expr|#collection>
 ```
 
-`allow` and `deny` add or replace the exact group rule. `unset` removes only the rule with the same permission key and exact context.
+`allow` and `deny` add or replace the exact group rule. `unset` removes only the rule with the same permission key and exact context, or the same `#collection` reference. Each entry is either a permission expression or a `#namespace:name` collection reference.
 
 Command permissions:
 
-- `steel.command.perms.group.allow`
-- `steel.command.perms.group.deny`
-- `steel.command.perms.group.unset`
+- `steel:command.perms.group.allow`
+- `steel:command.perms.group.deny`
+- `steel:command.perms.group.unset`
 
-Additional authority: both `steel.permission.group.<group>` and `steel.permission.manage.<permission>`.
+Additional authority: both `steel:permission.group.<group>` and the management authority of the rule. A permission rule requires `steel:permission.manage.<permission>`; a collection reference requires `steel:permission.manage.<namespace>.<collection>`.
 
 ```text
-/perms group moderator allow minecraft.command.teleport
-/perms group moderator deny minecraft.command.stop
-/perms group moderator unset minecraft.command.teleport
+/perms group moderator allow minecraft:command.teleport
+/perms group moderator allow #minecraft:gamemasters
+/perms group moderator deny minecraft:command.stop
+/perms group moderator unset #minecraft:gamemasters
 ```
 
 ### Change group priority
@@ -251,9 +294,9 @@ Additional authority: both `steel.permission.group.<group>` and `steel.permissio
 
 Sets the signed 32-bit priority used when equally specific rules from different groups conflict. Higher priority wins; specificity still takes precedence over priority.
 
-Command permission: `steel.command.perms.group.priority`
+Command permission: `steel:command.perms.group.priority`
 
-Additional authority: `steel.permission.group.<group>`.
+Additional authority: `steel:permission.group.<group>`.
 
 ```text
 /perms group moderator priority 10
@@ -269,9 +312,9 @@ Additional authority: `steel.permission.group.<group>`.
 
 Lists the group's direct parents. Parent entries outside the sender's group-management authority are omitted.
 
-Command permission: `steel.command.perms.group.inherit.list`
+Command permission: `steel:command.perms.group.inherit.list`
 
-Additional authority: `steel.permission.group.<group>`.
+Additional authority: `steel:permission.group.<group>`.
 
 ```text
 /perms group moderator inherit list
@@ -286,9 +329,9 @@ Additional authority: `steel.permission.group.<group>`.
 
 Adds or removes a direct inheritance relationship. Adding a relationship that would create a cycle is rejected. Inherited rules keep the priority of the group where they were defined.
 
-Command permissions: `steel.command.perms.group.inherit.add` and `steel.command.perms.group.inherit.remove`.
+Command permissions: `steel:command.perms.group.inherit.add` and `steel:command.perms.group.inherit.remove`.
 
-Additional authority: `steel.permission.group.<group>` and `steel.permission.group.<parent>`.
+Additional authority: `steel:permission.group.<group>` and `steel:permission.group.<parent>`.
 
 ```text
 /perms group moderator inherit add helper
@@ -308,7 +351,7 @@ Values are explicitly typed as `int`, `bool`, or `string`. See [Metadata](../../
 Quote string values that contain spaces:
 
 ```text
-/perms user Steve metadata set string "Senior Builder" plugin:rank
+/perms user Steve metadata set string "Senior Builder" myplugin:rank
 ```
 
 ### Set player metadata
@@ -321,13 +364,13 @@ Quote string values that contain spaces:
 
 Sets a direct metadata override for each target. It replaces only the value with the same metadata key and exact context.
 
-Command permission: `steel.command.perms.user.metadata.set`
+Command permission: `steel:command.perms.user.metadata.set`
 
-Additional authority: `steel.permission.metadata`.
+Additional authority: `steel:permission.metadata`.
 
 ```text
-/perms user Steve metadata set int 5 plugin:max_homes
-/perms user Steve metadata set string gold plugin:chat/color{domain=lobby}
+/perms user Steve metadata set int 5 myplugin:max_homes
+/perms user Steve metadata set string gold myplugin:chat/color{domain=lobby}
 ```
 
 ### Check player metadata
@@ -338,12 +381,12 @@ Additional authority: `steel.permission.metadata`.
 
 Resolves the effective value for each target at the requested context and reports the winning source. This includes group metadata and direct overrides.
 
-Command permission: `steel.command.perms.user.metadata.check`
+Command permission: `steel:command.perms.user.metadata.check`
 
-Additional authority: `steel.permission.metadata`.
+Additional authority: `steel:permission.metadata`.
 
 ```text
-/perms user Steve metadata check plugin:max_homes{world=survival:overworld}
+/perms user Steve metadata check myplugin:max_homes{world=survival:overworld}
 ```
 
 ### Remove player metadata
@@ -354,12 +397,12 @@ Additional authority: `steel.permission.metadata`.
 
 Removes only the direct metadata entry with the same key and exact context. Inherited group metadata remains unchanged.
 
-Command permission: `steel.command.perms.user.metadata.unset`
+Command permission: `steel:command.perms.user.metadata.unset`
 
-Additional authority: `steel.permission.metadata`.
+Additional authority: `steel:permission.metadata`.
 
 ```text
-/perms user Steve metadata unset plugin:max_homes
+/perms user Steve metadata unset myplugin:max_homes
 ```
 
 ### Set or remove group metadata
@@ -373,13 +416,13 @@ Additional authority: `steel.permission.metadata`.
 
 Sets or removes an exact metadata entry on the group. Use `/perms group <group> info` to inspect configured group metadata; there is no separate group metadata `check` operation.
 
-Command permissions: `steel.command.perms.group.metadata.set` and `steel.command.perms.group.metadata.unset`.
+Command permissions: `steel:command.perms.group.metadata.set` and `steel:command.perms.group.metadata.unset`.
 
-Additional authority: `steel.permission.group.<group>` and `steel.permission.metadata`.
+Additional authority: `steel:permission.group.<group>` and `steel:permission.metadata`.
 
 ```text
-/perms group vip metadata set int 10 plugin:max_homes
-/perms group vip metadata unset plugin:max_homes
+/perms group vip metadata set int 10 myplugin:max_homes
+/perms group vip metadata unset myplugin:max_homes
 ```
 
 ## Manage Default Groups
@@ -391,17 +434,37 @@ Additional authority: `steel.permission.group.<group>` and `steel.permission.met
 
 Adds or removes a group from `default_groups`. Default groups contribute to every player's effective permissions and metadata. Removing a default does not delete the group.
 
-Command permissions: `steel.command.perms.groups.default.add` and `steel.command.perms.groups.default.remove`.
+Command permissions: `steel:command.perms.groups.default.add` and `steel:command.perms.groups.default.remove`.
 
-Additional authority: `steel.permission.group.<group>`.
+Additional authority: `steel:permission.group.<group>`.
 
 ```text
 /perms groups default add member
 /perms groups default remove member
 ```
 
+## Export Collections
+
+```text
+/perms collection export
+/perms collection export <collection>
+```
+
+Writes the current effective contents of the collections into `config/permission/collections.toml`. Exporting a single collection additionally requires the sender's management authority for that collection; exporting all collections requires only the command permission.
+
+An exported collection replaces the built-in collection with the same id and is no longer updated automatically, even when the server later adds new vanilla permissions. Use this to take ownership of a collection you intend to customize.
+
+Command permission: `steel:command.perms.collection.export`
+
+Additional authority: `steel:permission.manage.<namespace>.<collection>` when exporting a single collection.
+
+```text
+/perms collection export
+/perms collection export minecraft:gamemasters
+```
+
 ## Persistence and Offline Players
 
-Group operations update `config/groups.toml`. Player operations update `<save_root>/global/player_permissions.toml` and can resolve online players, known offline players, or profile names available through the server's profile lookup.
+Group operations update `config/permission/groups.toml`. Collection `add`, `remove`, and `export` operations update `config/permission/collections.toml`. Player operations update `<save_root>/global/player_permissions.toml` and can resolve online players, known offline players, or profile names available through the server's profile lookup.
 
 These operations run without blocking the server tick. Command execution remains suspended until an operation finishes, then the sender receives its result and feedback.
