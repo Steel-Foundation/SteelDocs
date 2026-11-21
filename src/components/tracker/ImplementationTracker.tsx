@@ -401,6 +401,16 @@ export default function ImplementationTracker() {
                   <StatusIcon className="size-3" aria-hidden="true" />
                   {statusLabel}{status === "partial" ? ` · ${group.todos.length} task${group.todos.length !== 1 ? "s" : ""}` : ""}
                 </span>
+                {group.new_in_nightly?.length ? (
+                  <span className="flex items-center gap-1.5 text-xs px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-400/15 text-emerald-700 dark:text-emerald-300">
+                    <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    New in nightly
+                  </span>
+                ) : group.released?.length ? (
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-teal-100 dark:bg-white/10 text-teal-700 dark:text-white/60">
+                    In release
+                  </span>
+                ) : null}
 
                 {/* Issues badge */}
                 {group.issues && <span className="text-xs px-2 py-0.5 rounded-full bg-rose-200 dark:bg-rose-400/15 text-rose-800 dark:text-rose-400">
