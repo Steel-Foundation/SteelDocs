@@ -37,11 +37,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.BOT_TOKEN }}
         run: |
-          RUN_ID=$(gh run list -R Steel-Foundation/SteelMC \
-            --branch master --status success --limit 1 \
-            --json databaseId -q '.[0].databaseId')
+          RUN_ID=$(gh api "repos/Steel-Foundation/SteelMC/actions/artifacts?name=flint-summary&per_page=100" \
+            -q '[.artifacts[] | select(.workflow_run.head_branch=="master" and .expired==false)][0].workflow_run.id')
+          echo "Using run $RUN_ID"
           gh run download "$RUN_ID" -R Steel-Foundation/SteelMC \
-            -n flint_summary.json -D public/data/
+            -n flint-summary -D public/data/
 
       - name: Commit and push
         run: |
