@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.17.1+mc26.3",
-    "steel_commit": "13f4bf5a8c4e6a42401f4b9777e3fbd8a0960289",
-    "steel_committed_at": "2026-11-22T14:03:36+01:00",
+    "steel_commit": "8e5c89c3b89dcd7de07fce9f0e1f6a4ea173abfc",
+    "steel_committed_at": "2026-11-22T21:01:10+01:00",
     "latest_release": "v0.17.1+mc26.3"
   },
   "blocks": {
