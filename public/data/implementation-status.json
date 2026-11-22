@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.17.1+mc26.3",
-    "steel_commit": "0f453f9498b8f87ab1a5f8d84ef711829f3ec7b1",
-    "steel_committed_at": "2026-11-21T21:34:46+01:00",
+    "steel_commit": "13f4bf5a8c4e6a42401f4b9777e3fbd8a0960289",
+    "steel_committed_at": "2026-11-22T14:03:36+01:00",
     "latest_release": "v0.17.1+mc26.3"
   },
   "blocks": {
@@ -9256,16 +9256,11 @@
     "/execute": {
       "implemented": true,
       "todos": [
-        "Enforce the new game mode on online players when `force-gamemode=true` and return the",
-        "Add pagination for domains and worlds instead of truncating to the grid capacity.",
         "Add items after every vanilla command-slot provider and container inventory is",
         "Add predicate and function after their runtime registries are ported.",
         "Restore Steel stopwatch conditions with the stopwatch command system.",
         "Add bossbar after Steel has a persistent custom-bossbar manager.",
-        "Add entity after live entity NBT can reload every command-visible field.",
-        "Add `locate biome` once Steel has an asynchronous closest-biome search.",
-        "Add `locate poi` once Steel has a point-of-interest manager.",
-        "Add the vanilla compound-NBT branch once Steel has an SNBT compound"
+        "Add entity after live entity NBT can reload every command-visible field."
       ],
       "entries": [
         "/execute"
@@ -9650,12 +9645,14 @@
       "new_in_nightly": []
     },
     "/return": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/return"
       ],
-      "released": [],
+      "released": [
+        "/return"
+      ],
       "new_in_nightly": []
     },
     "/ride": {
@@ -9984,21 +9981,25 @@
       "new_in_nightly": []
     },
     "/deop": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/deop"
       ],
-      "released": [],
+      "released": [
+        "/deop"
+      ],
       "new_in_nightly": []
     },
     "/op": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/op"
       ],
-      "released": [],
+      "released": [
+        "/op"
+      ],
       "new_in_nightly": []
     },
     "/pardon": {
