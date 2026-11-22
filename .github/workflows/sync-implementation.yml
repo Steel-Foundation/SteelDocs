@@ -33,6 +33,16 @@ jobs:
       - name: Generate implementation status
         run: bun run scripts/sync-implementation.ts ./steel
 
+      - name: Download Flint summary artifact
+        env:
+          GH_TOKEN: ${{ secrets.BOT_TOKEN }}
+        run: |
+          RUN_ID=$(gh run list -R Steel-Foundation/SteelMC \
+            --branch main --status success --limit 1 \
+            --json databaseId -q '.[0].databaseId')
+          gh run download "$RUN_ID" -R Steel-Foundation/SteelMC \
+            -n flint_summary.json -D public/data/
+
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
