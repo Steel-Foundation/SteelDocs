@@ -2,8 +2,8 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.17.1+mc26.3",
-    "steel_commit": "c0b03f6cc97988e0690e687601b4b3ac701458ce",
-    "steel_committed_at": "2026-11-23T14:36:08+01:00",
+    "steel_commit": "1168138749bea2fb37b1b40e828f712885187b07",
+    "steel_committed_at": "2026-11-23T18:48:43+01:00",
     "latest_release": "v0.17.1+mc26.3"
   },
   "blocks": {
@@ -9502,13 +9502,15 @@
       "new_in_nightly": []
     },
     "/kick": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/kick"
       ],
       "released": [],
-      "new_in_nightly": []
+      "new_in_nightly": [
+        "/kick"
+      ]
     },
     "/kill": {
       "implemented": true,
