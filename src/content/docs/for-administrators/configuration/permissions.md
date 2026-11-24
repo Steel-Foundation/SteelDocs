@@ -158,8 +158,8 @@ Built-in context keys:
 
 | Context | Example | Meaning |
 | ------- | ------- | ------- |
-| `domain` | `domain=lobby` | Applies only inside one [domain](../../reference/terminology#domain) |
-| `world` | `world=lobby:spawn` | Applies only inside one loaded [world](../../reference/terminology#world) |
+| `domain` | `domain=lobby` | Applies only inside one [domain](../../../reference/terminology#domain) |
+| `world` | `world=lobby:spawn` | Applies only inside one loaded [world](../../../reference/terminology#world) |
 
 Custom contexts can be provided by plugins or server subsystems. Unqualified keys such as `region=spawn` are valid, but namespaced keys such as `plugin:region=spawn` are preferred for plugin-owned contexts.
 

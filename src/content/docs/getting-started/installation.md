@@ -236,4 +236,4 @@ cargo run-native --release
 
 ## Next Steps
 
-Now that you have Steel running, proceed to [Configuration](../../configuration/overview) to customize your server.
+Now that you have Steel running, proceed to [Configuration](/for-administrators/configuration/overview/) to customize your server.
