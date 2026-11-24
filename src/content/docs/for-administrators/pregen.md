@@ -27,9 +27,9 @@ For benchmarks to see how efficient the CPU is, this command can be used:
 
 **Warning: The saves folder needs to be deleted before.**
 
-### Generate the nether
+### Generating an area
 
-To generate an area in the nether, the command must be modified to change the world:
+To generate an area in a world, the world identifier must be modified to direct the generator to the world to generate:
 
 `PREGEN_SIZE=101 WORLD_IDENTIFIER="minecraft:the_nether" cargo run-native --release`
 
