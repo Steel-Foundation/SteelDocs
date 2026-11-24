@@ -5,12 +5,13 @@ import ChooseDocs from "@/components/sections/ChooseDocs.astro";
 import Community from "@/components/sections/Community.astro";
 import FooterStatus from "@/components/sections/FooterStatus.astro";
 import { t as tBase, tArr } from "@/lib/utils";
-function t(key: string): string {
-  return tBase(Astro, key);
-}
+function t(key: string): string {return tBase(Astro, key)}
 ---
 
-<Layout title="SteelMC" description={t("index.subtitle")}>
+<Layout
+  title="SteelMC"
+  description={t("index.subtitle")}
+>
   <main class="relative z-10">
     <Hero
       pillText={t("index.pillText")}
