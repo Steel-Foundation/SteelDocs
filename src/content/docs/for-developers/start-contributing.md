@@ -67,7 +67,7 @@ We have multiple guides to help you with implementing some parts of the code:
 - [How to register blocks and items](../block_item_registration)
 - [How to work with blocks](../blocks/overview)
 - [How to work with items](../items/overview)
-- [How to work with commands](../commands/overview)
+- [How to work with commands](../commands/00-overview)
 - [How to debug the network](../network/overview)
 - [How to work with our extractor](../tools/steel_extractor)
 

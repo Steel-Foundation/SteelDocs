@@ -56,7 +56,7 @@ Each rewrite has its own vision and management. We were not satisfied with any o
 
 ## How do I start contributing to Steel ?
 
-See [this page](../../development/start-contributing/).
+See [this page](/for-developers/start-contributing/).
 
 ## I have a problem, what should I do?
 
