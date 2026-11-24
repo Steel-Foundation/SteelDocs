@@ -94,7 +94,7 @@ build = ["myplugin:build.place", "#minecraft:gamemasters"]
 Each `[collections.<namespace>]` table maps a collection name to its members. Members are permission identifiers or other `#namespace:name` references. Collection names must be valid identifier paths, and namespaces follow identifier rules.
 
 :::caution
-A collection declared in `collections.toml` replaces the built-in collection entirely and is never updated again, even when the server later adds new vanilla permissions. Use `/perms collection export` to snapshot a collection you intend to customize, or `/perms collection <collection> add|remove` to edit one in place.
+A collection declared in `collections.toml` replaces the built-in collection entirely and is never updated again, even when the server later adds new vanilla permissions. Use `/perms collection export` to snapshot a collection you intend to customize, or `/perms collection <collection> add|remove` to edit one in place. The first export or edit of a collection that was not already configured prints a warning about this precedence; already-configured collections do not. Prefer extending a vanilla collection with `#minecraft:<level>` and referencing it from a group when you only need to grant its permissions.
 :::
 
 A reference to an unknown collection resolves to nothing, so a typo silently grants or denies no permissions.
@@ -109,7 +109,7 @@ op_group = "owners"
 command_block_groups = ["gamemasters"]
 ```
 
-Every player receives `all` because it is listed in `default_groups`. `op_group` is the group assigned by `/op`, and `command_block_groups` lists the groups granted to command blocks.
+Every player receives `all` because it is listed in `default_groups`. `op_group` is the group assigned by `/op`, and `command_block_groups` lists the groups granted to command blocks. Both can be changed at runtime with `/perms groups op set` and `/perms groups command_block add|remove`.
 
 Add server roles as additional tables named `[groups.<name>]`. Each group can contain permission rules, collection references, metadata, and parent groups to inherit from. A [complete example](#complete-example) later on this page shows how these pieces fit together.
 
@@ -177,6 +177,31 @@ Some commands expose narrower subcommand or value permissions. For example, `/ti
 | Spectator only | `minecraft:command.gamemode.spectator` |
 
 A broader permission grants the child action, but a more specific deny can override it. For example, allow `minecraft:command.gamemode` and deny `minecraft:command.gamemode.creative` to allow all gamemode changes except creative.
+
+### Management authorities
+
+Using `/perms` requires two separate things:
+
+1. Access to the command itself, granted by `steel:command.perms`. This permission is declared in `minecraft:moderators`, so every vanilla level except `all` can reach `/perms`.
+2. An authority for the action being performed. These authorities live in the vanilla collections, not in the groups:
+
+   | Authority | Needed for |
+   | --------- | ---------- |
+   | `steel:permission.manage.<namespace>.<path>` | `user allow`/`deny`/`unset`, `group allow`/`deny`/`unset`, and collection edits |
+   | `steel:permission.manage.minecraft.<level>` | Adding or removing a `#minecraft:<level>` collection rule |
+   | `steel:permission.group.<name>` | Group assignment, creation, deletion, priority, inheritance, default groups, `op_group`, and `command_block_groups` |
+   | `steel:permission.metadata` | Reading and editing metadata |
+   | `steel:permission.manage.*` | `/perms reload` |
+
+Each vanilla level above `all` carries the authorities for its own permissions, its collection, its group, and metadata. `minecraft:admins` also carries `steel:permission.group.all`, so `admins` and `owners` can manage the default group. Levels inherit downward, so `admins` can manage `admins`, `gamemasters`, `moderators`, `all`, and their permissions, but not `owners`. `owners` also receives `steel:permission.manage.*` and `steel:permission.group.*` in its `minecraft:owners` collection, so it can administer everything including future plugin keys. `all` receives no management authority.
+
+Permissions declared by code also grant their matching `steel:permission.manage.<namespace>.<path>` authority in the same collection. This covers built-in Steel commands and permissions contributed with `CommandRegistry::declare_permission`, including plugin contributions, so they can be edited with `/perms` without adding authorities by hand.
+
+A management authority authorizes itself: editing `steel:permission.manage.minecraft.command.give` requires that same key, not a nested `steel:permission.manage.steel.permission.manage...` key. This also applies to generated authorities such as `steel:permission.manage.steel.permission.group.admins`.
+
+Having a management authority without `steel:command.perms` is not enough: the command requirement is checked before the action handler runs.
+
+A group created in `groups.toml` receives no management authority by default. To let it administer a level, add that level's collection to its `allow` list, for example `#minecraft:gamemasters`.
 
 ## Group Configuration
 
@@ -365,6 +390,7 @@ Use `/perms` to inspect and edit permissions while the server is running. Its ge
 
 ```text
 /perms <user|group|groups|collection> ...
+/perms reload
 ```
 
 Start by inspecting the current configuration:
@@ -376,15 +402,15 @@ Start by inspecting the current configuration:
 /perms collection <collection> info
 ```
 
-These commands show direct player settings, group rules and inheritance, the available groups, and the members of a collection before you make changes. See [Permission commands](../../commands/permissions) for every operation, required permission, and example.
+These commands show direct player settings, group rules and inheritance, the available groups with their `default`/`op`/`command_block` roles, and the effective contents of collections. After editing the files by hand, use `/perms reload` to reread them and refresh online players; a failed reload leaves the previous configuration active. See [Permission commands](../../commands/permissions) for every operation, required permission, and example.
 
 ## Operators
 
 `/op <targets>` and `/deop <targets>` are backed by the permission system:
 
-- `/op` adds the configured `op_group` (default `owners`).
-- `/deop` removes it.
-- The `op_group` is required and cannot be deleted with `/perms`.
+- `/op` adds the group named by `op_group` (`owners` by default).
+- `/deop` removes that group.
+- The `op_group` is required and cannot be deleted with `/perms`. Change it first with `/perms groups op set <group>` if you need a different one.
 
 By default `owners` grants every vanilla command plus the built-in Steel commands through its inherited collections. It is not a blanket `*`: permissions owned by plugins, and any permission not covered by a collection or an explicit rule, must still be granted explicitly.
 

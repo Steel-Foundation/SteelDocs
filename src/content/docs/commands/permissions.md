@@ -5,19 +5,22 @@ sidebar:
   order: 2
 ---
 
-`/perms` manages permissions while the server is running. It has four scopes:
+`/perms` manages permissions while the server is running. It has four scopes and a top-level reload:
 
 ```text
 /perms user <targets> <operation>
 /perms group <group> <operation>
 /perms groups <operation>
-/perms collection <collection> <operation>
+/perms collection export [<collection>]
+/perms collection <collection> <info|add|remove>
+/perms reload
 ```
 
 - `user` manages direct player overrides and group assignments.
 - `group` manages one named group's rules, priority, inheritance, and metadata.
-- `groups` lists groups and manages which groups every player receives by default.
-- `collection` inspects, edits, and exports code-owned permission collections.
+- `groups` lists groups and manages default groups, the `op_group`, and `command_block_groups`.
+- `collection` inspects, exports, and edits permission collections.
+- `reload` rereads the permission configuration files without restarting the server.
 
 This reference assumes familiarity with permission keys, wildcards, groups, collections, and contexts. Start with [Permission configuration](../../configuration/permissions) if those concepts are new to you.
 
@@ -43,7 +46,17 @@ Wildcards can grant a range of authority. For example, `steel:permission.manage.
 
 A collection rule is managed through the authority of its collection id, so `#minecraft:gamemasters` requires `steel:permission.manage.minecraft.gamemasters`.
 
+A management authority authorizes itself: editing `steel:permission.manage.minecraft.command.give` requires that same key, not a nested `steel:permission.manage.steel.permission.manage...` key. The same applies to generated authorities such as `steel:permission.manage.steel.permission.group.admins`.
+
+`steel:command.perms` is declared in `minecraft:moderators`, so every vanilla level except `all` can reach the command. The matching management authorities are declared in the vanilla collections themselves: each level above `all` carries the authorities for its own permissions, collection, group, and metadata. `minecraft:admins` additionally carries `steel:permission.group.all`, and `owners` holds `steel:permission.manage.*` and `steel:permission.group.*`. A group created in `groups.toml` receives no management authority by default; add a vanilla collection such as `#minecraft:gamemasters` to its `allow` list to let it administer that level. Permissions declared by code also grant their matching management authority in the same collection.
+
+Having an authority without access to the command is not sufficient: the command requirement is checked before the action handler runs.
+
 Information commands filter their output to the sender's authority. For example, user info omits metadata without `steel:permission.metadata` and omits rules or groups the sender cannot manage.
+
+Completion suggestions list discoverable permission and metadata keys, but omit administrative declarations such as `steel:permission.manage.*`, `steel:permission.group.*`, and generated management authorities. Those keys remain valid when typed manually. Group and collection names are limited to those the sender can manage.
+
+Suggestions are also filtered by the value being edited. `group allow`/`deny` and `collection add` omit rules already present, while `group unset` and `collection remove` offer only rules that are present. Collection edits compare direct members only, so a rule granted through a nested collection reference is still offered by `add`. `groups default add` and `groups command_block add` use the same add/remove filtering; `groups default remove` and `groups command_block remove` do too, while `groups op set` offers every group the sender can manage. Suggestions do not grant access: every operation checks authority again when it runs.
 
 Console and RCON bypass these player permission checks.
 
@@ -90,7 +103,7 @@ Additional authority: `steel:permission.manage.<permission>` for the checked key
 /perms group <group> info
 ```
 
-Shows the group's priority, parent groups, allow rules, deny rules, and metadata. Rules are shown as configured, so a collection reference appears literally as `#minecraft:gamemasters` rather than its expanded permissions. Use `/perms collection <collection> info` to inspect a collection. Entries outside the sender's management authority are omitted.
+Shows the group's priority, special roles, parent groups, allow rules, deny rules, and metadata. The `roles` field lists the applicable roles: `default`, `op`, and `command_block`. Rules are shown as configured, so a collection reference appears literally as `#minecraft:gamemasters` rather than its expanded permissions. Use `/perms collection <collection> info` to inspect a collection. Entries outside the sender's management authority are omitted.
 
 Command permission: `steel:command.perms.group.info`
 
@@ -106,7 +119,7 @@ Additional authority: `steel:permission.group.<group>`. Metadata also requires `
 /perms groups list
 ```
 
-Lists the groups the sender has authority to manage and indicates which are default groups.
+Lists the groups the sender has authority to manage, the configured `op_group`, the `command_block_groups`, and which groups are defaults.
 
 Command permission: `steel:command.perms.groups.list`
 
@@ -147,6 +160,8 @@ Additional authority: `steel:permission.manage.<namespace>.<collection>`.
 ```
 
 The first edit snapshots the collection's current effective members and writes the full list to `config/permission/collections.toml`. From then on the collection is config-owned and is no longer updated automatically, even when the server later adds new vanilla permissions. Use `/perms collection export` if you only want to take ownership without changing the members.
+
+The first export or edit of a collection that was not already in `collections.toml` prints a warning: configuration wins over generated or code-declared members, and the collection will not follow future updates. The warning is not printed for collections that are already configured. Prefer extending a vanilla collection with `#minecraft:<level>` and referencing that collection from a group in `groups.toml` when you only need to grant its permissions.
 
 ## Manage Player Permission Rules
 
@@ -443,6 +458,42 @@ Additional authority: `steel:permission.group.<group>`.
 /perms groups default remove member
 ```
 
+## Manage Special Group Roles
+
+```text
+/perms groups command_block add <group>
+/perms groups command_block remove <group>
+/perms groups op set <group>
+```
+
+`command_block` adds or removes a group from `command_block_groups`, the groups granted to command blocks. `op` sets the single group assigned by `/op`; it replaces the previous value instead of adding or removing one. Setting the group that is already configured is a no-op.
+
+Command permissions: `steel:command.perms.groups.command_block.add`, `steel:command.perms.groups.command_block.remove`, and `steel:command.perms.groups.op.set`.
+
+Additional authority: `steel:permission.group.<group>`. A group used as `op_group` or listed in `command_block_groups` cannot be deleted until the role is moved or removed.
+
+```text
+/perms groups command_block add moderators
+/perms groups command_block remove moderators
+/perms groups op set admins
+```
+
+## Reload Configuration
+
+```text
+/perms reload
+```
+
+Rereads `groups.toml` and `collections.toml`, then refreshes the permission state of online players. It does not write to either file, and collections declared in code remain available. If either file is invalid or cannot be read, the server keeps the previously loaded configuration and reports the error.
+
+Command permission: `steel:command.perms.reload`.
+
+Additional authority: `steel:permission.manage.*`. This is intentionally broader than editing one permission key because reload replaces the whole configuration.
+
+```text
+/perms reload
+```
+
 ## Export Collections
 
 ```text
@@ -452,7 +503,7 @@ Additional authority: `steel:permission.group.<group>`.
 
 Writes the current effective contents of the collections into `config/permission/collections.toml`. Exporting a single collection additionally requires the sender's management authority for that collection; exporting all collections requires only the command permission.
 
-An exported collection replaces the built-in collection with the same id and is no longer updated automatically, even when the server later adds new vanilla permissions. Use this to take ownership of a collection you intend to customize.
+An exported collection replaces the built-in collection with the same id and is no longer updated automatically, even when the server later adds new vanilla permissions. Use this to take ownership of a collection you intend to customize. If the collection was not already configured, the export also prints the precedence warning described above.
 
 Command permission: `steel:command.perms.collection.export`
 

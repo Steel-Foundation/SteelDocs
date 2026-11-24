@@ -30,16 +30,17 @@ Declaring `minecraft:all` grants the command to every player in the default `all
 
 The vanilla collection identifiers are generated as constants (`ALL_COLLECTION`, `GAMEMASTERS_COLLECTION`, `ADMINS_COLLECTION`, `MODERATORS_COLLECTION`, `OWNERS_COLLECTION`) so their IDs are not written by hand. They are exported from `steel_core::permission`.
 
-For a custom permission expression, use the `permission` method:
+For a custom permission expression, use the `permission` method with a concrete `Identifier`:
 
-```rust ins={2,3,5}
+```rust ins={3,4}
 pub(super) fn registration() -> CommandRegistration<CommandSource> {
-    // Creates a specific permission expression with a custom permission key.
-    let permission = PermissionExpr::key(PermissionKey::parse("example:command.custom")?);
+    let permission = PermissionExpr::key(Identifier::new("example", "command.custom"));
     CommandRegistration::new(Identifier::new("example", "example"), |_| command())
         .permission(permission)
 }
 ```
+
+`PermissionKey` parses rule text from configuration and `/perms`; `PermissionExpr::key` takes an `Identifier`.
 
 :::note
 You can also use `PermissionExpr::scoped_key(parent, key)` for a permission of `key`. It is automatically granted if `parent` is granted,
@@ -81,8 +82,9 @@ Here's an example:
 ```rust ins={2,3,4,6}
 pub(super) fn registration() -> CommandRegistration<CommandSource> {
     // This permission requires both example:command.example.a and example:command.example.b.
-    let permission = PermissionExpr::key(PermissionKey::parse("example:command.example.a")?) &
-        PermissionExpr::key(PermissionKey::parse("example:command.example.b")?);
+    let permission =
+        PermissionExpr::key(Identifier::new("example", "command.example.a")) &
+            PermissionExpr::key(Identifier::new("example", "command.example.b"));
     CommandRegistration::new(Identifier::new("example", "example"), |_| command())
         .permission(permission)
 }
@@ -107,18 +109,24 @@ Commands that declare no collection contribute to `minecraft:owners`. Because th
 
 ### Contributing to a Collection without a Command
 
-A plugin can contribute arbitrary members to a collection, including the built-in collections, without declaring a command. Use `CommandRegistry::declare_collection_member` alongside `CommandRegistry::declare_permission`:
+A plugin can declare arbitrary permissions and collection members at startup, including in the built-in collections, without registering a command. Use `CommandRegistry::declare_permission` with a `PermissionDeclaration`:
 
-```rust ins={4,5,6,7,8,9}
+```rust ins={3,4,5,8,9,10,11}
 let mut registry = CommandRegistry::new();
-registry.declare_collection_member(
-    GAMEMASTERS_COLLECTION,
-    PermissionCollectionMember::Permission(Identifier::new("myplugin", "moderation.kick")),
+registry.declare_permission(
+    PermissionDeclaration::new("myplugin:moderation.kick")
+        .grant_permission_to(GAMEMASTERS_COLLECTION),
 )?;
-registry.declare_collection_member(
-    GAMEMASTERS_COLLECTION,
-    PermissionCollectionMember::Collection(ALL_COLLECTION),
+registry.declare_permission(
+    PermissionDeclaration::new("myplugin:build.place")
+        .in_collection(Identifier::new("myplugin", "build"))
+        .grant_collection_to(GAMEMASTERS_COLLECTION),
 )?;
 ```
 
-A member is either a concrete permission (`Permission`) or a nested collection reference (`Collection`). Declared members extend the built-in collection with the same id. They are never persisted and are re-declared at every startup, so they stay in sync with the code that owns them. Declared members are merged with the members contributed by commands before the server builds its dispatcher.
+- `PermissionDeclaration::new` validates the key and makes it discoverable by `/perms`.
+- `in_collection` makes the permission a managed member of that collection, creating it when absent. The matching `steel:permission.manage.<namespace>.<path>` authority is added alongside it.
+- `grant_permission_to` adds the permission directly to an existing collection, including a generated vanilla collection.
+- `grant_collection_to` references the collection declared with `in_collection` from another collection. It requires `in_collection` to have been set.
+
+These declarations are rebuilt at every startup and are never persisted. A collection with the same id in `config/permission/collections.toml` replaces the code-declared collection entirely, so configuration has final say.

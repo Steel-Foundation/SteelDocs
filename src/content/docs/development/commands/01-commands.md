@@ -39,8 +39,7 @@ pub(crate) fn create_registered_dispatcher(
     let mut builder = CommandDispatcherBuilder::new();
     builder.declare_permission(ENTITY_SELECTOR_PERMISSION_KEY)?;
     builder.declare_permission(ENTITY_SELECTOR_ADVANCED_PERMISSION_KEY)?;
-    builder.declare_permission(perms::MANAGE_ALL_PERMISSION)?;
-    builder.declare_permission(perms::GROUP_ALL_PERMISSION)?;
+    // Administrative wildcards stay valid at runtime but are not autocomplete candidates.
     builder.declare_permission(perms::METADATA_PERMISSION)?;
     // other commands...
     builder.register(greet::registration())?;

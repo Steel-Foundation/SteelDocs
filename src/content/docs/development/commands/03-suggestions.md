@@ -70,12 +70,12 @@ suggest | _context, builder | {
 ## Custom Suggestions
 
 You can override the default suggestions of an argument type by attaching a `SuggestionProvider`.
-A `SuggestionProvider` is any type (or closure) that implements the trait, which requires a single method:
+Functions and closures with the right signature implement the trait, which requires a single method:
 
 ```rust
 fn list_suggestions(
     &self,
-    context: &CommandSuggestionContext,
+    context: &ArgumentSuggestionContext<'_, S, A::Value>,
     builder: &mut SuggestionsBuilder<'_>,
 );
 ```
@@ -83,7 +83,11 @@ fn list_suggestions(
 The `context` provides access to the current argument being typed and the command source.
 The `builder` is used to add suggestions via `.suggest()` and to inspect the current input via `.remaining()` or `.remaining_lowercase()`.
 
-To attach a suggestion provider to an argument, use the `.suggests()` method. If your provider is already behind an `Arc`, you can use `.suggests_arc()` to avoid cloning it.
+To attach a provider to a built-in argument node, use the `.suggests()` method. If your provider is already behind an `Arc`, `.suggests_arc()` avoids cloning it.
+
+:::note
+This section describes the argument API used inside `steel-core`, where `.suggests()` takes the provider by value and `FixedSuggestionProvider` is available. Command extensions outside `steel-core` use `CommandNode::suggests(&provider)` on the public node, which requires a `&'static` provider; `suggests_arc()` and `FixedSuggestionProvider` are crate-internal.
+:::
 
 #### Fixed Suggestions
 
