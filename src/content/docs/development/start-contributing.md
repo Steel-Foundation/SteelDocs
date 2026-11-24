@@ -9,6 +9,13 @@ In this guide you will learn all the necessary things to start contributing to S
 This guide assumes you already have knowledge about how to use Git and GitHub
 :::
 
+:::tip
+As a new contributor, please limit yourself to 3 open PRs at a time, so we can give feedback on your existing ones before you open more.
+Also, start with a small, simple contribution first, around 1k lines changed or less, so it's quicker to review.
+
+Maintainers review PRs in their free time, so an initial review can take a while. If you haven't heard back after a week, ask on Discord or leave a comment on your PR to get our attention.
+:::
+
 ## Before start
 
 Before even start to prepare you need to know some key concepts of Steel's philosophy.

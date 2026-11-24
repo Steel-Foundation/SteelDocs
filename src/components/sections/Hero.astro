@@ -21,9 +21,9 @@ const {
 } = Astro.props;
 ---
 
-<div class="relative h-150 m-2">
+<div class="landing-hero relative h-150 m-2">
   <div
-    class="absolute top-0 left-0 w-full h-full z-0 rounded-b-4xl overflow-hidden"
+    class="absolute top-0 left-0 w-full h-full z-0 rounded-b-3xl overflow-hidden"
   >
     <Beams
       client:only="react"
@@ -47,8 +47,9 @@ const {
       class="block dark:hidden absolute inset-0 bg-teal-300/30 pointer-events-none"
     >
     </div>
+    <div class="hero-chunk-grid absolute inset-0 pointer-events-none" aria-hidden="true"></div>
   </div>
-  <div class="absolute top-0 left-0 w-full h-full z-20">
+  <div class="landing-hero__content absolute top-0 left-0 w-full h-full z-20">
     <BackgroundContent
       pillText={pillText}
       heroTitle={heroTitle}

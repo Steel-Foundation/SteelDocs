@@ -6,6 +6,9 @@ import "../styles/global.css";
 import ThemedPixelBlast from "@/components/homepage/ThemedPixelBlast";
 import { is_rtl } from "@/lib/utils";
 import LogoCredit from "@/components/sections/LogoCredit.astro";
+import ScrollToTop from "@/components/common/ScrollToTop.astro";
+import Navbar from "@/components/sections/Navbar.astro";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -60,6 +63,45 @@ const socialImageUrl = new URL(renderedSocialImage.src, siteUrl);
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalUrl} />
+    <script is:inline>
+      // Astro's router can produce a corrupted fallback frame in Firefox.
+      // Let Firefox use normal document navigation until its View Transitions
+      // implementation is reliable for this layout.
+      if (/Firefox\//.test(navigator.userAgent)) {
+        window.addEventListener(
+          "click",
+          (event) => {
+            if (
+              event.defaultPrevented ||
+              event.button !== 0 ||
+              event.metaKey ||
+              event.ctrlKey ||
+              event.shiftKey ||
+              event.altKey
+            ) return;
+
+            const target = event.target;
+            if (!(target instanceof Element)) return;
+            const link = target.closest("a[href]");
+            if (!link || link.target || link.hasAttribute("download")) return;
+
+            const destination = new URL(link.href, window.location.href);
+            if (
+              destination.origin !== window.location.origin ||
+              (destination.pathname === window.location.pathname &&
+                destination.search === window.location.search &&
+                destination.hash)
+            ) return;
+
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            window.location.assign(destination.href);
+          },
+          { capture: true },
+        );
+      }
+    </script>
+    <ClientRouter fallback="swap" />
 
     <meta property="og:type" content={pageType} />
     <meta property="og:site_name" content="SteelMC" />
@@ -110,16 +152,24 @@ const socialImageUrl = new URL(renderedSocialImage.src, siteUrl);
     }
     <link rel="icon" href="/favicon.png" type="image/png" />
     <script is:inline>
-      // Apply theme before paint to avoid flash
-      if ((localStorage.getItem("theme") ?? "dark") === "dark") {
-        document.documentElement.classList.add("dark");
+      function initTheme() {
+        const theme = localStorage.getItem("theme") ?? "dark";
+        if (theme === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+          document.documentElement.classList.remove("dark");
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+          document.documentElement.classList.add("dark");
+        }
       }
+      initTheme();
+      document.addEventListener("astro:after-swap", initTheme);
     </script>
   </head>
   <body class="bg-teal-100 dark:bg-teal-950">
     {
       animatedBackground ? (
-        <div class="fixed inset-0 w-full h-full -z-10">
+        <div class="fixed inset-0 w-full h-full -z-10" transition:persist="animated-bg">
           <ThemedPixelBlast
             client:only="react"
             variant="square"
@@ -147,7 +197,9 @@ const socialImageUrl = new URL(renderedSocialImage.src, siteUrl);
         />
       )
     }
+    <Navbar />
     <slot />
     <LogoCredit />
+    <ScrollToTop />
   </body>
 </html>

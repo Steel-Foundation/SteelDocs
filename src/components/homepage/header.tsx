@@ -8,7 +8,7 @@ const glassStyle = {
 
 const Pill = ({ text }: { text: string }) => (
   <div
-    className="text-black dark:text-white w-auto px-4 h-8.5 flex justify-center items-center rounded-[50px] font-medium text-xs md:text-sm bg-black/5 border border-black/10 dark:bg-white/5 dark:border-white/10"
+    className="text-black dark:text-white w-auto px-4 h-8.5 flex justify-center items-center rounded-[10px] font-medium text-xs md:text-sm bg-black/5 border border-black/10 dark:bg-white/5 dark:border-white/10"
     style={glassStyle}
   >
     <CookingPot className="w-4 h-4" />
@@ -49,7 +49,7 @@ const Actions = ({
   <div className="flex gap-4 mt-8 items-center pointer-events-auto">
     {/* Main CTA */}
     <a
-      className="px-6 md:px-8 py-2 font-minecraft font-bold bg-black text-white dark:bg-white dark:text-black rounded-[50px] text-xs md:text-sm border-none cursor-pointer hover:bg-gray-800 dark:hover:bg-gray-100 hover:-translate-y-px transition-all duration-200 ease-out"
+      className="button-enamel px-6 md:px-8 py-2 font-minecraft font-bold bg-black text-white dark:bg-white dark:text-black rounded-[10px] text-xs md:text-sm border-none cursor-pointer hover:bg-gray-800 dark:hover:bg-gray-100 hover:-translate-y-px transition-all duration-200 ease-out"
       href="#join-us"
     >
       {mainCtaText}
@@ -57,7 +57,7 @@ const Actions = ({
 
     {/* Second CTA */}
     <a
-      className="px-6 md:px-8 py-2 font-minecraft font-bold rounded-[50px] text-xs md:text-sm bg-black/5 border border-black/10 text-black/80 dark:bg-white/5 dark:border-white/10 dark:text-white/85 cursor-pointer hover:bg-black/10 dark:hover:bg-white/10 hover:-translate-y-px transition-all duration-200 ease-out"
+      className="surface-smoked px-6 md:px-8 py-2 font-minecraft font-bold rounded-[10px] text-xs md:text-sm bg-black/5 border border-black/10 text-black/80 dark:bg-white/5 dark:border-white/10 dark:text-white/85 cursor-pointer hover:bg-black/10 dark:hover:bg-white/10 hover:-translate-y-px transition-all duration-200 ease-out"
       style={glassStyle}
       href="./getting-started/introduction/"
     >

@@ -15,14 +15,14 @@ interface Props<T extends string> {
 
 const SIZES = {
   md: {
-    wrapper: "p-1 rounded-xl",
-    button: "gap-1.5 px-3 py-1.5 text-sm rounded-lg",
-    indicator: "rounded-lg",
+    wrapper: "p-1 rounded-2xl",
+    button: "gap-1.5 px-3 py-1.5 text-sm rounded-2xl",
+    indicator: "rounded-2xl",
   },
   sm: {
-    wrapper: "p-0.5 rounded-lg",
-    button: "gap-1 px-2.5 py-1 text-xs rounded-md",
-    indicator: "rounded-md",
+    wrapper: "p-0.5 rounded-2xl",
+    button: "gap-1 px-2.5 py-1 text-xs rounded-2xl",
+    indicator: "rounded-2xl",
   },
 };
 
@@ -65,12 +65,12 @@ export default function SegmentedControl<T extends string>({
       ref={wrapper}
       role="tablist"
       aria-label={label}
-      className={`relative flex shrink-0 overflow-hidden bg-teal-100 dark:bg-white/5 border border-teal-200/40 dark:border-white/10 ${styles.wrapper}`}
+      className={`tracker-control relative flex shrink-0 overflow-hidden bg-teal-100 dark:bg-white/5 border border-teal-200/40 dark:border-white/10 ${styles.wrapper}`}
     >
       {indicator && (
         <span
           aria-hidden="true"
-          className={`absolute left-0 bg-white dark:bg-white/10 shadow-sm ${styles.indicator}`}
+          className={`tracker-control__active absolute left-0 bg-white dark:bg-white/10 shadow-sm ${styles.indicator}`}
           style={{
             top: size === "sm" ? 2 : 4,
             bottom: size === "sm" ? 2 : 4,

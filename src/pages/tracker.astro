@@ -1,14 +1,14 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import Navbar from "@/components/sections/Navbar.astro";
 import ImplementationTracker from "@/components/tracker/ImplementationTracker";
+
+const t = Astro.locals.t;
 ---
 
 <Layout
-  title="Implementation Tracker - SteelMC"
-  description="Track which Minecraft blocks, items, and entities have behavior implementations in SteelMC."
+  title={t("tracker.metaTitle")}
+  description={t("tracker.metaDescription")}
 >
-  <Navbar />
   <main
     class="container mx-4 w-auto lg:mx-auto max-w-300 px-4 pt-24 pb-20 relative z-10"
   >
@@ -16,13 +16,13 @@ import ImplementationTracker from "@/components/tracker/ImplementationTracker";
       <h1
         class="text-3xl md:text-5xl font-minecraft font-bold text-teal-950 dark:text-white"
       >
-        Implementation <span class="text-emerald-600 dark:text-emerald-400"
-          >Tracker</span
+        {t("tracker.title")} <span class="text-emerald-600 dark:text-emerald-400"
+          >{t("tracker.titleHighlight")}</span
         >
       </h1>
+      <!-- Description -->
       <p class="max-w-190 text-lg text-teal-700 dark:text-gray-300 mt-3 md:text-xl">
-        Track which Minecraft blocks, items, and entities have behavior
-        implementations in Steel.
+        {t("tracker.description")} <span class="font-bold text-teal-900 dark:text-teal-100">{t("tracker.note")}</span>
       </p>
     </div>
     <ImplementationTracker client:only="react" />

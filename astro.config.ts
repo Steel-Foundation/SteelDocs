@@ -108,7 +108,7 @@ export default defineConfig({
             es: "Primeros pasos",
             de: "Erste Schritte",
           },
-          autogenerate: { directory: "getting-started" },
+          items: [{ autogenerate: { directory: "getting-started" } }],
         },
         {
           label: "Configuration",
@@ -116,11 +116,11 @@ export default defineConfig({
             es: "Configuración",
             de: "Konfiguration",
           },
-          autogenerate: { directory: "configuration" },
+          items: [{ autogenerate: { directory: "configuration" } }],
         },
         {
           label: "Commands",
-          autogenerate: { directory: "commands" },
+          items: [{ autogenerate: { directory: "commands" } }],
         },
         {
           label: "Development",
@@ -156,11 +156,16 @@ export default defineConfig({
                 es: "Herramientas",
                 de: "Werkzeuge",
               },
+              test_harnesses: {
+                en: "Test Harnesses",
+                es: "Arneses de prueba",
+                de: "Testumgebungen",
+              },
             },
             [
               "development/start-contributing",
               "development/network/network",
-              "development/tools/steel_extractor",
+              "development/tools/steel_extractor"
             ],
           ),
         },
@@ -170,7 +175,7 @@ export default defineConfig({
             es: "Referencias",
             de: "Referenz",
           },
-          autogenerate: { directory: "reference" },
+          items: [{ autogenerate: { directory: "reference" } }],
         },
       ],
       editLink: {
@@ -184,15 +189,14 @@ export default defineConfig({
           label: "English",
           lang: "en",
         },
-        // Temporarily disabled until the translations are ready.
-        // de: {
-        //   label: "Deutsch",
-        //   lang: "de",
-        // },
-        // es: {
-        //   label: "Español",
-        //   lang: "es",
-        // },
+        de: {
+          label: "Deutsch",
+          lang: "de",
+        },
+        es: {
+          label: "Español",
+          lang: "es",
+        },
       },
     }),
     react(),

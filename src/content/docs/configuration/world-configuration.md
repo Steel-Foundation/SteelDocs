@@ -17,7 +17,7 @@ SteelMC [world](../../reference/terminology#world) configuration is done through
 | `default_gamemode`    | String     | `"survival"`   | Default gamemode for new player data                                 |
 | `difficulty`          | String     | `"normal"`     | Difficulty for new level data                                        |
 | `storage.type`        | Identifier | `"steel:disk"` | Default world storage backend                                        |
-| `player_storage.type` | Identifier | `"steel:file"` | Player data storage backend                                          |
+| `player_storage.type` | Identifier | `"steel:disk"` | Player data storage backend                                          |
 
 The values `seed`, `default_gamemode`, `difficulty` and `storage` are inherited from root to [domains](../../reference/terminology#domain) and from domains to worlds. They can also be overridden in each place, which gives the server flexible configuration.
 
@@ -236,7 +236,7 @@ RAM storage means the full world will be in memory and never be saved. Means the
 | `steel:disk` | Optional `config.path`, relative to `save_path` |
 | `steel:ram`  | No config, chunks are not saved                 |
 
-Player storage currently only supports `steel:file`.
+Player storage supports `steel:disk` and `steel:ram`. With `steel:ram`, player data is not saved.
 
 Example disk path override:
 
@@ -273,7 +273,7 @@ difficulty = "normal"
 type = "steel:disk"
 
 [player_storage]
-type = "steel:file"
+type = "steel:disk"
 
 [domains.minecraft]
 default = true
@@ -309,7 +309,7 @@ difficulty = "normal"
 type = "steel:disk"
 
 [player_storage]
-type = "steel:file"
+type = "steel:disk"
 
 [domains.minecraft]
 default = true

@@ -1,0 +1,53 @@
+---
+import { ArrowUp } from "@lucide/astro";
+---
+
+<button
+  id="scroll-to-top"
+  type="button"
+  aria-label="Scroll to top"
+  class="fixed bottom-6 right-6 z-40 flex size-11 items-center justify-center rounded-2xl border border-teal-200/80 bg-white/85 text-teal-800 shadow-xl shadow-teal-950/10 backdrop-blur-md hover:-translate-y-0.5 hover:scale-105 hover:border-emerald-500/50 hover:bg-emerald-500 hover:text-white dark:border-white/15 dark:bg-teal-950/80 dark:text-white dark:shadow-black/30 dark:hover:border-emerald-400/50 dark:hover:bg-emerald-400 dark:hover:text-teal-950 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500"
+>
+  <ArrowUp class="size-5 transition-transform duration-200 group-hover:-translate-y-0.5" />
+</button>
+
+<style>
+  #scroll-to-top {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(16px) scale(0.9);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.2s ease,
+                border-color 0.2s ease,
+                color 0.2s ease;
+  }
+
+  #scroll-to-top.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+</style>
+
+<script>
+  function setupScrollToTop() {
+    const btn = document.getElementById("scroll-to-top");
+    if (!btn || btn.dataset.initialized === "true") return;
+    btn.dataset.initialized = "true";
+
+    const checkScroll = () => {
+      btn.classList.toggle("is-visible", window.scrollY > 280);
+    };
+
+    window.addEventListener("scroll", checkScroll, { passive: true });
+    checkScroll();
+
+    btn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  setupScrollToTop();
+  document.addEventListener("astro:page-load", setupScrollToTop);
+</script>

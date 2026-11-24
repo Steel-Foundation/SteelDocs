@@ -50,6 +50,14 @@ There are some PoCs and we are happy to help but the goal of this project is to 
 
 That's due to a vanilla gamerule, you can use `/gamerule player_movement_check false` to disable it.
 
+## Why not combine efforts with other Rust rewrites ?
+
+Each rewrite has its own vision and management. We were not satisfied with any of them, which led us to make our own rewrite from scratch.
+
+## How do I start contributing to Steel ?
+
+See [this page](../../development/start-contributing/).
+
 ## I have a problem, what should I do?
 
 You can report it on [GitHub](https://github.com/Steel-Foundation/SteelMC/issues), or join our [Discord](/discord) and post it in the bugs channel.

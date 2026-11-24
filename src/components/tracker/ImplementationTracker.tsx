@@ -1,32 +1,126 @@
 import { useState, useEffect, useMemo } from "react";
-import { Search, ChevronDown, Blocks, Sword, Filter, PawPrint } from "lucide-react";
+import { Search, ChevronDown, Blocks, Sword, Filter, PawPrint, Terminal, CheckCircle2, Circle, Wrench, FlaskConical } from "lucide-react";
 import SegmentedControl from "./SegmentedControl";
 
 interface ClassGroup {
   implemented: boolean;
   todos: string[];
   entries: string[];
+  released?: string[];
+  new_in_nightly?: string[];
+  issues: GHIssues[];
+  prs: GHIssues[];
 }
 
 type Status = "complete" | "partial" | "unimplemented";
+
+const statusMeta = {
+  complete: {
+    label: "Implemented",
+    Icon: CheckCircle2,
+    dotClass: "bg-emerald-500 dark:bg-emerald-400",
+    badgeClass: "bg-emerald-100 dark:bg-emerald-400/15 text-emerald-700 dark:text-emerald-400",
+  },
+  partial: {
+    label: "In progress",
+    Icon: Wrench,
+    dotClass: "bg-amber-500 dark:bg-amber-400",
+    badgeClass: "bg-amber-100 dark:bg-amber-400/15 text-amber-700 dark:text-amber-400",
+  },
+  unimplemented: {
+    label: "Planned",
+    Icon: Circle,
+    dotClass: "bg-slate-400 dark:bg-white/30",
+    badgeClass: "bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-white/60",
+  },
+} as const;
 
 function getStatus(group: ClassGroup): Status {
   if (!group.implemented) return "unimplemented";
   return group.todos.length > 0 ? "partial" : "complete";
 }
 
+interface ImplementationMeta {
+  source?: string;
+  steel_version?: string | null;
+  steel_commit?: string | null;
+  steel_committed_at?: string | null;
+  latest_release?: string | null;
+}
+
 interface ImplementationData {
+  meta?: ImplementationMeta;
   blocks: Record<string, ClassGroup>;
   items: Record<string, ClassGroup>;
   entities: Record<string, ClassGroup>;
+  commands: Record<string, ClassGroup>;
 }
 
-type Tab = "blocks" | "items" | "entities";
+interface GHIssues {
+  html_url: string;
+  title: string;
+  body_text: string | null;
+  pull_request: Record<string, string> | null;
+}
+
+interface FlintTest {
+  ids: string[];
+  name: string;
+  success: boolean;
+}
+
+interface FlintStats {
+  passed: number;
+  total: number;
+  failed: string[];
+}
+
+type Tab = "blocks" | "items" | "entities" | "commands";
 type StatusFilter = "all" | "complete" | "partial" | "unimplemented";
 type ProgressMetric = "surface" | "classes";
 
+async function iterIssues(pages: number, data: ImplementationData) {
+  for (let i = 0; i < pages; i++) {
+    await fetch(`https://api.github.com/repos/Steel-Foundation/SteelMC/issues?per_page=100&page=${i + 1}`, {
+      headers: { "accept": "application/vnd.github.text+json" }
+    })
+      .then((r) => r.json())
+      .then((json: GHIssues[]) => {
+        Object.values(json).forEach((pr) => {
+
+          const iter = (group: Record<string, ClassGroup>, use_slash_regex: boolean) => Object.keys(group).forEach((name) => {
+            const regex = use_slash_regex ? new RegExp(`\\B${name.toLowerCase()}\\b`) : new RegExp(`\\b${name.toLowerCase()}\\b`);
+            if (regex.test(pr.title.toLowerCase()) || (pr.body_text && regex.test(pr.body_text.toLowerCase()))) {
+              if (!pr.pull_request) {
+                if (group[name].issues) {
+                  group[name].issues.push({ title: pr.title, html_url: pr.html_url } as GHIssues);
+                  return;
+                }
+                group[name].issues = [{ title: pr.title, html_url: pr.html_url } as GHIssues];
+                return;
+              }
+              if (group[name].prs) {
+                group[name].prs.push({ title: pr.title, html_url: pr.html_url } as GHIssues);
+                return;
+              }
+              group[name].prs = [{ title: pr.title, html_url: pr.html_url } as GHIssues];
+            }
+          });
+
+          iter(data.items, false);
+          iter(data.entities, false);
+          iter(data.blocks, false);
+          iter(data.commands, true);
+        });
+      });
+  }
+  return;
+}
+
 export default function ImplementationTracker() {
   const [data, setData] = useState<ImplementationData | null>(null);
+  const [flintTests, setFlintTests] = useState<FlintTest[] | null>(null);
+  const [ghLoaded, setGhLoaded] = useState<boolean>(false);
   const [tab, setTab] = useState<Tab>("blocks");
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
@@ -34,13 +128,65 @@ export default function ImplementationTracker() {
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    fetch(import.meta.env.BASE_URL + "data/implementation-status.json")
-      .then((r) => r.json())
-      .then(setData);
+    if (!data) {
+      fetch(import.meta.env.BASE_URL + "data/implementation-status.json")
+        .then((r) => r.json())
+        .then(setData);
+    }
+    fetch(import.meta.env.BASE_URL + "data/flint_summary.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((json) => Array.isArray(json) && setFlintTests(json))
+      .catch(() => { });
   }, []);
+
+  useEffect(() => {
+    if (!data || ghLoaded) return;
+    fetch("https://api.github.com/repos/Steel-Foundation/SteelMC/issues?per_page=1", {
+      headers: { "accept": "application/vnd.github.text+json" }
+    })
+      .then(async (r) => {
+        const pages = Math.ceil(Number.parseInt(r.headers.get("link")?.match(/page=(\d+)>; rel="last"/)?.[1] || "100") / 100);
+        await iterIssues(pages, data);
+        setData(data);
+        setGhLoaded(true);
+      });
+  }, [data]);
 
   const currentData = data?.[tab];
   const entryLabel = tab === "entities" ? "entities" : tab;
+
+  const flintByEntry = useMemo(() => {
+    const map = new Map<string, FlintTest[]>();
+    if (!flintTests) return map;
+    for (const test of flintTests) {
+      for (const rawId of test.ids) {
+        const id = rawId.replace(/^minecraft:/, "");
+        const list = map.get(id);
+        if (list) list.push(test);
+        else map.set(id, [test]);
+      }
+    }
+    return map;
+  }, [flintTests]);
+
+  const flintByClass = useMemo(() => {
+    const map = new Map<string, FlintStats>();
+    if (!currentData || !flintTests) return map;
+    for (const [className, group] of Object.entries(currentData)) {
+      const matched = new Set<FlintTest>();
+      for (const entry of group.entries) {
+        for (const test of flintByEntry.get(entry) ?? []) matched.add(test);
+      }
+      const failed: string[] = [];
+      let passed = 0;
+      for (const test of matched) {
+        if (test.success) passed++;
+        else failed.push(test.name);
+      }
+      map.set(className, { passed, total: matched.size, failed });
+    }
+    return map;
+  }, [currentData, flintTests, flintByEntry]);
 
   const stats = useMemo(() => {
     if (!currentData) return { total: 0, complete: 0, partial: 0, unimplemented: 0 };
@@ -75,7 +221,7 @@ export default function ImplementationTracker() {
         if (sa !== sb) return sa - sb;
         return a[0].localeCompare(b[0]);
       });
-  }, [currentData, search, statusFilter]);
+  }, [currentData, search, statusFilter, ghLoaded]);
 
   const toggleExpand = (className: string) => {
     setExpanded((prev) => {
@@ -105,13 +251,13 @@ export default function ImplementationTracker() {
           label={progressMetric === "classes" ? "Total behaviors" : "Total entries"}
           value={stats.total}
         />
-        <StatCard label="Complete" value={stats.complete} color="emerald" />
-        <StatCard label="Partial" value={stats.partial} color="amber" />
-        <StatCard label="Unimplemented" value={stats.unimplemented} />
+        <StatCard label="Implemented" value={stats.complete} color="emerald" />
+        <StatCard label="In progress" value={stats.partial} color="amber" />
+        <StatCard label="Planned" value={stats.unimplemented} />
       </div>
 
       {/* Progress bar */}
-      <div className="mb-6 p-4 rounded-2xl bg-white/5 dark:bg-white/5 border border-teal-200/30 dark:border-white/10">
+      <div className="surface-forged mb-6 p-4 rounded-3xl bg-white/5 dark:bg-white/5 border border-teal-200/30 dark:border-white/10">
         <div className="flex flex-col gap-3 mb-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <span className="text-sm font-medium text-teal-700 dark:text-white/70">
@@ -137,23 +283,29 @@ export default function ImplementationTracker() {
             <div className="flex items-center gap-3 text-xs">
               <span className="flex items-center gap-1">
                 <span className="inline-block size-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
-                <span className="text-teal-700 dark:text-white/60">{pctComplete}%</span>
+                <span className="text-teal-700 dark:text-white/60">Implemented {pctComplete}%</span>
               </span>
               <span className="flex items-center gap-1">
                 <span className="inline-block size-2 rounded-full bg-amber-500 dark:bg-amber-400" />
-                <span className="text-teal-700 dark:text-white/60">{pctPartial}%</span>
+                <span className="text-teal-700 dark:text-white/60">In progress {pctPartial}%</span>
               </span>
             </div>
           </div>
         </div>
         <div className="relative h-3 rounded-full bg-teal-100 dark:bg-white/10 overflow-visible flex group cursor-default">
           <div
-            className="h-full bg-emerald-500 dark:bg-emerald-400 transition-all duration-500 rounded-l-full"
-            style={{ width: `${pctComplete}%` }}
+            className="h-full bg-emerald-500 dark:bg-emerald-400 rounded-l-full"
+            style={{
+              width: `${pctComplete}%`,
+              transition: "width 0.5s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.35s ease",
+            }}
           />
           <div
-            className="h-full bg-amber-500 dark:bg-amber-400 transition-all duration-500"
-            style={{ width: `${pctPartial}%` }}
+            className="h-full bg-amber-500 dark:bg-amber-400"
+            style={{
+              width: `${pctPartial}%`,
+              transition: "width 0.5s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.35s ease",
+            }}
           />
 
           {/* Tooltip */}
@@ -163,15 +315,15 @@ export default function ImplementationTracker() {
             pointer-events-none z-10 flex flex-col gap-1 whitespace-nowrap shadow-lg">
             <span className="flex items-center gap-2">
               <span className="inline-block size-2 rounded-full bg-emerald-400" />
-              Complete — {pctComplete}%
+              Implemented — {pctComplete}%
             </span>
             <span className="flex items-center gap-2">
               <span className="inline-block size-2 rounded-full bg-amber-400" />
-              Partial — {pctPartial}%
+              In progress — {pctPartial}%
             </span>
             <span className="flex items-center gap-2">
               <span className="inline-block size-2 rounded-full bg-white/20" />
-              Not started — {100 - pctComplete - pctPartial}%
+              Planned — {100 - pctComplete - pctPartial}%
             </span>
           </div>
         </div>
@@ -211,6 +363,15 @@ export default function ImplementationTracker() {
                 </>
               ),
             },
+            {
+              value: "commands",
+              content: (
+                <>
+                  <Terminal className="size-3.5" />
+                  Commands
+                </>
+              ),
+            },
           ]}
         />
 
@@ -219,10 +380,10 @@ export default function ImplementationTracker() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-teal-500 dark:text-white/40 pointer-events-none" />
           <input
             type="text"
-            placeholder={`Search ${entryLabel} or classes...`}
+            placeholder={entryLabel === "commands" ? `Search ${entryLabel}...` : `Search ${entryLabel} or classes...`}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 text-sm bg-white dark:bg-white/5 border border-teal-200/40 dark:border-white/10 rounded-xl text-teal-950 dark:text-white placeholder:text-teal-400 dark:placeholder:text-white/35 focus:outline-none focus:border-emerald-500/60 dark:focus:border-emerald-400/50 transition-all"
+            className="tracker-control w-full pl-9 pr-3 py-2 text-sm bg-white dark:bg-white/5 border border-teal-200/40 dark:border-white/10 rounded-2xl text-teal-950 dark:text-white placeholder:text-teal-400 dark:placeholder:text-white/35 focus:outline-none focus:border-emerald-500/60 dark:focus:border-emerald-400/50 transition-all"
           />
         </div>
 
@@ -240,9 +401,9 @@ export default function ImplementationTracker() {
                 </>
               ),
             },
-            { value: "complete", content: "Complete" },
-            { value: "partial", content: "Partial" },
-            { value: "unimplemented", content: "Todo" },
+            { value: "complete", content: <><CheckCircle2 className="size-3.5" /> Implemented</> },
+            { value: "partial", content: <><Wrench className="size-3.5" /> In progress</> },
+            { value: "unimplemented", content: <><Circle className="size-3.5" /> Planned</> },
           ]}
         />
       </div>
@@ -253,35 +414,37 @@ export default function ImplementationTracker() {
       </p>
 
       {/* Class list */}
-      <div className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-2">
         {filtered.map(([className, group]) => {
           const isOpen = expanded.has(className);
-          const matchingEntries = search
-            ? group.entries.filter((e) => e.toLowerCase().includes(search.toLowerCase()))
-            : group.entries;
+          const status = getStatus(group);
+          const { Icon: StatusIcon, label: statusLabel, dotClass, badgeClass } = statusMeta[status];
+          const q = search.toLowerCase();
+          const filterEntries = (list?: string[]) =>
+            !list ? [] : q ? list.filter((e) => e.toLowerCase().includes(q)) : list;
+          const matchingEntries = filterEntries(group.entries);
+          const released = filterEntries(group.released);
+          const nightly = filterEntries(group.new_in_nightly);
+          const flint = flintByClass.get(className);
+          const noTests = flint !== undefined && flint.total === 0;
 
           return (
-            <div
+            <li
               key={className}
-              className="rounded-xl border border-teal-200/30 dark:border-white/10 bg-white/60 dark:bg-white/[0.03] overflow-hidden [content-visibility:auto] [contain-intrinsic-size:auto_50px]"
+              className={`rounded-[10px] border overflow-hidden [content-visibility:auto] [contain-intrinsic-size:auto_50px] ${noTests
+                ? "border-orange-400/60 dark:border-orange-400/40 bg-orange-100/75 dark:bg-orange-400/20"
+                : "tracker-row border-teal-200/30 dark:border-white/10 bg-white/60 dark:bg-white/3"
+                }`}
             >
               <button
                 onClick={() => toggleExpand(className)}
                 className="w-full flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-teal-50 dark:hover:bg-white/5 transition-colors"
               >
                 {/* Status indicator */}
-                <div
-                  className={`size-2.5 rounded-full shrink-0 ${
-                    {
-                      complete: "bg-emerald-500 dark:bg-emerald-400",
-                      partial: "bg-amber-500 dark:bg-amber-400",
-                      unimplemented: "bg-teal-300 dark:bg-white/20",
-                    }[getStatus(group)]
-                  }`}
-                />
+                <div className={`size-2.5 rounded-full shrink-0 ${noTests ? "bg-orange-500 dark:bg-orange-400" : dotClass}`} />
 
                 {/* Class name */}
-                <span className="font-minecraft text-sm text-teal-950 dark:text-white">
+                <span className="font-minecraft text-sm text-teal-950 dark:text-white select-text cursor-text">
                   {className}
                 </span>
 
@@ -290,25 +453,49 @@ export default function ImplementationTracker() {
                   {group.entries.length}
                 </span>
 
-                {/* Status badge */}
-                {getStatus(group) === "complete" && (
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-400/15 text-emerald-700 dark:text-emerald-400">
-                    Complete
+                <span className={`flex items-center gap-1 text-xs px-2 py-0.5 rounded-full ${badgeClass}`}>
+                  <StatusIcon className="size-3" aria-hidden="true" />
+                  {statusLabel}{status === "partial" ? ` · ${group.todos.length} task${group.todos.length !== 1 ? "s" : ""}` : ""}
+                </span>
+                {flint && (
+                  <span
+                    className={`flex items-center gap-1 text-xs px-2 py-0.5 rounded-full ${flint.total === 0
+                      ? "bg-fuchsia-100 dark:bg-fuchsia-400/15 text-fuchsia-700 dark:text-fuchsia-300"
+                      : flint.passed === flint.total
+                        ? "bg-emerald-100 dark:bg-emerald-400/15 text-emerald-700 dark:text-emerald-300"
+                        : "bg-rose-100 dark:bg-rose-400/15 text-rose-700 dark:text-rose-300"
+                      }`}
+                  >
+                    <FlaskConical className="size-3" aria-hidden="true" />
+                    {flint.passed}/{flint.total}
                   </span>
                 )}
-                {getStatus(group) === "partial" && (
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-400/15 text-amber-700 dark:text-amber-400">
-                    Partial ({group.todos.length} TODO{group.todos.length !== 1 ? "s" : ""})
+                {group.new_in_nightly?.length ? (
+                  <span className="flex items-center gap-1.5 text-xs px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-400/15 text-emerald-700 dark:text-emerald-300">
+                    <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    New in nightly
                   </span>
-                )}
+                ) : group.released?.length ? (
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-teal-100 dark:bg-white/10 text-teal-700 dark:text-white/60">
+                    In release
+                  </span>
+                ) : null}
+
+                {/* Issues badge */}
+                {group.issues && <span className="text-xs px-2 py-0.5 rounded-full bg-rose-200 dark:bg-rose-400/15 text-rose-800 dark:text-rose-400">
+                  {group.issues.length} issues open
+                </span>}
+                {/* PRs badge */}
+                {group.prs && <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-200 dark:bg-indigo-400/15 text-indigo-800 dark:text-indigo-400">
+                  {group.prs.length} PRs open
+                </span>}
 
                 <div className="flex-1" />
 
                 {/* Chevron */}
                 <ChevronDown
-                  className={`size-4 text-teal-400 dark:text-white/30 transition-transform ${
-                    isOpen ? "rotate-180" : ""
-                  }`}
+                  className={`size-4 text-teal-400 dark:text-white/30 transition-transform ${isOpen ? "rotate-180" : ""
+                    }`}
                 />
               </button>
 
@@ -329,29 +516,86 @@ export default function ImplementationTracker() {
                       ))}
                     </div>
                   )}
+                  {/* Issues */}
+                  {group.issues && (
+                    <div className="flex flex-col gap-1.5 pt-2 border-t border-teal-100 dark:border-white/5 mb-3">
+                      {group.issues.map((pr, i) => (
+                        <a
+                          key={i}
+                          href={pr.html_url}
+                          className="flex items-start gap-2 text-xs px-2.5 py-1.5 rounded-lg bg-rose-50 dark:bg-rose-400/5 border border-rose-200/50 dark:border-rose-400/10"
+                        >
+                          <span className="text-rose-500 dark:text-rose-400 shrink-0 mt-px font-bold">Issue</span>
+                          <span className="text-rose-800 dark:text-rose-200/70">{pr.title}</span>
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                  {/* PRs */}
+                  {group.prs && (
+                    <div className="flex flex-col gap-1.5 pt-2 border-t border-teal-100 dark:border-white/5 mb-3">
+                      {group.prs.map((pr, i) => (
+                        <a
+                          key={i}
+                          href={pr.html_url}
+                          className="flex items-start gap-2 text-xs px-2.5 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-400/5 border border-indigo-200/50 dark:border-indigo-400/10"
+                        >
+                          <span className="text-indigo-500 dark:text-indigo-400 shrink-0 mt-px font-bold">PR</span>
+                          <span className="text-indigo-800 dark:text-indigo-200/70">{pr.title}</span>
+                        </a>
+                      ))}
+                    </div>
+                  )}
 
                   {/* Entries */}
-                  <div className={`flex flex-wrap gap-1.5 ${group.todos.length === 0 ? "pt-2 border-t border-teal-100 dark:border-white/5" : ""}`}>
-                    {(search ? matchingEntries : group.entries).map((entry) => (
-                      <span
-                        key={entry}
-                        className="text-xs px-2 py-1 rounded-lg bg-teal-50 dark:bg-white/5 text-teal-700 dark:text-white/60 border border-teal-100 dark:border-white/5"
-                      >
-                        {entry}
-                      </span>
-                    ))}
-                    {search && matchingEntries.length < group.entries.length && (
-                      <span className="text-xs px-2 py-1 text-teal-400 dark:text-white/30 italic">
-                        +{group.entries.length - matchingEntries.length} more
-                      </span>
+                  <div className={`flex flex-col gap-2.5 ${group.todos.length === 0 && !group.issues && !group.prs ? "pt-2" : "pt-2 border-t border-teal-100 dark:border-white/5"}`}>
+                    {group.released?.length || group.new_in_nightly?.length ? (
+                      <>
+                        {Boolean(group.released?.length) && (released.length > 0 || nightly.length === 0) && (
+                          <div>
+                            <span className="text-[11px] font-semibold text-teal-700/80 dark:text-white/50 uppercase tracking-wider mb-1.5 block">
+                              In release {data?.meta?.latest_release ? `(${data.meta.latest_release})` : ""}
+                            </span>
+                            <EntryChips entries={released} totalCount={group.released!.length} search={search} />
+                          </div>
+                        )}
+                        {Boolean(group.new_in_nightly?.length) && (nightly.length > 0 || released.length === 0) && (
+                          <div>
+                            <span className="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                              <span className="inline-block size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                              New in nightly
+                            </span>
+                            <EntryChips entries={nightly} totalCount={group.new_in_nightly!.length} search={search} nightly />
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <EntryChips entries={matchingEntries} totalCount={group.entries.length} search={search} />
                     )}
                   </div>
+
+                  {flint && flint.failed.length > 0 && (
+                    <div className="flex flex-col gap-1.5 pt-2.5 mt-2.5 border-t border-teal-100 dark:border-white/5">
+                      <span className="text-[11px] font-semibold text-rose-600 dark:text-rose-400 uppercase tracking-wider">
+                        Failed Flint tests ({flint.failed.length})
+                      </span>
+                      {flint.failed.map((name) => (
+                        <div
+                          key={name}
+                          className="flex items-start gap-2 text-xs px-2.5 py-1.5 rounded-lg bg-rose-50 dark:bg-rose-400/5 border border-rose-200/50 dark:border-rose-400/10"
+                        >
+                          <span className="text-rose-500 dark:text-rose-400 shrink-0 mt-px font-bold">FAIL</span>
+                          <span className="text-rose-800 dark:text-rose-200/70">{name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
 
       {filtered.length === 0 && (
         <div className="text-center py-16 text-teal-500 dark:text-white/40">
@@ -371,7 +615,7 @@ const colorClasses = {
 
 function StatCard({ label, value, color = "default" }: { label: string; value: number; color?: keyof typeof colorClasses }) {
   return (
-    <div className="p-3 rounded-xl bg-white/60 dark:bg-white/[0.03] border border-teal-200/30 dark:border-white/10">
+    <div className="surface-forged p-3 rounded-3xl bg-white/60 dark:bg-white/3 border border-teal-200/30 dark:border-white/10">
       <p className="text-xs text-teal-600 dark:text-white/40">{label}</p>
       <p className={`text-2xl font-minecraft mt-0.5 ${colorClasses[color]}`}>
         {value}
@@ -380,4 +624,35 @@ function StatCard({ label, value, color = "default" }: { label: string; value: n
   );
 }
 
-
+function EntryChips({
+  entries,
+  totalCount,
+  search,
+  nightly,
+}: {
+  entries: string[];
+  totalCount: number;
+  search: string;
+  nightly?: boolean;
+}) {
+  return (
+    <div className="flex flex-wrap gap-1.5">
+      {entries.map((entry) => (
+        <span
+          key={entry}
+          className={`text-xs px-2 py-1 rounded-lg border ${nightly
+            ? "bg-emerald-50 dark:bg-emerald-400/10 text-emerald-700 dark:text-emerald-300 border-emerald-200/60 dark:border-emerald-400/20"
+            : "bg-teal-50 dark:bg-white/5 text-teal-700 dark:text-white/60 border-teal-100 dark:border-white/5"
+            }`}
+        >
+          {entry}
+        </span>
+      ))}
+      {search && entries.length < totalCount && (
+        <span className="text-xs px-2 py-1 text-teal-400 dark:text-white/30 italic">
+          +{totalCount - entries.length} more
+        </span>
+      )}
+    </div>
+  );
+}
