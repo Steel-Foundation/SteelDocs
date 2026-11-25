@@ -81,4 +81,4 @@ A **storage backend** determines how world or player data is stored. Steel provi
 
 ## Related Pages
 
-- [World configuration](../for-administrators/configuration/world-configuration.md)
+- [World configuration](/for-administrators/configuration/world-configuration)
