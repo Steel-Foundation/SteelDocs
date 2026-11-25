@@ -1,22 +1,29 @@
 ---
 title: Terminology
-description: Common Steel world and configuration terms
+description: Common Steel world, block and configuration terms
 sidebar:
   order: 1
 ---
 
-Steel uses a few terms differently from vanilla Minecraft and from Mojang's internal names. This page is a short glossary for the world and configuration terms used in the docs.
+Steel uses a few terms differently from vanilla Minecraft and from Mojang's internal names. This page is a glossary for the world, block and configuration terms used in the docs.
 
 ## Quick Reference
 
 | Term                                | Meaning                                                                 |
 | ----------------------------------- | ----------------------------------------------------------------------- |
+| [Block State](#block-state)         | A block type with a particular set of property values                   |
 | [Identifier](#identifier)           | A unique `namespace:path` name used for Minecraft and Steel values      |
 | [Domain](#domain)                   | A collection of related worlds with shared player data and defaults     |
 | [World](#world)                     | A playable map inside a domain                                          |
-| [Dimension](#dimension)             | The rule set and visual properties used by a world                      |
+| [Dimension](#dimension)             | An in-game realm such as the Overworld, Nether or End                    |
+| [Dimension Type](#dimension-type)   | A reusable definition of dimension-specific properties                 |
 | [World Generator](#world-generator) | The system that creates terrain and chooses or accepts a dimension type |
 | [Portal Target](#portal-target)     | The same-domain world a portal sends entities to                        |
+| [Storage Backend](#storage-backend) | The system used to store world or player data                           |
+
+## Block State
+
+A **block state** is a block type together with the values of its properties, such as a direction or connection state. Different states of the same block type can have different behavior or appearance.
 
 ## Identifier
 
@@ -46,11 +53,15 @@ Each world selects a world generator. A world can also override inherited domain
 
 ## Dimension
 
-A **dimension** describes the properties used by a world. This includes things like height, sky, fog and other dimension-specific behavior.
+A **dimension** is an in-game realm such as the Overworld, Nether or End. Its properties, including height, sky, fog and other dimension-specific behavior, are defined by a dimension type.
 
-The Overworld dimension has a height of 384 blocks. The Nether has Nether fog. The End has an End skybox.
+The Overworld's dimension type sets a height of 384 blocks. The Nether's dimension type sets Nether fog, and the End's sets its skybox.
 
 A dimension is not the same as a saved map. Multiple worlds can use the same dimension type.
+
+## Dimension Type
+
+A **dimension type** is a reusable definition of a dimension's properties and behavior, such as its height, sky and fog. A world generator selects a dimension type for a world; multiple worlds can use the same type.
 
 ## World Generator
 
@@ -64,6 +75,10 @@ A **portal target** is the same-domain world that a portal sends an entity to.
 
 Steel uses vanilla conventional names by default: `overworld`, `the_nether` and `the_end`. Worlds with custom names can override this with `nether_portal_target` and `end_portal_target` in `worlds.toml`.
 
+## Storage Backend
+
+A **storage backend** determines how world or player data is stored. Steel provides disk storage, which persists data, and RAM storage, which keeps data in memory and does not save it between runs.
+
 ## Related Pages
 
-- [World configuration](/for-administrators/configuration/world-configuration/)
+- [World configuration](../for-administrators/configuration/world-configuration.md)

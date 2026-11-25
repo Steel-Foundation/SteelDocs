@@ -95,7 +95,7 @@ Feature flags are package-scoped. When enabling features outside the `steel` pac
 
 ## Production Recommendations
 
-For production servers, prefer:
+For production servers, it is preferred to:
 
 - Keep `mimalloc` enabled unless you are profiling with `dhat-heap`.
 - Keep `deadlock_detection`, `dhat-heap`, `spawn_chunk_display`, and `slow_chunk_gen` disabled.
