@@ -60,7 +60,7 @@ Once downloaded, the server can be run by opening your preferred terminal (e.g. 
 ```
 
 > [!WARNING]
-> For MacOS users is necessary to enable the Development Mode of the system to be able to execute Steel, since it's not oficially signed.
+> For MacOS users, it is necessary to enable Development Mode on the system to be able to execute Steel, since it is not officially signed.
 
 This can be achieved through running the following command in your terminal and entering your administrator password:
 
