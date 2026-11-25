@@ -50,7 +50,7 @@ There are some PoCs, and we are happy to help, but the goal of this project is t
 
 This is happening due to a vanilla gamerule, you can use `/gamerule player_movement_check false` to disable it.
 
-## Why not combine efforts with other Rust rewrites ?
+## Why not combine efforts with other Rust rewrites?
 
 Each rewrite has its own vision and management. Our founder 4lve was not satisfied with any of them, even having experience working for Pumpkin in the past, so he decided to make an open source project to match his vision for how a rust server could be created.
 
