@@ -6,31 +6,31 @@ sidebar:
 ---
 
 This guide will show you how to install and run Steel.\
-There are multiple ways to do that:
+There are multiple ways to accomplish this:
 
-- [Pre-built binary](#pre-built-binaries)
+- [Pre-built binaries](#pre-built-binaries)
 - [Docker](#docker)
 - [Egg (Pelican / Pterodactyl)](#egg)
-- [Self compiled](#self-compilation)
+- [Self-compiled](#self-compilation)
 
 ## What to select
 
-You should choose the installation method that matches where Steel will run.
+You should choose the installation method that works best for where Steel will run.
 
-- If you want to run Steel directly on the host system, use the pre-built binaries.
+- If you want to run Steel directly on the host system, use our pre-built binaries.
 
 - If you already use Kubernetes, Docker Swarm, or a standard Docker host, the Docker container is the recommended option.
 
 - If your target platform is Pelican, Pterodactyl, or another egg-based panel, use the provided Steel egg in JSON or YAML format.
 
-- If you want native processor speeds or your platform / architecture is not currently supported, build Steel from source for your target system.
+- If you want native processor speeds, or if your platform or architecture is not currently supported, build Steel from source for your target system.
 
-| Method                          | Linux x64 | Linux arm64 | Linux armv7 | Linux armv6 | Windows x64 | Windows arm | Mac arm | Mac x64 |
-| ------------------------------- | :-------: | :---------: | :---------: | :---------: | :---------: | :---------: | :-----: | :-----: |
-| [Binary](#pre-built-binaries)   |    ✅     |     ❌      |     ❌      |     ❌      |     ✅      |     ❌      |   ✅    |   ❌    |
-| [Docker](#docker)               |    ✅     |     ✅      |     ❌      |     ❌      |     ✅      |     ✅      |   ✅    |   ✅    |
-| [Egg](#egg)                     |    ✅     |     ❌      |     ❌      |     ❌      |     ❌      |     ❌      |   ❌    |   ❌    |
-| [Self-built](#self-compilation) |    ✅     |     ✅      |     ⚠️      |     ⚠️      |     ✅      |     ✅      |   ✅    |   ✅    |
+| Method                          | Linux x64 | Linux arm64 | Linux armv7 | Linux armv6 | Windows x64 | Windows arm | Mac arm | Mac x64 | Android arm64  |  Android x64 |
+| ------------------------------- | :-------: | :---------: | :---------: | :---------: | :---------: | :---------: | :-----: | :-----: |:---:|:---:|
+| [Binary](#pre-built-binaries)   |    ✅     |     ❌      |     ❌      |     ❌      |     ✅      |     ❌      |   ✅    |   ❌    |✅ |✅|
+| [Docker](#docker)               |    ✅     |     ✅      |     ❌      |     ❌      |     ✅      |     ✅      |   ✅    |   ✅    |❌️|  ❌️ |
+| [Egg](#egg)                     |    ✅     |     ❌      |     ❌      |     ❌      |     ❌      |     ❌      |   ❌    |   ❌    | ❌️  |  ❌️ |
+| [Self-built](#self-compilation) |    ✅     |     ✅      |     ⚠️      |     ⚠️      |     ✅      |     ✅      |   ✅    |   ✅    | ✅  |  ✅ |
 
 ✅: Supported. ❌: Not currently supported. ⚠️: Needs small adjustments.
 
@@ -42,11 +42,11 @@ Pre-built binaries are available on our [downloads page](../../download) for the
 
 - Linux (x86_64)
 - Windows (x86_64)
-- MacOS (ARM)
+- MacOS (arm64)
 
-Alternatively our [GitHub releases](https://github.com/Steel-Foundation/SteelMC/releases) page has the exact same files available.
+Alternatively, our [GitHub releases](https://github.com/Steel-Foundation/SteelMC/releases) page has the exact same binaries available for download.
 
-Once downloaded, to run the server you just need to open your prefered terminal (e.g. PowerShell, Ghostty, Kitty, etc...) in your downloaded executable directory and run the following command:
+Once downloaded, the server can be run by opening your preferred terminal (e.g. Powershell, Kitty, etc.) in the directory that holds the downloaded binary and running the following command:
 
 ```bash
 # Windows
@@ -56,8 +56,8 @@ Once downloaded, to run the server you just need to open your prefered terminal 
 ./steel
 ```
 
-:::caution
-For MacOS users is necessary to enable the Development Mode of the system to be able to execute Steel, since it's not oficially signed.
+> [!CAUTION]\
+> For MacOS users is necessary to enable the Development Mode of the system to be able to execute Steel, since it's not oficially signed.
 
 This can be achieved through running the following command in the terminal and entering your administrator password:
 
