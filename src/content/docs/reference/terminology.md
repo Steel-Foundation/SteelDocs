@@ -1,6 +1,6 @@
 ---
 title: Terminology
-description: Common Steel world, block and configuration terms
+description: Common Steel world and configuration terms
 sidebar:
   order: 1
 ---

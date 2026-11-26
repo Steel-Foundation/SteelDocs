@@ -25,6 +25,9 @@ You should choose the installation method that works best for where Steel will r
 
 - If you want native processor speeds, or if your platform or architecture is not currently supported, build Steel from source for your target system.
 
+>[!NOTE]
+>Your router must have port forwarding configured on the right ports for people to be able to access your server when they are not connected to your LAN, or you must use a service such as Tailscale if your ISP does not support port forwarding.
+
 | Method                          | Linux x64 | Linux arm64 | Linux armv7 | Linux armv6 | Windows x64 | Windows arm | Mac arm | Mac x64 | Android arm64  |  Android x64 |
 | ------------------------------- | :-------: | :---------: | :---------: | :---------: | :---------: | :---------: | :-----: | :-----: |:---:|:---:|
 | [Binary](#pre-built-binaries)   |    ✅     |     ❌      |     ❌      |     ❌      |     ✅      |     ❌      |   ✅    |   ❌    |✅ |✅|
@@ -35,9 +38,6 @@ You should choose the installation method that works best for where Steel will r
 ✅: Supported. ❌: Not currently supported. ⚠️: Needs small adjustments.
 
 The sections below describe each option in more detail.
-
->[!NOTE]
->Your router must have port forwarding configured on the right ports for people to be able to access your server when they are not connected to your LAN, or you must use a service such as Tailscale if your ISP does not support port forwarding.
 
 ## Pre-built Binaries
 
@@ -71,9 +71,9 @@ sudo devtools enable
 
 ## Docker
 
-Steel does not publish a container with the `latest` tag. Use a specific version tag instead, this way upgrades are always planned and no container updates unexpectedly.
+Steel does not publish an image with the `latest` tag. Use a specific version tag instead, this way upgrades are always planned and no container updates unexpectedly.
 
-The `nightly` tag is available for testing plugins and upcoming changes early. It follows the latest commit on the `master` branch and may contain bugs that have not been fixed for a release yet. Do not use `nightly` in production if you wish to avoid these bugs.
+The `nightly` tag is available for testing extensions and upcoming changes early. It follows the latest commit on the `master` branch and may contain bugs that have not been fixed for a release yet. Do not use `nightly` in production if you wish to avoid bugs and half-implemented features.
 
 ### Start the image
 
@@ -215,7 +215,7 @@ cargo build-native --no-default-features
 **Deadlock Detection** is particularly useful during development if you're experiencing hangs or suspect lock-related issues. When enabled, parking_lot will detect potential deadlocks and panic with diagnostic information.
 
 ### Running the Server
-To run the server, navigate to the directory where the source was compiled and run one of these three commands:
+To run the server, navigate to the directory where the source was cloned and compiled and run one of these three commands:
 ```bash
 # Run directly with cargo (debug mode)
 cargo run-native
