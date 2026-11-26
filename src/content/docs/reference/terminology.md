@@ -66,4 +66,4 @@ Steel uses vanilla conventional names by default: `overworld`, `the_nether` and 
 
 ## Related Pages
 
-- [World configuration](../../configuration/world-configuration)
+- [World configuration](/for-administrators/configuration/world-configuration/)

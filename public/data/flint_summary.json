@@ -1,0 +1,6981 @@
+[
+  {
+    "ids": [
+      "minecraft:air"
+    ],
+    "name": "air_fill_clears_region",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:air"
+    ],
+    "name": "air_item_empty_hand_places_nothing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:air",
+      "minecraft:torch"
+    ],
+    "name": "air_no_support_for_torch",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:air"
+    ],
+    "name": "air_place_replaces_block",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:air"
+    ],
+    "name": "air_replaceable_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:carrot_on_a_stick"
+    ],
+    "name": "Carrot On A Stick Repeated Use Not Riding",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:carrot_on_a_stick"
+    ],
+    "name": "Carrot On A Stick Use In Air Not Riding",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:carrot_on_a_stick"
+    ],
+    "name": "Carrot On A Stick Use On Block Not Riding",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence_gate",
+      "minecraft:flint_and_steel",
+      "minecraft:stone_slab",
+      "minecraft:fire"
+    ],
+    "name": "Fence Gate Flammable Wood Allows Fire",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:crimson_fence_gate",
+      "minecraft:flint_and_steel",
+      "minecraft:stone_slab",
+      "minecraft:fire"
+    ],
+    "name": "Fence Gate Nether Wood No Fire",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:campfire",
+      "minecraft:flint_and_steel"
+    ],
+    "name": "Campfire Flint And Steel Lights",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:campfire",
+      "minecraft:flint_and_steel"
+    ],
+    "name": "Campfire Waterlogged Cannot Be Lit",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:flint_and_steel",
+      "minecraft:stone",
+      "minecraft:fire"
+    ],
+    "name": "flint_and_steel_adventure_mode_places_no_fire",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:flint_and_steel",
+      "minecraft:candle"
+    ],
+    "name": "flint_and_steel_lights_candle",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:flint_and_steel",
+      "minecraft:candle_cake"
+    ],
+    "name": "flint_and_steel_lights_candle_cake",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:flint_and_steel",
+      "minecraft:fire",
+      "minecraft:stone"
+    ],
+    "name": "flint_and_steel_places_fire_on_stone",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:flint_and_steel",
+      "minecraft:soul_fire",
+      "minecraft:soul_sand"
+    ],
+    "name": "flint_and_steel_places_soul_fire_on_soul_sand",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:flint_and_steel",
+      "minecraft:tnt",
+      "minecraft:obsidian"
+    ],
+    "name": "flint_and_steel_primes_tnt",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:flint_and_steel",
+      "minecraft:fire",
+      "minecraft:oak_planks"
+    ],
+    "name": "flint_and_steel_side_of_flammable_block_places_fire",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:flint_and_steel",
+      "minecraft:fire",
+      "minecraft:stone"
+    ],
+    "name": "flint_and_steel_side_of_stone_without_support_places_no_fire",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:flint_and_steel",
+      "minecraft:tnt",
+      "minecraft:fire"
+    ],
+    "name": "flint_and_steel_tnt_explodes_gamerule_off_places_fire",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:flint_and_steel",
+      "minecraft:candle"
+    ],
+    "name": "flint_and_steel_waterlogged_candle_stays_unlit",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fire",
+      "minecraft:oak_planks",
+      "minecraft:stone",
+      "minecraft:flint_and_steel"
+    ],
+    "name": "Fire Flint And Steel On Planks Side Sets Side Flag",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:fire",
+      "minecraft:stone",
+      "minecraft:oak_planks",
+      "minecraft:flint_and_steel"
+    ],
+    "name": "Fire Flint And Steel On Stone Has Default State",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:soul_fire",
+      "minecraft:soul_sand",
+      "minecraft:flint_and_steel"
+    ],
+    "name": "Soul Fire Flint And Steel On Soul Sand Places Soul Fire",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:soul_fire",
+      "minecraft:soul_soil",
+      "minecraft:flint_and_steel"
+    ],
+    "name": "Soul Fire Flint And Steel On Soul Soil Places Soul Fire",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_hanging_sign"
+    ],
+    "name": "oak_hanging_sign_chaining",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:oak_hanging_sign"
+    ],
+    "name": "oak_hanging_sign_placement",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:oak_hanging_sign"
+    ],
+    "name": "oak_hanging_sign_support_and_drop",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_hanging_sign",
+      "minecraft:honeycomb"
+    ],
+    "name": "oak_hanging_sign_wax",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_wall_hanging_sign",
+      "minecraft:oak_hanging_sign"
+    ],
+    "name": "oak_wall_hanging_sign_chaining",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_wall_hanging_sign",
+      "minecraft:oak_hanging_sign"
+    ],
+    "name": "oak_wall_hanging_sign_placement",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:oak_wall_hanging_sign",
+      "minecraft:oak_hanging_sign"
+    ],
+    "name": "oak_wall_hanging_sign_side_of_block",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_sign",
+      "minecraft:oak_hanging_sign",
+      "minecraft:crimson_sign",
+      "minecraft:crimson_hanging_sign"
+    ],
+    "name": "sign_fuel",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:furnace",
+      "minecraft:wet_sponge",
+      "minecraft:sponge",
+      "minecraft:bucket",
+      "minecraft:water_bucket"
+    ],
+    "name": "furnace_wet_sponge_turns_bucket_to_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cauldron",
+      "minecraft:bucket",
+      "minecraft:glass_bottle"
+    ],
+    "name": "cauldron_ignores_empty_containers",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bucket",
+      "minecraft:water"
+    ],
+    "name": "bucket_cannot_fill_in_adventure",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bucket",
+      "minecraft:water"
+    ],
+    "name": "bucket_ignores_flowing_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bucket",
+      "minecraft:water_cauldron"
+    ],
+    "name": "bucket_ignores_partial_water_cauldron",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bucket",
+      "minecraft:seagrass"
+    ],
+    "name": "bucket_ignores_seagrass",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bucket",
+      "minecraft:water_bucket",
+      "minecraft:bubble_column",
+      "minecraft:soul_sand"
+    ],
+    "name": "bucket_picks_up_bubble_column",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bucket",
+      "minecraft:lava_bucket",
+      "minecraft:lava"
+    ],
+    "name": "bucket_picks_up_lava_source",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bucket",
+      "minecraft:water_bucket",
+      "minecraft:water"
+    ],
+    "name": "bucket_picks_up_water_source",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bucket",
+      "minecraft:water_bucket",
+      "minecraft:stone_slab"
+    ],
+    "name": "bucket_picks_up_waterlogged_slab",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:snowball"
+    ],
+    "name": "Throw Snowball",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:compass"
+    ],
+    "name": "compass_use_in_air",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:compass",
+      "minecraft:stone"
+    ],
+    "name": "compass_use_on_non_lodestone",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fishing_rod",
+      "minecraft:fishing_bobber"
+    ],
+    "name": "fishing_rod_reel_in_midair_keeps_rod",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ink_sac",
+      "minecraft:oak_sign"
+    ],
+    "name": "ink_sac_adventure_cannot_apply",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ink_sac",
+      "minecraft:oak_sign"
+    ],
+    "name": "ink_sac_creative_not_consumed",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ink_sac",
+      "minecraft:oak_sign"
+    ],
+    "name": "ink_sac_ignores_empty_glowing_sign",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ink_sac",
+      "minecraft:oak_sign"
+    ],
+    "name": "ink_sac_ignores_waxed_sign",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ink_sac",
+      "minecraft:oak_sign"
+    ],
+    "name": "ink_sac_removes_back_glow_only",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ink_sac",
+      "minecraft:oak_sign"
+    ],
+    "name": "ink_sac_removes_front_glow",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ink_sac",
+      "minecraft:oak_sign"
+    ],
+    "name": "ink_sac_unlit_text_unchanged",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ink_sac",
+      "minecraft:stone"
+    ],
+    "name": "ink_sac_use_on_stone",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ink_sac",
+      "minecraft:oak_wall_hanging_sign"
+    ],
+    "name": "ink_sac_wall_hanging_sign",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:glow_ink_sac",
+      "minecraft:oak_sign"
+    ],
+    "name": "Glow Ink Sac Adventure Mode",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:glow_ink_sac",
+      "minecraft:oak_sign"
+    ],
+    "name": "Glow Ink Sac Already Glowing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:glow_ink_sac",
+      "minecraft:oak_sign"
+    ],
+    "name": "Glow Ink Sac Back Text Glows",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:glow_ink_sac",
+      "minecraft:oak_sign"
+    ],
+    "name": "Glow Ink Sac Creative Keeps Stack",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:glow_ink_sac",
+      "minecraft:oak_sign"
+    ],
+    "name": "Glow Ink Sac Empty Text",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:glow_ink_sac",
+      "minecraft:oak_sign"
+    ],
+    "name": "Glow Ink Sac Front Text Glows",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:glow_ink_sac",
+      "minecraft:oak_sign"
+    ],
+    "name": "Glow Ink Sac Non Sign Block",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:glow_ink_sac",
+      "minecraft:oak_sign"
+    ],
+    "name": "Glow Ink Sac Waxed Sign",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_sign",
+      "minecraft:red_dye"
+    ],
+    "name": "oak_sign_adventure_no_dye",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_sign",
+      "minecraft:red_dye",
+      "minecraft:black_dye"
+    ],
+    "name": "oak_sign_dyeing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:composter",
+      "minecraft:bone_meal",
+      "minecraft:item",
+      "minecraft:stone"
+    ],
+    "name": "composter_empty_hand_harvests_bone_meal",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:allium",
+      "minecraft:dirt",
+      "minecraft:bone_meal"
+    ],
+    "name": "allium_bonemeal_no_effect",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bamboo",
+      "minecraft:dirt",
+      "minecraft:bone_meal"
+    ],
+    "name": "bamboo_bonemeal_growth",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bamboo",
+      "minecraft:dirt",
+      "minecraft:bone_meal"
+    ],
+    "name": "bamboo_bonemeal_middle_of_column",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bamboo",
+      "minecraft:dirt",
+      "minecraft:stone",
+      "minecraft:bone_meal"
+    ],
+    "name": "bamboo_bonemeal_rejected",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:beetroots",
+      "minecraft:bone_meal"
+    ],
+    "name": "beetroot_bonemeal_young",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:big_dripleaf",
+      "minecraft:bone_meal",
+      "minecraft:dirt",
+      "minecraft:stone"
+    ],
+    "name": "big_dripleaf_bonemeal_blocked",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:big_dripleaf",
+      "minecraft:big_dripleaf_stem",
+      "minecraft:bone_meal",
+      "minecraft:dirt"
+    ],
+    "name": "big_dripleaf_bonemeal_growth",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:big_dripleaf",
+      "minecraft:big_dripleaf_stem",
+      "minecraft:bone_meal",
+      "minecraft:water",
+      "minecraft:dirt"
+    ],
+    "name": "big_dripleaf_bonemeal_into_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:big_dripleaf",
+      "minecraft:big_dripleaf_stem",
+      "minecraft:bone_meal",
+      "minecraft:dirt"
+    ],
+    "name": "big_dripleaf_bonemeal_waterlogged",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:big_dripleaf_stem",
+      "minecraft:big_dripleaf",
+      "minecraft:bone_meal"
+    ],
+    "name": "big_dripleaf_stem_bonemeal_growth",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:big_dripleaf_stem",
+      "minecraft:big_dripleaf",
+      "minecraft:bone_meal",
+      "minecraft:water"
+    ],
+    "name": "big_dripleaf_stem_bonemeal_into_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:stone",
+      "minecraft:water",
+      "minecraft:bone_meal"
+    ],
+    "name": "bonemeal_flowing_water_does_nothing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:stone",
+      "minecraft:bone_meal"
+    ],
+    "name": "bonemeal_on_non_growable_block_does_nothing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence",
+      "minecraft:water",
+      "minecraft:bone_meal"
+    ],
+    "name": "bonemeal_underwater_requires_sturdy_face",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bush",
+      "minecraft:grass_block",
+      "minecraft:dirt",
+      "minecraft:sand",
+      "minecraft:bone_meal"
+    ],
+    "name": "bush_bonemeal_no_valid_neighbour",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bush",
+      "minecraft:grass_block",
+      "minecraft:dirt",
+      "minecraft:bone_meal"
+    ],
+    "name": "bush_bonemeal_spreads_to_single_valid_neighbour",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cave_vines",
+      "minecraft:bone_meal",
+      "minecraft:stone"
+    ],
+    "name": "cave_vines_bonemeal_berries",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cave_vines",
+      "minecraft:cave_vines_plant",
+      "minecraft:bone_meal",
+      "minecraft:stone"
+    ],
+    "name": "cave_vines_plant_bonemeal_berries",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cocoa",
+      "minecraft:bone_meal",
+      "minecraft:jungle_log"
+    ],
+    "name": "cocoa_bonemeal_growth",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cornflower",
+      "minecraft:grass_block",
+      "minecraft:bone_meal"
+    ],
+    "name": "cornflower_rejects_bonemeal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:carrots",
+      "minecraft:bone_meal"
+    ],
+    "name": "carrot_bonemeal_caps_at_max_age",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:carrots",
+      "minecraft:bone_meal"
+    ],
+    "name": "carrot_bonemeal_growth",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:carrots",
+      "minecraft:bone_meal"
+    ],
+    "name": "carrot_mature_rejects_bonemeal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dandelion",
+      "minecraft:dirt",
+      "minecraft:stone",
+      "minecraft:bone_meal"
+    ],
+    "name": "dandelion_rejects_bonemeal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_bush",
+      "minecraft:sand",
+      "minecraft:bone_meal"
+    ],
+    "name": "dead_bush_rejects_bonemeal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fern",
+      "minecraft:grass_block",
+      "minecraft:stone",
+      "minecraft:bone_meal"
+    ],
+    "name": "fern_bonemeal_blocked_above",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fern",
+      "minecraft:large_fern",
+      "minecraft:grass_block",
+      "minecraft:bone_meal"
+    ],
+    "name": "fern_bonemeal_grows_large_fern",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:flowering_azalea",
+      "minecraft:grass_block",
+      "minecraft:bone_meal"
+    ],
+    "name": "flowering_azalea_bonemeal_build_height_limit",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:flowering_azalea",
+      "minecraft:grass_block",
+      "minecraft:oak_log",
+      "minecraft:bone_meal"
+    ],
+    "name": "flowering_azalea_bonemeal_consumed",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:flowering_azalea",
+      "minecraft:grass_block",
+      "minecraft:oak_log",
+      "minecraft:rooted_dirt",
+      "minecraft:bone_meal"
+    ],
+    "name": "flowering_azalea_bonemeal_grows_tree",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:flowering_azalea",
+      "minecraft:grass_block",
+      "minecraft:water",
+      "minecraft:seagrass",
+      "minecraft:stone",
+      "minecraft:bone_meal"
+    ],
+    "name": "flowering_azalea_bonemeal_rejected_under_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:azure_bluet",
+      "minecraft:dirt",
+      "minecraft:bone_meal"
+    ],
+    "name": "azure_bluet_bone_meal_no_effect",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:mangrove_leaves",
+      "minecraft:mangrove_propagule",
+      "minecraft:bone_meal",
+      "minecraft:stone"
+    ],
+    "name": "mangrove_leaves_bonemeal_propagule",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_leaves",
+      "minecraft:bone_meal"
+    ],
+    "name": "oak_leaves_rejects_bonemeal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:pumpkin",
+      "minecraft:attached_pumpkin_stem",
+      "minecraft:pumpkin_stem",
+      "minecraft:bone_meal"
+    ],
+    "name": "attached_stem_rejects_bonemeal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:pumpkin_stem",
+      "minecraft:melon_stem",
+      "minecraft:bone_meal"
+    ],
+    "name": "mature_stem_rejects_bonemeal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:pumpkin_stem",
+      "minecraft:melon_stem",
+      "minecraft:bone_meal"
+    ],
+    "name": "stem_bonemeal_growth",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:beehive",
+      "minecraft:shears",
+      "minecraft:honeycomb"
+    ],
+    "name": "Beehive Shears Harvest Honeycomb",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:beehive",
+      "minecraft:shears"
+    ],
+    "name": "Beehive Shears Not Full",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ender_pearl"
+    ],
+    "name": "Throw Ender Pearl",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:beehive",
+      "minecraft:glass_bottle"
+    ],
+    "name": "Beehive Bottle Not Full",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water_cauldron",
+      "minecraft:cauldron",
+      "minecraft:glass_bottle",
+      "minecraft:potion"
+    ],
+    "name": "water_cauldron_glass_bottle",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:ender_eye",
+      "minecraft:end_portal_frame",
+      "minecraft:end_portal"
+    ],
+    "name": "ender_eye_completes_portal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ender_eye",
+      "minecraft:end_portal_frame"
+    ],
+    "name": "ender_eye_creative_not_consumed",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ender_eye",
+      "minecraft:end_portal_frame"
+    ],
+    "name": "ender_eye_filled_frame_unchanged",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ender_eye",
+      "minecraft:end_portal_frame"
+    ],
+    "name": "ender_eye_fills_empty_frame",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ender_eye",
+      "minecraft:end_portal_frame",
+      "minecraft:comparator",
+      "minecraft:redstone_lamp"
+    ],
+    "name": "ender_eye_frame_comparator_output",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ender_eye",
+      "minecraft:end_portal_frame",
+      "minecraft:end_portal"
+    ],
+    "name": "ender_eye_incomplete_ring_no_portal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ender_eye",
+      "minecraft:end_portal_frame",
+      "minecraft:end_portal",
+      "minecraft:stone"
+    ],
+    "name": "ender_eye_portal_replaces_block",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ender_eye",
+      "minecraft:end_portal_frame",
+      "minecraft:end_portal"
+    ],
+    "name": "ender_eye_wrong_facing_no_portal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_portal_frame",
+      "minecraft:ender_eye",
+      "minecraft:comparator",
+      "minecraft:redstone_wire"
+    ],
+    "name": "end_portal_frame_comparator_output",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_portal_frame",
+      "minecraft:ender_eye"
+    ],
+    "name": "end_portal_frame_eye_already_filled",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_portal_frame",
+      "minecraft:ender_eye"
+    ],
+    "name": "end_portal_frame_eye_insertion",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_portal_frame",
+      "minecraft:ender_eye"
+    ],
+    "name": "end_portal_frame_eye_insertion_creative",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_portal_frame",
+      "minecraft:ender_eye",
+      "minecraft:end_portal",
+      "minecraft:stone",
+      "minecraft:obsidian"
+    ],
+    "name": "end_portal_frame_ring_activates_from_any_side",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_portal_frame",
+      "minecraft:ender_eye",
+      "minecraft:end_portal"
+    ],
+    "name": "end_portal_frame_ring_activates_portal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_portal_frame",
+      "minecraft:ender_eye",
+      "minecraft:end_portal"
+    ],
+    "name": "end_portal_frame_ring_missing_eye_no_portal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_portal_frame",
+      "minecraft:ender_eye",
+      "minecraft:end_portal",
+      "minecraft:stone"
+    ],
+    "name": "end_portal_frame_ring_replaces_interior",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_portal_frame",
+      "minecraft:ender_eye",
+      "minecraft:end_portal"
+    ],
+    "name": "end_portal_frame_ring_wrong_facing_no_portal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_portal",
+      "minecraft:end_portal_frame",
+      "minecraft:ender_eye"
+    ],
+    "name": "end_portal_created_by_last_eye",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_portal",
+      "minecraft:end_portal_frame",
+      "minecraft:ender_eye"
+    ],
+    "name": "end_portal_not_created_by_wrong_facing_frame",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_portal",
+      "minecraft:end_portal_frame",
+      "minecraft:ender_eye"
+    ],
+    "name": "ender_eye_on_filled_frame_does_nothing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:campfire",
+      "minecraft:fire_charge"
+    ],
+    "name": "Campfire Fire Charge Lights",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fire_charge",
+      "minecraft:stone",
+      "minecraft:fire"
+    ],
+    "name": "fire_charge_creative_keeps_stack",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fire_charge",
+      "minecraft:candle",
+      "minecraft:stone"
+    ],
+    "name": "fire_charge_lights_candle",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fire_charge",
+      "minecraft:candle_cake",
+      "minecraft:stone"
+    ],
+    "name": "fire_charge_lights_candle_cake",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fire_charge",
+      "minecraft:campfire",
+      "minecraft:stone"
+    ],
+    "name": "fire_charge_lit_campfire_unchanged",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fire_charge",
+      "minecraft:stone",
+      "minecraft:fire"
+    ],
+    "name": "fire_charge_places_fire_on_stone",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fire_charge",
+      "minecraft:oak_planks",
+      "minecraft:stone",
+      "minecraft:fire"
+    ],
+    "name": "fire_charge_side_of_flammable_block_places_fire",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:fire_charge",
+      "minecraft:stone",
+      "minecraft:fire"
+    ],
+    "name": "fire_charge_side_of_stone_without_support_fails",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fire_charge",
+      "minecraft:soul_sand",
+      "minecraft:soul_fire"
+    ],
+    "name": "fire_charge_soul_sand_places_soul_fire",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fire_charge",
+      "minecraft:tnt",
+      "minecraft:obsidian",
+      "minecraft:fire"
+    ],
+    "name": "fire_charge_tnt_gamerule_disabled_places_fire",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fire_charge",
+      "minecraft:tnt",
+      "minecraft:obsidian"
+    ],
+    "name": "fire_charge_tnt_primes",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fire_charge",
+      "minecraft:fire"
+    ],
+    "name": "fire_charge_use_in_air_does_nothing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fire_charge",
+      "minecraft:candle",
+      "minecraft:stone"
+    ],
+    "name": "fire_charge_waterlogged_candle_not_lit",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:firework_rocket"
+    ],
+    "name": "Firework Rocket Use In Air Not Gliding",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:firework_rocket"
+    ],
+    "name": "Firework Rocket Use On Block Creative",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:firework_rocket"
+    ],
+    "name": "Firework Rocket Use On Block Survival",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_wood",
+      "minecraft:shield"
+    ],
+    "name": "wood_axe_blocked_by_offhand_shield",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:waxed_exposed_copper_bars",
+      "minecraft:honeycomb"
+    ],
+    "name": "waxed_exposed_copper_bars_ignore_honeycomb",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cut_copper_stairs",
+      "minecraft:exposed_cut_copper_stairs",
+      "minecraft:weathered_cut_copper_stairs",
+      "minecraft:oxidized_cut_copper_stairs",
+      "minecraft:waxed_cut_copper_stairs",
+      "minecraft:waxed_exposed_cut_copper_stairs",
+      "minecraft:waxed_weathered_cut_copper_stairs",
+      "minecraft:waxed_oxidized_cut_copper_stairs",
+      "minecraft:honeycomb"
+    ],
+    "name": "copper_stairs_honeycomb",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:honeycomb",
+      "minecraft:copper_block",
+      "minecraft:waxed_copper_block"
+    ],
+    "name": "honeycomb_creative_not_consumed",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:honeycomb",
+      "minecraft:stone"
+    ],
+    "name": "honeycomb_ignores_stone",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:honeycomb",
+      "minecraft:waxed_copper_block"
+    ],
+    "name": "honeycomb_ignores_waxed_copper",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:honeycomb",
+      "minecraft:oak_sign"
+    ],
+    "name": "honeycomb_ignores_waxed_sign",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:honeycomb",
+      "minecraft:copper_bulb",
+      "minecraft:waxed_copper_bulb"
+    ],
+    "name": "honeycomb_keeps_bulb_state",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:honeycomb",
+      "minecraft:cut_copper_stairs",
+      "minecraft:waxed_cut_copper_stairs"
+    ],
+    "name": "honeycomb_keeps_stairs_state",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:honeycomb",
+      "minecraft:weathered_cut_copper",
+      "minecraft:waxed_weathered_cut_copper"
+    ],
+    "name": "honeycomb_keeps_weathering_stage",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:honeycomb",
+      "minecraft:copper_block",
+      "minecraft:waxed_copper_block"
+    ],
+    "name": "honeycomb_waxes_copper_block",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:honeycomb",
+      "minecraft:oak_sign"
+    ],
+    "name": "honeycomb_waxes_sign",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:waxed_copper_bulb",
+      "minecraft:honeycomb"
+    ],
+    "name": "waxed_bulb_honeycomb_no_effect",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:waxed_lightning_rod",
+      "minecraft:honeycomb"
+    ],
+    "name": "waxed_lightning_rod_honeycomb_does_nothing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_trapdoor",
+      "minecraft:honeycomb"
+    ],
+    "name": "Copper Trapdoor Honeycomb Toggles",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bamboo",
+      "minecraft:bamboo_sapling",
+      "minecraft:dirt",
+      "minecraft:sand",
+      "minecraft:gravel",
+      "minecraft:grass_block"
+    ],
+    "name": "bamboo_sapling_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bush",
+      "minecraft:grass_block",
+      "minecraft:farmland"
+    ],
+    "name": "bush_support_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cornflower",
+      "minecraft:grass_block",
+      "minecraft:piston",
+      "minecraft:redstone_block",
+      "minecraft:piston_head"
+    ],
+    "name": "cornflower_piston_destroys",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cornflower",
+      "minecraft:lava",
+      "minecraft:grass_block"
+    ],
+    "name": "cornflower_replaced_by_flowing_lava",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cornflower",
+      "minecraft:water",
+      "minecraft:grass_block"
+    ],
+    "name": "cornflower_replaced_by_flowing_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cornflower",
+      "minecraft:grass_block",
+      "minecraft:farmland"
+    ],
+    "name": "cornflower_support_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_bush",
+      "minecraft:sand",
+      "minecraft:red_sand",
+      "minecraft:terracotta",
+      "minecraft:orange_terracotta",
+      "minecraft:dirt",
+      "minecraft:grass_block",
+      "minecraft:farmland"
+    ],
+    "name": "dead_bush_placement_on_supports",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:flowering_azalea",
+      "minecraft:grass_block",
+      "minecraft:clay"
+    ],
+    "name": "flowering_azalea_support_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:dirt",
+      "minecraft:grass_block",
+      "minecraft:pumpkin",
+      "minecraft:attached_pumpkin_stem"
+    ],
+    "name": "attached_stem_breaks_on_non_farmland_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:pale_oak_wood",
+      "minecraft:stripped_pale_oak_wood"
+    ],
+    "name": "pale_oak_wood_axe_strips",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:mangrove_leaves",
+      "minecraft:mangrove_propagule",
+      "minecraft:oak_leaves"
+    ],
+    "name": "mangrove_leaves_hanging_propagule_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_slab",
+      "minecraft:water"
+    ],
+    "name": "slab_waterlogged_water_flow",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_slab",
+      "minecraft:water"
+    ],
+    "name": "slab_waterlogging_placement",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:iron_bars",
+      "minecraft:water"
+    ],
+    "name": "iron_bars_waterlogged_flow",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:iron_bars",
+      "minecraft:water"
+    ],
+    "name": "iron_bars_waterlogged_on_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "Fence Waterlogged Spread",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "Fence Waterlogging",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:glass_pane",
+      "minecraft:red_stained_glass_pane",
+      "minecraft:water",
+      "minecraft:lava"
+    ],
+    "name": "Pane Placed In Fluids",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ender_chest",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "ender_chest_placement_in_flowing_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ender_chest",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "ender_chest_placement_in_water_source",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ender_chest",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "ender_chest_waterlogged_spreads_water",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:amethyst_cluster",
+      "minecraft:stone",
+      "minecraft:water"
+    ],
+    "name": "amethyst_cluster_support_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:amethyst_cluster",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "amethyst_cluster_waterlogged_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:campfire",
+      "minecraft:water"
+    ],
+    "name": "Campfire Placed In Water Is Unlit",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:iron_chain",
+      "minecraft:stone",
+      "minecraft:water",
+      "minecraft:lava"
+    ],
+    "name": "iron_chain_not_flowed_into_by_fluids",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:iron_chain",
+      "minecraft:stone",
+      "minecraft:water"
+    ],
+    "name": "iron_chain_waterlogged_acts_as_water_source",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:iron_chain",
+      "minecraft:stone",
+      "minecraft:water"
+    ],
+    "name": "iron_chain_waterlogged_only_from_source",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cobweb",
+      "minecraft:water"
+    ],
+    "name": "cobweb_washed_away_by_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:conduit",
+      "minecraft:water"
+    ],
+    "name": "Conduit Placed In Flowing Water Is Dry",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:conduit",
+      "minecraft:water"
+    ],
+    "name": "Conduit Placed In Water Is Waterlogged",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:conduit",
+      "minecraft:water"
+    ],
+    "name": "Conduit Waterlogged Spreads Water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_torch",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "copper_torch_washed_away_by_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_wall_torch",
+      "minecraft:copper_torch",
+      "minecraft:stone",
+      "minecraft:water",
+      "minecraft:item"
+    ],
+    "name": "copper_wall_torch_washed_away_by_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "dead_coral_dry_not_waterlogged_by_adjacent_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "dead_coral_placement_in_flowing_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "dead_coral_placement_in_water_source",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "dead_coral_waterlogged_spreads_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral_fan",
+      "minecraft:water"
+    ],
+    "name": "dead_coral_fan_placed_in_water_is_waterlogged",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral_fan",
+      "minecraft:water"
+    ],
+    "name": "dead_coral_fan_waterlogged_flows_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral_wall_fan",
+      "minecraft:water"
+    ],
+    "name": "dead_coral_wall_fan_placed_in_water_is_waterlogged",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:white_glazed_terracotta",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "glazed_terracotta_replaces_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:heavy_core",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "heavy_core_place_in_flowing_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:heavy_core",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "heavy_core_place_in_water_source",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:heavy_core",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "heavy_core_waterlogged_spreads_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:lantern",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "lantern_blocks_flowing_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:lantern",
+      "minecraft:water"
+    ],
+    "name": "lantern_placed_in_water_is_waterlogged",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:lantern",
+      "minecraft:water",
+      "minecraft:stone",
+      "minecraft:item"
+    ],
+    "name": "lantern_waterlogged_support_loss_leaves_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:stone_stairs",
+      "minecraft:water"
+    ],
+    "name": "stairs_waterlogging_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water",
+      "minecraft:item",
+      "minecraft:stone"
+    ],
+    "name": "Item Flowing Speed In Water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water"
+    ],
+    "name": "Water Corner Flow",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water"
+    ],
+    "name": "Water Downward Flow",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water"
+    ],
+    "name": "Water Downward Priority",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water"
+    ],
+    "name": "Water Falling State",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water"
+    ],
+    "name": "Water Flowing State",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water"
+    ],
+    "name": "Water Horizontal Spread",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water"
+    ],
+    "name": "Water Infinite Source",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water"
+    ],
+    "name": "Water Level Decrease",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water"
+    ],
+    "name": "Water Max Spread Distance",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water"
+    ],
+    "name": "Water Pool Formation",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water"
+    ],
+    "name": "Water Ravine Fill",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water"
+    ],
+    "name": "Water Replacement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water"
+    ],
+    "name": "Water Shortest Path",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water"
+    ],
+    "name": "Water Source Removal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water"
+    ],
+    "name": "Water Stair Flow",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water"
+    ],
+    "name": "Water Three Source Infinite",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water"
+    ],
+    "name": "Water Tick Rate Consistency",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water"
+    ],
+    "name": "Water U Shape Flow",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water"
+    ],
+    "name": "Water Vertical Column",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water",
+      "minecraft:lava"
+    ],
+    "name": "Water Lava Mixing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:white_concrete_powder",
+      "minecraft:white_concrete",
+      "minecraft:water"
+    ],
+    "name": "concrete_powder_falls_into_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:white_concrete_powder",
+      "minecraft:white_concrete",
+      "minecraft:water"
+    ],
+    "name": "concrete_powder_placed_beside_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:white_concrete_powder",
+      "minecraft:white_concrete",
+      "minecraft:water"
+    ],
+    "name": "concrete_powder_placed_into_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:white_concrete_powder",
+      "minecraft:white_concrete",
+      "minecraft:water",
+      "minecraft:lava"
+    ],
+    "name": "concrete_powder_water_placed_adjacent",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:gravel",
+      "minecraft:stone",
+      "minecraft:water"
+    ],
+    "name": "gravel_falls_into_water_pool",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_gateway",
+      "minecraft:water"
+    ],
+    "name": "End Gateway Not Replaced By Water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_portal",
+      "minecraft:water"
+    ],
+    "name": "end_portal_blocks_water_flow",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_button",
+      "minecraft:stone_button",
+      "minecraft:water"
+    ],
+    "name": "button_washed_away_by_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:waxed_lightning_rod",
+      "minecraft:water"
+    ],
+    "name": "waxed_lightning_rod_place_in_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:waxed_lightning_rod",
+      "minecraft:water"
+    ],
+    "name": "waxed_lightning_rod_waterlogged_flow",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_trapdoor",
+      "minecraft:water"
+    ],
+    "name": "Oak Trapdoor Waterlogged Flow",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:rail",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "rail_waterlogged_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:allium",
+      "minecraft:water",
+      "minecraft:dirt",
+      "minecraft:stone"
+    ],
+    "name": "allium_washed_away_by_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bamboo",
+      "minecraft:bamboo_sapling",
+      "minecraft:stone",
+      "minecraft:dirt",
+      "minecraft:water"
+    ],
+    "name": "bamboo_invalid_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:water",
+      "minecraft:beetroots",
+      "minecraft:stone"
+    ],
+    "name": "beetroot_no_growth_in_darkness",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:water",
+      "minecraft:beetroots"
+    ],
+    "name": "beetroot_random_tick_growth",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:big_dripleaf",
+      "minecraft:dirt",
+      "minecraft:water"
+    ],
+    "name": "big_dripleaf_place_in_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:big_dripleaf_stem",
+      "minecraft:big_dripleaf",
+      "minecraft:dirt",
+      "minecraft:stone",
+      "minecraft:water"
+    ],
+    "name": "big_dripleaf_stem_support_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cactus",
+      "minecraft:sand",
+      "minecraft:lava",
+      "minecraft:water"
+    ],
+    "name": "cactus_fluid_interaction",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral",
+      "minecraft:dead_brain_coral",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "brain_coral_adjacent_water_survival",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral_fan",
+      "minecraft:brain_coral_wall_fan",
+      "minecraft:stone",
+      "minecraft:water"
+    ],
+    "name": "brain_coral_fan_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral_fan",
+      "minecraft:dead_brain_coral_fan",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "brain_coral_fan_water_decay",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral",
+      "minecraft:stone",
+      "minecraft:water",
+      "minecraft:stone_slab"
+    ],
+    "name": "brain_coral_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral_wall_fan",
+      "minecraft:dead_brain_coral_wall_fan",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "brain_coral_wall_fan_water_decay",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral",
+      "minecraft:dead_brain_coral",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "brain_coral_water_removal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dandelion",
+      "minecraft:dirt",
+      "minecraft:stone",
+      "minecraft:water",
+      "minecraft:item"
+    ],
+    "name": "dandelion_washed_away_by_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_bush",
+      "minecraft:water",
+      "minecraft:sand",
+      "minecraft:stone"
+    ],
+    "name": "dead_bush_washed_away_by_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fern",
+      "minecraft:water",
+      "minecraft:dirt",
+      "minecraft:stone"
+    ],
+    "name": "fern_washed_away_by_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:flowering_azalea",
+      "minecraft:dirt",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "flowering_azalea_water_interaction",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:azure_bluet",
+      "minecraft:dirt",
+      "minecraft:water"
+    ],
+    "name": "azure_bluet_washed_away_by_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:blue_orchid",
+      "minecraft:dirt",
+      "minecraft:water"
+    ],
+    "name": "blue_orchid_washed_away_by_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_leaves",
+      "minecraft:oak_log",
+      "minecraft:stone",
+      "minecraft:water"
+    ],
+    "name": "oak_leaves_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_leaves",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "oak_leaves_waterlogged_no_flow",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:pumpkin",
+      "minecraft:water",
+      "minecraft:attached_pumpkin_stem"
+    ],
+    "name": "attached_stem_replaced_by_flowing_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:anvil",
+      "minecraft:short_grass",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "anvil_replaces_grass_and_water",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:tube_coral_block",
+      "minecraft:dead_tube_coral_block",
+      "minecraft:water"
+    ],
+    "name": "tube_coral_block_dies_after_water_removed",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:tube_coral_block",
+      "minecraft:dead_tube_coral_block",
+      "minecraft:water"
+    ],
+    "name": "tube_coral_block_ignores_diagonal_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:tube_coral_block",
+      "minecraft:water"
+    ],
+    "name": "tube_coral_block_next_to_flowing_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:tube_coral_block",
+      "minecraft:water",
+      "minecraft:stone"
+    ],
+    "name": "tube_coral_block_player_placement_near_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:tube_coral_block",
+      "minecraft:water"
+    ],
+    "name": "tube_coral_block_survives_next_to_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:tube_coral_block",
+      "minecraft:water"
+    ],
+    "name": "tube_coral_block_survives_when_water_returns",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:tube_coral_block",
+      "minecraft:water"
+    ],
+    "name": "tube_coral_block_water_in_each_direction",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cobweb",
+      "minecraft:lava"
+    ],
+    "name": "cobweb_replaced_by_lava",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_gateway",
+      "minecraft:lava"
+    ],
+    "name": "End Gateway Not Replaced By Lava",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_portal",
+      "minecraft:lava"
+    ],
+    "name": "end_portal_blocks_lava_flow",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dandelion",
+      "minecraft:dirt",
+      "minecraft:stone",
+      "minecraft:lava",
+      "minecraft:item"
+    ],
+    "name": "dandelion_burned_by_lava",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:tube_coral_block",
+      "minecraft:dead_tube_coral_block",
+      "minecraft:lava"
+    ],
+    "name": "tube_coral_block_next_to_lava_dies",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cobweb",
+      "minecraft:sand"
+    ],
+    "name": "cobweb_supports_falling_block",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:allium",
+      "minecraft:stone",
+      "minecraft:sand",
+      "minecraft:gravel"
+    ],
+    "name": "allium_placement_rejected_on_invalid_blocks",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bush",
+      "minecraft:stone",
+      "minecraft:sand"
+    ],
+    "name": "bush_placement_rejected_on_invalid_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cactus",
+      "minecraft:sand",
+      "minecraft:stone"
+    ],
+    "name": "cactus_breaks_next_to_solid",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cactus",
+      "minecraft:sand",
+      "minecraft:stone"
+    ],
+    "name": "cactus_destroys_items_inside",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:cactus",
+      "minecraft:sand"
+    ],
+    "name": "cactus_drops_item_when_broken",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cactus",
+      "minecraft:sand",
+      "minecraft:cactus_flower"
+    ],
+    "name": "cactus_grows_upward_at_max_age",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cactus",
+      "minecraft:sand",
+      "minecraft:red_sand",
+      "minecraft:suspicious_sand"
+    ],
+    "name": "cactus_placement_on_supports",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cactus",
+      "minecraft:dirt",
+      "minecraft:stone",
+      "minecraft:sand"
+    ],
+    "name": "cactus_placement_rejected",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cactus",
+      "minecraft:sand"
+    ],
+    "name": "cactus_stops_growing_at_three_tall",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cactus",
+      "minecraft:sand"
+    ],
+    "name": "cactus_support_loss_chain",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cactus_flower",
+      "minecraft:stone",
+      "minecraft:farmland",
+      "minecraft:sand",
+      "minecraft:cactus",
+      "minecraft:item"
+    ],
+    "name": "cactus_flower_support_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cornflower",
+      "minecraft:stone",
+      "minecraft:sand",
+      "minecraft:gravel"
+    ],
+    "name": "cornflower_placement_rejected_on_invalid_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:crimson_fungus",
+      "minecraft:stone",
+      "minecraft:netherrack",
+      "minecraft:soul_sand",
+      "minecraft:sand"
+    ],
+    "name": "crimson_fungus_placement_rejected_on_invalid_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dandelion",
+      "minecraft:stone",
+      "minecraft:sand"
+    ],
+    "name": "dandelion_placement_rejected_on_invalid_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_bush",
+      "minecraft:piston",
+      "minecraft:piston_head",
+      "minecraft:redstone_block",
+      "minecraft:sand"
+    ],
+    "name": "dead_bush_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_bush",
+      "minecraft:sand",
+      "minecraft:stone"
+    ],
+    "name": "dead_bush_replaced_by_block_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_bush",
+      "minecraft:sand",
+      "minecraft:terracotta"
+    ],
+    "name": "dead_bush_support_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fern",
+      "minecraft:stone",
+      "minecraft:sand"
+    ],
+    "name": "fern_placement_rejected_on_invalid_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:flowering_azalea",
+      "minecraft:stone",
+      "minecraft:sand"
+    ],
+    "name": "flowering_azalea_placement_rejected_on_invalid_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:gravel",
+      "minecraft:stone"
+    ],
+    "name": "gravel_column_falls_together",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:gravel",
+      "minecraft:stone",
+      "minecraft:stone_slab",
+      "minecraft:item"
+    ],
+    "name": "gravel_falling_onto_bottom_slab_drops_item",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:gravel",
+      "minecraft:stone",
+      "minecraft:torch",
+      "minecraft:item"
+    ],
+    "name": "gravel_falling_onto_torch_drops_item",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:gravel",
+      "minecraft:stone"
+    ],
+    "name": "gravel_falls_onto_floor",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:gravel",
+      "minecraft:stone"
+    ],
+    "name": "gravel_falls_when_support_removed",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:gravel",
+      "minecraft:stone",
+      "minecraft:short_grass"
+    ],
+    "name": "gravel_replaces_short_grass",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:gravel",
+      "minecraft:stone",
+      "minecraft:stone_slab"
+    ],
+    "name": "gravel_rests_on_bottom_slab",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:gravel",
+      "minecraft:stone",
+      "minecraft:torch"
+    ],
+    "name": "gravel_rests_on_torch",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:gravel",
+      "minecraft:stone",
+      "minecraft:note_block"
+    ],
+    "name": "gravel_sets_note_block_instrument",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:gravel",
+      "minecraft:stone"
+    ],
+    "name": "gravel_stays_on_solid_ground",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:gravel",
+      "minecraft:stone"
+    ],
+    "name": "gravel_survival_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:gold_ore"
+    ],
+    "name": "gold_ore_place_from_item",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:gold_ore"
+    ],
+    "name": "gold_ore_stable_without_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:iron_ore",
+      "minecraft:stone"
+    ],
+    "name": "iron_ore_persists_in_place",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:iron_ore",
+      "minecraft:stone"
+    ],
+    "name": "iron_ore_place_on_block",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:iron_ore",
+      "minecraft:sticky_piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "iron_ore_pulled_by_sticky_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:iron_ore",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "iron_ore_pushed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:nether_gold_ore"
+    ],
+    "name": "nether_gold_ore_stable_without_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cocoa",
+      "minecraft:jungle_log",
+      "minecraft:oak_log"
+    ],
+    "name": "cocoa_support_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cherry_leaves",
+      "minecraft:oak_log",
+      "minecraft:stone"
+    ],
+    "name": "cherry_leaves_placement_and_distance",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_leaves",
+      "minecraft:oak_log"
+    ],
+    "name": "oak_leaves_decay",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_leaves",
+      "minecraft:oak_log",
+      "minecraft:crimson_stem",
+      "minecraft:stone"
+    ],
+    "name": "oak_leaves_distance_adjacency",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_leaves",
+      "minecraft:oak_log"
+    ],
+    "name": "oak_leaves_distance_propagation",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cocoa",
+      "minecraft:jungle_log",
+      "minecraft:stone"
+    ],
+    "name": "cocoa_ignores_unrelated_neighbors",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cocoa",
+      "minecraft:jungle_log",
+      "minecraft:piston",
+      "minecraft:piston_head",
+      "minecraft:redstone_block"
+    ],
+    "name": "cocoa_piston_destroys",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bamboo_block"
+    ],
+    "name": "bamboo_block_axis_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_wood",
+      "minecraft:stripped_oak_wood"
+    ],
+    "name": "wood_axe_strips_keeping_axis",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_wood",
+      "minecraft:oak_leaves"
+    ],
+    "name": "wood_prevents_leaf_decay",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_wood"
+    ],
+    "name": "wood_six_face_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:stripped_oak_wood"
+    ],
+    "name": "stripped_wood_axe_no_effect",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_torch",
+      "minecraft:oak_leaves",
+      "minecraft:stone"
+    ],
+    "name": "copper_torch_not_placed_on_leaves",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_wall_torch",
+      "minecraft:stone",
+      "minecraft:oak_leaves"
+    ],
+    "name": "copper_wall_torch_removed_when_support_replaced",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_wall_torch",
+      "minecraft:copper_torch",
+      "minecraft:oak_leaves"
+    ],
+    "name": "copper_wall_torch_rejects_non_sturdy_side",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_wall_torch",
+      "minecraft:stone",
+      "minecraft:oak_leaves"
+    ],
+    "name": "copper_wall_torch_support_replaced_by_non_sturdy",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_leaves",
+      "minecraft:torch",
+      "minecraft:stone"
+    ],
+    "name": "oak_leaves_no_torch_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_leaves",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "oak_leaves_piston_destroy",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cherry_leaves"
+    ],
+    "name": "cherry_leaves_decay",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:lapis_ore",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "lapis_ore_pushed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:lapis_ore",
+      "minecraft:stone"
+    ],
+    "name": "lapis_ore_survival_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:crafting_table",
+      "minecraft:note_block",
+      "minecraft:stone"
+    ],
+    "name": "crafting_table_sets_note_block_bass",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:deepslate",
+      "minecraft:note_block"
+    ],
+    "name": "deepslate_note_block_basedrum",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:deepslate",
+      "minecraft:note_block"
+    ],
+    "name": "deepslate_note_block_instrument_updates",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:hay_block",
+      "minecraft:note_block"
+    ],
+    "name": "hay_block_note_block_instrument_follows_block_below",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:hay_block",
+      "minecraft:note_block"
+    ],
+    "name": "hay_block_note_block_placed_on_top_is_banjo",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:heavy_core",
+      "minecraft:note_block",
+      "minecraft:stone"
+    ],
+    "name": "heavy_core_note_block_snare",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_ore",
+      "minecraft:note_block"
+    ],
+    "name": "copper_ore_note_block_instrument",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:red_bed",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "bed_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:red_bed",
+      "minecraft:stone"
+    ],
+    "name": "bed_half_breaks_without_partner",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:red_bed"
+    ],
+    "name": "bed_placement_facing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:red_bed"
+    ],
+    "name": "bed_placement_unsupported",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:red_bed"
+    ],
+    "name": "bed_remove_foot_drops_item",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:red_bed"
+    ],
+    "name": "bed_remove_head_no_drop",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:red_bed"
+    ],
+    "name": "bed_sleep_skips_night",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:red_bed"
+    ],
+    "name": "bed_use_daytime",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:red_bed"
+    ],
+    "name": "bed_use_night_obstructed",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:red_bed"
+    ],
+    "name": "bed_use_thunderstorm_daytime",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:powered_rail",
+      "minecraft:redstone_block",
+      "minecraft:stone"
+    ],
+    "name": "powered_rail_chain_depth_limit",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:powered_rail",
+      "minecraft:activator_rail",
+      "minecraft:redstone_block",
+      "minecraft:stone"
+    ],
+    "name": "powered_rail_ignores_activator_rail",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:powered_rail",
+      "minecraft:redstone_block",
+      "minecraft:stone"
+    ],
+    "name": "powered_rail_redstone_block_power",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:powered_rail",
+      "minecraft:redstone_block",
+      "minecraft:stone"
+    ],
+    "name": "powered_rail_slope_power_transfer",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:detector_rail",
+      "minecraft:redstone_lamp",
+      "minecraft:stone"
+    ],
+    "name": "detector_rail_idle_without_minecart",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bone_block",
+      "minecraft:sticky_piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "bone_block_axis_kept_when_pushed",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cobweb",
+      "minecraft:sticky_piston"
+    ],
+    "name": "cobweb_not_pulled_by_sticky_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:white_glazed_terracotta",
+      "minecraft:sticky_piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "glazed_terracotta_not_pulled_by_sticky_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:honey_block",
+      "minecraft:stone",
+      "minecraft:sticky_piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "sticky_piston_pulls_honey_block_with_attached_block",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_portal",
+      "minecraft:sticky_piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "end_portal_not_pulled_by_sticky_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_ore",
+      "minecraft:sticky_piston",
+      "minecraft:piston_head",
+      "minecraft:redstone_block"
+    ],
+    "name": "copper_ore_sticky_piston_pull",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:diamond_ore",
+      "minecraft:sticky_piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "diamond_ore_pulled_by_sticky_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:emerald_ore",
+      "minecraft:sticky_piston",
+      "minecraft:redstone_block",
+      "minecraft:item"
+    ],
+    "name": "emerald_ore_piston_push_pull",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cobweb",
+      "minecraft:piston"
+    ],
+    "name": "cobweb_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cobweb"
+    ],
+    "name": "cobweb_survival_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cobweb"
+    ],
+    "name": "cobweb_survives_without_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fern",
+      "minecraft:piston",
+      "minecraft:piston_head",
+      "minecraft:redstone_block",
+      "minecraft:dirt"
+    ],
+    "name": "fern_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fern",
+      "minecraft:flower_pot",
+      "minecraft:potted_fern"
+    ],
+    "name": "fern_flower_pot",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fern",
+      "minecraft:dirt",
+      "minecraft:stone"
+    ],
+    "name": "fern_replaced_by_block_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fern",
+      "minecraft:dirt"
+    ],
+    "name": "fern_support_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_bush",
+      "minecraft:stone",
+      "minecraft:white_glazed_terracotta"
+    ],
+    "name": "dead_bush_placement_rejected_on_invalid_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_bush",
+      "minecraft:flower_pot",
+      "minecraft:potted_dead_bush"
+    ],
+    "name": "dead_bush_potted_in_flower_pot",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bush",
+      "minecraft:dirt",
+      "minecraft:stone"
+    ],
+    "name": "bush_replaced_by_block_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:iron_bars",
+      "minecraft:piston"
+    ],
+    "name": "iron_bars_pushed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ender_chest",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "ender_chest_not_pushed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:shulker_box",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "shulker_box_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:barrier",
+      "minecraft:piston"
+    ],
+    "name": "Barrier Blocks Piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bell",
+      "minecraft:piston",
+      "minecraft:piston_head",
+      "minecraft:stone",
+      "minecraft:redstone_block"
+    ],
+    "name": "bell_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:conduit",
+      "minecraft:piston"
+    ],
+    "name": "Conduit Not Pushed By Piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_torch",
+      "minecraft:copper_wall_torch",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "copper_torch_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_wall_torch",
+      "minecraft:copper_torch",
+      "minecraft:stone",
+      "minecraft:piston",
+      "minecraft:piston_head",
+      "minecraft:redstone_block",
+      "minecraft:item"
+    ],
+    "name": "copper_wall_torch_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "dead_coral_pushed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "dead_coral_pushed_off_ledge_breaks",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral_fan",
+      "minecraft:piston"
+    ],
+    "name": "dead_coral_fan_pushed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:crafting_table",
+      "minecraft:piston"
+    ],
+    "name": "crafting_table_pushed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:flower_pot",
+      "minecraft:piston",
+      "minecraft:piston_head",
+      "minecraft:redstone_block",
+      "minecraft:item"
+    ],
+    "name": "flower_pot_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:potted_allium",
+      "minecraft:piston",
+      "minecraft:piston_head",
+      "minecraft:redstone_block",
+      "minecraft:item"
+    ],
+    "name": "potted_allium_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:white_glazed_terracotta",
+      "minecraft:slime_block",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "glazed_terracotta_not_dragged_by_slime_sideways",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:white_glazed_terracotta",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "glazed_terracotta_pushed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:white_glazed_terracotta",
+      "minecraft:slime_block",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "glazed_terracotta_pushed_with_slime_ahead",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:heavy_core",
+      "minecraft:piston",
+      "minecraft:piston_head",
+      "minecraft:redstone_block",
+      "minecraft:stone"
+    ],
+    "name": "heavy_core_pushed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:heavy_core",
+      "minecraft:piston",
+      "minecraft:piston_head",
+      "minecraft:redstone_block",
+      "minecraft:stone"
+    ],
+    "name": "heavy_core_waterlogged_drained_when_pushed",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:honey_block",
+      "minecraft:slime_block",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "honey_block_does_not_drag_slime_block",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:honey_block",
+      "minecraft:stone",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "honey_block_drags_adjacent_block_sideways",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:honey_block",
+      "minecraft:slime_block",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "honey_block_pushes_slime_block_ahead",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:honey_block",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "piston_pushes_honey_block",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:jack_o_lantern",
+      "minecraft:piston",
+      "minecraft:redstone_block",
+      "minecraft:stone"
+    ],
+    "name": "jack_o_lantern_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:lantern",
+      "minecraft:piston",
+      "minecraft:piston_head",
+      "minecraft:redstone_block",
+      "minecraft:item"
+    ],
+    "name": "lantern_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dragon_egg",
+      "minecraft:piston",
+      "minecraft:redstone_block",
+      "minecraft:obsidian"
+    ],
+    "name": "dragon_egg_piston_destroys_and_drops",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_portal_frame",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "end_portal_frame_piston_immovable",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_gateway",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "End Gateway Blocks Piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_portal",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "end_portal_not_pushed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_button",
+      "minecraft:stone_button",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "button_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:daylight_detector",
+      "minecraft:piston",
+      "minecraft:stone",
+      "minecraft:redstone_block"
+    ],
+    "name": "daylight_sensor_not_pushable_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_door",
+      "minecraft:piston"
+    ],
+    "name": "oak_door_piston_destroys",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:amethyst_block",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "piston_pushes_amethyst_block",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_pressure_plate",
+      "minecraft:piston"
+    ],
+    "name": "oak_pressure_plate_piston_destroy",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:allium",
+      "minecraft:piston",
+      "minecraft:piston_head",
+      "minecraft:redstone_block",
+      "minecraft:dirt"
+    ],
+    "name": "allium_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:big_dripleaf",
+      "minecraft:piston",
+      "minecraft:redstone_block",
+      "minecraft:dirt"
+    ],
+    "name": "big_dripleaf_piston_destroys",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:big_dripleaf_stem",
+      "minecraft:big_dripleaf",
+      "minecraft:piston",
+      "minecraft:piston_head",
+      "minecraft:redstone_block",
+      "minecraft:item"
+    ],
+    "name": "big_dripleaf_stem_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cactus_flower",
+      "minecraft:piston",
+      "minecraft:piston_head",
+      "minecraft:redstone_block",
+      "minecraft:item"
+    ],
+    "name": "cactus_flower_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:chorus_flower",
+      "minecraft:end_stone",
+      "minecraft:piston",
+      "minecraft:redstone_block",
+      "minecraft:item"
+    ],
+    "name": "chorus_flower_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:chorus_plant",
+      "minecraft:end_stone",
+      "minecraft:piston"
+    ],
+    "name": "chorus_plant_piston_destroys",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral_wall_fan",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "coral_wall_fan_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral",
+      "minecraft:piston",
+      "minecraft:piston_head",
+      "minecraft:redstone_block",
+      "minecraft:stone"
+    ],
+    "name": "brain_coral_piston_push",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:piston",
+      "minecraft:redstone_block",
+      "minecraft:carrots",
+      "minecraft:piston_head"
+    ],
+    "name": "carrot_piston_destroys",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dandelion",
+      "minecraft:dirt",
+      "minecraft:stone",
+      "minecraft:piston",
+      "minecraft:piston_head",
+      "minecraft:redstone_block",
+      "minecraft:item"
+    ],
+    "name": "dandelion_piston_destroys",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:flowering_azalea",
+      "minecraft:piston",
+      "minecraft:redstone_block",
+      "minecraft:dirt",
+      "minecraft:stone",
+      "minecraft:item"
+    ],
+    "name": "flowering_azalea_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:azure_bluet",
+      "minecraft:dirt",
+      "minecraft:piston",
+      "minecraft:piston_head",
+      "minecraft:redstone_block"
+    ],
+    "name": "azure_bluet_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:blue_orchid",
+      "minecraft:piston",
+      "minecraft:redstone_block"
+    ],
+    "name": "blue_orchid_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:pumpkin",
+      "minecraft:piston",
+      "minecraft:redstone_block",
+      "minecraft:piston_head",
+      "minecraft:attached_pumpkin_stem"
+    ],
+    "name": "attached_stem_destroyed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:anvil",
+      "minecraft:piston",
+      "minecraft:redstone_block",
+      "minecraft:stone"
+    ],
+    "name": "anvil_blocks_piston_push",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_ore",
+      "minecraft:piston",
+      "minecraft:piston_head",
+      "minecraft:redstone_block"
+    ],
+    "name": "copper_ore_pushed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:diamond_ore",
+      "minecraft:piston",
+      "minecraft:redstone_block",
+      "minecraft:item"
+    ],
+    "name": "diamond_ore_pushed_by_piston",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dandelion",
+      "minecraft:stone",
+      "minecraft:flower_pot",
+      "minecraft:potted_dandelion"
+    ],
+    "name": "dandelion_potting_in_empty_pot",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dandelion",
+      "minecraft:stone",
+      "minecraft:potted_poppy",
+      "minecraft:potted_poppy"
+    ],
+    "name": "dandelion_rejected_by_filled_pot",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dandelion",
+      "minecraft:stone",
+      "minecraft:dirt",
+      "minecraft:farmland",
+      "minecraft:item"
+    ],
+    "name": "dandelion_support_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:golden_dandelion",
+      "minecraft:flower_pot",
+      "minecraft:potted_golden_dandelion"
+    ],
+    "name": "golden_dandelion_flower_pot",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:golden_dandelion",
+      "minecraft:flower_pot",
+      "minecraft:potted_golden_dandelion"
+    ],
+    "name": "golden_dandelion_flower_pot_take_back",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:potted_allium",
+      "minecraft:poppy"
+    ],
+    "name": "potted_allium_rejects_other_plant",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:blue_orchid",
+      "minecraft:flower_pot",
+      "minecraft:potted_blue_orchid"
+    ],
+    "name": "blue_orchid_flower_pot_planting",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:blue_orchid",
+      "minecraft:flower_pot",
+      "minecraft:potted_blue_orchid"
+    ],
+    "name": "blue_orchid_flower_pot_removal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:blue_orchid",
+      "minecraft:dirt",
+      "minecraft:stone"
+    ],
+    "name": "blue_orchid_support_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:flower_pot",
+      "minecraft:potted_allium",
+      "minecraft:allium"
+    ],
+    "name": "flower_pot_fill_creative_keeps_item",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:potted_allium",
+      "minecraft:flower_pot",
+      "minecraft:allium"
+    ],
+    "name": "potted_allium_empty_hand_takes_plant",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:allium",
+      "minecraft:flower_pot",
+      "minecraft:potted_allium"
+    ],
+    "name": "allium_flower_pot",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:allium",
+      "minecraft:dirt"
+    ],
+    "name": "allium_support_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:azure_bluet",
+      "minecraft:composter"
+    ],
+    "name": "azure_bluet_composting",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:azure_bluet",
+      "minecraft:flower_pot",
+      "minecraft:potted_azure_bluet"
+    ],
+    "name": "azure_bluet_potting",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:azure_bluet",
+      "minecraft:dirt",
+      "minecraft:stone"
+    ],
+    "name": "azure_bluet_side_face_unsupported_rejected",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:azure_bluet",
+      "minecraft:dirt"
+    ],
+    "name": "azure_bluet_support_removed",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:azure_bluet",
+      "minecraft:dirt",
+      "minecraft:stone"
+    ],
+    "name": "azure_bluet_support_replaced",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:azure_bluet",
+      "minecraft:flower_pot",
+      "minecraft:potted_azure_bluet"
+    ],
+    "name": "azure_bluet_unpotting",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cornflower",
+      "minecraft:flower_pot",
+      "minecraft:potted_cornflower"
+    ],
+    "name": "cornflower_potting",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_gateway",
+      "minecraft:dirt",
+      "minecraft:tnt"
+    ],
+    "name": "End Gateway Survives TNT Explosion",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence_gate",
+      "minecraft:torch"
+    ],
+    "name": "Fence Gate Torch Support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:heavy_core",
+      "minecraft:torch",
+      "minecraft:stone"
+    ],
+    "name": "heavy_core_rejects_torch",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dragon_egg",
+      "minecraft:torch",
+      "minecraft:obsidian"
+    ],
+    "name": "dragon_egg_falls_into_torch_and_breaks",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:anvil",
+      "minecraft:torch",
+      "minecraft:stone"
+    ],
+    "name": "anvil_does_not_settle_on_torch",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:obsidian",
+      "minecraft:fire",
+      "minecraft:nether_portal"
+    ],
+    "name": "Create Nether Portal X 21 21 All",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:obsidian",
+      "minecraft:fire",
+      "minecraft:nether_portal"
+    ],
+    "name": "Create Nether Portal X 21 21 None",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:obsidian",
+      "minecraft:fire",
+      "minecraft:nether_portal"
+    ],
+    "name": "Create Nether Portal X 22 22 None",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:obsidian",
+      "minecraft:fire",
+      "minecraft:nether_portal"
+    ],
+    "name": "Create Nether Portal X 2 2 All",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:obsidian",
+      "minecraft:fire",
+      "minecraft:nether_portal"
+    ],
+    "name": "Create Nether Portal X 2 3 All",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:obsidian",
+      "minecraft:fire",
+      "minecraft:nether_portal"
+    ],
+    "name": "Create Nether Portal X 2 3 None",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:obsidian",
+      "minecraft:fire",
+      "minecraft:nether_portal"
+    ],
+    "name": "Create Nether Portal Z 2 2 None",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:obsidian",
+      "minecraft:fire",
+      "minecraft:nether_portal"
+    ],
+    "name": "Create Nether Portal Z 2 3 None",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:obsidian",
+      "minecraft:fire",
+      "minecraft:nether_portal"
+    ],
+    "name": "Destroy Nether Portal X 2 3 Bottom",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:obsidian",
+      "minecraft:fire",
+      "minecraft:nether_portal"
+    ],
+    "name": "Destroy Nether Portal X 2 3 Center",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:obsidian",
+      "minecraft:fire",
+      "minecraft:nether_portal"
+    ],
+    "name": "Destroy Nether Portal X 2 3 Left",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:obsidian",
+      "minecraft:fire",
+      "minecraft:nether_portal"
+    ],
+    "name": "Destroy Nether Portal X 2 3 Right",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:obsidian",
+      "minecraft:fire",
+      "minecraft:nether_portal"
+    ],
+    "name": "Destroy Nether Portal X 2 3 Top",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:crimson_stem",
+      "minecraft:white_wool",
+      "minecraft:fire",
+      "minecraft:stone"
+    ],
+    "name": "crimson_stem_survives_fire",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:fire",
+      "minecraft:stone"
+    ],
+    "name": "Fire Burns Out Without Fuel When Age Above Three",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:fire",
+      "minecraft:soul_fire",
+      "minecraft:soul_sand",
+      "minecraft:oak_planks",
+      "minecraft:stone"
+    ],
+    "name": "Fire Converts To Soul Fire When Floor Becomes Soul Sand",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:fire",
+      "minecraft:oak_planks"
+    ],
+    "name": "Fire Disappears When Flammable Support Removed",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:fire",
+      "minecraft:stone"
+    ],
+    "name": "Fire Disappears When Floor Removed",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fire",
+      "minecraft:stone"
+    ],
+    "name": "Fire Does Not Tick When Spread Radius Is Zero",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fire",
+      "minecraft:netherrack"
+    ],
+    "name": "Fire Never Burns Out On Netherrack",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fire",
+      "minecraft:oak_planks"
+    ],
+    "name": "Fire Side Flags Update With Neighbour",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:soul_fire",
+      "minecraft:soul_sand",
+      "minecraft:stone"
+    ],
+    "name": "Soul Fire Disappears When Base Replaced",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:soul_fire",
+      "minecraft:soul_sand",
+      "minecraft:oak_planks"
+    ],
+    "name": "Soul Fire Does Not Burn Or Spread",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:iron_bars",
+      "minecraft:oak_stairs",
+      "minecraft:oak_slab"
+    ],
+    "name": "iron_bars_attach_to_sturdy_faces",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_stairs",
+      "minecraft:stone_stairs",
+      "minecraft:crimson_stairs"
+    ],
+    "name": "oak_stairs_flammable",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:ender_chest",
+      "minecraft:comparator",
+      "minecraft:chest",
+      "minecraft:stone"
+    ],
+    "name": "ender_chest_comparator_signal_zero",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:beehive",
+      "minecraft:comparator",
+      "minecraft:redstone_wire"
+    ],
+    "name": "Beehive Comparator Output",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cauldron",
+      "minecraft:water_cauldron",
+      "minecraft:lava_cauldron",
+      "minecraft:powder_snow_cauldron",
+      "minecraft:comparator",
+      "minecraft:redstone_wire"
+    ],
+    "name": "cauldron_comparator_output",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:composter",
+      "minecraft:comparator",
+      "minecraft:redstone_wire",
+      "minecraft:stone"
+    ],
+    "name": "composter_comparator_signal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:daylight_detector",
+      "minecraft:redstone_wire"
+    ],
+    "name": "daylight_sensor_powers_adjacent_dust",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:diamond_ore",
+      "minecraft:stone"
+    ],
+    "name": "diamond_ore_item_places_block",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:crafting_table"
+    ],
+    "name": "crafting_table_survival_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:dirt",
+      "minecraft:beetroots"
+    ],
+    "name": "beetroot_maintains_dry_farmland",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:beetroots"
+    ],
+    "name": "beetroot_support_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:dirt",
+      "minecraft:stone",
+      "minecraft:carrots"
+    ],
+    "name": "carrot_support_and_light_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:pumpkin",
+      "minecraft:attached_pumpkin_stem"
+    ],
+    "name": "attached_stem_ignores_non_faced_neighbor_changes",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:attached_pumpkin_stem",
+      "minecraft:attached_melon_stem"
+    ],
+    "name": "attached_stem_keeps_matching_fruit",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:pumpkin",
+      "minecraft:carved_pumpkin",
+      "minecraft:jack_o_lantern",
+      "minecraft:attached_pumpkin_stem",
+      "minecraft:pumpkin_stem"
+    ],
+    "name": "attached_stem_reverts_for_carved_pumpkin_variants",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:pumpkin",
+      "minecraft:attached_pumpkin_stem",
+      "minecraft:pumpkin_stem"
+    ],
+    "name": "attached_stem_reverts_for_each_facing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:pumpkin_stem",
+      "minecraft:melon_stem",
+      "minecraft:attached_pumpkin_stem",
+      "minecraft:attached_melon_stem"
+    ],
+    "name": "attached_stem_reverts_without_matching_fruit",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:farmland",
+      "minecraft:pumpkin_stem",
+      "minecraft:melon_stem",
+      "minecraft:attached_pumpkin_stem",
+      "minecraft:attached_melon_stem"
+    ],
+    "name": "stem_support_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:furnace",
+      "minecraft:comparator",
+      "minecraft:stone",
+      "minecraft:dirt"
+    ],
+    "name": "furnace_comparator_signal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:furnace",
+      "minecraft:stone"
+    ],
+    "name": "furnace_placement_faces_player",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_sign"
+    ],
+    "name": "oak_sign_placement",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:oak_sign"
+    ],
+    "name": "oak_sign_stacking",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_sign"
+    ],
+    "name": "oak_sign_support_and_drop",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_wall_sign",
+      "minecraft:oak_sign"
+    ],
+    "name": "oak_wall_sign_placement",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:oak_door",
+      "minecraft:redstone_block"
+    ],
+    "name": "oak_door_close_by_hand_while_powered",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_door"
+    ],
+    "name": "oak_door_double_door",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_door"
+    ],
+    "name": "oak_door_hand_toggle",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_door"
+    ],
+    "name": "oak_door_hinge_side",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_door",
+      "minecraft:stone",
+      "minecraft:stone_slab"
+    ],
+    "name": "oak_door_invalid_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_door",
+      "minecraft:redstone_block"
+    ],
+    "name": "oak_door_placed_next_to_power",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_door"
+    ],
+    "name": "oak_door_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_door",
+      "minecraft:redstone_block"
+    ],
+    "name": "oak_door_redstone_power",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_door"
+    ],
+    "name": "oak_door_remove_lower_half",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_door"
+    ],
+    "name": "oak_door_remove_upper_half",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_door"
+    ],
+    "name": "oak_door_support_loss_drop",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:heavy_core",
+      "minecraft:rail",
+      "minecraft:stone"
+    ],
+    "name": "heavy_core_rejects_rail",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:rail",
+      "minecraft:stone"
+    ],
+    "name": "rail_ascending_loses_slope_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:rail",
+      "minecraft:stone"
+    ],
+    "name": "rail_breaks_without_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:rail",
+      "minecraft:stone_slab",
+      "minecraft:stone"
+    ],
+    "name": "rail_rejected_on_bottom_slab",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_wall_sign"
+    ],
+    "name": "oak_wall_sign_support_and_drop",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_wall_hanging_sign"
+    ],
+    "name": "oak_wall_hanging_sign_never_breaks",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:waxed_copper_bulb",
+      "minecraft:stone",
+      "minecraft:lever"
+    ],
+    "name": "waxed_bulb_power_through_solid_block",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:stone_pressure_plate"
+    ],
+    "name": "stone_pressure_plate_mob_sensitivity",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:iron_door",
+      "minecraft:redstone_block"
+    ],
+    "name": "iron_door_hand_and_redstone",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_pressure_plate",
+      "minecraft:redstone_lamp"
+    ],
+    "name": "oak_pressure_plate_activation",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_pressure_plate"
+    ],
+    "name": "oak_pressure_plate_default_state",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_pressure_plate"
+    ],
+    "name": "oak_pressure_plate_marker_stand_ignored",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:oak_pressure_plate"
+    ],
+    "name": "oak_pressure_plate_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_pressure_plate"
+    ],
+    "name": "oak_pressure_plate_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_button",
+      "minecraft:stone_button",
+      "minecraft:redstone_lamp"
+    ],
+    "name": "button_placed_powered_stays_pressed",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_button",
+      "minecraft:stone_button"
+    ],
+    "name": "button_placement_faces",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_button",
+      "minecraft:stone_button",
+      "minecraft:oak_fence"
+    ],
+    "name": "button_placement_needs_sturdy_face",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_button",
+      "minecraft:stone_button",
+      "minecraft:redstone_lamp",
+      "minecraft:stone"
+    ],
+    "name": "button_power_output",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_button",
+      "minecraft:stone_button",
+      "minecraft:stone"
+    ],
+    "name": "button_repress_and_held_block",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_button",
+      "minecraft:stone_button",
+      "minecraft:stone"
+    ],
+    "name": "button_support_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:honey_block",
+      "minecraft:snow"
+    ],
+    "name": "snow_layer_placed_on_honey_block",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cactus_flower",
+      "minecraft:cobblestone_wall"
+    ],
+    "name": "cactus_flower_raises_wall_post",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:jukebox",
+      "minecraft:stone",
+      "minecraft:comparator"
+    ],
+    "name": "jukebox_place_item_empty",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence"
+    ],
+    "name": "Fence Connections",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence",
+      "minecraft:stone"
+    ],
+    "name": "Fence Disconnect On Removal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence",
+      "minecraft:oak_fence_gate"
+    ],
+    "name": "Fence Gate Connection",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence",
+      "minecraft:jack_o_lantern",
+      "minecraft:carved_pumpkin"
+    ],
+    "name": "Fence Jack O Lantern Connection",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence"
+    ],
+    "name": "Fence Row Connections",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:nether_brick_fence",
+      "minecraft:oak_fence",
+      "minecraft:crimson_fence",
+      "minecraft:bamboo_fence",
+      "minecraft:oak_fence_gate",
+      "minecraft:stone"
+    ],
+    "name": "Nether Brick Fence Connections",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence"
+    ],
+    "name": "Place Fence",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence",
+      "minecraft:cobblestone_wall"
+    ],
+    "name": "Fence in Wall",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bell",
+      "minecraft:oak_fence"
+    ],
+    "name": "bell_ceiling_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bell",
+      "minecraft:oak_fence",
+      "minecraft:stone"
+    ],
+    "name": "bell_fence_side_falls_back_to_floor",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bell",
+      "minecraft:oak_fence",
+      "minecraft:stone"
+    ],
+    "name": "bell_fence_side_without_support_fails",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_torch",
+      "minecraft:cobblestone_wall",
+      "minecraft:oak_fence"
+    ],
+    "name": "copper_torch_on_wall_and_fence_posts",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral",
+      "minecraft:oak_fence"
+    ],
+    "name": "dead_coral_rejected_on_fence",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral_fan",
+      "minecraft:oak_fence"
+    ],
+    "name": "dead_coral_fan_on_fence_side_places_floor_fan",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral_fan",
+      "minecraft:oak_fence"
+    ],
+    "name": "dead_coral_fan_rejects_fence_top",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:lantern",
+      "minecraft:oak_fence",
+      "minecraft:iron_chain"
+    ],
+    "name": "lantern_center_support_on_fence_and_chain",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:red_stained_glass",
+      "minecraft:glass_pane",
+      "minecraft:oak_fence",
+      "minecraft:cobblestone_wall"
+    ],
+    "name": "stained_glass_neighbor_connections",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:crimson_roots",
+      "minecraft:netherrack",
+      "minecraft:soul_sand",
+      "minecraft:stone"
+    ],
+    "name": "crimson_roots_placement_rejected_on_invalid_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:basalt"
+    ],
+    "name": "basalt_axis_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:basalt"
+    ],
+    "name": "basalt_axis_states",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_torch",
+      "minecraft:stone"
+    ],
+    "name": "copper_torch_floor_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_torch",
+      "minecraft:stone"
+    ],
+    "name": "copper_torch_floor_support_loss_drops_item",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_torch",
+      "minecraft:cobblestone_wall"
+    ],
+    "name": "copper_torch_forces_wall_post",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_torch",
+      "minecraft:stone"
+    ],
+    "name": "copper_torch_not_placed_on_ceiling",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_torch",
+      "minecraft:copper_wall_torch",
+      "minecraft:stone"
+    ],
+    "name": "copper_torch_wall_placement_four_sides",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_wall_torch",
+      "minecraft:copper_torch",
+      "minecraft:stone"
+    ],
+    "name": "copper_wall_torch_support_loss_drops_torch_item",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_wall_torch",
+      "minecraft:copper_torch",
+      "minecraft:stone"
+    ],
+    "name": "copper_wall_torch_four_side_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_wall_torch",
+      "minecraft:copper_torch",
+      "minecraft:stone",
+      "minecraft:item"
+    ],
+    "name": "copper_wall_torch_support_removed_drops_item",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_wall_torch",
+      "minecraft:copper_torch",
+      "minecraft:stone"
+    ],
+    "name": "copper_wall_torch_top_face_places_standing_torch",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_wall_torch",
+      "minecraft:stone"
+    ],
+    "name": "copper_wall_torch_survives_unrelated_neighbor_changes",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_wall_torch",
+      "minecraft:stone"
+    ],
+    "name": "copper_wall_torch_ignores_other_neighbors",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:obsidian",
+      "minecraft:nether_portal",
+      "minecraft:stone"
+    ],
+    "name": "Nether Portal X 2 3 Adjacent Fill",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:iron_bars",
+      "minecraft:pumpkin",
+      "minecraft:carved_pumpkin",
+      "minecraft:jack_o_lantern"
+    ],
+    "name": "iron_bars_connection_exceptions",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:nether_brick_fence",
+      "minecraft:carved_pumpkin"
+    ],
+    "name": "Nether Brick Fence Exceptions",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:jack_o_lantern",
+      "minecraft:stone"
+    ],
+    "name": "jack_o_lantern_placement_facing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:composter",
+      "minecraft:cake",
+      "minecraft:stone"
+    ],
+    "name": "composter_cake_always_composts",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:red_stained_glass",
+      "minecraft:stone",
+      "minecraft:repeater",
+      "minecraft:redstone_block",
+      "minecraft:redstone_lamp"
+    ],
+    "name": "stained_glass_blocks_redstone_power",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:red_stained_glass"
+    ],
+    "name": "stained_glass_empty_hand_interaction",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:red_stained_glass",
+      "minecraft:stone",
+      "minecraft:daylight_detector",
+      "minecraft:redstone_lamp"
+    ],
+    "name": "stained_glass_passes_skylight",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:red_stained_glass"
+    ],
+    "name": "stained_glass_side_face_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:red_stained_glass",
+      "minecraft:stone"
+    ],
+    "name": "stained_glass_top_face_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_trapdoor"
+    ],
+    "name": "Oak Trapdoor Hand Close While Powered",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_trapdoor"
+    ],
+    "name": "Oak Trapdoor Hand Open Then Powered",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_trapdoor"
+    ],
+    "name": "Oak Trapdoor Place Bottom Face",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_trapdoor"
+    ],
+    "name": "Oak Trapdoor Place In Water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_trapdoor"
+    ],
+    "name": "Oak Trapdoor Place Powered",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_trapdoor"
+    ],
+    "name": "Oak Trapdoor Place Side Face",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_trapdoor"
+    ],
+    "name": "Oak Trapdoor Place Top Face",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_trapdoor"
+    ],
+    "name": "Oak Trapdoor Redstone Open Close",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_trapdoor"
+    ],
+    "name": "Oak Trapdoor Toggle By Hand",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_trapdoor"
+    ],
+    "name": "Oak Trapdoor Toggle Holding Stick",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:iron_bars"
+    ],
+    "name": "iron_bars_ignore_vertical_neighbors",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:iron_bars"
+    ],
+    "name": "iron_bars_side_reverts_when_neighbor_removed",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:iron_bars"
+    ],
+    "name": "iron_bars_survival_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:iron_chain",
+      "minecraft:lantern"
+    ],
+    "name": "iron_chain_lantern_support_by_axis",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:iron_chain",
+      "minecraft:stone"
+    ],
+    "name": "iron_chain_placement_axis_from_face",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:glass_pane",
+      "minecraft:red_stained_glass_pane",
+      "minecraft:beacon"
+    ],
+    "name": "Pane Beacon Beam",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:white_stained_glass_pane",
+      "minecraft:glass_pane"
+    ],
+    "name": "Pane Connections",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:white_stained_glass_pane",
+      "minecraft:glass_pane"
+    ],
+    "name": "Pane Connections 90",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:glass_pane",
+      "minecraft:red_stained_glass_pane"
+    ],
+    "name": "Pane Vertical Stack",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:glass_pane"
+    ],
+    "name": "Pane Waterlogged Spread",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:glass_pane",
+      "minecraft:white_stained_glass_pane"
+    ],
+    "name": "Pane Waterlogging",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence_gate",
+      "minecraft:redstone_block",
+      "minecraft:stone"
+    ],
+    "name": "Fence Gate Close Powered By Hand",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence_gate"
+    ],
+    "name": "Fence Gate Facing On Open",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence_gate",
+      "minecraft:redstone_block"
+    ],
+    "name": "Fence Gate Hand Open Then Power",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence_gate",
+      "minecraft:cobblestone_wall"
+    ],
+    "name": "Fence Gate Ignores Walls In Front",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence_gate",
+      "minecraft:cobblestone_wall"
+    ],
+    "name": "Fence Gate In Wall Updates",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence_gate",
+      "minecraft:redstone_block"
+    ],
+    "name": "Fence Gate Placed Next To Power",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence_gate"
+    ],
+    "name": "Fence Gate Placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence_gate",
+      "minecraft:cobblestone_wall"
+    ],
+    "name": "Fence Gate Placement In Wall",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence_gate",
+      "minecraft:redstone_block"
+    ],
+    "name": "Fence Gate Redstone Power",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence_gate"
+    ],
+    "name": "Fence Gate Toggle By Hand",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_fence_gate",
+      "minecraft:oak_planks"
+    ],
+    "name": "Fence Gate Use With Block Item",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:lantern",
+      "minecraft:stone_slab",
+      "minecraft:oak_fence_gate"
+    ],
+    "name": "lantern_rejects_slab_top_and_fence_gate_bottom",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:red_shulker_box",
+      "minecraft:shulker_box",
+      "minecraft:water_cauldron",
+      "minecraft:cauldron"
+    ],
+    "name": "red_shulker_box_washed_in_cauldron",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:shulker_box",
+      "minecraft:water_cauldron"
+    ],
+    "name": "shulker_box_not_washed_in_cauldron",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:water_cauldron",
+      "minecraft:red_shulker_box",
+      "minecraft:shulker_box"
+    ],
+    "name": "water_cauldron_wash_shulker_box",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:end_portal"
+    ],
+    "name": "end_portal_stays_in_midair",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_portal_frame"
+    ],
+    "name": "end_portal_frame_placement_facing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dragon_egg",
+      "minecraft:stone"
+    ],
+    "name": "dragon_egg_falls_over_air",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dragon_egg",
+      "minecraft:stone"
+    ],
+    "name": "dragon_egg_item_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dragon_egg",
+      "minecraft:stone"
+    ],
+    "name": "dragon_egg_right_click_teleports",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dragon_egg",
+      "minecraft:stone"
+    ],
+    "name": "dragon_egg_right_click_with_block_in_hand",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dragon_egg",
+      "minecraft:stone"
+    ],
+    "name": "dragon_egg_supported_stays",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:waxed_copper_bulb",
+      "minecraft:comparator",
+      "minecraft:redstone_lamp",
+      "minecraft:redstone_block",
+      "minecraft:stone"
+    ],
+    "name": "waxed_bulb_comparator_output",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:waxed_copper_bulb",
+      "minecraft:redstone_block",
+      "minecraft:redstone_lamp"
+    ],
+    "name": "waxed_bulb_does_not_conduct_power",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:waxed_lightning_rod",
+      "minecraft:redstone_lamp",
+      "minecraft:stone"
+    ],
+    "name": "waxed_lightning_rod_power_output",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:waxed_lightning_rod",
+      "minecraft:redstone_lamp",
+      "minecraft:stone"
+    ],
+    "name": "waxed_lightning_rod_removal_updates_neighbors",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:emerald_ore",
+      "minecraft:stone"
+    ],
+    "name": "emerald_ore_item_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ender_chest",
+      "minecraft:stone"
+    ],
+    "name": "ender_chest_placement_facing_looking_east",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ender_chest",
+      "minecraft:stone"
+    ],
+    "name": "ender_chest_placement_facing_looking_north",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ender_chest",
+      "minecraft:stone"
+    ],
+    "name": "ender_chest_placement_facing_looking_south",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:ender_chest",
+      "minecraft:stone"
+    ],
+    "name": "ender_chest_placement_facing_looking_west",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:beacon"
+    ],
+    "name": "beacon_bedrock_above_keeps_beam",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:beacon"
+    ],
+    "name": "beacon_broken_layer_caps_level",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:beacon"
+    ],
+    "name": "beacon_covered_keeps_stored_level",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:beacon"
+    ],
+    "name": "beacon_full_pyramid_level_four",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:beacon"
+    ],
+    "name": "beacon_glass_above_keeps_beam",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:beacon"
+    ],
+    "name": "beacon_mixed_material_pyramid",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:beacon"
+    ],
+    "name": "beacon_no_pyramid_level_zero",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:beacon"
+    ],
+    "name": "beacon_one_layer_level_one",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:beacon"
+    ],
+    "name": "beacon_opaque_block_above_blocks_beam",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:beacon"
+    ],
+    "name": "beacon_primary_effect_nbt_round_trip",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:beacon"
+    ],
+    "name": "beacon_survival_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cobblestone_wall"
+    ],
+    "name": "Chain in Wall",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cobblestone_wall"
+    ],
+    "name": "Fence Gate in Wall",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cobblestone_wall"
+    ],
+    "name": "Fences Over Walls",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cobblestone_wall"
+    ],
+    "name": "Glass Panel in Wall",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cobblestone_wall"
+    ],
+    "name": "Iron Bars in Wall",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cobblestone_wall"
+    ],
+    "name": "Wall 2 to 3 Length",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cobblestone_wall"
+    ],
+    "name": "Wall Connections",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cobblestone_wall"
+    ],
+    "name": "Walls on Wall",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:flower_pot"
+    ],
+    "name": "flower_pot_empty_hand_does_nothing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:flower_pot",
+      "minecraft:stone"
+    ],
+    "name": "flower_pot_rejects_non_plant_item",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:flower_pot",
+      "minecraft:stone"
+    ],
+    "name": "flower_pot_survives_support_removal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:crimson_fungus",
+      "minecraft:flower_pot",
+      "minecraft:potted_crimson_fungus"
+    ],
+    "name": "crimson_fungus_flower_pot",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:crimson_roots",
+      "minecraft:flower_pot",
+      "minecraft:potted_crimson_roots"
+    ],
+    "name": "crimson_roots_potting",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:potted_allium",
+      "minecraft:stone"
+    ],
+    "name": "potted_allium_survives_support_removal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:anvil",
+      "minecraft:stone",
+      "minecraft:chipped_anvil"
+    ],
+    "name": "anvil_long_fall_chips",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:anvil",
+      "minecraft:stone"
+    ],
+    "name": "anvil_one_block_fall_stays_intact",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:anvil"
+    ],
+    "name": "anvil_placement_facing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:anvil",
+      "minecraft:stone_slab",
+      "minecraft:stone"
+    ],
+    "name": "anvil_stays_on_bottom_slab",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:anvil",
+      "minecraft:stone"
+    ],
+    "name": "anvil_support_removal",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:chipped_anvil",
+      "minecraft:stone",
+      "minecraft:damaged_anvil"
+    ],
+    "name": "chipped_anvil_long_fall_damages",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:damaged_anvil",
+      "minecraft:stone"
+    ],
+    "name": "damaged_anvil_long_fall_destroyed",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:light_weighted_pressure_plate"
+    ],
+    "name": "light_weighted_pressure_plate_power_levels",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:light_weighted_pressure_plate"
+    ],
+    "name": "light_weighted_pressure_plate_recheck",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:shulker_box",
+      "minecraft:comparator",
+      "minecraft:stone"
+    ],
+    "name": "shulker_box_comparator_signal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:daylight_detector"
+    ],
+    "name": "daylight_sensor_adventure_cannot_toggle",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:daylight_detector"
+    ],
+    "name": "daylight_sensor_corrects_stale_power",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:daylight_detector",
+      "minecraft:stone"
+    ],
+    "name": "daylight_sensor_enclosed_inverted_midnight",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:daylight_detector",
+      "minecraft:stone"
+    ],
+    "name": "daylight_sensor_enclosed_inverted_noon",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:daylight_detector",
+      "minecraft:stone"
+    ],
+    "name": "daylight_sensor_enclosed_normal_midnight",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:daylight_detector",
+      "minecraft:stone"
+    ],
+    "name": "daylight_sensor_enclosed_normal_noon",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:daylight_detector",
+      "minecraft:stone"
+    ],
+    "name": "daylight_sensor_placed_by_player",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:daylight_detector"
+    ],
+    "name": "daylight_sensor_rain_dims_output",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:daylight_detector",
+      "minecraft:stone"
+    ],
+    "name": "daylight_sensor_side_light_only",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:daylight_detector"
+    ],
+    "name": "daylight_sensor_thunder_dims_output",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:daylight_detector"
+    ],
+    "name": "daylight_sensor_toggle_to_inverted",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:daylight_detector"
+    ],
+    "name": "daylight_sensor_toggle_to_normal",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:bell",
+      "minecraft:stone",
+      "minecraft:redstone_block"
+    ],
+    "name": "bell_power_updates_only_on_neighbor_change",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bell",
+      "minecraft:stone",
+      "minecraft:redstone_block"
+    ],
+    "name": "bell_redstone_power_state",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:waxed_copper_bulb",
+      "minecraft:redstone_block"
+    ],
+    "name": "waxed_bulb_item_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:waxed_copper_bulb",
+      "minecraft:redstone_block"
+    ],
+    "name": "waxed_bulb_placed_state_recheck",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:waxed_copper_bulb",
+      "minecraft:redstone_block"
+    ],
+    "name": "waxed_bulb_toggle",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:big_dripleaf",
+      "minecraft:redstone_block",
+      "minecraft:dirt"
+    ],
+    "name": "big_dripleaf_redstone_resets_tilt",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:barrier"
+    ],
+    "name": "Barrier Placement Dry",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:barrier"
+    ],
+    "name": "Barrier Placement In Water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:barrier"
+    ],
+    "name": "Barrier Waterlogged Does Not Spread Water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:iron_trapdoor"
+    ],
+    "name": "Iron Trapdoor No Hand Open",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:iron_trapdoor"
+    ],
+    "name": "Iron Trapdoor Redstone Open Close",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:iron_trapdoor",
+      "minecraft:stone"
+    ],
+    "name": "Iron Trapdoor Use Passes To Item",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:campfire",
+      "minecraft:hay_block"
+    ],
+    "name": "Campfire Signal Fire Follows Block Below",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:campfire",
+      "minecraft:hay_block"
+    ],
+    "name": "Campfire Signal Fire On Hay Placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:soul_campfire",
+      "minecraft:hay_block"
+    ],
+    "name": "Soul Campfire Placement And Signal Fire",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:hay_block"
+    ],
+    "name": "hay_block_default_axis",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:hay_block",
+      "minecraft:stone"
+    ],
+    "name": "hay_block_east_face_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:hay_block",
+      "minecraft:stone"
+    ],
+    "name": "hay_block_north_face_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:hay_block",
+      "minecraft:stone",
+      "minecraft:pig"
+    ],
+    "name": "hay_block_reduces_fall_damage",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:hay_block",
+      "minecraft:stone"
+    ],
+    "name": "hay_block_top_face_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:oak_slab",
+      "minecraft:stone_slab"
+    ],
+    "name": "slab_merging",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:oak_slab"
+    ],
+    "name": "slab_placement_faces",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:amethyst_cluster",
+      "minecraft:stone_slab",
+      "minecraft:stone"
+    ],
+    "name": "amethyst_cluster_rejects_unsturdy_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral",
+      "minecraft:stone_slab"
+    ],
+    "name": "dead_coral_placement_on_top_slab",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:white_concrete_powder",
+      "minecraft:white_concrete",
+      "minecraft:stone_slab",
+      "minecraft:stone_stairs"
+    ],
+    "name": "concrete_powder_waterlogged_neighbours",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:tube_coral_block",
+      "minecraft:stone_slab"
+    ],
+    "name": "tube_coral_block_next_to_waterlogged_block",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_rod"
+    ],
+    "name": "end_rod_reversal_and_neighbor_independence",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_rod"
+    ],
+    "name": "end_rod_six_face_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:chorus_flower",
+      "minecraft:chorus_plant",
+      "minecraft:end_stone",
+      "minecraft:stone",
+      "minecraft:item"
+    ],
+    "name": "chorus_flower_breaks_without_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:chorus_flower",
+      "minecraft:chorus_plant",
+      "minecraft:end_stone",
+      "minecraft:stone"
+    ],
+    "name": "chorus_flower_random_tick_outcomes",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:chorus_flower",
+      "minecraft:chorus_plant",
+      "minecraft:end_stone",
+      "minecraft:stone"
+    ],
+    "name": "chorus_flower_survives_valid_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:chorus_plant",
+      "minecraft:end_stone"
+    ],
+    "name": "chorus_plant_column_collapse",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:chorus_plant",
+      "minecraft:chorus_flower",
+      "minecraft:end_stone"
+    ],
+    "name": "chorus_plant_connections",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:chorus_plant",
+      "minecraft:end_stone"
+    ],
+    "name": "chorus_plant_item_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:chorus_plant",
+      "minecraft:end_stone"
+    ],
+    "name": "chorus_plant_side_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:chorus_plant",
+      "minecraft:end_stone",
+      "minecraft:chorus_flower"
+    ],
+    "name": "chorus_plant_support_rules",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:chorus_flower",
+      "minecraft:end_stone",
+      "minecraft:stone"
+    ],
+    "name": "chorus_flower_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dirt_path",
+      "minecraft:stone"
+    ],
+    "name": "dirt_path_item_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_gateway"
+    ],
+    "name": "End Gateway Block Entity NBT Round Trip",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:end_gateway"
+    ],
+    "name": "End Gateway Placement Persists",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bone_block",
+      "minecraft:stone"
+    ],
+    "name": "bone_block_axis_persistence",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bone_block",
+      "minecraft:stone"
+    ],
+    "name": "bone_block_six_face_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:shulker_box"
+    ],
+    "name": "shulker_box_six_face_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:white_glazed_terracotta"
+    ],
+    "name": "glazed_terracotta_default_state",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:white_glazed_terracotta",
+      "minecraft:stone"
+    ],
+    "name": "glazed_terracotta_facing_from_player",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:white_glazed_terracotta",
+      "minecraft:stone"
+    ],
+    "name": "glazed_terracotta_facing_ignores_clicked_face",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:white_concrete_powder"
+    ],
+    "name": "concrete_powder_falls_onto_dry_ground",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:white_concrete_powder"
+    ],
+    "name": "concrete_powder_survival_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:tube_coral_block",
+      "minecraft:dead_tube_coral_block"
+    ],
+    "name": "tube_coral_block_dies_without_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:tube_coral_block",
+      "minecraft:dead_tube_coral_block",
+      "minecraft:stone"
+    ],
+    "name": "tube_coral_block_player_placement_dry",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral",
+      "minecraft:stone"
+    ],
+    "name": "dead_coral_breaks_without_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral",
+      "minecraft:stone"
+    ],
+    "name": "dead_coral_dry_stays_unchanged_over_time",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral",
+      "minecraft:stone"
+    ],
+    "name": "dead_coral_placement_on_solid",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral",
+      "minecraft:stone"
+    ],
+    "name": "dead_coral_unaffected_by_side_block_removal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral",
+      "minecraft:dead_brain_coral",
+      "minecraft:stone"
+    ],
+    "name": "brain_coral_water_decay",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral",
+      "minecraft:stone"
+    ],
+    "name": "brain_coral_support_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral_fan"
+    ],
+    "name": "dead_coral_fan_breaks_without_support_and_drops_nothing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral_fan"
+    ],
+    "name": "dead_coral_fan_rejects_unsupported_ceiling_underside",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral_fan"
+    ],
+    "name": "dead_coral_fan_stays_dead_without_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral_fan"
+    ],
+    "name": "dead_coral_fan_survival_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral_fan",
+      "minecraft:dead_tube_coral_wall_fan"
+    ],
+    "name": "dead_coral_wall_fan_four_side_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral_fan",
+      "minecraft:brain_coral_wall_fan"
+    ],
+    "name": "coral_wall_fan_placement_in_air",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral_fan",
+      "minecraft:brain_coral_wall_fan"
+    ],
+    "name": "coral_wall_fan_placement_in_flowing_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral_fan",
+      "minecraft:brain_coral_wall_fan"
+    ],
+    "name": "coral_wall_fan_placement_in_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral_fan",
+      "minecraft:brain_coral_wall_fan"
+    ],
+    "name": "coral_wall_fan_placement_without_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral_fan",
+      "minecraft:stone"
+    ],
+    "name": "brain_coral_fan_support_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral_wall_fan"
+    ],
+    "name": "dead_coral_wall_fan_breaks_without_backing_block",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:dead_tube_coral_wall_fan"
+    ],
+    "name": "dead_coral_wall_fan_survives_without_floor",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:tube_coral_wall_fan",
+      "minecraft:dead_tube_coral_wall_fan"
+    ],
+    "name": "coral_wall_fan_dies_without_water_tube",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral_wall_fan",
+      "minecraft:dead_brain_coral_wall_fan"
+    ],
+    "name": "coral_wall_fan_dies_after_water_removed",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral_wall_fan",
+      "minecraft:dead_brain_coral_wall_fan"
+    ],
+    "name": "coral_wall_fan_dies_without_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bubble_coral_wall_fan",
+      "minecraft:dead_bubble_coral_wall_fan"
+    ],
+    "name": "coral_wall_fan_dies_without_water_bubble",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:fire_coral_wall_fan",
+      "minecraft:dead_fire_coral_wall_fan"
+    ],
+    "name": "coral_wall_fan_dies_without_water_fire",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:horn_coral_wall_fan",
+      "minecraft:dead_horn_coral_wall_fan"
+    ],
+    "name": "coral_wall_fan_dies_without_water_horn",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral_wall_fan"
+    ],
+    "name": "coral_wall_fan_breaks_without_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral_wall_fan"
+    ],
+    "name": "coral_wall_fan_ignores_other_neighbor_removal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral_wall_fan"
+    ],
+    "name": "coral_wall_fan_stays_alive_with_adjacent_water",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral_wall_fan"
+    ],
+    "name": "coral_wall_fan_waterlogged_stays_alive",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:brain_coral_wall_fan",
+      "minecraft:stone"
+    ],
+    "name": "brain_coral_wall_fan_support_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:conduit"
+    ],
+    "name": "Conduit Placed In Air Is Dry",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bamboo",
+      "minecraft:bamboo_sapling",
+      "minecraft:dirt"
+    ],
+    "name": "bamboo_stacking_on_sapling",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:bamboo",
+      "minecraft:dirt"
+    ],
+    "name": "bamboo_age_propagation",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bamboo",
+      "minecraft:dirt",
+      "minecraft:item"
+    ],
+    "name": "bamboo_support_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:stone_stairs"
+    ],
+    "name": "stairs_corner_blocked",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:stone_stairs"
+    ],
+    "name": "stairs_placement_facing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:stone_stairs"
+    ],
+    "name": "stairs_placement_half",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:grindstone"
+    ],
+    "name": "grindstone_blocks_piston_push",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:grindstone"
+    ],
+    "name": "grindstone_ceiling_placement_facing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:grindstone"
+    ],
+    "name": "grindstone_default_state",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:grindstone"
+    ],
+    "name": "grindstone_floor_placement_facing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:grindstone"
+    ],
+    "name": "grindstone_placement_follows_clicked_face",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:grindstone"
+    ],
+    "name": "grindstone_placement_on_non_sturdy_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:grindstone"
+    ],
+    "name": "grindstone_survives_support_removal",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:grindstone"
+    ],
+    "name": "grindstone_wall_placement_facing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bell",
+      "minecraft:stone"
+    ],
+    "name": "bell_ceiling_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bell",
+      "minecraft:stone"
+    ],
+    "name": "bell_double_wall_losing_supports",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bell",
+      "minecraft:stone"
+    ],
+    "name": "bell_double_wall_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bell",
+      "minecraft:stone"
+    ],
+    "name": "bell_floor_loses_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bell",
+      "minecraft:stone"
+    ],
+    "name": "bell_floor_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bell",
+      "minecraft:stone"
+    ],
+    "name": "bell_single_wall_becomes_double_wall",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bell",
+      "minecraft:stone"
+    ],
+    "name": "bell_single_wall_loses_support",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:bell",
+      "minecraft:stone"
+    ],
+    "name": "bell_single_wall_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:lantern",
+      "minecraft:stone",
+      "minecraft:item"
+    ],
+    "name": "lantern_hanging_breaks_without_ceiling",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:lantern"
+    ],
+    "name": "lantern_hanging_survival_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:lantern"
+    ],
+    "name": "lantern_side_click_falls_back_to_hanging",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:lantern",
+      "minecraft:stone",
+      "minecraft:item"
+    ],
+    "name": "lantern_standing_breaks_without_floor",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:lantern"
+    ],
+    "name": "lantern_standing_survival_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:lantern"
+    ],
+    "name": "lantern_unsupported_placement_fails",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:campfire"
+    ],
+    "name": "Campfire Placement Default State",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:crimson_stem",
+      "minecraft:stone"
+    ],
+    "name": "crimson_stem_placement_north_face",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:crimson_stem",
+      "minecraft:stone"
+    ],
+    "name": "crimson_stem_placement_top",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:crimson_stem",
+      "minecraft:stone"
+    ],
+    "name": "crimson_stem_placement_west_face",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:crimson_hyphae",
+      "minecraft:stone"
+    ],
+    "name": "Crimson Hyphae Placement North Face Axis Z",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:crimson_hyphae",
+      "minecraft:stone"
+    ],
+    "name": "Crimson Hyphae Placement Top Axis Y",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:crimson_hyphae",
+      "minecraft:stone"
+    ],
+    "name": "Crimson Hyphae Placement West Face Axis X",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:crimson_pressure_plate"
+    ],
+    "name": "crimson_pressure_plate_default_state",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:crimson_trapdoor"
+    ],
+    "name": "Crimson Trapdoor Toggle And Redstone",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:composter",
+      "minecraft:stone",
+      "minecraft:item"
+    ],
+    "name": "composter_empty_hand_below_ready",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:composter",
+      "minecraft:stone"
+    ],
+    "name": "composter_item_places_empty_composter",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:composter",
+      "minecraft:stone"
+    ],
+    "name": "composter_ready_after_20_ticks",
+    "success": false
+  },
+  {
+    "ids": [
+      "minecraft:beehive"
+    ],
+    "name": "Beehive Facing",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:beehive"
+    ],
+    "name": "Place Beehive",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:honey_block",
+      "minecraft:stone"
+    ],
+    "name": "place_honey_block",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:amethyst_cluster"
+    ],
+    "name": "amethyst_cluster_six_face_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_ore"
+    ],
+    "name": "copper_ore_survival_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cut_copper_stairs",
+      "minecraft:exposed_cut_copper_stairs",
+      "minecraft:weathered_cut_copper_stairs",
+      "minecraft:oxidized_cut_copper_stairs"
+    ],
+    "name": "copper_stairs_scrape",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:waxed_cut_copper_stairs",
+      "minecraft:waxed_exposed_cut_copper_stairs",
+      "minecraft:waxed_weathered_cut_copper_stairs",
+      "minecraft:waxed_oxidized_cut_copper_stairs",
+      "minecraft:cut_copper_stairs",
+      "minecraft:exposed_cut_copper_stairs",
+      "minecraft:weathered_cut_copper_stairs",
+      "minecraft:oxidized_cut_copper_stairs"
+    ],
+    "name": "copper_stairs_wax_off",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:exposed_copper_door"
+    ],
+    "name": "exposed_copper_door_hand_toggle",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_trapdoor"
+    ],
+    "name": "Copper Trapdoor Toggle By Hand",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:copper_trapdoor",
+      "minecraft:exposed_copper_trapdoor",
+      "minecraft:weathered_copper_trapdoor",
+      "minecraft:oxidized_copper_trapdoor"
+    ],
+    "name": "Copper Trapdoor Weathering",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:waxed_copper_trapdoor"
+    ],
+    "name": "Waxed Copper Trapdoor Toggle By Hand",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:waxed_copper_trapdoor"
+    ],
+    "name": "Waxed Copper Trapdoor No Weathering",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:waxed_copper_bulb"
+    ],
+    "name": "waxed_bulb_empty_hand_interact",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:waxed_lightning_rod"
+    ],
+    "name": "waxed_lightning_rod_powered_pulse_expires",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:waxed_lightning_rod"
+    ],
+    "name": "waxed_lightning_rod_six_face_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cave_vines",
+      "minecraft:stone"
+    ],
+    "name": "cave_vines_max_age_does_not_grow",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:cave_vines",
+      "minecraft:cave_vines_plant",
+      "minecraft:stone"
+    ],
+    "name": "cave_vines_plant_reverts_to_tip",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:flowering_azalea",
+      "minecraft:dirt",
+      "minecraft:stone"
+    ],
+    "name": "flowering_azalea_not_replaced_by_block_placement",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:big_dripleaf",
+      "minecraft:big_dripleaf_stem",
+      "minecraft:dirt"
+    ],
+    "name": "big_dripleaf_leaf_above_converts_to_stem",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:big_dripleaf",
+      "minecraft:dirt"
+    ],
+    "name": "big_dripleaf_place_on_dirt",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:big_dripleaf",
+      "minecraft:big_dripleaf_stem",
+      "minecraft:dirt"
+    ],
+    "name": "big_dripleaf_place_on_leaf",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:big_dripleaf",
+      "minecraft:stone"
+    ],
+    "name": "big_dripleaf_place_on_stone_rejected",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:big_dripleaf_stem",
+      "minecraft:big_dripleaf",
+      "minecraft:item"
+    ],
+    "name": "big_dripleaf_stem_drops_leaf_item",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:big_dripleaf_stem",
+      "minecraft:big_dripleaf",
+      "minecraft:dirt"
+    ],
+    "name": "big_dripleaf_stem_formed_by_stacking_leaf",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:big_dripleaf",
+      "minecraft:dirt"
+    ],
+    "name": "big_dripleaf_support_loss",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:big_dripleaf",
+      "minecraft:stone",
+      "minecraft:cobblestone"
+    ],
+    "name": "big_dripleaf_unsupported_only_checks_below",
+    "success": true
+  },
+  {
+    "ids": [
+      "minecraft:heavy_core",
+      "minecraft:stone"
+    ],
+    "name": "heavy_core_place_on_floor",
+    "success": true
+  }
+]

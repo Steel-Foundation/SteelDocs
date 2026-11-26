@@ -125,13 +125,20 @@ For those without any idea of how to configure docker, here's a small cheatsheet
 
 ## Egg
 
-For Pelican and Pterodactyl, Steel provides an egg that can be imported directly from the panel's egg store.
+For  Pterodactyl, Steel provides an egg that can be imported directly from the panel's egg store in the future.
 
-For other egg-based platforms, use the JSON or YAML egg files from our repository, or download the matching egg from one of the supported stores when available.
+For other egg-based platforms, use the JSON egg file from the link, or download the matching egg from one of the supported stores when available.
 
-Pelican: `[Coming Soon]`
+### Environement variables
 
-Pterodactyl: `[Coming Soon]`
+| Name | default | Description |
+| ---- | --- | --- |
+| VERSION | latest | The specific steel version which should be used. It is recommended to choose a specific version, because latest will update if you not intend it to happen! |
+| GITHUB_USER | <empty> | Allows to download with a github user to avoid rate limitation, the github username for that. |
+| GITHUB_OAUTH_TOKEN | <empty> | The token for the github user.  |
+
+
+Pterodactyl: `[Our upload](https://steelmc.dev/data/egg-steel-json)`
 
 ## Self Compilation
 
@@ -229,4 +236,4 @@ cargo run-native --release
 
 ## Next Steps
 
-Now that you have Steel running, proceed to [Configuration](../../configuration/overview) to customize your server.
+Now that you have Steel running, proceed to [Configuration](/for-administrators/configuration/overview/) to customize your server.

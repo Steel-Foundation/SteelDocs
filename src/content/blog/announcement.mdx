@@ -69,7 +69,7 @@ Once I saw it that way, the dependency problem stopped looking recursive. Steel 
 
 From the start, the target was block-for-block vanilla parity: given the same seed, version, and coordinates, Steel should produce the same blocks as vanilla.
 
-We began with biomes and then the noise stage, which first fills a chunk with terrain. That immediately exposed a dependency hidden by the neat stage diagram: terrain shaping needs information about structures. While the structure pipeline was incomplete, we disabled structures in the vanilla reference worlds produced by our [extractor](/development/tools/steel_extractor/). That let us test the terrain we had actually implemented without weakening the final goal.
+We began with biomes and then the noise stage, which first fills a chunk with terrain. That immediately exposed a dependency hidden by the neat stage diagram: terrain shaping needs information about structures. While the structure pipeline was incomplete, we disabled structures in the vanilla reference worlds produced by our [extractor](/for-developers/tools/steel_extractor/). That let us test the terrain we had actually implemented without weakening the final goal.
 
 The surface stage replaces the raw stone from noise generation with the blocks players recognize: grass, dirt, sand, snow, and so on. When our implementation was nearly finished, almost every one of the 2,500 test chunks matched. Almost.
 
@@ -146,7 +146,7 @@ Plugins are one of the features I have wanted to build for the longest, but they
 
 I have explored WebAssembly, scripting languages, and native Rust plugins. The current direction is a native Rust API, giving extensions the same power as ordinary server code. Native plugins could still provide sandboxed or higher-level environments by embedding WebAssembly or language runtimes such as JavaScript and Lua. Native plugins would be trusted code, so the API boundary will need careful design.
 
-Years of Bukkit and Paper plugins have shown which problems server extensions commonly solve. Steel draws inspiration from those use cases, including how servers and plugins use [permissions](/configuration/permissions/), without copying the public APIs of Bukkit or Paper. But Steel does not have plugins yet, and we will not publish an API until the server beneath it is mature enough to make that promise responsibly.
+Years of Bukkit and Paper plugins have shown which problems server extensions commonly solve. Steel draws inspiration from those use cases, including how servers and plugins use [permissions](/for-administrators/configuration/permissions/), without copying the public APIs of Bukkit or Paper. But Steel does not have plugins yet, and we will not publish an API until the server beneath it is mature enough to make that promise responsibly.
 
 ## Why announce Steel now
 
@@ -162,7 +162,7 @@ That is part of why I am announcing Steel now. The project needs to become more 
 
 Steel allows AI to be used as a tool, but not as a substitute for a contributor's thinking. Whether you use it to look up an API, understand a compiler error, or explore possible approaches, you must understand every line you submit and be able to explain the design behind it.
 
-Fully autonomous pull requests are not welcome, and contributors must write and understand their own pull request descriptions. Our [contributor guide](/development/start-contributing/) covers the expectations and how to get started.
+Fully autonomous pull requests are not welcome, and contributors must write and understand their own pull request descriptions. Our [contributor guide](/for-developers/start-contributing/) covers the expectations and how to get started.
 
 ## Join us
 

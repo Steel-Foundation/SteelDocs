@@ -2,8 +2,9 @@
   "meta": {
     "source": "nightly",
     "steel_version": "0.17.1+mc26.3",
-    "steel_commit": "cf5a7f6490a2808f0edcc21efd8c99399b344922",
-    "steel_committed_at": "2026-11-21T16:46:40+01:00"
+    "steel_commit": "10c16064ea9e9e0efb952c1ab8c5e8f709b5d4cb",
+    "steel_committed_at": "2026-11-25T22:08:02+01:00",
+    "latest_release": "v0.17.1+mc26.3"
   },
   "blocks": {
     "GrassBlock": {
@@ -13,14 +14,22 @@
       ],
       "entries": [
         "grass_block"
-      ]
+      ],
+      "released": [
+        "grass_block"
+      ],
+      "new_in_nightly": []
     },
     "SnowyBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "podzol"
-      ]
+      ],
+      "released": [
+        "podzol"
+      ],
+      "new_in_nightly": []
     },
     "RotatedPillarBlock": {
       "implemented": true,
@@ -86,7 +95,70 @@
         "ochre_froglight",
         "verdant_froglight",
         "pearlescent_froglight"
-      ]
+      ],
+      "released": [
+        "pale_oak_wood",
+        "oak_log",
+        "spruce_log",
+        "birch_log",
+        "jungle_log",
+        "acacia_log",
+        "cherry_log",
+        "dark_oak_log",
+        "pale_oak_log",
+        "mangrove_log",
+        "poplar_log",
+        "muddy_mangrove_roots",
+        "bamboo_block",
+        "stripped_spruce_log",
+        "stripped_birch_log",
+        "stripped_jungle_log",
+        "stripped_acacia_log",
+        "stripped_cherry_log",
+        "stripped_dark_oak_log",
+        "stripped_pale_oak_log",
+        "stripped_oak_log",
+        "stripped_mangrove_log",
+        "stripped_poplar_log",
+        "stripped_bamboo_block",
+        "oak_wood",
+        "spruce_wood",
+        "birch_wood",
+        "jungle_wood",
+        "acacia_wood",
+        "cherry_wood",
+        "dark_oak_wood",
+        "mangrove_wood",
+        "poplar_wood",
+        "stripped_oak_wood",
+        "stripped_spruce_wood",
+        "stripped_birch_wood",
+        "stripped_jungle_wood",
+        "stripped_acacia_wood",
+        "stripped_cherry_wood",
+        "stripped_dark_oak_wood",
+        "stripped_pale_oak_wood",
+        "stripped_mangrove_wood",
+        "stripped_poplar_wood",
+        "basalt",
+        "polished_basalt",
+        "quartz_pillar",
+        "purpur_pillar",
+        "bone_block",
+        "warped_stem",
+        "stripped_warped_stem",
+        "warped_hyphae",
+        "stripped_warped_hyphae",
+        "crimson_stem",
+        "stripped_crimson_stem",
+        "crimson_hyphae",
+        "stripped_crimson_hyphae",
+        "deepslate",
+        "ochre_froglight",
+        "verdant_froglight",
+        "pearlescent_froglight"
+      ],
+      "new_in_nightly": []
     },
     "SaplingBlock": {
       "implemented": true,
@@ -103,14 +175,30 @@
         "dark_oak_sapling",
         "pale_oak_sapling",
         "poplar_sapling"
-      ]
+      ],
+      "released": [
+        "oak_sapling",
+        "spruce_sapling",
+        "birch_sapling",
+        "jungle_sapling",
+        "acacia_sapling",
+        "cherry_sapling",
+        "dark_oak_sapling",
+        "pale_oak_sapling",
+        "poplar_sapling"
+      ],
+      "new_in_nightly": []
     },
     "MangrovePropaguleBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "mangrove_propagule"
-      ]
+      ],
+      "released": [
+        "mangrove_propagule"
+      ],
+      "new_in_nightly": []
     },
     "LiquidBlock": {
       "implemented": true,
@@ -118,7 +206,12 @@
       "entries": [
         "water",
         "lava"
-      ]
+      ],
+      "released": [
+        "water",
+        "lava"
+      ],
+      "new_in_nightly": []
     },
     "SandBlock": {
       "implemented": true,
@@ -126,7 +219,12 @@
       "entries": [
         "sand",
         "red_sand"
-      ]
+      ],
+      "released": [
+        "sand",
+        "red_sand"
+      ],
+      "new_in_nightly": []
     },
     "BrushableBlock": {
       "implemented": true,
@@ -134,14 +232,23 @@
       "entries": [
         "suspicious_sand",
         "suspicious_gravel"
-      ]
+      ],
+      "released": [
+        "suspicious_sand",
+        "suspicious_gravel"
+      ],
+      "new_in_nightly": []
     },
     "ColoredFallingBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "gravel"
-      ]
+      ],
+      "released": [
+        "gravel"
+      ],
+      "new_in_nightly": []
     },
     "DropExperienceBlock": {
       "implemented": true,
@@ -163,14 +270,37 @@
         "nether_quartz_ore",
         "copper_ore",
         "deepslate_copper_ore"
-      ]
+      ],
+      "released": [
+        "gold_ore",
+        "deepslate_gold_ore",
+        "iron_ore",
+        "deepslate_iron_ore",
+        "coal_ore",
+        "deepslate_coal_ore",
+        "nether_gold_ore",
+        "lapis_ore",
+        "deepslate_lapis_ore",
+        "diamond_ore",
+        "deepslate_diamond_ore",
+        "emerald_ore",
+        "deepslate_emerald_ore",
+        "nether_quartz_ore",
+        "copper_ore",
+        "deepslate_copper_ore"
+      ],
+      "new_in_nightly": []
     },
     "MangroveRootsBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "mangrove_roots"
-      ]
+      ],
+      "released": [
+        "mangrove_roots"
+      ],
+      "new_in_nightly": []
     },
     "TintedParticleLeavesBlock": {
       "implemented": true,
@@ -181,14 +311,24 @@
         "jungle_leaves",
         "acacia_leaves",
         "dark_oak_leaves"
-      ]
+      ],
+      "released": [
+        "oak_leaves",
+        "birch_leaves",
+        "jungle_leaves",
+        "acacia_leaves",
+        "dark_oak_leaves"
+      ],
+      "new_in_nightly": []
     },
     "LeavesBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "spruce_leaves"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "UntintedParticleLeavesBlock": {
       "implemented": true,
@@ -201,49 +341,79 @@
         "yellow_poplar_leaves",
         "azalea_leaves",
         "flowering_azalea_leaves"
-      ]
+      ],
+      "released": [
+        "cherry_leaves",
+        "pale_oak_leaves",
+        "red_poplar_leaves",
+        "orange_poplar_leaves",
+        "yellow_poplar_leaves",
+        "azalea_leaves",
+        "flowering_azalea_leaves"
+      ],
+      "new_in_nightly": []
     },
     "MangroveLeavesBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "mangrove_leaves"
-      ]
+      ],
+      "released": [
+        "mangrove_leaves"
+      ],
+      "new_in_nightly": []
     },
     "SpongeBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "sponge"
-      ]
+      ],
+      "released": [
+        "sponge"
+      ],
+      "new_in_nightly": []
     },
     "WetSpongeBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "wet_sponge"
-      ]
+      ],
+      "released": [
+        "wet_sponge"
+      ],
+      "new_in_nightly": []
     },
     "TransparentBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "glass"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "DispenserBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "dispenser"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "NoteBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "note_block"
-      ]
+      ],
+      "released": [
+        "note_block"
+      ],
+      "new_in_nightly": []
     },
     "BedBlock": {
       "implemented": true,
@@ -268,14 +438,37 @@
         "green_bed",
         "red_bed",
         "black_bed"
-      ]
+      ],
+      "released": [
+        "white_bed",
+        "orange_bed",
+        "magenta_bed",
+        "light_blue_bed",
+        "yellow_bed",
+        "lime_bed",
+        "pink_bed",
+        "gray_bed",
+        "light_gray_bed",
+        "cyan_bed",
+        "purple_bed",
+        "blue_bed",
+        "brown_bed",
+        "green_bed",
+        "red_bed",
+        "black_bed"
+      ],
+      "new_in_nightly": []
     },
     "StrawBedBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "straw_bed"
-      ]
+      ],
+      "released": [
+        "straw_bed"
+      ],
+      "new_in_nightly": []
     },
     "PoweredRailBlock": {
       "implemented": true,
@@ -283,14 +476,23 @@
       "entries": [
         "powered_rail",
         "activator_rail"
-      ]
+      ],
+      "released": [
+        "powered_rail",
+        "activator_rail"
+      ],
+      "new_in_nightly": []
     },
     "DetectorRailBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "detector_rail"
-      ]
+      ],
+      "released": [
+        "detector_rail"
+      ],
+      "new_in_nightly": []
     },
     "PistonBaseBlock": {
       "implemented": true,
@@ -300,14 +502,23 @@
       "entries": [
         "sticky_piston",
         "piston"
-      ]
+      ],
+      "released": [
+        "sticky_piston",
+        "piston"
+      ],
+      "new_in_nightly": []
     },
     "WebBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "cobweb"
-      ]
+      ],
+      "released": [
+        "cobweb"
+      ],
+      "new_in_nightly": []
     },
     "TallGrassBlock": {
       "implemented": true,
@@ -315,14 +526,23 @@
       "entries": [
         "short_grass",
         "fern"
-      ]
+      ],
+      "released": [
+        "short_grass",
+        "fern"
+      ],
+      "new_in_nightly": []
     },
     "DryVegetationBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "dead_bush"
-      ]
+      ],
+      "released": [
+        "dead_bush"
+      ],
+      "new_in_nightly": []
     },
     "BushBlock": {
       "implemented": true,
@@ -330,42 +550,67 @@
       "entries": [
         "bush",
         "red_shrub"
-      ]
+      ],
+      "released": [
+        "bush",
+        "red_shrub"
+      ],
+      "new_in_nightly": []
     },
     "ShortDryGrassBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "short_dry_grass"
-      ]
+      ],
+      "released": [
+        "short_dry_grass"
+      ],
+      "new_in_nightly": []
     },
     "TallDryGrassBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "tall_dry_grass"
-      ]
+      ],
+      "released": [
+        "tall_dry_grass"
+      ],
+      "new_in_nightly": []
     },
     "SeagrassBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "seagrass"
-      ]
+      ],
+      "released": [
+        "seagrass"
+      ],
+      "new_in_nightly": []
     },
     "TallSeagrassBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "tall_seagrass"
-      ]
+      ],
+      "released": [
+        "tall_seagrass"
+      ],
+      "new_in_nightly": []
     },
     "PistonHeadBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "piston_head"
-      ]
+      ],
+      "released": [
+        "piston_head"
+      ],
+      "new_in_nightly": []
     },
     "StairBlock": {
       "implemented": true,
@@ -464,7 +709,103 @@
         "polished_deepslate_stairs",
         "deepslate_tile_stairs",
         "deepslate_brick_stairs"
-      ]
+      ],
+      "released": [
+        "white_wool_stairs",
+        "orange_wool_stairs",
+        "magenta_wool_stairs",
+        "light_blue_wool_stairs",
+        "yellow_wool_stairs",
+        "lime_wool_stairs",
+        "pink_wool_stairs",
+        "gray_wool_stairs",
+        "light_gray_wool_stairs",
+        "cyan_wool_stairs",
+        "purple_wool_stairs",
+        "blue_wool_stairs",
+        "brown_wool_stairs",
+        "green_wool_stairs",
+        "red_wool_stairs",
+        "black_wool_stairs",
+        "oak_stairs",
+        "cobblestone_stairs",
+        "brick_stairs",
+        "stone_brick_stairs",
+        "mud_brick_stairs",
+        "resin_brick_stairs",
+        "nether_brick_stairs",
+        "sandstone_stairs",
+        "spruce_stairs",
+        "birch_stairs",
+        "jungle_stairs",
+        "quartz_stairs",
+        "acacia_stairs",
+        "cherry_stairs",
+        "dark_oak_stairs",
+        "pale_oak_stairs",
+        "mangrove_stairs",
+        "poplar_stairs",
+        "bamboo_stairs",
+        "bamboo_mosaic_stairs",
+        "prismarine_stairs",
+        "prismarine_brick_stairs",
+        "dark_prismarine_stairs",
+        "red_sandstone_stairs",
+        "purpur_stairs",
+        "white_concrete_stairs",
+        "orange_concrete_stairs",
+        "magenta_concrete_stairs",
+        "light_blue_concrete_stairs",
+        "yellow_concrete_stairs",
+        "lime_concrete_stairs",
+        "pink_concrete_stairs",
+        "gray_concrete_stairs",
+        "light_gray_concrete_stairs",
+        "cyan_concrete_stairs",
+        "purple_concrete_stairs",
+        "blue_concrete_stairs",
+        "brown_concrete_stairs",
+        "green_concrete_stairs",
+        "red_concrete_stairs",
+        "black_concrete_stairs",
+        "polished_granite_stairs",
+        "smooth_red_sandstone_stairs",
+        "mossy_stone_brick_stairs",
+        "polished_diorite_stairs",
+        "mossy_cobblestone_stairs",
+        "end_stone_brick_stairs",
+        "stone_stairs",
+        "smooth_sandstone_stairs",
+        "smooth_quartz_stairs",
+        "granite_stairs",
+        "andesite_stairs",
+        "red_nether_brick_stairs",
+        "polished_andesite_stairs",
+        "diorite_stairs",
+        "crimson_stairs",
+        "warped_stairs",
+        "blackstone_stairs",
+        "polished_blackstone_brick_stairs",
+        "polished_blackstone_stairs",
+        "tuff_stairs",
+        "polished_tuff_stairs",
+        "tuff_brick_stairs",
+        "sulfur_stairs",
+        "polished_sulfur_stairs",
+        "sulfur_brick_stairs",
+        "cinnabar_stairs",
+        "polished_cinnabar_stairs",
+        "cinnabar_brick_stairs",
+        "waxed_cut_copper_stairs",
+        "waxed_exposed_cut_copper_stairs",
+        "waxed_weathered_cut_copper_stairs",
+        "waxed_oxidized_cut_copper_stairs",
+        "cobbled_deepslate_stairs",
+        "polished_deepslate_stairs",
+        "deepslate_tile_stairs",
+        "deepslate_brick_stairs"
+      ],
+      "new_in_nightly": []
     },
     "SlabBlock": {
       "implemented": true,
@@ -567,14 +908,118 @@
         "polished_deepslate_slab",
         "deepslate_tile_slab",
         "deepslate_brick_slab"
-      ]
+      ],
+      "released": [
+        "white_wool_slab",
+        "orange_wool_slab",
+        "magenta_wool_slab",
+        "light_blue_wool_slab",
+        "yellow_wool_slab",
+        "lime_wool_slab",
+        "pink_wool_slab",
+        "gray_wool_slab",
+        "light_gray_wool_slab",
+        "cyan_wool_slab",
+        "purple_wool_slab",
+        "blue_wool_slab",
+        "brown_wool_slab",
+        "green_wool_slab",
+        "red_wool_slab",
+        "black_wool_slab",
+        "resin_brick_slab",
+        "prismarine_slab",
+        "prismarine_brick_slab",
+        "dark_prismarine_slab",
+        "oak_slab",
+        "spruce_slab",
+        "birch_slab",
+        "jungle_slab",
+        "acacia_slab",
+        "cherry_slab",
+        "dark_oak_slab",
+        "pale_oak_slab",
+        "mangrove_slab",
+        "poplar_slab",
+        "bamboo_slab",
+        "bamboo_mosaic_slab",
+        "stone_slab",
+        "sandstone_slab",
+        "cut_sandstone_slab",
+        "petrified_oak_slab",
+        "cobblestone_slab",
+        "brick_slab",
+        "stone_brick_slab",
+        "mud_brick_slab",
+        "nether_brick_slab",
+        "quartz_slab",
+        "red_sandstone_slab",
+        "cut_red_sandstone_slab",
+        "smooth_stone_slab",
+        "purpur_slab",
+        "white_concrete_slab",
+        "orange_concrete_slab",
+        "magenta_concrete_slab",
+        "light_blue_concrete_slab",
+        "yellow_concrete_slab",
+        "lime_concrete_slab",
+        "pink_concrete_slab",
+        "gray_concrete_slab",
+        "light_gray_concrete_slab",
+        "cyan_concrete_slab",
+        "purple_concrete_slab",
+        "blue_concrete_slab",
+        "brown_concrete_slab",
+        "green_concrete_slab",
+        "red_concrete_slab",
+        "black_concrete_slab",
+        "polished_granite_slab",
+        "smooth_red_sandstone_slab",
+        "mossy_stone_brick_slab",
+        "polished_diorite_slab",
+        "mossy_cobblestone_slab",
+        "end_stone_brick_slab",
+        "smooth_sandstone_slab",
+        "smooth_quartz_slab",
+        "granite_slab",
+        "andesite_slab",
+        "red_nether_brick_slab",
+        "polished_andesite_slab",
+        "diorite_slab",
+        "crimson_slab",
+        "warped_slab",
+        "blackstone_slab",
+        "polished_blackstone_brick_slab",
+        "polished_blackstone_slab",
+        "tuff_slab",
+        "polished_tuff_slab",
+        "tuff_brick_slab",
+        "sulfur_slab",
+        "polished_sulfur_slab",
+        "sulfur_brick_slab",
+        "cinnabar_slab",
+        "polished_cinnabar_slab",
+        "cinnabar_brick_slab",
+        "waxed_cut_copper_slab",
+        "waxed_exposed_cut_copper_slab",
+        "waxed_weathered_cut_copper_slab",
+        "waxed_oxidized_cut_copper_slab",
+        "cobbled_deepslate_slab",
+        "polished_deepslate_slab",
+        "deepslate_tile_slab",
+        "deepslate_brick_slab"
+      ],
+      "new_in_nightly": []
     },
     "MovingPistonBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "moving_piston"
-      ]
+      ],
+      "released": [
+        "moving_piston"
+      ],
+      "new_in_nightly": []
     },
     "FlowerBlock": {
       "implemented": true,
@@ -594,14 +1039,35 @@
         "oxeye_daisy",
         "cornflower",
         "lily_of_the_valley"
-      ]
+      ],
+      "released": [
+        "dandelion",
+        "golden_dandelion",
+        "torchflower",
+        "poppy",
+        "blue_orchid",
+        "allium",
+        "azure_bluet",
+        "red_tulip",
+        "orange_tulip",
+        "white_tulip",
+        "pink_tulip",
+        "oxeye_daisy",
+        "cornflower",
+        "lily_of_the_valley"
+      ],
+      "new_in_nightly": []
     },
     "WitherRoseBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "wither_rose"
-      ]
+      ],
+      "released": [
+        "wither_rose"
+      ],
+      "new_in_nightly": []
     },
     "MushroomBlock": {
       "implemented": true,
@@ -609,7 +1075,12 @@
       "entries": [
         "brown_mushroom",
         "red_mushroom"
-      ]
+      ],
+      "released": [
+        "brown_mushroom",
+        "red_mushroom"
+      ],
+      "new_in_nightly": []
     },
     "TntBlock": {
       "implemented": true,
@@ -618,14 +1089,22 @@
       ],
       "entries": [
         "tnt"
-      ]
+      ],
+      "released": [
+        "tnt"
+      ],
+      "new_in_nightly": []
     },
     "ChiseledBookShelfBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "chiseled_bookshelf"
-      ]
+      ],
+      "released": [
+        "chiseled_bookshelf"
+      ],
+      "new_in_nightly": []
     },
     "ShelfBlock": {
       "implemented": false,
@@ -644,7 +1123,9 @@
         "poplar_shelf",
         "spruce_shelf",
         "warped_shelf"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "TorchBlock": {
       "implemented": true,
@@ -653,7 +1134,13 @@
         "torch",
         "soul_torch",
         "copper_torch"
-      ]
+      ],
+      "released": [
+        "torch",
+        "soul_torch",
+        "copper_torch"
+      ],
+      "new_in_nightly": []
     },
     "WallTorchBlock": {
       "implemented": true,
@@ -662,7 +1149,13 @@
         "wall_torch",
         "soul_wall_torch",
         "copper_wall_torch"
-      ]
+      ],
+      "released": [
+        "wall_torch",
+        "soul_wall_torch",
+        "copper_wall_torch"
+      ],
+      "new_in_nightly": []
     },
     "FireBlock": {
       "implemented": true,
@@ -672,28 +1165,42 @@
       ],
       "entries": [
         "fire"
-      ]
+      ],
+      "released": [
+        "fire"
+      ],
+      "new_in_nightly": []
     },
     "SoulFireBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "soul_fire"
-      ]
+      ],
+      "released": [
+        "soul_fire"
+      ],
+      "new_in_nightly": []
     },
     "SpawnerBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "spawner"
-      ]
+      ],
+      "released": [
+        "spawner"
+      ],
+      "new_in_nightly": []
     },
     "CreakingHeartBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "creaking_heart"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ChestBlock": {
       "implemented": true,
@@ -702,42 +1209,66 @@
       ],
       "entries": [
         "chest"
-      ]
+      ],
+      "released": [
+        "chest"
+      ],
+      "new_in_nightly": []
     },
     "RedstoneWireBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "redstone_wire"
-      ]
+      ],
+      "released": [
+        "redstone_wire"
+      ],
+      "new_in_nightly": []
     },
     "CraftingTableBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "crafting_table"
-      ]
+      ],
+      "released": [
+        "crafting_table"
+      ],
+      "new_in_nightly": []
     },
     "CropBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "wheat"
-      ]
+      ],
+      "released": [
+        "wheat"
+      ],
+      "new_in_nightly": []
     },
     "FarmlandBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "farmland"
-      ]
+      ],
+      "released": [
+        "farmland"
+      ],
+      "new_in_nightly": []
     },
     "FurnaceBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "furnace"
-      ]
+      ],
+      "released": [
+        "furnace"
+      ],
+      "new_in_nightly": []
     },
     "StandingSignBlock": {
       "implemented": true,
@@ -756,7 +1287,23 @@
         "bamboo_sign",
         "crimson_sign",
         "warped_sign"
-      ]
+      ],
+      "released": [
+        "oak_sign",
+        "spruce_sign",
+        "birch_sign",
+        "acacia_sign",
+        "cherry_sign",
+        "jungle_sign",
+        "dark_oak_sign",
+        "pale_oak_sign",
+        "mangrove_sign",
+        "poplar_sign",
+        "bamboo_sign",
+        "crimson_sign",
+        "warped_sign"
+      ],
+      "new_in_nightly": []
     },
     "DoorBlock": {
       "implemented": true,
@@ -780,21 +1327,50 @@
         "waxed_exposed_copper_door",
         "waxed_weathered_copper_door",
         "waxed_oxidized_copper_door"
-      ]
+      ],
+      "released": [
+        "oak_door",
+        "iron_door",
+        "spruce_door",
+        "birch_door",
+        "jungle_door",
+        "acacia_door",
+        "cherry_door",
+        "dark_oak_door",
+        "pale_oak_door",
+        "mangrove_door",
+        "poplar_door",
+        "bamboo_door",
+        "crimson_door",
+        "warped_door",
+        "waxed_copper_door",
+        "waxed_exposed_copper_door",
+        "waxed_weathered_copper_door",
+        "waxed_oxidized_copper_door"
+      ],
+      "new_in_nightly": []
     },
     "LadderBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "ladder"
-      ]
+      ],
+      "released": [
+        "ladder"
+      ],
+      "new_in_nightly": []
     },
     "RailBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "rail"
-      ]
+      ],
+      "released": [
+        "rail"
+      ],
+      "new_in_nightly": []
     },
     "WallSignBlock": {
       "implemented": true,
@@ -813,7 +1389,23 @@
         "bamboo_wall_sign",
         "crimson_wall_sign",
         "warped_wall_sign"
-      ]
+      ],
+      "released": [
+        "oak_wall_sign",
+        "spruce_wall_sign",
+        "birch_wall_sign",
+        "acacia_wall_sign",
+        "cherry_wall_sign",
+        "jungle_wall_sign",
+        "dark_oak_wall_sign",
+        "pale_oak_wall_sign",
+        "mangrove_wall_sign",
+        "poplar_wall_sign",
+        "bamboo_wall_sign",
+        "crimson_wall_sign",
+        "warped_wall_sign"
+      ],
+      "new_in_nightly": []
     },
     "CeilingHangingSignBlock": {
       "implemented": true,
@@ -832,7 +1424,23 @@
         "mangrove_hanging_sign",
         "poplar_hanging_sign",
         "bamboo_hanging_sign"
-      ]
+      ],
+      "released": [
+        "oak_hanging_sign",
+        "spruce_hanging_sign",
+        "birch_hanging_sign",
+        "acacia_hanging_sign",
+        "cherry_hanging_sign",
+        "jungle_hanging_sign",
+        "dark_oak_hanging_sign",
+        "pale_oak_hanging_sign",
+        "crimson_hanging_sign",
+        "warped_hanging_sign",
+        "mangrove_hanging_sign",
+        "poplar_hanging_sign",
+        "bamboo_hanging_sign"
+      ],
+      "new_in_nightly": []
     },
     "WallHangingSignBlock": {
       "implemented": true,
@@ -851,7 +1459,23 @@
         "crimson_wall_hanging_sign",
         "warped_wall_hanging_sign",
         "bamboo_wall_hanging_sign"
-      ]
+      ],
+      "released": [
+        "oak_wall_hanging_sign",
+        "spruce_wall_hanging_sign",
+        "birch_wall_hanging_sign",
+        "acacia_wall_hanging_sign",
+        "cherry_wall_hanging_sign",
+        "jungle_wall_hanging_sign",
+        "dark_oak_wall_hanging_sign",
+        "pale_oak_wall_hanging_sign",
+        "mangrove_wall_hanging_sign",
+        "poplar_wall_hanging_sign",
+        "crimson_wall_hanging_sign",
+        "warped_wall_hanging_sign",
+        "bamboo_wall_hanging_sign"
+      ],
+      "new_in_nightly": []
     },
     "LeverBlock": {
       "implemented": true,
@@ -860,7 +1484,11 @@
       ],
       "entries": [
         "lever"
-      ]
+      ],
+      "released": [
+        "lever"
+      ],
+      "new_in_nightly": []
     },
     "PressurePlateBlock": {
       "implemented": true,
@@ -881,7 +1509,25 @@
         "crimson_pressure_plate",
         "warped_pressure_plate",
         "polished_blackstone_pressure_plate"
-      ]
+      ],
+      "released": [
+        "stone_pressure_plate",
+        "oak_pressure_plate",
+        "spruce_pressure_plate",
+        "birch_pressure_plate",
+        "jungle_pressure_plate",
+        "acacia_pressure_plate",
+        "cherry_pressure_plate",
+        "dark_oak_pressure_plate",
+        "pale_oak_pressure_plate",
+        "mangrove_pressure_plate",
+        "poplar_pressure_plate",
+        "bamboo_pressure_plate",
+        "crimson_pressure_plate",
+        "warped_pressure_plate",
+        "polished_blackstone_pressure_plate"
+      ],
+      "new_in_nightly": []
     },
     "RedStoneOreBlock": {
       "implemented": true,
@@ -889,21 +1535,34 @@
       "entries": [
         "redstone_ore",
         "deepslate_redstone_ore"
-      ]
+      ],
+      "released": [
+        "redstone_ore",
+        "deepslate_redstone_ore"
+      ],
+      "new_in_nightly": []
     },
     "RedstoneTorchBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "redstone_torch"
-      ]
+      ],
+      "released": [
+        "redstone_torch"
+      ],
+      "new_in_nightly": []
     },
     "RedstoneWallTorchBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "redstone_wall_torch"
-      ]
+      ],
+      "released": [
+        "redstone_wall_torch"
+      ],
+      "new_in_nightly": []
     },
     "ButtonBlock": {
       "implemented": true,
@@ -924,49 +1583,91 @@
         "crimson_button",
         "warped_button",
         "polished_blackstone_button"
-      ]
+      ],
+      "released": [
+        "stone_button",
+        "oak_button",
+        "spruce_button",
+        "birch_button",
+        "jungle_button",
+        "acacia_button",
+        "cherry_button",
+        "dark_oak_button",
+        "pale_oak_button",
+        "mangrove_button",
+        "poplar_button",
+        "bamboo_button",
+        "crimson_button",
+        "warped_button",
+        "polished_blackstone_button"
+      ],
+      "new_in_nightly": []
     },
     "SnowLayerBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "snow"
-      ]
+      ],
+      "released": [
+        "snow"
+      ],
+      "new_in_nightly": []
     },
     "IceBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "ice"
-      ]
+      ],
+      "released": [
+        "ice"
+      ],
+      "new_in_nightly": []
     },
     "CactusBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "cactus"
-      ]
+      ],
+      "released": [
+        "cactus"
+      ],
+      "new_in_nightly": []
     },
     "CactusFlowerBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "cactus_flower"
-      ]
+      ],
+      "released": [
+        "cactus_flower"
+      ],
+      "new_in_nightly": []
     },
     "SugarCaneBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "sugar_cane"
-      ]
+      ],
+      "released": [
+        "sugar_cane"
+      ],
+      "new_in_nightly": []
     },
     "JukeboxBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "jukebox"
-      ]
+      ],
+      "released": [
+        "jukebox"
+      ],
+      "new_in_nightly": []
     },
     "FenceBlock": {
       "implemented": true,
@@ -986,28 +1687,57 @@
         "bamboo_fence",
         "crimson_fence",
         "warped_fence"
-      ]
+      ],
+      "released": [
+        "oak_fence",
+        "nether_brick_fence",
+        "spruce_fence",
+        "birch_fence",
+        "jungle_fence",
+        "acacia_fence",
+        "cherry_fence",
+        "dark_oak_fence",
+        "pale_oak_fence",
+        "mangrove_fence",
+        "poplar_fence",
+        "bamboo_fence",
+        "crimson_fence",
+        "warped_fence"
+      ],
+      "new_in_nightly": []
     },
     "NetherrackBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "netherrack"
-      ]
+      ],
+      "released": [
+        "netherrack"
+      ],
+      "new_in_nightly": []
     },
     "SoulSandBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "soul_sand"
-      ]
+      ],
+      "released": [
+        "soul_sand"
+      ],
+      "new_in_nightly": []
     },
     "NetherPortalBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "nether_portal"
-      ]
+      ],
+      "released": [
+        "nether_portal"
+      ],
+      "new_in_nightly": []
     },
     "CarvedPumpkinBlock": {
       "implemented": true,
@@ -1017,21 +1747,34 @@
       "entries": [
         "carved_pumpkin",
         "jack_o_lantern"
-      ]
+      ],
+      "released": [
+        "carved_pumpkin",
+        "jack_o_lantern"
+      ],
+      "new_in_nightly": []
     },
     "CakeBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "cake"
-      ]
+      ],
+      "released": [
+        "cake"
+      ],
+      "new_in_nightly": []
     },
     "RepeaterBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "repeater"
-      ]
+      ],
+      "released": [
+        "repeater"
+      ],
+      "new_in_nightly": []
     },
     "StainedGlassBlock": {
       "implemented": true,
@@ -1053,7 +1796,26 @@
         "green_stained_glass",
         "red_stained_glass",
         "black_stained_glass"
-      ]
+      ],
+      "released": [
+        "white_stained_glass",
+        "orange_stained_glass",
+        "magenta_stained_glass",
+        "light_blue_stained_glass",
+        "yellow_stained_glass",
+        "lime_stained_glass",
+        "pink_stained_glass",
+        "gray_stained_glass",
+        "light_gray_stained_glass",
+        "cyan_stained_glass",
+        "purple_stained_glass",
+        "blue_stained_glass",
+        "brown_stained_glass",
+        "green_stained_glass",
+        "red_stained_glass",
+        "black_stained_glass"
+      ],
+      "new_in_nightly": []
     },
     "TrapDoorBlock": {
       "implemented": true,
@@ -1077,7 +1839,28 @@
         "waxed_exposed_copper_trapdoor",
         "waxed_weathered_copper_trapdoor",
         "waxed_oxidized_copper_trapdoor"
-      ]
+      ],
+      "released": [
+        "oak_trapdoor",
+        "spruce_trapdoor",
+        "birch_trapdoor",
+        "jungle_trapdoor",
+        "acacia_trapdoor",
+        "cherry_trapdoor",
+        "dark_oak_trapdoor",
+        "pale_oak_trapdoor",
+        "mangrove_trapdoor",
+        "poplar_trapdoor",
+        "bamboo_trapdoor",
+        "iron_trapdoor",
+        "crimson_trapdoor",
+        "warped_trapdoor",
+        "waxed_copper_trapdoor",
+        "waxed_exposed_copper_trapdoor",
+        "waxed_weathered_copper_trapdoor",
+        "waxed_oxidized_copper_trapdoor"
+      ],
+      "new_in_nightly": []
     },
     "InfestedBlock": {
       "implemented": false,
@@ -1089,7 +1872,9 @@
         "infested_mossy_stone_bricks",
         "infested_cracked_stone_bricks",
         "infested_chiseled_stone_bricks"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "HugeMushroomBlock": {
       "implemented": true,
@@ -1098,7 +1883,13 @@
         "brown_mushroom_block",
         "red_mushroom_block",
         "mushroom_stem"
-      ]
+      ],
+      "released": [
+        "brown_mushroom_block",
+        "red_mushroom_block",
+        "mushroom_stem"
+      ],
+      "new_in_nightly": []
     },
     "IronBarsBlock": {
       "implemented": true,
@@ -1110,7 +1901,16 @@
         "waxed_weathered_copper_bars",
         "waxed_oxidized_copper_bars",
         "glass_pane"
-      ]
+      ],
+      "released": [
+        "iron_bars",
+        "waxed_copper_bars",
+        "waxed_exposed_copper_bars",
+        "waxed_weathered_copper_bars",
+        "waxed_oxidized_copper_bars",
+        "glass_pane"
+      ],
+      "new_in_nightly": []
     },
     "WeatheringCopperBarsBlock": {
       "implemented": true,
@@ -1120,7 +1920,14 @@
         "exposed_copper_bars",
         "weathered_copper_bars",
         "oxidized_copper_bars"
-      ]
+      ],
+      "released": [
+        "copper_bars",
+        "exposed_copper_bars",
+        "weathered_copper_bars",
+        "oxidized_copper_bars"
+      ],
+      "new_in_nightly": []
     },
     "ChainBlock": {
       "implemented": true,
@@ -1131,7 +1938,15 @@
         "waxed_exposed_copper_chain",
         "waxed_weathered_copper_chain",
         "waxed_oxidized_copper_chain"
-      ]
+      ],
+      "released": [
+        "iron_chain",
+        "waxed_copper_chain",
+        "waxed_exposed_copper_chain",
+        "waxed_weathered_copper_chain",
+        "waxed_oxidized_copper_chain"
+      ],
+      "new_in_nightly": []
     },
     "WeatheringCopperChainBlock": {
       "implemented": true,
@@ -1141,14 +1956,25 @@
         "exposed_copper_chain",
         "weathered_copper_chain",
         "oxidized_copper_chain"
-      ]
+      ],
+      "released": [
+        "copper_chain",
+        "exposed_copper_chain",
+        "weathered_copper_chain",
+        "oxidized_copper_chain"
+      ],
+      "new_in_nightly": []
     },
     "PumpkinBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "pumpkin"
-      ]
+      ],
+      "released": [
+        "pumpkin"
+      ],
+      "new_in_nightly": []
     },
     "AttachedStemBlock": {
       "implemented": true,
@@ -1156,7 +1982,12 @@
       "entries": [
         "attached_pumpkin_stem",
         "attached_melon_stem"
-      ]
+      ],
+      "released": [
+        "attached_pumpkin_stem",
+        "attached_melon_stem"
+      ],
+      "new_in_nightly": []
     },
     "StemBlock": {
       "implemented": true,
@@ -1164,28 +1995,45 @@
       "entries": [
         "pumpkin_stem",
         "melon_stem"
-      ]
+      ],
+      "released": [
+        "pumpkin_stem",
+        "melon_stem"
+      ],
+      "new_in_nightly": []
     },
     "VineBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "vine"
-      ]
+      ],
+      "released": [
+        "vine"
+      ],
+      "new_in_nightly": []
     },
     "GlowLichenBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "glow_lichen"
-      ]
+      ],
+      "released": [
+        "glow_lichen"
+      ],
+      "new_in_nightly": []
     },
     "MultifaceBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "resin_clump"
-      ]
+      ],
+      "released": [
+        "resin_clump"
+      ],
+      "new_in_nightly": []
     },
     "FenceGateBlock": {
       "implemented": true,
@@ -1204,21 +2052,45 @@
         "bamboo_fence_gate",
         "crimson_fence_gate",
         "warped_fence_gate"
-      ]
+      ],
+      "released": [
+        "oak_fence_gate",
+        "spruce_fence_gate",
+        "birch_fence_gate",
+        "jungle_fence_gate",
+        "acacia_fence_gate",
+        "cherry_fence_gate",
+        "dark_oak_fence_gate",
+        "pale_oak_fence_gate",
+        "mangrove_fence_gate",
+        "poplar_fence_gate",
+        "bamboo_fence_gate",
+        "crimson_fence_gate",
+        "warped_fence_gate"
+      ],
+      "new_in_nightly": []
     },
     "MyceliumBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "mycelium"
-      ]
+      ],
+      "released": [
+        "mycelium"
+      ],
+      "new_in_nightly": []
     },
     "LilyPadBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "lily_pad"
-      ]
+      ],
+      "released": [
+        "lily_pad"
+      ],
+      "new_in_nightly": []
     },
     "WallBlock": {
       "implemented": true,
@@ -1256,35 +2128,84 @@
         "polished_deepslate_wall",
         "deepslate_tile_wall",
         "deepslate_brick_wall"
-      ]
+      ],
+      "released": [
+        "resin_brick_wall",
+        "cobblestone_wall",
+        "mossy_cobblestone_wall",
+        "brick_wall",
+        "prismarine_wall",
+        "red_sandstone_wall",
+        "mossy_stone_brick_wall",
+        "granite_wall",
+        "stone_brick_wall",
+        "mud_brick_wall",
+        "nether_brick_wall",
+        "andesite_wall",
+        "red_nether_brick_wall",
+        "sandstone_wall",
+        "end_stone_brick_wall",
+        "diorite_wall",
+        "blackstone_wall",
+        "polished_blackstone_brick_wall",
+        "polished_blackstone_wall",
+        "tuff_wall",
+        "polished_tuff_wall",
+        "tuff_brick_wall",
+        "sulfur_wall",
+        "polished_sulfur_wall",
+        "sulfur_brick_wall",
+        "cinnabar_wall",
+        "polished_cinnabar_wall",
+        "cinnabar_brick_wall",
+        "cobbled_deepslate_wall",
+        "polished_deepslate_wall",
+        "deepslate_tile_wall",
+        "deepslate_brick_wall"
+      ],
+      "new_in_nightly": []
     },
     "NetherWartBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "nether_wart"
-      ]
+      ],
+      "released": [
+        "nether_wart"
+      ],
+      "new_in_nightly": []
     },
     "EnchantingTableBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "enchanting_table"
-      ]
+      ],
+      "released": [
+        "enchanting_table"
+      ],
+      "new_in_nightly": []
     },
     "BrewingStandBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "brewing_stand"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "CauldronBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "cauldron"
-      ]
+      ],
+      "released": [
+        "cauldron"
+      ],
+      "new_in_nightly": []
     },
     "LayeredCauldronBlock": {
       "implemented": true,
@@ -1292,56 +2213,89 @@
       "entries": [
         "water_cauldron",
         "powder_snow_cauldron"
-      ]
+      ],
+      "released": [
+        "water_cauldron",
+        "powder_snow_cauldron"
+      ],
+      "new_in_nightly": []
     },
     "LavaCauldronBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "lava_cauldron"
-      ]
+      ],
+      "released": [
+        "lava_cauldron"
+      ],
+      "new_in_nightly": []
     },
     "EndPortalBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "end_portal"
-      ]
+      ],
+      "released": [
+        "end_portal"
+      ],
+      "new_in_nightly": []
     },
     "EndPortalFrameBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "end_portal_frame"
-      ]
+      ],
+      "released": [
+        "end_portal_frame"
+      ],
+      "new_in_nightly": []
     },
     "DragonEggBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "dragon_egg"
-      ]
+      ],
+      "released": [
+        "dragon_egg"
+      ],
+      "new_in_nightly": []
     },
     "RedstoneLampBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "redstone_lamp"
-      ]
+      ],
+      "released": [
+        "redstone_lamp"
+      ],
+      "new_in_nightly": []
     },
     "CocoaBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "cocoa"
-      ]
+      ],
+      "released": [
+        "cocoa"
+      ],
+      "new_in_nightly": []
     },
     "ShelfMushroomBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "shelf_mushroom"
-      ]
+      ],
+      "released": [
+        "shelf_mushroom"
+      ],
+      "new_in_nightly": []
     },
     "EnderChestBlock": {
       "implemented": true,
@@ -1350,21 +2304,33 @@
       ],
       "entries": [
         "ender_chest"
-      ]
+      ],
+      "released": [
+        "ender_chest"
+      ],
+      "new_in_nightly": []
     },
     "TripWireHookBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "tripwire_hook"
-      ]
+      ],
+      "released": [
+        "tripwire_hook"
+      ],
+      "new_in_nightly": []
     },
     "TripWireBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "tripwire"
-      ]
+      ],
+      "released": [
+        "tripwire"
+      ],
+      "new_in_nightly": []
     },
     "CommandBlock": {
       "implemented": false,
@@ -1373,14 +2339,20 @@
         "command_block",
         "repeating_command_block",
         "chain_command_block"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "BeaconBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "beacon"
-      ]
+      ],
+      "released": [
+        "beacon"
+      ],
+      "new_in_nightly": []
     },
     "FlowerPotBlock": {
       "implemented": true,
@@ -1428,21 +2400,72 @@
         "potted_flowering_azalea_bush",
         "potted_open_eyeblossom",
         "potted_closed_eyeblossom"
-      ]
+      ],
+      "released": [
+        "flower_pot",
+        "potted_torchflower",
+        "potted_oak_sapling",
+        "potted_spruce_sapling",
+        "potted_birch_sapling",
+        "potted_jungle_sapling",
+        "potted_acacia_sapling",
+        "potted_cherry_sapling",
+        "potted_dark_oak_sapling",
+        "potted_pale_oak_sapling",
+        "potted_poplar_sapling",
+        "potted_mangrove_propagule",
+        "potted_fern",
+        "potted_dandelion",
+        "potted_golden_dandelion",
+        "potted_poppy",
+        "potted_blue_orchid",
+        "potted_allium",
+        "potted_azure_bluet",
+        "potted_red_tulip",
+        "potted_orange_tulip",
+        "potted_white_tulip",
+        "potted_pink_tulip",
+        "potted_oxeye_daisy",
+        "potted_cornflower",
+        "potted_lily_of_the_valley",
+        "potted_wither_rose",
+        "potted_red_mushroom",
+        "potted_brown_mushroom",
+        "potted_dead_bush",
+        "potted_cactus",
+        "potted_bamboo",
+        "potted_crimson_fungus",
+        "potted_warped_fungus",
+        "potted_crimson_roots",
+        "potted_warped_roots",
+        "potted_azalea_bush",
+        "potted_flowering_azalea_bush",
+        "potted_open_eyeblossom",
+        "potted_closed_eyeblossom"
+      ],
+      "new_in_nightly": []
     },
     "CarrotBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "carrots"
-      ]
+      ],
+      "released": [
+        "carrots"
+      ],
+      "new_in_nightly": []
     },
     "PotatoBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "potatoes"
-      ]
+      ],
+      "released": [
+        "potatoes"
+      ],
+      "new_in_nightly": []
     },
     "SkullBlock": {
       "implemented": true,
@@ -1453,7 +2476,15 @@
         "creeper_head",
         "dragon_head",
         "piglin_head"
-      ]
+      ],
+      "released": [
+        "skeleton_skull",
+        "zombie_head",
+        "creeper_head",
+        "dragon_head",
+        "piglin_head"
+      ],
+      "new_in_nightly": []
     },
     "WallSkullBlock": {
       "implemented": true,
@@ -1463,7 +2494,14 @@
         "zombie_wall_head",
         "creeper_wall_head",
         "dragon_wall_head"
-      ]
+      ],
+      "released": [
+        "skeleton_wall_skull",
+        "zombie_wall_head",
+        "creeper_wall_head",
+        "dragon_wall_head"
+      ],
+      "new_in_nightly": []
     },
     "WitherSkullBlock": {
       "implemented": true,
@@ -1472,7 +2510,11 @@
       ],
       "entries": [
         "wither_skeleton_skull"
-      ]
+      ],
+      "released": [
+        "wither_skeleton_skull"
+      ],
+      "new_in_nightly": []
     },
     "WitherWallSkullBlock": {
       "implemented": true,
@@ -1481,28 +2523,44 @@
       ],
       "entries": [
         "wither_skeleton_wall_skull"
-      ]
+      ],
+      "released": [
+        "wither_skeleton_wall_skull"
+      ],
+      "new_in_nightly": []
     },
     "PlayerHeadBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "player_head"
-      ]
+      ],
+      "released": [
+        "player_head"
+      ],
+      "new_in_nightly": []
     },
     "PlayerWallHeadBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "player_wall_head"
-      ]
+      ],
+      "released": [
+        "player_wall_head"
+      ],
+      "new_in_nightly": []
     },
     "PiglinWallSkullBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "piglin_wall_head"
-      ]
+      ],
+      "released": [
+        "piglin_wall_head"
+      ],
+      "new_in_nightly": []
     },
     "AnvilBlock": {
       "implemented": true,
@@ -1511,14 +2569,22 @@
         "anvil",
         "chipped_anvil",
         "damaged_anvil"
-      ]
+      ],
+      "released": [
+        "anvil",
+        "chipped_anvil",
+        "damaged_anvil"
+      ],
+      "new_in_nightly": []
     },
     "TrappedChestBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "trapped_chest"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "WeightedPressurePlateBlock": {
       "implemented": true,
@@ -1526,42 +2592,63 @@
       "entries": [
         "light_weighted_pressure_plate",
         "heavy_weighted_pressure_plate"
-      ]
+      ],
+      "released": [
+        "light_weighted_pressure_plate",
+        "heavy_weighted_pressure_plate"
+      ],
+      "new_in_nightly": []
     },
     "ComparatorBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "comparator"
-      ]
+      ],
+      "released": [
+        "comparator"
+      ],
+      "new_in_nightly": []
     },
     "DaylightDetectorBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "daylight_detector"
-      ]
+      ],
+      "released": [
+        "daylight_detector"
+      ],
+      "new_in_nightly": []
     },
     "PoweredBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "redstone_block"
-      ]
+      ],
+      "released": [
+        "redstone_block"
+      ],
+      "new_in_nightly": []
     },
     "HopperBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "hopper"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "DropperBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "dropper"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "StainedGlassPaneBlock": {
       "implemented": true,
@@ -1583,35 +2670,68 @@
         "green_stained_glass_pane",
         "red_stained_glass_pane",
         "black_stained_glass_pane"
-      ]
+      ],
+      "released": [
+        "white_stained_glass_pane",
+        "orange_stained_glass_pane",
+        "magenta_stained_glass_pane",
+        "light_blue_stained_glass_pane",
+        "yellow_stained_glass_pane",
+        "lime_stained_glass_pane",
+        "pink_stained_glass_pane",
+        "gray_stained_glass_pane",
+        "light_gray_stained_glass_pane",
+        "cyan_stained_glass_pane",
+        "purple_stained_glass_pane",
+        "blue_stained_glass_pane",
+        "brown_stained_glass_pane",
+        "green_stained_glass_pane",
+        "red_stained_glass_pane",
+        "black_stained_glass_pane"
+      ],
+      "new_in_nightly": []
     },
     "SlimeBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "slime_block"
-      ]
+      ],
+      "released": [
+        "slime_block"
+      ],
+      "new_in_nightly": []
     },
     "BarrierBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "barrier"
-      ]
+      ],
+      "released": [
+        "barrier"
+      ],
+      "new_in_nightly": []
     },
     "LightBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "light"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "HayBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "hay_block"
-      ]
+      ],
+      "released": [
+        "hay_block"
+      ],
+      "new_in_nightly": []
     },
     "WoolCarpetBlock": {
       "implemented": true,
@@ -1633,7 +2753,26 @@
         "green_carpet",
         "red_carpet",
         "black_carpet"
-      ]
+      ],
+      "released": [
+        "white_carpet",
+        "orange_carpet",
+        "magenta_carpet",
+        "light_blue_carpet",
+        "yellow_carpet",
+        "lime_carpet",
+        "pink_carpet",
+        "gray_carpet",
+        "light_gray_carpet",
+        "cyan_carpet",
+        "purple_carpet",
+        "blue_carpet",
+        "brown_carpet",
+        "green_carpet",
+        "red_carpet",
+        "black_carpet"
+      ],
+      "new_in_nightly": []
     },
     "TallFlowerBlock": {
       "implemented": true,
@@ -1643,7 +2782,14 @@
         "lilac",
         "rose_bush",
         "peony"
-      ]
+      ],
+      "released": [
+        "sunflower",
+        "lilac",
+        "rose_bush",
+        "peony"
+      ],
+      "new_in_nightly": []
     },
     "DoublePlantBlock": {
       "implemented": true,
@@ -1652,7 +2798,13 @@
         "tall_grass",
         "large_fern",
         "pitcher_plant"
-      ]
+      ],
+      "released": [
+        "tall_grass",
+        "large_fern",
+        "pitcher_plant"
+      ],
+      "new_in_nightly": []
     },
     "BannerBlock": {
       "implemented": true,
@@ -1674,7 +2826,26 @@
         "green_banner",
         "red_banner",
         "black_banner"
-      ]
+      ],
+      "released": [
+        "white_banner",
+        "orange_banner",
+        "magenta_banner",
+        "light_blue_banner",
+        "yellow_banner",
+        "lime_banner",
+        "pink_banner",
+        "gray_banner",
+        "light_gray_banner",
+        "cyan_banner",
+        "purple_banner",
+        "blue_banner",
+        "brown_banner",
+        "green_banner",
+        "red_banner",
+        "black_banner"
+      ],
+      "new_in_nightly": []
     },
     "WallBannerBlock": {
       "implemented": true,
@@ -1696,91 +2867,156 @@
         "green_wall_banner",
         "red_wall_banner",
         "black_wall_banner"
-      ]
+      ],
+      "released": [
+        "white_wall_banner",
+        "orange_wall_banner",
+        "magenta_wall_banner",
+        "light_blue_wall_banner",
+        "yellow_wall_banner",
+        "lime_wall_banner",
+        "pink_wall_banner",
+        "gray_wall_banner",
+        "light_gray_wall_banner",
+        "cyan_wall_banner",
+        "purple_wall_banner",
+        "blue_wall_banner",
+        "brown_wall_banner",
+        "green_wall_banner",
+        "red_wall_banner",
+        "black_wall_banner"
+      ],
+      "new_in_nightly": []
     },
     "EndRodBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "end_rod"
-      ]
+      ],
+      "released": [
+        "end_rod"
+      ],
+      "new_in_nightly": []
     },
     "ChorusPlantBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "chorus_plant"
-      ]
+      ],
+      "released": [
+        "chorus_plant"
+      ],
+      "new_in_nightly": []
     },
     "ChorusFlowerBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "chorus_flower"
-      ]
+      ],
+      "released": [
+        "chorus_flower"
+      ],
+      "new_in_nightly": []
     },
     "TorchflowerCropBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "torchflower_crop"
-      ]
+      ],
+      "released": [
+        "torchflower_crop"
+      ],
+      "new_in_nightly": []
     },
     "PitcherCropBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "pitcher_crop"
-      ]
+      ],
+      "released": [
+        "pitcher_crop"
+      ],
+      "new_in_nightly": []
     },
     "BeetrootBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "beetroots"
-      ]
+      ],
+      "released": [
+        "beetroots"
+      ],
+      "new_in_nightly": []
     },
     "PathBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "dirt_path"
-      ]
+      ],
+      "released": [
+        "dirt_path"
+      ],
+      "new_in_nightly": []
     },
     "EndGatewayBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "end_gateway"
-      ]
+      ],
+      "released": [
+        "end_gateway"
+      ],
+      "new_in_nightly": []
     },
     "FrostedIceBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "frosted_ice"
-      ]
+      ],
+      "released": [
+        "frosted_ice"
+      ],
+      "new_in_nightly": []
     },
     "MagmaBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "magma_block"
-      ]
+      ],
+      "released": [
+        "magma_block"
+      ],
+      "new_in_nightly": []
     },
     "StructureVoidBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "structure_void"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ObserverBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "observer"
-      ]
+      ],
+      "released": [
+        "observer"
+      ],
+      "new_in_nightly": []
     },
     "ShulkerBoxBlock": {
       "implemented": true,
@@ -1807,7 +3043,27 @@
         "green_shulker_box",
         "red_shulker_box",
         "black_shulker_box"
-      ]
+      ],
+      "released": [
+        "shulker_box",
+        "white_shulker_box",
+        "orange_shulker_box",
+        "magenta_shulker_box",
+        "light_blue_shulker_box",
+        "yellow_shulker_box",
+        "lime_shulker_box",
+        "pink_shulker_box",
+        "gray_shulker_box",
+        "light_gray_shulker_box",
+        "cyan_shulker_box",
+        "purple_shulker_box",
+        "blue_shulker_box",
+        "brown_shulker_box",
+        "green_shulker_box",
+        "red_shulker_box",
+        "black_shulker_box"
+      ],
+      "new_in_nightly": []
     },
     "GlazedTerracottaBlock": {
       "implemented": true,
@@ -1829,7 +3085,26 @@
         "green_glazed_terracotta",
         "red_glazed_terracotta",
         "black_glazed_terracotta"
-      ]
+      ],
+      "released": [
+        "white_glazed_terracotta",
+        "orange_glazed_terracotta",
+        "magenta_glazed_terracotta",
+        "light_blue_glazed_terracotta",
+        "yellow_glazed_terracotta",
+        "lime_glazed_terracotta",
+        "pink_glazed_terracotta",
+        "gray_glazed_terracotta",
+        "light_gray_glazed_terracotta",
+        "cyan_glazed_terracotta",
+        "purple_glazed_terracotta",
+        "blue_glazed_terracotta",
+        "brown_glazed_terracotta",
+        "green_glazed_terracotta",
+        "red_glazed_terracotta",
+        "black_glazed_terracotta"
+      ],
+      "new_in_nightly": []
     },
     "ConcretePowderBlock": {
       "implemented": true,
@@ -1851,21 +3126,48 @@
         "green_concrete_powder",
         "red_concrete_powder",
         "black_concrete_powder"
-      ]
+      ],
+      "released": [
+        "white_concrete_powder",
+        "orange_concrete_powder",
+        "magenta_concrete_powder",
+        "light_blue_concrete_powder",
+        "yellow_concrete_powder",
+        "lime_concrete_powder",
+        "pink_concrete_powder",
+        "gray_concrete_powder",
+        "light_gray_concrete_powder",
+        "cyan_concrete_powder",
+        "purple_concrete_powder",
+        "blue_concrete_powder",
+        "brown_concrete_powder",
+        "green_concrete_powder",
+        "red_concrete_powder",
+        "black_concrete_powder"
+      ],
+      "new_in_nightly": []
     },
     "KelpBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "kelp"
-      ]
+      ],
+      "released": [
+        "kelp"
+      ],
+      "new_in_nightly": []
     },
     "KelpPlantBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "kelp_plant"
-      ]
+      ],
+      "released": [
+        "kelp_plant"
+      ],
+      "new_in_nightly": []
     },
     "TurtleEggBlock": {
       "implemented": true,
@@ -1876,21 +3178,29 @@
       ],
       "entries": [
         "turtle_egg"
-      ]
+      ],
+      "released": [
+        "turtle_egg"
+      ],
+      "new_in_nightly": []
     },
     "SnifferEggBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "sniffer_egg"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "DriedGhastBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "dried_ghast"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "CoralBlock": {
       "implemented": true,
@@ -1901,7 +3211,15 @@
         "bubble_coral_block",
         "fire_coral_block",
         "horn_coral_block"
-      ]
+      ],
+      "released": [
+        "tube_coral_block",
+        "brain_coral_block",
+        "bubble_coral_block",
+        "fire_coral_block",
+        "horn_coral_block"
+      ],
+      "new_in_nightly": []
     },
     "BaseCoralPlantBlock": {
       "implemented": true,
@@ -1912,7 +3230,15 @@
         "dead_bubble_coral",
         "dead_fire_coral",
         "dead_horn_coral"
-      ]
+      ],
+      "released": [
+        "dead_tube_coral",
+        "dead_brain_coral",
+        "dead_bubble_coral",
+        "dead_fire_coral",
+        "dead_horn_coral"
+      ],
+      "new_in_nightly": []
     },
     "CoralPlantBlock": {
       "implemented": true,
@@ -1923,7 +3249,15 @@
         "bubble_coral",
         "fire_coral",
         "horn_coral"
-      ]
+      ],
+      "released": [
+        "tube_coral",
+        "brain_coral",
+        "bubble_coral",
+        "fire_coral",
+        "horn_coral"
+      ],
+      "new_in_nightly": []
     },
     "BaseCoralFanBlock": {
       "implemented": true,
@@ -1934,7 +3268,15 @@
         "dead_bubble_coral_fan",
         "dead_fire_coral_fan",
         "dead_horn_coral_fan"
-      ]
+      ],
+      "released": [
+        "dead_tube_coral_fan",
+        "dead_brain_coral_fan",
+        "dead_bubble_coral_fan",
+        "dead_fire_coral_fan",
+        "dead_horn_coral_fan"
+      ],
+      "new_in_nightly": []
     },
     "CoralFanBlock": {
       "implemented": true,
@@ -1945,7 +3287,15 @@
         "bubble_coral_fan",
         "fire_coral_fan",
         "horn_coral_fan"
-      ]
+      ],
+      "released": [
+        "tube_coral_fan",
+        "brain_coral_fan",
+        "bubble_coral_fan",
+        "fire_coral_fan",
+        "horn_coral_fan"
+      ],
+      "new_in_nightly": []
     },
     "BaseCoralWallFanBlock": {
       "implemented": true,
@@ -1956,7 +3306,15 @@
         "dead_bubble_coral_wall_fan",
         "dead_fire_coral_wall_fan",
         "dead_horn_coral_wall_fan"
-      ]
+      ],
+      "released": [
+        "dead_tube_coral_wall_fan",
+        "dead_brain_coral_wall_fan",
+        "dead_bubble_coral_wall_fan",
+        "dead_fire_coral_wall_fan",
+        "dead_horn_coral_wall_fan"
+      ],
+      "new_in_nightly": []
     },
     "CoralWallFanBlock": {
       "implemented": true,
@@ -1967,63 +3325,99 @@
         "bubble_coral_wall_fan",
         "fire_coral_wall_fan",
         "horn_coral_wall_fan"
-      ]
+      ],
+      "released": [
+        "tube_coral_wall_fan",
+        "brain_coral_wall_fan",
+        "bubble_coral_wall_fan",
+        "fire_coral_wall_fan",
+        "horn_coral_wall_fan"
+      ],
+      "new_in_nightly": []
     },
     "SeaPickleBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "sea_pickle"
-      ]
+      ],
+      "released": [
+        "sea_pickle"
+      ],
+      "new_in_nightly": []
     },
     "HalfTransparentBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "blue_ice"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ConduitBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "conduit"
-      ]
+      ],
+      "released": [
+        "conduit"
+      ],
+      "new_in_nightly": []
     },
     "BambooSaplingBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "bamboo_sapling"
-      ]
+      ],
+      "released": [
+        "bamboo_sapling"
+      ],
+      "new_in_nightly": []
     },
     "BambooStalkBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "bamboo"
-      ]
+      ],
+      "released": [
+        "bamboo"
+      ],
+      "new_in_nightly": []
     },
     "BubbleColumnBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "bubble_column"
-      ]
+      ],
+      "released": [
+        "bubble_column"
+      ],
+      "new_in_nightly": []
     },
     "ScaffoldingBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "scaffolding"
-      ]
+      ],
+      "released": [
+        "scaffolding"
+      ],
+      "new_in_nightly": []
     },
     "LoomBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "loom"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "BarrelBlock": {
       "implemented": true,
@@ -2034,7 +3428,11 @@
       ],
       "entries": [
         "barrel"
-      ]
+      ],
+      "released": [
+        "barrel"
+      ],
+      "new_in_nightly": []
     },
     "SmokerBlock": {
       "implemented": true,
@@ -2043,49 +3441,69 @@
       ],
       "entries": [
         "smoker"
-      ]
+      ],
+      "released": [
+        "smoker"
+      ],
+      "new_in_nightly": []
     },
     "BlastFurnaceBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "blast_furnace"
-      ]
+      ],
+      "released": [
+        "blast_furnace"
+      ],
+      "new_in_nightly": []
     },
     "CartographyTableBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "cartography_table"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "GrindstoneBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "grindstone"
-      ]
+      ],
+      "released": [
+        "grindstone"
+      ],
+      "new_in_nightly": []
     },
     "LecternBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "lectern"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "SmithingTableBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "smithing_table"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "StonecutterBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "stonecutter"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "BellBlock": {
       "implemented": true,
@@ -2094,7 +3512,11 @@
       ],
       "entries": [
         "bell"
-      ]
+      ],
+      "released": [
+        "bell"
+      ],
+      "new_in_nightly": []
     },
     "LanternBlock": {
       "implemented": true,
@@ -2106,7 +3528,16 @@
         "waxed_exposed_copper_lantern",
         "waxed_weathered_copper_lantern",
         "waxed_oxidized_copper_lantern"
-      ]
+      ],
+      "released": [
+        "lantern",
+        "soul_lantern",
+        "waxed_copper_lantern",
+        "waxed_exposed_copper_lantern",
+        "waxed_weathered_copper_lantern",
+        "waxed_oxidized_copper_lantern"
+      ],
+      "new_in_nightly": []
     },
     "WeatheringLanternBlock": {
       "implemented": true,
@@ -2116,7 +3547,14 @@
         "exposed_copper_lantern",
         "weathered_copper_lantern",
         "oxidized_copper_lantern"
-      ]
+      ],
+      "released": [
+        "copper_lantern",
+        "exposed_copper_lantern",
+        "weathered_copper_lantern",
+        "oxidized_copper_lantern"
+      ],
+      "new_in_nightly": []
     },
     "CampfireBlock": {
       "implemented": true,
@@ -2124,14 +3562,23 @@
       "entries": [
         "campfire",
         "soul_campfire"
-      ]
+      ],
+      "released": [
+        "campfire",
+        "soul_campfire"
+      ],
+      "new_in_nightly": []
     },
     "SweetBerryBushBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "sweet_berry_bush"
-      ]
+      ],
+      "released": [
+        "sweet_berry_bush"
+      ],
+      "new_in_nightly": []
     },
     "NyliumBlock": {
       "implemented": false,
@@ -2139,7 +3586,9 @@
       "entries": [
         "warped_nylium",
         "crimson_nylium"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "NetherFungusBlock": {
       "implemented": true,
@@ -2147,7 +3596,12 @@
       "entries": [
         "warped_fungus",
         "crimson_fungus"
-      ]
+      ],
+      "released": [
+        "warped_fungus",
+        "crimson_fungus"
+      ],
+      "new_in_nightly": []
     },
     "NetherRootsBlock": {
       "implemented": true,
@@ -2155,77 +3609,114 @@
       "entries": [
         "warped_roots",
         "crimson_roots"
-      ]
+      ],
+      "released": [
+        "warped_roots",
+        "crimson_roots"
+      ],
+      "new_in_nightly": []
     },
     "NetherSproutsBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "nether_sprouts"
-      ]
+      ],
+      "released": [
+        "nether_sprouts"
+      ],
+      "new_in_nightly": []
     },
     "WeepingVinesBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "weeping_vines"
-      ]
+      ],
+      "released": [
+        "weeping_vines"
+      ],
+      "new_in_nightly": []
     },
     "WeepingVinesPlantBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "weeping_vines_plant"
-      ]
+      ],
+      "released": [
+        "weeping_vines_plant"
+      ],
+      "new_in_nightly": []
     },
     "TwistingVinesBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "twisting_vines"
-      ]
+      ],
+      "released": [
+        "twisting_vines"
+      ],
+      "new_in_nightly": []
     },
     "TwistingVinesPlantBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "twisting_vines_plant"
-      ]
+      ],
+      "released": [
+        "twisting_vines_plant"
+      ],
+      "new_in_nightly": []
     },
     "StructureBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "structure_block"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "JigsawBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "jigsaw"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "TestBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "test_block"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "TestInstanceBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "test_instance_block"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ComposterBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "composter"
-      ]
+      ],
+      "released": [
+        "composter"
+      ],
+      "new_in_nightly": []
     },
     "TargetBlock": {
       "implemented": true,
@@ -2234,7 +3725,11 @@
       ],
       "entries": [
         "target"
-      ]
+      ],
+      "released": [
+        "target"
+      ],
+      "new_in_nightly": []
     },
     "BeehiveBlock": {
       "implemented": true,
@@ -2244,7 +3739,12 @@
       "entries": [
         "bee_nest",
         "beehive"
-      ]
+      ],
+      "released": [
+        "bee_nest",
+        "beehive"
+      ],
+      "new_in_nightly": []
     },
     "HoneyBlock": {
       "implemented": true,
@@ -2253,21 +3753,31 @@
       ],
       "entries": [
         "honey_block"
-      ]
+      ],
+      "released": [
+        "honey_block"
+      ],
+      "new_in_nightly": []
     },
     "CryingObsidianBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "crying_obsidian"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "RespawnAnchorBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "respawn_anchor"
-      ]
+      ],
+      "released": [
+        "respawn_anchor"
+      ],
+      "new_in_nightly": []
     },
     "CandleBlock": {
       "implemented": true,
@@ -2290,7 +3800,27 @@
         "green_candle",
         "red_candle",
         "black_candle"
-      ]
+      ],
+      "released": [
+        "candle",
+        "white_candle",
+        "orange_candle",
+        "magenta_candle",
+        "light_blue_candle",
+        "yellow_candle",
+        "lime_candle",
+        "pink_candle",
+        "gray_candle",
+        "light_gray_candle",
+        "cyan_candle",
+        "purple_candle",
+        "blue_candle",
+        "brown_candle",
+        "green_candle",
+        "red_candle",
+        "black_candle"
+      ],
+      "new_in_nightly": []
     },
     "CandleCakeBlock": {
       "implemented": true,
@@ -2313,21 +3843,49 @@
         "green_candle_cake",
         "red_candle_cake",
         "black_candle_cake"
-      ]
+      ],
+      "released": [
+        "candle_cake",
+        "white_candle_cake",
+        "orange_candle_cake",
+        "magenta_candle_cake",
+        "light_blue_candle_cake",
+        "yellow_candle_cake",
+        "lime_candle_cake",
+        "pink_candle_cake",
+        "gray_candle_cake",
+        "light_gray_candle_cake",
+        "cyan_candle_cake",
+        "purple_candle_cake",
+        "blue_candle_cake",
+        "brown_candle_cake",
+        "green_candle_cake",
+        "red_candle_cake",
+        "black_candle_cake"
+      ],
+      "new_in_nightly": []
     },
     "AmethystBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "amethyst_block"
-      ]
+      ],
+      "released": [
+        "amethyst_block"
+      ],
+      "new_in_nightly": []
     },
     "BuddingAmethystBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "budding_amethyst"
-      ]
+      ],
+      "released": [
+        "budding_amethyst"
+      ],
+      "new_in_nightly": []
     },
     "AmethystClusterBlock": {
       "implemented": true,
@@ -2337,49 +3895,72 @@
         "large_amethyst_bud",
         "medium_amethyst_bud",
         "small_amethyst_bud"
-      ]
+      ],
+      "released": [
+        "amethyst_cluster",
+        "large_amethyst_bud",
+        "medium_amethyst_bud",
+        "small_amethyst_bud"
+      ],
+      "new_in_nightly": []
     },
     "PotentSulfurBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "potent_sulfur"
-      ]
+      ],
+      "released": [
+        "potent_sulfur"
+      ],
+      "new_in_nightly": []
     },
     "TintedGlassBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "tinted_glass"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "PowderSnowBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "powder_snow"
-      ]
+      ],
+      "released": [
+        "powder_snow"
+      ],
+      "new_in_nightly": []
     },
     "SculkSensorBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "sculk_sensor"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "CalibratedSculkSensorBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "calibrated_sculk_sensor"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "SculkBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "sculk"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "SculkVeinBlock": {
       "implemented": true,
@@ -2389,21 +3970,29 @@
       ],
       "entries": [
         "sculk_vein"
-      ]
+      ],
+      "released": [
+        "sculk_vein"
+      ],
+      "new_in_nightly": []
     },
     "SculkCatalystBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "sculk_catalyst"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "SculkShriekerBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "sculk_shrieker"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "WeatheringCopperFullBlock": {
       "implemented": true,
@@ -2423,7 +4012,22 @@
         "exposed_chiseled_copper",
         "weathered_chiseled_copper",
         "oxidized_chiseled_copper"
-      ]
+      ],
+      "released": [
+        "copper_block",
+        "exposed_copper",
+        "weathered_copper",
+        "oxidized_copper",
+        "cut_copper",
+        "exposed_cut_copper",
+        "weathered_cut_copper",
+        "oxidized_cut_copper",
+        "chiseled_copper",
+        "exposed_chiseled_copper",
+        "weathered_chiseled_copper",
+        "oxidized_chiseled_copper"
+      ],
+      "new_in_nightly": []
     },
     "WeatheringCopperStairBlock": {
       "implemented": true,
@@ -2433,7 +4037,14 @@
         "exposed_cut_copper_stairs",
         "weathered_cut_copper_stairs",
         "oxidized_cut_copper_stairs"
-      ]
+      ],
+      "released": [
+        "cut_copper_stairs",
+        "exposed_cut_copper_stairs",
+        "weathered_cut_copper_stairs",
+        "oxidized_cut_copper_stairs"
+      ],
+      "new_in_nightly": []
     },
     "WeatheringCopperSlabBlock": {
       "implemented": true,
@@ -2443,7 +4054,14 @@
         "exposed_cut_copper_slab",
         "weathered_cut_copper_slab",
         "oxidized_cut_copper_slab"
-      ]
+      ],
+      "released": [
+        "cut_copper_slab",
+        "exposed_cut_copper_slab",
+        "weathered_cut_copper_slab",
+        "oxidized_cut_copper_slab"
+      ],
+      "new_in_nightly": []
     },
     "WeatheringCopperDoorBlock": {
       "implemented": true,
@@ -2453,7 +4071,14 @@
         "exposed_copper_door",
         "weathered_copper_door",
         "oxidized_copper_door"
-      ]
+      ],
+      "released": [
+        "copper_door",
+        "exposed_copper_door",
+        "weathered_copper_door",
+        "oxidized_copper_door"
+      ],
+      "new_in_nightly": []
     },
     "WeatheringCopperTrapDoorBlock": {
       "implemented": true,
@@ -2463,7 +4088,14 @@
         "exposed_copper_trapdoor",
         "weathered_copper_trapdoor",
         "oxidized_copper_trapdoor"
-      ]
+      ],
+      "released": [
+        "copper_trapdoor",
+        "exposed_copper_trapdoor",
+        "weathered_copper_trapdoor",
+        "oxidized_copper_trapdoor"
+      ],
+      "new_in_nightly": []
     },
     "WeatheringCopperGrateBlock": {
       "implemented": true,
@@ -2473,7 +4105,14 @@
         "exposed_copper_grate",
         "weathered_copper_grate",
         "oxidized_copper_grate"
-      ]
+      ],
+      "released": [
+        "copper_grate",
+        "exposed_copper_grate",
+        "weathered_copper_grate",
+        "oxidized_copper_grate"
+      ],
+      "new_in_nightly": []
     },
     "WaterloggedTransparentBlock": {
       "implemented": true,
@@ -2483,7 +4122,14 @@
         "waxed_exposed_copper_grate",
         "waxed_weathered_copper_grate",
         "waxed_oxidized_copper_grate"
-      ]
+      ],
+      "released": [
+        "waxed_copper_grate",
+        "waxed_exposed_copper_grate",
+        "waxed_weathered_copper_grate",
+        "waxed_oxidized_copper_grate"
+      ],
+      "new_in_nightly": []
     },
     "WeatheringCopperBulbBlock": {
       "implemented": true,
@@ -2493,7 +4139,14 @@
         "exposed_copper_bulb",
         "weathered_copper_bulb",
         "oxidized_copper_bulb"
-      ]
+      ],
+      "released": [
+        "copper_bulb",
+        "exposed_copper_bulb",
+        "weathered_copper_bulb",
+        "oxidized_copper_bulb"
+      ],
+      "new_in_nightly": []
     },
     "CopperBulbBlock": {
       "implemented": true,
@@ -2503,7 +4156,14 @@
         "waxed_exposed_copper_bulb",
         "waxed_weathered_copper_bulb",
         "waxed_oxidized_copper_bulb"
-      ]
+      ],
+      "released": [
+        "waxed_copper_bulb",
+        "waxed_exposed_copper_bulb",
+        "waxed_weathered_copper_bulb",
+        "waxed_oxidized_copper_bulb"
+      ],
+      "new_in_nightly": []
     },
     "WeatheringCopperChestBlock": {
       "implemented": true,
@@ -2518,7 +4178,14 @@
         "exposed_copper_chest",
         "weathered_copper_chest",
         "oxidized_copper_chest"
-      ]
+      ],
+      "released": [
+        "copper_chest",
+        "exposed_copper_chest",
+        "weathered_copper_chest",
+        "oxidized_copper_chest"
+      ],
+      "new_in_nightly": []
     },
     "CopperChestBlock": {
       "implemented": true,
@@ -2540,7 +4207,14 @@
         "waxed_exposed_copper_chest",
         "waxed_weathered_copper_chest",
         "waxed_oxidized_copper_chest"
-      ]
+      ],
+      "released": [
+        "waxed_copper_chest",
+        "waxed_exposed_copper_chest",
+        "waxed_weathered_copper_chest",
+        "waxed_oxidized_copper_chest"
+      ],
+      "new_in_nightly": []
     },
     "WeatheringCopperGolemStatueBlock": {
       "implemented": false,
@@ -2550,7 +4224,9 @@
         "exposed_copper_golem_statue",
         "weathered_copper_golem_statue",
         "oxidized_copper_golem_statue"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "CopperGolemStatueBlock": {
       "implemented": false,
@@ -2560,7 +4236,9 @@
         "waxed_exposed_copper_golem_statue",
         "waxed_weathered_copper_golem_statue",
         "waxed_oxidized_copper_golem_statue"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "WeatheringLightningRodBlock": {
       "implemented": true,
@@ -2572,7 +4250,14 @@
         "exposed_lightning_rod",
         "weathered_lightning_rod",
         "oxidized_lightning_rod"
-      ]
+      ],
+      "released": [
+        "lightning_rod",
+        "exposed_lightning_rod",
+        "weathered_lightning_rod",
+        "oxidized_lightning_rod"
+      ],
+      "new_in_nightly": []
     },
     "LightningRodBlock": {
       "implemented": true,
@@ -2582,42 +4267,69 @@
         "waxed_exposed_lightning_rod",
         "waxed_weathered_lightning_rod",
         "waxed_oxidized_lightning_rod"
-      ]
+      ],
+      "released": [
+        "waxed_lightning_rod",
+        "waxed_exposed_lightning_rod",
+        "waxed_weathered_lightning_rod",
+        "waxed_oxidized_lightning_rod"
+      ],
+      "new_in_nightly": []
     },
     "PointedDripstoneBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "pointed_dripstone"
-      ]
+      ],
+      "released": [
+        "pointed_dripstone"
+      ],
+      "new_in_nightly": []
     },
     "SulfurSpikeBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "sulfur_spike"
-      ]
+      ],
+      "released": [
+        "sulfur_spike"
+      ],
+      "new_in_nightly": []
     },
     "CaveVinesBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "cave_vines"
-      ]
+      ],
+      "released": [
+        "cave_vines"
+      ],
+      "new_in_nightly": []
     },
     "CaveVinesPlantBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "cave_vines_plant"
-      ]
+      ],
+      "released": [
+        "cave_vines_plant"
+      ],
+      "new_in_nightly": []
     },
     "SporeBlossomBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "spore_blossom"
-      ]
+      ],
+      "released": [
+        "spore_blossom"
+      ],
+      "new_in_nightly": []
     },
     "AzaleaBlock": {
       "implemented": true,
@@ -2625,14 +4337,23 @@
       "entries": [
         "azalea",
         "flowering_azalea"
-      ]
+      ],
+      "released": [
+        "azalea",
+        "flowering_azalea"
+      ],
+      "new_in_nightly": []
     },
     "CarpetBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "moss_carpet"
-      ]
+      ],
+      "released": [
+        "moss_carpet"
+      ],
+      "new_in_nightly": []
     },
     "FlowerBedBlock": {
       "implemented": true,
@@ -2640,14 +4361,23 @@
       "entries": [
         "pink_petals",
         "wildflowers"
-      ]
+      ],
+      "released": [
+        "pink_petals",
+        "wildflowers"
+      ],
+      "new_in_nightly": []
     },
     "LeafLitterBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "leaf_litter"
-      ]
+      ],
+      "released": [
+        "leaf_litter"
+      ],
+      "new_in_nightly": []
     },
     "BonemealableFeaturePlacerBlock": {
       "implemented": false,
@@ -2655,112 +4385,162 @@
       "entries": [
         "moss_block",
         "pale_moss_block"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "BigDripleafBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "big_dripleaf"
-      ]
+      ],
+      "released": [
+        "big_dripleaf"
+      ],
+      "new_in_nightly": []
     },
     "BigDripleafStemBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "big_dripleaf_stem"
-      ]
+      ],
+      "released": [
+        "big_dripleaf_stem"
+      ],
+      "new_in_nightly": []
     },
     "SmallDripleafBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "small_dripleaf"
-      ]
+      ],
+      "released": [
+        "small_dripleaf"
+      ],
+      "new_in_nightly": []
     },
     "HangingRootsBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "hanging_roots"
-      ]
+      ],
+      "released": [
+        "hanging_roots"
+      ],
+      "new_in_nightly": []
     },
     "RootedDirtBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "rooted_dirt"
-      ]
+      ],
+      "released": [
+        "rooted_dirt"
+      ],
+      "new_in_nightly": []
     },
     "MudBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "mud"
-      ]
+      ],
+      "released": [
+        "mud"
+      ],
+      "new_in_nightly": []
     },
     "InfestedRotatedPillarBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "infested_deepslate"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "FrogspawnBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "frogspawn"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "DecoratedPotBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "decorated_pot"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "CrafterBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "crafter"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "TrialSpawnerBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "trial_spawner"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "VaultBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "vault"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "HeavyCoreBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "heavy_core"
-      ]
+      ],
+      "released": [
+        "heavy_core"
+      ],
+      "new_in_nightly": []
     },
     "MossyCarpetBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "pale_moss_carpet"
-      ]
+      ],
+      "released": [
+        "pale_moss_carpet"
+      ],
+      "new_in_nightly": []
     },
     "HangingMossBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "pale_hanging_moss"
-      ]
+      ],
+      "released": [
+        "pale_hanging_moss"
+      ],
+      "new_in_nightly": []
     },
     "EyeblossomBlock": {
       "implemented": true,
@@ -2770,14 +4550,23 @@
       "entries": [
         "open_eyeblossom",
         "closed_eyeblossom"
-      ]
+      ],
+      "released": [
+        "open_eyeblossom",
+        "closed_eyeblossom"
+      ],
+      "new_in_nightly": []
     },
     "FireflyBushBlock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "firefly_bush"
-      ]
+      ],
+      "released": [
+        "firefly_bush"
+      ],
+      "new_in_nightly": []
     }
   },
   "items": {
@@ -2786,7 +4575,11 @@
       "todos": [],
       "entries": [
         "air"
-      ]
+      ],
+      "released": [
+        "air"
+      ],
+      "new_in_nightly": []
     },
     "BlockItem": {
       "implemented": true,
@@ -3830,7 +5623,1048 @@
         "waxed_oxidized_copper_golem_statue",
         "trial_spawner",
         "vault"
-      ]
+      ],
+      "released": [
+        "stone",
+        "granite",
+        "polished_granite",
+        "diorite",
+        "polished_diorite",
+        "andesite",
+        "polished_andesite",
+        "deepslate",
+        "cobbled_deepslate",
+        "polished_deepslate",
+        "calcite",
+        "tuff",
+        "tuff_slab",
+        "tuff_stairs",
+        "tuff_wall",
+        "chiseled_tuff",
+        "polished_tuff",
+        "polished_tuff_slab",
+        "polished_tuff_stairs",
+        "polished_tuff_wall",
+        "tuff_bricks",
+        "tuff_brick_slab",
+        "tuff_brick_stairs",
+        "tuff_brick_wall",
+        "chiseled_tuff_bricks",
+        "sulfur",
+        "potent_sulfur",
+        "sulfur_slab",
+        "sulfur_stairs",
+        "sulfur_wall",
+        "polished_sulfur",
+        "polished_sulfur_slab",
+        "polished_sulfur_stairs",
+        "polished_sulfur_wall",
+        "sulfur_bricks",
+        "sulfur_brick_slab",
+        "sulfur_brick_stairs",
+        "sulfur_brick_wall",
+        "chiseled_sulfur",
+        "cinnabar",
+        "cinnabar_slab",
+        "cinnabar_stairs",
+        "cinnabar_wall",
+        "polished_cinnabar",
+        "polished_cinnabar_slab",
+        "polished_cinnabar_stairs",
+        "polished_cinnabar_wall",
+        "cinnabar_bricks",
+        "cinnabar_brick_slab",
+        "cinnabar_brick_stairs",
+        "cinnabar_brick_wall",
+        "chiseled_cinnabar",
+        "dripstone_block",
+        "grass_block",
+        "dirt",
+        "coarse_dirt",
+        "podzol",
+        "rooted_dirt",
+        "mud",
+        "crimson_nylium",
+        "warped_nylium",
+        "cobblestone",
+        "oak_planks",
+        "spruce_planks",
+        "birch_planks",
+        "jungle_planks",
+        "acacia_planks",
+        "cherry_planks",
+        "dark_oak_planks",
+        "pale_oak_planks",
+        "mangrove_planks",
+        "poplar_planks",
+        "bamboo_planks",
+        "crimson_planks",
+        "warped_planks",
+        "bamboo_mosaic",
+        "oak_sapling",
+        "spruce_sapling",
+        "birch_sapling",
+        "jungle_sapling",
+        "acacia_sapling",
+        "cherry_sapling",
+        "dark_oak_sapling",
+        "pale_oak_sapling",
+        "mangrove_propagule",
+        "poplar_sapling",
+        "bedrock",
+        "sand",
+        "suspicious_sand",
+        "suspicious_gravel",
+        "red_sand",
+        "gravel",
+        "coal_ore",
+        "deepslate_coal_ore",
+        "iron_ore",
+        "deepslate_iron_ore",
+        "copper_ore",
+        "deepslate_copper_ore",
+        "gold_ore",
+        "deepslate_gold_ore",
+        "redstone_ore",
+        "deepslate_redstone_ore",
+        "emerald_ore",
+        "deepslate_emerald_ore",
+        "lapis_ore",
+        "deepslate_lapis_ore",
+        "diamond_ore",
+        "deepslate_diamond_ore",
+        "nether_gold_ore",
+        "nether_quartz_ore",
+        "ancient_debris",
+        "coal_block",
+        "raw_iron_block",
+        "raw_copper_block",
+        "raw_gold_block",
+        "heavy_core",
+        "amethyst_block",
+        "budding_amethyst",
+        "iron_block",
+        "copper_block",
+        "exposed_copper",
+        "weathered_copper",
+        "oxidized_copper",
+        "waxed_copper_block",
+        "waxed_exposed_copper",
+        "waxed_weathered_copper",
+        "waxed_oxidized_copper",
+        "gold_block",
+        "diamond_block",
+        "netherite_block",
+        "chiseled_copper",
+        "exposed_chiseled_copper",
+        "weathered_chiseled_copper",
+        "oxidized_chiseled_copper",
+        "waxed_chiseled_copper",
+        "waxed_exposed_chiseled_copper",
+        "waxed_weathered_chiseled_copper",
+        "waxed_oxidized_chiseled_copper",
+        "cut_copper",
+        "exposed_cut_copper",
+        "weathered_cut_copper",
+        "oxidized_cut_copper",
+        "waxed_cut_copper",
+        "waxed_exposed_cut_copper",
+        "waxed_weathered_cut_copper",
+        "waxed_oxidized_cut_copper",
+        "cut_copper_stairs",
+        "exposed_cut_copper_stairs",
+        "weathered_cut_copper_stairs",
+        "oxidized_cut_copper_stairs",
+        "waxed_cut_copper_stairs",
+        "waxed_exposed_cut_copper_stairs",
+        "waxed_weathered_cut_copper_stairs",
+        "waxed_oxidized_cut_copper_stairs",
+        "cut_copper_slab",
+        "exposed_cut_copper_slab",
+        "weathered_cut_copper_slab",
+        "oxidized_cut_copper_slab",
+        "waxed_cut_copper_slab",
+        "waxed_exposed_cut_copper_slab",
+        "waxed_weathered_cut_copper_slab",
+        "waxed_oxidized_cut_copper_slab",
+        "oak_log",
+        "spruce_log",
+        "birch_log",
+        "jungle_log",
+        "acacia_log",
+        "cherry_log",
+        "pale_oak_log",
+        "dark_oak_log",
+        "mangrove_log",
+        "poplar_log",
+        "mangrove_roots",
+        "muddy_mangrove_roots",
+        "crimson_stem",
+        "warped_stem",
+        "bamboo_block",
+        "stripped_oak_log",
+        "stripped_spruce_log",
+        "stripped_birch_log",
+        "stripped_jungle_log",
+        "stripped_acacia_log",
+        "stripped_cherry_log",
+        "stripped_dark_oak_log",
+        "stripped_pale_oak_log",
+        "stripped_mangrove_log",
+        "stripped_poplar_log",
+        "stripped_crimson_stem",
+        "stripped_warped_stem",
+        "stripped_oak_wood",
+        "stripped_spruce_wood",
+        "stripped_birch_wood",
+        "stripped_jungle_wood",
+        "stripped_acacia_wood",
+        "stripped_cherry_wood",
+        "stripped_dark_oak_wood",
+        "stripped_pale_oak_wood",
+        "stripped_mangrove_wood",
+        "stripped_poplar_wood",
+        "stripped_crimson_hyphae",
+        "stripped_warped_hyphae",
+        "stripped_bamboo_block",
+        "oak_wood",
+        "spruce_wood",
+        "birch_wood",
+        "jungle_wood",
+        "acacia_wood",
+        "cherry_wood",
+        "pale_oak_wood",
+        "dark_oak_wood",
+        "mangrove_wood",
+        "poplar_wood",
+        "crimson_hyphae",
+        "warped_hyphae",
+        "oak_leaves",
+        "spruce_leaves",
+        "birch_leaves",
+        "jungle_leaves",
+        "acacia_leaves",
+        "cherry_leaves",
+        "dark_oak_leaves",
+        "pale_oak_leaves",
+        "mangrove_leaves",
+        "red_poplar_leaves",
+        "orange_poplar_leaves",
+        "yellow_poplar_leaves",
+        "azalea_leaves",
+        "flowering_azalea_leaves",
+        "sponge",
+        "wet_sponge",
+        "glass",
+        "tinted_glass",
+        "lapis_block",
+        "sandstone",
+        "chiseled_sandstone",
+        "cut_sandstone",
+        "cobweb",
+        "short_grass",
+        "fern",
+        "bush",
+        "red_shrub",
+        "azalea",
+        "flowering_azalea",
+        "dead_bush",
+        "firefly_bush",
+        "short_dry_grass",
+        "tall_dry_grass",
+        "seagrass",
+        "sea_pickle",
+        "white_wool",
+        "orange_wool",
+        "magenta_wool",
+        "light_blue_wool",
+        "yellow_wool",
+        "lime_wool",
+        "pink_wool",
+        "gray_wool",
+        "light_gray_wool",
+        "cyan_wool",
+        "purple_wool",
+        "blue_wool",
+        "brown_wool",
+        "green_wool",
+        "red_wool",
+        "black_wool",
+        "white_wool_stairs",
+        "orange_wool_stairs",
+        "magenta_wool_stairs",
+        "light_blue_wool_stairs",
+        "yellow_wool_stairs",
+        "lime_wool_stairs",
+        "pink_wool_stairs",
+        "gray_wool_stairs",
+        "light_gray_wool_stairs",
+        "cyan_wool_stairs",
+        "purple_wool_stairs",
+        "blue_wool_stairs",
+        "brown_wool_stairs",
+        "green_wool_stairs",
+        "red_wool_stairs",
+        "black_wool_stairs",
+        "white_wool_slab",
+        "orange_wool_slab",
+        "magenta_wool_slab",
+        "light_blue_wool_slab",
+        "yellow_wool_slab",
+        "lime_wool_slab",
+        "pink_wool_slab",
+        "gray_wool_slab",
+        "light_gray_wool_slab",
+        "cyan_wool_slab",
+        "purple_wool_slab",
+        "blue_wool_slab",
+        "brown_wool_slab",
+        "green_wool_slab",
+        "red_wool_slab",
+        "black_wool_slab",
+        "dandelion",
+        "golden_dandelion",
+        "open_eyeblossom",
+        "closed_eyeblossom",
+        "poppy",
+        "blue_orchid",
+        "allium",
+        "azure_bluet",
+        "red_tulip",
+        "orange_tulip",
+        "white_tulip",
+        "pink_tulip",
+        "oxeye_daisy",
+        "cornflower",
+        "lily_of_the_valley",
+        "wither_rose",
+        "torchflower",
+        "pitcher_plant",
+        "spore_blossom",
+        "brown_mushroom",
+        "red_mushroom",
+        "shelf_mushroom",
+        "crimson_fungus",
+        "warped_fungus",
+        "crimson_roots",
+        "warped_roots",
+        "nether_sprouts",
+        "weeping_vines",
+        "twisting_vines",
+        "sugar_cane",
+        "kelp",
+        "pink_petals",
+        "wildflowers",
+        "leaf_litter",
+        "moss_carpet",
+        "moss_block",
+        "pale_moss_carpet",
+        "pale_hanging_moss",
+        "pale_moss_block",
+        "hanging_roots",
+        "big_dripleaf",
+        "bamboo",
+        "oak_slab",
+        "spruce_slab",
+        "birch_slab",
+        "jungle_slab",
+        "acacia_slab",
+        "cherry_slab",
+        "dark_oak_slab",
+        "pale_oak_slab",
+        "mangrove_slab",
+        "poplar_slab",
+        "bamboo_slab",
+        "bamboo_mosaic_slab",
+        "crimson_slab",
+        "warped_slab",
+        "stone_slab",
+        "smooth_stone_slab",
+        "sandstone_slab",
+        "cut_sandstone_slab",
+        "petrified_oak_slab",
+        "cobblestone_slab",
+        "brick_slab",
+        "stone_brick_slab",
+        "mud_brick_slab",
+        "nether_brick_slab",
+        "quartz_slab",
+        "red_sandstone_slab",
+        "cut_red_sandstone_slab",
+        "purpur_slab",
+        "prismarine_slab",
+        "prismarine_brick_slab",
+        "dark_prismarine_slab",
+        "smooth_quartz",
+        "smooth_red_sandstone",
+        "smooth_sandstone",
+        "smooth_stone",
+        "bricks",
+        "acacia_shelf",
+        "bamboo_shelf",
+        "birch_shelf",
+        "cherry_shelf",
+        "crimson_shelf",
+        "dark_oak_shelf",
+        "jungle_shelf",
+        "mangrove_shelf",
+        "poplar_shelf",
+        "oak_shelf",
+        "pale_oak_shelf",
+        "spruce_shelf",
+        "warped_shelf",
+        "bookshelf",
+        "chiseled_bookshelf",
+        "decorated_pot",
+        "mossy_cobblestone",
+        "obsidian",
+        "end_rod",
+        "chorus_plant",
+        "chorus_flower",
+        "purpur_block",
+        "purpur_pillar",
+        "purpur_stairs",
+        "spawner",
+        "creaking_heart",
+        "chest",
+        "crafting_table",
+        "farmland",
+        "furnace",
+        "ladder",
+        "cobblestone_stairs",
+        "snow",
+        "ice",
+        "snow_block",
+        "cactus",
+        "cactus_flower",
+        "clay",
+        "jukebox",
+        "oak_fence",
+        "spruce_fence",
+        "birch_fence",
+        "jungle_fence",
+        "acacia_fence",
+        "cherry_fence",
+        "dark_oak_fence",
+        "pale_oak_fence",
+        "mangrove_fence",
+        "poplar_fence",
+        "bamboo_fence",
+        "crimson_fence",
+        "warped_fence",
+        "pumpkin",
+        "carved_pumpkin",
+        "jack_o_lantern",
+        "netherrack",
+        "soul_sand",
+        "soul_soil",
+        "basalt",
+        "polished_basalt",
+        "smooth_basalt",
+        "glowstone",
+        "infested_stone",
+        "infested_cobblestone",
+        "infested_stone_bricks",
+        "infested_mossy_stone_bricks",
+        "infested_cracked_stone_bricks",
+        "infested_chiseled_stone_bricks",
+        "infested_deepslate",
+        "stone_bricks",
+        "mossy_stone_bricks",
+        "cracked_stone_bricks",
+        "chiseled_stone_bricks",
+        "packed_mud",
+        "mud_bricks",
+        "deepslate_bricks",
+        "cracked_deepslate_bricks",
+        "deepslate_tiles",
+        "cracked_deepslate_tiles",
+        "chiseled_deepslate",
+        "reinforced_deepslate",
+        "brown_mushroom_block",
+        "red_mushroom_block",
+        "mushroom_stem",
+        "iron_bars",
+        "copper_bars",
+        "exposed_copper_bars",
+        "weathered_copper_bars",
+        "oxidized_copper_bars",
+        "waxed_copper_bars",
+        "waxed_exposed_copper_bars",
+        "waxed_weathered_copper_bars",
+        "waxed_oxidized_copper_bars",
+        "iron_chain",
+        "copper_chain",
+        "exposed_copper_chain",
+        "weathered_copper_chain",
+        "oxidized_copper_chain",
+        "waxed_copper_chain",
+        "waxed_exposed_copper_chain",
+        "waxed_weathered_copper_chain",
+        "waxed_oxidized_copper_chain",
+        "glass_pane",
+        "melon",
+        "vine",
+        "glow_lichen",
+        "resin_clump",
+        "resin_block",
+        "resin_bricks",
+        "resin_brick_stairs",
+        "resin_brick_slab",
+        "resin_brick_wall",
+        "chiseled_resin_bricks",
+        "brick_stairs",
+        "stone_brick_stairs",
+        "mud_brick_stairs",
+        "mycelium",
+        "nether_bricks",
+        "cracked_nether_bricks",
+        "chiseled_nether_bricks",
+        "nether_brick_fence",
+        "nether_brick_stairs",
+        "sculk",
+        "sculk_vein",
+        "sculk_catalyst",
+        "sculk_shrieker",
+        "enchanting_table",
+        "end_portal_frame",
+        "end_stone",
+        "end_stone_bricks",
+        "dragon_egg",
+        "sandstone_stairs",
+        "ender_chest",
+        "emerald_block",
+        "oak_stairs",
+        "spruce_stairs",
+        "birch_stairs",
+        "jungle_stairs",
+        "acacia_stairs",
+        "cherry_stairs",
+        "dark_oak_stairs",
+        "pale_oak_stairs",
+        "mangrove_stairs",
+        "poplar_stairs",
+        "bamboo_stairs",
+        "bamboo_mosaic_stairs",
+        "crimson_stairs",
+        "warped_stairs",
+        "beacon",
+        "cobblestone_wall",
+        "mossy_cobblestone_wall",
+        "brick_wall",
+        "prismarine_wall",
+        "red_sandstone_wall",
+        "mossy_stone_brick_wall",
+        "granite_wall",
+        "stone_brick_wall",
+        "mud_brick_wall",
+        "nether_brick_wall",
+        "andesite_wall",
+        "red_nether_brick_wall",
+        "sandstone_wall",
+        "end_stone_brick_wall",
+        "diorite_wall",
+        "blackstone_wall",
+        "polished_blackstone_wall",
+        "polished_blackstone_brick_wall",
+        "cobbled_deepslate_wall",
+        "polished_deepslate_wall",
+        "deepslate_brick_wall",
+        "deepslate_tile_wall",
+        "anvil",
+        "chipped_anvil",
+        "damaged_anvil",
+        "chiseled_quartz_block",
+        "quartz_block",
+        "quartz_bricks",
+        "quartz_pillar",
+        "quartz_stairs",
+        "white_terracotta",
+        "orange_terracotta",
+        "magenta_terracotta",
+        "light_blue_terracotta",
+        "yellow_terracotta",
+        "lime_terracotta",
+        "pink_terracotta",
+        "gray_terracotta",
+        "light_gray_terracotta",
+        "cyan_terracotta",
+        "purple_terracotta",
+        "blue_terracotta",
+        "brown_terracotta",
+        "green_terracotta",
+        "red_terracotta",
+        "black_terracotta",
+        "barrier",
+        "light",
+        "hay_block",
+        "white_carpet",
+        "orange_carpet",
+        "magenta_carpet",
+        "light_blue_carpet",
+        "yellow_carpet",
+        "lime_carpet",
+        "pink_carpet",
+        "gray_carpet",
+        "light_gray_carpet",
+        "cyan_carpet",
+        "purple_carpet",
+        "blue_carpet",
+        "brown_carpet",
+        "green_carpet",
+        "red_carpet",
+        "black_carpet",
+        "terracotta",
+        "packed_ice",
+        "dirt_path",
+        "white_stained_glass",
+        "orange_stained_glass",
+        "magenta_stained_glass",
+        "light_blue_stained_glass",
+        "yellow_stained_glass",
+        "lime_stained_glass",
+        "pink_stained_glass",
+        "gray_stained_glass",
+        "light_gray_stained_glass",
+        "cyan_stained_glass",
+        "purple_stained_glass",
+        "blue_stained_glass",
+        "brown_stained_glass",
+        "green_stained_glass",
+        "red_stained_glass",
+        "black_stained_glass",
+        "white_stained_glass_pane",
+        "orange_stained_glass_pane",
+        "magenta_stained_glass_pane",
+        "light_blue_stained_glass_pane",
+        "yellow_stained_glass_pane",
+        "lime_stained_glass_pane",
+        "pink_stained_glass_pane",
+        "gray_stained_glass_pane",
+        "light_gray_stained_glass_pane",
+        "cyan_stained_glass_pane",
+        "purple_stained_glass_pane",
+        "blue_stained_glass_pane",
+        "brown_stained_glass_pane",
+        "green_stained_glass_pane",
+        "red_stained_glass_pane",
+        "black_stained_glass_pane",
+        "prismarine",
+        "prismarine_bricks",
+        "dark_prismarine",
+        "prismarine_stairs",
+        "prismarine_brick_stairs",
+        "dark_prismarine_stairs",
+        "sea_lantern",
+        "red_sandstone",
+        "chiseled_red_sandstone",
+        "cut_red_sandstone",
+        "red_sandstone_stairs",
+        "magma_block",
+        "nether_wart_block",
+        "warped_wart_block",
+        "red_nether_bricks",
+        "bone_block",
+        "structure_void",
+        "shulker_box",
+        "white_shulker_box",
+        "orange_shulker_box",
+        "magenta_shulker_box",
+        "light_blue_shulker_box",
+        "yellow_shulker_box",
+        "lime_shulker_box",
+        "pink_shulker_box",
+        "gray_shulker_box",
+        "light_gray_shulker_box",
+        "cyan_shulker_box",
+        "purple_shulker_box",
+        "blue_shulker_box",
+        "brown_shulker_box",
+        "green_shulker_box",
+        "red_shulker_box",
+        "black_shulker_box",
+        "white_glazed_terracotta",
+        "orange_glazed_terracotta",
+        "magenta_glazed_terracotta",
+        "light_blue_glazed_terracotta",
+        "yellow_glazed_terracotta",
+        "lime_glazed_terracotta",
+        "pink_glazed_terracotta",
+        "gray_glazed_terracotta",
+        "light_gray_glazed_terracotta",
+        "cyan_glazed_terracotta",
+        "purple_glazed_terracotta",
+        "blue_glazed_terracotta",
+        "brown_glazed_terracotta",
+        "green_glazed_terracotta",
+        "red_glazed_terracotta",
+        "black_glazed_terracotta",
+        "white_concrete",
+        "orange_concrete",
+        "magenta_concrete",
+        "light_blue_concrete",
+        "yellow_concrete",
+        "lime_concrete",
+        "pink_concrete",
+        "gray_concrete",
+        "light_gray_concrete",
+        "cyan_concrete",
+        "purple_concrete",
+        "blue_concrete",
+        "brown_concrete",
+        "green_concrete",
+        "red_concrete",
+        "black_concrete",
+        "white_concrete_stairs",
+        "orange_concrete_stairs",
+        "magenta_concrete_stairs",
+        "light_blue_concrete_stairs",
+        "yellow_concrete_stairs",
+        "lime_concrete_stairs",
+        "pink_concrete_stairs",
+        "gray_concrete_stairs",
+        "light_gray_concrete_stairs",
+        "cyan_concrete_stairs",
+        "purple_concrete_stairs",
+        "blue_concrete_stairs",
+        "brown_concrete_stairs",
+        "green_concrete_stairs",
+        "red_concrete_stairs",
+        "black_concrete_stairs",
+        "white_concrete_slab",
+        "orange_concrete_slab",
+        "magenta_concrete_slab",
+        "light_blue_concrete_slab",
+        "yellow_concrete_slab",
+        "lime_concrete_slab",
+        "pink_concrete_slab",
+        "gray_concrete_slab",
+        "light_gray_concrete_slab",
+        "cyan_concrete_slab",
+        "purple_concrete_slab",
+        "blue_concrete_slab",
+        "brown_concrete_slab",
+        "green_concrete_slab",
+        "red_concrete_slab",
+        "black_concrete_slab",
+        "white_concrete_powder",
+        "orange_concrete_powder",
+        "magenta_concrete_powder",
+        "light_blue_concrete_powder",
+        "yellow_concrete_powder",
+        "lime_concrete_powder",
+        "pink_concrete_powder",
+        "gray_concrete_powder",
+        "light_gray_concrete_powder",
+        "cyan_concrete_powder",
+        "purple_concrete_powder",
+        "blue_concrete_powder",
+        "brown_concrete_powder",
+        "green_concrete_powder",
+        "red_concrete_powder",
+        "black_concrete_powder",
+        "turtle_egg",
+        "sniffer_egg",
+        "dried_ghast",
+        "dead_tube_coral_block",
+        "dead_brain_coral_block",
+        "dead_bubble_coral_block",
+        "dead_fire_coral_block",
+        "dead_horn_coral_block",
+        "tube_coral_block",
+        "brain_coral_block",
+        "bubble_coral_block",
+        "fire_coral_block",
+        "horn_coral_block",
+        "tube_coral",
+        "brain_coral",
+        "bubble_coral",
+        "fire_coral",
+        "horn_coral",
+        "dead_brain_coral",
+        "dead_bubble_coral",
+        "dead_fire_coral",
+        "dead_horn_coral",
+        "dead_tube_coral",
+        "blue_ice",
+        "conduit",
+        "polished_granite_stairs",
+        "smooth_red_sandstone_stairs",
+        "mossy_stone_brick_stairs",
+        "polished_diorite_stairs",
+        "mossy_cobblestone_stairs",
+        "end_stone_brick_stairs",
+        "stone_stairs",
+        "smooth_sandstone_stairs",
+        "smooth_quartz_stairs",
+        "granite_stairs",
+        "andesite_stairs",
+        "red_nether_brick_stairs",
+        "polished_andesite_stairs",
+        "diorite_stairs",
+        "cobbled_deepslate_stairs",
+        "polished_deepslate_stairs",
+        "deepslate_brick_stairs",
+        "deepslate_tile_stairs",
+        "polished_granite_slab",
+        "smooth_red_sandstone_slab",
+        "mossy_stone_brick_slab",
+        "polished_diorite_slab",
+        "mossy_cobblestone_slab",
+        "end_stone_brick_slab",
+        "smooth_sandstone_slab",
+        "smooth_quartz_slab",
+        "granite_slab",
+        "andesite_slab",
+        "red_nether_brick_slab",
+        "polished_andesite_slab",
+        "diorite_slab",
+        "cobbled_deepslate_slab",
+        "polished_deepslate_slab",
+        "deepslate_brick_slab",
+        "deepslate_tile_slab",
+        "redstone",
+        "redstone_block",
+        "repeater",
+        "comparator",
+        "piston",
+        "sticky_piston",
+        "slime_block",
+        "honey_block",
+        "observer",
+        "hopper",
+        "dispenser",
+        "dropper",
+        "lectern",
+        "target",
+        "lever",
+        "lightning_rod",
+        "exposed_lightning_rod",
+        "weathered_lightning_rod",
+        "oxidized_lightning_rod",
+        "waxed_lightning_rod",
+        "waxed_exposed_lightning_rod",
+        "waxed_weathered_lightning_rod",
+        "waxed_oxidized_lightning_rod",
+        "daylight_detector",
+        "sculk_sensor",
+        "calibrated_sculk_sensor",
+        "tripwire_hook",
+        "trapped_chest",
+        "tnt",
+        "redstone_lamp",
+        "note_block",
+        "stone_button",
+        "polished_blackstone_button",
+        "oak_button",
+        "spruce_button",
+        "birch_button",
+        "jungle_button",
+        "acacia_button",
+        "cherry_button",
+        "dark_oak_button",
+        "pale_oak_button",
+        "mangrove_button",
+        "poplar_button",
+        "bamboo_button",
+        "crimson_button",
+        "warped_button",
+        "stone_pressure_plate",
+        "polished_blackstone_pressure_plate",
+        "light_weighted_pressure_plate",
+        "heavy_weighted_pressure_plate",
+        "oak_pressure_plate",
+        "spruce_pressure_plate",
+        "birch_pressure_plate",
+        "jungle_pressure_plate",
+        "acacia_pressure_plate",
+        "cherry_pressure_plate",
+        "dark_oak_pressure_plate",
+        "pale_oak_pressure_plate",
+        "mangrove_pressure_plate",
+        "poplar_pressure_plate",
+        "bamboo_pressure_plate",
+        "crimson_pressure_plate",
+        "warped_pressure_plate",
+        "iron_trapdoor",
+        "oak_trapdoor",
+        "spruce_trapdoor",
+        "birch_trapdoor",
+        "jungle_trapdoor",
+        "acacia_trapdoor",
+        "cherry_trapdoor",
+        "dark_oak_trapdoor",
+        "pale_oak_trapdoor",
+        "mangrove_trapdoor",
+        "poplar_trapdoor",
+        "bamboo_trapdoor",
+        "crimson_trapdoor",
+        "warped_trapdoor",
+        "copper_trapdoor",
+        "exposed_copper_trapdoor",
+        "weathered_copper_trapdoor",
+        "oxidized_copper_trapdoor",
+        "waxed_copper_trapdoor",
+        "waxed_exposed_copper_trapdoor",
+        "waxed_weathered_copper_trapdoor",
+        "waxed_oxidized_copper_trapdoor",
+        "oak_fence_gate",
+        "spruce_fence_gate",
+        "birch_fence_gate",
+        "jungle_fence_gate",
+        "acacia_fence_gate",
+        "cherry_fence_gate",
+        "dark_oak_fence_gate",
+        "pale_oak_fence_gate",
+        "mangrove_fence_gate",
+        "poplar_fence_gate",
+        "bamboo_fence_gate",
+        "crimson_fence_gate",
+        "warped_fence_gate",
+        "powered_rail",
+        "detector_rail",
+        "rail",
+        "activator_rail",
+        "string",
+        "wheat_seeds",
+        "dried_kelp_block",
+        "cocoa_beans",
+        "cake",
+        "white_bed",
+        "orange_bed",
+        "magenta_bed",
+        "light_blue_bed",
+        "yellow_bed",
+        "lime_bed",
+        "pink_bed",
+        "gray_bed",
+        "light_gray_bed",
+        "cyan_bed",
+        "purple_bed",
+        "blue_bed",
+        "brown_bed",
+        "green_bed",
+        "red_bed",
+        "black_bed",
+        "straw_bed",
+        "crafter",
+        "pumpkin_seeds",
+        "melon_seeds",
+        "nether_wart",
+        "brewing_stand",
+        "cauldron",
+        "flower_pot",
+        "carrot",
+        "potato",
+        "torchflower_seeds",
+        "pitcher_pod",
+        "beetroot_seeds",
+        "loom",
+        "composter",
+        "barrel",
+        "smoker",
+        "blast_furnace",
+        "cartography_table",
+        "fletching_table",
+        "grindstone",
+        "smithing_table",
+        "stonecutter",
+        "bell",
+        "lantern",
+        "soul_lantern",
+        "copper_lantern",
+        "exposed_copper_lantern",
+        "weathered_copper_lantern",
+        "oxidized_copper_lantern",
+        "waxed_copper_lantern",
+        "waxed_exposed_copper_lantern",
+        "waxed_weathered_copper_lantern",
+        "waxed_oxidized_copper_lantern",
+        "sweet_berries",
+        "glow_berries",
+        "campfire",
+        "soul_campfire",
+        "shroomlight",
+        "bee_nest",
+        "beehive",
+        "honeycomb_block",
+        "lodestone",
+        "crying_obsidian",
+        "blackstone",
+        "blackstone_slab",
+        "blackstone_stairs",
+        "gilded_blackstone",
+        "polished_blackstone",
+        "polished_blackstone_slab",
+        "polished_blackstone_stairs",
+        "chiseled_polished_blackstone",
+        "polished_blackstone_bricks",
+        "polished_blackstone_brick_slab",
+        "polished_blackstone_brick_stairs",
+        "cracked_polished_blackstone_bricks",
+        "respawn_anchor",
+        "candle",
+        "white_candle",
+        "orange_candle",
+        "magenta_candle",
+        "light_blue_candle",
+        "yellow_candle",
+        "lime_candle",
+        "pink_candle",
+        "gray_candle",
+        "light_gray_candle",
+        "cyan_candle",
+        "purple_candle",
+        "blue_candle",
+        "brown_candle",
+        "green_candle",
+        "red_candle",
+        "black_candle",
+        "small_amethyst_bud",
+        "medium_amethyst_bud",
+        "large_amethyst_bud",
+        "amethyst_cluster",
+        "pointed_dripstone",
+        "sulfur_spike",
+        "ochre_froglight",
+        "verdant_froglight",
+        "pearlescent_froglight",
+        "copper_grate",
+        "exposed_copper_grate",
+        "weathered_copper_grate",
+        "oxidized_copper_grate",
+        "waxed_copper_grate",
+        "waxed_exposed_copper_grate",
+        "waxed_weathered_copper_grate",
+        "waxed_oxidized_copper_grate",
+        "copper_bulb",
+        "exposed_copper_bulb",
+        "weathered_copper_bulb",
+        "oxidized_copper_bulb",
+        "waxed_copper_bulb",
+        "waxed_exposed_copper_bulb",
+        "waxed_weathered_copper_bulb",
+        "waxed_oxidized_copper_bulb",
+        "copper_chest",
+        "exposed_copper_chest",
+        "weathered_copper_chest",
+        "oxidized_copper_chest",
+        "waxed_copper_chest",
+        "waxed_exposed_copper_chest",
+        "waxed_weathered_copper_chest",
+        "waxed_oxidized_copper_chest",
+        "copper_golem_statue",
+        "exposed_copper_golem_statue",
+        "weathered_copper_golem_statue",
+        "oxidized_copper_golem_statue",
+        "waxed_copper_golem_statue",
+        "waxed_exposed_copper_golem_statue",
+        "waxed_weathered_copper_golem_statue",
+        "waxed_oxidized_copper_golem_statue",
+        "trial_spawner",
+        "vault"
+      ],
+      "new_in_nightly": []
     },
     "DoubleHighBlockItem": {
       "implemented": true,
@@ -3865,7 +6699,39 @@
         "waxed_exposed_copper_door",
         "waxed_weathered_copper_door",
         "waxed_oxidized_copper_door"
-      ]
+      ],
+      "released": [
+        "small_dripleaf",
+        "sunflower",
+        "lilac",
+        "rose_bush",
+        "peony",
+        "tall_grass",
+        "large_fern",
+        "iron_door",
+        "oak_door",
+        "spruce_door",
+        "birch_door",
+        "jungle_door",
+        "acacia_door",
+        "cherry_door",
+        "dark_oak_door",
+        "pale_oak_door",
+        "mangrove_door",
+        "poplar_door",
+        "bamboo_door",
+        "crimson_door",
+        "warped_door",
+        "copper_door",
+        "exposed_copper_door",
+        "weathered_copper_door",
+        "oxidized_copper_door",
+        "waxed_copper_door",
+        "waxed_exposed_copper_door",
+        "waxed_weathered_copper_door",
+        "waxed_oxidized_copper_door"
+      ],
+      "new_in_nightly": []
     },
     "StandingAndWallBlockItem": {
       "implemented": true,
@@ -3904,7 +6770,43 @@
         "creeper_head",
         "dragon_head",
         "piglin_head"
-      ]
+      ],
+      "released": [
+        "torch",
+        "soul_torch",
+        "copper_torch",
+        "tube_coral_fan",
+        "brain_coral_fan",
+        "bubble_coral_fan",
+        "fire_coral_fan",
+        "horn_coral_fan",
+        "dead_tube_coral_fan",
+        "dead_brain_coral_fan",
+        "dead_bubble_coral_fan",
+        "dead_fire_coral_fan",
+        "dead_horn_coral_fan",
+        "redstone_torch",
+        "oak_sign",
+        "spruce_sign",
+        "birch_sign",
+        "jungle_sign",
+        "acacia_sign",
+        "cherry_sign",
+        "dark_oak_sign",
+        "pale_oak_sign",
+        "mangrove_sign",
+        "poplar_sign",
+        "bamboo_sign",
+        "crimson_sign",
+        "warped_sign",
+        "skeleton_skull",
+        "wither_skeleton_skull",
+        "zombie_head",
+        "creeper_head",
+        "dragon_head",
+        "piglin_head"
+      ],
+      "new_in_nightly": []
     },
     "PlaceOnWaterBlockItem": {
       "implemented": true,
@@ -3912,7 +6814,12 @@
       "entries": [
         "lily_pad",
         "frogspawn"
-      ]
+      ],
+      "released": [
+        "lily_pad",
+        "frogspawn"
+      ],
+      "new_in_nightly": []
     },
     "GameMasterBlockItem": {
       "implemented": false,
@@ -3925,14 +6832,20 @@
         "jigsaw",
         "test_block",
         "test_instance_block"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ScaffoldingBlockItem": {
       "implemented": true,
       "todos": [],
       "entries": [
         "scaffolding"
-      ]
+      ],
+      "released": [
+        "scaffolding"
+      ],
+      "new_in_nightly": []
     },
     "MinecartItem": {
       "implemented": true,
@@ -3946,7 +6859,16 @@
         "tnt_minecart",
         "hopper_minecart",
         "command_block_minecart"
-      ]
+      ],
+      "released": [
+        "minecart",
+        "chest_minecart",
+        "furnace_minecart",
+        "tnt_minecart",
+        "hopper_minecart",
+        "command_block_minecart"
+      ],
+      "new_in_nightly": []
     },
     "FoodOnAStickItem": {
       "implemented": true,
@@ -3954,7 +6876,12 @@
       "entries": [
         "carrot_on_a_stick",
         "warped_fungus_on_a_stick"
-      ]
+      ],
+      "released": [
+        "carrot_on_a_stick",
+        "warped_fungus_on_a_stick"
+      ],
+      "new_in_nightly": []
     },
     "BoatItem": {
       "implemented": false,
@@ -3982,35 +6909,47 @@
         "poplar_chest_boat",
         "bamboo_raft",
         "bamboo_chest_raft"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "FlintAndSteelItem": {
       "implemented": true,
       "todos": [],
       "entries": [
         "flint_and_steel"
-      ]
+      ],
+      "released": [
+        "flint_and_steel"
+      ],
+      "new_in_nightly": []
     },
     "BowItem": {
       "implemented": false,
       "todos": [],
       "entries": [
         "bow"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ArrowItem": {
       "implemented": false,
       "todos": [],
       "entries": [
         "arrow"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "HangingEntityItem": {
       "implemented": false,
       "todos": [],
       "entries": [
         "painting"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "HangingSignItem": {
       "implemented": true,
@@ -4029,7 +6968,23 @@
         "bamboo_hanging_sign",
         "crimson_hanging_sign",
         "warped_hanging_sign"
-      ]
+      ],
+      "released": [
+        "oak_hanging_sign",
+        "spruce_hanging_sign",
+        "birch_hanging_sign",
+        "jungle_hanging_sign",
+        "acacia_hanging_sign",
+        "cherry_hanging_sign",
+        "dark_oak_hanging_sign",
+        "pale_oak_hanging_sign",
+        "mangrove_hanging_sign",
+        "poplar_hanging_sign",
+        "bamboo_hanging_sign",
+        "crimson_hanging_sign",
+        "warped_hanging_sign"
+      ],
+      "new_in_nightly": []
     },
     "BucketItem": {
       "implemented": true,
@@ -4041,21 +6996,35 @@
         "bucket",
         "water_bucket",
         "lava_bucket"
-      ]
+      ],
+      "released": [
+        "bucket",
+        "water_bucket",
+        "lava_bucket"
+      ],
+      "new_in_nightly": []
     },
     "SolidBucketItem": {
       "implemented": true,
       "todos": [],
       "entries": [
         "powder_snow_bucket"
-      ]
+      ],
+      "released": [
+        "powder_snow_bucket"
+      ],
+      "new_in_nightly": []
     },
     "SnowballItem": {
       "implemented": true,
       "todos": [],
       "entries": [
         "snowball"
-      ]
+      ],
+      "released": [
+        "snowball"
+      ],
+      "new_in_nightly": []
     },
     "MobBucketItem": {
       "implemented": false,
@@ -4068,7 +7037,9 @@
         "axolotl_bucket",
         "sulfur_cube_bucket",
         "tadpole_bucket"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "EggItem": {
       "implemented": true,
@@ -4077,7 +7048,13 @@
         "egg",
         "blue_egg",
         "brown_egg"
-      ]
+      ],
+      "released": [
+        "egg",
+        "blue_egg",
+        "brown_egg"
+      ],
+      "new_in_nightly": []
     },
     "CompassItem": {
       "implemented": true,
@@ -4086,7 +7063,11 @@
       ],
       "entries": [
         "compass"
-      ]
+      ],
+      "released": [
+        "compass"
+      ],
+      "new_in_nightly": []
     },
     "BundleItem": {
       "implemented": false,
@@ -4109,7 +7090,9 @@
         "green_bundle",
         "red_bundle",
         "black_bundle"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "CushionItem": {
       "implemented": false,
@@ -4131,35 +7114,53 @@
         "green_cushion",
         "red_cushion",
         "black_cushion"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "FishingRodItem": {
       "implemented": true,
       "todos": [],
       "entries": [
         "fishing_rod"
-      ]
+      ],
+      "released": [
+        "fishing_rod"
+      ],
+      "new_in_nightly": []
     },
     "SpyglassItem": {
       "implemented": true,
       "todos": [],
       "entries": [
         "spyglass"
-      ]
+      ],
+      "released": [
+        "spyglass"
+      ],
+      "new_in_nightly": []
     },
     "InkSacItem": {
       "implemented": true,
       "todos": [],
       "entries": [
         "ink_sac"
-      ]
+      ],
+      "released": [
+        "ink_sac"
+      ],
+      "new_in_nightly": []
     },
     "GlowInkSacItem": {
       "implemented": true,
       "todos": [],
       "entries": [
         "glow_ink_sac"
-      ]
+      ],
+      "released": [
+        "glow_ink_sac"
+      ],
+      "new_in_nightly": []
     },
     "DyeItem": {
       "implemented": true,
@@ -4181,7 +7182,26 @@
         "green_dye",
         "red_dye",
         "black_dye"
-      ]
+      ],
+      "released": [
+        "white_dye",
+        "orange_dye",
+        "magenta_dye",
+        "light_blue_dye",
+        "yellow_dye",
+        "lime_dye",
+        "pink_dye",
+        "gray_dye",
+        "light_gray_dye",
+        "cyan_dye",
+        "purple_dye",
+        "blue_dye",
+        "brown_dye",
+        "green_dye",
+        "red_dye",
+        "black_dye"
+      ],
+      "new_in_nightly": []
     },
     "BoneMealItem": {
       "implemented": true,
@@ -4190,7 +7210,11 @@
       ],
       "entries": [
         "bone_meal"
-      ]
+      ],
+      "released": [
+        "bone_meal"
+      ],
+      "new_in_nightly": []
     },
     "MapItem": {
       "implemented": false,
@@ -4213,7 +7237,9 @@
         "desert_pyramid_map",
         "abandoned_camp_map",
         "warm_ocean_ruins_map"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ShearsItem": {
       "implemented": true,
@@ -4222,28 +7248,44 @@
       ],
       "entries": [
         "shears"
-      ]
+      ],
+      "released": [
+        "shears"
+      ],
+      "new_in_nightly": []
     },
     "EnderpearlItem": {
       "implemented": true,
       "todos": [],
       "entries": [
         "ender_pearl"
-      ]
+      ],
+      "released": [
+        "ender_pearl"
+      ],
+      "new_in_nightly": []
     },
     "BottleItem": {
       "implemented": true,
       "todos": [],
       "entries": [
         "glass_bottle"
-      ]
+      ],
+      "released": [
+        "glass_bottle"
+      ],
+      "new_in_nightly": []
     },
     "PotionItem": {
       "implemented": true,
       "todos": [],
       "entries": [
         "potion"
-      ]
+      ],
+      "released": [
+        "potion"
+      ],
+      "new_in_nightly": []
     },
     "EnderEyeItem": {
       "implemented": true,
@@ -4252,7 +7294,11 @@
       ],
       "entries": [
         "ender_eye"
-      ]
+      ],
+      "released": [
+        "ender_eye"
+      ],
+      "new_in_nightly": []
     },
     "SpawnEggItem": {
       "implemented": true,
@@ -4346,21 +7392,118 @@
         "enderman_spawn_egg",
         "endermite_spawn_egg",
         "shulker_spawn_egg"
-      ]
+      ],
+      "released": [
+        "chicken_spawn_egg",
+        "cow_spawn_egg",
+        "pig_spawn_egg",
+        "sheep_spawn_egg",
+        "camel_spawn_egg",
+        "donkey_spawn_egg",
+        "horse_spawn_egg",
+        "mule_spawn_egg",
+        "cat_spawn_egg",
+        "parrot_spawn_egg",
+        "wolf_spawn_egg",
+        "armadillo_spawn_egg",
+        "bat_spawn_egg",
+        "bee_spawn_egg",
+        "fox_spawn_egg",
+        "goat_spawn_egg",
+        "llama_spawn_egg",
+        "ocelot_spawn_egg",
+        "panda_spawn_egg",
+        "polar_bear_spawn_egg",
+        "rabbit_spawn_egg",
+        "axolotl_spawn_egg",
+        "cod_spawn_egg",
+        "dolphin_spawn_egg",
+        "frog_spawn_egg",
+        "glow_squid_spawn_egg",
+        "nautilus_spawn_egg",
+        "pufferfish_spawn_egg",
+        "salmon_spawn_egg",
+        "squid_spawn_egg",
+        "tadpole_spawn_egg",
+        "tropical_fish_spawn_egg",
+        "turtle_spawn_egg",
+        "allay_spawn_egg",
+        "mooshroom_spawn_egg",
+        "sniffer_spawn_egg",
+        "sulfur_cube_spawn_egg",
+        "copper_golem_spawn_egg",
+        "iron_golem_spawn_egg",
+        "snow_golem_spawn_egg",
+        "trader_llama_spawn_egg",
+        "villager_spawn_egg",
+        "wandering_trader_spawn_egg",
+        "bogged_spawn_egg",
+        "camel_husk_spawn_egg",
+        "drowned_spawn_egg",
+        "husk_spawn_egg",
+        "parched_spawn_egg",
+        "skeleton_spawn_egg",
+        "skeleton_horse_spawn_egg",
+        "stray_spawn_egg",
+        "wither_spawn_egg",
+        "wither_skeleton_spawn_egg",
+        "zombie_spawn_egg",
+        "zombie_horse_spawn_egg",
+        "zombie_nautilus_spawn_egg",
+        "zombie_villager_spawn_egg",
+        "cave_spider_spawn_egg",
+        "spider_spawn_egg",
+        "breeze_spawn_egg",
+        "creaking_spawn_egg",
+        "creeper_spawn_egg",
+        "elder_guardian_spawn_egg",
+        "guardian_spawn_egg",
+        "phantom_spawn_egg",
+        "silverfish_spawn_egg",
+        "slime_spawn_egg",
+        "warden_spawn_egg",
+        "witch_spawn_egg",
+        "evoker_spawn_egg",
+        "pillager_spawn_egg",
+        "ravager_spawn_egg",
+        "vindicator_spawn_egg",
+        "vex_spawn_egg",
+        "blaze_spawn_egg",
+        "ghast_spawn_egg",
+        "happy_ghast_spawn_egg",
+        "hoglin_spawn_egg",
+        "magma_cube_spawn_egg",
+        "piglin_spawn_egg",
+        "piglin_brute_spawn_egg",
+        "strider_spawn_egg",
+        "zoglin_spawn_egg",
+        "zombified_piglin_spawn_egg",
+        "ender_dragon_spawn_egg",
+        "enderman_spawn_egg",
+        "endermite_spawn_egg",
+        "shulker_spawn_egg"
+      ],
+      "new_in_nightly": []
     },
     "ExperienceBottleItem": {
       "implemented": false,
       "todos": [],
       "entries": [
         "experience_bottle"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "FireChargeItem": {
       "implemented": true,
       "todos": [],
       "entries": [
         "fire_charge"
-      ]
+      ],
+      "released": [
+        "fire_charge"
+      ],
+      "new_in_nightly": []
     },
     "WindChargeItem": {
       "implemented": true,
@@ -4369,28 +7512,40 @@
       ],
       "entries": [
         "wind_charge"
-      ]
+      ],
+      "released": [
+        "wind_charge"
+      ],
+      "new_in_nightly": []
     },
     "WritableBookItem": {
       "implemented": false,
       "todos": [],
       "entries": [
         "writable_book"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "WrittenBookItem": {
       "implemented": false,
       "todos": [],
       "entries": [
         "written_book"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "MaceItem": {
       "implemented": true,
       "todos": [],
       "entries": [
         "mace"
-      ]
+      ],
+      "released": [
+        "mace"
+      ],
+      "new_in_nightly": []
     },
     "ItemFrameItem": {
       "implemented": false,
@@ -4398,49 +7553,71 @@
       "entries": [
         "item_frame",
         "glow_item_frame"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "EmptyMapItem": {
       "implemented": false,
       "todos": [],
       "entries": [
         "map"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "PlayerHeadItem": {
       "implemented": true,
       "todos": [],
       "entries": [
         "player_head"
-      ]
+      ],
+      "released": [
+        "player_head"
+      ],
+      "new_in_nightly": []
     },
     "FireworkRocketItem": {
       "implemented": true,
       "todos": [],
       "entries": [
         "firework_rocket"
-      ]
+      ],
+      "released": [
+        "firework_rocket"
+      ],
+      "new_in_nightly": []
     },
     "ArmorStandItem": {
       "implemented": false,
       "todos": [],
       "entries": [
         "armor_stand"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "LeadItem": {
       "implemented": true,
       "todos": [],
       "entries": [
         "lead"
-      ]
+      ],
+      "released": [
+        "lead"
+      ],
+      "new_in_nightly": []
     },
     "NameTagItem": {
       "implemented": true,
       "todos": [],
       "entries": [
         "name_tag"
-      ]
+      ],
+      "released": [
+        "name_tag"
+      ],
+      "new_in_nightly": []
     },
     "BannerItem": {
       "implemented": false,
@@ -4462,7 +7639,9 @@
         "green_banner",
         "red_banner",
         "black_banner"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "EndCrystalItem": {
       "implemented": true,
@@ -4471,7 +7650,11 @@
       ],
       "entries": [
         "end_crystal"
-      ]
+      ],
+      "released": [
+        "end_crystal"
+      ],
+      "new_in_nightly": []
     },
     "SplashPotionItem": {
       "implemented": true,
@@ -4481,14 +7664,20 @@
       ],
       "entries": [
         "splash_potion"
-      ]
+      ],
+      "released": [
+        "splash_potion"
+      ],
+      "new_in_nightly": []
     },
     "SpectralArrowItem": {
       "implemented": false,
       "todos": [],
       "entries": [
         "spectral_arrow"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "TippedArrowItem": {
       "implemented": true,
@@ -4497,63 +7686,87 @@
       ],
       "entries": [
         "tipped_arrow"
-      ]
+      ],
+      "released": [
+        "tipped_arrow"
+      ],
+      "new_in_nightly": []
     },
     "LingeringPotionItem": {
       "implemented": true,
       "todos": [],
       "entries": [
         "lingering_potion"
-      ]
+      ],
+      "released": [
+        "lingering_potion"
+      ],
+      "new_in_nightly": []
     },
     "ShieldItem": {
       "implemented": true,
       "todos": [],
       "entries": [
         "shield"
-      ]
+      ],
+      "released": [
+        "shield"
+      ],
+      "new_in_nightly": []
     },
     "KnowledgeBookItem": {
       "implemented": false,
       "todos": [],
       "entries": [
         "knowledge_book"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "DebugStickItem": {
       "implemented": false,
       "todos": [],
       "entries": [
         "debug_stick"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "DiscFragmentItem": {
       "implemented": false,
       "todos": [],
       "entries": [
         "disc_fragment_5"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "TridentItem": {
       "implemented": false,
       "todos": [],
       "entries": [
         "trident"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "CrossbowItem": {
       "implemented": false,
       "todos": [],
       "entries": [
         "crossbow"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "InstrumentItem": {
       "implemented": false,
       "todos": [],
       "entries": [
         "goat_horn"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "HoneycombItem": {
       "implemented": true,
@@ -4562,14 +7775,22 @@
       ],
       "entries": [
         "honeycomb"
-      ]
+      ],
+      "released": [
+        "honeycomb"
+      ],
+      "new_in_nightly": []
     },
     "BrushItem": {
       "implemented": true,
       "todos": [],
       "entries": [
         "brush"
-      ]
+      ],
+      "released": [
+        "brush"
+      ],
+      "new_in_nightly": []
     },
     "SmithingTemplateItem": {
       "implemented": false,
@@ -4594,7 +7815,9 @@
         "host_armor_trim_smithing_template",
         "flow_armor_trim_smithing_template",
         "bolt_armor_trim_smithing_template"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     }
   },
   "entities": {
@@ -4612,7 +7835,9 @@
         "pale_oak_boat",
         "poplar_boat",
         "spruce_boat"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ChestBoat": {
       "implemented": false,
@@ -4628,14 +7853,18 @@
         "pale_oak_chest_boat",
         "poplar_chest_boat",
         "spruce_chest_boat"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Allay": {
       "implemented": false,
       "todos": [],
       "entries": [
         "allay"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "AreaEffectCloud": {
       "implemented": true,
@@ -4644,259 +7873,355 @@
       ],
       "entries": [
         "area_effect_cloud"
-      ]
+      ],
+      "released": [
+        "area_effect_cloud"
+      ],
+      "new_in_nightly": []
     },
     "Armadillo": {
       "implemented": false,
       "todos": [],
       "entries": [
         "armadillo"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ArmorStand": {
       "implemented": false,
       "todos": [],
       "entries": [
         "armor_stand"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Arrow": {
       "implemented": false,
       "todos": [],
       "entries": [
         "arrow"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Axolotl": {
       "implemented": false,
       "todos": [],
       "entries": [
         "axolotl"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ChestRaft": {
       "implemented": false,
       "todos": [],
       "entries": [
         "bamboo_chest_raft"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Raft": {
       "implemented": false,
       "todos": [],
       "entries": [
         "bamboo_raft"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Bat": {
       "implemented": true,
       "todos": [],
       "entries": [
         "bat"
-      ]
+      ],
+      "released": [
+        "bat"
+      ],
+      "new_in_nightly": []
     },
     "Bee": {
       "implemented": false,
       "todos": [],
       "entries": [
         "bee"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Blaze": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
+        "blaze"
+      ],
+      "released": [],
+      "new_in_nightly": [
         "blaze"
       ]
     },
     "BlockDisplay": {
       "implemented": true,
-      "todos": [],
+      "todos": [
+        "Support compact default states and the property fallback from BlockState.CODEC"
+      ],
       "entries": [
         "block_display"
-      ]
+      ],
+      "released": [
+        "block_display"
+      ],
+      "new_in_nightly": []
     },
     "Bogged": {
       "implemented": false,
       "todos": [],
       "entries": [
         "bogged"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Breeze": {
       "implemented": false,
       "todos": [],
       "entries": [
         "breeze"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "BreezeWindCharge": {
       "implemented": false,
       "todos": [],
       "entries": [
         "breeze_wind_charge"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Camel": {
       "implemented": false,
       "todos": [],
       "entries": [
         "camel"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "CamelHusk": {
       "implemented": false,
       "todos": [],
       "entries": [
         "camel_husk"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Cat": {
       "implemented": false,
       "todos": [],
       "entries": [
         "cat"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "CaveSpider": {
       "implemented": false,
       "todos": [],
       "entries": [
         "cave_spider"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "MinecartChest": {
       "implemented": true,
       "todos": [],
       "entries": [
         "chest_minecart"
-      ]
+      ],
+      "released": [
+        "chest_minecart"
+      ],
+      "new_in_nightly": []
     },
     "Chicken": {
       "implemented": true,
       "todos": [],
       "entries": [
         "chicken"
-      ]
+      ],
+      "released": [
+        "chicken"
+      ],
+      "new_in_nightly": []
     },
     "Cod": {
       "implemented": false,
       "todos": [],
       "entries": [
         "cod"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "CopperGolem": {
       "implemented": false,
       "todos": [],
       "entries": [
         "copper_golem"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "MinecartCommandBlock": {
       "implemented": false,
       "todos": [],
       "entries": [
         "command_block_minecart"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Cow": {
       "implemented": true,
       "todos": [],
       "entries": [
         "cow"
-      ]
+      ],
+      "released": [
+        "cow"
+      ],
+      "new_in_nightly": []
     },
     "Creaking": {
       "implemented": false,
       "todos": [],
       "entries": [
         "creaking"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Creeper": {
       "implemented": false,
       "todos": [],
       "entries": [
         "creeper"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Cushion": {
       "implemented": false,
       "todos": [],
       "entries": [
         "cushion"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Dolphin": {
       "implemented": false,
       "todos": [],
       "entries": [
         "dolphin"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Donkey": {
       "implemented": false,
       "todos": [],
       "entries": [
         "donkey"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "DragonFireball": {
       "implemented": false,
       "todos": [],
       "entries": [
         "dragon_fireball"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Drowned": {
       "implemented": false,
       "todos": [],
       "entries": [
         "drowned"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ThrownEgg": {
       "implemented": true,
       "todos": [],
       "entries": [
         "egg"
-      ]
+      ],
+      "released": [
+        "egg"
+      ],
+      "new_in_nightly": []
     },
     "ElderGuardian": {
       "implemented": false,
       "todos": [],
       "entries": [
         "elder_guardian"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Enderman": {
       "implemented": false,
       "todos": [],
       "entries": [
         "enderman"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Endermite": {
       "implemented": true,
       "todos": [],
       "entries": [
         "endermite"
-      ]
+      ],
+      "released": [
+        "endermite"
+      ],
+      "new_in_nightly": []
     },
     "EnderDragon": {
       "implemented": false,
       "todos": [],
       "entries": [
         "ender_dragon"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ThrownEnderpearl": {
       "implemented": true,
       "todos": [],
       "entries": [
         "ender_pearl"
-      ]
+      ],
+      "released": [
+        "ender_pearl"
+      ],
+      "new_in_nightly": []
     },
     "EndCrystal": {
       "implemented": true,
@@ -4906,168 +8231,226 @@
       ],
       "entries": [
         "end_crystal"
-      ]
+      ],
+      "released": [
+        "end_crystal"
+      ],
+      "new_in_nightly": []
     },
     "Evoker": {
       "implemented": false,
       "todos": [],
       "entries": [
         "evoker"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "EvokerFangs": {
       "implemented": false,
       "todos": [],
       "entries": [
         "evoker_fangs"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ThrownExperienceBottle": {
       "implemented": false,
       "todos": [],
       "entries": [
         "experience_bottle"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ExperienceOrb": {
       "implemented": true,
       "todos": [],
       "entries": [
         "experience_orb"
-      ]
+      ],
+      "released": [
+        "experience_orb"
+      ],
+      "new_in_nightly": []
     },
     "EyeOfEnder": {
       "implemented": true,
       "todos": [],
       "entries": [
         "eye_of_ender"
-      ]
+      ],
+      "released": [
+        "eye_of_ender"
+      ],
+      "new_in_nightly": []
     },
     "FallingBlockEntity": {
       "implemented": true,
       "todos": [],
       "entries": [
         "falling_block"
-      ]
+      ],
+      "released": [
+        "falling_block"
+      ],
+      "new_in_nightly": []
     },
     "LargeFireball": {
       "implemented": false,
       "todos": [],
       "entries": [
         "fireball"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "FireworkRocketEntity": {
       "implemented": true,
       "todos": [],
       "entries": [
         "firework_rocket"
-      ]
+      ],
+      "released": [
+        "firework_rocket"
+      ],
+      "new_in_nightly": []
     },
     "Fox": {
       "implemented": false,
       "todos": [],
       "entries": [
         "fox"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Frog": {
       "implemented": false,
       "todos": [],
       "entries": [
         "frog"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "MinecartFurnace": {
       "implemented": false,
       "todos": [],
       "entries": [
         "furnace_minecart"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Ghast": {
       "implemented": false,
       "todos": [],
       "entries": [
         "ghast"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "HappyGhast": {
       "implemented": false,
       "todos": [],
       "entries": [
         "happy_ghast"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Giant": {
       "implemented": false,
       "todos": [],
       "entries": [
         "giant"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "GlowItemFrame": {
       "implemented": false,
       "todos": [],
       "entries": [
         "glow_item_frame"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "GlowSquid": {
       "implemented": false,
       "todos": [],
       "entries": [
         "glow_squid"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Goat": {
       "implemented": false,
       "todos": [],
       "entries": [
         "goat"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Guardian": {
       "implemented": false,
       "todos": [],
       "entries": [
         "guardian"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Hoglin": {
       "implemented": false,
       "todos": [],
       "entries": [
         "hoglin"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "MinecartHopper": {
       "implemented": false,
       "todos": [],
       "entries": [
         "hopper_minecart"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Horse": {
       "implemented": false,
       "todos": [],
       "entries": [
         "horse"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Husk": {
       "implemented": false,
       "todos": [],
       "entries": [
         "husk"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Illusioner": {
       "implemented": false,
       "todos": [],
       "entries": [
         "illusioner"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Interaction": {
       "implemented": true,
@@ -5076,14 +8459,20 @@
       ],
       "entries": [
         "interaction"
-      ]
+      ],
+      "released": [
+        "interaction"
+      ],
+      "new_in_nightly": []
     },
     "IronGolem": {
       "implemented": false,
       "todos": [],
       "entries": [
         "iron_golem"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ItemEntity": {
       "implemented": true,
@@ -5093,12 +8482,22 @@
       ],
       "entries": [
         "item"
-      ]
+      ],
+      "released": [
+        "item"
+      ],
+      "new_in_nightly": []
     },
     "ItemDisplay": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Expose slot 0 once entity slot access is available to /item"
+      ],
       "entries": [
+        "item_display"
+      ],
+      "released": [],
+      "new_in_nightly": [
         "item_display"
       ]
     },
@@ -5109,56 +8508,78 @@
       ],
       "entries": [
         "item_frame"
-      ]
+      ],
+      "released": [
+        "item_frame"
+      ],
+      "new_in_nightly": []
     },
     "LeashFenceKnotEntity": {
       "implemented": true,
       "todos": [],
       "entries": [
         "leash_knot"
-      ]
+      ],
+      "released": [
+        "leash_knot"
+      ],
+      "new_in_nightly": []
     },
     "LightningBolt": {
       "implemented": false,
       "todos": [],
       "entries": [
         "lightning_bolt"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Llama": {
       "implemented": false,
       "todos": [],
       "entries": [
         "llama"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "LlamaSpit": {
       "implemented": false,
       "todos": [],
       "entries": [
         "llama_spit"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "MagmaCube": {
       "implemented": false,
       "todos": [],
       "entries": [
         "magma_cube"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Mannequin": {
       "implemented": false,
       "todos": [],
       "entries": [
         "mannequin"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Marker": {
       "implemented": true,
       "todos": [],
       "entries": [
         "marker"
-      ]
+      ],
+      "released": [
+        "marker"
+      ],
+      "new_in_nightly": []
     },
     "Minecart": {
       "implemented": true,
@@ -5167,7 +8588,11 @@
       ],
       "entries": [
         "minecart"
-      ]
+      ],
+      "released": [
+        "minecart"
+      ],
+      "new_in_nightly": []
     },
     "MushroomCow": {
       "implemented": true,
@@ -5177,201 +8602,271 @@
       ],
       "entries": [
         "mooshroom"
-      ]
+      ],
+      "released": [
+        "mooshroom"
+      ],
+      "new_in_nightly": []
     },
     "Mule": {
       "implemented": false,
       "todos": [],
       "entries": [
         "mule"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Nautilus": {
       "implemented": false,
       "todos": [],
       "entries": [
         "nautilus"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Ocelot": {
       "implemented": false,
       "todos": [],
       "entries": [
         "ocelot"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "OminousItemSpawner": {
       "implemented": false,
       "todos": [],
       "entries": [
         "ominous_item_spawner"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Painting": {
       "implemented": false,
       "todos": [],
       "entries": [
         "painting"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Panda": {
       "implemented": false,
       "todos": [],
       "entries": [
         "panda"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Parched": {
       "implemented": false,
       "todos": [],
       "entries": [
         "parched"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Parrot": {
       "implemented": false,
       "todos": [],
       "entries": [
         "parrot"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Phantom": {
       "implemented": false,
       "todos": [],
       "entries": [
         "phantom"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Pig": {
       "implemented": true,
       "todos": [],
       "entries": [
         "pig"
-      ]
+      ],
+      "released": [
+        "pig"
+      ],
+      "new_in_nightly": []
     },
     "Piglin": {
       "implemented": false,
       "todos": [],
       "entries": [
         "piglin"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "PiglinBrute": {
       "implemented": false,
       "todos": [],
       "entries": [
         "piglin_brute"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Pillager": {
       "implemented": false,
       "todos": [],
       "entries": [
         "pillager"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "PolarBear": {
       "implemented": false,
       "todos": [],
       "entries": [
         "polar_bear"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ThrownSplashPotion": {
       "implemented": true,
       "todos": [],
       "entries": [
         "splash_potion"
-      ]
+      ],
+      "released": [
+        "splash_potion"
+      ],
+      "new_in_nightly": []
     },
     "ThrownLingeringPotion": {
       "implemented": true,
       "todos": [],
       "entries": [
         "lingering_potion"
-      ]
+      ],
+      "released": [
+        "lingering_potion"
+      ],
+      "new_in_nightly": []
     },
     "Pufferfish": {
       "implemented": false,
       "todos": [],
       "entries": [
         "pufferfish"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Rabbit": {
       "implemented": false,
       "todos": [],
       "entries": [
         "rabbit"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Ravager": {
       "implemented": false,
       "todos": [],
       "entries": [
         "ravager"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Salmon": {
       "implemented": false,
       "todos": [],
       "entries": [
         "salmon"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Sheep": {
       "implemented": true,
       "todos": [],
       "entries": [
         "sheep"
-      ]
+      ],
+      "released": [
+        "sheep"
+      ],
+      "new_in_nightly": []
     },
     "Shulker": {
       "implemented": false,
       "todos": [],
       "entries": [
         "shulker"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ShulkerBullet": {
       "implemented": false,
       "todos": [],
       "entries": [
         "shulker_bullet"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Silverfish": {
       "implemented": false,
       "todos": [],
       "entries": [
         "silverfish"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Skeleton": {
       "implemented": false,
       "todos": [],
       "entries": [
         "skeleton"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "SkeletonHorse": {
       "implemented": false,
       "todos": [],
       "entries": [
         "skeleton_horse"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Slime": {
       "implemented": false,
       "todos": [],
       "entries": [
         "slime"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "SmallFireball": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
+        "small_fireball"
+      ],
+      "released": [],
+      "new_in_nightly": [
         "small_fireball"
       ]
     },
@@ -5380,21 +8875,29 @@
       "todos": [],
       "entries": [
         "sniffer"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Snowball": {
       "implemented": true,
       "todos": [],
       "entries": [
         "snowball"
-      ]
+      ],
+      "released": [
+        "snowball"
+      ],
+      "new_in_nightly": []
     },
     "SnowGolem": {
       "implemented": false,
       "todos": [],
       "entries": [
         "snow_golem"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "MinecartSpawner": {
       "implemented": true,
@@ -5403,21 +8906,29 @@
       ],
       "entries": [
         "spawner_minecart"
-      ]
+      ],
+      "released": [
+        "spawner_minecart"
+      ],
+      "new_in_nightly": []
     },
     "SpectralArrow": {
       "implemented": false,
       "todos": [],
       "entries": [
         "spectral_arrow"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Spider": {
       "implemented": false,
       "todos": [],
       "entries": [
         "spider"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Squid": {
       "implemented": true,
@@ -5427,40 +8938,58 @@
       ],
       "entries": [
         "squid"
-      ]
+      ],
+      "released": [
+        "squid"
+      ],
+      "new_in_nightly": []
     },
     "Stray": {
       "implemented": false,
       "todos": [],
       "entries": [
         "stray"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Strider": {
       "implemented": false,
       "todos": [],
       "entries": [
         "strider"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "SulfurCube": {
       "implemented": false,
       "todos": [],
       "entries": [
         "sulfur_cube"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Tadpole": {
       "implemented": false,
       "todos": [],
       "entries": [
         "tadpole"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "TextDisplay": {
-      "implemented": false,
-      "todos": [],
+      "implemented": true,
+      "todos": [
+        "Resolve the text component with this display entity's world."
+      ],
       "entries": [
+        "text_display"
+      ],
+      "released": [],
+      "new_in_nightly": [
         "text_display"
       ]
     },
@@ -5469,7 +8998,11 @@
       "todos": [],
       "entries": [
         "tnt"
-      ]
+      ],
+      "released": [
+        "tnt"
+      ],
+      "new_in_nightly": []
     },
     "MinecartTNT": {
       "implemented": true,
@@ -5479,6 +9012,10 @@
       ],
       "entries": [
         "tnt_minecart"
+      ],
+      "released": [],
+      "new_in_nightly": [
+        "tnt_minecart"
       ]
     },
     "TraderLlama": {
@@ -5486,154 +9023,200 @@
       "todos": [],
       "entries": [
         "trader_llama"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ThrownTrident": {
       "implemented": false,
       "todos": [],
       "entries": [
         "trident"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "TropicalFish": {
       "implemented": false,
       "todos": [],
       "entries": [
         "tropical_fish"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Turtle": {
       "implemented": false,
       "todos": [],
       "entries": [
         "turtle"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Vex": {
       "implemented": false,
       "todos": [],
       "entries": [
         "vex"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Villager": {
       "implemented": false,
       "todos": [],
       "entries": [
         "villager"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Vindicator": {
       "implemented": false,
       "todos": [],
       "entries": [
         "vindicator"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "WanderingTrader": {
       "implemented": false,
       "todos": [],
       "entries": [
         "wandering_trader"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Warden": {
       "implemented": false,
       "todos": [],
       "entries": [
         "warden"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "WindCharge": {
       "implemented": true,
       "todos": [],
       "entries": [
         "wind_charge"
-      ]
+      ],
+      "released": [
+        "wind_charge"
+      ],
+      "new_in_nightly": []
     },
     "Witch": {
       "implemented": false,
       "todos": [],
       "entries": [
         "witch"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "WitherBoss": {
       "implemented": false,
       "todos": [],
       "entries": [
         "wither"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "WitherSkeleton": {
       "implemented": false,
       "todos": [],
       "entries": [
         "wither_skeleton"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "WitherSkull": {
       "implemented": false,
       "todos": [],
       "entries": [
         "wither_skull"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Wolf": {
       "implemented": false,
       "todos": [],
       "entries": [
         "wolf"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Zoglin": {
       "implemented": false,
       "todos": [],
       "entries": [
         "zoglin"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Zombie": {
       "implemented": false,
       "todos": [],
       "entries": [
         "zombie"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ZombieHorse": {
       "implemented": false,
       "todos": [],
       "entries": [
         "zombie_horse"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ZombieNautilus": {
       "implemented": false,
       "todos": [],
       "entries": [
         "zombie_nautilus"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ZombieVillager": {
       "implemented": false,
       "todos": [],
       "entries": [
         "zombie_villager"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "ZombifiedPiglin": {
       "implemented": false,
       "todos": [],
       "entries": [
         "zombified_piglin"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "Player": {
       "implemented": false,
       "todos": [],
       "entries": [
         "player"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "FishingHook": {
       "implemented": true,
@@ -5646,7 +9229,11 @@
       ],
       "entries": [
         "fishing_bobber"
-      ]
+      ],
+      "released": [
+        "fishing_bobber"
+      ],
+      "new_in_nightly": []
     }
   },
   "commands": {
@@ -5655,23 +9242,24 @@
       "todos": [],
       "entries": [
         "/advancement"
-      ]
+      ],
+      "released": [
+        "/advancement"
+      ],
+      "new_in_nightly": []
     },
     "/attribute": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/attribute"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/execute": {
       "implemented": true,
       "todos": [
-        "Add the vanilla compound-NBT branch once Steel has an SNBT compound",
-        "Add pagination for domains and worlds instead of truncating to the grid capacity.",
-        "Add `locate biome` once Steel has an asynchronous closest-biome search.",
-        "Add `locate poi` once Steel has a point-of-interest manager.",
-        "Enforce the new game mode on online players when `force-gamemode=true` and return the",
         "Add items after every vanilla command-slot provider and container inventory is",
         "Add predicate and function after their runtime registries are ported.",
         "Restore Steel stopwatch conditions with the stopwatch command system.",
@@ -5680,56 +9268,78 @@
       ],
       "entries": [
         "/execute"
-      ]
+      ],
+      "released": [
+        "/execute"
+      ],
+      "new_in_nightly": []
     },
     "/bossbar": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/bossbar"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/clear": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/clear"
-      ]
+      ],
+      "released": [
+        "/clear"
+      ],
+      "new_in_nightly": []
     },
     "/clone": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/clone"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/damage": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/damage"
-      ]
+      ],
+      "released": [
+        "/damage"
+      ],
+      "new_in_nightly": []
     },
     "/data": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/data"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/datapack": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/datapack"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/debug": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/debug"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/defaultgamemode": {
       "implemented": true,
@@ -5738,33 +9348,49 @@
       ],
       "entries": [
         "/defaultgamemode"
-      ]
+      ],
+      "released": [
+        "/defaultgamemode"
+      ],
+      "new_in_nightly": []
     },
     "/dialog": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/dialog"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/difficulty": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/difficulty"
-      ]
+      ],
+      "released": [
+        "/difficulty"
+      ],
+      "new_in_nightly": []
     },
     "/effect": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/effect"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/me": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
+        "/me"
+      ],
+      "released": [],
+      "new_in_nightly": [
         "/me"
       ]
     },
@@ -5773,7 +9399,11 @@
       "todos": [],
       "entries": [
         "/enchant"
-      ]
+      ],
+      "released": [
+        "/enchant"
+      ],
+      "new_in_nightly": []
     },
     "/experience": {
       "implemented": true,
@@ -5781,75 +9411,110 @@
       "entries": [
         "/experience",
         "/xp"
-      ]
+      ],
+      "released": [
+        "/experience",
+        "/xp"
+      ],
+      "new_in_nightly": []
     },
     "/fill": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/fill"
-      ]
+      ],
+      "released": [
+        "/fill"
+      ],
+      "new_in_nightly": []
     },
     "/fillbiome": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/fillbiome"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/forceload": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/forceload"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/function": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/function"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/gamemode": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/gamemode"
-      ]
+      ],
+      "released": [
+        "/gamemode"
+      ],
+      "new_in_nightly": []
     },
     "/gamerule": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/gamerule"
-      ]
+      ],
+      "released": [
+        "/gamerule"
+      ],
+      "new_in_nightly": []
     },
     "/give": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/give"
-      ]
+      ],
+      "released": [
+        "/give"
+      ],
+      "new_in_nightly": []
     },
     "/help": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/help"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/item": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/item"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/kick": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
+        "/kick"
+      ],
+      "released": [],
+      "new_in_nightly": [
         "/kick"
       ]
     },
@@ -5858,14 +9523,22 @@
       "todos": [],
       "entries": [
         "/kill"
-      ]
+      ],
+      "released": [
+        "/kill"
+      ],
+      "new_in_nightly": []
     },
     "/list": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/list"
-      ]
+      ],
+      "released": [
+        "/list"
+      ],
+      "new_in_nightly": []
     },
     "/locate": {
       "implemented": true,
@@ -5875,14 +9548,20 @@
       ],
       "entries": [
         "/locate"
-      ]
+      ],
+      "released": [
+        "/locate"
+      ],
+      "new_in_nightly": []
     },
     "/loot": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/loot"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/msg": {
       "implemented": false,
@@ -5891,168 +9570,238 @@
         "/msg",
         "/tell",
         "/w"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/swing": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/swing"
-      ]
+      ],
+      "released": [
+        "/swing"
+      ],
+      "new_in_nightly": []
     },
     "/particle": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/particle"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/place": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/place"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/playsound": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/playsound"
-      ]
+      ],
+      "released": [
+        "/playsound"
+      ],
+      "new_in_nightly": []
     },
     "/random": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/random"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/reload": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/reload"
-      ]
+      ],
+      "released": [
+        "/reload"
+      ],
+      "new_in_nightly": []
     },
     "/recipe": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/recipe"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/fetchprofile": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/fetchprofile"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/return": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/return"
-      ]
+      ],
+      "released": [
+        "/return"
+      ],
+      "new_in_nightly": []
     },
     "/ride": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/ride"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/rotate": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/rotate"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/say": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/say"
-      ]
+      ],
+      "released": [
+        "/say"
+      ],
+      "new_in_nightly": []
     },
     "/schedule": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/schedule"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/scoreboard": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/scoreboard"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/seed": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/seed"
-      ]
+      ],
+      "released": [
+        "/seed"
+      ],
+      "new_in_nightly": []
     },
     "/version": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/version"
-      ]
+      ],
+      "released": [
+        "/version"
+      ],
+      "new_in_nightly": []
     },
     "/setblock": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/setblock"
-      ]
+      ],
+      "released": [
+        "/setblock"
+      ],
+      "new_in_nightly": []
     },
     "/spawnpoint": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/spawnpoint"
-      ]
+      ],
+      "released": [
+        "/spawnpoint"
+      ],
+      "new_in_nightly": []
     },
     "/setworldspawn": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/setworldspawn"
-      ]
+      ],
+      "released": [
+        "/setworldspawn"
+      ],
+      "new_in_nightly": []
     },
     "/spectate": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/spectate"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/spreadplayers": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/spreadplayers"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/stopsound": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/stopsound"
-      ]
+      ],
+      "released": [
+        "/stopsound"
+      ],
+      "new_in_nightly": []
     },
     "/stopwatch": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/stopwatch"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/summon": {
       "implemented": true,
@@ -6061,21 +9810,31 @@
       ],
       "entries": [
         "/summon"
-      ]
+      ],
+      "released": [
+        "/summon"
+      ],
+      "new_in_nightly": []
     },
     "/tag": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/tag"
-      ]
+      ],
+      "released": [
+        "/tag"
+      ],
+      "new_in_nightly": []
     },
     "/team": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/team"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/teammsg": {
       "implemented": false,
@@ -6083,7 +9842,9 @@
       "entries": [
         "/teammsg",
         "/tm"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/teleport": {
       "implemented": true,
@@ -6091,182 +9852,261 @@
       "entries": [
         "/teleport",
         "/tp"
-      ]
+      ],
+      "released": [
+        "/teleport",
+        "/tp"
+      ],
+      "new_in_nightly": []
     },
     "/tellraw": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/tellraw"
-      ]
+      ],
+      "released": [
+        "/tellraw"
+      ],
+      "new_in_nightly": []
     },
     "/test": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/test"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/tick": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/tick"
-      ]
+      ],
+      "released": [
+        "/tick"
+      ],
+      "new_in_nightly": []
     },
     "/time": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/time"
-      ]
+      ],
+      "released": [
+        "/time"
+      ],
+      "new_in_nightly": []
     },
     "/title": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/title"
-      ]
+      ],
+      "released": [
+        "/title"
+      ],
+      "new_in_nightly": []
     },
     "/trigger": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/trigger"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/waypoint": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/waypoint"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/weather": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/weather"
-      ]
+      ],
+      "released": [
+        "/weather"
+      ],
+      "new_in_nightly": []
     },
     "/worldborder": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/worldborder"
-      ]
+      ],
+      "released": [
+        "/worldborder"
+      ],
+      "new_in_nightly": []
     },
     "/debugconfig": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/debugconfig"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/ban-ip": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/ban-ip"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/banlist": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/banlist"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/ban": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/ban"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/deop": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/deop"
-      ]
+      ],
+      "released": [
+        "/deop"
+      ],
+      "new_in_nightly": []
     },
     "/op": {
-      "implemented": false,
+      "implemented": true,
       "todos": [],
       "entries": [
         "/op"
-      ]
+      ],
+      "released": [
+        "/op"
+      ],
+      "new_in_nightly": []
     },
     "/pardon": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/pardon"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/pardon-ip": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/pardon-ip"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/perf": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/perf"
-      ]
+      ],
+      "released": [
+        "/perf"
+      ],
+      "new_in_nightly": []
     },
     "/save-all": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/save-all"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/save-off": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/save-off"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/save-on": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/save-on"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     },
     "/setidletimeout": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/setidletimeout"
-      ]
+      ],
+      "released": [
+        "/setidletimeout"
+      ],
+      "new_in_nightly": []
     },
     "/stop": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/stop"
-      ]
+      ],
+      "released": [
+        "/stop"
+      ],
+      "new_in_nightly": []
     },
     "/transfer": {
       "implemented": true,
       "todos": [],
       "entries": [
         "/transfer"
-      ]
+      ],
+      "released": [
+        "/transfer"
+      ],
+      "new_in_nightly": []
     },
     "/whitelist": {
       "implemented": false,
       "todos": [],
       "entries": [
         "/whitelist"
-      ]
+      ],
+      "released": [],
+      "new_in_nightly": []
     }
   }
 }

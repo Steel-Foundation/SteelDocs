@@ -22,6 +22,7 @@ jobs:
         with:
           repository: Steel-Foundation/SteelMC
           path: steel
+          fetch-depth: 0
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -32,11 +33,22 @@ jobs:
       - name: Generate implementation status
         run: bun run scripts/sync-implementation.ts ./steel
 
+      - name: Download Flint summary artifact
+        env:
+          GH_TOKEN: ${{ secrets.BOT_TOKEN }}
+        run: |
+          rm -f public/data/flint_summary.json
+          RUN_ID=$(gh api "repos/Steel-Foundation/SteelMC/actions/artifacts?name=flint-summary&per_page=100" \
+            -q '[.artifacts[] | select(.workflow_run.head_branch=="master" and .expired==false)][0].workflow_run.id')
+          echo "Using run $RUN_ID"
+          gh run download "$RUN_ID" -R Steel-Foundation/SteelMC \
+            -n flint-summary -D public/data/
+
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add public/data/implementation-status.json
+          git add public/data/implementation-status.json public/data/flint_summary.json
           git diff --staged --quiet && echo "No changes" && exit 0
           git commit -m "chore: update implementation status"
           git push
