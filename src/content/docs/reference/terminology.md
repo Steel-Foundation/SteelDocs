@@ -49,19 +49,19 @@ A **world** is a playable map inside a domain.
 
 In vanilla Minecraft this is often described as the Overworld, Nether or End. Steel can define more worlds than vanilla. For example, one domain can contain `overworld`, `overworld_2` and `testing`.
 
-Each world selects a world generator. A world can also override inherited domain settings, such as seed, gamemode, difficulty or storage.
+Each world selects a world generator based on the dimension provided. A world can also override inherited domain settings, such as seed, gamemode, difficulty or storage.
 
 ## Dimension
 
 A **dimension** is an in-game realm such as the Overworld, Nether or End. Its properties, including height, sky, fog and other dimension-specific behavior, are defined by a dimension type.
 
-The Overworld's dimension type sets a height of 384 blocks. The Nether's dimension type sets Nether fog, and the End's sets its skybox.
+The dimension pairs a dimension type with a chunk generator to create a world based on parameters provided by the admin and the seed.
 
-A dimension is not the same as a saved map. Multiple worlds can use the same dimension type.
+A dimension can be overridden by a world set-up if an admin wishes to create a world with some aspects of an already-made dimension without using all of them.
 
 ## Dimension Type
 
-A **dimension type** is a reusable definition of a dimension's properties and behavior, such as its height, sky and fog. A world generator selects a dimension type for a world; multiple worlds can use the same type.
+Not to be confused with a dimension, a **dimension type** is a reusable definition of a dimension's properties and behavior, such as its height, sky and fog. These characteristics are saved throughout Steel files, such as `minecraft:overworld`, `minecraft:empty`, and `minecraft:nether`, and are called inside of the `worlds.toml` file when creating a new world. The dimension type does not include the actual realm, they are just the characteristics used. A world generator selects a dimension type for a world; multiple worlds can use the same type. 
 
 ## World Generator
 
