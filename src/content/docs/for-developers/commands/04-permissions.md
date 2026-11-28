@@ -7,37 +7,40 @@ This tutorial will teach you how permissions are defined and how to create custo
 
 ## Permissions
 
-By default, a registration derives this permission from its ID, which is defined as `<namespace>.command.<path>`.
+By default, a registration derives this permission from its ID, which is defined as `<namespace>:command.<path>`.
 
-For example, `minecraft:give` uses `minecraft.command.give`, while `steel:fly` uses `steel.command.fly`.
+For example, `minecraft:give` uses `minecraft:command.give`, while `steel:fly` uses `steel:command.fly`.
 
 The permission for a command can be modified in the command registration function.
 
 ### Using a Permission Expression
 
-By default, permissions are denied. To allow a command to be used by anyone, use the `default_access()` method:
+Permissions are denied unless a group grants them. To make a command available to a set of players, declare the [collection](#permission-collections) that should grant its derived permission:
 
 ```rust ins={3}
 pub(super) fn registration() -> CommandRegistration<CommandSource> {
     CommandRegistration::new(Identifier::new("example", "example"), |_| command())
-        .default_access()
+        .permission_collection(ALL_COLLECTION)
 }
 ```
 
 :::note
-Although `default_access()` allows unset permissions, it still denies explicitly set ones.
+Declaring `minecraft:all` grants the command to every player in the default `all` group. An explicit `deny` still overrides it.
 :::
 
-For a custom permission expression, use the `permission` method:
+The vanilla collection identifiers are generated as constants (`ALL_COLLECTION`, `GAMEMASTERS_COLLECTION`, `ADMINS_COLLECTION`, `MODERATORS_COLLECTION`, `OWNERS_COLLECTION`) so their IDs are not written by hand. They are exported from `steel_core::permission`.
 
-```rust ins={2,3,5}
+For a custom permission expression, use the `permission` method with a concrete `Identifier`:
+
+```rust ins={3,4}
 pub(super) fn registration() -> CommandRegistration<CommandSource> {
-    // Creates a specific permission expression with a custom permission key.
-    let permission = PermissionExpr::key(PermissionKey::parse("example.command.custom")?);
+    let permission = PermissionExpr::key(Identifier::new("example", "command.custom"));
     CommandRegistration::new(Identifier::new("example", "example"), |_| command())
         .permission(permission)
 }
 ```
+
+`PermissionKey` parses rule text from configuration and `/perms`; `PermissionExpr::key` takes an `Identifier`.
 
 :::note
 You can also use `PermissionExpr::scoped_key(parent, key)` for a permission of `key`. It is automatically granted if `parent` is granted,
@@ -59,7 +62,7 @@ pub(super) fn registration() -> CommandRegistration<CommandSource> {
 }
 ```
 
-The above defines the permissions `minecraft.command.tick.rate`, `minecraft.command.tick.step`, and `minecraft.command.tick.freeze`. **A user may either have the root permission or the relevant child permission to be able to use the command.**
+The above defines the permissions `minecraft:command.tick.rate`, `minecraft:command.tick.step`, and `minecraft:command.tick.freeze`. **A user may either have the root permission or the relevant child permission to be able to use the command.**
 
 :::note
 If a child permission is denied, it takes over the parent one. In other words, if a subcommand permission is denied while the main command permission is allowed,
@@ -78,14 +81,52 @@ Here's an example:
 
 ```rust ins={2,3,4,6}
 pub(super) fn registration() -> CommandRegistration<CommandSource> {
-    // This permission requires both example.command.example.a and example.command.example.b.
-    let permission = PermissionExpr::key(PermissionKey::parse("example.command.example.a")?) &
-        PermissionExpr::key(PermissionKey::parse("example.command.example.b")?);
+    // This permission requires both example:command.example.a and example:command.example.b.
+    let permission =
+        PermissionExpr::key(Identifier::new("example", "command.example.a")) &
+            PermissionExpr::key(Identifier::new("example", "command.example.b"));
     CommandRegistration::new(Identifier::new("example", "example"), |_| command())
         .permission(permission)
 }
 ```
 
 :::note
-Permission expressions in rule arguments in the server configuration and in the `/perms` command are not compound expressions. Instead, they contain one permission key and an optional *context selector*, like `minecraft.command.gamemode{domain=lobby}`.
+Permission expressions in rule arguments in the server configuration and in the `/perms` command are not compound expressions. Instead, they contain one permission key and an optional *context selector*, like `minecraft:command.gamemode{domain=lobby}`.
 :::
+
+## Permission Collections
+
+Each command can declare the code-owned [collection](../../../configuration/permissions#collections) that receives its derived permission:
+
+```rust ins={3}
+pub(super) fn registration() -> CommandRegistration<CommandSource> {
+    CommandRegistration::new(Identifier::from_steel("fly"), |_| command())
+        .permission_collection(GAMEMASTERS_COLLECTION)
+}
+```
+
+Commands that declare no collection contribute to `minecraft:owners`. Because the vanilla groups inherit one another, a command declared for `minecraft:gamemasters` is also received by `admins` and `owners`. This controls only which collection grants the command; it does not change the derived permission key.
+
+### Contributing to a Collection without a Command
+
+A plugin can declare arbitrary permissions and collection members at startup, including in the built-in collections, without registering a command. Use `CommandRegistry::declare_permission` with a `PermissionDeclaration`:
+
+```rust ins={3,4,5,8,9,10,11}
+let mut registry = CommandRegistry::new();
+registry.declare_permission(
+    PermissionDeclaration::new("myplugin:moderation.kick")
+        .grant_permission_to(GAMEMASTERS_COLLECTION),
+)?;
+registry.declare_permission(
+    PermissionDeclaration::new("myplugin:build.place")
+        .in_collection(Identifier::new("myplugin", "build"))
+        .grant_collection_to(GAMEMASTERS_COLLECTION),
+)?;
+```
+
+- `PermissionDeclaration::new` validates the key and makes it discoverable by `/perms`.
+- `in_collection` makes the permission a managed member of that collection, creating it when absent. The matching `steel:permission.manage.<namespace>.<path>` authority is added alongside it.
+- `grant_permission_to` adds the permission directly to an existing collection, including a generated vanilla collection.
+- `grant_collection_to` references the collection declared with `in_collection` from another collection. It requires `in_collection` to have been set.
+
+These declarations are rebuilt at every startup and are never persisted. A collection with the same id in `config/permission/collections.toml` replaces the code-declared collection entirely, so configuration has final say.

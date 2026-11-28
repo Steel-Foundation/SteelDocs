@@ -35,7 +35,7 @@ Player target arguments can accept a player name or a compatible Minecraft targe
 Most commands derive a permission from their namespaced command ID:
 
 ```text
-<namespace>.command.<command>
+<namespace>:command.<command>
 ```
 
 Some command families publish more specific permissions for individual operations. The root permission grants those operations unless a more specific rule denies one. Console and RCON bypass player permission checks.
