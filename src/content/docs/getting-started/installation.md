@@ -6,31 +6,34 @@ sidebar:
 ---
 
 This guide will show you how to install and run Steel.\
-There are multiple ways to do that:
+There are multiple ways to accomplish this:
 
-- [Pre-built binary](#pre-built-binaries)
+- [Pre-built binaries](#pre-built-binaries)
 - [Docker](#docker)
 - [Egg (Pelican / Pterodactyl)](#egg)
-- [Self compiled](#self-compilation)
+- [Self-compiled](#self-compilation)
 
 ## What to select
 
-You should choose the installation method that matches where Steel will run.
+You should choose the installation method that works best for where Steel will run.
 
-- If you want to run Steel directly on the host system, use the pre-built binaries.
+- If you want to run Steel directly on the host system, use our pre-built binaries.
 
 - If you already use Kubernetes, Docker Swarm, or a standard Docker host, the Docker container is the recommended option.
 
 - If your target platform is Pelican, Pterodactyl, or another egg-based panel, use the provided Steel egg in JSON or YAML format.
 
-- If you want native processor speeds or your platform / architecture is not currently supported, build Steel from source for your target system.
+- If you want native processor speeds, or if your platform or architecture is not currently supported, build Steel from source for your target system.
 
-| Method                          | Linux x64 | Linux arm64 | Linux armv7 | Linux armv6 | Windows x64 | Windows arm | Mac arm | Mac x64 |
-| ------------------------------- | :-------: | :---------: | :---------: | :---------: | :---------: | :---------: | :-----: | :-----: |
-| [Binary](#pre-built-binaries)   |    ✅     |     ❌      |     ❌      |     ❌      |     ✅      |     ❌      |   ✅    |   ❌    |
-| [Docker](#docker)               |    ✅     |     ✅      |     ❌      |     ❌      |     ✅      |     ✅      |   ✅    |   ✅    |
-| [Egg](#egg)                     |    ✅     |     ❌      |     ❌      |     ❌      |     ❌      |     ❌      |   ❌    |   ❌    |
-| [Self-built](#self-compilation) |    ✅     |     ✅      |     ⚠️      |     ⚠️      |     ✅      |     ✅      |   ✅    |   ✅    |
+>[!NOTE]
+>Your router must have port forwarding configured on the right ports for people to be able to access your server when they are not connected to your LAN, or you must use a service such as Tailscale if your ISP does not support port forwarding.
+
+| Method                          | Linux x64 | Linux arm64 | Linux armv7 | Linux armv6 | Windows x64 | Windows arm | Mac arm | Mac x64 | Android arm64  |  Android x64 |
+| ------------------------------- | :-------: | :---------: | :---------: | :---------: | :---------: | :---------: | :-----: | :-----: |:---:|:---:|
+| [Binary](#pre-built-binaries)   |    ✅     |     ❌      |     ❌      |     ❌      |     ✅      |     ❌      |   ✅    |   ❌    |✅ |✅|
+| [Docker](#docker)               |    ✅     |     ✅      |     ❌      |     ❌      |     ✅      |     ✅      |   ✅    |   ✅    |❌️|  ❌️ |
+| [Egg](#egg)                     |    ✅     |     ❌      |     ❌      |     ❌      |     ❌      |     ❌      |   ❌    |   ❌    | ❌️  |  ❌️ |
+| [Self-built](#self-compilation) |    ✅     |     ✅      |     ⚠️      |     ⚠️      |     ✅      |     ✅      |   ✅    |   ✅    | ✅  |  ✅ |
 
 ✅: Supported. ❌: Not currently supported. ⚠️: Needs small adjustments.
 
@@ -42,11 +45,11 @@ Pre-built binaries are available on our [downloads page](../../download) for the
 
 - Linux (x86_64)
 - Windows (x86_64)
-- MacOS (ARM)
+- MacOS (arm64)
 
-Alternatively our [GitHub releases](https://github.com/Steel-Foundation/SteelMC/releases) page has the exact same files available.
+Alternatively, our [GitHub releases](https://github.com/Steel-Foundation/SteelMC/releases) page has the exact same binaries available for download.
 
-Once downloaded, to run the server you just need to open your prefered terminal (e.g. PowerShell, Ghostty, Kitty, etc...) in your downloaded executable directory and run the following command:
+Once downloaded, the server can be run by opening your preferred terminal (e.g. Powershell, Kitty, etc.) in the directory that holds the downloaded binary and running the following command:
 
 ```bash
 # Windows
@@ -56,22 +59,21 @@ Once downloaded, to run the server you just need to open your prefered terminal 
 ./steel
 ```
 
-:::caution
-For MacOS users is necessary to enable the Development Mode of the system to be able to execute Steel, since it's not oficially signed.
+> [!WARNING]
+> For MacOS users, it is necessary to enable Development Mode on the system to be able to execute Steel, since it is not officially signed.
 
-This can be achieved through running the following command in the terminal and entering your administrator password:
+This can be achieved through running the following command in your terminal and entering your administrator password:
 
 ```bash
 sudo devtools enable
 ```
 
-:::
 
 ## Docker
 
-Steel does not publish a `latest` Docker tag. Use a specific version tag instead, this way upgrades are always planned and no container updates unexpectedly.
+Steel does not publish an image with the `latest` tag. Use a specific version tag instead, this way upgrades are always planned and no container updates unexpectedly.
 
-The `nightly` tag is available for plugin testing and early testing of upcoming changes. It follows the latest commit on the `master` branch and may contain bugs that have not been fixed for a release yet. Do not use `nightly` in production.
+The `nightly` tag is available for testing extensions and upcoming changes early. It follows the latest commit on the `master` branch and may contain bugs that have not been fixed for a release yet. Do not use `nightly` in production if you wish to avoid bugs and half-implemented features.
 
 ### Start the image
 
@@ -81,51 +83,45 @@ Run the Steel container with the server port exposed and local folders mounted f
 docker run -d -it -p 25565:25565 -v ./config:/config -v ./saves:/saves -v ./logs:/logs --name steel-mc ghcr.io/steel-foundation/steelmc:<version>
 ```
 
-::tip
-To access the console of steel in the docker container the command is:
-```bash
-docker attach <steel-mc|container name>
-```
-:::
+> [!TIP]
+> To access the console of steel in the docker container the command is:
+>```bash
+>docker attach <steel-mc|container name>
+>```
 
-:::note
-The docker pull for nightly is: `docker pull ghcr.io/steel-foundation/steelmc:nightly`
-:::
+> [!NOTE]
+>The docker pull for nightly is: `docker pull ghcr.io/steel-foundation/steelmc:nightly`
 
-:::tip
-The same setup can be written as a Docker Compose service (Recommended):
-
-```yaml
-# docker-compose.yml
-services:
-  steel:
-    image: ghcr.io/steel-foundation/steelmc:<version>
-    stdin_open: true
-    tty: true
-    container_name: steel-mc
-    ports:
-      - 25565:25565
-    volumes:
-      - ./config:/config
-      - ./saves:/saves
-      - ./logs:/logs
-```
-
-Docker Compose is another way to write the `docker run` command in a file.\
-You can find the full Docker Compose reference here: https://docs.docker.com/reference/compose-file/
-
-:::
+>[!TIP]
+>The same setup can be written as a Docker Compose service (Recommended):
+>```yaml
+># docker-compose.yml
+>services:
+>  steel:
+>    image: ghcr.io/steel-foundation/steelmc:<version>
+>    stdin_open: true
+>    tty: true
+>    container_name: steel-mc
+>    ports:
+>      - 25565:25565
+>   volumes:
+>     - ./config:/config
+>     - ./saves:/saves
+>     - ./logs:/logs
+>```
+>Docker Compose is another way to write the `docker run` command in a file.\
+>You can find the full Docker Compose reference [here.](https://docs.docker.com/reference/compose-file/)
 
 ### How to change ports and folders
 
-For those without any idea of how to configure docker, here's a small cheatsheet of the configurable parameters:
+For those who don't know how to configure docker, here's a small cheat sheet of the configurable parameters:
 
 - **`-p` (`--port`, `ports`):** The first number represents the host port, which can be changed. The second one is the port inside the Docker container and should only be changed to match the one in the Steel config. For example, `-p 1111:25565` makes the Minecraft server reachable on port `1111` on the Linux server.
 - **`-v` (`--volume`, `volumes`):** The route before the colon is the path on your host system, which can be relative to the compose file. The path after the colon is inside the Docker container and should not be changed.
 
 ## Egg
 
-For  Pterodactyl, Steel provides an egg that can be imported directly from the panel's egg store in the future.
+For Pterodactyl, Steel provides an egg that can be imported directly from the panel's egg store in the future.
 
 For other egg-based platforms, use the JSON egg file from the link, or download the matching egg from one of the supported stores when available.
 
@@ -133,12 +129,12 @@ For other egg-based platforms, use the JSON egg file from the link, or download 
 
 | Name | default | Description |
 | ---- | --- | --- |
-| VERSION | latest | The specific steel version which should be used. It is recommended to choose a specific version, because latest will update if you not intend it to happen! |
-| GITHUB_USER | <empty> | Allows to download with a github user to avoid rate limitation, the github username for that. |
-| GITHUB_OAUTH_TOKEN | <empty> | The token for the github user.  |
+| VERSION | latest | The specific steel version which should be used. It is recommended to choose a specific version, because latest will automatically update even if you do not intend it to. |
+| GITHUB_USER | <empty> | Allows for downloading the egg through GitHub to bypass the rate limit, if you would like to do this enter your GitHub username here. |
+| GITHUB_OAUTH_TOKEN | <empty> | The authorization token for the GitHub username to log in.|
 
 
-Pterodactyl: `[Our upload](https://steelmc.dev/data/egg-steel-json)`
+Download JSON egg [here.](https://steelmc.dev/data/egg-steel.json)
 
 ## Self Compilation
 
@@ -170,31 +166,28 @@ cd SteelMC
 cargo build-native --release
 ```
 
-:::note
-**The binary will be at `./target/release/steel`**
-:::
+>[!note]
+>**The binary will be at `./target/release/steel`**
+>
 
-:::caution
-If you want to build for armv6 and armv7. You also need to clone simdnbt change in the Cargo.toml to use your local version and remove the restriction of 64bit from simdnbt.
-For more help we can support at [discord](/discord).
-:::
+>[!caution]
+>If you want to build for armv6 and armv7, you also need to clone simdnbt change in the Cargo.toml to use your local version and remove the restriction of 64bit from simdnbt.
+>For more help we can support you on our [discord.](/discord)
 
 #### Build Commands
 
 | Command                        | Purpose                                                                                 |
 | ------------------------------ | --------------------------------------------------------------------------------------- |
-| `cargo build-native`           | Debug build (faster compile, slower runtime) (with architecture-specific optimizations) |
-| `cargo build-native --release` | Release build (slower compile, optimized) (with architecture-specific optimizations)    |
+| `cargo build-native`           | Debug build (faster compile, slower runtime, with architecture-specific optimizations) |
+| `cargo build-native --release` | Release build (slower compile, optimized, with architecture-specific optimizations)    |
 | `cargo build`                  | Debug build (faster compile, slower runtime)                                            |
 | `cargo build --release`        | Release build (slower compile, optimized)                                               |
 | `cargo check`                  | Fast syntax and type checking                                                           |
 | `cargo test`                   | Run the test suite                                                                      |
 | `cargo clippy`                 | Run the linter                                                                          |
 
-:::caution
-Native builds can't be executed on other machines, only in the same one where they were compiled.
-(Or one with the same architecture)
-:::
+>[!caution]
+>Native builds can't be executed on other machines, only in the same one where they were compiled or one that shares the same architecture.
 
 #### Build Features
 
@@ -222,7 +215,7 @@ cargo build-native --no-default-features
 **Deadlock Detection** is particularly useful during development if you're experiencing hangs or suspect lock-related issues. When enabled, parking_lot will detect potential deadlocks and panic with diagnostic information.
 
 ### Running the Server
-
+To run the server, navigate to the directory where the source was cloned and compiled and run one of these three commands:
 ```bash
 # Run directly with cargo (debug mode)
 cargo run-native

@@ -3,11 +3,12 @@ title: Benchmarks
 description: Reproducible performance benchmarks of SteelMC
 ---
 
-Steel's first published benchmark focuses on the work it currently does best: generating terrain. We compared a native Steel build with Fabric using [Chunky](https://modrinth.com/plugin/chunky).
+Steel's first published benchmark focuses on the work it currently does best: generating terrain. We compared a native Steel build with Fabric using [Chunky.](https://modrinth.com/plugin/chunky)\
+This article will attempt to use graphs that are as unbiased as possible to show the true results to you rather than trying to magnify the gains of Steel over Fabric.
 
-:::note[Fabric is the vanilla baseline]
-Throughout this page, **Fabric** means a Minecraft Java Edition 26.2 server with Fabric Loader, Fabric API, and Chunky, but no performance mods. We use it as a repeatable stand-in for vanilla: Chunky defines a fixed pregeneration area while Minecraft's vanilla world generator does the work.
-:::
+> [!TIP]
+> Fabric is the vanilla baseline.
+> Throughout this page, **Fabric** means a Minecraft Java Edition 26.2 server with Fabric Loader, Fabric API, and Chunky, but no performance mods. We use it as a repeatable stand-in for vanilla: Chunky defines a fixed pregeneration area while Minecraft's vanilla world generator does the work.
 
 On this machine, Steel generated the 10,201-chunk test area **18.8 times as fast as Fabric** across three runs.
 
@@ -73,12 +74,12 @@ The seed was chosen for its unusually dense variety: its finder [reported every 
 The common settings were:
 
 - Minecraft Java Edition 26.2
-- structures enabled
-- no connected players
-- a new world directory for every run
-- world storage on the same `tmpfs` filesystem
-- three cold runs per server at 101-by-101, plus one cold run at 301-by-301
-- process CPU time and RSS sampled every 250 milliseconds
+- Structures enabled
+- No connected players
+- A new world directory for every run
+- World storage on the same `tmpfs` filesystem
+- Three cold runs per server at 101-by-101, plus one cold run at 301-by-301
+- Process CPU time and RSS sampled every 250 milliseconds
 - Steel pregeneration window size set to 64 chunks (`PREGEN_WINDOW_SIZE=64`)
 
 Putting the worlds on `tmpfs` removes the storage device from the comparison. Chunk serialization, compression, and saving still run, but physical disk speed does not dominate the result.
@@ -145,9 +146,9 @@ The machine-readable source data used for the tables and graphs is stored alongs
 
 ## Limitations
 
-:::caution[Read this before quoting the results]
-This is a focused world-generation benchmark, not a claim that Steel is 18.8 times faster at every server workload.
-:::
+>[!Caution]
+>Read this before quoting the results.\
+>This is a focused world-generation benchmark, not a claim that Steel is 18.8 times faster at every server workload.
 
 - **The repeated area is intentionally modest.** The 101-by-101 test was chosen so vanilla Fabric could be repeated three times. The 301-by-301 result demonstrates warmup effects, but it is only one run and should not be treated as a stable average.
 - **The generated work is not perfectly identical.** Steel currently disables the entity-spawning generation stage because most generated entities are not implemented. Vanilla Fabric performs that stage. Both configurations otherwise request fully generated chunks with structures and lighting.
@@ -159,10 +160,10 @@ This is a focused world-generation benchmark, not a claim that Steel is 18.8 tim
 
 The next useful additions are:
 
-- responsibly tuned Fabric performance-mod configurations contributed by people experienced with those mods
-- repeated 301-by-301 generation on additional machines
-- physical NVMe storage, including world size and bytes written
-- the Nether and the End
-- generated-chunk loading from disk
-- chunk sending to one and multiple clients
-- tick time and memory under simulated players
+- Responsibly tuned Fabric performance-mod configurations contributed by people experienced with those mods
+- Repeated 301-by-301 generation on additional machines
+- Physical NVMe storage, including world size and bytes written
+- The Nether and the End
+- Generated-chunk loading from disk
+- Chunk sending to one and multiple clients
+- Tick time and memory under simulated players
