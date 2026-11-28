@@ -52,7 +52,7 @@ This is happening due to a vanilla gamerule, you can use `/gamerule player_movem
 
 ## Why not combine efforts with other Rust rewrites?
 
-Each rewrite has its own vision and management. Our founder 4lve was not satisfied with any of them, so he decided to make an open source project to match his vision for how a rust server could be created, with multiple people who had the same vision joining in the following weeks.
+Each rewrite has its own vision and management. 4lve was not satisfied with any of them, so he decided to make an open source project to match his vision for how a rust server could be created, with multiple people who had the same vision joining in the following weeks.
 
 ## How do I start contributing to Steel?
 
